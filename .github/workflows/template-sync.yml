@@ -48,8 +48,8 @@ jobs:
     outputs:
       layers: ${{ steps.layers.outputs.layers }}
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - id: layers
@@ -94,13 +94,13 @@ jobs:
       LAYER: ${{ matrix.layer }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           token: ${{ secrets.BOT_TOKEN || github.token }}
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 

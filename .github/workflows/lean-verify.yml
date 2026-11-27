@@ -34,7 +34,7 @@ jobs:
         shell: bash
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - uses: ./.github/actions/resolve-lock
         env:
           TBOOK_TRURETURING_SHA: ${{ inputs.trureturing_sha }}
@@ -46,14 +46,14 @@ jobs:
       # a pull-request workflow, whose runs execute the pull request's own files and restore what its earlier
       # runs saved (docs/VERIFICATION.md §2). No actions/cache or setup-python cache: both save in pull requests.
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
       - name: Restore the pip cache
         id: pip-cache
         if: ${{ !startsWith(github.event_name, 'pull_request') }}
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-${{ runner.arch }}-py3.12-${{ hashFiles('requirements.txt') }}
@@ -63,7 +63,7 @@ jobs:
 
       - name: Save the pip cache
         if: steps.pip-cache.outputs.cache-hit != 'true' && !startsWith(github.event_name, 'pull_request')
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         with:
           path: ~/.cache/pip
           key: ${{ steps.pip-cache.outputs.cache-primary-key }}
@@ -86,7 +86,7 @@ jobs:
       - name: Restore the Lake workspace
         id: lake-cache
         if: ${{ !startsWith(github.event_name, 'pull_request') }}
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: build/lean-verify/.lake
           key: lean-verify-${{ steps.project.outputs.commit }}-${{ hashFiles('build/lean-verify/lean-toolchain') }}
@@ -102,7 +102,7 @@ jobs:
       # Only after a successful build (actions/cache, used before, also saved only when the job succeeded).
       - name: Save the Lake workspace
         if: steps.lake-cache.outputs.cache-hit != 'true' && !startsWith(github.event_name, 'pull_request')
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         with:
           path: build/lean-verify/.lake
           key: ${{ steps.lake-cache.outputs.cache-primary-key }}
@@ -126,7 +126,7 @@ jobs:
 
       - name: Upload the log
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: lean-verify-log
           path: |
