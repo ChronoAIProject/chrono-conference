@@ -82,7 +82,7 @@ jobs:
       film_matrix: ${{ steps.plan.outputs.film_matrix }}
     steps:
       - name: Check out the tested tree and complete history
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Select before installing or downloading caches
@@ -112,7 +112,7 @@ jobs:
       - name: Share the resolved lock with this run
         if: steps.lock.outputs.sha != ''
         id: share
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-ci-lock-${{ github.run_attempt }}
           path: ${{ runner.temp }}/trureturing-lock.json
@@ -128,11 +128,11 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - &download-lock
         name: Download this plan's lock snapshot
         if: needs.plan.outputs.trureturing_sha != ''
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           artifact-ids: ${{ needs.plan.outputs.lock_artifact }}
           path: ${{ runner.temp }}/planned-lock
@@ -172,7 +172,7 @@ jobs:
           github.event_name != 'pull_request' && github.event_name != 'pull_request_target' &&
           (github.ref == format('refs/heads/{0}', github.event.repository.default_branch) ||
           startsWith(github.ref, 'refs/tags/'))
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/trureturing
           key: trureturing-state-${{ hashFiles('trureturing.lock.json') }}
@@ -299,7 +299,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - *download-lock
       - *use-lock
       - name: Materialize the selected plan and browser shard
@@ -338,7 +338,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - *download-lock
       - *use-lock
       - name: Set up capture tools
@@ -362,7 +362,7 @@ jobs:
           TBOOK_IMAGES_JSON
           python3 tools/ci/stills.py --items-file "$RUNNER_TEMP/images.json" --out "$RUNNER_TEMP/prepared-images"
       - name: Share complete image entries with every export
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-stills-${{ github.run_attempt }}-${{ strategy.job-index }}
           path: ${{ runner.temp }}/prepared-images
@@ -390,7 +390,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - *download-lock
       - *use-lock
 
@@ -419,7 +419,7 @@ jobs:
 
       - name: Download prepared visualization images
         if: matrix.target != 'html' && needs.plan.outputs.stills == 'true'
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: tbook-stills-${{ github.run_attempt }}-*
           path: ${{ runner.temp }}/prepared-image-shards
@@ -466,7 +466,7 @@ jobs:
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') &&
           steps.cache-shard.outputs.entries != '' && steps.cache-shard.outputs.entries != '0'
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-build-shard-${{ github.run_attempt }}-build-${{ strategy.job-index }}
           path: ${{ runner.temp }}/build-cache-shard
@@ -477,7 +477,7 @@ jobs:
 
       - name: Upload downloads (PDF, EPUB)
         if: matrix.target != 'html'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: books-dist-${{ matrix.name }}
           path: build/dist
@@ -486,7 +486,7 @@ jobs:
 
       - name: Upload HTML
         if: matrix.target == 'html'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: books-html-${{ matrix.name }}
           path: build/html
@@ -506,7 +506,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - *download-lock
       - *use-lock
 
@@ -524,7 +524,7 @@ jobs:
 
       - name: Upload exact browser results
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-viz-${{ needs.plan.outputs.plan_attempt }}-normal-${{ matrix.batch }}
           overwrite: true
@@ -545,7 +545,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - *download-lock
       - *use-lock
 
@@ -563,7 +563,7 @@ jobs:
 
       - name: Upload exact slow browser results
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-viz-${{ needs.plan.outputs.plan_attempt }}-slow-${{ matrix.batch }}
           overwrite: true
@@ -585,7 +585,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - *download-lock
       - *use-lock
 
@@ -643,7 +643,7 @@ jobs:
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') &&
           steps.cache-shard.outputs.entries != '' && steps.cache-shard.outputs.entries != '0'
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-build-shard-${{ github.run_attempt }}-slides
           path: ${{ runner.temp }}/build-cache-shard
@@ -662,7 +662,7 @@ jobs:
 
       - name: Upload slide PDFs
         if: steps.slide-pdfs.outputs.available == 'true'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: slides-pdf
           path: build/slides/*/*.pdf
@@ -687,7 +687,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - *download-lock
       - *use-lock
 
@@ -742,7 +742,7 @@ jobs:
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') &&
           steps.cache-shard.outputs.entries != '' && steps.cache-shard.outputs.entries != '0'
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-build-shard-${{ github.run_attempt }}-films-${{ strategy.job-index }}
           path: ${{ runner.temp }}/build-cache-shard
@@ -759,10 +759,10 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: Download current browser execution reports
         if: needs.plan.outputs.viz == 'true' || needs.plan.outputs.viz_slow == 'true'
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: tbook-viz-${{ needs.plan.outputs.plan_attempt }}-*
           path: viz-reports
@@ -776,7 +776,7 @@ jobs:
           python3 tools/ci/plan.py --verify --needs-file "$RUNNER_TEMP/ci-needs.json"
       - name: Record successful normal coverage
         if: needs.plan.outputs.publish == 'true' && contains(fromJSON(needs.plan.outputs.plan).profiles, 'normal')
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-coverage-normal
           path: coverage/normal.json
@@ -785,7 +785,7 @@ jobs:
           overwrite: true
       - name: Record successful slow coverage
         if: needs.plan.outputs.publish == 'true' && contains(fromJSON(needs.plan.outputs.plan).profiles, 'slow')
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-coverage-slow
           path: coverage/slow.json
@@ -794,7 +794,7 @@ jobs:
           overwrite: true
       - name: Record successful film responsibility coverage
         if: needs.plan.outputs.publish == 'true' && fromJSON(needs.plan.outputs.plan).coverage.films != null
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-coverage-films
           path: coverage/films.json
@@ -823,7 +823,7 @@ jobs:
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') &&
           (needs.plan.outputs.build == 'true' || needs.plan.outputs.media == 'true' || needs.plan.outputs.films == 'true')
         continue-on-error: true
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: tbook-build-shard-${{ github.run_attempt }}-*
           path: ${{ runner.temp }}/build-cache-shards
@@ -833,7 +833,7 @@ jobs:
           steps.verified.outcome == 'success' && needs.plan.outputs.stills == 'true' &&
           github.ref == format('refs/heads/{0}', github.event.repository.default_branch) &&
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: tbook-stills-${{ github.run_attempt }}-*
           path: ${{ runner.temp }}/build-cache-shards
@@ -869,7 +869,7 @@ jobs:
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') &&
           steps.cache-merge.outputs.entries != '' && steps.cache-merge.outputs.entries != '0'
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-build-store
           path: .cache/artifacts
@@ -894,7 +894,7 @@ jobs:
           github.ref == format('refs/heads/{0}', github.event.repository.default_branch) &&
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') &&
           steps.cache-merge.outputs.entries != '' && steps.cache-merge.outputs.entries != '0'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-film-store
           path: .cache/artifacts/films
@@ -916,7 +916,7 @@ jobs:
           steps.verified.outcome == 'success' && needs.plan.outputs.stills == 'true' &&
           github.ref == format('refs/heads/{0}', github.event.repository.default_branch) &&
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-image-store
           path: .cache/artifacts/viz-stills
