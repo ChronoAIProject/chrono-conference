@@ -277,6 +277,8 @@ class KeyTests(unittest.TestCase):
             "theme/generated/tokens.css": {"html", "pandoc", "typst", "pdf", "epub", "slides"},
             "theme/generated/tokens.mjs": set(),
             "tools/filters/tr-book.lua": {"typst", "pdf", "epub"},
+            "tools/tbook/figure.py": {"html", "pandoc", "typst", "pdf", "epub", "slides"},
+            "tools/tbook/figkit.py": {"html", "pandoc", "typst", "pdf", "epub", "slides"},
             "theme/slides/styles/deck.css": {"slides"},
             "theme/film/render.js": set(),
             "theme/custom/layout.css": {"html", "pandoc", "typst", "pdf", "epub"},

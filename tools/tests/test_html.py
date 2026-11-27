@@ -362,6 +362,12 @@ class BookTomlTest(unittest.TestCase):
         self.assertTrue(out["print"]["enable"] and out["search"]["enable"])
         self.assertEqual(out["fold"], {"enable": True, "level": 1})
 
+    def test_daylight_book_uses_light_theme_for_both_os_preferences(self):
+        book = dataclasses.replace(self.book, polarity="daylight")
+        out = tomllib.loads(html.book_toml(self.site, book, self.edition, [], []))["output"]["html"]
+        self.assertEqual(out["default-theme"], "light")
+        self.assertEqual(out["preferred-dark-theme"], "light")
+
     def test_fold_configuration(self):
         for options, enable, level in (("level = 0", True, 0), ("enable = false", False, 1),
                                        ("enable = true\nlevel = 255", True, 255)):
