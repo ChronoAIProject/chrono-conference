@@ -16,6 +16,15 @@ PYTHON="${PYTHON:-python3}"
 PLAN="$("$PYTHON" "$HERE/plan.py" "$FILM")"
 eval "$PLAN"
 "$PYTHON" "$HERE/build.py" "$FILM"
+if [ -f "$FILM/clips.json" ]; then
+  if node "$HERE/compose.mjs" "$FILM" --renditions "$RENDITIONS"; then
+    exit 0
+  else
+    rc=$?
+    [ "$rc" -eq 3 ] || exit "$rc"
+    echo "film: falling back to still-plate render workers" >&2
+  fi
+fi
 CPUS="$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2)"
 N="${FILM_WORKERS:-$(( CPUS < 3 ? CPUS : 3 ))}"
 [ "$N" -ge 1 ] || N=1

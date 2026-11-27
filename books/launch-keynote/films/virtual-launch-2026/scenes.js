@@ -26,6 +26,9 @@ function heading(s, x, y, size, c, o = {}) {
   txt(s, x, y, { fam: F.disp, size, c, w: 700, ...o });
 }
 function rule(x1, x2, y, p) { line(x1, y + 0.5, x2, y + 0.5, p.edge, 1, 1); }
+function editionSlate(capture) {
+  return window.ALPHA_MODE === true ? capture : 'STILL-PLATE WEB EDITION · 30FPS 3D MASTER IN MP4 RELEASE';
+}
 function frame(S, chapter, shot, source, note, blend) {
   cinemaFrame(S, { leftLabel: scenePolarity(S.id) === 'deep-space' ? institute : company,
     chapterLabel: chapter, rightLabel: shot, slateLeft: source, slateRight: note, blend });
@@ -62,7 +65,7 @@ SCENES.prologue_street = S => {
     heading(value, x, 282, 54, plaza.ink);
     caption(label, x, 319, plaza.dim, 17, { ls: 2 });
   }
-  frame(S, 'PROLOGUE  /  STREET CORNER', 'DAYLIGHT', 'STREET CORNER · VENUE PLAN', 'SGT 2026-12-17');
+  frame(S, 'PROLOGUE  /  STREET CORNER', 'DAYLIGHT', 'STREET CORNER · VENUE PLAN', editionSlate('MARINA BAY 3D · LIVE PIP'));
 };
 
 SCENES.prologue_lobby = S => {
@@ -77,7 +80,7 @@ SCENES.prologue_lobby = S => {
   const iris = ease(clamp((S.u - S.d + 1.2) / 1.2));
   fillBox(0, VIEWPORT.y, W * 0.66 * iris, VIEWPORT.h, space.bg, 0.62 * iris);
   fillBox(W - W * 0.20 * iris, VIEWPORT.y, W * 0.20 * iris, VIEWPORT.h, space.bg, 0.62 * iris);
-  frame(S, 'PROLOGUE  /  LOBBY PROMENADE', 'DAYLIGHT', 'DONNA · VERIFIED PRESS BANK', '30 QUESTIONS · HUMAN ESCALATION', 0.38 * iris);
+  frame(S, 'PROLOGUE  /  LOBBY PROMENADE', 'DAYLIGHT', 'DONNA · VERIFIED PRESS BANK', editionSlate('CHRONOAI LOBBY 3D · LIVE PIP'), 0.38 * iris);
 };
 
 SCENES.act1_judgment = S => {
@@ -137,7 +140,7 @@ SCENES.act2_observatory = S => {
   caption('2,128 RESOLUTIONS · 2,126 IN 74D + 2 UNDATED', 98, 525, space.ink, 19);
   caption('1,400 proofs · 728 refutations', 98, 550, space.dim, 17);
   caption('582 quantum / physics · @05ceb90', 98, 574, space.dim, 16);
-  frame(S, 'ACT II  /  THE RATCHET OF LOGIC', 'COSMOS ORBIT', 'LIVE.TRURETURING.ORG · COSMOS', 'VOL III · LIVE GRAPH / FROZEN CATALOG', ease(clamp(S.u / 1.6)));
+  frame(S, 'ACT II  /  THE RATCHET OF LOGIC', 'COSMOS ORBIT', 'LIVE.TRURETURING.ORG · COSMOS', editionSlate('LIVE.TRURETURING.ORG · COSMOS 3D'), ease(clamp(S.u / 1.6)));
 };
 
 SCENES.act2_kernel_audit = S => {
@@ -147,10 +150,11 @@ SCENES.act2_kernel_audit = S => {
   caption(pinLabel, 630, 319, space.dim, 23);
   const fredkin = leanCite(fredkinGid);
   if (fredkin?.kind === 'theorem') statusTag(1710, 293, 'lean', 'LEAN ✓');
-  rule(630, 1820, 344, space);
-  caption('D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.lean:142', 630, 378, space.dim, 18);
-  caption('theorem result : ¬ claim', 630, 430, space.ink, 35);
-  caption('witness > 2.00034 ebits', 630, 467, space.ink, 22);
+  rule(630, 1820, 335, space);
+  caption('D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.lean:142', 630, 362, space.dim, 18);
+  caption('theorem result : ¬ claim', 630, 405, space.ink, 35);
+  caption('AD:BC bipartition · admissible product inputs + local ancillas', 630, 439, space.ink, 23);
+  caption('claim: sup = 2 ebits · witness > 2.00034 ebits', 630, 470, space.ink, 23);
   caption('statement_id sha256:96a43ff10b04...', 630, 499, space.dim, 18);
   const audit = ease(Q(S, 2, 'Running #print axioms', 1));
   fillBox(622, 515, 1206, 154, space.bg, 0.87);
@@ -171,7 +175,7 @@ SCENES.act2_kernel_audit = S => {
     statusTag(630, y, 'lean', 'LEAN ✓', 0.65 + ratchet * 0.35);
     caption(citation.name.split('.').pop(), 750, y + 22, mix(space.dim, space.lean, ratchet), 22);
   }
-  frame(S, 'ACT II  /  KERNEL AUDIT', 'GALAXY DRIFT', 'TRURETURING · FROZEN SOURCE / LINE 142', 'LEAN 4 · PIN 8A3F20FB');
+  frame(S, 'ACT II  /  KERNEL AUDIT', 'GALAXY DRIFT', 'TRURETURING · FROZEN SOURCE / LINE 142', editionSlate('LIVE.TRURETURING.ORG · GALAXY 3D'));
 };
 
 SCENES.act2_open_frontier = S => {
@@ -298,7 +302,7 @@ SCENES.act4_employees = S => {
   });
   fillBox(988, 713, 836, 54, plaza.ink, 1);
   caption('0 EXTERNAL PAYING MERCHANTS TODAY · OPENING PILOT COHORT', 1010, 747, plaza.bg, 20);
-  frame(S, 'ACT IV  /  SIX AI EMPLOYEES', 'VOL IV', 'NYXBOT-FINANCE · NYXID-NYXBOT-TRIALS', 'PILOT COHORT · 2026-11-27');
+  frame(S, 'ACT IV  /  SIX AI EMPLOYEES', 'VOL IV', 'NYXBOT-FINANCE · NYXID-NYXBOT-TRIALS', editionSlate('LIVE.TRURETURING.ORG · DAYLIGHT 3D'));
 };
 
 /* Give each full frozen identifier two readable lines. The shared leanList owns the chip and label.
@@ -395,18 +399,20 @@ const captionCuts = {
     [['An unguarded', '失去护栏']],
     [['seventy-four active', '横跨'], ['recorded one hundred', '落下十四万'], ['maintained by', '由约十五位'],
       ['while a separate', '另在十一月七日'], ['measured roughly', '机器与代理账号']],
-    [['why didn', '为什么每周']]
+    [["why didn't one hundred", '为什么六十天内'], ['collapse those seventy-four', '没有在第七天']]
   ],
   act2_observatory: [
     [['independent research', '独立科研机构'], ['drove this discipline', '把这套方法']],
     [['tracks nineteen', '实时追踪']],
-    [['trureturing holds', 'trureturing 已冻结'], ['across fourteen', '一万四千七百'], ['and maintained', '并在连续']],
+    [['trureturing holds', 'trureturing 已冻结'], ['across fourteen', '一万四千七百'],
+      ['and across the thirty-day', '而在截至十一月十九日'], ['it maintained', '它连续七百二十个']],
     [['two thousand one hundred twenty-six', '其中两千一百二十六'], ['plus two undated', '另含两条'],
       ['yielding one thousand', '共一千四百'], ['including five hundred', '其中五百']]
   ],
   act2_kernel_audit: [
     [['Follow the five-step', '沿着五步']],
-    [['The Omega Institute', 'The Omega Institute'], ['and froze', '并在源码']],
+    [['claiming the four-qubit', '该猜想断言'], ['across the A D versus B C', '在 AD:BC'],
+      ['The Omega Institute', 'The Omega Institute'], ['exceeding two point', '产出超过'], ['and froze', '并在源码']],
     [["'D5.S3.", "'D5.S3."], ['depends on axioms', 'depends on axioms'], ['— zero custom', '——自定义公理']],
     [['adding frozen', '新增冻结'], ['and a new claim', '而一条'], ['if and only if', '当且仅当']]
   ],

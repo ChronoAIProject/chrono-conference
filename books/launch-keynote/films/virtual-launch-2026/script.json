@@ -139,8 +139,8 @@
           "从二零二六年九月二十日至十一月十九日，横跨 ChronoAI 与 The Omega Institute 的七十四个活跃仓落下十四万一千六百二十四次提交，由约十五位工程师维护；另在十一月七日对六十九个仓库的显式身份抽样中，机器与代理账号提交占比约百分之三十五。"
         ],
         [
-          "Never applaud commit count. Ask the only question that matters: why didn't fourteen thousand commits a week collapse the repositories into uncompilable rubble by day seven?",
-          "请不要为提交数量鼓掌，只追问唯一重要的问题：为什么每周一万多笔提交，没有在第七天把代码库撞成编译不过的废墟？"
+          "Never applaud commit count. Ask the only question that matters: why didn't one hundred forty-one thousand six hundred twenty-four commits across sixty days collapse those seventy-four repositories into uncompilable rubble by day seven?",
+          "请不要为提交数量鼓掌，只追问唯一重要的问题：为什么六十天内落在七十四个仓里的十四万一千六百二十四次提交，没有在第七天把代码库撞成编译不过的废墟？"
         ]
       ]
     },
@@ -178,8 +178,8 @@
           "眼前这座全天候运转的观测站 live.trureturing.org，实时追踪横跨八个研究部门与十七个公开仓库的一万九千零二十二个真值节点。"
         ],
         [
-          "As of November twentieth, twenty twenty-six, trureturing holds one hundred sixty-seven thousand eight hundred nineteen frozen Lean four theorems across fourteen thousand seven hundred one modules—and maintained one hundred percent hourly commit coverage across seven hundred twenty consecutive UTC hours.",
-          "截至二零二六年十一月二十日，trureturing 已冻结十六万七千八百一十九条 Lean 4 定理、一万四千七百零一个模块，并在连续七百二十个 UTC 小时窗口保持百分之百小时级提交覆盖。"
+          "As of November twentieth, twenty twenty-six, trureturing holds one hundred sixty-seven thousand eight hundred nineteen frozen Lean four theorems across fourteen thousand seven hundred one modules—and across the thirty-day cadence window ending November nineteenth, it maintained one hundred percent hourly commit coverage for seven hundred twenty consecutive UTC hours.",
+          "截至二零二六年十一月二十日，trureturing 已冻结十六万七千八百一十九条 Lean 4 定理、一万四千七百零一个模块；而在截至十一月十九日的三十天窗口内，它连续七百二十个 UTC 小时保持了百分之百的小时级提交覆盖。"
         ],
         [
           "Across the catalog, it has resolved two thousand one hundred twenty-eight literature problems—two thousand one hundred twenty-six dated inside a seventy-four-day window plus two undated entries—yielding one thousand four hundred proofs and seven hundred twenty-eight refutations, including five hundred eighty-two in quantum information and physics.",
@@ -213,8 +213,8 @@
           "不要轻信任何幻灯片——沿着五步核验直达所钉提交 8a3f20fb。"
         ],
         [
-          "Take the twenty twenty-five Physical Review A conjecture claiming the four-qubit Fredkin gate's entangling power caps at two ebits. The Omega Institute constructed an explicit product-state witness exceeding two point zero zero zero three four ebits, and froze the refutation theorem at line one hundred forty-two.",
-          "以二零二五年 Physical Review A 的四量子比特 Fredkin 门纠缠能力猜想为例：The Omega Institute 构造出超过 2.00034 ebits 的显式乘积态见证，并在源码第 142 行冻结了反驳定理。"
+          "Take the twenty twenty-five Physical Review A conjecture claiming the four-qubit Fredkin gate's entangling-power supremum across the A D versus B C bipartition with local ancillas equals two ebits. The Omega Institute constructed an explicit admissible product input with local ancillas exceeding two point zero zero zero three four ebits, and froze the refutation theorem at line one hundred forty-two.",
+          "以二零二五年 Physical Review A 的猜想为例：该猜想断言带局域辅助比特的四量子比特 Fredkin 门在 AD:BC 二分划下的纠缠能力上确界等于 2 ebits。The Omega Institute 构造出带局域辅助比特的显式可容许乘积输入，产出超过 2.00034 ebits，并在源码第 142 行冻结了反驳定理。"
         ],
         [
           "Running #print axioms at commit 8a3f20fb prints: 'D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result' depends on axioms: [propext, Classical.choice, Quot.sound] — zero custom axioms and zero uses of sorryAx.",

@@ -9,7 +9,7 @@ There is no film crew behind this launch, no rented hotel ballroom, no external 
 To experience the entire keynote arc in one sitting—moving from the sunlit Street Corner lobby into the deep-space optical glass observatory of `live.trureturing.org`, auditing frozen Lean 4 theorems and candid red `OPEN` frontiers, and returning to daylight to inspect the five-layer complete vehicle and six AI employees—watch the complete virtual launch film below.
 
 ::: {.film src="virtual-launch-2026"}
-**Build for What Comes Next: The 2026 Virtual Launch (Full Film, Six Chapters, Dual-Polarity).** Combines Street Corner venue plates, live 3D camera sweeps from `live.trureturing.org`, verified Lean 4 `#print axioms` evidence at pinned commit `8a3f20fb`, the five-layer complete vehicle blueprint, and the six-role 77/97 operations ledger.
+**Build for What Comes Next: The 2026 Virtual Launch (Full Film, Six Chapters, Dual-Polarity).** The embedded browser player runs the lightweight deterministic still-plate canvas edition (using five live-captured 3D hero plates from Street Corner and `live.trureturing.org`); the full 30fps live-3D WebGL and Marina Bay / Lobby PiP composited cut is published in the 1080p and 720p MP4 release downloads listed alongside the player on the book's Films page. Features verified Lean 4 `#print axioms` evidence at pinned commit `8a3f20fb`, the five-layer complete vehicle blueprint, and the six-role 77/97 operations ledger.
 :::
 
 Short on time? Watch the condensed one-minute opening film below for the four core pillars at a glance.

@@ -1,0 +1,11 @@
+{
+  "viewport": { "x": 0, "y": 131, "w": 1920, "h": 818 },
+  "loop": "ping-pong",
+  "scenes": {
+    "prologue_street": "clip01-metaverse-marina-extended.mp4",
+    "prologue_lobby": "clip02-metaverse-lobby-pip.mp4",
+    "act2_observatory": "clip03-obs-cosmos-orbit.mp4",
+    "act2_kernel_audit": "clip04-obs-galaxy-drift.mp4",
+    "act4_employees": "clip05-obs-daylight-white.mp4"
+  }
+}

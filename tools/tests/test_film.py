@@ -342,6 +342,57 @@ class ValidationTest(unittest.TestCase):
         self.assertIn("films/ holds film directories", msgs)
         self.assertNotIn("film number", msgs)
 
+    def test_optional_clip_manifest_validation(self):
+        created = film.scaffold(self.book, "clip-test", "测试", "Clip Test", released="2026-11-08")
+        d = created[0].parent
+        (d / "poster.jpg").touch()
+        item = film.load_film(self.book, d)
+        manifest = d / "clips.json"
+        self.assertEqual(film.check_film(item, fake_lock()), [])
+        manifest.write_text(json.dumps({
+            "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
+            "loop": "ping-pong",
+            "scenes": {"open": "scene-01.mp4"},
+        }), encoding="utf-8")
+        self.assertEqual(film.check_film(item, fake_lock()), [])
+
+        for content, expected in (
+            ('{"scenes":', "invalid JSON"),
+            ('{"scenes": {"open": "scene-01.mp4"}, "loop": NaN}', "invalid JSON"),
+            ('{"scenes": {}}', "non-empty mapping"),
+            ('{"scenes": {"other": "scene-01.mp4"}}', "unknown scene"),
+            ('{"scenes": {"open": "../scene-01.mp4"}}', "relative .mp4 filename"),
+            (json.dumps({"scenes": {"open": r"..\scene-01.mp4"}}), "relative .mp4 filename"),
+            ('{"scenes": {"open": "/scene-01.mp4"}}', "relative .mp4 filename"),
+            ('{"scenes": {"open": "scene-01.jpg"}}', "relative .mp4 filename"),
+        ):
+            with self.subTest(content=content):
+                manifest.write_text(content, encoding="utf-8")
+                issues = film.check_film(item, fake_lock())
+                self.assertEqual([(i.severity, i.path) for i in issues], [("error", manifest)])
+                self.assertIn(expected, issues[0].message)
+
+    @unittest.skipUnless(NODE, "node not available")
+    def test_compose_missing_clip_falls_back_unless_required(self):
+        import subprocess
+
+        d = self.book.films_dir / "clip-test"
+        (d / "out" / "clips").mkdir(parents=True)
+        (d / "clips.json").write_text(json.dumps({
+            "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
+            "loop": "ping-pong",
+            "scenes": {"open": "missing.mp4"},
+        }), encoding="utf-8")
+        env = os.environ.copy()
+        env.pop("FILM_REQUIRE_CLIPS", None)
+        command = [NODE, str(THEME_FILM / "compose.mjs"), str(d), "--renditions", "720p"]
+        for run_env, expected in ((env, 3), ({**env, "FILM_REQUIRE_CLIPS": "1"}, 1)):
+            with self.subTest(exit_code=expected):
+                result = subprocess.run(command, env=run_env, capture_output=True, text=True, timeout=15)
+                self.assertEqual(result.returncode, expected, result.stderr)
+                self.assertIn("missing live 3D clips", result.stderr)
+                self.assertIn(str(d / "out" / "clips" / "missing.mp4"), result.stderr)
+
     @needs_example
     def test_missing_scene_definition_warns(self):
         d = copy_example(self.book)
