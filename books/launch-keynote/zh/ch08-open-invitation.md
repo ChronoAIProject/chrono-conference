@@ -47,12 +47,12 @@
 
 | 入口用途 | 官方地址 |
 | --- | --- |
-| 公司官网 | `https://chrono-ai.fun/` |
-| 唯一公开联系邮箱 | `contact@chrono-ai.fun` |
-| 虚拟发布会前厅 | `https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended`（需开放注册的 `NyxID` 一键登录；Telegram 订座 `@chronoai_frontdesk_bot`） |
+| 公司官网 | [`https://chrono-ai.fun/`](https://chrono-ai.fun/) |
+| 唯一公开联系邮箱 | [`contact@chrono-ai.fun`](mailto:contact@chrono-ai.fun) |
+| 虚拟发布会前厅 | [`street-corner`（`view=extended`）](https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended)（需开放注册的 [`NyxID`](https://nyxid.ai/) 一键登录；Telegram 订座 `@chronoai_frontdesk_bot`） |
 | 直播频道（12-17 16:00–17:15 SGT） | YouTube `@ChronoAIOfficial` · LinkedIn Live（全程免登录） |
-| 开放科研全息观测站（The Omega Institute） | `https://live.trureturing.org/` |
-| 本次发布会四卷双语书库与源码 | `https://github.com/ChronoAIProject/chrono-conference` · `https://chronoaiproject.github.io/chrono-conference/` |
-| The Omega Institute 形式化主库与专著书库 | `https://github.com/the-omega-institute/trureturing` · `https://books.trureturing.org/` |
+| 开放科研全息观测站（The Omega Institute） | [`https://live.trureturing.org/`](https://live.trureturing.org/) |
+| 本次发布会四卷双语书库与源码 | [`ChronoAIProject/chrono-conference`](https://github.com/ChronoAIProject/chrono-conference) · [`GitHub Pages`](https://chronoaiproject.github.io/chrono-conference/) |
+| The Omega Institute 形式化主库与专著书库 | [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing) · [`books.trureturing.org`](https://books.trureturing.org/) |
 
 在翻向全书最后两份附录（节目单与数据总账）之前，请允许我们在[终章](coda.md)停下脚步一分钟，回到那个把整车工程、虚拟会场与纯粹数学串成同一根脊柱的哲学意象：**边界与体——合唱才让一首歌成立。**

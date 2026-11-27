@@ -27,9 +27,9 @@
 
 | 步骤 | 核心动作 | 所需工具 / 入口 | 验收标准（不通过不进下一步） |
 | --- | --- | --- | --- |
-| **第 1 步** | 开通 `NyxID` 组织与零密钥代理金库 | `https://nyxid.ai/`（公开注册） | 绑定门店只读日历／工单／账单源，确认模型上下文零明文密钥 |
+| **第 1 步** | 开通 `NyxID` 组织与零密钥代理金库 | [`https://nyxid.ai/`](https://nyxid.ai/)（公开注册） | 绑定门店只读日历／工单／账单源，确认模型上下文零明文密钥 |
 | **第 2 步** | 绑定客户真实对话渠道 | `NyxID` 9 类消息渠道 / `nyx-assistant-sdk` | 在真实 Slack / Telegram / Lark / 网站挂件收发测试消息零丢包 |
-| **第 3 步** | 从 `Ornn` 安装双岗起步技能包 | `ornn.chrono-ai.fun` + `nyx-skills` | 通过 AgentSeal 扫描核对，冻结初始技能版本号与 `NyxID` 作用域 |
+| **第 3 步** | 从 `Ornn` 安装双岗起步技能包 | [`ornn.chrono-ai.fun`](https://ornn.chrono-ai.fun/) + [`nyx-skills`](https://github.com/ChronoAIProject/nyx-skills) | 通过 AgentSeal 扫描核对，冻结初始技能版本号与 `NyxID` 作用域 |
 | **第 4 步** | 焊死费用封顶与人工审批红线 | `NyxID` Credits 限额 + 写操作闸门 | 设定单日 Credits 上限，压测 10 条越权／退款／库外诱导问题 100% 拦停 |
 | **第 5 步** | 带审计台账灰度试跑 14 天 | `CMA` 审计日志 + 每日 3 分钟人工复核 | 连续 14 天零未授权写操作、零虚假承诺，再按需逐步扩展至社群与 HR 岗 |
 

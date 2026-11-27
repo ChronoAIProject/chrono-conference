@@ -47,12 +47,12 @@ To prevent impersonation or garbled relays, all press inquiries, merchant pilot 
 
 | Purpose | Official Endpoint |
 | --- | --- |
-| Company Website | `https://chrono-ai.fun/` |
-| Sole Public Contact Email | `contact@chrono-ai.fun` |
-| Virtual Launch Lobby | `https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended` (one-click open-signup `NyxID` sign-in; Telegram booking `@chronoai_frontdesk_bot`) |
+| Company Website | [`https://chrono-ai.fun/`](https://chrono-ai.fun/) |
+| Sole Public Contact Email | [`contact@chrono-ai.fun`](mailto:contact@chrono-ai.fun) |
+| Virtual Launch Lobby | [`street-corner` (`view=extended`)](https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended) (one-click open-signup [`NyxID`](https://nyxid.ai/) sign-in; Telegram booking `@chronoai_frontdesk_bot`) |
 | Live Broadcast (Dec 17, 16:00–17:15 SGT) | YouTube `@ChronoAIOfficial` · LinkedIn Live (no login required) |
-| Live Research Observatory (The Omega Institute) | `https://live.trureturing.org/` |
-| Conference Four-Volume Books & Source | `https://github.com/ChronoAIProject/chrono-conference` · `https://chronoaiproject.github.io/chrono-conference/` |
-| The Omega Institute Formal Kernel & Monograph Library | `https://github.com/the-omega-institute/trureturing` · `https://books.trureturing.org/` |
+| Live Research Observatory (The Omega Institute) | [`https://live.trureturing.org/`](https://live.trureturing.org/) |
+| Conference Four-Volume Books & Source | [`ChronoAIProject/chrono-conference`](https://github.com/ChronoAIProject/chrono-conference) · [`GitHub Pages`](https://chronoaiproject.github.io/chrono-conference/) |
+| The Omega Institute Formal Kernel & Monograph Library | [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing) · [`books.trureturing.org`](https://books.trureturing.org/) |
 
 Before turning to the broadcast cue sheet and full claims ledger in Appendices A and B, pause for one final page in the [Coda](coda.md), where the vehicle, the virtual lobby, and the formal kernel meet in a single unifying image: **boundary and bulk—it takes a chorus to make a song.**
