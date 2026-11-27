@@ -28,13 +28,15 @@ section: "Scale"
   <p class="kicker">One Way Forward</p>
   <h2 class="t">A Ratchet Turns <em>Only One Way</em></h2>
   <div class="g2 mt-l">
-    <Stat value="167,819" label="frozen Lean 4 theorems" tone="ok" />
-    <Stat value="14,701" label="frozen modules · 4.78M lines of Lean" />
-    <Stat class="mt" value="720/720" label="consecutive UTC hours, every hour with commits" tone="magenta" />
-    <Stat class="mt" value="2,128" label="open literature resolutions · 74 days" />
+    <Stat value="223,231" label="frozen Lean 4 theorems (400,377 frozen declarations)" tone="ok" />
+    <Stat value="17,968" label="frozen modules · 6.02M lines of Lean" />
+    <Stat class="mt" value="720/720" label="consecutive UTC hours with commits · median 63/hr · 217 PRs/day" tone="magenta" />
+    <Stat class="mt" value="2,278" label="open literature resolutions · 81 days" />
   </div>
+  <p class="sm muted mt-l">Three bilingual trureturing-books monographs: 347 chapters · 135 interactive labs · 83 films · 2,017 frozen theorems cited directly</p>
+  <p class="sm muted mt-s">Red ink on the same page: Mathesis collects 225 source-backed papers, with <b class="hl-warn">0</b> Mathesis peer-review acceptances (Nov 27)</p>
 </div>
-<Source>trureturing@05ceb90 (Nov 20, 2026) · cadence @e55900e (Nov 19) · Lean 4.35.0</Source>
+<Source>trureturing@548388cd (Nov 27, 2026) · cadence Oct 28–Nov 26 · PRs Nov 20–26 · trureturing-books (Nov 28) · Lean 4.35.0</Source>
 
 ---
 # 03 Part I
@@ -177,7 +179,7 @@ section: "Part IV · Literature"
 ---
 
 <p class="kicker">Part IV · Literature</p>
-<h2 class="t">Into the Open<br>Literature: <em>74 Days,<br>2,128 Resolutions</em></h2>
+<h2 class="t">Into the Open<br>Literature: <em>81 Days,<br>2,278 Resolutions</em></h2>
 <p class="lead">No self-set exams—straight into the Open Problems scholars leave at the end of their papers.</p>
 
 ---
@@ -186,18 +188,18 @@ section: "Breakdown"
 ---
 
 <div class="body">
-  <p class="kicker">Sep 8 → Nov 20, 2026</p>
-  <h2 class="t">2,128 Resolutions: <em>1,400 Proved</em>, <em class="magenta">728 Refuted</em></h2>
+  <p class="kicker">Sep 8 → Nov 27, 2026</p>
+  <h2 class="t">2,278 Resolutions: <em>1,512 Proved</em>, <em class="magenta">766 Refuted</em></h2>
   <div class="split mt">
     <img src="./img/ch04-resolution-velocity.en.svg" alt="Sources of literature resolutions, proved versus refuted" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat class="md" value="674" label="from peer-reviewed journals · plus 736 arXiv, 693 OEIS" />
-      <Stat class="md mt" value="124" label="open for over a decade, the oldest for 47 years" tone="magenta" />
-      <Stat class="md mt" value="582" label="in quantum information &amp; physics (299 proved · 283 refuted)" />
+      <Stat class="md" value="684" label="from peer-reviewed journals · plus 840 arXiv, 729 OEIS" />
+      <Stat class="md mt" value="127" label="open for over a decade, the oldest for 47 years" tone="magenta" />
+      <Stat class="md mt" value="598" label="in quantum information &amp; physics (314 proved · 284 refuted)" />
     </div>
   </div>
 </div>
-<Source>trureturing@05ceb90 (Nov 20, 2026) · 2,126 dated + 2 undated = 2,128</Source>
+<Source>trureturing@548388cd (Nov 27, 2026) · 2,276 dated + 2 undated = 2,278</Source>
 
 ---
 # 12 Flagship proofs
@@ -269,18 +271,18 @@ section: "Observatory"
   <p class="kicker">live.trureturing.org</p>
   <h2 class="t">Eight Departments, <em>One Glass House</em></h2>
   <div class="split mt">
-    <img src="./img/trureturing-live-dept.png" alt="Live capture of the live.trureturing.org department view" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/trureturing-live-dept.png" alt="Live capture of the live.trureturing.org department view" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat value="19,022" label="live DAG nodes · 8 departments · 17 public repositories" />
-      <ul class="plain mt-l">
-        <li><b>24 active StrataLint rules</b><br><span class="sm muted">Static governance rules and the Lean 4 kernel form a double gate</span></li>
-        <li class="mt"><b>838 scholars contacted, 440 replied</b><br><span class="sm muted">273 institutions in 46 countries; 44 in co-authoring tracks</span></li>
-        <li class="mt"><b>1 <i>RAIRO-ITA</i> 2026 paper · 18 OEIS entries</b><br><span class="sm muted">Logged with equal candor: 64 scholars declined</span></li>
+      <Stat value="19,022" label="live truth nodes · 8 spiral galaxies · 17 public repositories" />
+      <ul class="plain mt tight">
+        <li><b>Eight functional departments, not subjects</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
+        <li class="mt-s"><b>1,049 scholars contacted, 485 replied</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 <i>RAIRO-ITA</i> paper · 15 arXiv preprints · 21 OEIS; 66 declined</span></li>
+        <li class="mt-s"><b>StrataLint: 23 active of 27 registered</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Now in trureturing-tools; a second gate beside the Lean 4 kernel</span></li>
       </ul>
     </div>
   </div>
 </div>
-<Source>Live capture of live.trureturing.org (Nov 27, 2026) · trureturing-outreach (Nov 8) · StrataLint (Nov 20)</Source>
+<Source>live.trureturing.org (Nov 27, 2026) · trureturing-outreach@d22e63c8 (Nov 27; 46.2% reply rate) · trureturing-tools</Source>
 
 ---
 # 15 Red frontier
@@ -288,8 +290,8 @@ section: "The Red Frontier"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 6.1 · Open problem 6.2</p>
-  <h2 class="t">Equivalence Frozen; <em class="warn">RH Itself Stays Open</em></h2>
+  <p class="kicker">Theorem 6.1 · External Certification · Open Problem</p>
+  <h2 class="t">Equivalence Frozen; <em class="warn">the Red Zone Moved Out</em></h2>
   <div class="row mt-s">
     <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="grow">
@@ -298,16 +300,16 @@ section: "The Red Frontier"
 $\mathrm{RiemannHypothesis} \iff$ the actual-$\xi$ integer Hankel form is nonnegative for every $N$ and every $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$. Equivalence only.
 
 </TheoremCard>
-<TheoremCard class="compact mt-s" label="Open problem 6.2" title="The Riemann Hypothesis Remains Open" status="open" cite="prob-rh-open">
+<TheoremCard class="compact mt-s" label="Open problem" title="Extended and Grand RH" status="open">
 
-Is it true? Equivalently, is that form nonnegative for all $N$, $u$? <b>Completely open.</b>
+Extended RH (Dedekind $\zeta$), Grand RH (automorphic $L$): <b>still open.</b>
 
 </TheoremCard>
-      <p class="sm muted mt-s">Mathesis collects 212 source-backed papers; Mathesis peer-review acceptances: <b class="hl-warn">0</b>.</p>
+      <p class="sm muted mt-s">Classical RH: Levent Alpöge's external Lean 4 proof, certified Nov 20–21; ours is only the 8,490-shard replay.</p>
     </div>
   </div>
 </div>
-<Source>D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion · Mathesis (Nov 27, 2026) · Vol. III, Ch. 6</Source>
+<Source>ActualXiIntegerCriterion · riemann-hypothesis@c2dabc97 · riemann-hypothesis-book@ebd24a4d (Nov 27) · Vol. III, Ch. 6</Source>
 
 ---
 # 16 Closing

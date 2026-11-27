@@ -28,13 +28,15 @@ section: "尺度"
   <p class="kicker">只进不退</p>
   <h2 class="t">棘轮只朝<em>一个方向</em>转</h2>
   <div class="g2 mt-l">
-    <Stat value="167,819" label="冻结 Lean 4 定理" tone="ok" />
-    <Stat value="14,701" label="冻结模块 · 478 万行 Lean 源码" />
-    <Stat class="mt" value="720/720" label="连续 UTC 小时，每小时都有提交" tone="magenta" />
-    <Stat class="mt" value="2,128" label="道公开文献题解 · 74 天" />
+    <Stat value="223,231" label="冻结 Lean 4 定理（冻结声明共 400,377）" tone="ok" />
+    <Stat value="17,968" label="冻结模块 · 602 万行 Lean 源码" />
+    <Stat class="mt" value="720/720" label="连续 UTC 小时有提交 · 中位每小时 63 次 · 日均合入 217 PR" tone="magenta" />
+    <Stat class="mt" value="2,278" label="道公开文献题解 · 81 天" />
   </div>
+  <p class="sm muted mt-l">三部双语专著 trureturing-books：347 章 · 135 个交互实验 · 83 部短片 · 直接引用 2,017 条冻结定理</p>
+  <p class="sm muted mt-s">同一页记下红字：Mathesis 收录 225 篇附源码论文，经 Mathesis 审稿流程录用 <b class="hl-warn">0</b> 篇（11-27）</p>
 </div>
-<Source>trureturing@05ceb90（2026-11-20）· 节律口径 @e55900e（11-19）· Lean 4.35.0</Source>
+<Source>trureturing@548388cd（2026-11-27）· 节律 10-28 至 11-26 · PR 口径 11-20 至 11-26 · trureturing-books（11-28）· Lean 4.35.0</Source>
 
 ---
 # 03 奇观一
@@ -179,7 +181,7 @@ section: "奇观四 · 文献前沿"
 ---
 
 <p class="kicker">第四篇 · 文献前沿</p>
-<h2 class="t">冲进公开文献的真实悬案：<br><em>74 天，2,128 题</em></h2>
+<h2 class="t">冲进公开文献的真实悬案：<br><em>81 天，2,278 题</em></h2>
 <p class="lead">不做自己出的考题——直接跳进学者们写在论文末尾的 Open Problem。</p>
 
 ---
@@ -188,18 +190,18 @@ section: "文献分布"
 ---
 
 <div class="body">
-  <p class="kicker">2026-09-08 → 2026-11-20</p>
-  <h2 class="t">2,128 道题解：<em>1,400 证明</em>，<em class="magenta">728 反驳</em></h2>
+  <p class="kicker">2026-09-08 → 2026-11-27</p>
+  <h2 class="t">2,278 道题解：<em>1,512 证明</em>，<em class="magenta">766 反驳</em></h2>
   <div class="split mt">
     <img src="./img/ch04-resolution-velocity.zh.svg" alt="文献题解来源与证明反驳分布" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat class="md" value="674" label="道出自同行评审期刊 · 另有 arXiv 736、OEIS 693" />
-      <Stat class="md mt" value="124" label="道悬置逾十年，最久 47 年" tone="magenta" />
-      <Stat class="md mt" value="582" label="道出自量子信息与理论物理（299 证 · 283 反）" />
+      <Stat class="md" value="684" label="道出自同行评审期刊 · 另有 arXiv 840、OEIS 729" />
+      <Stat class="md mt" value="127" label="道悬置逾十年，最久 47 年" tone="magenta" />
+      <Stat class="md mt" value="598" label="道出自量子信息与理论物理（314 证 · 284 反）" />
     </div>
   </div>
 </div>
-<Source>trureturing@05ceb90（2026-11-20）· 2,126 带日期 + 2 未标日期 = 2,128</Source>
+<Source>trureturing@548388cd（2026-11-27）· 2,276 带日期 + 2 未标日期 = 2,278</Source>
 
 ---
 # 12 代表证明
@@ -271,18 +273,18 @@ section: "观测站"
   <p class="kicker">实时观测站 · live.trureturing.org</p>
   <h2 class="t">八个部门，<em>一座玻璃房</em></h2>
   <div class="split mt">
-    <img src="./img/trureturing-live-dept.png" alt="live.trureturing.org 部门视图实拍" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/trureturing-live-dept.png" alt="live.trureturing.org 部门视图实拍" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat value="19,022" label="实时 DAG 节点 · 8 个研究部门 · 17 个公开仓库" />
-      <ul class="plain mt-l">
-        <li><b>24 条现役 StrataLint 规则</b><br><span class="sm muted">静态治理规则与 Lean 4 内核组成双重门禁</span></li>
-        <li class="mt"><b>838 位学者联络，440 位回信</b><br><span class="sm muted">覆盖 46 国 273 机构；44 位进入合写</span></li>
-        <li class="mt"><b>1 篇 <i>RAIRO-ITA</i> 2026 期刊论文 · 18 条 OEIS</b><br><span class="sm muted">同样记账：64 位学者婉拒</span></li>
+      <Stat value="19,022" label="实时真理节点 · 8 座螺旋星系 · 17 个公开仓库" />
+      <ul class="plain mt tight">
+        <li><b>八个职能部门，不按学科分</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">研究方向 · 数学攻坚 · 独立评审 · 形式验证 · 理论书写 · 论文与知识 · 学术交流 · 工具与表达</span></li>
+        <li class="mt-s"><b>1,049 位学者联络，485 位回信</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 篇 <i>RAIRO-ITA</i> 论文 · 15 篇 arXiv 预印本 · 21 条 OEIS；66 位婉拒</span></li>
+        <li class="mt-s"><b>StrataLint：23 条现役 / 27 条登记</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">已迁入 trureturing-tools，与 Lean 4 内核组成双重门禁</span></li>
       </ul>
     </div>
   </div>
 </div>
-<Source>live.trureturing.org 2026-11-27 实拍 · trureturing-outreach（11-08）· StrataLint（11-20）</Source>
+<Source>live.trureturing.org（2026-11-27）· trureturing-outreach@d22e63c8（11-27，回信率 46.2%）· trureturing-tools</Source>
 
 ---
 # 15 红色边界
@@ -290,8 +292,8 @@ section: "红色边界"
 ---
 
 <div class="body">
-  <p class="kicker">定理 6.1 · 开放问题 6.2</p>
-  <h2 class="t">等价已冻结，<em class="warn">黎曼猜想本身仍然开放</em></h2>
+  <p class="kicker">定理 6.1 · 外部认证 · 开放问题</p>
+  <h2 class="t">等价归我们，证明归外部，<em class="warn">红区在更远处</em></h2>
   <div class="row mt-s">
     <img src="./img/ch06-three-evidence-tiers.zh.svg" alt="三层证据边界" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="grow">
@@ -300,16 +302,16 @@ section: "红色边界"
 $\mathrm{RiemannHypothesis}$ 成立，当且仅当对一切阶数 $N$ 与一切 $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$，真实 $\xi$ 系数的 Hankel 二次型非负。本定理只断言等价，不断言任何一端成立。
 
 </TheoremCard>
-<TheoremCard class="compact mt-s" label="开放问题6.2" title="黎曼猜想本身仍然开放" status="open" cite="prob-rh-open">
+<TheoremCard class="compact mt-s" label="开放问题" title="扩展 RH 与大 RH" status="open">
 
-黎曼猜想是否为真？等价地，上述二次型是否对一切 $N$、$u$ 皆非负？<b>完全开放。</b>
+Dedekind $\zeta$ 的扩展 RH、自守 $L$ 函数的大 RH、零点单重与对关联：<b>依然开放。</b>
 
 </TheoremCard>
-      <p class="sm muted mt-s">Mathesis 公开收录 212 篇附源码论文；经 Mathesis 审稿流程录用：<b class="hl-warn">0</b> 篇。</p>
+      <p class="sm muted mt-s">经典 RH：Levent Alpöge 的外部 Lean 4 证明，11-20/21 获社区认证；本所只做 8,490 分片重放。</p>
     </div>
   </div>
 </div>
-<Source>D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion · Mathesis（2026-11-27）· 第三卷第六章</Source>
+<Source>ActualXiIntegerCriterion · riemann-hypothesis@c2dabc97 · riemann-hypothesis-book@ebd24a4d（11-27）· 第三卷第六章</Source>
 
 ---
 # 16 结尾
