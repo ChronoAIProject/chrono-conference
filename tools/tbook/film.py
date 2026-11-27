@@ -940,20 +940,51 @@ def _clip_manifest_errors(path: Path, script: dict | None) -> list[str]:
     manifest, problem = _read_json(path)
     if problem:
         return [problem]
-    clips = manifest.get("scenes") if isinstance(manifest, dict) else None
+    if not isinstance(manifest, dict):
+        return ["clips.json must be an object"]
+    clips = manifest.get("scenes")
     if not isinstance(clips, dict) or not clips:
         return ["scenes must be a non-empty mapping from script.json scene IDs to clip filenames"]
+
+    errors: list[str] = []
+    viewport = manifest.get("viewport")
+    if not isinstance(viewport, dict):
+        errors.append("viewport must be an object")
+    else:
+        x, y, w, h = (viewport.get(key) for key in ("x", "y", "w", "h"))
+        # JSON numbers such as 0.0 are integral in the compositor's Number.isInteger check.
+        if (not all(type(v) is int or (isinstance(v, float) and v.is_integer()) for v in (x, y, w, h))
+                or x < 0 or y < 0 or w <= 0 or h <= 0 or x + w > 1920 or y + h > 1080):
+            errors.append("viewport must have integer x, y, w, h and fit within 1920x1080 with positive dimensions")
+    if manifest.get("loop") != "ping-pong":
+        errors.append("loop must be ping-pong")
 
     scenes = (script or {}).get("scenes")
     known = set()
     if isinstance(scenes, list):
         known = {scene["id"] for scene in scenes if isinstance(scene, dict) and isinstance(scene.get("id"), str)}
-    errors: list[str] = []
+    filenames: set[str] = set()
     for scene_id, filename in clips.items():
         if scene_id not in known:
             errors.append(f"unknown scene {scene_id!r} (must be listed in script.json)")
         if not isinstance(filename, str) or not CLIP_NAME_RE.fullmatch(filename):
             errors.append(f"scene {scene_id!r} must map to a relative .mp4 filename in out/clips/")
+        else:
+            filenames.add(filename)
+
+    if "sha256" in manifest:
+        digests = manifest["sha256"]
+        if not isinstance(digests, dict):
+            errors.append("sha256 must be an object")
+        else:
+            for filename in sorted(filenames - digests.keys()):
+                errors.append(f"sha256 is missing an entry for {filename!r}")
+            for filename in sorted(digests.keys() - filenames):
+                errors.append(f"sha256 has an entry for unreferenced clip {filename!r}")
+            for filename in sorted(filenames & digests.keys()):
+                digest = digests[filename]
+                if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+                    errors.append(f"sha256 must give a 64-character lowercase hex digest for {filename!r}")
     return errors
 
 
@@ -1756,6 +1787,10 @@ def video_unit(site: config.Site, film: Film) -> buildcache.Unit:
     if site.film_release_only:
         inputs.text("playback", "canvas-audio").files(THEME_FILM / "site/player.html")
         dest = player_dir(film)
+    elif (film.dir / "clips.json").is_file():
+        allow_fallback = (os.environ.get("FILM_ALLOW_STILL_FALLBACK") == "1"
+                          and os.environ.get("FILM_REQUIRE_CLIPS") != "1")
+        inputs.text("clip_mode", "fallback-still" if allow_fallback else "live-clips")
     return buildcache.Unit("films", f"{film.book.slug}/{film.id}", inputs, [dest])
 
 

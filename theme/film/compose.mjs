@@ -1,6 +1,8 @@
 // Composite clip-backed film scenes. Usage: node compose.mjs <film dir> --renditions master,720p|master|720p
 import { spawn } from 'node:child_process';
-import { mkdtemp, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { createReadStream } from 'node:fs';
+import { mkdtemp, readdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { availableParallelism } from 'node:os';
 import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -9,6 +11,14 @@ import { parseArgs } from './lib.js';
 const render = fileURLToPath(new URL('./render.js', import.meta.url));
 const ff = process.env.FFMPEG || 'ffmpeg';
 const json = async path => JSON.parse(await readFile(path, 'utf8'));
+const isPlainObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+
+async function verifyDigest(path, expected) {
+  const hash = createHash('sha256');
+  for await (const chunk of createReadStream(path)) hash.update(chunk);
+  const actual = hash.digest('hex');
+  if (actual !== expected) throw Error(`SHA-256 mismatch for ${path}: expected ${expected}, got ${actual}`);
+}
 
 function run(command, args) {
   return new Promise((ok, fail) => {
@@ -113,23 +123,49 @@ async function main() {
     throw Error('usage: node compose.mjs <film dir> --renditions master,720p|master|720p');
   }
   const film = resolve(pos[0]), out = join(film, 'out');
-  const { viewport, scenes, loop } = await json(join(film, 'clips.json'));
+  const manifest = await json(join(film, 'clips.json'));
+  if (!isPlainObject(manifest)) throw Error('clips.json must be an object');
+  const { viewport, scenes, loop, sha256 } = manifest;
+  if (!isPlainObject(viewport)) throw Error('clip viewport must be an object');
   const { x, y, w, h } = viewport;
   if (![x, y, w, h].every(Number.isInteger) || x < 0 || y < 0 || w <= 0 || h <= 0 ||
-      x + w > 1920 || y + h > 1080 || loop !== 'ping-pong') throw Error('invalid clip viewport or loop');
+      x + w > 1920 || y + h > 1080) throw Error('invalid clip viewport');
+  if (loop !== 'ping-pong') throw Error('clip loop must be ping-pong');
+  if (!isPlainObject(scenes) || !Object.keys(scenes).length) throw Error('clip scenes must be a non-empty object');
+  if (sha256 !== undefined && !isPlainObject(sha256)) throw Error('clip sha256 must be an object');
   const clips = new Map(), missing = [];
+  const filenames = new Set();
   for (const [id, file] of Object.entries(scenes)) {
-    if (!file || basename(file) !== file || file === '.' || file === '..') throw Error(`expected a clip filename for ${id}`);
-    const path = join(out, 'clips', file);
-    clips.set(id, path);
-    const info = await stat(path).catch(e => { if (e.code !== 'ENOENT') throw e; });
-    if (!info) missing.push(path);
-    else if (!info.isFile() || !info.size) throw Error(`invalid clip: ${path}`);
+    if (typeof file !== 'string' || !/^[^/\\:\x00-\x1f]+\.mp4$/.test(file)) {
+      throw Error(`expected an .mp4 clip filename for ${id}`);
+    }
+    clips.set(id, join(out, 'clips', file));
+    filenames.add(file);
   }
-  if (!clips.size) throw Error('empty clip manifest');
+  if (sha256 !== undefined) {
+    for (const file of Object.keys(sha256)) {
+      if (!filenames.has(file)) throw Error(`sha256 has an entry for unreferenced clip ${file}`);
+    }
+  }
+  for (const file of filenames) {
+    const path = join(out, 'clips', file);
+    const expected = sha256?.[file];
+    if (sha256 !== undefined && (typeof expected !== 'string' || !/^[0-9a-f]{64}$/.test(expected))) {
+      throw Error(`expected a 64-character lowercase SHA-256 digest for ${file}`);
+    }
+    const info = await stat(path).catch(e => { if (e.code !== 'ENOENT') throw e; });
+    if (!info) {
+      missing.push(path);
+      continue;
+    }
+    if (!info.isFile() || !info.size) throw Error(`invalid clip: ${path}`);
+    if (expected !== undefined) await verifyDigest(path, expected);
+  }
   if (missing.length) {
     console.error('compose: missing live 3D clips:\n' + missing.join('\n'));
-    return process.env.FILM_REQUIRE_CLIPS === '1' ? 1 : 3;
+    console.error('Live-3D release mastering fails closed by default. Stage out/clips/*.mp4 or set ' +
+      'FILM_ALLOW_STILL_FALLBACK=1 for a local dev preview. FILM_REQUIRE_CLIPS=1 disables fallback.');
+    return process.env.FILM_ALLOW_STILL_FALLBACK === '1' && process.env.FILM_REQUIRE_CLIPS !== '1' ? 3 : 1;
   }
 
   const { resolution } = await json(join(film, 'film.json'));
@@ -152,6 +188,11 @@ async function main() {
     for (const r of results) if (r.status === 'rejected') throw r.reason;
 
     await writeFile(join(work, 'segments.txt'), slices.length + '\n');
+    for (const file of await readdir(out)) {
+      if ((file.startsWith('seg_') || file.startsWith('seg720_')) && file.endsWith('.mp4')) {
+        await rm(join(out, file));
+      }
+    }
     for (const { i } of slices) {
       for (const size of sizes) {
         const file = `${size === 'master' ? 'seg' : 'seg720'}_${i}.mp4`;
