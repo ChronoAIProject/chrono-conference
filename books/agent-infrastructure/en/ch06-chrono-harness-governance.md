@@ -50,7 +50,7 @@ Many build wrappers guess which tests to run from file extensions or directory h
 **Fail-Closed Unregistered Edge (`missing-edge`).** Introducing a file absent from `FILEMAP` causes `registry.explicit` to reject the run explicitly instead of guessing or silently skipping coverage.
 :::
 
-## `sshx`: Multi-Perspective Independent Review Against Self-Deception
+## `sshx`: Multi-Perspective Review Against Self-Deception
 
 Mechanical unit judges catch broken invariants; they rarely catch solving the wrong problem or subtly stretching a claim's wording. `sshx` (`ChronoAIProject/consensus-rnd` `v1.0.0-beta.58`, November 25, 2026) formalizes **independent read-only review seats**: isolated reviewers inspect the same architecture diff, code patch, or theorem statement separately and emit structured agreement/disagreement receipts before landing.
 

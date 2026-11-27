@@ -2,7 +2,7 @@
 
 During Act II of the December 17, 2026 virtual launch (16:20–16:35 SGT), we never ask anyone to applaud on faith. This appendix provides the exact **five-step verification playbook**—whether you are watching live or sitting at any laptop with Git and `elan` installed weeks later, you can independently replay any green kernel theorem in this book down to the Lean 4 kernel.
 
-## Five-Step Audit (Using the Fredkin Gate Refutation as Live Example)
+## Five-Step Audit: Fredkin Gate Refutation Example
 
 1. **Step 1: Pick a published literature claim.**
    For example, [@thm-fredkin-refutation] in Chapter 4—refuting the Qiu–Song–Chen (*Phys. Rev. A* 2025 / `arXiv:2410.15253`) conjecture that the four-qubit Fredkin gate's entangling-power supremum across `AD:BC` equals `2` ebits.

@@ -14,7 +14,7 @@ Test both branches interactively on the `donna-gate` experiment card below—wat
 **Donna Press Q&A Gate (`donna-gate`).** Contrasts immediate source-backed replies for in-bank questions against amber hard-blocking and escalation to `contact@chrono-ai.fun` for undisclosed or unverified probes.
 :::
 
-## Complete 30-Question Approved Press Q&A Bank (December 17, 2026)
+## 30-Question Verified Press Q&A Bank (December 17, 2026)
 
 All thirty answers below are audited against live repository snapshots through November 26–27, 2026; Donna must remain strictly faithful to these exact facts and boundaries.
 
@@ -55,13 +55,13 @@ All thirty answers below are audited against live repository snapshots through N
 14. **Q14: Is `live.trureturing.org` a prerecorded demo or live telemetry?**
     **A**: A live glass observatory tracking **19,022 DAG nodes** across **8 departments** and **17 public repositories** (captured Nov 27, 2026), linking straight into public GitHub source.
 15. **Q15: Have you really resolved over two thousand published open problems—including failures?**
-    **A**: Across 74 days (Sept 8–Nov 20, 2026), `trureturing` logged **2,126 dated resolutions** (`2,128` total: **1,400 proved, 728 refuted**, including 582 quantum/physics and 124 open >10 yrs up to 47 yrs), while explicitly tracking `23` unresolved dossiers. The Oct 31 `1,108`-item novelty audit logged `1.5%` prior settled and `1.6%` partial overlap, with no prior-art objection raised on the remaining ~`96.9%`.
+    **A**: Across 74 days (Sept 8–Nov 20, 2026), The Omega Institute's `trureturing` logged **2,126 dated resolutions** (`2,128` total: **1,400 proved, 728 refuted**, including 582 quantum/physics and 124 open >10 yrs up to 47 yrs), while explicitly tracking `23` unresolved dossiers. The Oct 31 `1,108`-item novelty audit logged `1.5%` prior settled and `1.6%` partial overlap, with no prior-art objection raised on the remaining ~`96.9%`.
 16. **Q16: How have external mathematicians responded—did anyone decline?**
-    **A**: As of Nov 8, 2026: **838** scholars contacted, **440** replied (`53%`) across 273 institutions and 46 countries (`294` positive, `223` collaborative, `44` co-authoring, `1` journal paper in *RAIRO-ITA* 2026)—alongside **64 polite refusals or opt-outs**—plus **18 OEIS entries** logged by Nov 20, 2026, all recorded candidly.
+    **A**: As of Nov 8, 2026, The Omega Institute contacted **838** scholars and received **440** replies (`53%`) across 273 institutions and 46 countries (`294` positive, `223` collaborative, `44` co-authoring, `1` journal paper in *RAIRO-ITA* 2026)—alongside **64 polite refusals or opt-outs**—plus **18 OEIS entries** logged by Nov 20, 2026, all recorded candidly.
 17. **Q17: Have the 212 papers on Mathesis passed independent peer review?**
     **A**: **No.** As of Nov 27, 2026, Mathesis collects **212** source-backed papers, and **`0`** have completed Mathesis peer-review acceptance. We never conflate preprints with peer review.
 18. **Q18: Are you claiming to have proved the Riemann Hypothesis?**
-    **A**: **Absolutely not.** Lean 4 freezes an *equivalence criterion* (actual-$\xi$ integer Hankel nonnegativity) alongside 8,490 content-addressed replay shards in `riemann-hypothesis-book`, while the **Riemann Hypothesis itself remains completely OPEN**.
+    **A**: **Absolutely not.** The Omega Institute freezes in Lean 4 an *equivalence criterion* (actual-$\xi$ integer Hankel nonnegativity) alongside 8,490 content-addressed replay shards in `riemann-hypothesis-book`, while the **Riemann Hypothesis itself remains completely OPEN**.
 
 ### Group IV: Virtual Venue, AI Employees & Pilots (Q19–Q24)
 

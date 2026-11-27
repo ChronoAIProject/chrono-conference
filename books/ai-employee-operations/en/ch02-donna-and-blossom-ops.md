@@ -6,7 +6,7 @@ Inside `street-corner`, two scoped front-of-house AI employees hold that seawall
 
 ![Operational 3D perspective of Street Corner showing Donna's reception desk, main plaza promenade, and Flower Town entrance](../assets/street-corner.png)
 
-## Exact Spatial Accounting: 1,108 Theater Seats and 18 Flower Stands
+## Spatial Accounting: 1,108 Theater Seats and 18 Stands
 
 Before a single welcome message fires, Donna and Blossom operate against an exact physical capacity ledger—never vague reassurances like *"plenty of spots left."*
 

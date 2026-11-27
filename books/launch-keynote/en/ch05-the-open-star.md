@@ -56,7 +56,7 @@ The first two local constraints force $b_1 = b_2$ and $b_2 = b_3$, hence $b_1 = 
 
 Hold [@thm-keynote-novelty] and [@thm-keynote-gluing] together and you get our entire epistemic compass: restating known facts yields zero genuine discovery, and green local unit checks never guarantee global coherence on their own—whether in multi-agent infrastructure or in formal mathematics, **you need end-to-end global verification.**
 
-## How Scholars Responded—and Where the Red Frontier Remains Open
+## Scholar Replies—and Where the Red Frontier Stays Open
 
 Impressive internal logs mean little if they never face working researchers. As of the November 8, 2026 outreach ledger (`trureturing-outreach`):
 

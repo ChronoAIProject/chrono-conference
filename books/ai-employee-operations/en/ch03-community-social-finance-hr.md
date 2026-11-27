@@ -8,7 +8,7 @@ Inside ChronoAI, five backstage AI employees organized across those four pipelin
 **Four Core Backstage Event-Driven Pipelines.** Live signals from Discord, X, and GitHub flow across four backstage pipelines—Community Ops (`9/11`, 75 rehearsal actions), Social Auto-X (`11/13`), `NyxBot` Finance (`24/28`), and HR/Admin packs (showing HR `15/20`, with Admin `5/10` running in parallel); major public releases and state-mutating writes halt at the amber human approval queue before committing and logging to audit.
 :::
 
-## Community Ops (`9 / 11`) and Social Auto-X (`11 / 13`): 75 Rehearsed Actions
+## Community Ops (`9 / 11`) and Auto-X (`11 / 13`): 75 Rehearsals
 
 Handing a brand's social keys directly to an unguarded bot to "improvise posts" is the fastest self-inflicted crisis on the internet. We split the wire cleanly: **AI owns high-frequency drafting, timezone staging, FAQ routing, and clip assembly; humans own the final publish trigger on sensitive announcements.**
 

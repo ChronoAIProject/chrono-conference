@@ -4,7 +4,7 @@ Most small businesses testing AI end up starring in the same slapstick comedy: a
 
 The flaw was never hiring AI employees—it was hiring them with zero division of labor. Human teams separate cashier, controller, legal, reception, and HR behind explicit approval lines; handing every key in the office to one unguarded chat window invites predictable failure.
 
-## The Live Work Ledger: 77 Automated and 20 Held Behind Gates or Roadmap
+## Live Work Ledger: 77 Automated, 20 Guarded or Roadmap
 
 Preparing the December 17, 2026 virtual launch gave us a real operational arena to split small-company overhead into six scoped roles wired through `NyxID`, `Ornn`, `NyxBot`, and `CMA`. Here is the exact readiness ledger as of **November 25, 2026** (compiled from `nyxbot-finance` and `nyxid-nyxbot-trials`):
 

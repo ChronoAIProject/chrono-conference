@@ -76,7 +76,7 @@ $$
 在 [`AverageMixingDiscriminantIntegrality.result`](lean:D5/S3/Quantum/Dynamics/AverageMixingDiscriminantIntegrality.result) 中，通过局部判别式消去（`discr_scaled_entry`）把乘积后的每个矩阵元写成互异特征值的整系数对称多项式，再结合韦达定理与对称多项式基本定理直接证明其取值为整数。完整证明由 Lean 4 内核验证并冻结。
 :::
 
-## 证明四：所有有限维下的 $\ell_1$ 相干度控制相对熵相干度（*Phys. Rev. A* 2016）
+## 证明四：有限维下 $\ell_1$ 相干度控制相对熵相干度（*Phys. Rev. A* 2016）
 
 Rana、Parashar 与 Lewenstein（*Phys. Rev. A* 2016）提出猜想：在量子资源理论里，相对熵相干度 $C_{\mathrm{rel}}(\rho)$ 是否对一切有限维密度矩阵 $\rho$ 恒不超过 $\ell_1$-范数相干度 $C_{\ell_1}(\rho)$？
 

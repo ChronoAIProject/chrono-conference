@@ -26,7 +26,7 @@ Now run that exact same attack through `scoped-proxy`. `NyxID` checks the capabi
 **Scoped NyxID Proxy (`scoped-proxy`).** Requests pass strict scope validation at the policy engine; upstream secrets are injected and scrubbed strictly inside proxy memory, keeping exposed plaintext secrets identically `0`.
 :::
 
-## Sixty-Three Minor Releases in Eight Weeks: `NyxID` `v0.78.0` in Numbers
+## Sixty-Three Minors in Eight Weeks: `NyxID` `v0.78.0` in Numbers
 
 `NyxID` is not an unshipped design memo; it is the live production gateway powering ChronoAI and the December 17 launch. Verified from `https://api.nyxid.ai/api/v1/public/config` and `ChronoAIProject/NyxID@v0.78.0` (November 3–26, 2026):
 

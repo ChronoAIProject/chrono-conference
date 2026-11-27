@@ -31,7 +31,7 @@ These five layers are not wishful boxes on a whiteboard; they are production rep
 5. **Layer 5: Live Business & Research Surfaces (`chrono-metaverse`, `chrono-cd`, `Living with AI`, `trureturing`)**
    A vehicle is built to drive, not sit under showroom velvet. Ours drives the 3D `street-corner` venue for December 17, GitOps app hosting via `chrono-cd`, physical-home automation via `Living with AI` (`nyx-homeassistant-node v1.1.1-alpha.52`), and 24/7 formal mathematical discovery inside `trureturing`.
 
-## Test the Chassis Yourself: Four Failure Modes That Break Prototypes
+## Test the Chassis: Four Failure Modes That Break Prototypes
 
 Rather than taking our word for the suspension, climb into the seat. The interactive schematic lab `VEHICLE//STACK` lets you step through the four operating regimes that shatter ordinary agent demos.
 

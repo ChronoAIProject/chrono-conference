@@ -46,7 +46,7 @@ By way of analogy, because of the two machines we are opening up in Acts II and 
 
 ---
 
-## 20:00–35:00 · Act II: The North Star—Five Steps to the Lean 4 Kernel
+## 20:00–35:00 · Act II: Five Steps to the Lean 4 Kernel
 
 **[VISUAL: Keynote Deck Slides P05–P10, cutting to live browser at `https://live.trureturing.org/`, rotating the eight-department holographic observatory and clicking into Formal Verification Core.]**
 
@@ -69,7 +69,7 @@ And keep the same brutal honesty on outreach and open problems: as of November 8
 
 ---
 
-## 35:00–50:00 · Act III: Anyone Can Buy an Engine; We Build the Vehicle
+## 35:00–50:00 · Act III: Buy an Engine, Build the Vehicle
 
 **[VISUAL: Keynote Deck Slides P11–P15 and live walkthrough of `VEHICLE//STACK` triggering `swap`, `vault`, `approval`, and `revoke` in sequence.]**
 

@@ -46,7 +46,7 @@
 
 ---
 
-## 20:00–35:00 · 第二幕：北极星——当着全世界的面五步核验到 Lean 4 内核
+## 20:00–35:00 · 第二幕：北极星——五步直达 Lean 4 内核
 
 **[画面：切入 `keynote-main` P05–P10，随后浏览器现场切至 `https://live.trureturing.org/`，旋转八部门全息玻璃观测站，点击 Formal Verification Core 部门，演示五步核验。]**
 
