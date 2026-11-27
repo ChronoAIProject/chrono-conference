@@ -196,7 +196,7 @@ section: "North Star · Candor"
     <Stat class="md" value="18" label="OEIS entries · 1 RAIRO-ITA paper" />
     <Stat class="md" value="0" label="Mathesis peer-review acceptances of 212 papers" tone="warn" />
   </div>
-<TheoremCard class="compact mt" label="Open problem 5.3" title="The Riemann Hypothesis and All-Degree Integer Hankel Positivity" status="open" cite="prob-keynote-rh">
+<TheoremCard class="compact mt" label="Open problem 5.4" title="The Riemann Hypothesis and All-Degree Integer Hankel Positivity" status="open" cite="prob-keynote-rh">
 
 Does the Riemann Hypothesis hold? Equivalently: are the integer Hankel forms of the actual $\xi$-function nonnegative for every degree $N$ and every $u \in \mathbb{Z}^{N+1}$? The equivalence is frozen and 8,490 shards replay—the conjecture itself <b>remains completely open</b>.
 

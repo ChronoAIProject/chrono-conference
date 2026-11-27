@@ -1,34 +1,45 @@
 # Chapter 5: heca—Local-First Multi-Provider Orchestration
 
-Running one coding agent needs one terminal tab. Running dozens of agents across 74 active repositories landing 141,624 commits in sixty days—or building four bilingual books, twenty-six computed figures, seven interactive labs, four Slidev decks, and five narrated films in parallel—turns plain terminal tabs into chaos within ten minutes:
+Running one coding agent takes one terminal tab. Running dozens of agents across the 60-day window (`2026-09-20` to `2026-11-19`) in which ChronoAI and independent research brand The Omega Institute landed 141,624 commits across 74 active repositories—or assembling four bilingual books, computed figures, interactive labs, Slidev decks, and narrated films in parallel—turns ordinary terminal tabs into a demolition derby within ten minutes:
 
-- Parallel edits stomp over each other's working tree and overwrite tests;
-- Permission prompts drown inside twelve scrolling panes while nobody knows which worker is blocked;
-- Heterogeneous specialists running across different providers cannot see one another's screenshots, terminals, or goal state.
+- Parallel edits stomp across each other's working tree and silently overwrite passing tests;
+- Permission prompts drown inside twelve scrolling panes while nobody knows which worker stalled waiting for sign-off;
+- Specialists running on different providers go blind to one another's screenshots, terminal logs, and live goal state.
 
-**`heca`** (always lowercase—our local-first spatial orchestration canvas) exists to kill multi-agent chaos at the root.
+**`heca`** (always lowercase—our local-first spatial orchestration canvas) exists to kill multi-agent collisions at the physical level.
 
-## Spatial Canvas + Worktree Isolation: One Command Deck for 27 Agent Types
+## A Machinist's Bench With Separate Vises: One Deck for 27 Agent Integrations
 
-`heca` follows a blunt experimentalist instinct: **pull concurrency out of invisible background PIDs onto one spatial canvas, and eliminate concurrent write races physically with real Git worktrees.**
+**(Analogy)** Putting ten welders onto one steel sheet without separate vises or sightlines does not multiply output by ten; it produces a pile of scorched scrap. `heca` builds a **machinist's workbench with dedicated vises**: pulling concurrency out of invisible background PIDs onto one spatial canvas, then clamping each parallel assignment inside its own real Git worktree so two torches never touch the same working directory at once.
 
 ::: {.figure src="ch05-heca-worktree-topology"}
-**`heca` Local-First Spatial Canvas & Worktree Topology.** One local canvas coordinates **27 agent types** (`6` primary providers + `21` ACP agents across `361` nightlies); every worker receives an isolated Git worktree, dedicated terminal, and browser panel governed through one unified permission queue and Goal Ledger.
+**`heca` Local-First Spatial Canvas & Worktree Topology.** One local canvas coordinates **27 agent integrations** (`6` primary providers + `21` ACP agents across **`360` nightlies**, latest `0.1.0-nightly-20261121-1`) across `6` platforms and `4` usable runtimes; every worker gets an isolated Git worktree, dedicated terminal, and browser panel governed through one unified permission queue and Goal Ledger.
 :::
 
-Four primitives do the heavy lifting every single day:
+Four blunt primitives carry the daily workload:
 
-1. **True Multi-Provider Openness (`6 + 21 = 27`)**: `heca` never locks builders to a single upstream vendor. As of November 26, 2026, it drives **6 primary providers** alongside **21 Agent Client Protocol (ACP) agents**—**27** mix-and-match execution classes collaborating on one board.
-2. **One Task, One Worktree**: Every parallel assignment spins up a managed Git worktree sharing the underlying `.git` object store without duplicating storage, keeping builds, diffs, and dirty states physically separated until merge.
-3. **Embedded Browser & Visual Loop**: Workspaces attach controllable browser panels directly inside the canvas (navigation, DOM reads, screenshots, JS evaluation), closing visual QA loops without leaving the orchestrator.
-4. **Unified Permission Queue & Goal Ledger**: Every escalated action funnels into one inspectable permission queue, while long-running autonomous missions log turns, active time, and verified artifact receipts inside a structured Goal Ledger—never trusting vague claims of "almost done."
+1. **True Multi-Provider Openness (`6 + 21 = 27`)**: `heca` refuses to weld builders to one upstream vendor. As of **November 27, 2026** (`main` at `5111cd3b1f`, PR `#2870`), it integrates **6 primary providers** alongside **21 Agent Client Protocol (ACP) agents**—**27** mix-and-match execution classes collaborating, handing off, and verifying work on one shared board.
+2. **One Task, One Worktree**: Every parallel assignment opens a managed Git worktree sharing the underlying `.git` object store without duplicating storage, keeping builds, diffs, and dirty working trees physically separated until merge or archive.
+3. **Six Platforms & Embedded Visual Loops**: Spanning **6 platforms** (macOS, Linux, and Windows desktop; iOS and Android mobile; plus web), workspaces mount controllable browser panels directly inside the canvas (navigation, DOM reads, screenshots, JS evaluation) so visual QA never leaves the orchestrator.
+4. **Unified Permission Queue & Goal Ledger**: Every escalated action funnels into one inspectable permission queue, while long-running missions record turns, active time, and verified artifact receipts inside a structured Goal Ledger—never accepting a casual claim of "almost done."
 
-## 361 Nightlies—and One Unmistakable Transparency Note
+## Swapping the Terminal Engine Mid-Flight, Four-Platform Secure Input, and Hermetic Git Hygiene
 
-Across the 60-day window ending November 19, 2026, the `heca` line logged **12,053 commits** (`4,404` in the final 30 days) and shipped **361 nightly builds**, driving ChronoAI's daily multi-agent engineering—including the very gateway orchestrating the conference edition you are reading.
+Once parallel worktrees live on one spatial deck, **`106` merged PRs in 14 days** went straight into the steel seams underneath: terminal byte streams, password keystrokes, and Git process hygiene. The heaviest cut was a single-switch **`2,745`-file `libghostty-vt` engine transplant** (`#2821`, `+185,152/-63,625` lines). Running separate legacy terminal stacks across Flutter (desktop, web, mobile) and native Rust `gpui` meant an ANSI sequence or reconnect buffer could render cleanly on one client and garble on another. Rather than nursing two incompatible codebases, the team ripped out legacy `vt100`/`vte`, `kterm`, and the old `HVT1` restore codec in one shot so every Flutter surface and native `gpui` client runs one unified terminal session engine. To prove fast subcommands never lose their final characters on exit, they ran the engine through the **W6 24-concurrent-finishing-streams stress harness (`#2825`)**, catching and killing a subtle browser race that dropped late final bytes right at process EOF—leaving one terminal state machine verified to flush the last byte under 24-way concurrent shutdown.
 
-Yet our rule from Volume I stands firm: **never call unshipped source "open source."** As of November 26, 2026, **`heca`'s source code is not yet publicly released** (packaging under `getheca` remains in progress). [Appendix B](appendix-b-security-and-readiness.md) flags this explicitly as *source pending* so no external developer wastes five minutes hitting a 404.
+The second bench problem struck whenever a CLI prompt asked for a password or hardware PIN (`#2845`–`#2870`). Waiting on client heuristics meant heavy terminal scrollback backpressure could delay locking the input box, while naive mobile password fields popped up iOS AutoFill prompts mid-session. The cure moved detection into the daemon itself: when the OS flags a canonical **echo-off PTY**, the daemon fires **revisioned `secure` mode transitions decoupled from output flow-control credit**, snapping input protection shut out-of-band across Web, macOS (with `arm64`/`x86_64` Carbon secure-input linkage verified before signing), and iOS—tuned specifically to mask mobile keystrokes **without triggering iOS password AutoFill (`#2870`)**. Scrollback floods can never stall the lock, and secrets never stray into OS autofill caches.
 
-Cloud `CMA` and local `heca` give teams extraordinary execution speed. Yet speed without brakes only multiplies wreckage: **how do you stop high-velocity agents from silently skipping checks, gaming test harnesses, or blindly running two hours of browser suites for a one-line prose edit?**
+The third trap lurked inside inherited shell environments. Launch `heca` from inside a Git hook or an active worktree shell, and parent variables such as `GIT_DIR` silently hitch a ride—causing an explicit git call aimed at Repo B to hijack Repo A instead. Wiping the entire environment would break user SSH agents and credential helpers, so `#2863` takes a scalpel: on every explicit-repo git call, it surgically strips the exact **8 repository-location Git environment variables** while preserving user credentials untouched. Inherited worktree variables can never cross-contaminate another repository, locking each machinist's vise hermetic.
 
-Enter Layer 4—the coldest referee in the entire stack: **`chrono-harness` and `sshx`**. Chapter 6 takes the scalpel to executable governance.
+## 360 Nightlies—and Two Boundaries We Refuse to Smudge
+
+Across the 60-day cadence window ending November 19, 2026, the `heca` line logged **12,053 commits** (`4,404` in the final 30 days). As of **November 27, 2026**, the release stream stands at exactly **`360` nightly tags** (latest tag **`0.1.0-nightly-20261121-1`**), with `main` at `5111cd3b1f` (PR `#2870`). The very gateway orchestrating the four-volume conference edition you are reading runs on `heca` daily.
+
+**(Position)** Tap our own hood with the same tuning-fork hammer: bragging about `360` nightlies and `27` agent integrations is easy; engineering honesty means placing the two unfinished edges in full view (mirrored in [Appendix B](appendix-b-security-and-readiness.md)):
+
+- **Four usable runtimes today, one still blocked**: `heca` currently runs cleanly across **4 local isolation runtimes (`Host`, `macOS Sandbox`, `Docker`, `Podman`)**; **Apple's `container` runtime remains blocked**, and we do not pad the count to five.
+- **`getheca/heca` source remains private/internal**: While public release artifacts and site documentation live under the `getheca` GitHub organization, the core source repository has not been open-sourced yet. Calling a private repository "open source" is a cheap fraud; every ledger in this book marks `heca` plainly as **private/internal source** so no outside developer wastes five minutes hitting a 404.
+
+Cloud `CMA` and local `heca` push commit velocity straight into the redline—and without brakes, every slip turns into a pileup: **how do you stop high-velocity agents from silently skipping tests, softening grading scripts, or burning two hours of full-repo browser matrices over a three-word typo?**
+
+Enter Layer 4—the coldest mechanical referee in the stack: **`chrono-harness` and `sshx`**. Chapter 6 takes apart the brake calipers.

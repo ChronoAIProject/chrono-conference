@@ -1,52 +1,71 @@
 # Chapter 5: Inside live.trureturing.org—An Eight-Department Glass Observatory
 
-Most research labs present their work like a pastry shop that puts gleaming cakes in the window while bolting the kitchen door with deadbolts. You are welcome to admire the frosting; you are never allowed to check the flour, count the cracked bowls, or see what is currently burning in the oven.
+Most research labs present their work like a pastry shop that puts gleaming cakes in the window while bolting the kitchen door with iron deadbolts **(Analogy)**. You are invited to admire the frosting; you are never allowed to inspect the flour, count the cracked bowls, or see which tray is currently scorching in the oven.
 
-**`https://live.trureturing.org/`** smashes the kitchen wall and replaces it with 360-degree glass.
+**`https://live.trureturing.org/`** swings a hammer through the kitchen brick and replaces it with 360-degree glass.
 
 ![Overview of the eight-department holographic glass observatory at live.trureturing.org (captured November 27, 2026)](../assets/trureturing-live.png)
 
-Open the live observatory and you do not face a six-month-old static poster. You step into a live holographic constellation wired directly to the underlying public repositories. As captured on November 27, 2026, the observatory tracks **19,022 live truth-DAG nodes** across **8 distinct research departments** and **17 public GitHub repositories**, accompanied by an embedded assistant so any visiting researcher can interrogate a theorem's lineage on the spot.
+Step inside and you do not face a six-month-old marketing poster; you step directly into a live holographic constellation wired to the underlying public repositories. As captured on November 27, 2026, **eight spiral mathematical galaxies** orbit eight central stations, mapping **`19,022` truth nodes** (**`36,865` total nodes**, **`28,774` directed edges**) across **`17` tracked public GitHub repositories** and **eight functional pipeline departments**. In the top-left corner, live **Voice Guide Alexandra** (powered by `nyx-assistant-sdk v0.2.4`, with voice relay, page screenshot capture, and bilingual guided briefings) leads visiting scholars through every station and spiral galaxy while the right-hand `MATRIX` feed streams live verification relays.
 
-## How Eight Glass Departments Lock Together
+## How Eight Pipeline Departments Lock Together
 
-Flatten the 3D observatory into an architectural map and you see immediately why a 24/7 formal research engine does not degenerate into tangled spaghetti—it is organized like a real institute into eight cleanly scoped departments:
+Flatten the 3D observatory onto a blueprint and you see why a 24/7 formal engine does not tangle into spaghetti: instead of carving academic silos by subject matter, `live.trureturing.org` runs an **eight-station functional research pipeline** where each station hands work forward under mechanical scrutiny:
+
+1. **Direction (`研究方向`)**: Sets open research targets, trajectories, and problem priorities;
+2. **Math Research (`数学攻坚`)**: Claims open conjectures and internal core propositions, driving proofs and counterexamples;
+3. **Indep. Review (`独立评审`)**: Adversarial independent audit hunting hidden assumptions, prior-art overlap, and statement drift;
+4. **Verification (`形式验证`)**: The institute's `CORE 00 · LEAN BRIDGE`, ingesting verification handoffs from every wing and flowing frozen Lean 4 theorems back across the graph;
+5. **Monographs (`理论书写`)**: Weaves isolated frozen lemmas into readable bilingual book architecture;
+6. **Papers & Wiki (`论文与知识`)**: Curates open `Mathesis` papers and structured knowledge graphs;
+7. **Scholar Outreach (`学术交流`)**: Runs direct scholarly correspondence, co-authorship, and OEIS submissions;
+8. **Tools & Studio (`工具与表达`)**: Maintains compiler governance rules, computed figures, interactive laboratories, and explainer films.
 
 ::: {.figure src="ch05-eight-dept-observatory"}
-**Architecture of the Eight-Department Glass Observatory (`live.trureturing.org`, November 27, 2026 snapshot).** Top row links `17` public repositories into `19,022` DAG nodes; center cards list all eight departments (Formal Verification Core, Theory Architecture, Open Problem Hunting, Quantum & Foundations, Number Theory & Zeros, Combinatorics & OEIS, Outreach & Monographs, Governance & StrataLint); footer notes unbroken `720 / 720` UTC hourly commit coverage (median `59` commits/hour).
+**Architecture of the Eight-Department Glass Observatory (`live.trureturing.org`, November 27, 2026 snapshot).** Top layer links `17` public repositories to `19,022` DAG nodes; center cards list all eight live functional pipeline departments (**Direction, Math Research, Indep. Review, Verification, Monographs, Papers & Wiki, Scholar Outreach, Tools & Studio**); footer reports unbroken `720 / 720` UTC hourly commit coverage and a median of `63` commits/hour.
 :::
 
-Step inside one department—such as **Formal Verification Core** captured live below—and the glass reveals active freezing pipelines, dependency topology, axiom audits, and newly landed modules in real time:
+Fly straight inside the central glass chamber—**Verification (`形式验证`, `CORE 00 · LEAN BRIDGE`)**, captured live below—and the panes expose five upstream handoff channels on the left (Math Research, Indep. Review, Monographs, Papers & Wiki, Scholar Outreach), parallel active verification lanes in the center, and frozen theorem return flows on the right:
 
-![Detailed department view of Formal Verification Core inside live.trureturing.org (captured November 27, 2026)](../assets/trureturing-live-dept.png)
+![Detailed chamber view of the Verification department inside live.trureturing.org (captured November 27, 2026)](../assets/trureturing-live-dept.png)
+
+## Stripping Out Fake Nebulae: Inside 109 PRs in Five Days
+
+The easiest sin when building a live scientific observatory is painting sci-fi atmosphere over real data. Across a five-day hardening sprint of **`109` PRs**, the first hammer swung straight through decorative cosmos theater (`#83`): every painted aurora wash and synthetic `nebulaVbo` smoke blob was ripped out so that **100% of starfield geometry comes strictly from real frozen Truth DAG nodes (`18,986 → 19,022`) and `16,000` real directed edges**. Where a spiral arm blazes bright, dense frozen theorems actually sit there; where a void gap opens black, nobody is allowed to airbrush artificial fog across it.
+
+Right behind that cleanup lurked a classic physics-bench detective puzzle inside WebGL2 (`#84`): dragging the camera slightly low swallowed the entire galaxy behind an inexplicable wall of black. Tracing the render pipeline exposed the culprit hiding in plain sight—the 96m×96m floor quad sitting at `y = -1.35` was nearly invisible (`floorAlpha ≈ 0.062`), yet it still held `gl.depthMask(true)`, so the instant the viewpoint dipped beneath the plane, transparent glass silently wrote to the depth buffer and depth-culled the cosmos behind it. Fixing the depth mask restored the full sky and cleared sightlines for honest mathematical station sculptures—a Hopf link and diamond spire anchoring the Verification station and a Stokes-folding sheet crowning Papers & Wiki (`#89`–`#91`).
+
+The same engineering discipline reshaped the public telemetry pipe (`#95`). Rather than burning rate limits with brute-force fetches, switching the public 55-minute GitHub Actions poller to conditional **ETag/304** reads cut steady-state latency roughly in half—from `~1–2 min` down to **`~25–40 s`**—while staying under **`<10%`** of GitHub's `15k/hr` budget with zero private backdoors.
+
+Finally, wiring **Voice Guide Alexandra** (`#102`–`#109`, powered by `nyx-assistant-sdk v0.2.4`) across **`1,670` focusable connected modules and `16` inter-domain dependency bundles** (`#106`) turned a passive 3D monitor into an interactive tour—and live five-minute voice stress runs (`#105`/`#109`) caught and cured both the dead-end-star bug (stranding the camera on isolated nodes with no outbound hop) and a repeated-aside narration loop, rounding out the pipeline with prioritized three-minute digests (`#108`).
 
 ## 720 Continuous Hours of Industrial Research Cadence
 
-Inspect the raw repository telemetry standing behind the glass (verified snapshots from `the-omega-institute/trureturing`, November 19–20, 2026):
+Put the raw repository telemetry standing behind the glass squarely on the chalkboard (audited from `the-omega-institute/trureturing@548388cd`, November 27, 2026, and the 30-day continuous cadence window):
 
 | Telemetry Axis | Exact Reading | Window & Scope |
 | --- | --- | --- |
-| Frozen Theorems | `167,819` | `kind = theorem` across `Golden/Frozen/state/D5/*.json` (2026-11-20) |
-| Frozen Modules & LOC | `14,701` frozen modules / `16,278` `.lean` files / `4,775,059` LOC (`4.78M`) | Lean `4.35.0` toolchain (2026-11-20) |
-| Continuous Hourly Coverage | `720 / 720` UTC hours (`100.0%`) | 2026-10-21 through 2026-11-19 across all branches |
-| Commit Median & Hourly Band | Median `59` commits/hour; UTC clock-hour totals `1,514`–`2,212` | Same 720-hour window |
-| Daily Merged PR Throughput | `159` merged PRs/day (`1,110` over last 7 full UTC days) | `dev` branch (as of 2026-11-19) |
-| Static Governance (`StrataLint`) | `28` registered rules, `24` active | `tools/StrataLint.Engine` (2026-11-20) |
+| Frozen Theorems | `223,231` (`400,377` total frozen decls; `+33.0%` in 7 days) | `kind = theorem` across `Golden/Frozen/state/` (`548388cd`, 2026-11-27; ticking to `223,247` at `5f390707` minutes later) |
+| Frozen Modules & LOC | `17,968` frozen modules / `20,223` `.lean` files / `6,024,982` LOC (`6.02M`) | Lean `4.35.0` toolchain (`548388cd`, 2026-11-27) |
+| Continuous Hourly Coverage | `720 / 720` UTC hours (`100.0%`) | 2026-10-28 through 2026-11-26 across all branches |
+| Commit Median & Hourly Band | Median `63` commits/hour; UTC clock-hour totals `1,573`–`2,448` | Same 720-hour window |
+| Daily Merged PR Throughput | `217` merged PRs/day (`1,517` across 7 complete UTC days, `+36%` WoW) | 2026-11-20 through 2026-11-26 |
+| Static Governance (`StrataLint`) | `27` registered rules, `23` active (`4` deferred) | Hosted in `the-omega-institute/trureturing-tools` (`tools/StrataLint.Engine/Rules/RepositoryRules.cs`) |
 
-Pay particular attention to the bottom row: **`StrataLint`**. Just as `chrono-harness` governs our engineering repositories (Volume II), `trureturing` survives 59 commits per hour for 720 straight hours not by magic, but through 24 active static governance rules bolted onto the Lean 4 kernel gate:
+Keep your eyes on the bottom row: **`StrataLint`**. Just as `chrono-harness` (now actively hosted at `https://github.com/chrono-harness/`) guards our engineering repositories in Volume II, `trureturing` survives 63 median commits per hour and 217 merged PRs per day for 720 unbroken hours not by luck, but through a double iron gate combining **`23` active `StrataLint` rules inside `trureturing-tools`** with the **Lean 4 kernel**:
 
 - Zero undeclared axioms may smuggle into frozen theorems;
 - Zero `sorry` placeholders pass merge validation;
-- Every frozen declaration records its name key, kind, module `statement_id` digest, and (on newly audited modules) standard-axiom closure in `Golden/Frozen/state/<module>.lean.json`, while `trureturing.lock.json` resolves exact source line numbers and signatures;
-- Whenever an upstream module shifts, `trureturing.lock.json` and `./tbook check` immediately flag statement-summary drift so book prose can never quietly detach from kernel reality.
+- Every frozen declaration records its name key, kind, module `statement_id` digest, and axiom closure inside `Golden/Frozen/state/<module>.lean.json`, while `trureturing.lock.json` resolves exact source line numbers and signatures;
+- Whenever an upstream module shifts, `trureturing.lock.json` and `./tbook check` flag statement-summary drift immediately so book prose can never detach silently from kernel truth.
 
 ## Why a Glass House Outruns a Black Box
 
-People often ask a pragmatic question: *"By publishing 17 repositories, 19,022 live nodes, and every single Lean file in real time, aren't you handing away your secret sauce?"*
+Skeptics regularly ask a pragmatic question: *"By streaming 17 repositories, 19,022 live truth nodes, and six million lines of Lean code to the whole world in real time, aren't you giving away your secret sauce?"*
 
-The honest answer is blunt: what stops most teams is never a hidden recipe written on a napkin—it is **willingness to face ruthless, instant correction every hour of the day.** Operating inside a glass observatory compounds faster than any closed vault:
+The blunt answer: what slows most teams down is never a secret formula written on a napkin—it is **whether you can bear ruthless, public correction twenty-four hours a day.** Working inside glass compounds faster than any locked vault:
 
-1. **Working scholars become your sharpest auditors**: The 440 researchers who replied across 273 institutions and 46 countries (as of November 8, 2026) engaged seriously—with our October 31, 2026 novelty audit across 1,108 incoming messages transparently recording `1.5%` prior settled overlap and `1.6%` partial overlap (no prior-art objection raised on the remaining ~`96.9%`)—and public source lets every claim resolve straight to checkable Lean files for independent scrutiny.
-2. **Real progress stays visibly separated from theater**: Inside a glass house, nobody can quietly repackage an unfinished heuristic as a proved theorem when every node's frozen badge and red open status update in public view.
+1. **Working scholars become your sharpest auditors**: As of November 27, 2026, `trureturing-outreach` (`data @ d22e63c8`) records **`1,049` scholars contacted and `485` replied (`46.2%`)** top-line (`1,034` / `478` non-system filtered across ~`299` institutional domains and `47` countries), alongside the October 31, 2026 frozen novelty audit across 1,108 incoming messages transparently logging `1.5%` prior settled overlap and `1.6%` partial overlap (no prior-art objection raised on the remaining ~`96.9%`). Open Lean source lets every scholar check exact line numbers directly.
+2. **Painted-green theater dies on contact with daylight**: Inside a glass house, nobody can quietly repackage an unfinished heuristic as a breakthrough when every node's frozen ledger, axiom list, and red open status update live in public view.
 
-Once thousands of theorems live safely in `.lean` files, the next question is human readability and reproducible verification at scale: how do raw proof files become open papers, bilingual monographs, and independently replayable mathematical artifacts? Chapter 6 visits **Mathesis**, **`books.trureturing.org`**, and the **8,490-shard Riemann Hypothesis replay book**.
+Six million lines of `.lean` files now stand visible behind glass. The next challenge belongs to human scientific culture: turning cold proof files into open papers, bilingual monographs, and independently replayable verification suites. Chapter 6 walks into **`Mathesis`**, **`trureturing-books`**, and the **`8,490`-shard reproducible replay of `the-omega-institute/riemann-hypothesis`** beside its bilingual guide **`riemann-hypothesis-book`**.

@@ -58,13 +58,13 @@ section: "FIB ATOM"
   <div class="split mt">
     <div>
       <img src="./img/ch01-fib-substitution-tree.en.svg" alt="Fibonacci substitution tree and lineage total-variation curve" style="display:block;height:285px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
-<TheoremCard class="compact mt" label="Theorem 1.1" title="Golden Carry Deficit Is Three-Valued" gid="D5/S1/Deficit/DeficitThreeValued.deficit_three_valued" cite="thm-fib-deficit">
+<TheoremCard class="compact mt" label="Theorem 1.2" title="Golden Carry Deficit Is Three-Valued" gid="D5/S1/Deficit/DeficitThreeValued.deficit_three_valued" cite="thm-fib-deficit">
 
 For all natural numbers $v_1, v_2$: $c(v_1, v_2) \in \{-1,\ 0,\ 1\}$.
 
 </TheoremCard>
     </div>
-<TheoremCard class="compact" label="Theorem 1.3" title="Injective Fibonacci Genealogical Transport" gid="D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" cite="thm-fib-lineage">
+<TheoremCard class="compact" label="Theorem 1.4" title="Injective Fibonacci Genealogical Transport" gid="D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" cite="thm-fib-lineage">
 
 For all $1 \le a + b$: substitution keeps every tree of a source fiber at the same boundary composition; transport is injective, with exact total variation from the uniform target-fiber law $\mathrm{TV}(a, b, n) = 1 - \mathrm{fiberCount}(a, b) / \mathrm{fiberCount}(\mathrm{step}^{[n]}(a, b)) \to 1$ as $n \to \infty$. If $2 \le a + b$, one step gives $1 - 2^{-b} \le \mathrm{TV}(a, b, 1)$; smallest case $\mathrm{TV}(1, 1, 1) = \tfrac{2}{3}$.
 
@@ -293,12 +293,12 @@ section: "The Red Frontier"
   <div class="row mt-s">
     <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="grow">
-<TheoremCard class="compact" label="Theorem 6.1" title="Integer Hankel Criterion for the Riemann Hypothesis" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
+<TheoremCard class="compact" label="Theorem 6.3" title="Integer Hankel Criterion for the Riemann Hypothesis" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
 
 $\mathrm{RiemannHypothesis} \iff$ the actual-$\xi$ integer Hankel form is nonnegative for every $N$ and every $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$. Equivalence only.
 
 </TheoremCard>
-<TheoremCard class="compact mt-s" label="Open problem 6.2" title="The Riemann Hypothesis Remains Open" status="open" cite="prob-rh-open">
+<TheoremCard class="compact mt-s" label="Open problem 6.4" title="The Riemann Hypothesis Remains Open" status="open" cite="prob-rh-open">
 
 Is it true? Equivalently, is that form nonnegative for all $N$, $u$? <b>Completely open.</b>
 
