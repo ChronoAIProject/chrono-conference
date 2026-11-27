@@ -27,7 +27,7 @@ Switch to the `merchant` card below to filter the six-role launch board into the
 
 | Step | Action | Tool / Entry Point | Exit Gate (Do Not Advance Until Green) |
 | --- | --- | --- | --- |
-| **Step 1** | Open `NyxID` workspace & zero-secret vault | `https://api.nyxid.ai` (open signup) | Connect read-only calendar/ticketing/ledger sources; confirm `0` plaintext keys in context |
+| **Step 1** | Open `NyxID` workspace & zero-secret vault | `https://nyxid.ai/` (open signup) | Connect read-only calendar/ticketing/ledger sources; confirm `0` plaintext keys in context |
 | **Step 2** | Bind live customer channels | `NyxID` 9 channel types / `nyx-assistant-sdk` | Round-trip test messages across Slack, Telegram, Lark, or web widget with zero drops |
 | **Step 3** | Install two-role starter skills from `Ornn` | `ornn.chrono-ai.fun` + `nyx-skills` | Verify AgentSeal scan pass, pin immutable versions, audit `NyxID` service scopes |
 | **Step 4** | Lock spend caps & human approval gates | `NyxID` Credits cap + write gates | Set daily credit limit; pass 10/10 adversarial refund & off-script refusal drills |

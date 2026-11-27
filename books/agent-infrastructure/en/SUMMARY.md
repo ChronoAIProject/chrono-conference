@@ -8,6 +8,6 @@
 - [Chapter 4: CMA—Cloud-Hosted Managed Agents and Event Gateway](ch04-cma-cloud-agents.md)
 - [Chapter 5: heca—Local-First Multi-Provider Orchestration](ch05-heca-orchestration.md)
 - [Chapter 6: chrono-harness & sshx—Executable Judges Over Wishful Prompts](ch06-chrono-harness-governance.md)
-- [Chapter 7: Live Surfaces—chrono-metaverse, chrono-cd, and Living with AI](ch07-metaverse-cd-and-physical-ai.md)
+- [Chapter 7: chrono-metaverse, chrono-cd, and Living with AI](ch07-metaverse-cd-and-physical-ai.md)
 - [Appendix A: Complete Enterprise Repository Atlas](appendix-a-enterprise-repo-atlas.md)
 - [Appendix B: Trust Boundaries, Feature Flags, and Honest Readiness Matrix](appendix-b-security-and-readiness.md)

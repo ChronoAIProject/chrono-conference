@@ -1,4 +1,4 @@
-# Chapter 7: Live Surfaces—chrono-metaverse, chrono-cd, and Living with AI
+# Chapter 7: chrono-metaverse, chrono-cd, and Living with AI
 
 An agent stack that only ever edits its own code inside a terminal is an impressive developer toy, not a complete vehicle. The true test arrives when the exact same zero-secret proxy, skill lifecycle, and write-approval brakes extend cleanly into **shared 3D virtual spaces, zero-ops cloud deployments, and real physical-home sensors and actuators.**
 

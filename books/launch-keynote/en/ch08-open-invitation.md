@@ -26,7 +26,7 @@ Spot a brittle boundary and open an issue or pull request with a minimal reprodu
 If you want to see what a 24/7 formal discovery engine actually proves—and where its frontiers remain red and open—open Volume III (*The Ratchet of Logic*), visit `https://live.trureturing.org/`, and clone `https://github.com/the-omega-institute/trureturing`:
 
 - Pick a published resolution near your field—from four-qubit entropy ceilings to graph mixing discriminants—and run the five-step local `lake build` verification playbook in Volume III, Appendix A;
-- Flag any spot where our prose slightly outruns a Lean signature, or point out prior literature overlap—every correction enters our public `trureturing-outreach` ledger with equal candor;
+- Flag any spot where our prose slightly outruns a Lean signature, or point out prior literature overlap—every correction is recorded candidly by The Omega Institute in its `trureturing-outreach` ledger (with aggregate metrics published openly);
 - If you carry a sharp, well-posed conjecture begging for automated counterexample search or a Lean 4 formalization skeleton, bring the problem statement and let us test it together.
 
 ### Door Three: For Our First Cohort of Pilot Merchants and Deployment Partners
