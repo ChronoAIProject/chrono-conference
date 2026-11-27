@@ -5,20 +5,23 @@ import math
 SIZE = (480, 310)
 ALT = {
     "zh": "NyxBot / NyxAgent 位于中心，与默认 8 个专家组成辐射网络。专家数上限为 32，"
-          "群组容量上限为 8，记忆槽为 50，触发限制每小时 30 次、每日 300 次。"
-          "数值来自 NyxID v0.78.0 的配置与模型定义。",
+          "群组容量上限为 8，记忆槽为 50。触发默认上限是每小时 30 次、每日 300 次，"
+          "可配置的硬上限是每小时 300 次、每日 3,000 次。图下注明 nyx-assistant-sdk v0.2.4（2026-11-28）。",
     "en": "NyxBot / NyxAgent connects to eight default specialists in a radial mesh. "
-          "The specialist ceiling is 32, group capacity is 8, memory capacity is 50 slots, "
-          "and trigger ceilings are 30 per hour and 300 per day, from NyxID v0.78.0 settings.",
+          "The specialist ceiling is 32, group capacity is 8, and memory capacity is 50 slots. "
+          "Trigger defaults are 30 per hour and 300 per day, with hard ceilings of 300 per hour "
+          "and 3,000 per day. The audited note is nyx-assistant-sdk v0.2.4, shipped on 2026-11-28.",
 }
 
-# facts-latest.json: ChronoAIProject/NyxID@v0.78.0, 2026-11-03.
-DEFAULT, MAXIMUM, GROUP, MEMORIES, HOURLY, DAILY = 8, 32, 8, 50, 30, 300
+# Audited NyxID settings and nyx-assistant-sdk release, 2026-11-28.
+DEFAULT, MAXIMUM, GROUP, MEMORIES = 8, 32, 8, 50
+HOURLY, DAILY = 30, 300
+HARD_HOURLY, HARD_DAILY = 300, 3000
 
 
 def draw(fig):
     t = fig.t
-    assert (DEFAULT, MAXIMUM, GROUP, MEMORIES, HOURLY, DAILY) == (8, 32, 8, 50, 30, 300)
+    assert (DEFAULT, MAXIMUM, GROUP, MEMORIES, HOURLY, DAILY, HARD_HOURLY, HARD_DAILY) == (8, 32, 8, 50, 30, 300, 300, 3000)
 
     cx, cy, radius = 133, 148, 94
     nodes = [
@@ -42,16 +45,16 @@ def draw(fig):
              size=15, color="dim", anchor="middle")
 
     fig.line(263, 15, 263, 278, "edge", 1.2)
-    fig.text(280, 22, t("配置上限", "Configured limits"), size=16, weight=600)
+    fig.text(280, 22, t("配置与硬上限", "Settings & hard ceilings"), size=16, weight=600)
     for i, (value, label) in enumerate([
-        (GROUP, t("每组容量", "Group capacity")),
-        (MEMORIES, t("记忆槽", "Memory slots")),
-        (HOURLY, t("触发 / 小时", "Triggers / hour")),
-        (DAILY, t("触发 / 日", "Triggers / day")),
+        (t(str(GROUP), str(GROUP)), t("每组容量", "Group capacity")),
+        (t(str(MEMORIES), str(MEMORIES)), t("记忆槽", "Memory slots")),
+        (t(f"{HOURLY}/hr · {DAILY}/day", f"{HOURLY}/hr · {DAILY}/day"), t("默认触发上限", "Default trigger caps")),
+        (t(f"{HARD_HOURLY}/hr · {HARD_DAILY:,}/day", f"{HARD_HOURLY}/hr · {HARD_DAILY:,}/day"), t("可配置硬上限", "Configurable hard ceilings")),
     ]):
         y = 49 + i * 62
         fig.rect(280, y - 13, 5, 46, color=None, fill="blue", rx=2)
-        fig.text(295, y + 3, t(str(value), str(value)), size=24, weight=600, color="blue")
+        fig.text(295, y + 3, value, size=18 if i >= 2 else 24, weight=600, color="blue")
         fig.text(295, y + 23, label, size=15)
-    fig.text(240, 302, t("NyxID v0.78.0 · 2026-11-03", "NyxID v0.78.0 · 2026-11-03"),
+    fig.text(240, 302, t("nyx-assistant-sdk v0.2.4 · 2026-11-28", "nyx-assistant-sdk v0.2.4 · 2026-11-28"),
              size=15, color="dim", anchor="middle")

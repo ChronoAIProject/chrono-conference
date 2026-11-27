@@ -2,31 +2,31 @@ from datetime import date
 
 SIZE = (520, 320)
 ALT = {
-    "zh": "live.trureturing.org 在 2026 年 11 月 27 日的快照中汇集 17 个公开仓库，展示 19,022 个有向无环图节点。八个部门是形式验证核心、理论架构、开放问题搜寻、量子与基础、数论与零点、组合与 OEIS、学术外联与专著、治理与 StrataLint。另据 trureturing 全分支提交记录，10 月 21 日至 11 月 19 日 UTC 的 720 个小时都有提交，每小时提交中位数为 59。",
-    "en": "In the November 27, 2026 observatory snapshot, live.trureturing.org draws on 17 public repositories and displays 19,022 DAG nodes. Eight departments cover Formal Verification Core, Theory Architecture, Open Problem Hunting, Quantum & Foundations, Number Theory & Zeros, Combinatorics & OEIS, Outreach & Monographs, and Governance & StrataLint. A separate trureturing all-branches audit from October 21 through November 19 UTC found commits in all 720 hours, with a median of 59 per hour.",
+    "zh": "live.trureturing.org 在 2026 年 11 月 27 日的快照中汇集 17 个公开仓库，展示 19,022 个有向无环图节点。八个职能部门是研究方向、数学攻坚、独立评审、形式验证、理论书写、论文与知识、学术交流、工具与表达。另据 trureturing 全分支提交记录，10 月 28 日至 11 月 26 日 UTC 的 720 个小时都有提交，每小时提交中位数为 63。",
+    "en": "In the November 27, 2026 observatory snapshot, live.trureturing.org draws on 17 public repositories and displays 19,022 DAG nodes. Eight functional departments are Direction, Math Research, Indep. Review, Verification, Monographs, Papers & Wiki, Scholar Outreach, and Tools & Studio. A separate trureturing all-branches audit from October 28 through November 26 UTC found commits in all 720 hours, with a median of 63 per hour.",
 }
 
 # Observatory snapshot, 2026-11-27, as recorded in the conference blueprint.
 REPOSITORIES, DAG_NODES = 17, 19022
 DEPARTMENTS = (
-    ("形式验证核心", "Formal Verification Core"),
-    ("理论架构", "Theory Architecture"),
-    ("开放问题搜寻", "Open Problem Hunting"),
-    ("量子与基础", "Quantum & Foundations"),
-    ("数论与零点", "Number Theory & Zeros"),
-    ("组合与 OEIS", "Combinatorics & OEIS"),
-    ("学术外联与专著", "Outreach & Monographs"),
-    ("治理与 StrataLint", "Governance & StrataLint"),
+    ("研究方向", "Direction"),
+    ("数学攻坚", "Math Research"),
+    ("独立评审", "Indep. Review"),
+    ("形式验证", "Verification"),
+    ("理论书写", "Monographs"),
+    ("论文与知识", "Papers & Wiki"),
+    ("学术交流", "Scholar Outreach"),
+    ("工具与表达", "Tools & Studio"),
 )
-# facts-latest.json, tru.cov_start/end, tru.hours_with_commits and tru.median_per_hour.
-WINDOW = (date(2026, 10, 21), date(2026, 11, 19))
-ACTIVE_HOURS, MEDIAN_PER_HOUR = 720, 59
+# Audited cadence window, 2026-10-28 through 2026-11-26 UTC.
+WINDOW = (date(2026, 10, 28), date(2026, 11, 26))
+ACTIVE_HOURS, MEDIAN_PER_HOUR = 720, 63
 
 
 def draw(fig):
     hours = 24 * ((WINDOW[1] - WINDOW[0]).days + 1)
     assert len(DEPARTMENTS) == 8 and (REPOSITORIES, DAG_NODES) == (17, 19022)
-    assert hours == ACTIVE_HOURS == 720 and MEDIAN_PER_HOUR == 59
+    assert hours == ACTIVE_HOURS == 720 and MEDIAN_PER_HOUR == 63
 
     fig.text(16, 25, fig.t("live.trureturing.org", "live.trureturing.org"), size=21, weight=700)
     fig.text(504, 25, fig.t("2026-11-27", "2026-11-27"), size=15, color="dim", anchor="end")
@@ -50,5 +50,5 @@ def draw(fig):
     fig.text(16, 275, fig.t(f"有提交的小时数 {ACTIVE_HOURS}/{hours} · 中位数 {MEDIAN_PER_HOUR}/小时",
                            f"{ACTIVE_HOURS}/{hours} hours with commits · median {MEDIAN_PER_HOUR}/hour"),
              size=16, weight=700)
-    fig.text(16, 300, fig.t("trureturing 全分支 · 2026-10-21 至 11-19 UTC",
-                           "trureturing, all branches · Oct 21–Nov 19, 2026 UTC"), size=15, color="dim")
+    fig.text(16, 300, fig.t("trureturing 全分支 · 2026-10-28 至 11-26 UTC",
+                           "trureturing, all branches · Oct 28–Nov 26, 2026 UTC"), size=15, color="dim")

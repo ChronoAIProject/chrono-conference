@@ -1,14 +1,14 @@
 SIZE = (520, 320)
 ALT = {
-    "zh": "截至 2026 年 11 月 20 日，trureturing 文献问题登记册共有 2,128 项去重文献问题结项，其中已证 1,400 项，已反驳 728 项。按来源分组，arXiv 为 393 已证、343 已反驳，OEIS 为 641、52，期刊为 354、320，Erdős 问题为 1、3，其他为 11、10。各行条形均按结项数等比例绘制。",
-    "en": "The November 20, 2026 trureturing literature register contains 2,128 resolutions: 1,400 proved and 728 refuted. Proved and refuted counts by source are arXiv 393 and 343, OEIS 641 and 52, journals 354 and 320, Erdős 1 and 3, and other sources 11 and 10. All bar lengths share the same count scale.",
+    "zh": "截至 2026 年 11 月 27 日，trureturing 文献问题登记册共有 2,278 项去重文献问题结项，其中已证 1,512 项，已反驳 766 项。按来源分组，arXiv 为 465 已证、375 已反驳，OEIS 为 677、52，期刊为 358、326，Erdős 问题为 1、3，其他为 11、10。各行条形均按结项数等比例绘制。",
+    "en": "The November 27, 2026 trureturing literature register contains 2,278 unique resolutions: 1,512 proved and 766 refuted. Proved and refuted counts by source are arXiv 465 and 375, OEIS 677 and 52, journals 358 and 326, Erdős 1 and 3, and other sources 11 and 10. All bar lengths share the same count scale.",
 }
 
-# facts-latest.json, tru.src_*_proved and tru.src_*_refuted, trureturing@05ceb90:Problems/*.md.
+# trureturing@548388cd (2026-11-27), Blueprint/** and Problems/*.md.
 OUTCOMES = (
-    ("arXiv", "arXiv", 393, 343),
-    ("OEIS", "OEIS", 641, 52),
-    ("期刊", "Journals", 354, 320),
+    ("arXiv", "arXiv", 465, 375),
+    ("OEIS", "OEIS", 677, 52),
+    ("期刊", "Journals", 358, 326),
     ("Erdős 问题", "Erdős", 1, 3),
     ("其他", "Other", 11, 10),
 )
@@ -17,8 +17,8 @@ OUTCOMES = (
 def draw(fig):
     proved = sum(row[2] for row in OUTCOMES)
     refuted = sum(row[3] for row in OUTCOMES)
-    assert proved == 1400 and refuted == 728 and proved + refuted == 2128
-    assert [p + r for _, _, p, r in OUTCOMES] == [736, 693, 674, 4, 21]
+    assert proved == 1512 and refuted == 766 and proved + refuted == 2278
+    assert [p + r for _, _, p, r in OUTCOMES] == [840, 729, 684, 4, 21]
 
     fig.text(15, 26, fig.t(f"{proved + refuted:,} 项文献问题结项", f"{proved + refuted:,} literature resolutions"),
              size=21, weight=700)
@@ -45,5 +45,5 @@ def draw(fig):
     fig.text(15, 267, fig.t("合计", "Total"), size=17, weight=700)
     fig.text(429, 267, fig.t(f"{proved:,}", f"{proved:,}"), size=17, anchor="end", color="cyan", weight=700)
     fig.text(506, 267, fig.t(f"{refuted:,}", f"{refuted:,}"), size=17, anchor="end", color="magenta", weight=700)
-    fig.text(15, 299, fig.t("trureturing@05ceb90 · 2026-11-20", "trureturing@05ceb90 · 2026-11-20"),
+    fig.text(15, 299, fig.t("trureturing@548388cd · 2026-11-27", "trureturing@548388cd · 2026-11-27"),
              size=15, color="dim")

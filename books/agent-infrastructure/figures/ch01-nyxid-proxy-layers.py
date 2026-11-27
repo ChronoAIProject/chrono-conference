@@ -4,20 +4,20 @@ SIZE = (358, 410)
 ALT = {
     "zh": "智能体上下文不含明文凭据，仅持有受限能力句柄。请求经 NyxID 策略与审批关口，"
           "由加密凭据库在代理侧注入 OAuth 或 API 凭据后访问上游。v0.78.0 的目录包含 55 项服务、"
-          "41 份 OpenAPI 规范、7 家大模型服务提供方与 9 类消息渠道。",
+          "42 份 OpenAPI→MCP 规范、7 家服务提供方与 9 类消息渠道；dev v0.79.0 扩展到 11 类渠道。",
     "en": "The agent context holds a scoped capability handle without plaintext credentials. "
           "NyxID checks policy and approval, then injects OAuth or API credentials from an encrypted "
-          "vault at the proxy. The v0.78.0 snapshot has 55 catalog services, 41 OpenAPI specs, "
-          "7 language-model providers and 9 channel types.",
+          "vault at the proxy. The v0.78.0 live snapshot has 55 catalog services, 42 OpenAPI-to-MCP specs, "
+          "7 service providers and 9 channel types; dev v0.79.0 expands to 11 channel types.",
 }
 
-# facts-latest.json: ChronoAIProject/NyxID@v0.78.0, 2026-11-03.
-SERVICES, SPECS, PROVIDERS, CHANNELS = 55, 41, 7, 9
+# Audited live prod/dev snapshots: v0.78.0 (2026-11-23) and v0.79.0 dev (2026-11-27).
+SERVICES, SPECS, PROVIDERS, CHANNELS, DEV_CHANNELS = 55, 42, 7, 9, 11
 
 
 def draw(fig):
     t = fig.t
-    assert (SERVICES, SPECS, PROVIDERS, CHANNELS) == (55, 41, 7, 9)
+    assert (SERVICES, SPECS, PROVIDERS, CHANNELS, DEV_CHANNELS) == (55, 42, 7, 9, 11)
 
     stages = [
         (t("智能体上下文", "Agent context"), t("零明文凭据", "Zero plaintext credentials"), "cyan"),
@@ -46,5 +46,7 @@ def draw(fig):
         y = 310 + (index // 2) * 40
         fig.text(x, y, t(str(value), str(value)), size=20, color="cyan", weight=600, anchor="middle", middle=True)
         fig.text(x, y + 17, label, size=13, anchor="middle", middle=True)
-    fig.text(179, 399, t("NyxID v0.78.0 · 2026-11-03", "NyxID v0.78.0 · 2026-11-03"),
-             size=13, color="dim", anchor="middle")
+    fig.text(179, 393, t("NyxID v0.78.0 · live 2026-11-23/27", "NyxID v0.78.0 · live Nov 23/27"),
+             size=12, color="dim", anchor="middle")
+    fig.text(179, 407, t("dev v0.79.0 · 11 类渠道", "dev v0.79.0 · 11 channel types"),
+             size=12, color="dim", anchor="middle")

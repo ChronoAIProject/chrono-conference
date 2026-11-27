@@ -11,7 +11,7 @@ ALT = {
           "and going live with an audit ledger and replay.",
 }
 
-# facts-latest.json: NyxID@v0.78.0 (2026-11-03); nyx-skills@f5abab5 (2026-11-26).
+# Audited source: NyxID@v0.78.0; nyx-skills@25ef759 (2026-11-27).
 # Account configuration and credit unit are specified by the conference figure brief.
 CHANNELS, SKILLS = 9, 163
 INVITE_REQUIRED = False

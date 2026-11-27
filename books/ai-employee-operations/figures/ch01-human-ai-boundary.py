@@ -1,24 +1,25 @@
-"""Routine execution and retained human authority across six operating roles."""
+"""Routine execution and retained human authority across nine operating roles."""
 
 SIZE = (680, 310)
 WRAP = True
 ALT = {
-    "zh": "六个 AI 员工岗位覆盖 97 项工作流中的 77 项。左栏的青色进度条按 77/97 比例绘制，"
+    "zh": "九个独立 AI 员工岗位覆盖 120 项工作流中的 102 项。左栏的青色进度条按 102/120 比例绘制，"
           "列出受理、分流、拟稿、预约锁定、账本对账和定时发布。右栏列出必须由人掌握的权限："
-          "资金拨付、对外法律承诺、未经批准的媒体表述及不可逆撤销。",
-    "en": "Six AI employee roles cover 77 of 97 workflows. The cyan bar shows the exact coverage fraction "
+          "资金拨付、对外法律承诺、未经批准的媒体表述及不可逆撤销。六核心岗位为 82/99（83%），审计日期为 2026-11-27。",
+    "en": "Nine standalone AI employee roles cover 102 of 120 workflows. The cyan bar shows the exact coverage fraction "
           "and the left panel lists intake, triage, drafting, booking locks, ledger reconciliation and "
           "scheduled posts. The right panel reserves capital release, external legal commitments, "
-          "unapproved press claims and irreversible revocations for human authority.",
+          "unapproved press claims and irreversible revocations for human authority. The six-core roster is 82/99 (83%) on November 27, 2026.",
 }
 
-# Six-role workflow coverage from the conference figure brief.
-ROLES, COVERED, TOTAL = 6, 77, 97
+# Audited standalone roster, 2026-11-27.
+ROLES, COVERED, TOTAL = 9, 102, 120
+CORE_COVERED, CORE_TOTAL = 82, 99
 
 
 def draw(fig):
     t = fig.t
-    assert (ROLES, COVERED, TOTAL) == (6, 77, 97)
+    assert (ROLES, COVERED, TOTAL, CORE_COVERED, CORE_TOTAL) == (9, 102, 120, 82, 99)
     autonomous, human = fig.row([330, 330], 310, gap=20)
     for panel, role in ((autonomous, "cyan"), (human, "magenta")):
         panel.rect(2, 2, 326, 306, color=role, fill="panel", rx=8, width=1.6)
@@ -27,18 +28,19 @@ def draw(fig):
                     weight=600, color="cyan", anchor="middle", middle=True)
     autonomous.text(18, 58, t(f"{COVERED}/{TOTAL}", f"{COVERED}/{TOTAL}"), size=28,
                     color="cyan", weight=600)
-    autonomous.text(312, 57, t(f"{ROLES} 个岗位", f"{ROLES} roles"), size=15, anchor="end")
+    autonomous.text(312, 57, t(f"{ROLES} 个独立岗位", f"{ROLES} standalone roles"), size=15, anchor="end")
     width = 294
     autonomous.rect(18, 72, width, 13, color="edge", fill="bg", rx=3)
     autonomous.rect(18, 72, width * COVERED / TOTAL, 13, color=None, fill="cyan", rx=3)
-    autonomous.text(18, 104, t("已覆盖工作流", "Covered workflows"), size=14, color="dim")
+    autonomous.text(18, 104, t("九岗位覆盖工作流", "Nine-role workflow coverage"), size=14, color="dim")
+    autonomous.text(18, 123, t(f"六核心 {CORE_COVERED}/{CORE_TOTAL} · 83%", f"Six-core {CORE_COVERED}/{CORE_TOTAL} · 83%"), size=14, color="dim")
     tasks = [
         t("受理", "Intake"), t("分流", "Triage"), t("拟稿", "Drafting"),
         t("预约锁定", "Booking locks"), t("账本对账", "Ledger reconciliation"),
         t("定时发布", "Scheduled posts"),
     ]
     for index, task in enumerate(tasks):
-        y = 127 + index * 29
+        y = 145 + index * 26
         autonomous.dot(26, y, 4, "cyan")
         autonomous.text(42, y, task, size=15, middle=True)
 
