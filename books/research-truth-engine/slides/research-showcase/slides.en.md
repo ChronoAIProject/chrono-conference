@@ -271,13 +271,13 @@ section: "Observatory"
   <p class="kicker">live.trureturing.org</p>
   <h2 class="t">Eight Departments, <em>One Glass House</em></h2>
   <div class="split mt">
-    <img src="./img/trureturing-live-dept.png" alt="Live capture of the live.trureturing.org department view" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/trureturing-live-dept.png" alt="Live capture of the live.trureturing.org department view" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
       <Stat value="19,022" label="live truth nodes · 8 spiral galaxies · 17 public repositories" />
-      <ul class="plain mt">
-        <li><b>Eight functional departments, not subjects</b><br><span class="sm muted">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
-        <li class="mt"><b>1,049 scholars contacted, 485 replied</b><br><span class="sm muted">1 <i>RAIRO-ITA</i> paper · 15 arXiv preprints · 21 OEIS; 66 declined</span></li>
-        <li class="mt"><b>StrataLint: 23 active of 27 registered</b><br><span class="sm muted">Now in trureturing-tools; a second gate beside the Lean 4 kernel</span></li>
+      <ul class="plain mt tight">
+        <li><b>Eight functional departments, not subjects</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
+        <li class="mt-s"><b>1,049 scholars contacted, 485 replied</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 <i>RAIRO-ITA</i> paper · 15 arXiv preprints · 21 OEIS; 66 declined</span></li>
+        <li class="mt-s"><b>StrataLint: 23 active of 27 registered</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Now in trureturing-tools; a second gate beside the Lean 4 kernel</span></li>
       </ul>
     </div>
   </div>

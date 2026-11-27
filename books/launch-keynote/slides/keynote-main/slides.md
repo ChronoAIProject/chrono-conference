@@ -170,12 +170,12 @@ section: "北极星 · 玻璃房"
   <p class="kicker">实时观测站 · live.trureturing.org</p>
   <h2 class="t">砸掉黑箱的墙：<em>八部门透明玻璃观测站</em></h2>
   <div class="split mt">
-    <img src="./img/trureturing-live.png" alt="live.trureturing.org 观测站实拍" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/trureturing-live.png" alt="live.trureturing.org 观测站实拍" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
       <Stat value="19,022" label="实时真理节点 · 8 座螺旋星系 · 17 个公开仓库" />
-      <ul class="plain mt">
-        <li><b>八个职能部门</b><br><span class="sm muted">研究方向 · 数学攻坚 · 独立评审 · 形式验证 · 理论书写 · 论文与知识 · 学术交流 · 工具与表达</span></li>
-        <li class="mt"><b>台上五步点检：不信掌声，信编译器</b><br><span class="sm muted">文献猜想 → 点击绿标 → Lean 源码行 → 冻结状态与 statement_id → 本地单模块 lake build + #print axioms</span></li>
+      <ul class="plain mt tight">
+        <li><b>八个职能部门</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">研究方向 · 数学攻坚 · 独立评审 · 形式验证 · 理论书写 · 论文与知识 · 学术交流 · 工具与表达</span></li>
+        <li class="mt-s"><b>台上五步点检：不信掌声，信编译器</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">文献猜想 → 点击绿标 → Lean 源码行 → 冻结状态与 statement_id → 本地单模块 lake build + #print axioms</span></li>
       </ul>
     </div>
   </div>

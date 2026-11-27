@@ -273,13 +273,13 @@ section: "观测站"
   <p class="kicker">实时观测站 · live.trureturing.org</p>
   <h2 class="t">八个部门，<em>一座玻璃房</em></h2>
   <div class="split mt">
-    <img src="./img/trureturing-live-dept.png" alt="live.trureturing.org 部门视图实拍" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/trureturing-live-dept.png" alt="live.trureturing.org 部门视图实拍" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
       <Stat value="19,022" label="实时真理节点 · 8 座螺旋星系 · 17 个公开仓库" />
-      <ul class="plain mt">
-        <li><b>八个职能部门，不按学科分</b><br><span class="sm muted">研究方向 · 数学攻坚 · 独立评审 · 形式验证 · 理论书写 · 论文与知识 · 学术交流 · 工具与表达</span></li>
-        <li class="mt"><b>1,049 位学者联络，485 位回信</b><br><span class="sm muted">1 篇 <i>RAIRO-ITA</i> 论文 · 15 篇 arXiv 预印本 · 21 条 OEIS；66 位婉拒</span></li>
-        <li class="mt"><b>StrataLint：23 条现役 / 27 条登记</b><br><span class="sm muted">已迁入 trureturing-tools，与 Lean 4 内核组成双重门禁</span></li>
+      <ul class="plain mt tight">
+        <li><b>八个职能部门，不按学科分</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">研究方向 · 数学攻坚 · 独立评审 · 形式验证 · 理论书写 · 论文与知识 · 学术交流 · 工具与表达</span></li>
+        <li class="mt-s"><b>1,049 位学者联络，485 位回信</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 篇 <i>RAIRO-ITA</i> 论文 · 15 篇 arXiv 预印本 · 21 条 OEIS；66 位婉拒</span></li>
+        <li class="mt-s"><b>StrataLint：23 条现役 / 27 条登记</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">已迁入 trureturing-tools，与 Lean 4 内核组成双重门禁</span></li>
       </ul>
     </div>
   </div>

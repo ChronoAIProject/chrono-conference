@@ -64,7 +64,7 @@ section: "NyxID"
     <img src="./img/ch01-nyxid-proxy-layers.en.svg" alt="NyxID four-layer zero-key proxy: agent context, policy and approval gate, encrypted vault, upstream services" style="height: 560px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <Stat value="0" label="plaintext keys ever enter agent context" />
-      <dl class="readout mt">
+      <dl class="readout mt" style="line-height:1.1;row-gap:4px">
         <dt>Cadence</dt><dd>63 minors / 8 wks</dd>
         <dt>Signup</dt><dd>Open, no invite</dd>
         <dt>Metering</dt><dd class="cy">1 credit = 1 USD · BYOK</dd>
@@ -273,7 +273,7 @@ layout: cover
 <p class="kicker">Core stack open · heca pending · skeptics welcome</p>
 <h1 class="display">Open the Repos,<br><em>Bring a Hammer</em></h1>
 <p class="lead">Don't trust the slides; read the repositories. Every number here carries a source and a date.</p>
-<dl class="readout mt">
+<dl class="readout">
   <dt>Code</dt><dd class="cy"><a href="https://github.com/ChronoAIProject">github.com/ChronoAIProject</a></dd>
   <dt>Judges</dt><dd class="cy"><a href="https://github.com/chrono-harness/">github.com/chrono-harness</a></dd>
   <dt>Contact</dt><dd>contact@chrono-ai.fun</dd>

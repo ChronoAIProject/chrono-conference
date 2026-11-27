@@ -64,7 +64,7 @@ section: "NyxID"
     <img src="./img/ch01-nyxid-proxy-layers.zh.svg" alt="NyxID 四层零密钥代理：智能体上下文、策略与审批关口、加密凭据库、上游服务" style="height: 560px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <Stat value="0" label="条明文密钥进入智能体上下文" />
-      <dl class="readout mt">
+      <dl class="readout mt" style="line-height:1.1;row-gap:4px">
         <dt>迭代</dt><dd>8 周 63 个次版本</dd>
         <dt>注册</dt><dd>公开 · 无需邀请码</dd>
         <dt>计量</dt><dd class="cy">1 credit = 1 USD · BYOK</dd>
@@ -273,7 +273,7 @@ layout: cover
 <p class="kicker">核心栈开源 · heca 整理中 · 欢迎来敲</p>
 <h1 class="display">拆开代码，<br><em>亲自敲打</em></h1>
 <p class="lead">别信幻灯片，去读仓库：这里每个数字都标着出处和日期。</p>
-<dl class="readout mt">
+<dl class="readout">
   <dt>代码</dt><dd class="cy"><a href="https://github.com/ChronoAIProject">github.com/ChronoAIProject</a></dd>
   <dt>判官</dt><dd class="cy"><a href="https://github.com/chrono-harness/">github.com/chrono-harness</a></dd>
   <dt>联系</dt><dd>contact@chrono-ai.fun</dd>

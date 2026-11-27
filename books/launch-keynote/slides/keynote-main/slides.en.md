@@ -170,12 +170,12 @@ section: "North Star · Glass House"
   <p class="kicker">live.trureturing.org</p>
   <h2 class="t">Smash the Black Box:<br><em>An Eight-Department Glass Observatory</em></h2>
   <div class="split mt">
-    <img src="./img/trureturing-live.png" alt="Live capture of the live.trureturing.org observatory" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/trureturing-live.png" alt="Live capture of the live.trureturing.org observatory" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
       <Stat value="19,022" label="live truth nodes · 8 spiral galaxies · 17 public repositories" />
-      <ul class="plain mt">
-        <li><b>Eight functional departments</b><br><span class="sm muted">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
-        <li class="mt"><b>Five-step audit: trust the compiler, not applause</b><br><span class="sm muted">Published conjecture → green badge → Lean line → frozen state &amp; statement_id → local single-module lake build + #print axioms</span></li>
+      <ul class="plain mt tight">
+        <li><b>Eight functional departments</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
+        <li class="mt-s"><b>Five-step audit: trust the compiler, not applause</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Published conjecture → green badge → Lean line → frozen state &amp; statement_id → local single-module lake build + #print axioms</span></li>
       </ul>
     </div>
   </div>
