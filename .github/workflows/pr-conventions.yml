@@ -19,7 +19,7 @@ jobs:
     steps:
       # 仅取目标分支上的检查程序；不检出或执行 PR 分支代码。
       - name: 读取目标分支的规范
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.base.ref }}
           persist-credentials: false

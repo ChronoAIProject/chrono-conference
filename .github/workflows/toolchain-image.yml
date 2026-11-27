@@ -54,13 +54,13 @@ jobs:
       image: ${{ steps.publish.outputs.image }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Build the toolchain
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: tools/container/Dockerfile
@@ -92,7 +92,7 @@ jobs:
 
       - name: Sign in to the container registry
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -142,7 +142,7 @@ jobs:
         shell: bash
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Use the preinstalled toolchain
         uses: ./.github/actions/setup
@@ -174,10 +174,10 @@ jobs:
     env:
       IMAGE: ghcr.io/the-omega-institute/trureturing-books-toolchain
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}

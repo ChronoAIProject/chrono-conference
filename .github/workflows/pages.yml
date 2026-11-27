@@ -54,7 +54,7 @@ jobs:
       film_matrix: ${{ steps.plan.outputs.film_matrix }}
     steps:
       - name: Check out the tested tree and complete history
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Compare this queued commit with the live site
@@ -96,7 +96,7 @@ jobs:
     outputs:
       attempt: ${{ steps.slot.outputs.attempt }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - name: Apply the rolling hourly limit
         id: slot
         env:
@@ -159,7 +159,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - uses: ./.github/actions/resolve-lock
         env:
           TRURETURING_TOKEN: ${{ secrets.TRURETURING_TOKEN }}
@@ -193,7 +193,7 @@ jobs:
           FILMS_JSON: ${{ toJSON(matrix.items) }}
         run: python3 tools/ci/cache_store.py export --baseline "$RUNNER_TEMP/before.json" --out "$RUNNER_TEMP/film-entries" --include-films-env FILMS_JSON
       - name: Share prepared films
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-pages-films-${{ github.run_attempt }}-${{ strategy.job-index }}
           path: ${{ runner.temp }}/film-entries
@@ -224,7 +224,7 @@ jobs:
       TBOOK_TRURETURING_SHA: ${{ needs.plan.outputs.trureturing_sha }}
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: ${{ needs.admit.outputs.attempt != github.run_attempt && '0' || '1' }}
       - name: Reserve a slot for a retried build
@@ -250,7 +250,7 @@ jobs:
         # Only on the default branch: a run dispatched on another branch could restore what that branch's
         # code saved (docs/VERIFICATION.md §2).
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/trureturing
           key: trureturing-state-${{ hashFiles('trureturing.lock.json') }}
@@ -271,7 +271,7 @@ jobs:
       - name: Download prepared film entries
         if: needs.plan.outputs.films == 'true'
         continue-on-error: true
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: tbook-pages-films-${{ github.run_attempt }}-*
           path: ${{ runner.temp }}/prepared-film-shards
@@ -318,7 +318,7 @@ jobs:
 
       - name: Publish the complete build store
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-build-store
           overwrite: true
@@ -338,7 +338,7 @@ jobs:
       - name: Publish reusable visualization images
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-image-store
           overwrite: true
@@ -356,7 +356,7 @@ jobs:
 
       - name: Publish reusable films for pull requests
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-film-store
           overwrite: true
@@ -368,7 +368,7 @@ jobs:
 
       - name: Upload the site as a workflow artifact
         if: needs.probe.outputs.enabled != 'true'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: site
           overwrite: true
@@ -393,7 +393,7 @@ jobs:
     steps:
       - name: Check out the publication guard for a retry
         if: github.run_attempt > 1
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Recheck the live revision and the reservation before deploying a retry
@@ -415,7 +415,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: Require planned assembly and deployment
         env:
           PAGES_ENABLED: ${{ needs.probe.outputs.enabled }}
@@ -427,7 +427,7 @@ jobs:
           python3 tools/ci/plan.py --workflow pages --verify --needs-file "$RUNNER_TEMP/ci-needs.json"
       - name: Record successful deployment coverage
         if: needs.plan.outputs.publish == 'true' && (needs.plan.outputs.site != 'true' || needs.probe.outputs.enabled == 'true')
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-coverage-pages
           path: coverage/pages.json
@@ -436,7 +436,7 @@ jobs:
           overwrite: true
       - name: Record successful film responsibility coverage
         if: needs.plan.outputs.publish == 'true' && needs.plan.outputs.site == 'true'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tbook-coverage-films
           path: coverage/films.json
