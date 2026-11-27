@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "visualizations": [
+    {
+      "id": "launch-arena",
+      "code": "LAUNCH//ARENA",
+      "title": "发布会会场 · 1,108 个席位、18 座花篮展台与零撞座选座锁",
+      "title_en": "Launch Arena · 1,108 seats, 18 basket stands and a zero-collision seat lock",
+      "summary": "街角前厅的平面舞台：右侧 6 圈同心剧场共 96 + 144 + 176 + 204 + 232 + 256 = 1,108 个席位，左侧是 Donna 的接待前台、18 座编号花篮展台与小花看守的花店。拖动到场人数（1–1,250）与时间轴（T−75 到 T+25），看原子选座锁按圈逐个落座、重座恒为 0，第 1,109 位起转入 YouTube 与 LinkedIn 直播；小图把原子锁与无锁竞态（反事实）的重座数并排画出。五张实验卡：街角全貌、原子选座、满座溢流、花篮贺礼、T−0 开场。到场、选座与花篮时间表是示意模型，不是线上实测。",
+      "summary_en": "A floor plan of the Street Corner lobby: six concentric rings on the right with 96 + 144 + 176 + 204 + 232 + 256 = 1,108 seats, and on the left Donna's reception desk, 18 numbered flower-basket stands and Blossom's Flower Town. Drag the arrival load (1–1,250) and the rail (T−75 to T+25) to watch an atomic seat lock fill the rings one guest at a time with zero duplicate seats, routing guest 1,109 onward to the YouTube and LinkedIn live stream; a small plot sets the lock beside a naive race (a counterfactual). Five cards: the overview, the atomic seat lock, the full-house overflow, the flower baskets and T−0. The arrival, seating and basket schedules are an illustrative model, not measurements of the live system.",
+      "path": "launch-arena/",
+      "thumbnail": "launch-arena/thumb.jpg",
+      "status": "live",
+      "added": "2026-11-26",
+      "tags": ["虚拟会场", "原子锁", "高并发", "满座溢流", "花篮展台"],
+      "tags_en": ["virtual venue", "atomic lock", "concurrency", "overflow routing", "basket stands"],
+      "theory": [
+        { "label": "第四章 · 街角前厅：一座自己运转的虚拟会场", "label_en": "Chapter 4 · Street Corner: a virtual venue that runs itself", "href": "../zh/ch04-the-living-venue.html", "href_en": "../en/ch04-the-living-venue.html" }
+      ],
+      "lean": []
+    },
+    {
+      "id": "engine-vehicle-stack",
+      "code": "VEHICLE//STACK",
+      "title": "从发动机到整车 · 换引擎不停车，明文密钥不进上下文",
+      "title_en": "Engine-to-Vehicle Stack · swap the engine without stopping the car, no plaintext key in context",
+      "summary": "整车的五层剖面：可替换的机舱（Engine Alpha、Engine Beta、Local Core）装在 NyxID、Ornn、CMA / heca、chrono-harness 与上线表面之上。沿时间轴追踪一次读调用与一次写调用穿过各层：机舱只拿到不透明的能力句柄，明文密钥只在 NyxID 边界之下出现，上下文中的明文密钥恒为 0；写操作在琥珀色人工闸门前等人批准；在 NyxID 吊销授权后，调用当场收到 403 REVOKED，沙箱在约 2.1 秒的热重载窗口内换上新绑定、无需重启。四张实验卡：热换发动机、凭证不进上下文、写操作人工闸门、一键吊销。时序是示意模型。",
+      "summary_en": "A five-layer cutaway of the vehicle: a swappable engine bay (Engine Alpha, Engine Beta, Local Core) mounted on NyxID, Ornn, CMA / heca, chrono-harness and the live surfaces. Trace one read call and one write call through the layers along the rail: the engine only ever holds an opaque capability handle, the plaintext key appears only below the NyxID boundary, and plaintext keys in context stay at 0; a write waits at the amber human gate until someone approves it; after the grant is revoked at NyxID the call is refused at once with 403 REVOKED, and sandboxes pick up the new binding within the ~2.1 s hot-reload window without a restart. Four cards: hot engine swap, zero-secret vault, write approval gate, instant revocation. The timing is an illustrative model.",
+      "path": "engine-vehicle-stack/",
+      "thumbnail": "engine-vehicle-stack/thumb.jpg",
+      "status": "live",
+      "added": "2026-11-26",
+      "tags": ["整车架构", "零密钥", "人工闸门", "热吊销", "引擎可替换"],
+      "tags_en": ["complete vehicle", "zero secrets", "human gate", "hot revocation", "swappable engine"],
+      "theory": [
+        { "label": "第二章 · 发动机人人可买，我们造的是整车", "label_en": "Chapter 2 · Anyone can buy an engine; we build the vehicle", "href": "../zh/ch02-engine-and-vehicle.html", "href_en": "../en/ch02-engine-and-vehicle.html" }
+      ],
+      "lean": []
+    }
+  ]
+}

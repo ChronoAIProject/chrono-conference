@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN" data-title-en="LAUNCH//ARENA · Launch Arena · 1,108 seats, 18 basket stands and a zero-collision seat lock">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LAUNCH//ARENA 发布会会场 · 1,108 个席位、18 座花篮展台与零撞座选座锁</title>
+<meta name="description" content="街角前厅的平面舞台：6 圈同心剧场席位（96 + 144 + 176 + 204 + 232 + 256 = 1,108），18 座编号花篮展台，Donna 接待前台与小花的花店。拖动到场人数（1–1,250），看原子选座锁逐圈落座、重座碰撞恒为 0，第 1,109 位起分流到 YouTube 与 LinkedIn 直播。到场与花篮时间表是示意模型。The Street Corner floor plan: six concentric rings of 96 + 144 + 176 + 204 + 232 + 256 = 1,108 seats, 18 numbered flower-basket stands, Donna's reception desk and Blossom's Flower Town. Drag the arrival load (1–1,250) and watch an atomic seat lock fill the rings with zero duplicate seats, routing guest 1,109 onward to the YouTube and LinkedIn live stream. The arrival and basket schedules are an illustrative model.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../assets/shell.js"></script>
+<script src="../assets/kit.js"></script>
+</head>
+<body data-viz-id="launch-arena">
+<div class="app lab" id="app">
+  <header class="top">
+    <div class="brand">
+      <a class="crumb" href="../"><span class="zh">◂ 可视化索引</span><span class="en">◂ Visualizations</span></a>
+      <h1 class="logo" data-text="LAUNCH//ARENA">LAUNCH<b>//</b>ARENA</h1>
+      <div class="tagline">
+        <span class="zh">发布会会场 · <em>1,108 个剧场席位、18 座花篮展台与零撞座预约锁：在浏览器里走进 12-17 街角前厅</em></span>
+        <span class="en">Launch Arena · <em>1,108 theater seats, 18 flower-basket stands and a zero-collision booking lock: step inside the Dec 17 Street Corner lobby</em></span>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span class="pill" id="pillLoad"><span class="zh">到场人数</span><span class="en">LOAD</span> <strong>—</strong></span>
+      <span class="pill hot" id="pillSeated"><span class="zh">已入座</span><span class="en">SEATED</span> <strong>—</strong></span>
+      <span class="pill" id="pillDup"><span class="zh">重座</span><span class="en">DUPLICATES</span> <strong>—</strong></span>
+      <div class="langs" role="group" aria-label="语言 Language"><button data-lang-set="zh" aria-pressed="true">中</button><button data-lang-set="en" aria-pressed="false">EN</button></div>
+    </div>
+  </header>
+
+  <aside class="col deck" aria-label="实验控制" data-aria-en="Experiment controls">
+    <section class="panel sec">
+      <h2><span class="zh">实验卡带</span><span class="en">Experiments</span><span class="aside">PRESETS</span></h2>
+      <div class="presets cards" id="presets">
+        <button class="preset" data-preset="lobby" aria-pressed="false"><span class="code">LOBBY</span><span class="cn zh">街角全貌：开门之前</span><span class="cn en">Street Corner overview: before doors</span></button>
+        <button class="preset" data-preset="booking" aria-pressed="false"><span class="code">BOOKING</span><span class="cn zh">原子选座：内三圈坐满 416 席</span><span class="cn en">Atomic seat lock: 416 seats, rings 1–3</span></button>
+        <button class="preset" data-preset="overflow" aria-pressed="false"><span class="code">OVERFLOW</span><span class="cn zh">满座溢流：142 人转直播</span><span class="cn en">Full house: 142 guests to the stream</span></button>
+        <button class="preset" data-preset="basket" aria-pressed="false"><span class="code">BASKET</span><span class="cn zh">花篮贺礼：12 座已摆、6 座待领</span><span class="cn en">Flower baskets: 12 placed, 6 open</span></button>
+        <button class="preset" data-preset="checkin" aria-pressed="false"><span class="code">CHECK-IN</span><span class="cn zh">T−0 开场：1,108 席全部入座</span><span class="cn en">T−0 doors close: all 1,108 seated</span></button>
+      </div>
+      <p class="note" id="presetNote"></p>
+    </section>
+
+    <section class="panel sec">
+      <h2><span class="zh">到场人数</span><span class="en">Arrival load</span><span class="aside">1 … 1,250</span></h2>
+      <div class="field">
+        <label for="load"><span class="zh">在 T−75 到 T−0 之间到场的来宾</span><span class="en">Guests arriving between T−75 and T−0</span></label><output id="oLoad" for="load">1,250</output>
+        <input type="range" id="load" min="1" max="1250" step="1" value="1250" aria-label="到场人数" data-aria-en="Arrival load">
+      </div>
+      <div class="chips">
+        <button class="chip" id="loadCap"><span class="zh">恰好满座 1,108</span><span class="en">Exactly full: 1,108</span></button>
+        <button class="chip" id="loadMax"><span class="zh">超额 1,250</span><span class="en">Over capacity: 1,250</span></button>
+      </div>
+      <p class="note"><span class="zh">点舞台上的任意一圈席位或一座花篮展台，右栏读出它的状态。</span><span class="en">Click any ring of seats or any basket stand on the stage to read its state on the right.</span></p>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="stage still" id="stage" data-thumb aria-label="舞台：左侧街角前厅（Donna 前台、18 座花篮展台、花店），右侧 6 圈同心剧场席位与直播分流口" data-aria-en="Stage: the Street Corner lobby on the left (Donna's desk, 18 basket stands, Flower Town), six concentric rings of seats and the live-stream exit on the right">
+      <canvas class="fill" id="cv"></canvas>
+      <div class="scan"></div><div class="vig"></div>
+      <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
+      <div class="hud-bl" id="legend"></div>
+    </div>
+    <div class="tour" id="tour">
+      <button class="tbtn" data-tour="prev" aria-label="上一个实验" data-aria-en="Previous experiment">◀</button>
+      <div class="what"></div>
+      <button class="tbtn" data-tour="next" aria-label="下一个实验" data-aria-en="Next experiment">▶</button>
+    </div>
+    <div class="strip">
+      <section class="panel">
+        <div class="head"><h2><span class="zh">席位封顶：到场与入座</span><span class="en">Seats cap out: arrivals and seated</span></h2><span id="pAMeta"></span></div>
+        <canvas id="plotA" aria-label="到场人数、已入座人数与 1,108 席上限随时间的变化" data-aria-en="Arrivals, seated guests and the 1,108-seat cap over time"></canvas>
+      </section>
+      <section class="panel">
+        <div class="head"><h2><span class="zh">重座：原子锁与无锁竞态</span><span class="en">Duplicate seats: atomic lock and naive race</span></h2><span id="pBMeta"></span></div>
+        <canvas id="plotB" aria-label="原子选座锁与无锁竞态下的重座数" data-aria-en="Duplicate seats under the atomic lock and under a naive race"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="readouts" aria-live="polite">
+      <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside"><span class="zh">6 圈 · 1,108 席</span><span class="en">6 rings · 1,108 seats</span></span></h2>
+      <dl class="ro">
+        <div class="key"><dt><span class="zh">已入座 / 剧场席位</span><span class="en">Seated / theater seats</span></dt><dd><b id="roSeated">—</b><span id="roSeatedSub"></span></dd></div>
+        <div class="c"><dt><span class="zh">已到场</span><span class="en">Arrived</span></dt><dd id="roArrived">—</dd></div>
+        <div class="v"><dt><span class="zh">转入直播</span><span class="en">Routed to the stream</span></dt><dd id="roStream">—</dd></div>
+        <div class="wide"><dt><span class="zh">重座（同一席位锁给两人）· 原子锁</span><span class="en">Duplicate seats (booked&nbsp;twice)&nbsp;· atomic&nbsp;lock</span></dt><dd id="roDup">—</dd></div>
+        <div class="m"><dt><span class="zh">已摆花篮</span><span class="en">Baskets placed</span></dt><dd id="roBaskets">—</dd></div>
+        <div class="a"><dt><span class="zh">选中</span><span class="en">Selected</span></dt><dd id="roSel">—</dd></div>
+      </dl>
+      <p class="note" id="roNote"></p>
+    </section>
+
+    <section class="panel sec" id="evidence">
+      <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">street-corner</span></h2>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">示意模型：席位几何（6 圈 1,108 席）与 18 座展台取自第四章所述的街角前厅布局；到场时间表（N 位来宾在 T−75 至 T−0 之间匀速到场）、按圈逐次落座的哈希探查锁、花篮落位时间表与直播分流规则（奇数号转 YouTube、偶数号转 LinkedIn）都是为画面选定的模型，不是线上系统的实测记录。</span><span class="en">An illustrative model: the seat geometry (six rings, 1,108 seats) and the 18 stands follow the Street Corner layout described in Chapter 4; the arrival schedule (N guests arriving evenly between T−75 and T−0), the ring-by-ring hash-probing seat lock, the basket schedule and the stream split (odd overflow numbers to YouTube, even to LinkedIn) are choices made for the picture, not records of the live system.</span></span></div>
+      <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面逐位来宾算出的数，不是证明：96 + 144 + 176 + 204 + 232 + 256 = 1,108；每位来宾的席位由同一个锁逐个分配，页面在每一帧核对没有席位编号重复；无锁竞态只是对照用的反事实模型。</span><span class="en">Numbers the page computes guest by guest, not a proof: 96 + 144 + 176 + 204 + 232 + 256 = 1,108; every guest's seat is assigned one at a time by the same lock, and the page checks on every frame that no seat number repeats; the naive race is a counterfactual drawn only for comparison.</span></span></div>
+      <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
+    </section>
+  </aside>
+
+  <footer class="rail" id="rail">
+    <div class="transport">
+      <button class="tbtn" id="rew" aria-label="回到起点" data-aria-en="Back to the start">⏮</button>
+      <button class="tbtn" id="play" aria-label="播放 / 暂停" data-aria-en="Play / pause" aria-pressed="false">▶</button>
+      <span class="chips" id="speedChips" role="group" aria-label="播放速度" data-aria-en="Playback speed">
+        <button class="chip" data-speed="0.35" aria-pressed="false">0.35×</button><button class="chip" data-speed="1" aria-pressed="true">1×</button><button class="chip" data-speed="2.5" aria-pressed="false">2.5×</button>
+      </span>
+    </div>
+    <div class="clock">
+      <span class="tau" id="tau"></span>
+      <input type="range" id="now" min="0" max="100" step="any" value="0" aria-label="时间轴：开场前 75 分钟到开场后 25 分钟" data-aria-en="Rail: from 75 minutes before the keynote to 25 minutes after">
+    </div>
+    <div class="keys">
+      <kbd>Space</kbd> <span class="zh">播放</span><span class="en">play</span> · <kbd>←</kbd><kbd>→</kbd> <span class="zh">每次 5 分钟</span><span class="en">5 minutes at a time</span>
+    </div>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
+    <div class="zh">
+      <p class="lede">街角前厅（<code>street-corner</code>）的平面图：右侧 6 圈同心剧场共 96 + 144 + 176 + 204 + 232 + 256 = 1,108 个席位，左侧是 Donna 的接待前台、18 座编号花篮展台与小花（Blossom）看守的花店（Flower Town）。读者拖动的是到场人数与时间轴；不变的是：已入座永远不超过 1,108，同一席位永远不会锁给两个人。本页是示意模型与数值演示，不是证明，也不是线上系统的实测数据。</p>
+      <ol>
+        <li><b>到场。</b>时间轴从开场前 75 分钟（T−75）走到开场后 25 分钟（T+25），T−0 是 12 月 17 日 16:00 SGT。模型里第 k 位来宾在 T−75 之后的第 75·k/N 分钟到场，所以到第 t 分钟共到场 ⌊N·t/75⌋ 人（不超过 N）。</li>
+        <li><b>原子选座锁。</b>来宾在 Donna 的前台按到场顺序逐个取锁：先找还有空位的最内圈，再从该圈的哈希位置向后探查到第一个空位并锁定。锁一次只发给一个人，所以内圈坐满之后才轮到外圈，且没有席位编号重复；页面每一帧都重新核对这一点。</li>
+        <li><b>满座溢流。</b>第 1,109 位来宾起，前台不再发席位锁，而是把来宾转入同步直播：溢流序号为奇数的转到 YouTube（<code>@ChronoAIOfficial</code>），偶数的转到 LinkedIn Live。1,250 人到场时，1,108 人入座，142 人转入直播。</li>
+        <li><b>无锁竞态（对照）。</b>小图里的虚线是一个反事实：同一分钟到场的来宾各自读取这一分钟开始时的空位表、互不加锁地抢座，于是会有两人抢到同一席位。它只用来说明锁的作用，不描述线上系统。</li>
+        <li><b>花篮。</b>18 座展台按模型时间表依次摆上花篮：前 12 座每 5 分钟一座（T−70 到 T−15），后 6 座每 2 分钟一座（T−13 到 T−3）。每只花篮从花店柜台出发，经小花核验贺卡后送到自己的编号展台。</li>
+      </ol>
+      <p class="lede refs">书中：<a href="../../zh/ch04-the-living-venue.html" target="_top">第四章 · 街角前厅：一座自己运转的虚拟会场</a></p>
+    </div>
+    <div class="en">
+      <p class="lede">A floor plan of the Street Corner lobby (<code>street-corner</code>): on the right, six concentric rings with 96 + 144 + 176 + 204 + 232 + 256 = 1,108 seats; on the left, Donna's reception desk, 18 numbered flower-basket stands and Flower Town, kept by Blossom. The reader moves the arrival load and the rail; what does not move: the seated count never exceeds 1,108, and no seat is ever locked to two guests. The page is an illustrative model and a numerical illustration, not a proof, and not data measured on the live system.</p>
+      <ol>
+        <li><b>Arrivals.</b> The rail runs from 75 minutes before the keynote (T−75) to 25 minutes after it (T+25); T−0 is 16:00 SGT on 17 December. In the model, guest k arrives 75·k/N minutes after T−75, so ⌊N·t/75⌋ guests (at most N) have arrived by minute t.</li>
+        <li><b>Atomic seat lock.</b> Guests take the lock at Donna's desk one at a time, in order of arrival: the innermost ring with a free seat is chosen, then the lock probes forward from the guest's hash position in that ring to the first free seat and locks it. The lock is granted to one guest at a time, so an outer ring starts only when the inner rings are full and no seat number repeats; the page re-checks this on every frame.</li>
+        <li><b>Full-house overflow.</b> From guest 1,109 onward the desk issues no seat lock and routes the guest to the synchronized live stream: odd overflow numbers to YouTube (<code>@ChronoAIOfficial</code>), even ones to LinkedIn Live. With 1,250 arrivals, 1,108 are seated and 142 are routed to the stream.</li>
+        <li><b>Naive race (for comparison).</b> The dashed line of the small plot is a counterfactual: guests arriving in the same minute each read the free seats as they stood at the start of that minute and grab one without a lock, so two of them can take the same seat. It only shows what the lock is for; it does not describe the live system.</li>
+        <li><b>Baskets.</b> The 18 stands receive their baskets on a model schedule: the first 12 one every 5 minutes (T−70 to T−15), the last 6 one every 2 minutes (T−13 to T−3). Each basket leaves the Flower Town counter, passes Blossom's check of the greeting card and goes to its numbered stand.</li>
+      </ol>
+      <p class="lede refs">In the book: <a href="../../en/ch04-the-living-venue.html" target="_top">Chapter 4 · Street Corner: a virtual venue that runs itself</a></p>
+    </div>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

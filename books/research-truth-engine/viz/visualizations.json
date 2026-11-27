@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "visualizations": [
+    {
+      "id": "truth-dag-observatory",
+      "code": "TRUTH//DAG",
+      "title": "真值图观测站 · 每添一条真正新定理，盲区就严格收缩一次",
+      "title_en": "Truth DAG observatory · every genuinely new theorem strictly shrinks the blind spot",
+      "summary": "十六个态排成 4×4 格点，六条二值定理组成目录：三条水平切线、一条竖直切线、一条可由 T₁、T₂ 推出的定理（T₅ = T₁ ∧ ¬T₂，即 y = 1），以及与 T₄ 同核的双胞胎 T₆。页面逐对枚举全部 120 个无序态对，实时算出联合核的等价类、仍不可分的逃逸对与每条定理的独占捕获：插入 T₄ 让逃逸对从 24 降到 8；插入可恢复的 T₅ 一对也不降；T₄ 与 T₆ 同时在场时独占捕获都为 0。所用的五条性质（联合核的单调性与插入公式、可恢复则不降逃逸、同核双胞胎独占为 0、降低逃逸当且仅当不在语义闭包中）已由 Lean 内核验证并冻结；页面上的数是一个有限例子的穷举，不是证明。",
+      "summary_en": "Sixteen states on a 4×4 lattice and a catalog of six binary theorems: three horizontal cuts, one vertical cut, a theorem that follows from T₁ and T₂ (T₅ = T₁ ∧ ¬T₂, that is y = 1), and T₆, a same-kernel twin of T₄. The page enumerates all 120 unordered pairs and computes, live, the classes of the joint kernel, the pairs that still escape and each theorem's unique capture: inserting T₄ takes the escaped pairs from 24 to 8; inserting the recoverable T₅ removes not one; with T₄ and T₆ both present, both capture 0. The five properties used (the joint kernel is antitone and inserting intersects it, a recoverable theorem does not lower the escape, same-kernel twins both capture 0, lowering the escape is failing to lie in the semantic closure) are kernel-verified in Lean and frozen; the numbers on the page are an exhaustive count of one finite example, not a proof.",
+      "path": "truth-dag-observatory/",
+      "thumbnail": "truth-dag-observatory/thumb.jpg",
+      "status": "live",
+      "added": "2026-11-26",
+      "tags": ["信息逃逸", "联合核", "独占捕获", "语义闭包", "真值图", "第二章", "第五章"],
+      "tags_en": ["information escape", "joint kernel", "unique capture", "semantic closure", "truth DAG", "chapter 2", "chapter 5"],
+      "theory": [
+        {
+          "label": "本书第二章 · 同一块金子挖不了两次：信息逃逸与不可逆真值图",
+          "label_en": "Chapter 2 of this book · You cannot mine the same gold twice: information escape and the irreversible truth DAG",
+          "href": "../zh/ch02-information-escape-and-novelty.html",
+          "href_en": "../en/ch02-information-escape-and-novelty.html"
+        },
+        {
+          "label": "本书第五章 · 八部门透明玻璃观测站",
+          "label_en": "Chapter 5 of this book · An eight-department glass observatory",
+          "href": "../zh/ch05-trureturing-live-observatory.html",
+          "href_en": "../en/ch05-trureturing-live-observatory.html"
+        },
+        {
+          "label": "Blueprint：结构新颖性与逃逸率",
+          "label_en": "Blueprint: structural novelty and the escape rate",
+          "href": "{trureturing}/Blueprint/D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.md"
+        }
+      ],
+      "lean": [
+        { "gid": "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone" },
+        { "gid": "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_insert" },
+        { "gid": "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_false_of_recoverable" },
+        { "gid": "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.same_kernel_both_zero" },
+        { "gid": "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout" }
+      ]
+    },
+    {
+      "id": "fib-atom-observer",
+      "code": "FIB//OBSERVER",
+      "title": "FIB ATOM 观测器 · 外表完全相同，血统彻底分离",
+      "title_en": "FIB ATOM observer · identical on the boundary, apart in lineage",
+      "summary": "三个场景看同一个对象：组成 (a, b) 与它的可观测量 q = 2a + 3b。嫁接：由一步 Fibonacci 替换 R 与嫁接 G 组成的任意词，作用在组成上恰是 v ↦ stepᵏ(v) + t，平移 t 的模 H 余数落在嫁接空间里。血统：组成为 (a, b) 的有序二叉树共有 Catalan(a + b − 1)·C(a + b, a) 棵；替换 n 代后它们的组成与可观测量完全相同，却只占新纤维的一小部分，全变差 TV(n) = 1 − |纤维(a, b)| / |纤维(stepⁿ(a, b))| 趋于 1，且 TV((1, 1), 1) = 2/3。亏量：黄金进位亏量 c(v₁, v₂) 只取 −1、0、1，收缩面上的三个读数都落在长度为 1 的窗口里。三条结论已由 Lean 内核验证并冻结；页面上的数由精确整数算出，是数值演示，不是证明。",
+      "summary_en": "Three scenes look at one object: a composition (a, b) and its observable quantity q = 2a + 3b. Graft: any word of Fibonacci steps R and grafts G acts on compositions exactly as v ↦ stepᵏ(v) + t, with the residue of the translation t mod H in the graft space. Lineage: there are Catalan(a + b − 1)·C(a + b, a) ordered binary trees of composition (a, b); after n generations of substitution they all show the same composition and quantity, yet fill a vanishing part of the new fiber: the total variation TV(n) = 1 − |Fiber(a, b)| / |Fiber(stepⁿ(a, b))| tends to 1, and TV((1, 1), 1) = 2/3. Deficit: the golden carry deficit c(v₁, v₂) only takes −1, 0 and 1, and the three readings on the contraction face lie in a window of length 1. The three results are kernel-verified in Lean and frozen; the numbers on the page are computed in exact integers, a numerical illustration, not a proof.",
+      "path": "fib-atom-observer/",
+      "thumbnail": "fib-atom-observer/thumb.jpg",
+      "status": "live",
+      "added": "2026-11-26",
+      "tags": ["FIB ATOM", "Fibonacci 替换", "嫁接", "血统纤维", "全变差", "黄金进位", "第一章"],
+      "tags_en": ["FIB ATOM", "Fibonacci substitution", "grafting", "lineage fibers", "total variation", "golden carry", "chapter 1"],
+      "theory": [
+        {
+          "label": "本书第一章 · 从一位二进制窗口到 FIB ATOM",
+          "label_en": "Chapter 1 of this book · From a one-bit window to FIB ATOM",
+          "href": "../zh/ch01-finite-observer-and-fib-atom.html",
+          "href_en": "../en/ch01-finite-observer-and-fib-atom.html"
+        },
+        {
+          "label": "Blueprint：组成纤维与 Fibonacci 血统传输",
+          "label_en": "Blueprint: composition fibers and Fibonacci genealogical transport",
+          "href": "{trureturing}/Blueprint/D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.md"
+        },
+        {
+          "label": "Blueprint：Fibonacci 嫁接词与组成状态",
+          "label_en": "Blueprint: Fibonacci graft words and complete composition states",
+          "href": "{trureturing}/Blueprint/D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.md"
+        }
+      ],
+      "lean": [
+        { "gid": "D5/S1/Deficit/DeficitThreeValued.deficit_three_valued" },
+        { "gid": "D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.result" },
+        { "gid": "D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" }
+      ]
+    }
+  ]
+}

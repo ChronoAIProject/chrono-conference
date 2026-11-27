@@ -1,0 +1,26 @@
+{
+  "title": "Never Hand a Plaintext Key",
+  "title_zh": "别把明文钥匙交进上下文",
+  "summary": "Why raw API keys in an agent's context fail in a single turn, and how NyxID keeps secrets inside an encrypted proxy: narrow capability handles, 55 built-in services, 41 OpenAPI-to-MCP specs, 9 messaging channels, a human gate for writes and a revocation that converges in about two seconds.",
+  "summary_zh": "为什么塞进 Agent 上下文的明文 API 密钥会在一轮之内失守，以及 NyxID 如何把密钥留在加密代理之内：窄作用域能力句柄、55 项内置服务、41 份 OpenAPI 转 MCP 规范、9 类消息渠道、写操作人工闸门与约两秒生效的吊销。",
+  "subject": "https://github.com/the-omega-institute/trureturing",
+  "publication_basis": "pinned",
+  "released": "2026-11-26",
+  "duration": "0:51",
+  "resolution": "1280x720@30",
+  "style": "trureturing cyberpunk · a leaking context window, a proxy vault, a human gate and a hot revocation",
+  "narration": {
+    "language": "en",
+    "engine": "Kokoro-82M v1.0 (onnx)",
+    "voice": "af_heart"
+  },
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "lean": [],
+  "outputs": {
+    "narrated_720p": "agent-infrastructure_never-hand-a-key_720p_narrated.mp4",
+    "cover": "agent-infrastructure_never-hand-a-key_cover.jpg"
+  }
+}

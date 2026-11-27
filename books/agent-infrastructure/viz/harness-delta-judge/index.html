@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN" data-title-en="HARNESS//DELTA · Harness delta judge · test only what the change touches">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HARNESS//DELTA 变更判官 · 只测改动碰到的边</title>
+<meta name="description" content="一张 14 个单元的声明式 FILEMAP 依赖图：点一个单元标为已改动，DELTA 沿登记的消费边做广度优先展开，选出必须重判的单元，其余跳过，并按单元成本算出省下的验证量；政策与产品同改时亮出 policy.mixed-warning，改动里有未登记的文件时 registry.explicit 直接报错，不猜、不退回全量。示意模型，不是证明。A declarative FILEMAP of 14 units: mark a unit as changed, and DELTA expands breadth-first along the registered consumer edges, selects the units that must be judged again, skips the rest and computes the verification cost it saves from the unit costs; a change to policy and product together raises policy.mixed-warning, and a file missing from the registry makes registry.explicit fail with an explicit error instead of guessing or falling back to a full run. A schematic model, not a proof.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../assets/shell.js"></script>
+<script src="../assets/kit.js"></script>
+</head>
+<body data-viz-id="harness-delta-judge">
+<div class="app lab" id="app">
+  <header class="top">
+    <div class="brand">
+      <a class="crumb" href="../"><span class="zh">◂ 可视化索引</span><span class="en">◂ Visualizations</span></a>
+      <h1 class="logo" data-text="HARNESS//DELTA">HARNESS<b>//</b>DELTA</h1>
+      <div class="tagline">
+        <span class="zh">变更判官 · <em>只测改动碰到的边：沿声明的依赖图展开 DELTA，把盲目全测换成精确判定</em></span>
+        <span class="en">Delta judge · <em>test only what the change touches: expand DELTA along the declared graph and trade blind full runs for exact judgments</em></span>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span class="pill hot" id="pillSel">DELTA <strong>—</strong></span>
+      <span class="pill" id="pillSaved"><span class="zh">节省</span><span class="en">SAVED</span> <strong>—</strong></span>
+      <div class="langs" role="group" aria-label="语言 Language"><button data-lang-set="zh" aria-pressed="true">中</button><button data-lang-set="en" aria-pressed="false">EN</button></div>
+    </div>
+  </header>
+
+  <aside class="col deck" aria-label="实验控制" data-aria-en="Experiment controls">
+    <section class="panel sec">
+      <h2><span class="zh">实验卡带</span><span class="en">Experiments</span><span class="aside">PRESETS</span></h2>
+      <div class="presets cards" id="presets">
+        <button class="preset" data-preset="prose-edit" aria-pressed="false"><span class="code">PROSE-EDIT</span><span class="cn zh">只改一章正文：2 / 14，省 86%</span><span class="cn en">One prose chapter: 2 / 14, 86% saved</span></button>
+        <button class="preset" data-preset="core-change" aria-pressed="false"><span class="code">CORE-CHANGE</span><span class="cn zh">改核心内核：传递到 9 / 14</span><span class="cn en">Core kernel: reaches 9 / 14</span></button>
+        <button class="preset" data-preset="mixed-policy" aria-pressed="false"><span class="code">MIXED-POLICY</span><span class="cn zh">政策与产品同改：品红警告</span><span class="cn en">Policy and product together: magenta warning</span></button>
+        <button class="preset" data-preset="missing-edge" aria-pressed="false"><span class="code">MISSING-EDGE</span><span class="cn zh">漏登文件：报错而不是猜</span><span class="cn en">Unregistered file: an error, not a guess</span></button>
+      </div>
+      <p class="note" id="presetNote"></p>
+    </section>
+
+    <section class="panel sec">
+      <h2><span class="zh">改动集</span><span class="en">Change set</span><span class="aside">git diff</span></h2>
+      <p class="note"><span class="zh">在图上点任一单元，把它标为“已改动”或取消；DELTA 立即重算。</span><span class="en">Click any unit on the graph to mark it changed or not; DELTA recomputes at once.</span></p>
+      <div class="chips">
+        <button class="chip" id="ghostBtn" aria-pressed="false"><span class="zh">加入一个未登记文件</span><span class="en">Add an unregistered file</span></button>
+        <button class="chip" id="clearBtn"><span class="zh">清空改动</span><span class="en">Clear changes</span></button>
+      </div>
+      <p class="note" id="changeNote"></p>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="stage still" id="stage" data-thumb aria-label="舞台：14 个单元的 FILEMAP 依赖图，已改动的单元、被 DELTA 选中的单元与被跳过的单元" data-aria-en="Stage: the FILEMAP graph of 14 units, with the changed units, the units DELTA selects and the units it skips">
+      <canvas class="fill" id="cv"></canvas>
+      <div class="scan"></div><div class="vig"></div>
+      <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
+      <div class="hud-bl" id="legend">
+        <span><i class="sw am box"></i><span class="zh">已改动</span><span class="en">changed</span></span>
+        <span><i class="sw cy box"></i><span class="zh">DELTA 选中</span><span class="en">selected by DELTA</span></span>
+        <span><i class="sw dm box"></i><span class="zh">跳过</span><span class="en">skipped</span></span>
+        <span><i class="sw mg"></i><span class="zh">警告 · 登记错误</span><span class="en">warning · registry error</span></span>
+      </div>
+    </div>
+    <div class="tour" id="tour">
+      <button class="tbtn" data-tour="prev" aria-label="上一个实验" data-aria-en="Previous experiment">◀</button>
+      <div class="what"></div>
+      <button class="tbtn" data-tour="next" aria-label="下一个实验" data-aria-en="Next experiment">▶</button>
+    </div>
+    <div class="strip">
+      <section class="panel">
+        <div class="head"><h2 id="pATitle"></h2><span id="pAMeta"></span></div>
+        <canvas id="plotA" aria-label="验证成本：DELTA 选中的单元对照全仓" data-aria-en="Verification cost: the units DELTA selects against the whole repository"></canvas>
+      </section>
+      <section class="panel">
+        <div class="head"><h2 id="pBTitle"></h2><span id="pBMeta"></span></div>
+        <canvas id="plotB" aria-label="沿时间轴：广度优先展开到达的单元数" data-aria-en="Along the rail: units reached by the breadth-first expansion"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="readouts" aria-live="polite">
+      <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside">chrono-harness v0.1.4</span></h2>
+      <dl class="ro">
+        <div class="key"><dt><span class="zh">DELTA 选中的单元 · 省下的验证成本</span><span class="en">Units DELTA selects · verification cost saved</span></dt><dd><b id="roSel">—</b><span id="roSelSub"></span></dd></div>
+        <div class="c"><dt><span class="zh">选中成本 / 全仓成本</span><span class="en">Selected cost / full-repo cost</span></dt><dd id="roCost">—</dd></div>
+        <div><dt><span class="zh">展开层数</span><span class="en">BFS depth</span></dt><dd id="roDepth">—</dd></div>
+        <div class="wide"><dt><span class="zh">已改动</span><span class="en">Changed</span></dt><dd id="roChanged">—</dd></div>
+        <div class="m wide"><dt><span class="zh">判官</span><span class="en">Judges</span></dt><dd id="roJudge">—</dd></div>
+      </dl>
+      <p class="note" id="roNote"></p>
+    </section>
+
+    <section class="panel sec" id="evidence">
+      <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">chrono-harness</span></h2>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">示意模型：14 个单元、它们的消费边与成本权重（合计 100）是为画面选定的，不是某个真实仓库的 FILEMAP。规则按 chrono-harness v0.1.4（2026-11-13 发布）的 delta.selection、registry.explicit 与 policy.mixed-warning 建模；其 SPEC.md 写明 completeness_proven: false：展开只对已声明的依赖完整。</span><span class="en">A schematic model: the 14 units, their consumer edges and their cost weights (100 in total) were chosen for the picture; this is not the FILEMAP of a real repository. The rules are modelled on delta.selection, registry.explicit and policy.mixed-warning of chrono-harness v0.1.4 (released 2026-11-13); its SPEC.md records completeness_proven: false: the expansion is complete only with respect to the declared dependencies.</span></span></div>
+      <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面算出的数：选中集合是改动集在消费边上的广度优先闭包，省下的比例 = 1 − 选中成本 / 全仓成本；浏览器测试用另写的传递闭包逐一核对。数值演示，不是证明。</span><span class="en">Computed on the page: the selection is the breadth-first closure of the change set along the consumer edges, and the share saved is 1 − selected cost / full-repo cost; the browser suite checks them against a transitive closure computed another way. A numerical illustration, not a proof.</span></span></div>
+      <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
+    </section>
+  </aside>
+
+  <footer class="rail" id="rail">
+    <div class="transport">
+      <button class="tbtn" id="rew" aria-label="回到起点" data-aria-en="Back to the start">⏮</button>
+      <button class="tbtn" id="play" aria-label="播放 / 暂停" data-aria-en="Play / pause" aria-pressed="false">▶</button>
+      <span class="chips" id="speedChips" role="group" aria-label="播放速度" data-aria-en="Playback speed">
+        <button class="chip" data-speed="0.35" aria-pressed="false">0.35×</button><button class="chip" data-speed="1" aria-pressed="true">1×</button><button class="chip" data-speed="2.5" aria-pressed="false">2.5×</button>
+      </span>
+    </div>
+    <div class="clock">
+      <span class="tau" id="tau"></span>
+      <input type="range" id="now" min="0" max="100" step="any" value="0" aria-label="时间轴：查登记、逐层展开、运行判官" data-aria-en="Rail: registry lookup, level-by-level expansion, the judges">
+    </div>
+    <div class="keys">
+      <kbd>Space</kbd> <span class="zh">播放</span><span class="en">play</span> · <kbd>←</kbd><kbd>→</kbd> <span class="zh">逐步</span><span class="en">step</span> · <kbd>U</kbd> <span class="zh">未登记文件</span><span class="en">unregistered file</span> · <kbd>C</kbd> <span class="zh">清空</span><span class="en">clear</span>
+    </div>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
+    <div class="zh">
+      <p class="lede">一张 14 个单元的声明式依赖图（FILEMAP）。箭头从被依赖的单元指向消费它的单元：上游一改，下游就必须重判。时间轴分三段：查登记（0–20）、沿消费边逐层展开（20–80）、运行选中的判官（80–100）。本页是示意模型与数值演示，不是证明。</p>
+      <ol>
+        <li><b>delta.selection。</b>选中集合 = 改动集沿消费边的广度优先闭包，包括改动的单元本身；不在闭包里的单元跳过。每个单元带一个成本权重，全仓合计 100，所以“省下的比例”就是 100 减去选中单元的成本。只改一章正文，只选中它自己的对齐检查与结构检查（2 / 14，成本 14，省 86%）；改核心内核，选中它登记过的全部直接与传递消费者（9 / 14）。</li>
+        <li><b>policy.mixed-warning。</b>政策轨道（规则与判官，图中紫色虚线框）与产品单元在同一次改动里同时出现时，页面亮出品红警告，分别列出两组改动与各自的验证成本，并要求两组都完成验证；它不是人工审批关卡。</li>
+        <li><b>registry.explicit。</b>改动里有一个 FILEMAP 没有登记的文件时，执行器报出具体错误并拒绝这次选择：不按目录、扩展名或调用图去猜，也不退回全量运行。修正登记之后才能继续。</li>
+        <li><b>诚实边界。</b>展开只对已声明的依赖完整：chrono-harness 的 SPEC.md 写明 completeness_proven: false，未声明的外部副作用不在保证之内。</li>
+      </ol>
+      <p class="lede refs">书中：<a href="../../zh/ch06-chrono-harness-governance.html" target="_top">第六章 · chrono-harness 与 sshx：可执行判官</a></p>
+    </div>
+    <div class="en">
+      <p class="lede">A declarative dependency graph (FILEMAP) of 14 units. An arrow points from a unit to a unit that consumes it: when the first changes, the second must be judged again. The rail has three stretches: the registry lookup (0–20), the level-by-level expansion along the consumer edges (20–80), and the run of the selected judges (80–100). The page is a schematic model and a numerical illustration, not a proof.</p>
+      <ol>
+        <li><b>delta.selection.</b> The selection is the breadth-first closure of the change set along the consumer edges, the changed units included; units outside the closure are skipped. Each unit carries a cost weight, 100 for the whole repository, so the share saved is 100 minus the cost of the selected units. Changing one prose chapter selects only its own alignment check and the structure check (2 / 14, cost 14, 86% saved); changing the core kernel selects all of its registered direct and transitive consumers (9 / 14).</li>
+        <li><b>policy.mixed-warning.</b> When the policy track (rules and judges, the violet dashed frame) and product units change in the same change set, the page raises a magenta warning, lists the two groups with their verification costs, and requires both to be verified; it is not a manual approval gate.</li>
+        <li><b>registry.explicit.</b> When the change set holds a file the FILEMAP does not register, the executor reports a specific error and refuses the selection: it does not guess from directories, extensions or call graphs, and it does not fall back to a full run. The run continues once the registry is corrected.</li>
+        <li><b>The honest boundary.</b> The expansion is complete only with respect to the declared dependencies: chrono-harness's SPEC.md records completeness_proven: false, and undeclared external side effects are outside the guarantee.</li>
+      </ol>
+      <p class="lede refs">In the book: <a href="../../en/ch06-chrono-harness-governance.html" target="_top">Chapter 6 · chrono-harness and sshx: executable judges</a></p>
+    </div>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

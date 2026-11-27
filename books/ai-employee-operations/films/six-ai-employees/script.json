@@ -1,0 +1,18 @@
+{
+  "voice": "af_heart", "speed": 0.94,
+  "say": {"Auto-X": "Auto X", "HR": "H R"},
+  "music": {"bpm": 88, "progression": "a-minor"},
+  "scenes": [
+    {"id": "team", "name": "DIVISION OF LABOR", "lead": 1.8, "tail": 0.5, "music": [1.0, 0.5, 0.4, 0.0, 0.2], "lines": [
+      ["Forget the lone magic chatbot. Real companies run on division of labor and signed accountability.", "忘掉无所不能的单一聊天框。真实公司靠的是清晰分工与可审计责任。"],
+      ["For December seventeenth, six AI employee roles cover seventy-seven of ninety-seven operational workflows.", "为十二月十七日发布会，六个 AI 员工岗位覆盖了九十七项真实流程中的七十七项。"]
+    ]},
+    {"id": "roles", "name": "SIX ROLES", "lead": 0.3, "tail": 1.5, "music": [0.9, 0.8, 0.9, 0.6, 0.5], "lines": [
+      ["Six scoped AI employee roles staff this launch: Concierge Donna—partnered with Flower Town's Blossom—plus Community, Social Auto-X, Finance, HR, and Admin.", "六个边界清晰的 AI 员工岗位值守这场发布会：礼宾 Donna（协同花店小花）、社群、社媒 Auto-X、财务、HR 与行政。"]
+    ]},
+    {"id": "boundary", "name": "HUMAN GATES", "lead": 0.3, "tail": 3.2, "music": [1.0, 0.7, 0.6, 0.4, 0.3], "lines": [
+      ["And the remaining twenty workflows stay behind human gates or on the roadmap—money out, contracts signed, and off-script press claims.", "剩下的二十项流程留守人类闸门或路线图——资金划转、合同签署与库外媒体表态。"],
+      ["Honest boundaries are what turn a demo into an employee you can actually hire.", "诚实的边界，才让一个演示变成你真正敢雇佣的员工。"]
+    ]}
+  ]
+}

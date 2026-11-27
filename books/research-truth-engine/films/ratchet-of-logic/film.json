@@ -1,0 +1,30 @@
+{
+  "title": "The Ratchet of Logic",
+  "title_zh": "逻辑的棘轮",
+  "summary": "Three Lean theorems of trureturing: adding theorems can only shrink the joint kernel of indistinguishable states; on a nondegenerate arena, a theorem lowers information escape exactly when it lies outside the semantic closure of the others; and the four-qubit Fredkin entangling-power conjecture is false. With the 720-hour commit cadence, 167,819 cumulative frozen theorems, 2,128 literature resolutions over 74 days, and the Riemann Hypothesis marked open.",
+  "summary_zh": "trureturing 的三条 Lean 定理：增加定理只会缩小不可分辨状态对的联合核；在非退化竞技场上，一条定理降低信息逃逸，当且仅当它落在其余定理的语义闭包之外；四量子比特 Fredkin 纠缠能力猜想不成立。另附 720 个 UTC 小时连续提交节律、累计 167,819 条冻结定理、74 天 2,128 道文献题解，以及标为开放的黎曼猜想。",
+  "subject": "https://github.com/the-omega-institute/trureturing",
+  "publication_basis": "pinned",
+  "released": "2026-11-26",
+  "duration": "1:09",
+  "resolution": "1280x720@30",
+  "style": "trureturing cyberpunk · a one-way ratchet, a computed 16-state kernel lattice, an observatory wheel",
+  "narration": {
+    "language": "en",
+    "engine": "Kokoro-82M v1.0 (onnx)",
+    "voice": "af_heart"
+  },
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "lean": [
+    "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone",
+    "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout",
+    "D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result"
+  ],
+  "outputs": {
+    "narrated_720p": "research-truth-engine_ratchet-of-logic_720p_narrated.mp4",
+    "cover": "research-truth-engine_ratchet-of-logic_cover.jpg"
+  }
+}

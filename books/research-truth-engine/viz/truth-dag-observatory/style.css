@@ -1,0 +1,20 @@
+/* TRUTH//DAG: the shared lab layout (../assets/theme.css) carries the page. Only what belongs to this visualization is
+   here; colours come from the tokens (var(--cyan) …), never from hex values. */
+#cv { cursor: default; }
+/* The lattice, its cut labels and the column of theorem nodes need room in the full lab; cited figures fit their frame. */
+.lab .center > #stage { min-height: 400px; container-type: inline-size; }
+:root[data-embed][data-figure] .lab .center > #stage { min-height: 0; }
+/* amber marks only the current choice: text emphasis is cyan, the stage title uses the sigma ink */
+.tagline em { color: var(--cyan); }
+.sheet li b { color: var(--cyan); }
+.hud-tl .big { color: var(--sigma); }
+/* the catalog toggles: several may be pressed at once (not an exclusive group) */
+.chips.thms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.chips.thms .chip { text-align: left; text-transform: none; letter-spacing: 0.04em; font-family: var(--font-data); font-size: 11.5px; }
+.chips.thms .chip[aria-pressed="true"] { background: color-mix(in srgb, var(--cyan) 18%, transparent); color: var(--ink); box-shadow: none; }
+.chips.thms .chip[aria-pressed="true"].current { border-color: var(--amber); }
+.sheet .evh { margin: 16px 0 6px; font-family: var(--font-display); font-size: 12px; letter-spacing: 0.14em; color: var(--cyan); text-transform: uppercase; }
+@container (max-width: 560px) {
+  #stage .hud-tl .sub { font-size: 11px; }
+  #stage .hud-bl { font-size: 10.5px; gap: 2px 10px; }
+}

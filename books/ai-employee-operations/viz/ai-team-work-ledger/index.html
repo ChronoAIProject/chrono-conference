@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN" data-title-en="OPS//LEDGER · AI team work ledger · six AI employees, 97 workflows and hard escalation gates">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OPS//LEDGER AI 团队工作台账 · 六位 AI 员工、97 项流程与越权闸门</title>
+<meta name="description" content="截至 2026-11-25 的六岗工作账本：Donna 13/15、财务 24/28、Auto-X 11/13、社群 9/11、HR 15/20、行政 5/10，合计 77/97 = 79.4%，其余 20 项锁在人工闸门或路线图后。可点岗位查看分布，模拟口径外的记者提问与未核验的退款看升级闸门怎样触发，拖动 12-04 至 12-18 的倒计时，或筛出两岗的商户起步包。示意模型，不是证明。The six-role work ledger as of 2026-11-25: Donna 13/15, Finance 24/28, Auto-X 11/13, Community 9/11, HR 15/20, Admin 5/10, in total 77/97 = 79.4%, with the other 20 held behind human gates or on the roadmap. Click a role to inspect it, simulate an off-script press question or an unverified refund and watch the escalation gate fire, scrub the countdown from Dec 4 to Dec 18, or filter to the two-role merchant starter pack. A schematic model, not a proof.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../assets/shell.js"></script>
+<script src="../assets/kit.js"></script>
+</head>
+<body data-viz-id="ai-team-work-ledger">
+<div class="app lab" id="app">
+  <header class="top">
+    <div class="brand">
+      <a class="crumb" href="../"><span class="zh">◂ 可视化索引</span><span class="en">◂ Visualizations</span></a>
+      <h1 class="logo" data-text="OPS//LEDGER">OPS<b>//</b>LEDGER</h1>
+      <div class="tagline">
+        <span class="zh">AI 团队工作台账 · <em>六位 AI 员工、97 项真实流程与硬性越权闸门：77 项交给机器，20 项留守人工闸门或路线图</em></span>
+        <span class="en">AI team work ledger · <em>six AI employees, 97 real workflows and hard escalation gates: 77 handed to machines, 20 held behind human gates or roadmap</em></span>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span class="pill hot" id="pillReady"><span class="zh">就绪</span><span class="en">READY</span> <strong>—</strong></span>
+      <span class="pill" id="pillGate"><span class="zh">人工闸门</span><span class="en">HUMAN GATE</span> <strong>—</strong></span>
+      <span class="pill" id="pillUnauth"><span class="zh">越权承诺</span><span class="en">UNAUTHORIZED</span> <strong>0</strong></span>
+      <div class="langs" role="group" aria-label="语言 Language"><button data-lang-set="zh" aria-pressed="true">中</button><button data-lang-set="en" aria-pressed="false">EN</button></div>
+    </div>
+  </header>
+
+  <aside class="col deck" aria-label="实验控制" data-aria-en="Experiment controls">
+    <section class="panel sec">
+      <h2><span class="zh">实验卡带</span><span class="en">Experiments</span><span class="aside">PRESETS</span></h2>
+      <div class="presets cards" id="presets">
+        <button class="preset" data-preset="six-roles" aria-pressed="false"><span class="code">SIX-ROLES</span><span class="cn zh">六岗全景：77 / 97 = 79.4%</span><span class="cn en">Six roles: 77 / 97 = 79.4%</span></button>
+        <button class="preset" data-preset="donna-gate" aria-pressed="false"><span class="code">DONNA-GATE</span><span class="cn zh">记者问答闸门：库内答、库外升级</span><span class="cn en">Press gate: bank answers, the rest escalates</span></button>
+        <button class="preset" data-preset="countdown" aria-pressed="false"><span class="code">COUNTDOWN</span><span class="cn zh">12-04 至 12-17 倒计时编排</span><span class="cn en">Countdown, Dec 4 to Dec 17</span></button>
+        <button class="preset" data-preset="merchant" aria-pressed="false"><span class="code">MERCHANT</span><span class="cn zh">商户起步包：两岗 37 / 43</span><span class="cn en">Merchant starter: two roles, 37 / 43</span></button>
+      </div>
+      <p class="note" id="presetNote"></p>
+    </section>
+
+    <section class="panel sec">
+      <h2><span class="zh">闸门模拟</span><span class="en">Gate simulator</span><span class="aside">ESCALATE</span></h2>
+      <div class="chips">
+        <button class="chip" id="pressBtn" aria-pressed="true"><span class="zh">口径外的记者提问</span><span class="en">Off-script press question</span></button>
+        <button class="chip" id="refundBtn" aria-pressed="false"><span class="zh">未核验的退款</span><span class="en">Unverified refund</span></button>
+      </div>
+      <p class="note"><span class="zh">在“闸门”场景里播放：库内问题带出处直接回答，口径外的问题与未核验的退款一律升级到人工队列。点舞台上的岗位行可查看它的账本。</span><span class="en">Play the Gate scene: a question in the bank is answered with its source, and an off-script question or an unverified refund always escalates to the human queue. Click a role row on the stage to inspect its ledger.</span></p>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="stage still" id="stage" data-thumb aria-label="舞台：六位 AI 员工的工作账本、升级闸门、发布会倒计时或商户起步包" data-aria-en="Stage: the work ledger of six AI employees, the escalation gate, the launch countdown or the merchant starter pack">
+      <canvas class="fill" id="cv"></canvas>
+      <div class="scan"></div><div class="vig"></div>
+      <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
+      <div class="hud-tr chips" id="sceneChips" role="group" aria-label="场景" data-aria-en="Scene">
+        <button class="chip" data-scene="board" aria-pressed="true"><span class="zh">六岗</span><span class="en">Roles</span></button>
+        <button class="chip" data-scene="gate" aria-pressed="false"><span class="zh">闸门</span><span class="en">Gate</span></button>
+        <button class="chip" data-scene="countdown" aria-pressed="false"><span class="zh">倒计时</span><span class="en">Countdown</span></button>
+        <button class="chip" data-scene="merchant" aria-pressed="false"><span class="zh">商户</span><span class="en">Merchant</span></button>
+      </div>
+      <div class="hud-bl" id="legend"></div>
+    </div>
+    <div class="tour" id="tour">
+      <button class="tbtn" data-tour="prev" aria-label="上一个实验" data-aria-en="Previous experiment">◀</button>
+      <div class="what"></div>
+      <button class="tbtn" data-tour="next" aria-label="下一个实验" data-aria-en="Next experiment">▶</button>
+    </div>
+    <div class="strip">
+      <section class="panel">
+        <div class="head"><h2 id="pATitle"></h2><span id="pAMeta"></span></div>
+        <canvas id="plotA" aria-label="各岗位的就绪覆盖率" data-aria-en="Readiness coverage of each role"></canvas>
+      </section>
+      <section class="panel">
+        <div class="head"><h2 id="pBTitle"></h2><span id="pBMeta"></span></div>
+        <canvas id="plotB" aria-label="沿时间轴：升级账本、在岗岗位或筛选后的覆盖率" data-aria-en="Along the rail: the escalation ledger, the roles on duty or the coverage after filtering"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="readouts" aria-live="polite">
+      <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside">2026-11-25</span></h2>
+      <dl class="ro">
+        <div class="key"><dt id="roKeyLabel"></dt><dd><b id="roKey">—</b><span id="roKeySub"></span></dd></div>
+        <div class="c"><dt><span class="zh">选中的岗位</span><span class="en">Selected role</span></dt><dd id="roRole">—</dd></div>
+        <div class="a"><dt><span class="zh">已升级到人工</span><span class="en">Escalated to humans</span></dt><dd id="roEsc">—</dd></div>
+        <div class="wide"><dt><span class="zh">这一岗的人类红线</span><span class="en">This role's human line</span></dt><dd id="roGate">—</dd></div>
+        <div class="wide"><dt id="roXLabel"></dt><dd id="roX">—</dd></div>
+      </dl>
+      <p class="note" id="roNote"></p>
+    </section>
+
+    <section class="panel sec" id="evidence">
+      <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">nyxbot-finance</span></h2>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">账本数字照录第一章的表格：截至 2026-11-25，数据来自 nyxbot-finance 与 nyxid-nyxbot-trials，财务目前只在内部与演示账本上验证，外部付费商户为 0。闸门模拟、压力探测、倒计时里各里程碑点亮哪些岗位、商户筛选的动画，都是为画面选定的示意，不是生产系统的记录。</span><span class="en">The ledger numbers are copied from the table of chapter 1: as of 2026-11-25, from nyxbot-finance and nyxid-nyxbot-trials; finance is verified on internal and demo ledgers only, with 0 external paying merchants so far. The gate simulator, the stress probes, which roles light up at each countdown milestone, and the merchant filter animation were chosen for the picture; they are not records of the production system.</span></span></div>
+      <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面算出的数：13 + 24 + 11 + 9 + 15 + 5 = 77，15 + 28 + 13 + 11 + 20 + 10 = 97，77 / 97 = 79.4%；商户起步包 (13 + 24) / (15 + 28) = 37 / 43 = 86.0%。模拟里每一次越权探测都升级到人工，越权承诺计数为 0：这是闸门规则在模型里的结果，不是对生产系统的测量。数值演示，不是证明。</span><span class="en">Computed on the page: 13 + 24 + 11 + 9 + 15 + 5 = 77, 15 + 28 + 13 + 11 + 20 + 10 = 97, 77 / 97 = 79.4%; the merchant starter pack (13 + 24) / (15 + 28) = 37 / 43 = 86.0%. In the simulation every out-of-bounds probe escalates to a human and the count of unauthorized commitments is 0: that is the gate rule at work in the model, not a measurement of the production system. A numerical illustration, not a proof.</span></span></div>
+      <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
+    </section>
+  </aside>
+
+  <footer class="rail" id="rail">
+    <div class="transport">
+      <button class="tbtn" id="rew" aria-label="回到起点" data-aria-en="Back to the start">⏮</button>
+      <button class="tbtn" id="play" aria-label="播放 / 暂停" data-aria-en="Play / pause" aria-pressed="false">▶</button>
+      <span class="chips" id="speedChips" role="group" aria-label="播放速度" data-aria-en="Playback speed">
+        <button class="chip" data-speed="0.35" aria-pressed="false">0.35×</button><button class="chip" data-speed="1" aria-pressed="true">1×</button><button class="chip" data-speed="2.5" aria-pressed="false">2.5×</button>
+      </span>
+    </div>
+    <div class="clock">
+      <span class="tau" id="tau"></span>
+      <input type="range" id="now" min="0" max="100" step="any" value="0" aria-label="时间轴：压力探测、请求轨迹、发布会日期或筛选进度" data-aria-en="Rail: stress probes, the trace of the requests, the launch date or the filter">
+    </div>
+    <div class="keys">
+      <kbd>Space</kbd> <span class="zh">播放</span><span class="en">play</span> · <kbd>←</kbd><kbd>→</kbd> <span class="zh">逐步</span><span class="en">step</span> · <kbd>1</kbd>–<kbd>4</kbd> <span class="zh">场景</span><span class="en">scene</span>
+    </div>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
+    <div class="zh">
+      <p class="lede">一块六岗运营看板：每一行是一位 AI 员工，每一格是一项定义好的工作流程。青色格是截至 2026-11-25 已打通、可演示的流程，紫色格是刻意锁在人工审批闸门后或仍在路线图上的流程，两者之间的竖线就是这一岗的人类红线。本页是示意模型与数值演示，不是证明。</p>
+      <ol>
+        <li><b>账本。</b>Donna 13 / 15、财务 24 / 28、Auto-X 11 / 13、社群 9 / 11、HR 15 / 20、行政 5 / 10，合计 77 / 97 = 79.4%；另外 20 项不自动化。财务目前只在内部与演示账本上验证，外部付费商户为 0。</li>
+        <li><b>闸门。</b>来宾或记者的问题若在 30 题核验库里，Donna 带出处直接回答；不在库里、或涉及未核实的数字，Donna 不临场编造，而是记录摘要并升级到 <code>contact@chrono-ai.fun</code> 的人工值守队列。一笔找不到对应收据的退款同样不会自动执行，而是进入人工审批。模拟里越权承诺的计数始终为 0，这是闸门规则在模型里的结果。</li>
+        <li><b>倒计时。</b>时间轴依次经过六道闸门：12-04 10:00 SGT 第一波订座开放、12-08 第二波媒体包、12-11 压测与演练、12-15 全程彩排与冻结、12-17 16:00 SGT 线上直播与 12-18 回放切片与试点跟进；各里程碑点亮哪些岗位是示意。刻度不等距：直播前后一天占得更宽。</li>
+        <li><b>商户起步包。</b>把六岗筛到前台礼宾与财务台账两岗：(13 + 24) / (15 + 28) = 37 / 43 = 86.0%。这是给外部门店上手用的起步视图；截至 2026-11-25 还没有外部付费商户上线。</li>
+      </ol>
+      <p class="lede refs">书中：<a href="../../zh/ch01-six-role-ai-workforce.html" target="_top">第一章 · 一个团队，六个岗位</a> · <a href="../../zh/ch02-donna-and-blossom-ops.html" target="_top">第二章 · Donna 与小花</a></p>
+    </div>
+    <div class="en">
+      <p class="lede">A six-role operations board: each row is an AI employee and each cell a defined workflow. Cyan cells are the workflows ready and demonstrable as of 2026-11-25, violet cells those deliberately held behind a human approval gate or still on the roadmap, and the bar between them is that role's human line. The page is a schematic model and a numerical illustration, not a proof.</p>
+      <ol>
+        <li><b>The ledger.</b> Donna 13 / 15, Finance 24 / 28, Auto-X 11 / 13, Community 9 / 11, HR 15 / 20, Admin 5 / 10, in total 77 / 97 = 79.4%; the other 20 are not automated. Finance is verified on internal and demo ledgers only, with 0 external paying merchants so far.</li>
+        <li><b>The gate.</b> A guest's or reporter's question that is in the 30-item verified bank is answered by Donna with its source; one outside the bank, or touching unverified figures, is not improvised: Donna records a summary and escalates it to the human desk at <code>contact@chrono-ai.fun</code>. A refund with no matching receipt is not executed either; it goes to human approval. In the simulation the count of unauthorized commitments stays 0, which is the gate rule at work in the model.</li>
+        <li><b>The countdown.</b> The rail passes six gates: the Dec 4 10:00 SGT wave 1 booking open, the Dec 8 wave 2 press kit, the Dec 11 load and rehearsal drill, the Dec 15 dress rehearsal and freeze, the Dec 17 16:00 SGT live broadcast, and the Dec 18 replay clips and pilot follow-up; which roles light up at each milestone is illustrative. The scale is not uniform: the day around the broadcast gets more room.</li>
+        <li><b>The merchant starter pack.</b> Filter the six roles down to the front-desk concierge and the finance ledger: (13 + 24) / (15 + 28) = 37 / 43 = 86.0%. It is the starting view for an outside store; as of 2026-11-25 no external paying merchant is live yet.</li>
+      </ol>
+      <p class="lede refs">In the book: <a href="../../en/ch01-six-role-ai-workforce.html" target="_top">Chapter 1 · One team, six roles</a> · <a href="../../en/ch02-donna-and-blossom-ops.html" target="_top">Chapter 2 · Donna and Blossom</a></p>
+    </div>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

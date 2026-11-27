@@ -1,0 +1,44 @@
+# 书的元数据。语言版本目录与 editions 一一对应（第一个为权威版本，其余逐条对齐）。
+[book]
+version = "0.1.0"
+authors = ["The Omega Institute"]
+license = "CC-BY-4.0"
+editions = ["zh", "en"]
+# 每个语言版本内的 Markdown 单页最多行数；含空行、注释和代码行。
+max_page_lines = 1000
+# 封面与站点卡片上的赛博朋克代号，形如 CODE//NAME。
+code = "OMEGA//TRUTH"
+# 出版日期（YYYY-MM-DD），进入 PDF/EPUB 元数据；留空则用构建当天（产物不能跨日复现）。
+date = "2026-12-17"
+# Stable publication DOI (usually the Zenodo concept DOI); omit until one is assigned.
+doi = ""
+
+[book.title]
+zh = "逻辑的棘轮"
+en = "The Ratchet of Logic"
+
+[book.subtitle]
+zh = "trureturing、全息观测站与开放数学前沿"
+en = "trureturing, the Live Observatory, and the Open Math Frontier"
+
+[book.description]
+zh = "从斐波那契替换与信息逃逸出发，考察有限观测保留了什么信息，以及新结果如何改进区分能力。跟随 trureturing 全息观测站追溯文献问题、研究记录与 Lean 冻结声明，并辨明书面证明和开放问题各自的证据边界。"
+en = "Starting with Fibonacci substitution and information escape, this book examines what finite observations retain and how new results distinguish previously indistinguishable states. The trureturing live observatory traces literature problems through research records to frozen Lean declarations, with separate treatment of written proofs and open questions."
+
+[outputs]
+html = true
+# PDF 版本：screen = 深色霓虹屏幕版；print = 白底印刷版；academic = A4 单栏学术预印本（可选）。
+pdf = ["screen", "print", "academic"]
+# EPUB 3（Apple Books 兼容，MathML 数学）。
+epub = true
+
+[pdf]
+# Typst 纸张名：a4、a5、us-letter、iso-b5 …
+paper = "a4"
+
+[epub]
+# 是否把 Chakra Petch / JetBrains Mono 嵌入 EPUB（中文正文始终使用阅读器自带字体）。
+embed_fonts = false
+
+[numbering.unnumbered]
+"appendix-a-live-verification-playbook.md" = "A"

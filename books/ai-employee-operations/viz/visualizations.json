@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "visualizations": [
+    {
+      "id": "ai-team-work-ledger",
+      "code": "OPS//LEDGER",
+      "title": "AI 团队工作台账 · 六位 AI 员工、97 项流程与越权闸门",
+      "title_en": "AI team work ledger · six AI employees, 97 workflows and escalation gates",
+      "summary": "截至 2026-11-25 的六岗工作账本：礼宾 Donna 13/15、财务 24/28、社媒 Auto-X 11/13、社群 9/11、HR 15/20、行政 5/10，合计 77/97 = 79.4%，另外 20 项刻意锁在人工闸门后或仍在路线图上。四个场景：六岗看板与越权探测（每一次都升级到人工，越权承诺 0）；Donna 的记者问答闸门与未核验退款（库内带出处回答，库外与未核验的一律升级到 contact@chrono-ai.fun）；12-04 至 12-18 的发布会倒计时与各里程碑在岗岗位；筛到两岗的商户起步包 37/43 = 86.0%（外部付费商户尚为 0）。账本数字照录第一章；示意模型，不是证明。",
+      "summary_en": "The six-role work ledger as of 2026-11-25: Concierge Donna 13/15, Finance 24/28, Social Auto-X 11/13, Community 9/11, HR 15/20, Admin 5/10, in total 77/97 = 79.4%, with the other 20 deliberately held behind human gates or on the roadmap. Four scenes: the six-role board and out-of-bounds probes (every one escalates to a human, 0 unauthorized commitments); Donna's press Q&A gate and an unverified refund (bank questions answered with their source, off-bank and unverified ones escalated to contact@chrono-ai.fun); the launch countdown from Dec 4 to Dec 18 with the roles on duty at each milestone; and the two-role merchant starter pack, 37/43 = 86.0% (0 external paying merchants so far). The ledger numbers are copied from chapter 1; a schematic model, not a proof.",
+      "path": "ai-team-work-ledger/",
+      "thumbnail": "ai-team-work-ledger/thumb.jpg",
+      "status": "live",
+      "added": "2026-11-26",
+      "tags": [
+        "AI 员工",
+        "工作账本",
+        "人工闸门",
+        "Donna",
+        "倒计时",
+        "商户起步包",
+        "第一章"
+      ],
+      "tags_en": [
+        "AI employees",
+        "work ledger",
+        "human gates",
+        "Donna",
+        "countdown",
+        "merchant starter pack",
+        "chapter 1"
+      ],
+      "theory": [
+        {
+          "label": "本书第一章 · 一个团队，六个岗位",
+          "label_en": "Chapter 1 of this book · One team, six roles",
+          "href": "../zh/ch01-six-role-ai-workforce.html",
+          "href_en": "../en/ch01-six-role-ai-workforce.html"
+        },
+        {
+          "label": "本书第二章 · Donna 与小花的前台运营",
+          "label_en": "Chapter 2 of this book · Front-of-house with Donna and Blossom",
+          "href": "../zh/ch02-donna-and-blossom-ops.html",
+          "href_en": "../en/ch02-donna-and-blossom-ops.html"
+        }
+      ],
+      "lean": []
+    }
+  ]
+}

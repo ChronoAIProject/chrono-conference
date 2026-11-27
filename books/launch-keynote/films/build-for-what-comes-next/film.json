@@ -1,0 +1,28 @@
+{
+  "title": "Build for What Comes Next",
+  "title_zh": "面向未来的造物",
+  "summary": "The opening film of the 2026 ChronoAI virtual launch: when execution becomes almost free, judgment becomes scarce. A complete vehicle of NyxID, Ornn, CMA, heca and chrono-harness around a swappable engine, mathematics as the stress test, and one Lean theorem: a claim recoverable from the others lowers information escape by zero.",
+  "summary_zh": "2026 ChronoAI 线上发布会开场短片：执行趋近免费，判断成为稀缺。由 NyxID、Ornn、CMA、heca 与 chrono-harness 组成、可更换发动机的整车，以数学为压力测试，并引用一条 Lean 定理：可由其余定理恢复的命题不降低信息逃逸。",
+  "subject": "https://github.com/the-omega-institute/trureturing",
+  "publication_basis": "pinned",
+  "released": "2026-11-26",
+  "duration": "1:00",
+  "resolution": "1280x720@30",
+  "style": "trureturing cyberpunk · cost and judgment curves, a five-layer chassis, a frozen truth DAG",
+  "narration": {
+    "language": "en",
+    "engine": "Kokoro-82M v1.0 (onnx)",
+    "voice": "af_heart"
+  },
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "lean": [
+    "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_false_of_recoverable"
+  ],
+  "outputs": {
+    "narrated_720p": "launch-keynote_build-for-what-comes-next_720p_narrated.mp4",
+    "cover": "launch-keynote_build-for-what-comes-next_cover.jpg"
+  }
+}

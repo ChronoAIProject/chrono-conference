@@ -1,0 +1,26 @@
+{
+  "title": "Six AI Employees Run a Launch",
+  "title_zh": "六位 AI 员工值守一场发布会",
+  "summary": "Six AI employee roles cover 77 of the 97 workflows of the 2026-12-17 launch (snapshot 2026-11-25): Donna and Blossom at the front, Community and Auto-X on the countdown, Finance on the demo ledger, HR and Admin on templates; the other 20 workflows stay behind human gates or on the roadmap.",
+  "summary_zh": "六个 AI 员工岗位覆盖 2026 年 12 月 17 日发布会 97 项流程中的 77 项（2026-11-25 快照）：Donna 与小花在前台，社群与 Auto-X 推进倒计时，财务员核对演示账本，HR 与行政维护模板；其余 20 项流程留守人工闸门或路线图边界。",
+  "subject": "https://github.com/the-omega-institute/trureturing",
+  "publication_basis": "pinned",
+  "released": "2026-11-26",
+  "duration": "0:47",
+  "resolution": "1280x720@30",
+  "style": "trureturing cyberpunk · a shattered chat box, six role bars and a radar, an amber human gate",
+  "narration": {
+    "language": "en",
+    "engine": "Kokoro-82M v1.0 (onnx)",
+    "voice": "af_heart"
+  },
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "lean": [],
+  "outputs": {
+    "narrated_720p": "ai-employee-operations_six-ai-employees_720p_narrated.mp4",
+    "cover": "ai-employee-operations_six-ai-employees_cover.jpg"
+  }
+}

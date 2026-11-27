@@ -1,0 +1,177 @@
+{
+  "schema": "trureturing-books.lock.v1",
+  "repo": "the-omega-institute/trureturing",
+  "branch": "dev",
+  "commit": "8a3f20fbde61f3e07c7a7a966c073c8e0ac39350",
+  "pinned_at": "2026-11-26T23:06:28Z",
+  "declarations": {
+    "D5/S1/Deficit/DeficitThreeValued.deficit_three_valued": {
+      "module": "D5/S1/Deficit/DeficitThreeValued",
+      "name": "D5.S1.Deficit.deficit_three_valued",
+      "kind": "theorem",
+      "statement_id": "sha256:a18c73d6f977137b4ea75d8a7f4d4d973a4c07659a11b78922c6ca4361c7f0bd",
+      "line": 264,
+      "signature": "theorem deficit_three_valued (v₁ v₂ : ℕ) : deficit v₁ v₂ = -1 ∨ deficit v₁ v₂ = 0 ∨ deficit v₁ v₂ = 1"
+    },
+    "D5/S1/Words/AdmissibleWords/FiveModeMixedCoordinates.mixed_coordinates_global_chart": {
+      "module": "D5/S1/Words/AdmissibleWords/FiveModeMixedCoordinates",
+      "name": "D5.S1.Words.AdmissibleWords.FiveModeMixedCoordinates.mixed_coordinates_global_chart",
+      "kind": "theorem",
+      "statement_id": "sha256:8e58787a67f46fcb631e447bbb330eaba9027511e5736d945c041a9ea684258f",
+      "line": 65,
+      "signature": "theorem mixed_coordinates_global_chart : (∀ p ∈ openSimplex, visible p ∈ openPyramid) ∧ (∀ v ∈ openPyramid, ∀ c : ℝ, ∃! p : Fin 5 → ℝ, p ∈ openSimplex ∧ visible p = v ∧ hiddenChi p = c) ∧ (∀ p : Fin 5 → ℝ, (∀ s, 0 < p s) → ∀ u : Fin 5 → ℝ, HasDerivAt (fun t : ℝ => hiddenChi (p + t • u)) (fisher p hiddenDirection u) 0) ∧ ∑ s, hiddenDirection s = 0 ∧ visible hiddenDirection = 0"
+    },
+    "D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result": {
+      "module": "D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport",
+      "name": "D5.S3.Arith.FibonacciAtomic.GenealogicalFiberTransport.result",
+      "kind": "theorem",
+      "statement_id": "sha256:92ef4cf179556da628d7c79fd4c1fc68b353acf2320eb7f4c6842174151f83dc",
+      "line": 234,
+      "signature": "theorem result : (∀ a b : ℕ, 1 ≤ a + b → Finite (Fiber (a, b)) ∧ Nat.card (Fiber (a, b)) = fiberCount (a, b) ∧ Nonempty (Fiber (a, b)) ∧ (∀ t : Fiber (a, b), ∀ n : ℕ, composition (substitution^[n] t.val) = step^[n] (a, b) ∧ quantity (composition (substitution^[n] t.val)) = quantity (step^[n] (a, b))) ∧ (∀ n : ℕ, Function.Injective (fiberMap (a, b) n) ∧ (Finset.univ.image (fiberMap (a, b) n)).card = fiberCount (a, b) ∧ (∀ y, 0 ≤ pushforward (fiberMap (a, b) n) (uniformMass (a, b)) y ∧ 0 ≤ uniformMass (step^[n] (a, b)) y) ∧ (∑ y, pushforward (fiberMap (a, b) n) (uniformMass (a, b)) y) = 1 ∧ (∑ y"
+    },
+    "D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.result": {
+      "module": "D5/S3/Arith/FibonacciAtomic/GraftAffineClosure",
+      "name": "D5.S3.Arith.FibonacciAtomic.GraftAffineClosure.result",
+      "kind": "theorem",
+      "statement_id": "sha256:631417aefe470f6ea2dca1590c982813ff327d7c33143a48034126376c53fc2c",
+      "line": 91,
+      "signature": "theorem result : (∀ (p h e : ℕ), p.Prime → e ≤ h → ∀ x y : ℤ, (∀ b : ℤ, Int.gcd (x + (p : ℤ) ^ e * b) ((p : ℤ) ^ h) = Int.gcd (y + (p : ℤ) ^ e * b) ((p : ℤ) ^ h)) ↔ psi p h e x = psi p h e y) ∧ (∀ (H : ℕ), 0 < H → ∀ w : ℕ × ℕ, (∀ W : List Bool, ∃ k : ℕ, ∃ t : ℕ × ℕ, residue H t ∈ graftSpace H w ∧ ∀ v : ℕ × ℕ, run w W v = step^[k] v + t) ∧ (∀ v :"
+    },
+    "D5/S3/ConceptDynamics/Gluing/LocalLawGluingObstruction.compatible_local_laws_can_lack_global_state": {
+      "module": "D5/S3/ConceptDynamics/Gluing/LocalLawGluingObstruction",
+      "name": "D5.S3.ConceptDynamics.Gluing.LocalLawGluingObstruction.compatible_local_laws_can_lack_global_state",
+      "kind": "theorem",
+      "statement_id": "sha256:7123aed7e74f15670604b087e56759439b746e50dfa42b83e36aca164fd76226",
+      "line": 28,
+      "signature": "theorem compatible_local_laws_can_lack_global_state : let sameLaw : Set (Bool × Bool)"
+    },
+    "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone": {
+      "module": "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel",
+      "name": "D5.S3.ConceptDynamics.InformationEscape.Catalog.jointKernel_antitone",
+      "kind": "theorem",
+      "statement_id": "sha256:c76e06b18147a0ca04249b273cecc5eeb9febc7069f379f0e9073bacf48129f1",
+      "line": 149,
+      "signature": "theorem jointKernel_antitone {arena : Arena.{u}} (catalog : Catalog.{u, v, w} arena) {smaller larger : Set catalog.Index} (subset : smaller ⊆ larger) : catalog.jointKernel larger ⊆ catalog.jointKernel smaller"
+    },
+    "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_insert": {
+      "module": "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel",
+      "name": "D5.S3.ConceptDynamics.InformationEscape.Catalog.jointKernel_insert",
+      "kind": "theorem",
+      "statement_id": "sha256:c76e06b18147a0ca04249b273cecc5eeb9febc7069f379f0e9073bacf48129f1",
+      "line": 157,
+      "signature": "theorem jointKernel_insert {arena : Arena.{u}} (catalog : Catalog.{u, v, w} arena) (index : catalog.Index) (selected : Set catalog.Index) : catalog.jointKernel (Set.insert index selected) = catalog.jointKernel selected ∩ {pair | (catalog.theoremAt index).primitives.agrees pair.1 pair.2}"
+    },
+    "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_false_of_recoverable": {
+      "module": "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty",
+      "name": "D5.S3.ConceptDynamics.InformationEscape.Catalog.lowersEscape_false_of_recoverable",
+      "kind": "theorem",
+      "statement_id": "sha256:36357323a2c9d6901b7bb61bf4efd25d956ea9a05eae2e6fbde8b6f169fd406d",
+      "line": 235,
+      "signature": "theorem lowersEscape_false_of_recoverable {arena : Arena.{u}} (catalog : Catalog.{u, v, w} arena) (index : catalog.Index) (recoverable : ∀ left right, (∀ other, other ≠ index -> (catalog.theoremAt other).primitives.agrees left right) -> (catalog.theoremAt index).primitives.agrees left right) : ¬catalog.LowersEscape index"
+    },
+    "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout": {
+      "module": "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty",
+      "name": "D5.S3.ConceptDynamics.InformationEscape.Catalog.lowersEscape_iff_not_mem_semanticClosureWithout",
+      "kind": "theorem",
+      "statement_id": "sha256:36357323a2c9d6901b7bb61bf4efd25d956ea9a05eae2e6fbde8b6f169fd406d",
+      "line": 210,
+      "signature": "theorem lowersEscape_iff_not_mem_semanticClosureWithout {arena : Arena.{u}} (catalog : Catalog.{u, v, w} arena) (index : catalog.Index) (nondegenerate : arena.Nondegenerate) : catalog.LowersEscape index ↔ (catalog.theoremAt index).primitives.toKernel ∉ catalog.semanticClosureWithout index"
+    },
+    "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.same_kernel_both_zero": {
+      "module": "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty",
+      "name": "D5.S3.ConceptDynamics.InformationEscape.Catalog.same_kernel_both_zero",
+      "kind": "theorem",
+      "statement_id": "sha256:36357323a2c9d6901b7bb61bf4efd25d956ea9a05eae2e6fbde8b6f169fd406d",
+      "line": 253,
+      "signature": "theorem same_kernel_both_zero {arena : Arena.{u}} (catalog : Catalog.{u, v, w} arena) (first second : catalog.Index) (distinct : first ≠ second) (sameKernel : ∀ left right, (catalog.theoremAt first).primitives.agrees left right ↔ (catalog.theoremAt second).primitives.agrees left right) : catalog.uniqueCaptureCount first = 0 ∧ catalog.uniqueCaptureCount second = 0"
+    },
+    "D5/S3/Divergence/CoherenceL1RelativeEntropyBound.result": {
+      "module": "D5/S3/Divergence/CoherenceL1RelativeEntropyBound",
+      "name": "D5.S3.Divergence.CoherenceL1RelativeEntropyBound.result",
+      "kind": "theorem",
+      "statement_id": "sha256:4fd64d7dbc92bb0134150c8bacfdbe38cf3c078e8eb4380e3a295429c085c978",
+      "line": 636,
+      "signature": "theorem result : claim"
+    },
+    "D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity": {
+      "module": "D5/S3/Quantum/Algebra/OriginalCompactReciprocity",
+      "name": "D5.S3.Quantum.Algebra.OriginalCompactReciprocity.original_rigidity",
+      "kind": "theorem",
+      "statement_id": "sha256:66d65fb29438fa59129fe2a6d9a610e1b9224783d7206deb606b8de078ba0239",
+      "line": 577,
+      "signature": "theorem original_rigidity (hG : IsCompact (G : Set (W →L[ℝ] W)ˣ)) (A : OriginalLie G) (x : W) (ha : A ≠ 0) (hx : x ≠ 0) (hAx : A.val x = 0) (h : FullReciprocity G A x) : ∃ B : InnerProductSpace.Core ℝ W, (∀ (g : G) (u v : W), B.inner (g.val.val u) (g.val.val v) = B.inner u v) ∧ finrank ℝ W = 3 ∧ finrank ℝ (OriginalLie G) = 3 ∧ LinearMap.range (originalAction G) = skewEndomorphisms B"
+    },
+    "D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.result": {
+      "module": "D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit",
+      "name": "D5.S3.Quantum.Algebra.ZeitlinSixJ.RicciLimit.result",
+      "kind": "theorem",
+      "statement_id": "sha256:bfc3cbb65a72ad128b1bfb08c343b9ef2957f9839e407e7c2de6e62442ae6ff4",
+      "line": 699,
+      "signature": "theorem result : claim"
+    },
+    "D5/S3/Quantum/Completion/RawAnchoredRadicalDescent.raw_hilbert_characterization": {
+      "module": "D5/S3/Quantum/Completion/RawAnchoredRadicalDescent",
+      "name": "D5.S3.Quantum.Completion.RawAnchoredRadicalDescent.raw_hilbert_characterization",
+      "kind": "theorem",
+      "statement_id": "sha256:870603ab360e9b65e0277d011d0eb6393da939af5ebf52e3a7dc86daf737a6b6",
+      "line": 930,
+      "signature": "theorem raw_hilbert_characterization {M : Type u} [MulOneClass M] (U : M → M) (c : M → M → ℝ) (hU : U 1 = 1) : ((RawBalance U c ↔ Nonempty (RawHilbertRepresentation.{u, u} U c)) ∧ (∀ (H : Type v) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] (F : M → H), (∀ a b, F (a*b) = F a + F b) → (∀ a, F (U a) = omega • F a) → (∀ a b, c a b = ‖F a - F b‖ ^ 2) → RawBalance U c) ∧ (∀ (h : RawBalance U c) (S : RawHilbertRepresentation.{u, v} U c) (T : RawHilbertRepresentation.{u, w} U c), ∃! e : S.carrier ≃ₗᵢ[ℂ] T.carrier, ∀ a, e (S.label a) = T.label a)) ∧ ∀ h : RawBalance U c, ((∀ a b, c"
+    },
+    "D5/S3/Quantum/Dynamics/AverageMixingDiscriminantIntegrality.result": {
+      "module": "D5/S3/Quantum/Dynamics/AverageMixingDiscriminantIntegrality",
+      "name": "D5.S3.Quantum.Dynamics.AverageMixingDiscriminantIntegrality.result",
+      "kind": "theorem",
+      "statement_id": "sha256:33f3d1d8c7805c9267a4c04ceb4a3afdfc728dc000c28c2a0fb18b0afea7837c",
+      "line": 44,
+      "signature": "theorem result : claim"
+    },
+    "D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic": {
+      "module": "D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic",
+      "name": "D5.S3.Quantum.Dynamics.NativeProtocolGraft.original_event_arithmetic",
+      "kind": "theorem",
+      "statement_id": "sha256:fba3b13c88cb2b2b03cbd5b2f0fad98496f0dbc0d78835fc2a2c5c54b687fb2b",
+      "line": 194,
+      "signature": "theorem original_event_arithmetic {L : Type} (T : Tree L) (event : Path T → Basis → Bool) : IsIntegral ℤ (eventMass T event) ∧ eventMass T event ≠ emptyTarget ∧ eventMass T event ≠ referenceTarget"
+    },
+    "D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result": {
+      "module": "D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation",
+      "name": "D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result",
+      "kind": "theorem",
+      "statement_id": "sha256:96a43ff10b04209f9a9c91d1f3ef89e1b6691fcc699fdea736fe10b9071db905",
+      "line": 142,
+      "signature": "theorem result : ¬ claim"
+    },
+    "D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum.result": {
+      "module": "D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum",
+      "name": "D5.S3.Quantum.Entanglement.HiguchiSudbery.result",
+      "kind": "theorem",
+      "statement_id": "sha256:c7dd558b661e1fcf09ef431e827c63b66787e5ef81c234fbf9d14ec40839ce1c",
+      "line": 194,
+      "signature": "theorem result : claim"
+    },
+    "D5/S3/QuantumBounds/MerminCglmpFacet.result": {
+      "module": "D5/S3/QuantumBounds/MerminCglmpFacet",
+      "name": "D5.S3.QuantumBounds.MerminCglmpFacet.result",
+      "kind": "theorem",
+      "statement_id": "sha256:80005e78f3d935a4ec78a35cbff86a76da389c82df55d490deb4ebb40394f1e8",
+      "line": 421,
+      "signature": "theorem result : claim"
+    },
+    "D5/S3/QuantumChannels/JordanCompatibilityRefutation.result": {
+      "module": "D5/S3/QuantumChannels/JordanCompatibilityRefutation",
+      "name": "D5.S3.QuantumChannels.JordanCompatibilityRefutation.result",
+      "kind": "theorem",
+      "statement_id": "sha256:a384df930e93a472ad01d1913dc8ff3fa1e8ceb1b1eae5e06789994d79b08433",
+      "line": 566,
+      "signature": "theorem result : ¬ claim"
+    },
+    "D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative": {
+      "module": "D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion",
+      "name": "D5.S3.Zeros.Resolvent.ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative",
+      "kind": "theorem",
+      "statement_id": "sha256:6f06ab47c5c37b2f074d3bafb80939ae450db137ab4ebd23d1a5be2fdf8ac0a9",
+      "line": 112,
+      "signature": "theorem rh_iff_actual_xi_integer_hankel_nonnegative : RiemannHypothesis ↔ ∀ (N : ℕ) (u : Fin (N + 1) → ℤ), 0 ≤ ∑ a : Fin (N + 1), ∑ b : Fin (N + 1), (u a : ℝ) * (u b : ℝ) * xiCoefficient ((a : ℕ) + (b : ℕ))"
+    }
+  }
+}

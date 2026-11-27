@@ -1,0 +1,6 @@
+/* HARNESS//DELTA: the shared lab layout (../assets/theme.css) carries the page. Only what belongs to this visualization
+   alone lives here; colours come from the tokens (var(--cyan) …), never from hex values. */
+#cv { cursor: default; }
+/* the five rows of the graph need room even in a short full lab; a cited figure fits its frame */
+.lab .center > #stage { min-height: 380px; }
+:root[data-embed][data-figure] .lab .center > #stage { min-height: 0; }

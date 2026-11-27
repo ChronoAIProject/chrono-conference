@@ -1,0 +1,45 @@
+# 书的元数据。语言版本目录与 editions 一一对应（第一个为权威版本，其余逐条对齐）。
+[book]
+version = "0.1.0"
+authors = ["ChronoAI"]
+license = "CC-BY-4.0"
+editions = ["zh", "en"]
+# 每个语言版本内的 Markdown 单页最多行数；含空行、注释和代码行。
+max_page_lines = 1000
+# 封面与站点卡片上的赛博朋克代号，形如 CODE//NAME。
+code = "CHRONO//OPS"
+# 出版日期（YYYY-MM-DD），进入 PDF/EPUB 元数据；留空则用构建当天（产物不能跨日复现）。
+date = "2026-12-17"
+# Stable publication DOI (usually the Zenodo concept DOI); omit until one is assigned.
+doi = ""
+
+[book.title]
+zh = "把发布会交给 AI 员工"
+en = "Handing the Launch to AI Employees"
+
+[book.subtitle]
+zh = "运营剧本、记者问答与商户上手手册"
+en = "Operations Playbook, Press Q&A, and Merchant Onboarding"
+
+[book.description]
+zh = "跟随六类 AI 员工完成会场接待、席位预订、社群与后台运营，了解哪些事项需要人工审批。收录彩排与发布会当日值守剧本、记者问答和商户接入步骤。"
+en = "Follow six AI employee roles through guest reception, seat booking, community engagement, and backstage operations, with clear points for human approval. Includes rehearsal and show-day playbooks, press Q&A, and step-by-step merchant onboarding."
+
+[outputs]
+html = true
+# PDF 版本：screen = 深色霓虹屏幕版；print = 白底印刷版；academic = A4 单栏学术预印本（可选）。
+pdf = ["screen", "print"]
+# EPUB 3（Apple Books 兼容，MathML 数学）。
+epub = true
+
+[pdf]
+# Typst 纸张名：a4、a5、us-letter、iso-b5 …
+paper = "a4"
+
+[epub]
+# 是否把 Chakra Petch / JetBrains Mono 嵌入 EPUB（中文正文始终使用阅读器自带字体）。
+embed_fonts = false
+
+[numbering.unnumbered]
+"appendix-a-social-and-press-kit.md" = "A"
+"appendix-b-acceptance-and-rehearsal.md" = "B"
