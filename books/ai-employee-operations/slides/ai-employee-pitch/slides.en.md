@@ -2,7 +2,7 @@
 # 01 Cover
 theme: ../../../../theme/slides
 title: "Handing the Launch to AI Employees · AI Employee Pitch"
-info: "For store owners, studios and deployment partners: how six AI employee roles split the work, where each one stops, how a store goes live in two weeks, and how partners enter on temporary capability handles."
+info: "For store owners, studios and deployment partners. See how nine standalone roles (102/120; six core 82/99) share the work, which actions need human approval, how a store goes live in two weeks, and how partners gain temporary access."
 htmlAttrs:
   lang: "en"
   data-polarity: "daylight"
@@ -15,7 +15,7 @@ deck:
   book: "Handing the Launch to AI Employees"
   title: "AI Employee Pitch"
   version: "0.1.0"
-  blurb: "77/97 and 20 human gates & roadmap, Donna's press gate, five-step onboarding and the partner handoff."
+  blurb: "Workflow coverage across nine standalone roles (102/120; six core 82/99), human approvals and roadmap gaps, Donna’s press gate, five-step onboarding and the partner handoff."
 layout: cover
 preloadImages: false
 ---

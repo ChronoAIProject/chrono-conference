@@ -50,6 +50,10 @@ Read rows two and three twice; they strike the anvil clean through:
 - **Admission gates are not theater—they catch fire every hour.** Nearly six out of ten PRs that ultimately merge fail on their first pass; mechanical gates force iterative multi-commit repair long before a bad lemma can reach `548388cd`.
 - **Humans supply the rudder, not the oars.** Thirty-one terse messages totaling under two thousand characters over thirty-three hours kept six Lean 4 units on course and banked fifty-two early refutations as protective rails.
 
+::: {.figure src="ch07-hitl-ablation-gate"}
+Three frontier model families scored 30 papers blind. Human+AI won `260/300` pairwise comparisons (`86.7%`), and its score standard deviations were `2.3–4.2×` lower than those of unverified human preprints. In the 20-claim ablation, adding an executable counterexample gate lowered the review false-positive rate from `30.0%` to `0.0%` and yielded `94.7%` F1. The separate audit covered `24,925` PRs. Among the `935` recent merged PRs in the repair analysis, `557` (`59.6%`) needed multiple commits to pass. Data are from `human-in-the-loop-automated-research v1.0` (November 27, 2026).
+:::
+
 And in keeping with this volume's rule against self-deception, we print all **four self-reported limitations** disclosed inside the `v1.0` manuscript itself without softening a syllable:
 
 1. **No randomized no-gate live control arm**: a live theorem repository cannot deliberately let unverified proofs corrupt `main` for an A/B test, so the PR audit is observational production telemetry rather than a randomized trial;

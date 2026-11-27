@@ -56,7 +56,7 @@ section: "FIB ATOM"
 ---
 
 <div class="body">
-  <p class="kicker">定理 1.1 · 定理 1.3</p>
+  <p class="kicker">定理 1.2 · 定理 1.4</p>
   <h2 class="t">黄金进位亏量只取<em>三值</em>，血统却<em>一代就分家</em></h2>
   <div class="split mt">
     <div>
@@ -293,9 +293,9 @@ section: "红色边界"
 ---
 
 <div class="body">
-  <p class="kicker">定理 6.1 · 外部认证 · 开放问题</p>
+  <p class="kicker">定理 6.3 · 外部认证 · 开放问题</p>
   <h2 class="t">等价归我们，证明归外部，<em class="warn">红区在更远处</em></h2>
-  <div class="row mt-s">
+  <div class="row">
     <img src="./img/ch06-three-evidence-tiers.zh.svg" alt="三层证据边界" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="grow">
 <TheoremCard class="compact" label="定理6.3" title="黎曼猜想与真实 ξ 整系数 Hankel 非负性的等价判据" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
@@ -303,7 +303,7 @@ section: "红色边界"
 $\mathrm{RiemannHypothesis}$ 成立，当且仅当对一切阶数 $N$ 与一切 $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$，真实 $\xi$ 系数的 Hankel 二次型非负。本定理只断言等价，不断言任何一端成立。
 
 </TheoremCard>
-<TheoremCard class="compact mt-s" label="开放问题6.4" title="黎曼猜想本身仍然开放" status="open" cite="prob-rh-open">
+<TheoremCard class="compact mt-s" label="开放问题6.4" title="古典黎曼猜想之后的开放前沿：Dedekind ERH、Grand RH、零点简单性与对关联" status="open" cite="prob-rh-open">
 
 Dedekind $\zeta$ 的扩展 RH、自守 $L$ 函数的大 RH、零点单重与对关联：<b>依然开放。</b>
 

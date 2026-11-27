@@ -56,7 +56,7 @@ section: "FIB ATOM"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 1.1 · Theorem 1.3</p>
+  <p class="kicker">Theorem 1.2 · Theorem 1.4</p>
   <h2 class="t"><em>Three</em> Carry Values; <em>One-Step</em> Lineage Split</h2>
   <div class="split mt">
     <div>
@@ -291,9 +291,9 @@ section: "The Red Frontier"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 6.1 · External Certification · Open Problem</p>
+  <p class="kicker">Theorem 6.3 · External Certification · Open Problem</p>
   <h2 class="t">Equivalence Frozen; <em class="warn">the Red Zone Moved Out</em></h2>
-  <div class="row mt-s">
+  <div class="row">
     <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="grow">
 <TheoremCard class="compact" label="Theorem 6.3" title="Integer Hankel Criterion for the Riemann Hypothesis" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
@@ -301,7 +301,7 @@ section: "The Red Frontier"
 $\mathrm{RiemannHypothesis} \iff$ the actual-$\xi$ integer Hankel form is nonnegative for every $N$ and every $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$. Equivalence only.
 
 </TheoremCard>
-<TheoremCard class="compact mt-s" label="Open problem 6.4" title="The Riemann Hypothesis Remains Open" status="open" cite="prob-rh-open">
+<TheoremCard class="compact mt-s" label="Open problem 6.4" title="Open Frontiers Beyond Classical RH: Extended/Grand RH, Zero Simplicity, and Pair Correlation" status="open" cite="prob-rh-open">
 
 Extended RH, Grand RH, simplicity of zeros, and pair correlation.
 
