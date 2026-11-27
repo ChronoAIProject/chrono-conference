@@ -1,4 +1,4 @@
-# Chapter 1: From a One-Bit Window to FIB ATOM
+# Chapter 1: One-Bit Window to FIB ATOM
 
 Richard Feynman had a signature teaching habit: whenever someone buried a deep phenomenon beneath thirty pages of baroque terminology, he stripped it down to the smallest mechanical toy—a spinning plate, a single coin, or two non-adjacent Fibonacci numbers—insisting on mastering that minimal model's quirks before attempting any grand cathedral.
 

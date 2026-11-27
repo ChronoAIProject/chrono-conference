@@ -2,7 +2,7 @@
 
 [Preface](README.md)
 
-- [Chapter 1: From a One-Bit Window to FIB ATOM](ch01-finite-observer-and-fib-atom.md)
+- [Chapter 1: One-Bit Window to FIB ATOM](ch01-finite-observer-and-fib-atom.md)
 - [Chapter 2: Mine No Gold Twice—Information Escape and the Truth DAG](ch02-information-escape-and-novelty.md)
 - [Chapter 3: Three-Way Balancing Forces Complex Space; Reciprocity Forces Three Dimensions](ch03-complex-numbers-and-3d-forced.md)
 - [Chapter 4: 2,128 Literature Problems—Flagship Proofs and Refutations](ch04-flagship-literature-resolutions.md)
