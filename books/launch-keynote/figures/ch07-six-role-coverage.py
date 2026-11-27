@@ -1,7 +1,7 @@
 SIZE = (500, 400)
 ALT = {
-    "zh": "2026 年 11 月 27 日 df5ef47 审计的九岗位覆盖率。六个核心岗位为 Donna 14/15、财务 24/28、Auto-X 12/14、社群 10/12、人力 14/20、行政 8/10，合计 82/99（82.8%）。单列的舆情监测员为 6/7，知识库维护员 3/3，复盘分析员 11/11；九岗位合计 102/120（85%）。",
-    "en": "The November 27, 2026 df5ef47 audit covers nine standalone roles. The six-core roster is Donna 14/15, Finance 24/28, Auto-X 12/14, Community 10/12, HR 14/20, and Admin 8/10, totaling 82/99 (82.8%). Sentiment Monitor is 6/7, KB Maintainer 3/3, and Retrospective Analyst 11/11. All nine roles total 102/120 (85%).",
+    "zh": "2026 年 11 月 27 日 df5ef47 审计的九岗位覆盖率。六个核心岗位为 Donna 14/15、财务 24/28、Auto-X 12/14、社群 10/12、人力降至 14/20、行政 8/10，合计 82/99（82.8%）。单列的舆情监测员为 6/7，知识库维护员 3/3，复盘分析员 11/11；九岗位合计 102/120（85%）。",
+    "en": "The November 27, 2026 df5ef47 audit covers nine standalone roles. The six-core roster is Donna 14/15, Finance 24/28, Auto-X 12/14, Community 10/12, HR down to 14/20, and Admin 8/10, totaling 82/99 (82.8%). Sentiment Monitor is 6/7, KB Maintainer 3/3, and Retrospective Analyst 11/11. All nine roles total 102/120 (85%).",
 }
 
 # 2026-11-27 full nine-role audit, nyxid-nyxbot-trials@df5ef47.
@@ -39,7 +39,8 @@ def draw(fig):
         fig.text(15, y, fig.t(zh, en), size=16 if aggregate else 15, middle=True, weight=700 if aggregate else 550)
         fig.rect(220, y - 7, 137, 14, color="edge", fill="panel", rx=3)
         fig.rect(220, y - 7, 137 * count / scope, 14, color=None, fill="cyan", rx=3)
-        fig.text(484, y, fig.t(f"{count}/{scope} · {percentage}%", f"{count}/{scope} · {percentage}%"),
+        downgrade = " ↓" if en == "HR" else ""
+        fig.text(484, y, f"{count}/{scope}{downgrade} · {percentage}%",
                  size=16 if aggregate else 15, middle=True, anchor="end", weight=700 if aggregate else 550)
     fig.text(150, 378, fig.t(f"六核心 {core_covered}/{core_total} · {core_rate}",
                              f"Six-core {core_covered}/{core_total} · {core_rate}"), size=15, color="dim")

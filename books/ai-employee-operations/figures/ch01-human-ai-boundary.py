@@ -1,6 +1,6 @@
 """Routine execution and retained human authority across nine operating roles."""
 
-SIZE = (680, 310)
+SIZE = (680, 344)
 WRAP = True
 ALT = {
     "zh": "九个独立 AI 员工岗位覆盖 120 项工作流中的 102 项。左栏的青色进度条按 102/120 比例绘制，"
@@ -20,21 +20,21 @@ CORE_COVERED, CORE_TOTAL = 82, 99
 def draw(fig):
     t = fig.t
     assert (ROLES, COVERED, TOTAL, CORE_COVERED, CORE_TOTAL) == (9, 102, 120, 82, 99)
-    autonomous, human = fig.row([330, 330], 310, gap=20)
+    autonomous, human = fig.row([330, 330], SIZE[1], gap=20)
     for panel, role in ((autonomous, "cyan"), (human, "magenta")):
-        panel.rect(2, 2, 326, 306, color=role, fill="panel", rx=8, width=1.6)
+        panel.rect(2, 2, 326, SIZE[1] - 4, color=role, fill="panel", rx=8, width=1.6)
 
     autonomous.text(165, 23, t("AI 员工执行", "AI employee execution"), size=18,
                     weight=600, color="cyan", anchor="middle", middle=True)
-    autonomous.text(18, 58, t(f"{COVERED}/{TOTAL}", f"{COVERED}/{TOTAL}"), size=28,
+    autonomous.text(18, 80, f"{COVERED}/{TOTAL}", size=28,
                     color="cyan", weight=600)
-    autonomous.text(312, 57, t(f"{ROLES} 个独立岗位", f"{ROLES} standalone roles"), size=15, anchor="end")
+    autonomous.text(312, 80, t(f"{ROLES} 个独立岗位", f"{ROLES} standalone roles"), size=15, anchor="end")
     width = 294
-    autonomous.rect(18, 72, width, 13, color="edge", fill="bg", rx=3)
-    autonomous.rect(18, 72, width * COVERED / TOTAL, 13, color=None, fill="cyan", rx=3)
-    autonomous.text(18, 104, t("九岗位覆盖工作流", "Nine-role workflow coverage"), size=14, color="dim")
+    autonomous.rect(18, 96, width, 13, color="edge", fill="bg", rx=3)
+    autonomous.rect(18, 96, width * COVERED / TOTAL, 13, color=None, fill="cyan", rx=3)
+    autonomous.text(18, 133, t("九岗位覆盖工作流", "Nine-role workflow coverage"), size=14, color="dim")
     core_rate = f"{CORE_COVERED / CORE_TOTAL:.1%}"
-    autonomous.text(18, 123, t(f"六核心 {CORE_COVERED}/{CORE_TOTAL} · {core_rate}",
+    autonomous.text(18, 158, t(f"六核心 {CORE_COVERED}/{CORE_TOTAL} · {core_rate}",
                                f"Six-core {CORE_COVERED}/{CORE_TOTAL} · {core_rate}"), size=14, color="dim")
     tasks = [
         t("受理", "Intake"), t("分流", "Triage"), t("拟稿", "Drafting"),
@@ -42,7 +42,7 @@ def draw(fig):
         t("定时发布", "Scheduled posts"),
     ]
     for index, task in enumerate(tasks):
-        y = 145 + index * 26
+        y = 182 + index * 26
         autonomous.dot(26, y, 4, "cyan")
         autonomous.text(42, y, task, size=15, middle=True)
 
@@ -56,7 +56,7 @@ def draw(fig):
         t("不可逆撤销", "Irreversible revocations"),
     ]
     for index, label in enumerate(permissions):
-        y = 63 + index * 57
+        y = 64 + index * 69
         human.rect(18, y, 294, 44, color="edge", fill="bg", rx=5)
         # A lock denotes a retained authorization, not a failure state.
         human.rect(29, y + 17, 16, 14, color="magenta", fill="magenta", fill_opacity=0.13, rx=2)
