@@ -33,10 +33,10 @@ section: "Scale"
     <Stat class="mt" value="720/720" label="consecutive UTC hours with commits · median 63/hr · 217 PRs/day" tone="magenta" />
     <Stat class="mt" value="2,278" label="open literature resolutions · 81 days" />
   </div>
-  <p class="sm muted mt-l">Three bilingual trureturing-books monographs: 347 chapters · 135 interactive labs · 83 films · 2,017 frozen theorems cited directly</p>
+  <p class="sm muted mt-l">Three bilingual trureturing-books monographs: 344 pages per language · 135 interactive labs · 83 films · 918 theorem blocks / 2,043 distinct frozen GIDs</p>
   <p class="sm muted mt-s">Red ink on the same page: Mathesis collects 225 source-backed papers, with <b class="hl-warn">0</b> Mathesis peer-review acceptances (Nov 27)</p>
 </div>
-<Source>trureturing@548388cd (Nov 27, 2026) · cadence Oct 28–Nov 26 · PRs Nov 20–26 · trureturing-books (Nov 28) · Lean 4.35.0</Source>
+<Source>trureturing@548388cd (Nov 27, 2026) · cadence Oct 28–Nov 26 · PRs Nov 20–26 · trureturing-books@b83ae321 (Nov 28) · Lean 4.35.0</Source>
 
 ---
 # 03 Part I
@@ -276,7 +276,7 @@ section: "Observatory"
       <Stat value="19,022" label="live truth nodes · 8 spiral galaxies · 17 public repositories" />
       <ul class="plain mt tight">
         <li><b>Eight functional departments, not subjects</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
-        <li class="mt-s"><b>1,049 scholars contacted, 485 replied</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 <i>RAIRO-ITA</i> paper · 15 arXiv preprints · 21 OEIS; 66 declined</span></li>
+        <li class="mt-s"><b>1,049 scholars contacted, 485 replied</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 <i>RAIRO-ITA</i> paper · 17 collaborative arXiv preprints · 21 OEIS; 66 declined</span></li>
         <li class="mt-s"><b>StrataLint: 23 active of 27 registered</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Now in trureturing-tools; a second gate beside the Lean 4 kernel</span></li>
       </ul>
     </div>

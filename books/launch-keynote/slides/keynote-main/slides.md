@@ -193,7 +193,7 @@ section: "北极星 · 诚实"
   <div class="g4 mt">
     <Stat class="md" value="485" label="位学者回信 · 联络 1,049 位（46.2%，47 国约 299 个机构域名）" />
     <Stat class="md" value="316" label="位肯定 · 44 位进入合写" />
-    <Stat class="md" value="21" label="条 OEIS · 15 篇 arXiv 预印本 · 1 篇 RAIRO-ITA 期刊论文" />
+    <Stat class="md" value="21" label="条 OEIS · 17 篇合作 arXiv 预印本 · 1 篇 RAIRO-ITA 期刊论文" />
     <Stat class="md" value="0" label="篇经 Mathesis 审稿流程录用（公开收录 225 篇）" tone="warn" />
   </div>
 <TheoremCard class="compact mt-l" label="开放问题" title="扩展黎曼猜想与大黎曼猜想" status="open">

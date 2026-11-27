@@ -33,10 +33,10 @@ section: "尺度"
     <Stat class="mt" value="720/720" label="连续 UTC 小时有提交 · 中位每小时 63 次 · 日均合入 217 PR" tone="magenta" />
     <Stat class="mt" value="2,278" label="道公开文献题解 · 81 天" />
   </div>
-  <p class="sm muted mt-l">三部双语专著 trureturing-books：347 章 · 135 个交互实验 · 83 部短片 · 直接引用 2,017 条冻结定理</p>
+  <p class="sm muted mt-l">三部双语专著 trureturing-books：344 双语页 · 135 个交互实验 · 83 部短片 · 918 定理块 / 2,043 独立冻结 GID</p>
   <p class="sm muted mt-s">同一页记下红字：Mathesis 收录 225 篇附源码论文，经 Mathesis 审稿流程录用 <b class="hl-warn">0</b> 篇（11-27）</p>
 </div>
-<Source>trureturing@548388cd（2026-11-27）· 节律 10-28 至 11-26 · PR 口径 11-20 至 11-26 · trureturing-books（11-28）· Lean 4.35.0</Source>
+<Source>trureturing@548388cd（2026-11-27）· 节律 10-28 至 11-26 · PR 口径 11-20 至 11-26 · trureturing-books@b83ae321（11-28）· Lean 4.35.0</Source>
 
 ---
 # 03 奇观一
@@ -278,7 +278,7 @@ section: "观测站"
       <Stat value="19,022" label="实时真理节点 · 8 座螺旋星系 · 17 个公开仓库" />
       <ul class="plain mt tight">
         <li><b>八个职能部门，不按学科分</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">研究方向 · 数学攻坚 · 独立评审 · 形式验证 · 理论书写 · 论文与知识 · 学术交流 · 工具与表达</span></li>
-        <li class="mt-s"><b>1,049 位学者联络，485 位回信</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 篇 <i>RAIRO-ITA</i> 论文 · 15 篇 arXiv 预印本 · 21 条 OEIS；66 位婉拒</span></li>
+        <li class="mt-s"><b>1,049 位学者联络，485 位回信</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 篇 <i>RAIRO-ITA</i> 论文 · 17 篇合作 arXiv 预印本 · 21 条 OEIS；66 位婉拒</span></li>
         <li class="mt-s"><b>StrataLint：23 条现役 / 27 条登记</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">已迁入 trureturing-tools，与 Lean 4 内核组成双重门禁</span></li>
       </ul>
     </div>

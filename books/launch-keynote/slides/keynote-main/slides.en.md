@@ -190,13 +190,13 @@ section: "North Star · Candor"
 <div class="body center">
   <p class="kicker">External Reality &amp; Red Lines</p>
   <h2 class="t">485 Scholars Replied. <em class="warn">Red Lines We Won't Hide.</em></h2>
-  <div class="g4 mt">
+  <div class="g4 mt-s">
     <Stat class="md" value="485" label="scholars replied of 1,049 contacted (46.2%, 47 countries)" />
     <Stat class="md" value="316" label="positive · 44 co-authoring" />
-    <Stat class="md" value="21" label="OEIS entries · 15 arXiv preprints · 1 RAIRO-ITA paper" />
+    <Stat class="md" value="21" label="OEIS entries · 17 collaborative arXiv preprints · 1 RAIRO-ITA paper" />
     <Stat class="md" value="0" label="Mathesis peer-review acceptances of 225 papers" tone="warn" />
   </div>
-<TheoremCard class="compact mt" label="Open problem" title="Extended and Grand Riemann Hypotheses" status="open">
+<TheoremCard class="compact mt-s" label="Open problem" title="Extended and Grand Riemann Hypotheses" status="open">
 
 The Extended RH for Dedekind $\zeta$ of general number fields, the Grand RH for automorphic $L$-functions, simplicity of zeros, and pair correlation: <b>still open today</b>.
 
