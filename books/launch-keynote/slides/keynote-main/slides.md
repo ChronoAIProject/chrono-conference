@@ -91,9 +91,9 @@ chapter: "02"
 section: "第二幕 · 北极星"
 ---
 
-<p class="kicker">第二幕 · The Omega Institute</p>
+<p class="kicker">第二幕 · The Omega Institute · 独立科研品牌，不是 ChronoAI 的商品</p>
 <h2 class="t">北极星：<em>逻辑的棘轮</em></h2>
-<p class="lead">只会奉承制造者的系统只是玩具。The Omega Institute 将这套工程底座开进了人类最冷酷的试车场——纯粹数学与 Lean 4 编译器内核。</p>
+<p class="lead">只会奉承制造者的系统只是玩具。The Omega Institute 把同一套工程纪律开进人类最冷酷的试车场（类比）——纯粹数学与 Lean 4 编译器内核。</p>
 
 ---
 # 06 规模
@@ -107,17 +107,17 @@ section: "北极星 · 规模"
     <div>
       <div class="eq"><Tex display t="x^2 = x + 1" /></div>
       <p class="lead mt">起点只是一个极简问题：当观察者只能透过有限二进制窗口看世界，什么结构必然出现？</p>
-      <p class="lead mt">从黄金方程与 <code>FIB ATOM</code> 出发，AI 昼夜推导，Lean 4 逐行裁决——<b>没有一条定理靠口才混过关。</b></p>
+      <p class="lead mt">从黄金方程与 <code>FIB ATOM</code> 出发，AI 昼夜推导，Lean 4 逐行裁决。棘轮一次只咬进一个齿（类比）——<b>没有一条定理靠口才混过关。</b></p>
     </div>
     <div class="g2">
-      <Stat class="md" value="167,819" label="冻结 Lean 4 定理" tone="ok" />
-      <Stat class="md" value="14,701" label="冻结模块 · 478 万行" />
-      <Stat class="md" value="720/720" label="连续 UTC 小时，每小时都有提交" tone="magenta" />
-      <Stat class="md" value="159" label="日均合入 PR" />
+      <Stat class="md" value="223,231" label="冻结 Lean 4 定理（冻结声明共 400,377）" tone="ok" />
+      <Stat class="md" value="17,968" label="冻结模块 · 602 万行" />
+      <Stat class="md" value="720/720" label="连续 UTC 小时有提交 · 中位每小时 63 次" tone="magenta" />
+      <Stat class="md" value="217" label="日均合入 PR（11-20 至 11-26）" />
     </div>
   </div>
 </div>
-<Source>The Omega Institute · trureturing@05ceb90（2026-11-20）· 节律与 PR 口径 @e55900e（11-19）· Lean 4.35.0</Source>
+<Source>The Omega Institute · trureturing@548388cd（2026-11-27）· 节律 10-28 至 11-26 · Lean 4.35.0</Source>
 
 ---
 # 07 文献
@@ -125,18 +125,18 @@ section: "北极星 · 文献"
 ---
 
 <div class="body">
-  <p class="kicker">74 天公开文献实战</p>
-  <h2 class="t">74 天，<em>2,128</em> 道公开文献题解</h2>
+  <p class="kicker">81 天公开文献实战 · 不考自己出的题</p>
+  <h2 class="t">81 天，<em>2,278</em> 道公开文献题解</h2>
   <div class="split mt">
     <img src="./img/ch05-trureturing-growth.zh.svg" alt="trureturing 文献题解累计曲线" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
-      <li><b class="hl-cyan">1,400 证明 · 728 反驳</b><br><span class="sm muted">日均约 29 道，其中量子与物理 582 道。</span></li>
-      <li class="mt"><b class="hl-cyan">674 道出自同行评审期刊</b><br><span class="sm muted">另有 arXiv 736 道、OEIS 693 道；124 道悬置逾十年，最久 47 年。</span></li>
+      <li><b class="hl-cyan">1,512 证明 · 766 反驳</b><br><span class="sm muted">日均约 28 道，其中量子与物理 598 道。</span></li>
+      <li class="mt"><b class="hl-cyan">684 道出自同行评审期刊</b><br><span class="sm muted">另有 arXiv 840 道、OEIS 729 道；127 道悬置逾十年，最久 47 年。</span></li>
       <li class="mt"><b class="hl-magenta">当场可验</b><br><span class="sm muted">反驳 PRA 2025 Fredkin 门上界（&gt;2 ebits）；证明 Higuchi–Sudbery 熵界与 CMP 2026 Zeitlin 曲率极限。</span></li>
     </ul>
   </div>
 </div>
-<Source>trureturing@05ceb90（2026-11-20）· 2,126 带日期 + 2 未标日期 = 2,128</Source>
+<Source>trureturing@548388cd（2026-11-27）· 09-08 至 11-27 · 2,276 带日期 + 2 未标日期 = 2,278</Source>
 
 ---
 # 08 铁律
@@ -172,10 +172,10 @@ section: "北极星 · 玻璃房"
   <div class="split mt">
     <img src="./img/trureturing-live.png" alt="live.trureturing.org 观测站实拍" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat value="19,022" label="实时 DAG 节点 · 8 个研究部门 · 17 个公开仓库" />
-      <ul class="plain mt-l">
-        <li><b>台上五步点检</b><br><span class="sm muted">文献猜想 → 点击绿标 → Lean 源码行 → 冻结状态与 statement_id → 本地单模块 lake build + #print axioms</span></li>
-        <li class="mt"><b>不信掌声，信编译器</b><br><span class="sm muted">任何外人都能五步点开任意一行，亲自复验。</span></li>
+      <Stat value="19,022" label="实时真理节点 · 8 座螺旋星系 · 17 个公开仓库" />
+      <ul class="plain mt">
+        <li><b>八个职能部门</b><br><span class="sm muted">研究方向 · 数学攻坚 · 独立评审 · 形式验证 · 理论书写 · 论文与知识 · 学术交流 · 工具与表达</span></li>
+        <li class="mt"><b>台上五步点检：不信掌声，信编译器</b><br><span class="sm muted">文献猜想 → 点击绿标 → Lean 源码行 → 冻结状态与 statement_id → 本地单模块 lake build + #print axioms</span></li>
       </ul>
     </div>
   </div>
@@ -189,21 +189,21 @@ section: "北极星 · 诚实"
 
 <div class="body center">
   <p class="kicker">外部核验与红线边界</p>
-  <h2 class="t">440 位学者回信，以及我们<em class="warn">绝不遮掩的红区</em></h2>
+  <h2 class="t">485 位学者回信，以及我们<em class="warn">绝不遮掩的红区</em></h2>
   <div class="g4 mt">
-    <Stat class="md" value="440" label="位学者回信 · 联络 838 位（53%，46 国 273 机构）" />
-    <Stat class="md" value="294" label="位肯定 · 44 位进入合写" />
-    <Stat class="md" value="18" label="条 OEIS · 1 篇 RAIRO-ITA 期刊论文" />
-    <Stat class="md" value="0" label="篇经 Mathesis 审稿流程录用（公开收录 212 篇）" tone="warn" />
+    <Stat class="md" value="485" label="位学者回信 · 联络 1,049 位（46.2%，47 国约 299 个机构域名）" />
+    <Stat class="md" value="316" label="位肯定 · 44 位进入合写" />
+    <Stat class="md" value="21" label="条 OEIS · 15 篇 arXiv 预印本 · 1 篇 RAIRO-ITA 期刊论文" />
+    <Stat class="md" value="0" label="篇经 Mathesis 审稿流程录用（公开收录 225 篇）" tone="warn" />
   </div>
-<TheoremCard class="compact mt-l" label="开放问题5.3" title="黎曼猜想与全阶整系数 Hankel 符号判定" status="open" cite="prob-keynote-rh">
+<TheoremCard class="compact mt-l" label="开放问题" title="扩展黎曼猜想与大黎曼猜想" status="open">
 
-黎曼猜想是否成立？等价地：真实 $\xi$ 函数对一切阶数 $N$ 与一切 $u \in \mathbb{Z}^{N+1}$ 的 Hankel 二次型是否恒非负？等价判据已冻结、8,490 个分片可重放——猜想本身<b>今天依然完全开放</b>。
+一般数域 Dedekind $\zeta$ 的扩展黎曼猜想、自守 $L$ 函数的大黎曼猜想、零点单重性与对关联：<b>今天依然开放</b>。
 
 </TheoremCard>
-  <p class="sm muted mt-s">同样记账：64 位学者婉拒；1,108 条来信中 1.5% 已有先例（10-31）。</p>
+  <p class="sm muted mt-s">经典 RH 与 Dirichlet 广义 RH 不在红区：Levent Alpöge 的 Lean 4 证明经 Lean 与 Mathlib 社区认证（11-20/21），是外部成果；The Omega Institute 只做 8,490 分片 <code>./verify</code> 重放，trureturing 内只证整系数 Hankel 等价。同样记账：66 位学者婉拒或要求停止联络。</p>
 </div>
-<Source>trureturing-outreach（11-08）· Mathesis（11-27）· 诚实是绿标唯一的重量</Source>
+<Source>trureturing-outreach@d22e63c8（11-27）· Mathesis（11-27）· riemann-hypothesis@c2dabc97 · 诚实是绿标唯一的重量</Source>
 
 ---
 # 11 第三幕
@@ -246,13 +246,13 @@ section: "整车 · 红皇后"
       <h4>员工拿门禁卡，不拿保险箱钥匙</h4>
       <ul class="plain">
         <li><b>现已开放公开注册</b>（无需邀请码），透明计量 <code>1 credit = 1 USD</code> + BYOK</li>
-        <li><b>55</b> 项内置服务 · <b>41</b> 份 OpenAPI→MCP 规范 · <b>9</b> 类消息渠道</li>
+        <li><b>55</b> 项内置服务 · <b>42</b> 份 OpenAPI→MCP 规范 · <b>9</b> 类消息渠道（dev 0.79.0 扩至 <b>11</b> 类）</li>
         <li>写操作默认人工批准；撤销权限，下一次调用即失效</li>
       </ul>
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0 · api.nyxid.ai（2026-11-26）· 热重载口径为 CMA · “红皇后”为类比</Source>
+<Source>ChronoAIProject/NyxID@v0.78.0（898fdf245d）· api.nyxid.ai 与 dev@1a69258325（2026-11-27）· 热重载口径为 CMA · “红皇后”“门禁卡”均为类比</Source>
 
 ---
 # 14 一张网
@@ -266,7 +266,7 @@ section: "整车 · 一张网"
     <div class="tile"><i>园区与家 · 已在跑</i><b>飞书遛机器狗</b><span>群里说一句「去溜达一圈」，经 NyxID → Home Assistant，机器狗立刻巡逻。</span></div>
     <div class="tile"><i>办公室 · 已在跑</i><b>零食管家</b><span>摄像头看见薯片见底，自动在群里征集口味、备好补货单。</span></div>
     <div class="tile"><i>凌晨三点 · 运维</i><b>先查日志，等你拍板</b><span>告警响起时查清根因、备好补丁；早上你点一下「批准」，它才动手。</span></div>
-    <div class="tile now"><i>此刻 · 发布会</i><b>1,108 席三维前厅</b><span>同一张网撑起 Donna 礼宾、原子锁座与 18 座实时祝贺花篮。</span></div>
+    <div class="tile now"><i>此刻 · 发布会</i><b>四面看台 1,108 席</b><span>同一张网撑起 Donna 礼宾、原子锁座与 18 座实时祝贺花篮。</span></div>
   </div>
 </div>
 <Source>nyx-homeassistant-node v1.1.1-alpha.52 · 团队真实演示与 12-17 会场</Source>
@@ -289,18 +289,18 @@ section: "整车 · 其余三层"
     <div class="card">
       <h4>CMA + heca · 云地双驾驶舱</h4>
       <h3>云端免运维 · 本地 27 类代理</h3>
-      <p>云端 <b>CMA</b> 四层托管；本地 <b>heca</b> 画布调度（361 次夜间构建）</p>
+      <p>云端 <b>CMA v0.12.0</b>（Apache-2.0）；本地 <b>heca</b> 画布调度（360 次夜间构建）</p>
       <p class="sm muted mt"><b class="hl-warn">诚实边界</b>　CMA 当前单主编码运行时；heca 源码尚未公开</p>
     </div>
     <div class="card hot">
-      <h4>chrono-harness v0.1.4 · 硬判官</h4>
-      <h3>27.2 万行 Rust · 16 个二进制</h3>
-      <p><code>FILEMAP</code> 漏登即拒、<code>DELTA</code> 精确选测</p>
-      <p class="sm muted mt"><b class="hl-warn">诚实边界</b>　SPEC 明确标明 <code>completeness_proven: false</code></p>
+      <h4>chrono-harness · 硬判官</h4>
+      <h3>25 个公开仓库 · 每平台 21 个二进制</h3>
+      <p>Copier v0.1.52 · 29 条原子规则；<code>FILEMAP</code> 漏登即拒、<code>DELTA</code> 精确选测</p>
+      <p class="sm muted mt"><b class="hl-warn">诚实边界</b>　判官源码硬编码 <code>completeness_proven: false</code></p>
     </div>
   </div>
 </div>
-<Source>第二卷《整车工程》附录 B · 2026-11-27 核对</Source>
+<Source>github.com/chrono-harness（2026-11-27）· CMA@v0.12.0（11-24）· heca 0.1.0-nightly-20261121-1 · 第二卷附录 B</Source>
 
 ---
 # 16 第四幕
@@ -319,18 +319,19 @@ section: "前厅 · 实景"
 ---
 
 <div class="body">
-  <p class="kicker">走进街角前厅</p>
-  <h2 class="t">Donna 与小花：面向<em>零撞座、零编造</em>的前厅闭环</h2>
+  <p class="kicker">走进街角前厅 · 11-27 全流程彩排</p>
+  <h2 class="t">Donna 与小花：<em>零撞座、零编造</em>，中位 29 秒</h2>
   <div class="split mt">
     <img src="./img/lobby-baskets.png" alt="street-corner 三维花篮长廊" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
-      <li><b class="hl-cyan">1,108 个剧场席位</b><br><span class="sm muted">6 圈原子锁座；第 1,109 位来宾无缝分流至 YouTube 与 LinkedIn 直播</span></li>
-      <li class="mt"><b class="hl-cyan">18 座花篮展台</b><br><span class="sm muted">小花引导挑花、写贺卡，事务化实时落位三维长廊</span></li>
+      <li><b class="hl-cyan">四面看台 × 8 排 = 1,108 席</b><br><span class="sm muted">北 248 · 南 248 · 东 306 · 西 306；逐排 144、144、144、140、136、136、132、132；座号如 N1-17、E1-20、W8-01</span></li>
+      <li class="mt"><b class="hl-cyan">2 排 × 9 块花篮地垫</b><br><span class="sm muted">basket-01 至 basket-18 沿世界地图墙排开；小花引导挑花、写贺卡，逐只落位</span></li>
+      <li class="mt"><b class="hl-cyan">彩排实测：13 次预约与签到，0 丢单</b><br><span class="sm muted">中位 29 秒，最长 63 秒——量出来的，不是喊出来的</span></li>
       <li class="mt"><b class="hl-cyan">Donna 30 题核验问答闸门</b><br><span class="sm muted">库内带出处即答；库外零编造，升级至 contact@chrono-ai.fun</span></li>
     </ul>
   </div>
 </div>
-<Source>street-corner 三维花篮实拍 · 第四卷第二至四章</Source>
+<Source>chronoai-lobby v40 席位目录 · trials#225/#226 全流程彩排（2026-11-27）· 第四卷第二至四章</Source>
 
 ---
 # 18 账本
@@ -338,19 +339,19 @@ section: "AI 员工 · 账本"
 ---
 
 <div class="body">
-  <p class="kicker">六个清晰岗位 · 2026-11-25</p>
-  <h2 class="t">77 项交给 AI，<em>20 项留守人工闸门或路线图边界</em></h2>
+  <p class="kicker">九个独立岗位 · 2026-11-27</p>
+  <h2 class="t">102 项交给 AI，<em>18 项留在人工闸门或路线图上</em></h2>
   <div class="split mt">
-    <img src="./img/ch07-six-role-coverage.zh.svg" alt="六岗工作流覆盖率" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/ch07-six-role-coverage.zh.svg" alt="核心岗位工作流覆盖率" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>为什么不追求 100% 自动？</h4>
-      <h3>敢把这 20 项留守审批闸门或路线图，<br>才是商户敢交出另外 77 项的理由。</h3>
-      <p>其中资金对外划转、合同签章、法律表态与库外媒体承诺锁在人工审批闸门后，其余仍在公开路线图上。</p>
-      <p class="sm muted mt"><b class="hl-warn">诚实声明</b>　财务 24/28 目前在演示账本验证，外部付费商户为 <b>0</b>；<b class="hl-amber">首批试点今天开放</b>。</p>
+      <h3>敢把这 18 项留在闸门后，<br>商户才敢交出另外 102 项。</h3>
+      <p>6 个核心岗位 82/99（82.8%）；加上舆情监测、知识库维护与复盘分析，9 岗合计 102/120（85.0%）。HR 主动从 15/20 降为 <b>14/20</b>：严格证据审计查出 PDF 读取短板——账本从不刷绿。</p>
+      <p class="sm muted mt"><b class="hl-warn">诚实声明</b>　11-27 全流程彩排 12 个环节首轮过 11 个；唯一故障是 Lark 群问答在网关队列卡住 65–70 分钟（NyxID#2534），改走定时一次性任务 3.0 分钟送达。外部付费商户 <b>0</b>；<b class="hl-amber">首批试点今天开放</b>。</p>
     </div>
   </div>
 </div>
-<Source>nyxbot-finance 与 nyxid-nyxbot-trials（2026-11-25）· 第四卷第一章</Source>
+<Source>nyxid-nyxbot-trials@df5ef47 与 trials#225/#226（2026-11-27）· chrono-goals@35d7cfd · 第四卷第一章</Source>
 
 ---
 # 19 邀请

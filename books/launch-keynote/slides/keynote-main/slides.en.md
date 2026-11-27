@@ -91,9 +91,9 @@ chapter: "02"
 section: "Act II · North Star"
 ---
 
-<p class="kicker">Act II · The Omega Institute</p>
+<p class="kicker">Act II · The Omega Institute · An Independent Research Brand, Not a ChronoAI Product</p>
 <h2 class="t">The North Star:<br><em>The Ratchet of Logic</em></h2>
-<p class="lead">A system that flatters its maker is a toy. The Omega Institute pointed this engineering stack at civilization's coldest proving ground—pure mathematics and the Lean 4 kernel.</p>
+<p class="lead">A system that flatters its maker is a toy. The Omega Institute drove the same engineering discipline onto civilization's coldest proving ground (analogy)—pure mathematics and the Lean 4 kernel.</p>
 
 ---
 # 06 Scale
@@ -107,17 +107,17 @@ section: "North Star · Scale"
     <div>
       <div class="eq"><Tex display t="x^2 = x + 1" /></div>
       <p class="lead mt">It began with one stubborn question: when an observer sees the world through a finite binary window, what structure must appear?</p>
-      <p class="lead mt">From the golden equation and <code>FIB ATOM</code>, agents derive day and night while Lean 4 rules on every line—<b>no theorem talks its way through.</b></p>
+      <p class="lead mt">From the golden equation and <code>FIB ATOM</code>, agents derive day and night while Lean 4 rules on every line. The ratchet bites one tooth at a time (analogy)—<b>no theorem talks its way through.</b></p>
     </div>
     <div class="g2">
-      <Stat class="md" value="167,819" label="frozen Lean 4 theorems" tone="ok" />
-      <Stat class="md" value="14,701" label="frozen modules · 4.78M lines" />
-      <Stat class="md" value="720/720" label="consecutive UTC hours, every hour with commits" tone="magenta" />
-      <Stat class="md" value="159" label="merged PRs per day" />
+      <Stat class="md" value="223,231" label="frozen Lean 4 theorems (400,377 frozen declarations)" tone="ok" />
+      <Stat class="md" value="17,968" label="frozen modules · 6.02M lines" />
+      <Stat class="md" value="720/720" label="consecutive UTC hours with commits · median 63 an hour" tone="magenta" />
+      <Stat class="md" value="217" label="merged PRs per day (Nov 20–26)" />
     </div>
   </div>
 </div>
-<Source>The Omega Institute · trureturing@05ceb90 (Nov 20, 2026) · cadence and PRs @e55900e (Nov 19) · Lean 4.35.0</Source>
+<Source>The Omega Institute · trureturing@548388cd (Nov 27, 2026) · cadence Oct 28–Nov 26 · Lean 4.35.0</Source>
 
 ---
 # 07 Literature
@@ -125,18 +125,18 @@ section: "North Star · Literature"
 ---
 
 <div class="body">
-  <p class="kicker">74 Days in the Open Literature</p>
-  <h2 class="t">74 Days. <em>2,128</em> Open Literature Resolutions.</h2>
+  <p class="kicker">81 Days in the Open Literature · No Self-Set Exams</p>
+  <h2 class="t">81 Days. <em>2,278</em> Open Literature Resolutions.</h2>
   <div class="split mt">
     <img src="./img/ch05-trureturing-growth.en.svg" alt="Cumulative trureturing literature resolutions" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
-      <li><b class="hl-cyan">1,400 proved · 728 refuted</b><br><span class="sm muted">About 29 a day, including 582 in quantum information and physics.</span></li>
-      <li class="mt"><b class="hl-cyan">674 from peer-reviewed journals</b><br><span class="sm muted">Plus 736 from arXiv and 693 from OEIS; 124 open for over a decade, the oldest for 47 years.</span></li>
+      <li><b class="hl-cyan">1,512 proved · 766 refuted</b><br><span class="sm muted">About 28 a day, including 598 in quantum information and physics.</span></li>
+      <li class="mt"><b class="hl-cyan">684 from peer-reviewed journals</b><br><span class="sm muted">Plus 840 from arXiv and 729 from OEIS; 127 open for over a decade, the oldest for 47 years.</span></li>
       <li class="mt"><b class="hl-magenta">Auditable live</b><br><span class="sm muted">Refuted the PRA 2025 Fredkin bound (&gt;2 ebits); proved the Higuchi–Sudbery entropy bound and the CMP 2026 Zeitlin curvature limit.</span></li>
     </ul>
   </div>
 </div>
-<Source>trureturing@05ceb90 (Nov 20, 2026) · 2,126 dated + 2 undated = 2,128</Source>
+<Source>trureturing@548388cd (Nov 27, 2026) · Sep 8–Nov 27 · 2,276 dated + 2 undated = 2,278</Source>
 
 ---
 # 08 Iron laws
@@ -172,10 +172,10 @@ section: "North Star · Glass House"
   <div class="split mt">
     <img src="./img/trureturing-live.png" alt="Live capture of the live.trureturing.org observatory" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat value="19,022" label="live DAG nodes · 8 departments · 17 public repositories" />
-      <ul class="plain mt-l">
-        <li><b>Five-step live audit</b><br><span class="sm muted">Published conjecture → green badge → Lean line → frozen state &amp; statement_id → local single-module lake build + #print axioms</span></li>
-        <li class="mt"><b>Never trust applause—trust the compiler</b><br><span class="sm muted">Anyone can open any line in five steps and check it themselves.</span></li>
+      <Stat value="19,022" label="live truth nodes · 8 spiral galaxies · 17 public repositories" />
+      <ul class="plain mt">
+        <li><b>Eight functional departments</b><br><span class="sm muted">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
+        <li class="mt"><b>Five-step audit: trust the compiler, not applause</b><br><span class="sm muted">Published conjecture → green badge → Lean line → frozen state &amp; statement_id → local single-module lake build + #print axioms</span></li>
       </ul>
     </div>
   </div>
@@ -189,21 +189,21 @@ section: "North Star · Candor"
 
 <div class="body center">
   <p class="kicker">External Reality &amp; Red Lines</p>
-  <h2 class="t">440 Scholars Replied. <em class="warn">Red Lines We Won't Hide.</em></h2>
+  <h2 class="t">485 Scholars Replied. <em class="warn">Red Lines We Won't Hide.</em></h2>
   <div class="g4 mt">
-    <Stat class="md" value="440" label="scholars replied of 838 contacted (53%, 46 countries · 273 institutions)" />
-    <Stat class="md" value="294" label="positive · 44 co-authoring" />
-    <Stat class="md" value="18" label="OEIS entries · 1 RAIRO-ITA paper" />
-    <Stat class="md" value="0" label="Mathesis peer-review acceptances of 212 papers" tone="warn" />
+    <Stat class="md" value="485" label="scholars replied of 1,049 contacted (46.2%, 47 countries)" />
+    <Stat class="md" value="316" label="positive · 44 co-authoring" />
+    <Stat class="md" value="21" label="OEIS entries · 15 arXiv preprints · 1 RAIRO-ITA paper" />
+    <Stat class="md" value="0" label="Mathesis peer-review acceptances of 225 papers" tone="warn" />
   </div>
-<TheoremCard class="compact mt" label="Open problem 5.3" title="The Riemann Hypothesis and All-Degree Integer Hankel Positivity" status="open" cite="prob-keynote-rh">
+<TheoremCard class="compact mt" label="Open problem" title="Extended and Grand Riemann Hypotheses" status="open">
 
-Does the Riemann Hypothesis hold? Equivalently: are the integer Hankel forms of the actual $\xi$-function nonnegative for every degree $N$ and every $u \in \mathbb{Z}^{N+1}$? The equivalence is frozen and 8,490 shards replay—the conjecture itself <b>remains completely open</b>.
+The Extended RH for Dedekind $\zeta$ of general number fields, the Grand RH for automorphic $L$-functions, simplicity of zeros, and pair correlation: <b>still open today</b>.
 
 </TheoremCard>
-  <p class="sm muted mt-s">Logged with equal candor: 64 scholars declined; 1.5% of 1,108 correspondence items had prior settlements (Oct 31).</p>
+  <p class="sm muted mt-s">Classical RH and Dirichlet GRH sit outside the red zone: Levent Alpöge's Lean 4 proof, certified by the Lean and Mathlib communities (Nov 20–21), is external work; The Omega Institute built only the 8,490-shard <code>./verify</code> replay, and trureturing proves only the integer Hankel equivalence. 66 scholars declined or asked to stop—logged too.</p>
 </div>
-<Source>trureturing-outreach (Nov 8) · Mathesis (Nov 27) · candor is what gives green badges weight</Source>
+<Source>trureturing-outreach@d22e63c8 (Nov 27) · Mathesis (Nov 27) · riemann-hypothesis@c2dabc97 · candor gives green badges their weight</Source>
 
 ---
 # 11 Act III
@@ -246,13 +246,13 @@ section: "Vehicle · Red Queen"
       <h4>Hand Over a Scoped Badge, Never the Vault Key</h4>
       <ul class="plain">
         <li><b>Open public signup today</b> (no invite code) · <code>1 credit = 1 USD</code> + BYOK</li>
-        <li><b>55</b> built-in services · <b>41</b> OpenAPI→MCP specs · <b>9</b> channel types</li>
+        <li><b>55</b> built-in services · <b>42</b> OpenAPI→MCP specs · <b>9</b> channel types (<b>11</b> on dev 0.79.0)</li>
         <li>Writes pause for human sign-off; revoke once and the next call fails</li>
       </ul>
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0 · api.nyxid.ai (Nov 26, 2026) · hot reload measured on CMA · "Red Queen" is an analogy</Source>
+<Source>ChronoAIProject/NyxID@v0.78.0 (898fdf245d) · api.nyxid.ai and dev@1a69258325 (Nov 27, 2026) · hot reload measured on CMA · "Red Queen" and "badge" are analogies</Source>
 
 ---
 # 14 One network
@@ -266,7 +266,7 @@ section: "Vehicle · One Network"
     <div class="tile"><i>Campus · Running</i><b>Walk the Robot Dog</b><span>One chat message routes through NyxID → Home Assistant and sends the quadruped out on patrol.</span></div>
     <div class="tile"><i>Office · Running</i><b>The Snack Butler</b><span>A shelf camera spots the chips running out, polls the team chat, and stages the restock order.</span></div>
     <div class="tile"><i>3:00 AM · Ops</i><b>Diagnose First, Wait for Yes</b><span>Reads logs and drafts the fix overnight; touches production only after your morning tap.</span></div>
-    <div class="tile now"><i>Live · Dec 17</i><b>1,108-Seat 3D Venue</b><span>The same network drives Donna's reception desk, atomic seat locks, and 18 live flower stands.</span></div>
+    <div class="tile now"><i>Live · Dec 17</i><b>Four Stands, 1,108 Seats</b><span>The same network drives Donna's reception desk, atomic seat locks, and 18 live flower stands.</span></div>
   </div>
 </div>
 <Source>nyx-homeassistant-node v1.1.1-alpha.52 · live team demos and the Dec 17 venue</Source>
@@ -289,18 +289,18 @@ section: "Vehicle · Stack & Candor"
     <div class="card">
       <h4>CMA + heca · Cloud &amp; Local</h4>
       <h3>Zero-ops Cloud · 27 Agent Types</h3>
-      <p>Four-layer <b>CMA</b> in the cloud; the <b>heca</b> canvas locally (361 nightlies)</p>
+      <p><b>CMA v0.12.0</b> (Apache-2.0) in the cloud; the <b>heca</b> canvas locally (360 nightlies)</p>
       <p class="sm muted mt"><b class="hl-warn">Honest limit</b>  CMA runs a single primary coding runtime today; heca source pending</p>
     </div>
     <div class="card hot">
-      <h4>chrono-harness v0.1.4 · Judges</h4>
-      <h3>272k lines of Rust · 16 binaries</h3>
-      <p>Fail-closed <code>FILEMAP</code>, precise <code>DELTA</code> test selection</p>
-      <p class="sm muted mt"><b class="hl-warn">Honest limit</b>  SPEC states <code>completeness_proven: false</code></p>
+      <h4>chrono-harness · Judges</h4>
+      <h3>25 public repos · 21 binaries per platform</h3>
+      <p>Copier v0.1.52 · 29 atomic rules; fail-closed <code>FILEMAP</code>, precise <code>DELTA</code> selection</p>
+      <p class="sm muted mt"><b class="hl-warn">Honest limit</b>  the judges hardcode <code>completeness_proven: false</code></p>
     </div>
   </div>
 </div>
-<Source>Vol. II, Appendix B · verified Nov 27, 2026</Source>
+<Source>github.com/chrono-harness (Nov 27, 2026) · CMA@v0.12.0 (Nov 24) · heca 0.1.0-nightly-20261121-1 · Vol. II, App. B</Source>
 
 ---
 # 16 Act IV
@@ -319,18 +319,19 @@ section: "Lobby · Live"
 ---
 
 <div class="body">
-  <p class="kicker">Inside street-corner</p>
-  <h2 class="t">Donna &amp; Blossom, Designed for<br><em>Zero Double-Booking, Zero Fabrication</em></h2>
+  <p class="kicker">Inside street-corner · Nov 27 Full-Flow Rehearsal</p>
+  <h2 class="t">Donna &amp; Blossom: <em>Zero Clashes</em>, 29 s Median</h2>
   <div class="split mt">
     <img src="./img/lobby-baskets.png" alt="The street-corner 3D flower-basket promenade" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
-      <li><b class="hl-cyan">1,108 theater seats</b><br><span class="sm muted">Six rings under atomic locks; guest #1,109 routes cleanly to the YouTube and LinkedIn livestreams</span></li>
-      <li class="mt"><b class="hl-cyan">18 flower stands</b><br><span class="sm muted">Blossom helps pick flowers and write cards, then commits each basket live along the 3D promenade</span></li>
-      <li class="mt"><b class="hl-cyan">Donna's 30-question press gate</b><br><span class="sm muted">Cited answers inside the bank; zero guessing outside it, escalating to contact@chrono-ai.fun</span></li>
+      <li><b class="hl-cyan">Four stands × 8 rows = 1,108 seats</b><br><span class="sm muted">N 248 · S 248 · E 306 · W 306; rows 144, 144, 144, 140, 136, 136, 132, 132; codes N1-17, E1-20, W8-01</span></li>
+      <li class="mt"><b class="hl-cyan">2 rows × 9 flower-basket mats</b><br><span class="sm muted">basket-01…basket-18 along the world-map wall, by Blossom</span></li>
+      <li class="mt"><b class="hl-cyan">Rehearsal: 13 bookings and check-ins, 0 dropped</b><br><span class="sm muted">Median 29 s, max 63 s—measured, not promised</span></li>
+      <li class="mt"><b class="hl-cyan">Donna's 30-question press gate</b><br><span class="sm muted">In-bank: cited answers. Off-bank: contact@chrono-ai.fun</span></li>
     </ul>
   </div>
 </div>
-<Source>Live 3D flower-basket render · Vol. IV, Ch. 2–4</Source>
+<Source>chronoai-lobby v40 seat catalog · trials#225/#226 full-flow rehearsal (Nov 27, 2026) · Vol. IV, Ch. 2–4</Source>
 
 ---
 # 18 Ledger
@@ -338,19 +339,19 @@ section: "AI Staff · Ledger"
 ---
 
 <div class="body">
-  <p class="kicker">Six Scoped Roles · Nov 25, 2026</p>
-  <h2 class="t">77 Workflows on AI. <em>20 Held Behind Human Gates or Roadmap.</em></h2>
+  <p class="kicker">Nine Standalone Roles · Nov 27, 2026</p>
+  <h2 class="t">102 on AI. <em>18 Behind Human Gates or Roadmap.</em></h2>
   <div class="split mt">
-    <img src="./img/ch07-six-role-coverage.en.svg" alt="Workflow coverage across six roles" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/ch07-six-role-coverage.en.svg" alt="Workflow coverage across the core roles" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>Why We Refuse 100% Automation</h4>
-      <h3>Holding those 20 behind human approval gates or on the roadmap is why a store owner can trust AI with the other 77.</h3>
-      <p>Of those, outbound wires, contract signatures, legal statements, and off-bank press commitments sit behind approval gates; the rest are roadmap items.</p>
-      <p class="sm muted mt"><b class="hl-warn">Full candor</b>  Finance 24/28 runs on demo ledgers today, with <b>0</b> external paying merchants; <b class="hl-amber">the pilot cohort opens today</b>.</p>
+      <h3>Hold those 18 behind the gates, and a store owner can hand over the other 102.</h3>
+      <p>Six core roles: 82/99 (82.8%); with the Sentiment Monitor, KB Maintainer, and Retrospective Analyst, nine roles reach 102/120 (85.0%). HR stepped down from 15/20 to <b>14/20</b> after a strict evidence audit caught a PDF-reading gap—never painted green.</p>
+      <p class="sm muted mt"><b class="hl-warn">Full candor</b>  Nov 27 rehearsal: 11 of 12 stages passed first try; a Lark Q&amp;A stalled 65–70 min in the gateway queue (NyxID#2534), bypassed by a one-shot task in 3.0 min. Paying merchants: <b>0</b>; <b class="hl-amber">the pilot cohort opens today</b>.</p>
     </div>
   </div>
 </div>
-<Source>nyxbot-finance and nyxid-nyxbot-trials (Nov 25, 2026) · Vol. IV, Ch. 1</Source>
+<Source>nyxid-nyxbot-trials@df5ef47 and trials#225/#226 (Nov 27, 2026) · chrono-goals@35d7cfd · Vol. IV, Ch. 1</Source>
 
 ---
 # 19 Invitation

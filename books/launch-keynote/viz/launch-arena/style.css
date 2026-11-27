@@ -2,7 +2,7 @@
    colours come from the tokens (var(--cyan) …), never from hex values. */
 #cv { cursor: pointer; }
 #stage { container-type: inline-size; }
-/* the floor plan (rings, promenade, stream exit) needs some height in the full lab; a cited figure fits its frame */
+/* the floor plan (four stands, lobby, stream exit) needs some height in the full lab; a cited figure fits its frame */
 .lab .center > #stage { min-height: max(340px, var(--hud-min-height, 0px), var(--plot-min-height, 0px)); }
 :root[data-embed] .lab .center > #stage { min-height: max(260px, var(--hud-min-height, 0px), var(--plot-min-height, 0px)); }
 :root[data-embed][data-figure] .lab .center > #stage { min-height: max(var(--hud-min-height, 0px), var(--plot-min-height, 0px)); }
@@ -10,10 +10,10 @@
 .hud-tl .big { color: var(--sigma); }
 .tagline em { color: var(--cyan); }
 dl.ro .v dd { color: var(--violet); }
-/* the ring sum and its check mark stay on one line: tighter word gaps, and the type shrinks with the readout when it must */
+/* the stand sum and its check mark stay on one line: tighter word gaps, and the type shrinks with the readout when it must */
 dl.ro .key dd { container-type: inline-size; }
 #roSeatedSub { display: block; white-space: nowrap; word-spacing: -0.22em; font-size: min(12px, 4.4cqi); }
-/* the readouts header names the rings in a few words (the full sum is the seated row below); the naive-race label and
+/* the readouts header names the stands and rows in a few words (the stand sum is the seated row below); the naive-race label and
    its count never split across lines */
 #readouts h2 .aside, #roDup .nobr { white-space: nowrap; }
 @container (max-width: 560px) {

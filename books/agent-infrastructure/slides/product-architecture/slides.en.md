@@ -31,7 +31,7 @@ section: "Overview"
     <thead><tr><th>#</th><th>Failure</th><th>Cure</th><th>One invariant</th></tr></thead>
     <tbody>
       <tr><td class="mono">01</td><td>Plaintext secrets</td><td><span class="mono hl-cyan">NyxID</span></td><td>Zero plaintext keys in agent context, always</td></tr>
-      <tr><td class="mono">02</td><td>Runaway loops</td><td><span class="mono hl-cyan">NyxBot</span></td><td>Triggers capped at 30 per hour, 300 per day</td></tr>
+      <tr><td class="mono">02</td><td>Runaway loops</td><td><span class="mono hl-cyan">NyxBot</span></td><td>Triggers default to 30/hour, 300/day; hard ceiling 300 / 3,000</td></tr>
       <tr><td class="mono">03</td><td>Prompt drift</td><td><span class="mono hl-cyan">Ornn</span></td><td>Skills ship scanned and version-frozen</td></tr>
       <tr><td class="mono">04</td><td>Colliding branches</td><td><span class="mono hl-cyan">CMA · heca</span></td><td>One isolated Git worktree per task (heca)</td></tr>
       <tr><td class="mono">05</td><td>Rules on paper</td><td><span class="mono hl-cyan">chrono-harness</span></td><td>An unregistered file is rejected, never guessed</td></tr>
@@ -39,7 +39,7 @@ section: "Overview"
     </tbody>
   </table>
 </div>
-<Source>The Complete Vehicle, Chapters 1–7 and Appendix B · checked 2026-11-25 to 11-27</Source>
+<Source>The Complete Vehicle, Chapters 1–7 and Appendix B · checked 2026-11-27 to 11-28</Source>
 
 ---
 # 03 Failure 01: secrets
@@ -48,7 +48,7 @@ chapter: "01"
 section: "Failure 01 · Secrets"
 ---
 
-<p class="kicker">Failure 01 · Plaintext keys</p>
+<p class="kicker">Failure 01 · Plaintext keys · analogy</p>
 <h2 class="t">Never Tape the Vault Code<br><em>to the Envelope</em></h2>
 <p class="lead">Put production keys in a <code>.env</code> and hand them to an agent that reads the open web: that is the envelope. One poisoned page mails every key away.</p>
 
@@ -67,13 +67,14 @@ section: "NyxID"
       <dl class="readout mt">
         <dt>Cadence</dt><dd>63 minors / 8 wks</dd>
         <dt>Signup</dt><dd>Open, no invite</dd>
-        <dt>Metering</dt><dd class="cy">1 credit = 1 USD</dd>
-        <dt>Keys</dt><dd>BYOK supported</dd>
+        <dt>Metering</dt><dd class="cy">1 credit = 1 USD · BYOK</dd>
+        <dt>MCP</dt><dd>42 OpenAPI→MCP specs</dd>
+        <dt>Channels</dt><dd>9 types · 11 on dev 0.79.0</dd>
       </dl>
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0 · api.nyxid.ai public config · 2026-11-03 to 11-26</Source>
+<Source>ChronoAIProject/NyxID · live api.nyxid.ai v0.78.0 (898fdf245d, 2026-11-23) · dev 0.79.0 (1a69258325, Meta channels behind feature flags) · checked 2026-11-27</Source>
 
 ---
 # 05 Failure 02: runaway
@@ -85,7 +86,7 @@ section: "Failure 02 · Runaway"
 <p class="kicker">Failure 02 · Runaway loops</p>
 <h2 class="t">Chatboxes Die of <em>Context Rot and Event Storms</em></h2>
 <p class="lead">Finance rules, a 30-question press script, 1,108 seats and the latest commits in one window: the instructions start to fight.</p>
-<p class="sm muted mt">Snapshot: 30-question bank as of 2026-11-27 (Vol. IV, Ch. 4) · 1,108 seats as of 2026-11-25</p>
+<p class="sm muted mt">Snapshot: 30-question bank as of 2026-11-27 (Vol. IV, Ch. 4) · 1,108 seats (4 stands × 8 rows) as of 2026-11-27</p>
 
 ---
 # 06 NyxBot: a mesh with hard budgets
@@ -96,17 +97,17 @@ section: "NyxBot"
   <p class="kicker">NyxBot · NyxAgent · nyx-assistant-sdk</p>
   <h2 class="t">Split the Chatbox Into a <em>Budgeted Specialist Mesh</em></h2>
   <div class="split mt">
-    <img src="./img/ch02-nyxbot-specialist-mesh.en.svg" alt="NyxBot specialist mesh: 8 specialists by default, 32 at most, 8 per group, 50 memory slots, 30 triggers per hour and 300 per day" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+    <img src="./img/ch02-nyxbot-specialist-mesh.en.svg" alt="NyxBot specialist mesh: 8 specialists by default, 32 at most, 8 per group, 50 memory slots, default 30 triggers per hour and 300 per day" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
-      <Stat value="300" unit="/day" label="hard cap on automatic triggers, plus 30 per hour" />
+      <Stat value="300" unit="/day" label="default cap on automatic triggers (plus 30 per hour by default); hard ceiling 300/hour, 3,000/day" />
       <ul class="plain mt">
         <li>Caps live in <code>assistant_settings.rs</code>, not in a prompt</li>
-        <li><code>nyx-assistant-sdk</code>: the browser only handshakes a NyxID session; zero keys in front-end code</li>
+        <li><code>nyx-assistant-sdk</code> v0.1.0 GA (Nov 27) → v0.2.4 (Nov 28): the browser only handshakes a NyxID session, zero keys in front-end code; voice relay, page screenshots, guided-tour briefings</li>
       </ul>
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0 · backend/src/models/assistant_*.rs · 2026-11-03</Source>
+<Source>ChronoAIProject/NyxID@v0.78.0 · backend/src/models/assistant_*.rs · nyx-assistant-sdk v0.2.4 (23 tags) · checked 2026-11-28</Source>
 
 ---
 # 07 Failure 03: drift
@@ -115,7 +116,7 @@ chapter: "03"
 section: "Failure 03 · Drift"
 ---
 
-<p class="kicker">Failure 03 · Prompt drift</p>
+<p class="kicker">Failure 03 · Prompt drift · analogy</p>
 <h2 class="t">A Prompt Pasted Seven Times <em>Is a Time Bomb</em></h2>
 <p class="lead">Any instruction that can fire a real API write is executable software. It needs a version, a security scan and a declared list of the permissions it uses.</p>
 
@@ -140,7 +141,7 @@ section: "Ornn"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/Ornn@v0.18.0 (109 paths · Nov 19 / 27, 2026) · nyx-skills@d77457c (Nov 27, 2026)</Source>
+<Source>ChronoAIProject/Ornn@v0.18.0 (109 paths · Nov 19 / 27, 2026) · nyx-skills@25ef75934d (163 skills · 164 plugin entries, Nov 27, 2026)</Source>
 
 ---
 # 09 Failure 04: concurrency
@@ -159,7 +160,7 @@ section: "CMA"
 ---
 
 <div class="body">
-  <p class="kicker">CMA · ChronoAI Managed Agent · cma.nyxid.ai</p>
+  <p class="kicker">CMA · ChronoAI Managed Agent · v0.12.0 · Apache-2.0</p>
   <h2 class="t">New Permissions, Same Sandbox: <em>About 2.1 s</em></h2>
   <div class="flow mt-l">
     <div class="step"><span class="i">01 · Sandbox</span><b>Isolated runs</b><p>One sandbox and file tree per instance; no cross-tenant bleed.</p></div>
@@ -169,10 +170,10 @@ section: "CMA"
   </div>
   <div class="card mt-l">
     <h4>Today's limit</h4>
-    <p>Hosted instances focus on one primary coding runtime; open hot-switching across other runtimes is still on the roadmap.</p>
+    <p>The code is public under Apache-2.0, yet it still ships with one primary coding runtime today; open hot-switching across other runtimes is still on the roadmap.</p>
   </div>
 </div>
-<Source>The Complete Vehicle, Chapter 4 · cma.nyxid.ai · checked 2026-11-26</Source>
+<Source>ChronoAIProject/cma@v0.12.0 (2026-11-24, LICENSE via PR #3647) · develop c57da2e1e2 (2026-11-27) · hot reload 2.152 s idle / 1.804 s busy · The Complete Vehicle, Chapter 4</Source>
 
 ---
 # 11 heca: local-first orchestration
@@ -187,15 +188,15 @@ section: "heca"
     <div style="align-self: center;">
       <Stat value="27" label="agent types: 6 primary providers + 21 ACP agents" />
       <dl class="readout mt">
-        <dt>Nightlies</dt><dd>361</dd>
+        <dt>Nightlies</dt><dd>360 · latest 20261121-1</dd>
         <dt>Approvals</dt><dd>Single queue</dd>
         <dt>Goals</dt><dd>Goal Ledger</dd>
-        <dt>Source</dt><dd class="hot">Not yet public</dd>
+        <dt>Source</dt><dd class="hot">Private · not yet public</dd>
       </dl>
     </div>
   </div>
 </div>
-<Source>The Complete Vehicle, Chapter 5 · checked 2026-11-26</Source>
+<Source>getheca/heca main 5111cd3b1f (2026-11-27) · latest tag 0.1.0-nightly-20261121-1 · The Complete Vehicle, Chapter 5</Source>
 
 ---
 # 12 Failure 05: governance
@@ -205,8 +206,8 @@ section: "Failure 05 · Governance"
 ---
 
 <p class="kicker">Failure 05 · Rules on paper</p>
-<h2 class="t">Polite Prompts Cannot Govern <em>59 Commits an Hour</em></h2>
-<p class="lead">Take <code>the-omega-institute/trureturing</code>: over 720 straight UTC hours, Oct 21 to Nov 19, 2026, the median was 59 commits per hour.</p>
+<h2 class="t">Polite Prompts Cannot Govern <em>63 Commits an Hour</em></h2>
+<p class="lead">Take <code>the-omega-institute/trureturing</code>: 720 straight UTC hours, Oct 28 to Nov 26, 2026, not one of them empty, a median of 63 commits per hour. Rules only hold once they live in the machine.</p>
 
 ---
 # 13 chrono-harness: executable judges
@@ -214,19 +215,20 @@ section: "chrono-harness"
 ---
 
 <div class="body">
-  <p class="kicker">chrono-harness v0.1.4 · sshx v1.0.0-beta.58</p>
+  <p class="kicker">github.com/chrono-harness · sshx v1.0.0-beta.58</p>
   <h2 class="t">Put the Judge in a Binary, <em>Not in a Prompt</em></h2>
   <div class="split mt">
     <img src="./img/ch06-harness-delta-pipeline.en.svg" alt="chrono-harness incremental judging pipeline: Git diff, explicit FILEMAP lookup, transitive DELTA selection, candidate judges, pass or fail evidence receipt" style="height: 580px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <ul class="plain" style="align-self: center;">
+      <li><b>25 public repos</b>: 21 prebuilt binaries per platform · Copier v0.1.52 · 29 atomic rules</li>
       <li><b>FILEMAP</b>: an unregistered dependency is rejected, never guessed</li>
       <li><b>DELTA</b>: run only what the change reaches; one prose edit wakes 2 of 14 units (schematic model)</li>
       <li><code>policy.mixed-warning</code>: touch rules and product together, get a visible alarm</li>
-      <li><code>completeness_proven: false</code>: no claim of exhaustive completeness</li>
+      <li><code>completeness_proven: false</code>: still hard-coded in runner, inputs, judge-* and cache. No claim of exhaustive completeness</li>
     </ul>
   </div>
 </div>
-<Source>ChronoAIProject/chrono-harness v0.1.4 (2026-11-13) · sshx v1.0.0-beta.58 (ChronoAIProject/consensus-rnd, 2026-11-25)</Source>
+<Source>github.com/chrono-harness (2026-11-27; the old ChronoAIProject/chrono-harness repo was archived 2026-11-22) · sshx v1.0.0-beta.58 (ChronoAIProject/consensus-rnd, 2026-11-25, MIT)</Source>
 
 ---
 # 14 Beyond the terminal
@@ -239,7 +241,7 @@ section: "Beyond the Terminal"
   <img class="mt" src="./img/ch07-physical-digital-twin.en.svg" alt="Digital and physical surfaces: chrono-metaverse 3D spaces and chrono-cd deploys; Living with AI reaches sensors and actuators through nyx-homeassistant-node and NyxID permissions" style="height: 460px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
   <p class="lead mt">Reading a sensor runs on its own. Moving a safety-critical physical actuator waits for a human.</p>
 </div>
-<Source>ChronoAIProject/nyx-homeassistant-node@v1.1.1-alpha.52 (2026-11-04) · The Complete Vehicle, Chapter 7</Source>
+<Source>ChronoAIProject/nyx-homeassistant-node@v1.1.1-alpha.52 (main 2026-11-15, alpha) · nyxid-esp-panel v1.0.0 (2026-11-20, Apache-2.0) · The Complete Vehicle, Chapter 7</Source>
 
 ---
 # 15 Honest readiness matrix
@@ -247,21 +249,21 @@ section: "Honest Matrix"
 ---
 
 <div class="body">
-  <p class="kicker">Readiness matrix · checked 2026-11-25 to 11-27</p>
+  <p class="kicker">Readiness matrix · checked 2026-11-27 to 11-28</p>
   <h2 class="t">What Runs Today, and <em class="magenta">What Doesn't Yet</em></h2>
   <table class="t mt">
     <thead><tr><th>Component</th><th>Live today</th><th>Current limit</th></tr></thead>
     <tbody>
-      <tr><td class="mono">NyxID</td><td>Public · v0.78.0 · open signup</td><td>Still shipping weekly; enterprise SLA matures with first merchants</td></tr>
+      <tr><td class="mono">NyxID</td><td>Public · v0.78.0 · 42 MCP specs</td><td>11 channel types of dev 0.79.0 not yet live; enterprise SLA matures with first merchants</td></tr>
       <tr><td class="mono">Ornn</td><td>Public Alpha · v0.18.0 · 163 public skills</td><td>Alpha; third-party submission review still growing</td></tr>
-      <tr><td class="mono">CMA</td><td>Running in the cloud · about 2.1 s hot revoke</td><td>One primary coding runtime today</td></tr>
-      <tr><td class="mono">heca</td><td>Daily internal production · 361 nightlies</td><td>Source not yet public</td></tr>
-      <tr><td class="mono">chrono-harness</td><td>Open source · v0.1.4 · 16 binaries</td><td><code>completeness_proven: false</code></td></tr>
+      <tr><td class="mono">CMA</td><td>v0.12.0 · Apache-2.0 · about 2.1 s hot revoke</td><td>Still one primary coding runtime today</td></tr>
+      <tr><td class="mono">heca</td><td>Daily internal production · 360 nightlies</td><td>Source repository still private</td></tr>
+      <tr><td class="mono">chrono-harness</td><td>25 public repos · 21 binaries per platform</td><td><code>completeness_proven: false</code> · root LICENSE pending</td></tr>
       <tr><td class="mono">NyxBot Finance</td><td>24 / 28 flows on demo ledgers</td><td>0 external paying merchants; read and draft only, no payment rights</td></tr>
     </tbody>
   </table>
 </div>
-<Source>The Complete Vehicle, Appendix B · trust boundaries and readiness matrix</Source>
+<Source>The Complete Vehicle, Appendix B · trust boundaries and readiness matrix · 0 external paying merchants (chrono-goals@35d7cfd, 2026-11-27)</Source>
 
 ---
 # 16 Closing
@@ -273,6 +275,7 @@ layout: cover
 <p class="lead">Don't trust the slides; read the repositories. Every number here carries a source and a date.</p>
 <dl class="readout mt">
   <dt>Code</dt><dd class="cy"><a href="https://github.com/ChronoAIProject">github.com/ChronoAIProject</a></dd>
+  <dt>Judges</dt><dd class="cy"><a href="https://github.com/chrono-harness/">github.com/chrono-harness</a></dd>
   <dt>Contact</dt><dd>contact@chrono-ai.fun</dd>
   <dt>Pinned</dt><dd><PinnedCommit /></dd>
 </dl>
