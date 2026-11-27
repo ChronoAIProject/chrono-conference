@@ -3,17 +3,17 @@
   "say": {"NyxID": "Nix I D", "OpenAPI-to-MCP": "Open A P I to M C P"},
   "music": {"bpm": 96, "progression": "d-minor"},
   "scenes": [
-    {"id": "leak", "name": "PLAINTEXT", "lead": 1.8, "tail": 0.5, "music": [0.8, 0.6, 0.3, 0.0, 0.3], "lines": [
-      ["Giving an autonomous agent your raw API keys is like taping your house keys to a stranger's forehead.", "把明文 API 密钥塞进 Agent 环境变量，就像把家门钥匙贴在陌生人额头上。"],
-      ["One poisoned webpage or prompt injection, and every connected service falls in a single turn.", "只需一页带毒网页或一次提示注入，所有相连服务就会在一轮之内全线沦陷。"]
+    {"id": "leak", "name": "ROOM 412", "lead": 0.65, "tail": 0.45, "music": [0.8, 0.6, 0.3, 0, 0.3], "lines": [
+      ["Try a hotel keycard. Room 412 opens. The linen closet stays locked. At noon the same card stops working.", "试一张酒店房卡。它能开 412 室，开不了布草间。到了中午，同一张卡也开不了房门。"],
+      ["A capability handle works on that principle. An agent can ask for a specific action. The proxy checks the grant.", "能力句柄遵循同样的原理。智能体请求一项具体操作，代理检查授权。"]
     ]},
-    {"id": "vault", "name": "VAULT", "lead": 0.3, "tail": 0.5, "music": [1.0, 0.8, 0.8, 0.5, 0.4], "lines": [
-      ["NyxID breaks that assumption. Secrets stay inside an encrypted proxy; the agent receives only a narrow capability handle.", "NyxID 打破了这个错误前提。密钥留在加密代理金库内，Agent 拿到的只是窄作用域能力句柄。"],
-      ["Fifty-five built-in services, forty-one OpenAPI-to-MCP specs, nine messaging channels—zero plaintext secrets in the model window.", "五十五项内置服务、四十一份 OpenAPI 转 MCP 规范、九类消息渠道——上下文里的明文密钥始终为零。"]
+    {"id": "vault", "name": "INSIDE THE PROXY", "lead": 0.32, "tail": 0.45, "music": [1, 0.8, 0.8, 0.5, 0.4], "lines": [
+      ["The agent presents its handle. NyxID checks the scope and attaches the credential inside the encrypted proxy. Zero plaintext keys enter agent context.", "智能体出示句柄。NyxID 检查权限范围，在加密代理内附上凭证。进入上下文的明文密钥为零。"],
+      ["A write that needs approval waits for a human. Revoke the grant and the proxy refuses the next request once the change takes effect.", "需要审批的写入会等待人工确认。吊销生效后，代理拒绝下一次请求。"]
     ]},
-    {"id": "revoke", "name": "REVOKE", "lead": 0.3, "tail": 3.2, "music": [1.0, 0.7, 0.6, 0.6, 0.4], "lines": [
-      ["Write operations pause at a human approval gate, and revoking a grant converges in roughly two seconds without restarting the sandbox.", "写操作在人工闸门前暂停，吊销授权约两秒热生效，无需重启沙箱。"],
-      ["Trust boundaries are engineering, not polite instructions.", "信任边界靠工程硬约束，不靠客气的提示词。"]
+    {"id": "catalog", "name": "PRODUCTION AND DEVELOPMENT", "lead": 0.32, "tail": 1.2, "music": [1, 0.7, 0.6, 0.6, 0.4], "lines": [
+      ["On November 27, production had 55 built-in services, 42 live OpenAPI-to-MCP specs, and seven gateways.", "11 月 27 日，生产环境提供 55 项内置服务、42 份上线的 OpenAPI 转 MCP 规范和 7 个网关。"],
+      ["Production supports nine messaging channel types. Development version 0.79.0 expands to eleven.", "生产版本支持 9 类消息渠道，开发版本 0.79.0 扩展到 11 类。"]
     ]}
   ]
 }

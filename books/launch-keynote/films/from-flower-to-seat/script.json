@@ -3,17 +3,18 @@
   "say": {},
   "music": {"bpm": 84, "progression": "d-minor"},
   "scenes": [
-    {"id": "arrival", "name": "STREET CORNER", "lead": 1.8, "tail": 0.5, "music": [1.0, 0.4, 0.4, 0.0, 0.2], "lines": [
-      ["Step onto Street Corner—no studio camera, no rented ballroom, just a living three-dimensional lobby.", "踏上街角前厅——没有摄影棚，没有租来的宴会厅，只有一座实时运转的三维会场。"],
-      ["At the reception desk, Concierge Donna greets every visitor against a thirty-question verified press bank.", "前台处，礼宾 Donna 依据三十题核验问答库迎接每一位来宾。"]
+    {"id": "flowers", "name": "THE MAP WALL", "lead": 0.65, "tail": 0.45, "music": [1, 0.4, 0.4, 0, 0.2], "lines": [
+      ["Start with a flower. Send a bouquet and a signed card to Blossom through the flower bot.", "从一束花开始。通过花店机器人把花束和署名贺卡交给小花。"],
+      ["Follow the world-map wall. Nine mats in front, nine behind. Each basket has its own address.", "沿着世界地图墙看，前后各九块垫子。每只花篮都有自己的编号。"]
     ]},
-    {"id": "seats", "name": "SEAT LOCK", "lead": 0.3, "tail": 0.5, "music": [0.9, 0.8, 0.8, 0.6, 0.5], "lines": [
-      ["Behind her rise six concentric theater rings: exactly one thousand one hundred eight seats, protected by an atomic booking lock.", "她身后是六圈同心剧场：恰好一千一百零八个座位，由原子锁保护、目标零撞座。"],
-      ["When the theater fills, guest one thousand one hundred nine flows seamlessly to the live stream.", "当剧场坐满，第一千一百零九位观众将无缝分流至直播流。"]
+    {"id": "seats", "name": "READ A SEAT CODE", "lead": 0.32, "tail": 0.45, "music": [0.9, 0.8, 0.8, 0.6, 0.5], "lines": [
+      ["Now book through Donna at the front desk. Read N1-17 as north stand, row one, seat seventeen.", "再找前台 Donna 订座。N1-17 指北看台第一排十七号。"],
+      ["Face the stage. North and south hold 248 each. East and west hold 306 each. Eight tiers per stand, 1,108 seats in all.", "四面看台围住舞台。南北各 248 席，东西各 306 席，每面八排，共 1,108 席。"],
+      ["Read across all four stands. The first three rows hold 144 seats apiece. The eighth holds 132.", "按排汇总四面看台：前三排各 144 席，第八排有 132 席。"]
     ]},
-    {"id": "flowers", "name": "FLOWER TOWN", "lead": 0.3, "tail": 3.2, "music": [1.0, 0.6, 0.6, 0.3, 0.3], "lines": [
-      ["Across the square in Flower Town, Blossom tends eighteen numbered flower-basket stands.", "广场对面的花店里，小花照看着十八座编号花篮展台。"],
-      ["Pick a bouquet, sign a card, and watch your basket materialize along the promenade before the keynote begins.", "选一束花、写下贺卡，开场前就能看见花篮落座在会场长廊。"]
+    {"id": "arrival", "name": "THE REHEARSAL CLOCK", "lead": 0.32, "tail": 1.2, "music": [1, 0.6, 0.6, 0.3, 0.3], "lines": [
+      ["On November 27, Donna handled thirteen booking and check-in operations. Zero dropped. Median response, twenty-nine seconds.", "11 月 27 日排练中，Donna 处理了 13 次订座和签到操作，零遗漏，响应中位数为 29 秒。"],
+      ["The seat glow took fifty-five to eighty-one seconds. Once all seats are booked, guest 1,109 gets the livestream link.", "座位灯在 55 至 81 秒内亮起。满座后，第 1,109 位来宾收到直播链接。"]
     ]}
   ]
 }
