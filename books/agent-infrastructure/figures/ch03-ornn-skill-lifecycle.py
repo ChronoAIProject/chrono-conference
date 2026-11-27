@@ -11,8 +11,8 @@ ALT = {
           "nyx-skills contains 163 skills, and Ornn has 286 test files.",
 }
 
-# Ornn@v0.18.0 (2026-11-19): 134 ops on 109 paths in the full OpenAPI spec.
-# Skill catalog: nyx-skills@d77457c (2026-11-27).
+# Ornn@v0.18.0 (2026-11-27): 134 ops on 109 paths in the full OpenAPI spec.
+# Skill catalog: nyx-skills@25ef75934d (2026-11-27).
 OPERATIONS, SKILLS, TEST_FILES = 134, 163, 286
 
 
@@ -52,5 +52,5 @@ def draw(fig):
     ]:
         fig.text(x, 270, t(str(value), str(value)), size=25, color="cyan", weight=600, anchor="middle")
         fig.text(x, 290, label, size=15, anchor="middle")
-    fig.text(250, 314, t("2026-11-19 / 27 · Ornn v0.18.0 & nyx-skills", "2026-11-19 / 27 · Ornn v0.18.0 & nyx-skills"),
+    fig.text(250, 314, t("2026-11-27 · Ornn v0.18.0 & nyx-skills", "2026-11-27 · Ornn v0.18.0 & nyx-skills"),
              size=15, color="dim", anchor="middle")

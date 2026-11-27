@@ -1,59 +1,63 @@
-"""Exact seating counts plotted as six concentric rings and a basket promenade."""
+"""Architectural seat stands and the two-by-nine flower-basket mat grid."""
 
-import math
-
-SIZE = (480, 340)
+SIZE = (708, 450)
+WRAP = True
 ALT = {
-    "zh": "剧场示意图以每个小点代表一个座位。由内向外六圈分别有 96、144、176、204、232、"
-          "256 席，共 1,108 席；最外围步道上的 18 个菱形代表花篮位。右侧逐圈列出准确容量。",
-    "en": "Each small dot in the theater schematic represents a seat. Six concentric rings contain "
-          "96, 144, 176, 204, 232 and 256 seats from inside to outside, for 1,108 seats total. "
-          "Eighteen diamonds on the outer promenade represent flower basket slots. The legend gives exact capacities.",
+    "zh": "street-corner 采用四个方向席位区的八层座位架构。北、南各 248 席，东、西各 306 席。八行容量为 144、144、144、140、136、136、132、132，总计 1,108 席。右侧是 2×9 的 basket-01..18 花篮垫网格。",
+    "en": "The street-corner theater uses four directional stands with eight tiered rows. North and South hold 248 seats each, East and West 306 each. Row capacities are 144, 144, 144, 140, 136, 136, 132 and 132, totaling 1,108 seats. The right panel shows the 2×9 basket-01..18 mat grid.",
 }
 
-# Conference figure brief: virtual theater allocation.
-RING_COUNTS = (96, 144, 176, 204, 232, 256)
-BASKETS = 18
+# Audited chronoai-lobby v40 seat-catalog.json geometry, 2026-11-27.
+STAND_SEATS = (("N", 248), ("S", 248), ("E", 306), ("W", 306))
+ROW_SEATS = (144, 144, 144, 140, 136, 136, 132, 132)
+BASKET_MATS = tuple(f"basket-{index:02d}" for index in range(1, 19))
+
+
+def _stand(fig, x, y, width, direction, capacity, color):
+    fig.rect(x, y, width, 100, color=color, fill="panel", rx=6, width=1.5)
+    fig.text(x + width / 2, y + 21, fig.t(f"{direction} 区 · {capacity}", f"{direction} stand · {capacity}"),
+             size=16, color=color, weight=700, anchor="middle", middle=True)
+    max_width = width - 24
+    for index, row_capacity in enumerate(ROW_SEATS):
+        row_width = max_width * row_capacity / max(ROW_SEATS)
+        row_x = x + (width - row_width) / 2
+        row_y = y + 37 + index * 7
+        fig.rect(row_x, row_y, row_width, 5, color=None, fill=color, rx=2)
 
 
 def draw(fig):
     t = fig.t
-    total = sum(RING_COUNTS)
-    assert RING_COUNTS == (96, 144, 176, 204, 232, 256)
-    assert total == 1108 and BASKETS == 18
-    cx, cy = 153, 170
-    radii = (49, 65, 80, 95, 110, 125)
-    colors = ("cyan", "blue", "cyan", "blue", "cyan", "blue")
-    drawn_seats = 0
-    for radius, count, color in zip(radii, RING_COUNTS, colors):
-        for index in range(count):
-            angle = 2 * math.pi * index / count
-            fig.dot(cx + radius * math.cos(angle), cy + radius * math.sin(angle), 1.15, color)
-            drawn_seats += 1
-    assert drawn_seats == total
-    fig.circle(cx, cy, 142, color="dim", width=1.2, dash="3 4")
-    basket_points = [
-        (cx + 142 * math.cos(2 * math.pi * i / BASKETS),
-         cy + 142 * math.sin(2 * math.pi * i / BASKETS))
-        for i in range(BASKETS)
-    ]
-    assert len(basket_points) == BASKETS
-    for x, y in basket_points:
-        fig.polygon([(x, y - 4), (x + 4, y), (x, y + 4), (x - 4, y)],
-                    "magenta", fill_opacity=1)
-    fig.text(cx, cy - 7, t(f"{total:,}", f"{total:,}"), size=22, weight=600, anchor="middle", middle=True)
-    fig.text(cx, cy + 15, t("座位", "Seats"), size=15, color="dim", anchor="middle", middle=True)
+    total = sum(capacity for _, capacity in STAND_SEATS)
+    assert total == 1108 and len(STAND_SEATS) == 4 and len(ROW_SEATS) == 8
+    assert ROW_SEATS == (144, 144, 144, 140, 136, 136, 132, 132)
+    assert len(BASKET_MATS) == 18 and BASKET_MATS[0] == "basket-01" and BASKET_MATS[-1] == "basket-18"
 
-    fig.text(316, 24, t("由内至外", "Inside → outside"), size=16, weight=600)
-    for index, (count, color) in enumerate(zip(RING_COUNTS, colors), 1):
-        y = 54 + (index - 1) * 35
-        fig.dot(322, y, 4.5, color)
-        fig.text(335, y, t(f"第 {index} 圈", f"Ring {index}"), size=15, middle=True)
-        fig.text(467, y, t(str(count), str(count)), size=16, weight=600, anchor="end", middle=True)
-        fig.rect(335, y + 10, 128 * count / max(RING_COUNTS), 4, color=None, fill=color, rx=2)
-    fig.line(315, 255, 468, 255, "edge", 1.2)
-    fig.polygon([(322, 272), (327, 277), (322, 282), (317, 277)], "magenta", fill_opacity=1)
-    fig.text(335, 277, t("花篮位", "Basket slots"), size=15, middle=True)
-    fig.text(467, 277, t(str(BASKETS), str(BASKETS)), size=16, weight=600, anchor="end", middle=True)
-    fig.text(240, 332, t("座位与步道示意 · 每点一席", "Schematic · one dot per seat"),
-             size=15, color="dim", anchor="middle")
+    theater, capacities = fig.row([446, 246], SIZE[1])
+    theater.text(223, 32, t("Street Corner · 四区八行席位架构", "Street Corner · four stands, eight tiers"),
+                 size=18, weight=700, anchor="middle")
+    _stand(theater, 143, 52, 160, "N", 248, "cyan")
+    _stand(theater, 143, 290, 160, "S", 248, "blue")
+    _stand(theater, 5, 171, 134, "W", 306, "violet")
+    _stand(theater, 307, 171, 134, "E", 306, "magenta")
+
+    theater.rect(153, 171, 140, 100, color="now", fill="now", fill_opacity=0.10, rx=7)
+    theater.text(223, 204, t(f"{total:,} 席", f"{total:,} seats"), size=20, color="now", weight=700,
+                 anchor="middle", middle=True)
+    theater.text(223, 239, t("四区合计", "four-stand total"), size=16, color="dim", anchor="middle", middle=True)
+
+    capacities.rect(2, 52, 242, 252, color="edge", fill="panel", rx=7)
+    capacities.text(123, 79, t("八行容量", "Eight row capacities"), size=16, weight=700, anchor="middle")
+    for index, row_capacity in enumerate(ROW_SEATS, 1):
+        y = 102 + (index - 1) * 26
+        capacities.text(17, y, t(f"第 {index} 行", f"Row {index}"), size=16, middle=True)
+        capacities.text(229, y, str(row_capacity), size=16, weight=650, anchor="end", middle=True)
+
+    capacities.rect(2, 320, 242, 119, color="edge", fill="panel", rx=7)
+    capacities.text(123, 347, t("Flower Town · 2×9 花篮垫", "2×9 basket mats"), size=16, weight=700, anchor="middle")
+    for index, _ in enumerate(BASKET_MATS):
+        column, row = index % 9, index // 9
+        x, y = 27 + column * 22, 361 + row * 23
+        capacities.rect(x, y, 16, 16, color="magenta", fill="magenta", fill_opacity=0.18, rx=2)
+    capacities.text(123, 424, "basket-01 … basket-18", size=16, color="magenta", anchor="middle")
+
+    theater.text(223, 424, "@chronoai_frontdesk_bot · @flowerassis_bot", size=16, color="dim", anchor="middle")

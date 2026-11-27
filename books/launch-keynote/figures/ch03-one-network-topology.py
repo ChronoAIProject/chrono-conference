@@ -1,17 +1,17 @@
 SIZE = (480, 320)
 ALT = {
-    "zh": "NyxID v0.78.0 位于网络中央。左侧是 55 项内置服务和 41 份 OpenAPI 转 MCP 规范，右侧是 7 家 LLM 网关提供方和 9 种消息渠道。下方连接 Ornn 的 163 项技能以及 CMA 云端与 heca 本地运行环境，后者支持 27 个智能体接入。NyxID 取 2026 年 11 月 3 日发布标签，技能及 heca 口径取 11 月 26 日盘点。",
-    "en": "NyxID v0.78.0 is the hub. To the left are 55 built-in services and 41 OpenAPI-to-MCP specs. To the right are seven LLM gateway providers and nine messaging channel types. Below are 163 Ornn skills, the CMA cloud runtime, and 27 agent integrations in the heca local runtime. Counts come from the November 3 NyxID tag and the November 26 skills and heca inventory.",
+    "zh": "NyxID v0.78.0 位于网络中央。左侧是 55 项内置服务和 42 份 OpenAPI 转 MCP 规范，右侧是 7 家网关提供方和 9 种消息渠道。下方连接 Ornn 的 163 项技能以及 CMA 云端与 heca 本地运行环境，后者支持 27 个智能体接入。NyxID 现场快照日期为 2026 年 11 月 27 日。",
+    "en": "NyxID v0.78.0 is the hub. To the left are 55 built-in services and 42 OpenAPI-to-MCP specs. To the right are seven gateway providers and nine messaging channel types. Below are 163 Ornn skills, the CMA cloud runtime, and 27 agent integrations in the heca local runtime. The live NyxID snapshot is dated November 27, 2026.",
 }
 
-SERVICES, SPECS, GATEWAYS, CHANNEL_TYPES = 55, 41, 7, 9
+SERVICES, SPECS, GATEWAYS, CHANNEL_TYPES = 55, 42, 7, 9
 SKILLS = 163
 HECA_PRIMARY, HECA_ACP = 6, 21
 
 
 def draw(fig):
     heca_agents = HECA_PRIMARY + HECA_ACP
-    assert (SERVICES, SPECS, GATEWAYS, CHANNEL_TYPES, SKILLS, heca_agents) == (55, 41, 7, 9, 163, 27)
+    assert (SERVICES, SPECS, GATEWAYS, CHANNEL_TYPES, SKILLS, heca_agents) == (55, 42, 7, 9, 163, 27)
 
     for edge_x, hub_edge, color in ((159, 179, "cyan"), (321, 301, "violet")):
         fig.line(edge_x, 105, hub_edge, 105, color, 2)
@@ -43,5 +43,5 @@ def draw(fig):
         fig.rect(x - 75, 197, 150, 66, color="blue", fill="blue", fill_opacity=0.08, rx=8)
         fig.text(x, 223, title, size=18, color="blue", weight=700, anchor="middle")
         fig.text(x, 247, note, size=15, anchor="middle")
-    fig.text(240, 300, fig.t("NyxID：2026-11-03 · 技能与 heca：11-26", "NyxID: 2026-11-03 · Skills and heca: Nov 26"),
+    fig.text(240, 300, fig.t("NyxID：2026-11-27 · 技能与 heca：11-27", "NyxID: 2026-11-27 · Skills and heca: Nov 27"),
              size=15, color="dim", anchor="middle")

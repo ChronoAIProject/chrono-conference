@@ -1,37 +1,46 @@
-SIZE = (500, 310)
+SIZE = (500, 400)
 ALT = {
-    "zh": "2026 年 11 月 25 日演示清单的六岗位覆盖率。接待 Donna 为 13/15（87%），财务 24/28（86%），社媒 Auto-X 11/13（85%），社群 9/11（82%），人力 15/20（75%），行政 5/10（50%）。合计 77/97（79%），由任务数加总计算。",
-    "en": "Demo checklist coverage by role as of November 25, 2026. Concierge Donna covers 13 of 15 workflows (87%), Finance 24 of 28 (86%), Social Auto-X 11 of 13 (85%), Community 9 of 11 (82%), HR 15 of 20 (75%), and Admin 5 of 10 (50%). Across all six roles, 77 of 97 workflows are covered (79%).",
+    "zh": "2026 年 11 月 27 日 df5ef47 审计的九岗位覆盖率。六个核心岗位为 Donna 14/15、财务 24/28、Auto-X 12/14、社群 10/12、人力降至 14/20、行政 8/10，合计 82/99（82.8%）。单列的舆情监测员为 6/7，知识库维护员 3/3，复盘分析员 11/11；九岗位合计 102/120（85%）。",
+    "en": "The November 27, 2026 df5ef47 audit covers nine standalone roles. The six-core roster is Donna 14/15, Finance 24/28, Auto-X 12/14, Community 10/12, HR down to 14/20, and Admin 8/10, totaling 82/99 (82.8%). Sentiment Monitor is 6/7, KB Maintainer 3/3, and Retrospective Analyst 11/11. All nine roles total 102/120 (85%).",
 }
 
-# 2026-11-25 demo coverage inventory, nyxbot-finance and nyxid-nyxbot-trials.
+# 2026-11-27 full nine-role audit, nyxid-nyxbot-trials@df5ef47.
 ROLES = (
-    ("接待 Donna", "Concierge Donna", 13, 15),
+    ("接待 Donna", "Concierge Donna", 14, 15),
     ("财务", "Finance", 24, 28),
-    ("社媒 Auto-X", "Social Auto-X", 11, 13),
-    ("社群", "Community", 9, 11),
-    ("人力", "HR", 15, 20),
-    ("行政", "Admin", 5, 10),
+    ("社媒 Auto-X", "Social Auto-X", 12, 14),
+    ("社群", "Community", 10, 12),
+    ("人力", "HR", 14, 20),
+    ("行政", "Admin", 8, 10),
+    ("舆情监测员", "Sentiment Monitor", 6, 7),
+    ("知识库维护员", "KB Maintainer", 3, 3),
+    ("复盘分析员", "Retrospective Analyst", 11, 11),
 )
 
 
 def draw(fig):
     covered = sum(row[2] for row in ROLES)
     total = sum(row[3] for row in ROLES)
-    assert (len(ROLES), covered, total) == (6, 77, 97)
-    assert [round(100 * n / d) for _, _, n, d in ROLES] == [87, 86, 85, 82, 75, 50]
-    assert round(100 * covered / total) == 79
+    core_covered = sum(row[2] for row in ROLES[:6])
+    core_total = sum(row[3] for row in ROLES[:6])
+    core_rate = f"{core_covered / core_total:.1%}"
+    assert (len(ROLES), covered, total, core_covered, core_total) == (9, 102, 120, 82, 99)
+    assert [round(100 * n / d) for _, _, n, d in ROLES] == [93, 86, 86, 83, 70, 80, 86, 100, 100]
+    assert round(100 * covered / total) == 85
+    assert core_rate == "82.8%"
 
     fig.text(15, 24, fig.t("演示清单覆盖率", "Demo workflow coverage"), size=19, weight=700)
-    fig.text(484, 24, fig.t("2026-11-25", "2026-11-25"), size=15, anchor="end", color="dim")
-    fig.line(15, 240, 484, 240, "edge", 1)
+    fig.text(484, 24, fig.t("2026-11-27 · df5ef47", "2026-11-27 · df5ef47"), size=15, anchor="end", color="dim")
+    fig.line(15, 322, 484, 322, "edge", 1)
     for rank, (zh, en, count, scope) in enumerate((*ROLES, ("全部岗位", "All roles", covered, total))):
         aggregate = rank == len(ROLES)
-        y = 263 if aggregate else 55 + rank * 33
+        y = 350 if aggregate else 55 + rank * 28
         percentage = round(100 * count / scope)
         fig.text(15, y, fig.t(zh, en), size=16 if aggregate else 15, middle=True, weight=700 if aggregate else 550)
-        fig.rect(150, y - 7, 207, 14, color="edge", fill="panel", rx=3)
-        fig.rect(150, y - 7, 207 * count / scope, 14, color=None, fill="cyan", rx=3)
-        fig.text(484, y, fig.t(f"{count}/{scope} · {percentage}%", f"{count}/{scope} · {percentage}%"),
+        fig.rect(220, y - 7, 137, 14, color="edge", fill="panel", rx=3)
+        fig.rect(220, y - 7, 137 * count / scope, 14, color=None, fill="cyan", rx=3)
+        downgrade = " ↓" if en == "HR" else ""
+        fig.text(484, y, f"{count}/{scope}{downgrade} · {percentage}%",
                  size=16 if aggregate else 15, middle=True, anchor="end", weight=700 if aggregate else 550)
-    fig.text(150, 295, fig.t("青色表示已覆盖，空段表示未覆盖", "Cyan marks covered workflows"), size=15, color="dim")
+    fig.text(150, 378, fig.t(f"六核心 {core_covered}/{core_total} · {core_rate}",
+                             f"Six-core {core_covered}/{core_total} · {core_rate}"), size=15, color="dim")
