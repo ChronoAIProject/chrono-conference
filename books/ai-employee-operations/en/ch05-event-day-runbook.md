@@ -1,6 +1,6 @@
 # Chapter 5: From Booking Open to Replay—Rehearsals, Failure Drills, and the Event-Day Runbook
 
-No disciplined launch survives on slogans shouted ten minutes before airtime or triple espressos poured over a sweating keyboard. **[STANCE]** Operational calm is never a mood—it is the residue of **running the whole show twenty days early, timing the ugliest failure to the minute, and welding a deterministic bypass into the runbook before doors ever open**.
+No disciplined launch survives on slogans shouted ten minutes before airtime or triple espressos poured over a sweating keyboard. **(Position)** Operational calm is never a mood—it is the residue of **running the whole show twenty days early, timing the ugliest failure to the minute, and welding a deterministic bypass into the runbook before doors ever open**.
 
 ## The November 27 Full-Flow Dress Rehearsal: 11 of 12 First-Try—and One Real Scar
 
@@ -14,7 +14,7 @@ On the afternoon of November 27, 2026, we pretended it was already launch day an
   - **Auto-X Content Studio:** Scheduled at `11:32`; at `12:20` the automated checker **mechanically rejected all 3 round-1 drafts** for missing the product name; writer rewrote and cleared review by `14:21`, passed fact and tone gates (`14:45`/`15:00`), paused for human approval (`15:15`), and shipped at `15:26:15`—`3m23s` after `"发 149"`.
 - **The `1` real failure exposed—and its deterministic bypass:** At `14:49:27`, the lead asked the internal Lark group for the host Q&A sheet; the message stalled inside the platform gateway queue for **`65–70 minutes`** without ever dispatching (platform bug **`NyxID#2534`**). Instead of crossing fingers, the team fired a **scheduled one-shot task** at `14:59:35`, delivering the compiled **7-topic host Q&A sheet** cleanly to the internal ops group in **`3.0 minutes`**. Four smaller rough edges (leaked backstage wording patched live same day, a `16.6`-minute no-op check queued for trimming, test metadata in Donna's `/event` sheet queued for pre-Dec-16 cutover, and explicit product tagging for event posts) were logged right beside it.
 
-**[ANALOGY]** Catching a 65-minute gateway stall during rehearsal is like finding a jammed landing-gear pin on the runway during taxi tests—you do not hide the inspection sheet; you thank your luck it broke on November 27 instead of December 17 at 4:00 PM.
+**(Analogy)** Catching a 65-minute gateway stall during rehearsal is like finding a jammed landing-gear pin on the runway during taxi tests—you do not hide the inspection sheet; you thank your luck it broke on November 27 instead of December 17 at 4:00 PM.
 
 ## Fifteen-Day Deterministic Calendar (2026-12-04 to 2026-12-18)
 
@@ -45,7 +45,7 @@ Scrub the `countdown` card inside `OPS//LEDGER` below to walk day-by-day across 
 
 ### Phase 3: Broadcast Day Telemetry & Replay Release (Dec 17, SGT)
 
-- **T-60 min (15:00):** Verify dual RTMP ingest heartbeats (YouTube `@ChronoAIOfficial` + LinkedIn Live), local offline backup reels, live Pages links, and `chrono-metaverse`'s four-stage extended broadcast pipeline (office `rb.cabinet-01` → Virtual Stadium Xingchao (Star Tide), `1,108` seats → Marina Bay Sands `252.8m × 142.2m` sky-screen → Earth orbital `5,307km × 2,985km` planetary screen).
+- **T-60 min (15:00):** Verify dual RTMP ingest heartbeats (YouTube `@ChronoAIOfficial` + LinkedIn Live), local offline backup reels, live Pages links, and `chrono-metaverse`'s four-stage extended broadcast pipeline (office `rb.cabinet-01` → Virtual Stadium Xingchao (Star Tide), `1,108` seats → Marina Bay Sands `252.8m × 142.2m` sky-screen → Earth orbital `5,307km × 2,985km` planetary screen), running the concrete **`chrono-metaverse#315`** asset check across all three authored broadcast stops—**`1,132` scene anchors**, **`15` airborne craft over Marina Bay**, and **`2` WGS84 orbital models**—so the four-stage camera pullback runs cleanly on show day.
 - **T-15 min (15:45):** Switch to pre-show lobby camera and countdown; Donna flips to live check-in mode while on-call engineers watch four vitals (dual stream bitrate, booking-lock latency, escalation queue depth, and rate-limit alerts).
 - **T-0 to T+75 min (16:00–17:15):** Execute Volume I (*Build for What Comes Next*), Appendix A minute-by-minute; the scheduled one-shot task delivers the host Q&A sheet on clockwork; during the `62:00–73:00` live Q&A block, human engineers triage off-bank tickets live for 24-hour written follow-up.
 - **~1 Hour Post-Stream (Dec 17, ~18:15 SGT):** Once a human verifies the replay link and flips status to ready, Community Ops dispatches the 75-minute HD replay and four-book download links automatically.

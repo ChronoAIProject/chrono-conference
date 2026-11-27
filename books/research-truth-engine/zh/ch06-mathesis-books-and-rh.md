@@ -5,7 +5,7 @@
 在 `The Omega Institute` 的公开出版版图里，连接「冰冷内核」与「人类共同体」的三座桥梁分别是：**开放论文平台 `Mathesis`**、**持续出版的双语专著书库 `trureturing-books`（`books.trureturing.org`）**，以及把大规模形式化可重放性推向工业极限的 **`the-omega-institute/riemann-hypothesis`**（附双语导读专著 **`riemann-hypothesis-book`**）。贯穿这三座桥梁的铁律只有一条——**三档证据色标绝不混用，功劳归属绝不挪移。**
 
 ::: {.figure src="ch06-three-evidence-tiers"}
-**出版体系三类证据标记。** 自上而下分列三档：顶层绿色 `LEAN ✓`（内核核验）专属于 `trureturing.lock.json` 解析到 Lean 4 冻结 `theorem` 的结论（`548388cd`，2026-11-27 快照共 `223,231` 条）；中层紫色（书面证明）标示附 DOI 或源论文仓库与形式化请求的文献佐证；底层红色 `OPEN` 明确隔离尚未证明的猜想与开放前沿，包括扩展／大黎曼猜想、零点简单性、对关联以及 `trureturing` 内部尚未自立证明的全阶 Hankel 符号断言。
+**出版体系三类证据标记。** 自上而下分列三档：顶层绿色 `LEAN ✓`（内核核验）专属于 `trureturing.lock.json` 解析到 Lean 4 冻结 `theorem` 的结论（`548388cd`，2026-11-27 快照共 `223,231` 条）；中层紫色（书面证明）标示附 DOI 或源论文仓库与形式化请求的文献佐证；底层红色 `OPEN` 明确隔离尚未证明的猜想与开放前沿，包括Dedekind ERH、Grand RH、零点简单性、对关联以及 `trureturing` 内部尚未自立证明的全阶 Hankel 符号断言。
 :::
 
 ## Mathesis、`mathesis-papers` 与学者实账：把双重归零印在封面上
@@ -23,11 +23,11 @@
 
 把这两行写死，是因为科学上绝不容许偷换概念：**论文仓库里挂着一条钉选的 Lean 源码链接，绝不等于独立第三方验证器已经逐条签发了可机读回执；公开挂网的附源码预印本，更绝不等于已经走完同行评审。** 宁可顶着双零接受检验，也绝不往半成品上刷一层绿漆。
 
-站在双重归零旁边的，是一张同样一笔不隐的外部学者实账（`trureturing-outreach`，2026-11-27）：
+站在双重归零旁边的，是一张同样一笔不隐的外部学者实账（`trureturing-outreach`，`data @ d22e63c8`，2026-11-27）：
 
 - 累计联系 **`1,049` 位**学者，收到 **`485` 位**回复（总体回复率 **`46.2%`**；剔除系统自动回邮后为 `1,034` 联系 / `478` 回复，覆盖约 **`299` 个机构域名**与 **`47` 个国家**）；
-- 其中 **`316` 位**给出明确正面评价（收录 `697` 条引述）、**`177` 位**参与证明核查、**`120` 位**参与缺口补全；
-- 同期实录 **`70` 位要求停止联络的学者，全部即刻遵从停联**——拒绝同样记入主账，绝不悄悄抹零；
+- 其中 **`316` 位**给出明确正面评价（收录 `697` 条引述）、**`223` 位**进入协作交流（含 **`44` 位**共同署名合著，另有 `177` 位参与证明核查、`120` 位参与缺口补全），**`70` 位**在成果中获致谢署名；
+- 同期实录 **`66` 位明确婉拒或要求停止联络的学者，全部即刻遵从停联**——拒绝同样记入主账，绝不悄悄抹零；
 - 公开学术产出已落地为 **`1` 篇正式发表期刊论文**（*RAIRO-ITA* 60, 29）、**`17` 篇经身份核验的协作 arXiv 预印本（其中 `16` 篇由外部学者合著）**，以及 **`21` 条 OEIS 序列条目**（近期新增 `A024718`、`A048585`、`A392984`）。
 
 ## `trureturing-books`：三部持续演进的双语形式化专著三部曲
@@ -43,7 +43,35 @@
 | `omega-unification`（`OMEGA//UNIFY`） | **深水测深日志（Deep-Water Sounding Log）** | `1` 座 | `16` 部 | 扉页明刻 `4/4 模型内 · 0/4 零拟合` |
 | **三部曲实时合计（`main b83ae321`）** | **`344` 双语页/语种（`688` 总页）；~`1.99M` 汉字 / `1.59M` 英文词** | **`135` 座（`847` `.viz` 卡）** | **`83` 部（含 `3` 部 >120MB 长片）** | **`918` 定理块 / `2,043` 冻结 GID（含 `132` 裸 CIC 零公理、`22` `axioms: []`）；`283` 绘图脚本、`93` 读者预览产物** |
 
-请把目光停在第三部 **`omega-unification`（`OMEGA//UNIFY`）** 的扉页题记上——整套书库最锋利的句子就刻在那里：
+想亲眼看见「零公理有理船壳」究竟硬到什么程度，不必去翻三百页综述——直接把 `omega-math` 脊梁上两颗最具代表性的冻结定理搬到你面前。第一颗是下面这条**蓝色零公理定理**：
+
+:::: {.theorem #thm-omega-simplicial-exact title="零公理单纯庞加莱引理：闭的二阶上链都是恰当的" lean="D5/S3/Quantum/AURICOmega/OmegaSimplicialExactness.d2_eq_zero_iff"}
+对任意顶点型 $V$、值型 $A$ 上的加性阿贝尔群结构 `G : AddCommGroup A`（满足群律 `laws : G.Laws`）、任选基点 `base : V` 及任意二阶单纯上链 `F : C2 V A`，闭性与恰当性逐点等价：
+$$
+(\forall x, y, z, w,\; d_2\, G\, F\, x\, y\, z\, w = G.\mathrm{zero})
+\iff
+(\exists\, e : C^1(V, A),\; \forall x, y, z,\; d_1\, G\, e\, x\, y\, z = F\, x\, y\, z).
+$$
+::::
+
+::: {.proof}
+在 [`d2_eq_zero_iff`](lean:D5/S3/Quantum/AURICOmega/OmegaSimplicialExactness.d2_eq_zero_iff) 中，反向由逐点上边缘恒等式 `d2_d1` 直接给出，正向则通过显式锥同伦公式 $d_1(H_2(\mathrm{base}, F)) + H_3(\mathrm{base}, d_2 F) = F$（`d1_H2_add_H3_d2`）构造出原像 $e = H_2(\mathrm{base}, F)$，全程不依赖任何非构造步骤。尤为关键的是，该定理在**官方 Lean 内核（`Init + OmegaMath`）与裸 CIC 内核（`strict_omega`）两端均严格满足 `axioms: []`（零公理）**——既不调用 `Classical.choice`，也不调用 `Quot.sound` 或 `propext`——正因如此，出版引擎 `tbook` 自动将这个定理框渲染为**蓝色**而非绿色。
+:::
+
+把镜头再挪半寸，看紧邻其旁的另一颗旗舰定理——它展示了为何公理足迹必须按内核逐一实话实说，绝不把两个后端混成一句模糊的「零公理」：
+
+:::: {.theorem #thm-omega-peter-weyl title="全阶彼得–外尔球面哈尔正交性（无 π、无实数、无选择公理）" lean="D5/S3/Quantum/AURICOmega/OmegaSphericalHaarMidpoint.all_degree_peter_weyl_orthonormal"}
+对任意自然数阶数 $m, n : \mathbb{N}$，偶数次特征多项式 `evenCharPoly m` 与 `evenCharPoly n` 在有理球面哈尔内积 `haarInner` 下与克罗内克德尔塔 `degreeDelta m n` 精确等价（`IntRatio.Equivalent`）：
+$$
+\forall m, n : \mathbb{N},\; \mathrm{Equivalent}\bigl(\mathrm{haarInner}(\mathrm{evenCharPoly}\,m,\, \mathrm{evenCharPoly}\,n),\; \mathrm{degreeDelta}\,m\,n\bigr).
+$$
+::::
+
+::: {.proof}
+在 [`all_degree_peter_weyl_orthonormal`](lean:D5/S3/Quantum/AURICOmega/OmegaSphericalHaarMidpoint.all_degree_peter_weyl_orthonormal) 中，证明先把两个偶数次特征多项式的乘积按系数展开为从 $|m - n|$ 到 $m + n$ 的闭区间特征之和（`evenChar_product_sum`），再施加纯代数的阶乘矩泛函 `haarKappaPoly`（`haar_evenChar_expectation` 将 $0$ 阶平凡特征送往 $1$、将所有正阶偶特征送往 $0$），全程彻底绕开圆周率 $\pi$、实数完备化 $\mathbb{R}$ 与测度积分。按双后端公理足迹如实分账：在官方 Lean（`Init + OmegaMath`）上，本定理**仅依赖 `propext` 一条公理**（零 `Classical.choice`、零 `Quot.sound`、零 $\pi$、零 $\mathbb{R}$），因此 `tbook` 严格诚实地将其渲染为**绿色**徽章而非蓝色；而在裸 CIC 内核 **`strict_omega`**（`OmegaInit + OmegaMath`）上，同一条陈述以 **`axioms: []`（零公理）**通过编译验证。
+:::
+
+再把目光移向第三部 **`omega-unification`（`OMEGA//UNIFY`）** 的扉页题记上——整套书库最锋利的句子就刻在那里：
 
 > **`4/4 model-internal · 0/4 zero-fit first-principles closure`**——*《为什么零完结比伪造大统一更强》（Why Zero-Completion Is Stronger Than a Fake Grand Unification）*。
 
@@ -55,11 +83,11 @@
 
 在整个仓库群里，没有任何一个话题比**黎曼猜想（Riemann Hypothesis）**更需要一把绝不手软的手术刀。这里容不得半句模糊，更容不得一丝抢功或张冠李戴。请把以下五个事实层次彻底切清：
 
-1. **外部里程碑与彻底归功（2026 年 11 月 20–21 日）**：2026 年 11 月 20 至 21 日，Lean 与 Mathlib 社区正式认证了 **Levent Alpöge** 使用 Lean `4.33.1` 完成的 Mathlib 版古典 `RiemannHypothesis` 与 Dirichlet 广义黎曼猜想（Dirichlet GRH）形式化证明（全工程计 `175,187` 个模块、`1,737 万`行代码，仅依赖三条标准公理 `[propext, Classical.choice, Quot.sound]`，先后镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。**先致以毫不保留的敬意与归功**：这一历史性证明属于 Levent Alpöge 与 Lean/Mathlib 社区，绝非 `The Omega Institute` 的原创证明。
+1. **外部里程碑与彻底归功（2026 年 11 月 20–21 日）**：2026 年 11 月 20 至 21 日，Lean 与 Mathlib 社区正式认证了 **Levent Alpöge** 使用 Lean `4.33.1` 完成的 Mathlib 版古典 `RiemannHypothesis` 与 Dirichlet GRH形式化证明（全工程计 `175,187` 个模块、`1,737 万`行代码，仅依赖三条标准公理 `[propext, Classical.choice, Quot.sound]`，先后镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。**先致以毫不保留的敬意与归功**：这一历史性证明属于 Levent Alpöge 与 Lean/Mathlib 社区，绝非 `The Omega Institute` 的原创证明。
 2. **`the-omega-institute/riemann-hypothesis`（`c2dabc97`）——8,490 分片可重放认证工程**：面对一千七百多万行规模的巨型证明，普通研究者根本无从单机盲信。`The Omega Institute` 独立构建了 `the-omega-institute/riemann-hypothesis`，将该认证证明切分为 **8,490 个内容寻址分片**并封装为可复现 CI 与一键 `./verify` 校验流水线（托管 `8,558` 份 `.tar.zst` 发布产物），让全球任何一台普通工作站都能按片抽检重放。
 3. **`the-omega-institute/riemann-hypothesis-book`（`ebd24a4d`）——双语导读专著**：该仓库是面向人类读者的配套双语导读专著 *Symmetry on the Critical Line*（《临界线上的对称性》），用于拆解证明结构与数学直觉——**8,490 个重放分片位于 `riemann-hypothesis`，而非 `riemann-hypothesis-book`**，两者的工程职责绝不混为一谈。
 4. **`trureturing` 自身的独立定理（`ActualXiIntegerCriterion.lean`）**：在 `trureturing` 自己的源码树内，[@thm-rh-hankel] 仅冻结了一条**逻辑等价判据**——证明标准 Mathlib `RiemannHypothesis` 等价于平移奇对数导数 `xiOdd` 的全部有限阶整系数 Hankel 二次型恒非负；该模块本身**并未**独立证明两端任何一边，也不导入上述外部证明。
-5. **真正依然鲜红开放的前沿（[@prob-rh-open]）**：古典 `RiemannHypothesis` 与 Dirichlet GRH 获 Lean 社区认证之后，数学深水区并未合拢——**一般代数数域 Dedekind $\zeta$ 函数的扩展黎曼猜想（Extended RH）、一般自守 $L$-函数的大黎曼猜想（Grand RH）、非平凡零点的简单性（simplicity of zeros）与零点对关联（pair correlation）**，以及在 `trureturing` 内部不依赖外部导入直接攻克全阶整系数 Hankel 符号断言，此刻依然鲜红地悬在前沿之上。
+5. **真正依然鲜红开放的前沿（[@prob-rh-open]）**：古典 `RiemannHypothesis` 与 Dirichlet GRH 获 Lean 社区认证之后，数学深水区并未合拢——**一般代数数域 Dedekind $\zeta$ 函数的扩展黎曼猜想（Extended RH）、一般自守 $L$-函数的 Grand RH、非平凡零点的简单性（simplicity of zeros）与零点对关联（pair correlation）**，以及在 `trureturing` 内部不依赖外部导入直接攻克全阶整系数 Hankel 符号断言，此刻依然鲜红地悬在前沿之上。
 
 先看 `trureturing` 内部已由 Lean 4 内核锁死的整系数 Hankel 等价桥：
 
@@ -80,11 +108,11 @@ $$
 
 紧挨着绿色等价桥 [@thm-rh-hankel]，我们把古典黎曼猜想之后依然鲜红的真实开放前沿刻在下面：
 
-::: {.problem #prob-rh-open title="古典黎曼猜想之后的开放前沿：扩展／大黎曼猜想、零点简单性与对关联"}
+::: {.problem #prob-rh-open title="古典黎曼猜想之后的开放前沿：Dedekind ERH、Grand RH、零点简单性与对关联"}
 在 Levent Alpöge 的 Lean `4.33.1` 证明（由 Lean/Mathlib 社区于 2026 年 11 月 20–21 日认证，并由 `the-omega-institute/riemann-hypothesis` 提供 8,490 分片可重放核验）覆盖古典 `RiemannHypothesis` 与 Dirichlet GRH 之后，以下四项深层前沿目前依然完全开放：
 
 1. **扩展黎曼猜想（Extended RH）**：一般代数数域上 Dedekind $\zeta$ 函数的全部非平凡零点是否均落在临界线 $\operatorname{Re}(s) = \frac{1}{2}$ 上；
-2. **大黎曼猜想（Grand RH）**：一般自守 $L$-函数的非平凡零点分布；
+2. **Grand RH**：一般自守 $L$-函数的非平凡零点分布；
 3. **零点简单性与对关联**：$\zeta(s)$ 的全部非平凡零点是否皆为单零点，以及 Montgomery 对关联猜想；
 4. **`trureturing` 内部自立断言**：在不引入外部证明的前提下，直接从 `ActualXiIntegerCriterion` 内部建立 [@thm-rh-hankel] 右端全阶整系数 Hankel 二次型的普遍非负性。
 :::

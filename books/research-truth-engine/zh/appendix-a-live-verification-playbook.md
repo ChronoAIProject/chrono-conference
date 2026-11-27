@@ -26,14 +26,14 @@ import D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation
 EOF
 ```
 
-预期终端编译零错误，且 `#print axioms` 仅输出标准 Lean 公理（如 `propext`、`Classical.choice`、`Quot.sound`，不含 `sorryAx` 或自定义公理）。只要这两道关卡全部通过，这条结论就不再依赖 ChronoAI、不再依赖 The Omega Institute、也不再依赖任何一位作者的声誉——它只依赖 Lean 4 内核本身。
+预期终端编译零错误，且 `#print axioms` 仅输出标准 Lean 公理（如 `propext`、`Classical.choice`、`Quot.sound`，不含 `sorryAx` 或自定义公理）。若你把第五步套用到第六章的蓝色零公理定理 [`d2_eq_zero_iff`](lean:D5/S3/Quantum/AURICOmega/OmegaSimplicialExactness.d2_eq_zero_iff) 上，终端会直接打印**不依赖任何公理**（`'D5.S3.Quantum.AURICOmega.OmegaSimplicialExactness.d2_eq_zero_iff' does not depend on any axioms`）——官方 Lean 与裸 CIC `strict_omega` 双端均严格零公理；而对同章的 [`all_degree_peter_weyl_orthonormal`](lean:D5/S3/Quantum/AURICOmega/OmegaSphericalHaarMidpoint.all_degree_peter_weyl_orthonormal)，官方 Lean 仅打印 `propext`（零选择公理、零商公理），裸 CIC `strict_omega` 则同样为零公理。只要这两道关卡全部通过，这条结论就不再依赖 ChronoAI、不再依赖 The Omega Institute、也不再依赖任何一位作者的声誉——它只依赖 Lean 4 内核本身。
 
-> **关于全书引用的上游提交与重放入口**：正文统计表与全卷宏观快照锚定于 `the-omega-institute/trureturing@548388cd`（`2026-11-27T20:40Z`：冻结定理 `223,231` 条、总冻结声明 `400,377` 条、`17,968` 个冻结模块、`20,223` 个 `.lean` 文件、`6,024,982` 行源码、`FibonacciAtomic` `341/339` 模块，以及 `2,278` 道公开文献题解，连同 `2026-10-28` 至 `2026-11-26` 的 `720/720` 小时连续节律审计）；本仓库 `trureturing.lock.json` 所钉的 [{commit}](trureturing:)（`8a3f20fb`，`2026-11-26`）负责在构建期解析本卷全部 21 条定理的精确行号与 `statement_id` 摘要——**且全部 21 条锁定定理在 `8a3f20fb` 与 `548388cd` 之间逐字节完全一致**。执行上述第五步重放时请检出锁文件所钉提交；若需独立分片抽检 Levent Alpöge 获 Lean/Mathlib 社区认证的古典 `RiemannHypothesis` 与 Dirichlet GRH 证明，请前往 `the-omega-institute/riemann-hypothesis@c2dabc97` 运行 `./verify`。
+> **关于全书引用的上游提交与重放入口**：正文统计表、全卷宏观快照与本仓库 `trureturing.lock.json` 统一锚定于所钉提交 [{commit}](trureturing:)（`548388cd`，`2026-11-27T20:40Z`：冻结定理 `223,231` 条、总冻结声明 `400,377` 条、`17,968` 个冻结模块、`20,223` 个 `.lean` 文件、`6,024,982` 行源码、`FibonacciAtomic` `341/339` 模块，以及 `2,278` 道公开文献题解，连同 `2026-10-28` 至 `2026-11-26` 的 `720/720` 小时连续节律审计），并在构建期解析本卷**全部 25 条冻结定理**（`24` 条绿色常规冻结定理与 `1` 条官方零公理蓝色定理 `d2_eq_zero_iff`，另含裸 CIC `strict_omega` 零公理的 `all_degree_peter_weyl_orthonormal`）的精确行号与 `statement_id` 摘要。执行上述第五步重放时请直接检出锁文件所钉提交 `548388cd`；若需独立分片抽检 Levent Alpöge 获 Lean/Mathlib 社区认证的古典 `RiemannHypothesis` 与 Dirichlet GRH 证明，请前往 `the-omega-institute/riemann-hypothesis@c2dabc97` 运行 `./verify`。
 
-## 全部 21 条冻结定理的声明索引
+## 全部 25 条冻结定理的声明索引
 
-上述五步适用于本卷引用的**全部 21 条冻结定理**（涵盖 `FIB ATOM`、信息逃逸、三向配平律迫出复希尔伯特空间、紧致倒易律迫出三维空间、七条文献旗舰证明与反驳，以及黎曼猜想整系数 Hankel 等价判据）。下方的声明索引由构建系统直接从锁文件生成，提供每一条定理的精确文件与行号入口：
+上述五步适用于本卷引用的**全部 25 条冻结定理**（涵盖一位二进制非邻接自动机与 `FIB ATOM`、信息逃逸、三向配平律迫出复希尔伯特空间、紧致倒易律迫出三维空间、七条文献旗舰证明与反驳、`2026-11-27` 实时冻结的四维时空唯一性定理、`omega-math` 官方零公理蓝色单纯庞加莱引理与全阶有理彼得–外尔球面哈尔正交性，以及黎曼猜想整系数 Hankel 等价判据）。下方的声明索引由构建系统直接从锁文件生成，提供每一条定理的精确文件与行号入口：
 
 ::: {.stats src="declarations" display="link" group="theorems" format="html"}
-查看本卷全部 21 条冻结 Lean 4 定理声明索引
+查看本卷全部 25 条冻结 Lean 4 定理声明索引
 :::

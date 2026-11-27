@@ -6,9 +6,9 @@ Whenever we put `trureturing`'s audited ledger on screen—**`223,231`** cumulat
 
 No. Quite the opposite: **every underlying reasoning engine driving this system is commercially metered and open to anyone on Earth.**
 
-So take a blunt physical **ANALOGY**: bolt a bare 500-horsepower engine straight onto wet concrete with no flywheel and no brakes, and it just screams and tears itself loose. Inside an ordinary chat box, the exact same commercial engines emit plausible pseudo-proofs and hand-waving *"it is easy to see"* leaps—yet inside `trureturing`, they become a one-way discovery ratchet sustaining 720 unbroken UTC hours of commit coverage and ~28 Lean-checked literature resolutions per day across **`81` days**.
+Picture a sharper optical-bench image **(Analogy)**: mount a razor-sharp microscope objective lens with no rigid brass optical bench underneath it, and ordinary floor vibration shakes it so badly that every single photograph smears. Inside an ordinary chat box, the exact same commercial engines emit plausible pseudo-proofs and hand-waving *"it is easy to see"* smears—yet bolted into `trureturing`, they become a one-way discovery ratchet sustaining 720 unbroken UTC hours of commit coverage and ~28 Lean-checked literature resolutions per day across **`81` days**.
 
-Inside that same engineering **ANALOGY**, the answer hits the single nail this entire conference drives home: **the ceiling is never set by a bare engine in one chat turn; it is set by the research operating system welded around it—brakes, flywheel, irreversible Truth DAG, executable counterexample gates, and a zero-mercy compiler kernel.**
+Inside that same optical-bench **(Analogy)**, the answer hits the single nail this entire conference drives home: **resolution is never set by an unmounted lens in one chat turn; it is set by the research operating system bolted around it—rigid brass bench, fine micrometer stops, irreversible Truth DAG, executable counterexample gates, and a zero-mercy compiler kernel.**
 
 ## Four Load-Bearing Pillars Turning Chat Into a Research Operating System
 
@@ -22,7 +22,7 @@ Dissect `trureturing` beside an ordinary chat session like an experimentalist st
    - **`StrataLint`'s `23` active static rules** (`27` registered, `4` deferred, in `the-omega-institute/trureturing-tools`) lock axiom and style hygiene at merge time. Together, those three iron fences let `63` median commits/hour and `217` merged PRs/day land without branch collisions or smuggled axioms.
 4. **Expose every claim to working outside scholars**:
    - Our earlier `automath` baseline (`49,623` declarations, `18,624` theorems, `7,877 / 12,989` statements matched at `60.6%` as of August 4, 2026) measured natural-language formalization friction head-on;
-   - Through November 27, 2026, `trureturing-outreach` logged **`485` replying scholars** out of `1,049` contacted (`46.2%`; `478 / 1,034` non-system filtered across ~`299` institutional domains and `47` countries), including `316` positive responses, `177` in proof-checking, `120` in gap-repair, and **`70` opt-outs immediately honored**;
+   - Through November 27, 2026, `trureturing-outreach` (`data @ d22e63c8`) logged **`485` replying scholars** out of `1,049` contacted (`46.2%`; `478 / 1,034` non-system filtered across ~`299` institutional domains and `47` countries), including `316` positive responses (`697` quotes), `223` collaborating (`44` co-authoring, with `177` in proof-checking and `120` in gap-repair), `70` credited/acknowledged, and **`66` declined/stop-outreach requests immediately honored**;
    - Concrete external output now spans `1` *RAIRO-ITA* journal paper, **`17` identity-checked collaborative arXiv preprints (`16` externally coauthored)**, and `21` OEIS entries—paired with our frozen October 31 novelty audit across `1,108` incoming items transparently recording `1.5%` prior settled results and `1.6%` partial overlap.
 
 ## Lifting the Hood With Controlled Evidence: `human-in-the-loop-automated-research v1.0`
@@ -67,7 +67,7 @@ First, on deep cross-domain frontiers such as Extended/Grand RH, zero simplicity
 
 ## Build-Generated Formal Verification Summary
 
-Before turning to [Appendix A](appendix-a-live-verification-playbook.md) to run the five-step `lake build` playbook on your own machine, inspect the build-generated summary of all 21 frozen Lean 4 theorems and open frontiers cited across this monograph (pinned to commit [{commit}](trureturing:), with every one of those 21 locked declarations verified byte-for-byte identical through the November 27, 2026 snapshot `548388cd`):
+Before turning to [Appendix A](appendix-a-live-verification-playbook.md) to run the five-step `lake build` playbook on your own machine, inspect the build-generated summary of **all 25 frozen Lean 4 theorems** (`24` green plus `1` official blue zero-axiom theorem `d2_eq_zero_iff`, alongside `all_degree_peter_weyl_orthonormal` zero-axiom on bare-CIC `strict_omega`) and open frontiers cited across this monograph (pinned directly to commit [{commit}](trureturing:), `548388cd`, November 27, 2026):
 
 ::: {.stats src="summary"}
 :::

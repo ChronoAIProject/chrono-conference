@@ -20,7 +20,7 @@ Using the December 17 launch itself as a live proving ground, we broke small-bus
 - **3 newly broken-out standalone watchdog/ops roles—bringing all 9 standalone AI employee roles to `102 / 120` (`85.0%`; equal-weight average `87.1%`)**:
   - **#7 Sentiment Monitor `6 / 7` (`85.7%`)**: hourly Discord and X sweep plus a 22:15 daily digest;
   - **#8 KB Maintainer `3 / 3` (`100.0%`)**: twice-daily curator keeping verified FAQs from drifting;
-  - **#9 Retrospective Analyst `11 / 11` (`100.0%`)**: shipped November 27—the Monday critic sitting in the back row of the samba drumline (`ANALOGY`), auditing the rest of the AI team every Monday with 40-item sampling, 7-peer X benchmarks, and per-agent unit cost, calling out whoever drifted off-beat.
+  - **#9 Retrospective Analyst `11 / 11` (`100.0%`)**: shipped November 27—the Monday critic sitting in the back row of the samba drumline **(Analogy)**, auditing the rest of the AI team every Monday with 40-item sampling, 7-peer X benchmarks, and per-agent unit cost, calling out whoever drifted off-beat.
 - **Full audited fleet (`audit-2026-11-26.md`)**: **`15` live audited agents, `89` scheduled tasks, and `931` passing automated tests** (`374 + 182 + 279 + 96`), backed by the November 27 **`11 / 12` full-flow rehearsal** (`4` human actions, Donna `0` dropped at `29 s` median, plus the candid `65–70 min` Lark queue stall `NyxID#2534` bypassed in `3.0 min`).
 
 ::: {.figure src="ch07-six-role-coverage"}

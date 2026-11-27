@@ -196,7 +196,7 @@ section: "北极星 · 诚实"
     <Stat class="md" value="18" label="条 OEIS · 1 篇 RAIRO-ITA 期刊论文" />
     <Stat class="md" value="0" label="篇经 Mathesis 审稿流程录用（公开收录 212 篇）" tone="warn" />
   </div>
-<TheoremCard class="compact mt-l" label="开放问题5.3" title="黎曼猜想与全阶整系数 Hankel 符号判定" status="open" cite="prob-keynote-rh">
+<TheoremCard class="compact mt-l" label="开放问题5.4" title="黎曼猜想与全阶整系数 Hankel 符号判定" status="open" cite="prob-keynote-rh">
 
 黎曼猜想是否成立？等价地：真实 $\xi$ 函数对一切阶数 $N$ 与一切 $u \in \mathbb{Z}^{N+1}$ 的 Hankel 二次型是否恒非负？等价判据已冻结、8,490 个分片可重放——猜想本身<b>今天依然完全开放</b>。
 

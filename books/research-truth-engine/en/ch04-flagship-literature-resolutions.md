@@ -4,13 +4,13 @@ The worst way to grade a research engine is on final exams it wrote for itself. 
 
 Across **`81` calendar days (`2026-09-08` to `2026-11-27`)** at `the-omega-institute/trureturing@548388cd`, `trureturing` logged **`2,276` dated literature resolutions** (plus `2` undated entries, totaling **`2,278`** unique resolutions: **1,512 proved** and **766 refuted**, averaging ~**28 per day**; out of **`2,305`** tracked dossiers, **`27`** remain explicitly logged as unresolved).
 
-Notice the weight of those **`766` refutations**: before nature and mathematics, cracking a false idol with one exact counterexample carries every ounce of dignity that building a positive theorem does. Split all 2,278 resolutions (and 2,305 dossiers) by published source, and the footprint spans five distinct arenas:
+Notice the weight of those **`766` refutations**: **a prover that only flatters existing conjectures is a yes-man; a genuine ratchet snaps false idols.** Whether cracking the Fredkin integer ceiling at the fourth decimal place (`2.00034… > 2`) or severing universal Jordan compatibility at dimension $d = 4$, an exact counterexample carries every ounce of dignity that the five positive proofs below do. Split all 2,278 resolutions (and 2,305 dossiers) by published source, and the footprint spans five distinct arenas:
 
 ::: {.figure src="ch04-resolution-velocity"}
 **Source and Verdict Breakdown of 2,278 Resolved Literature Problems (November 27, 2026 `548388cd` frozen snapshot).** Cyan bars show proofs (`1,512` total) and magenta bars show refutations (`766` total; `2,305` dossiers tracked, `27` unresolved): arXiv (`465` proved / `375` refuted; `860` dossiers), OEIS (`677` / `52`; `732`), peer-reviewed journals (`358` / `326`; `687`), Erdős problems (`1` / `3`; `5`), and other literature (`11` / `10`; `21`). Quantum information and physics account for `598` resolutions (`314` proved, `284` refuted); `127` stood open for at least ten years (`478` for at least three years), up to `47` years.
 :::
 
-Aggregate bars show the skyline; mathematicians trust only **individual theorems laid bare on the workbench**. Here are **seven flagship proofs and refutations** spanning *Phys. Rev. A*, *Phys. Lett. A*, *Nat. Commun.*, *JCTA*, and *Commun. Math. Phys.*—each bolted to a build-generated green Lean declaration you can click straight into Lean source right now.
+Aggregate bars show the skyline; mathematicians trust only **individual theorems laid bare on the workbench**. Below stand **seven flagship literature proofs and refutations** spanning *Phys. Rev. A*, *Phys. Lett. A*, *Nat. Commun.*, *JCTA*, and *Commun. Math. Phys.*, crowned at the close of this chapter by **one live November 27, 2026 theorem uniquely selecting 4D spacetime** (eight frozen theorems in all)—each bolted to a build-generated green Lean declaration you can click straight into Lean source right now.
 
 ## Refutation 1: Four-Qubit Fredkin Gate Exceeds 2 ebits (*Phys. Rev. A* 2025)
 
@@ -119,4 +119,25 @@ and there exists $N_0 \in \mathbb{N}$ such that $\tilde{r}_\ell(N) < 0$ for all 
 In [`RicciLimit.result`](lean:D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.result), splitting $\tilde{r}_\ell(N)$ into positive and negative $6j$-symbol sums divided by $N^2 - 1$ makes the negative piece identically constant (equal to $(H_\ell - 1)/2$) for all $N > \ell$, while $6j$ sum rules and Tannery's limit theorem drive the positive piece to $0$; since $H_\ell \ge \frac{3}{2} > 1$ for all $\ell \ge 2$, strict negativity follows for all sufficiently large $N$. Verified and frozen by the Lean 4 kernel.
 :::
 
-Seven theorems across five flagship physics and mathematics journals—zero rhetoric, every single one backed by a clickable green Lean declaration. Now, what does this living constellation of **`17,968` frozen modules and `223,231` frozen theorems** (`548388cd`, November 27, 2026) actually look like while running 24/7? Chapter 5 walks straight through the glass doors of **`live.trureturing.org`**.
+## Beyond Single Conjectures: Unique Selection of 4D Spacetime (Frozen Nov 27, 2026)
+
+Cracking individual published conjectures tests tactical reach; the deeper question is whether the engine can bolt multiple cross-domain physical constraints onto the same formal bench and watch them converge on a single spacetime dimension. Frozen live on November 27, 2026 inside `DeSitterGravitonModes` (`548388cd`), four classical constraints on any integer spacetime dimension $D \ge 3$—non-vanishing Weyl curvature, summability of the null-diamond leading angular mode weight, scale-invariant conformal Maxwell weight, and two transverse polarizations—close like a four-jaw vise around **$D = 4$**:
+
+:::: {.theorem #thm-unique-dim-four title="Unique Selection of 4D Spacetime from Weyl Curvature, Summable Leading Mode, Conformal Maxwell, and Two Polarizations" lean="D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four"}
+For every natural-number dimension $D \ge 3$, the following equivalence holds:
+$$
+\begin{aligned}
+\bigl(0 < \dim_{\mathbb{R}} \mathrm{Weyl}(D)
+&\land \mathrm{Summable}(\mathrm{leadingModeWeight}\,D) \\
+&\land (\forall \Omega \in \mathbb{R}_{>0},\ \mathrm{maxwellConformalWeight}(D, \Omega) = 1) \\
+&\land D - 2 = 2\bigr) \iff D = 4
+\end{aligned}.
+$$
+The four conditions express nonzero Weyl curvature, summability of the null-diamond leading angular mode weight, a Maxwell conformal weight of one for every positive scale, and two transverse polarizations.
+::::
+
+::: {.proof}
+In [`grand_unification_unique_dimension_four`](lean:D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four), each physical criterion carves away candidate dimensions in turn: non-vanishing Weyl curvature (`weylDim_pos_iff`) immediately eliminates $D = 3$ and forces $D \ge 4$—matching its sibling zero-axiom theorem `graviton_polarizations_three_four_five` in the same module, which proves via `decide` with zero axioms that `gravitonPolarizationCount` takes values `0`, `2`, and `5` in dimensions $D = 3, 4, 5$; summability of `leadingModeWeight D` (`scalar_nullDiamond_and_propagating_gravity_iff`) then trims the surviving window to $D \in \{4, 5\}$; finally, conformal invariance of Maxwell's equations (`maxwellConformalWeight D Ω = 1` for all $\Omega > 0$) paired with two transverse polarizations / Hodge two-form degree ($D - 2 = 2$) uniquely locks $D = 4$, and conversely all four conditions hold at $D = 4$. Verified and frozen by the Lean 4 kernel.
+:::
+
+Seven flagship literature proofs and refutations across five major physics and mathematics journals, plus one live November 27, 2026 theorem uniquely selecting 4D spacetime—eight frozen theorems laid bare with zero rhetoric, every single one backed by a clickable green Lean declaration. Now, what does this living constellation of **`17,968` frozen modules and `223,231` frozen theorems** (`548388cd`, November 27, 2026) actually look like while running 24/7? Chapter 5 walks straight through the glass doors of **`live.trureturing.org`**.

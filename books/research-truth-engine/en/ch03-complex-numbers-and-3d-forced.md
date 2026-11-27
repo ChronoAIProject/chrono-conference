@@ -2,7 +2,7 @@
 
 Page one of almost every physics textbook hands down three commandments from the clouds: states inhabit a complex Hilbert space, physical space has three dimensions, and probabilities follow squared complex norms. Ask *"why complex numbers instead of reals? why three dimensions and $\mathfrak{so}(3)$?"* and the textbook clears its throat and shuts the door: *"because experiment says so."*
 
-Treating *"because the book says so"* as a final verdict is the laziest shortcut in physics, and bowing to an unexamined axiom is the costliest superstition in mathematics. Inside `trureturing`, we clear every textbook commandment out of the room and bolt the doors: **no complex numbers, no spatial dimension, no Hilbert space in the premises—only minimal operational fibers, raw three-way balancing, and compact first-order reciprocity. Does mathematics itself force complex Hilbert space and three dimensions straight back through the chimney?**
+Treating *"because the book says so"* as a final verdict is the laziest shortcut in physics, and bowing to an unexamined axiom is the costliest superstition in mathematics. Inside `trureturing`, we clear every textbook commandment out of the room and bolt the doors: **no complex numbers, no spatial dimension, no Hilbert space in the premises—only minimal operational fibers, raw three-way balancing, and compact first-order reciprocity. Does mathematics itself leave no exit—watching complex Hilbert space and three-dimensional rotation walk straight back through the locked door?**
 
 The answer is not speculative philosophy; it is four structural rigidity theorems already welded shut inside the Lean 4 kernel.
 

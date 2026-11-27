@@ -2,7 +2,7 @@
 
 A clean front lobby is only the tenth of the iceberg floating above the waterline. Running a thirteen-day global launch (December 4–17) across YouTube, LinkedIn, X, Discord, and GitHub without an outside agency never breaks teams during the seventy-five-minute broadcast itself—it breaks them in the relentless backstage grind of guest triage, timezone staging, receipt matching, recruiting queues, and recurring reminders.
 
-**[ANALOGY]** Picture the backstage team as a **samba drumline**: bass, snare, and agogô each hold one narrow rhythmic lane without stepping across another player's chart—and in the back row sits a **cold-eyed Monday critic** with a metronome whose sole job is calling out whoever drifted off-beat, wasted cycles, or burned money the week before.
+**(Analogy)** Picture the backstage team as a **samba drumline**: bass, snare, and agogô each hold one narrow rhythmic lane without stepping across another player's chart—and in the back row sits a **cold-eyed Monday critic** with a metronome whose sole job is calling out whoever drifted off-beat, wasted cycles, or burned money the week before.
 
 Inside ChronoAI, five core operational desks plus three newly standalone watchdogs hold those lanes—driven underneath by **`13` scheduled agents** in our Social and Community playbook (`8` X Content Studio + `3` Community/Concierge + `2` Reputation/Retro) and audited end to end in `audit-2026-11-26.md` across **`15` live agents, `89` scheduled tasks, and `931` passing automated operational tests** (`374` state-repo + `182` studio + `279` community + `96` retro).
 
@@ -40,6 +40,8 @@ Putting these two desks side by side shows both halves of an honest ledger:
 
 - **HR Pack (`chrono-hr`, `14 / 20 = 70.0%`, honestly DOWNGRADED from `15/20`):** Real workflows shipped this week—JobStreet intake and candidate sync into Lark (`hr-13`, 4 runs/day with backfilled rows), a 22-row HR calendar (`hr-15`), and a `09:50` weekday read-only recruiting check (`hr-20`). Yet on November 26, a strict evidence audit caught that `hr-04` **cannot parse PDF resumes** without manual copy-paste. Instead of leaving a fake green check, the owner demoted `hr-04` from `done` to `part`, pulling HR openly down to `14/20`. Compensation bands, formal offers, and terminations stay strictly human.
 - **Admin (`Admin`, `8 / 10 = 80.0%`, up from `5/10`):** Weekday `09:00` Singapore group briefs (weather, 7/30-day calendar, MOM holidays), monthly/annual recurring reminders that silence on completion and roll over cleanly, and live Singapore office front/back door and lighting controls via Apple Home and Lark `ChronoAI-Nyxbot`. Whole-shelf pantry vision counting remains honestly marked partial; legal contracts, corporate seals, and major procurement stay human.
+
+Holding every backstage desk inside its lane now rests on newly landed **`NyxID` org governance** rather than informal group habits: service approval configs support **named org approvers** (`NyxID#2996/#3005`), routing every finance or social release to one specific accountable human instead of a noisy group broadcast where ownership evaporates; alongside it, org admins can select **up to `8` built-in `Ornn` skills** (`NyxID#2432`), revision-fenced across `NyxBot` and every specialist agent so teams never drift on manual skill pins.
 
 ## Three Standalone Watchdogs (`20 / 21`): Even the AI Team Faces Monday Judgment
 

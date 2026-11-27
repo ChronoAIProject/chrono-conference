@@ -2,11 +2,11 @@
 
 Any system claiming to have frozen over two hundred thousand theorems (`223,231` and counting) deserves one ruthless question before anyone claps: **how do we know you are not spinning in circles, relabeling one trivial lemma ten thousand times to inflate a scoreboard?**
 
-Answering with polite assurances is PR; answering with a black-box "novelty score of 8.7/10" is upholstered self-deception. `trureturing` takes a far colder two-part road: **formally, it freezes a finite-set mathematical criterion for genuine structural novelty inside the Lean 4 kernel (captured by the ANALOGY "you cannot mine the same gold twice"); operationally, independent repository deduplication and ledger audits check catalog execution against it.**
+Answering with polite assurances is PR; answering with a black-box "novelty score of 8.7/10" is upholstered self-deception. `trureturing` takes a far colder two-part road: **formally, it freezes a finite-set mathematical criterion for genuine structural novelty inside the Lean 4 kernel** ("you cannot mine the same gold twice" **(Analogy)**); **operationally, independent repository deduplication and ledger audits check catalog execution against it.**
 
 ## Monotone Kernel Contraction: The Steel Pawl of the Ratchet
 
-On a watchmaker's bench, a real ratchet advances one tooth at a time because its **steel pawl** refuses to give way; fashion that pawl out of soft tin and the mainspring snaps straight back to zero (**ANALOGY**). What is the steel pawl of formal discovery?
+On a watchmaker's bench, a real ratchet advances one tooth at a time because its **steel pawl** refuses to give way; fashion that pawl out of soft tin and the mainspring snaps straight back to zero **(Analogy)**. What is the steel pawl of formal discovery?
 
 Picture a finite state `arena` and a growing `catalog` of theorems. Each theorem tests whether any two states `(left, right)` agree under its primitives. Given a `selected` subset of theorems, the pairs of states remaining indistinguishable across *every* selected theorem form the **joint kernel** (`jointKernel selected`)—the exact blind spot your current theory still cannot cut apart.
 

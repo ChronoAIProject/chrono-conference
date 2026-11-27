@@ -4,10 +4,10 @@ In Lewis Carroll's *Through the Looking-Glass* (1871), Alice runs until her lung
 
 Almost every team shipping AI apps today is strapped to that Red Queen treadmill. Every ninety days the underlying reasoning frontier jumps; companies whose moat sits in clever prompt recipes, glossy chat skins, or hand-glued single connectors rip up last quarter's work and sprint gasping back to the starting line.
 
-How do you **tame** the Red Queen? Not by praying evolution slows down—it never will—but by **welding every brick you forge into one engine-agnostic network that compounds over time**. Like a watchmaker's **ratchet and pawl** (`ANALOGY`): every time the underlying reasoning core clicks forward one notch, instead of throwing you off the car, it winds your entire network tighter.
+How do you **tame** the Red Queen? Not by praying evolution slows down—it never will—but by **welding every brick you forge into one engine-agnostic network that compounds over time**. Like a watchmaker's **ratchet and pawl** **(Analogy)**: every time the underlying reasoning core clicks forward one notch, instead of throwing you off the car, it winds your entire network tighter.
 
 ::: {.remark #rem-ch03-red-queen title="Structural Analogy: One Network, the Ratchet, and the Tamed Red Queen"}
-"One network," the "ratchet and pawl," and "the tamed Red Queen" are strategic analogies (`ANALOGY`) illustrating why shared identity, skill, and governance layers compound faster than isolated wrappers. They express engineering stance, not mathematical theorems.
+"One network," the "ratchet and pawl," and "the tamed Red Queen" are strategic analogies **(Analogy)** illustrating why shared identity, skill, and governance layers compound faster than isolated wrappers. They express engineering stance, not mathematical theorems.
 :::
 
 ## Why Isolated Wrappers Shatter Under $N \times M$ Fragility
@@ -18,7 +18,7 @@ Every extra point tool does not add linear strength; it adds quadratic fragility
 
 The modern internet already paid tuition on this lesson once. The infrastructure giants that survived a full decade in connectivity and identity—public-market references such as Cloudflare at the network edge and Okta in identity, cited strictly as architectural analogies—did not win by building one vertical webpage. They won by collapsing connectivity, identity, and policy enforcement into **one network**.
 
-ChronoAI is hammering out the same unglamorous foundation for the agent era—except the traffic crossing the wire is no longer human clicks, but concurrent, stateful, tool-calling agents able to mutate reality. By November 27, 2026, the codebase behind that fabric spans six GitHub organizations and **538 repositories**.
+ChronoAI is hammering out the same unglamorous foundation for the agent era—except the traffic crossing the wire is no longer human clicks, but concurrent, stateful, tool-calling agents able to mutate reality. By November 27, 2026, the codebase behind that fabric spans six GitHub organizations and **539 repositories**.
 
 ## Every Product Welded Onto One Topology
 

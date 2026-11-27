@@ -4,7 +4,7 @@ Across many companies experimenting with AI agents today, you still find a stone
 
 **(Analogy)** Running production agents off loose chat snippets is like operating a chemical plant from handwritten sticky notes taped onto unmarked valves—no batch number, no purity assay, no Material Safety Data Sheet, and no idea what mixed until smoke pours from the manifold. Software engineering escaped that chaos over decades through package registries, artifact signing, and semantic versioning. Agent ecosystems keep forgetting the exact same law: **any instruction capable of triggering real API writes, cash flows, or customer notices is executable software, not prose—and it must obey a real software lifecycle.**
 
-**(Stance)** Tap the idol of glossy "prompt marketplaces" with a hammer and they ring hollow: pretty thumbnails and star ratings prove zero operational safety. Machine-grade infrastructure is measured in security scans, immutable versions, explicit scope manifests, and automated test suites. That conviction is the sole reason **`Ornn`** (`v0.18.0` Alpha, live at `https://ornn.chrono-ai.fun`) and the public catalog **`nyx-skills`** exist.
+**(Position)** Tap the idol of glossy "prompt marketplaces" with a hammer and they ring hollow: pretty thumbnails and star ratings prove zero operational safety. Machine-grade infrastructure is measured in security scans, immutable versions, explicit scope manifests, and automated test suites. That conviction is the sole reason **`Ornn`** (`v0.18.0` Alpha, live at `https://ornn.chrono-ai.fun`) and the public catalog **`nyx-skills`** exist.
 
 ## Five-Stage Skill Lifecycle: From OpenAPI Synthesis to AgentSeal Assays
 
@@ -26,14 +26,18 @@ Trace how those five gates turn loose prompts into sealed, auditable cartridges:
 
 There is one blunt bench test for separating a real forge from a launch-week mockup: ignore the feature bullets and count the typed surface and test suite. Measured directly from `ChronoAIProject/Ornn` and `ChronoAIProject/nyx-skills` through **November 27, 2026**:
 
-| Dimension | Verified Reading | Source Repo & Audit Date |
+| Dimension | Verified Reading | Source & Audit Date |
 | --- | --- | --- |
-| Live Version & Tags | `v0.18.0` Alpha (`28` release tags, baseline 2026-09-17) | `ChronoAIProject/Ornn@v0.18.0` & `ornn.chrono-ai.fun/version.json` (2026-11-27) |
-| OpenAPI Surface | **134 OpenAPI operations** across `109` paths (including `58` `/api/v1/admin/` ops and `3` health probes) | `ChronoAIProject/Ornn@v0.18.0` `specBuilder.ts` (2026-11-27) |
-| Codebase Size | **187k LOC** (`186,526` lines TS/TSX/JS/Python) | `ChronoAIProject/Ornn@88f2d78` (2026-11-19) |
-| Automated Test Suite | **286 test files** (`*.test.*`, `*.spec.*`, `test_*.py`) | `ChronoAIProject/Ornn@88f2d78` (2026-11-19) |
-| Official SDKs | TypeScript `v0.4.0` · Python `v0.2.0` | `sdk/typescript/package.json` & `sdk/python/pyproject.toml` |
-| Public Skills Catalog | **163 public skills** (`SKILL.md`), **164 plugin entries**, **1 skillset** (AgentSeal-scanned) | `ChronoAIProject/nyx-skills@25ef75934d` (2026-11-27) |
+| Live Version & Tags | `v0.18.0` Alpha (`28` release tags, baseline 2026-09-17) | `Ornn@v0.18.0` & `/version.json` (2026-11-27) |
+| OpenAPI Surface | **134 OpenAPI operations** across `109` paths (including `58` `/api/v1/admin/` ops and `3` health probes) | `Ornn@v0.18.0` `specBuilder.ts` (2026-11-27) |
+| Codebase Size | **187k LOC** (`186,526` lines TS/TSX/JS/Python) | `Ornn@88f2d78` (2026-11-19) |
+| Automated Test Suite | **286 test files** (`*.test.*`, `*.spec.*`, `test_*.py`) | `Ornn@88f2d78` (2026-11-19) |
+| Official SDKs | TypeScript `v0.4.0` · Python `v0.2.0` | `sdk/typescript` & `sdk/python` |
+| Public Skills Catalog | **163 public skills** (`SKILL.md`), **164 plugin entries**, **1 skillset** (AgentSeal-scanned) | `nyx-skills@25ef75934d` (2026-11-27) |
+
+Put this forge under live operational tempo and the mechanical gap between ad-hoc prompt copy-pasting and real artifact delivery snaps into sharp relief. Copy-pasted playbooks rarely fail on day one—they die of **silent drift**, with one finance or hospitality guardrail fixed in a chat window while half the active fleet still runs last Tuesday's text. `nyx-skills` kills manual lag with **hourly automated Ornn mirror reconciliation**: over the last 14 days alone, **`347` commits** across finance, HR, hospitality, and adversarial-review skills swept continuously through scanning, versioning, and mirror convergence, leaving one hard invariant—authoritative Git source and served `Ornn` packages stay mechanically locked in sync every hour without human babysitting.
+
+Even an hourly-synced registry still fractures if operators must hand-edit pinned baseline skills on every single specialist. **`NyxID#2432`** (`86` files) seals pin drift right at the platform seam: administrators curate up to **`8` built-in public Ornn skills** via `/admin/assistant/system-skills`, guarded by a **revision fence** that isolates concurrent admin edits; on every owner turn across `NyxBot` and every specialist, `NyxID` injects that exact fenced baseline automatically—propagating company-wide rules on the very next turn with zero manual pin drift.
 
 The boundary stays just as candid: `Ornn` remains explicitly labeled **`v0.18.0` Alpha**, with external third-party publisher review pipelines still expanding rather than pretending to be a frozen `v1.0` registry.
 

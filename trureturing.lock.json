@@ -5,6 +5,14 @@
   "commit": "548388cde9b27d282a17a3ead04870288e40d197",
   "pinned_at": "2026-11-27T22:39:20Z",
   "declarations": {
+    "D5/S0/Automata/BinaryZeckendorfLanguage.base_success_iff_noAdjacentOnes": {
+      "module": "D5/S0/Automata/BinaryZeckendorfLanguage",
+      "name": "D5.S0.Automata.BinaryZeckendorfLanguage.base_success_iff_noAdjacentOnes",
+      "kind": "theorem",
+      "statement_id": "sha256:87b15f790efca613794d25fe2bc822ee2420eb2ab847760e509a3059c25a8f17",
+      "line": 45,
+      "signature": "theorem base_success_iff_noAdjacentOnes (word : List (Fin 2)) : (∃ state, binaryZeckendorfBase.eval word = some state) ↔ NoAdjacentOnes word"
+    },
     "D5/S1/Deficit/DeficitThreeValued.deficit_three_valued": {
       "module": "D5/S1/Deficit/DeficitThreeValued",
       "name": "D5.S1.Deficit.deficit_three_valued",
@@ -93,6 +101,26 @@
       "line": 636,
       "signature": "theorem result : claim"
     },
+    "D5/S3/Quantum/AURICOmega/OmegaSimplicialExactness.d2_eq_zero_iff": {
+      "module": "D5/S3/Quantum/AURICOmega/OmegaSimplicialExactness",
+      "name": "D5.S3.Quantum.AURICOmega.OmegaSimplicialExactness.d2_eq_zero_iff",
+      "kind": "theorem",
+      "statement_id": "sha256:426eeed626003823cdb97b255c6185dbfe5fae2534d59b4c49e534e20854e0d3",
+      "line": 60,
+      "signature": "public theorem d2_eq_zero_iff (G : AddCommGroup A) (laws : G.Laws) (base : V) (F : C2 V A) : Iff (∀ x y z w, Eq (d2 G F x y z w) G.zero) (Exists fun e : C1 V A => ∀ x y z, Eq (d1 G e x y z) (F x y z))",
+      "axioms": []
+    },
+    "D5/S3/Quantum/AURICOmega/OmegaSphericalHaarMidpoint.all_degree_peter_weyl_orthonormal": {
+      "module": "D5/S3/Quantum/AURICOmega/OmegaSphericalHaarMidpoint",
+      "name": "D5.S3.Quantum.AURICOmega.OmegaSphericalHaarMidpoint.all_degree_peter_weyl_orthonormal",
+      "kind": "theorem",
+      "statement_id": "sha256:5e300d4c457025beaec1d67fcfcbbd50acc808ffa6eda14404c0ea4a11638b39",
+      "line": 38,
+      "signature": "public theorem all_degree_peter_weyl_orthonormal (m n : Nat) : Equivalent (haarInner (evenCharPoly m) (evenCharPoly n)) (degreeDelta m n)",
+      "axioms": [
+        "propext"
+      ]
+    },
     "D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity": {
       "module": "D5/S3/Quantum/Algebra/OriginalCompactReciprocity",
       "name": "D5.S3.Quantum.Algebra.OriginalCompactReciprocity.original_rigidity",
@@ -108,6 +136,19 @@
       "statement_id": "sha256:bfc3cbb65a72ad128b1bfb08c343b9ef2957f9839e407e7c2de6e62442ae6ff4",
       "line": 699,
       "signature": "theorem result : claim"
+    },
+    "D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four": {
+      "module": "D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes",
+      "name": "NullConeGravity.grand_unification_unique_dimension_four",
+      "kind": "theorem",
+      "statement_id": "sha256:24dab0f945a66711e805a1ca712b9527876295d4b9da839294c0de85ce7163ba",
+      "line": 281,
+      "signature": "theorem grand_unification_unique_dimension_four (D : ℕ) (hD : 3 ≤ D) : (0 < Module.finrank ℝ (Weyl D) ∧ Summable (leadingModeWeight D) ∧ (∀ Ω : ℝ, 0 < Ω → maxwellConformalWeight D Ω = 1) ∧ D - 2 = 2) ↔ D = 4",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
     },
     "D5/S3/Quantum/Completion/RawAnchoredRadicalDescent.raw_hilbert_characterization": {
       "module": "D5/S3/Quantum/Completion/RawAnchoredRadicalDescent",

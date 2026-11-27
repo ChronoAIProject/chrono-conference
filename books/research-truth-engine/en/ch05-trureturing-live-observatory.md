@@ -1,6 +1,6 @@
 # Chapter 5: Inside live.trureturing.org—An Eight-Department Glass Observatory
 
-Most research labs present their work like a pastry shop that puts gleaming cakes in the window while bolting the kitchen door with iron deadbolts (**ANALOGY**). You are invited to admire the frosting; you are never allowed to inspect the flour, count the cracked bowls, or see which tray is currently scorching in the oven.
+Most research labs present their work like a pastry shop that puts gleaming cakes in the window while bolting the kitchen door with iron deadbolts **(Analogy)**. You are invited to admire the frosting; you are never allowed to inspect the flour, count the cracked bowls, or see which tray is currently scorching in the oven.
 
 **`https://live.trureturing.org/`** swings a hammer through the kitchen brick and replaces it with 360-degree glass.
 
@@ -28,6 +28,16 @@ Flatten the 3D observatory onto a blueprint and you see why a 24/7 formal engine
 Fly straight inside the central glass chamber—**Verification (`形式验证`, `CORE 00 · LEAN BRIDGE`)**, captured live below—and the panes expose five upstream handoff channels on the left (Math Research, Indep. Review, Monographs, Papers & Wiki, Scholar Outreach), parallel active verification lanes in the center, and frozen theorem return flows on the right:
 
 ![Detailed chamber view of the Verification department inside live.trureturing.org (captured November 27, 2026)](../assets/trureturing-live-dept.png)
+
+## Stripping Out Fake Nebulae: Inside 109 PRs in Five Days
+
+The easiest sin when building a live scientific observatory is painting sci-fi atmosphere over real data. Across a five-day hardening sprint of **`109` PRs**, the first hammer swung straight through decorative cosmos theater (`#83`): every painted aurora wash and synthetic `nebulaVbo` smoke blob was ripped out so that **100% of starfield geometry comes strictly from real frozen Truth DAG nodes (`18,986 → 19,022`) and `16,000` real directed edges**. Where a spiral arm blazes bright, dense frozen theorems actually sit there; where a void gap opens black, nobody is allowed to airbrush artificial fog across it.
+
+Right behind that cleanup lurked a classic physics-bench detective puzzle inside WebGL2 (`#84`): dragging the camera slightly low swallowed the entire galaxy behind an inexplicable wall of black. Tracing the render pipeline exposed the culprit hiding in plain sight—the 96m×96m floor quad sitting at `y = -1.35` was nearly invisible (`floorAlpha ≈ 0.062`), yet it still held `gl.depthMask(true)`, so the instant the viewpoint dipped beneath the plane, transparent glass silently wrote to the depth buffer and depth-culled the cosmos behind it. Fixing the depth mask restored the full sky and cleared sightlines for honest mathematical station sculptures—a Hopf link and diamond spire anchoring the Verification station and a Stokes-folding sheet crowning Papers & Wiki (`#89`–`#91`).
+
+The same engineering discipline reshaped the public telemetry pipe (`#95`). Rather than burning rate limits with brute-force fetches, switching the public 55-minute GitHub Actions poller to conditional **ETag/304** reads cut steady-state latency roughly in half—from `~1–2 min` down to **`~25–40 s`**—while staying under **`<10%`** of GitHub's `15k/hr` budget with zero private backdoors.
+
+Finally, wiring **Voice Guide Alexandra** (`#102`–`#109`, powered by `nyx-assistant-sdk v0.2.4`) across **`1,670` focusable connected modules and `16` inter-domain dependency bundles** (`#106`) turned a passive 3D monitor into an interactive tour—and live five-minute voice stress runs (`#105`/`#109`) caught and cured both the dead-end-star bug (stranding the camera on isolated nodes with no outbound hop) and a repeated-aside narration loop, rounding out the pipeline with prioritized three-minute digests (`#108`).
 
 ## 720 Continuous Hours of Industrial Research Cadence
 

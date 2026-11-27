@@ -4,6 +4,26 @@ Richard Feynman kept one unforgiving rule at the chalkboard: whenever someone bu
 
 The sprawling theory library of `trureturing`—**`1,461` source-theory volumes** in `trureturing-source-theories` (`375` `AURIC`, `339` `FIB`, `327` `RRO`, as of November 27, 2026) and **`341` `.lean` source files / `339` registered frozen modules** inside `FibonacciAtomic` at snapshot `548388cd`—grows out of exactly such a pocket-sized arithmetic toy: **a finite observer, golden-ratio carries, and `FIB ATOM` generated on ordered binary trees by the two-letter leaf substitution $\alpha \mapsto \beta,\ \beta \mapsto \beta\alpha$.**
 
+## The One-Bit Window: A Two-State Automaton for Zeckendorf Grammar
+
+Start with the smallest mechanical gate you can build on a tabletop: one bit of memory recording whether the previous symbol was `0` or `1`. Feed in `10101`, and every `1` lands cushioned by a `0` so the word sails straight through; feed in `110`, and the gate jams the instant two `1`s collide.
+
+That one-bit gate is the exact syntactic foundation of Zeckendorf arithmetic: the two-state partial deterministic automaton `binaryZeckendorfBase` accepts precisely the binary words carrying no adjacent `1`s (including the empty word and arbitrary leading-zero padding):
+
+:::: {.theorem #thm-fib-binary-gate title="One-Bit Window Characterization: Two-State Automaton Accepts iff No Adjacent Ones" lean="D5/S0/Automata/BinaryZeckendorfLanguage.base_success_iff_noAdjacentOnes"}
+For every binary word `word : List (Fin 2)`, the two-state partial automaton `binaryZeckendorfBase` terminates in an accepting state on `word` if and only if `word` obeys `NoAdjacentOnes word` (every consecutive pair of symbols contains at least one `0`, i.e. no two adjacent symbols are both `1`):
+$$
+(\exists\,\mathrm{state},\; \mathrm{binaryZeckendorfBase.eval}(\mathrm{word}) = \mathrm{some}\,\mathrm{state})
+\iff \mathrm{NoAdjacentOnes}(\mathrm{word}).
+$$
+::::
+
+::: {.proof}
+The automaton carries just two states: `last = 0` (`previousZero`, the initial state) accepts both `0` and `1`, whereas `last = 1` (`previousOne`) accepts only `0` and rejects `1` (`none`). Structural induction on `word` proves the strengthened chain invariant `base_success_iff_chain`—successful execution from the state encoding `previous` holds if and only if `previous :: word` has no adjacent `1`s—and instantiating `previous = 0` yields `NoAdjacentOnes word`. Verified and frozen by the Lean 4 kernel in [`base_success_iff_noAdjacentOnes`](lean:D5/S0/Automata/BinaryZeckendorfLanguage.base_success_iff_noAdjacentOnes).
+:::
+
+Once that one-bit gate screens out every illegal collision, take the surviving non-adjacent digit strings onto the chalkboard and try one deceptively simple arithmetic swap.
+
 ## The Three-Valued Trap of Golden Carries
 
 Every natural number $n$ writes uniquely as a sum of non-adjacent Fibonacci numbers (its Zeckendorf representation). Make one deceptively innocent chalkboard swap: replace each Fibonacci weight $F_k$ by the matching power $\varphi^k$ of the golden ratio $\varphi = (1+\sqrt{5})/2$, giving a real readout $\beta(n)$.
@@ -33,7 +53,7 @@ Do not take the chalkboard's word for it—drag $(v_1, v_2)$ inside the `deficit
 
 Now step from a single integer to a growing ordered binary tree (defined in Lean as the free magma `Source := FreeMagma Bool`, with `true` denoting the non-expanding leaf $\alpha$ and `false` the expanding leaf $\beta$). Act on $\{\alpha, \beta\}$ by the Fibonacci substitution $\alpha \mapsto \beta,\ \beta \mapsto \beta \cdot \alpha$. A tree carrying $a$ leaves of type $\alpha$ and $b$ leaves of type $\beta$ ticks forward to $\mathrm{step}(a, b) = (b, a + b)$—driven like a watch escapement by the unimodular matrix $M = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$—while the observer's boundary dial reads $\mathrm{quantity}(a, b) = 2a + 3b$.
 
-Allow a finite Boolean graft word $W$ to interleave substitution steps (`false`) with grafting a fixed atomic composition $w$ (`true`), then read the boundary modulo any positive integer $H$. What reachable orbit do those graft words trace? The frozen theorem below (listing core representative clauses; the full Lean conjunction also covers scalar-GCD behavior across all words, an autonomous $H^2$-state realization, and an $H^2$ state-count lower bound for atomic-block grafts) pins down the exact affine closure.
+Allow a finite Boolean graft word $W$ to interleave substitution steps (`false`) with grafting a fixed atomic composition $w$ (`true`), then read the boundary modulo any positive integer $H$. What reachable orbit do those graft words trace? The frozen theorem below cuts straight to the exact affine closure.
 
 ::: {.theorem #thm-fib-graft title="Forward Fibonacci Graft Words Realize the Observable Translation Ideal (Selected Conclusions)" lean="D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.result"}
 In the frozen conjunction `GraftAffineClosure.result`, the following conclusions hold in particular:
@@ -45,7 +65,7 @@ In the frozen conjunction `GraftAffineClosure.result`, the following conclusions
 :::
 
 ::: proof
-In [`GraftAffineClosure.result`](lean:D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.result), the permutation order of `step` on the finite space $(\mathbb{Z}/H\mathbb{Z})^2$ divides $(H^2)!$, enabling explicit Boolean words that synthesize any nonnegative shift $A \cdot \mathrm{step}^{[(H^2)!]}(w) + B \cdot \mathrm{step}(w)$, while integer GCD identities pin down the principal ideal image. Verified and frozen by the Lean 4 kernel.
+In [`GraftAffineClosure.result`](lean:D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.result), the four clauses above state the core representative conclusions (the full Lean conjunction also covers scalar-GCD behavior across all words, an autonomous $H^2$-state realization, and an $H^2$ state-count lower bound for atomic-block grafts). Because the permutation order of `step` on the finite space $(\mathbb{Z}/H\mathbb{Z})^2$ divides $(H^2)!$, explicit Boolean words synthesize any nonnegative shift $A \cdot \mathrm{step}^{[(H^2)!]}(w) + B \cdot \mathrm{step}(w)$, while integer GCD identities pin down the principal ideal image. Verified and frozen by the Lean 4 kernel.
 :::
 
 Inspect the `graft` experiment card below to turn the symbols of [@thm-fib-graft] into visible motion: watch forward Fibonacci graft words drive $(2, 1)$ modulo $H = 5$, locking discrete `step` rotation together with shifts inside `graftSpace`.
@@ -97,16 +117,18 @@ $$
 In [`GenealogicalFiberTransport.result`](lean:D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result), ordered binary trees live in the free magma `FreeMagma Bool`. Because `substitution t ≠ .of true` for every tree $t$ (no substitution output is a single $\alpha$ leaf), constructor analysis and structural induction on `.of` and `.mul` prove that `substitution`—and hence every iterate `fiberMap (a, b) n`—is injective, keeping the image cardinality fixed at $\mathrm{fiberCount}(a, b)$. Meanwhile, `fiberCount (step^[n] (a, b))` diverges with $n$, driving the ratio to $0$ and total variation to $1$. Evaluating at $(1, 1)$ and $n = 1$ yields $\mathrm{step}(1, 1) = (1, 2)$ with fiber ratio $2/6 = 1/3$, giving exact total variation $2/3$. Verified and frozen by the Lean 4 kernel.
 :::
 
+You can check that number right on your fingers without touching a computer: $\mathrm{Fiber}(1, 1)$ holds exactly `2` ordered derivation trees ($\alpha \cdot \beta$ and $\beta \cdot \alpha$), whereas one generation later $\mathrm{Fiber}(1, 2)$ holds `6` trees ($3$ leaf orderings $\alpha\beta\beta,\ \beta\alpha\beta,\ \beta\beta\alpha$ times the $C_2 = 2$ ways to parenthesize three leaves). Injective substitution lands those `2` ancestral trees on only `2` of the `6` target slots, leaving `4` out of `6` completely unreachable—giving $\mathrm{TV}(1) = 1 - 2/6 = 2/3$ right on your fingers.
+
 Step the `lineage` experiment card forward from $(1, 1)$ and watch the pushforward share drop from $1$ to $1/3$ at $n = 1$ ($\mathrm{TV} = 2/3$) and vanish toward zero thereafter:
 
 ::: {.viz src="fib-atom-observer" preset="lineage" height="500"}
 **Lineage Singular Limit (`lineage`).** Starts from $(a, b) = (1, 1)$ and advances generation $n$, hitting exact $\mathrm{TV}(1) = 2/3$ and converging toward $1$ as internal histories separate while boundary readouts stay identical ([@thm-fib-lineage]).
 :::
 
-Snap these three toys together and you feel the opening pulse of `trureturing`: **rigid, orderly boundary dials hiding exponentially vast fibers underneath.** Open the full `FIB//OBSERVER` laboratory below to move freely across all three scenes and check every exact arithmetic invariant yourself.
+Snap all four toys together—the one-bit non-adjacent gate, the three-valued golden carry trap, forward graft affine closure, and exponentially expanding hidden fibers—and you feel the opening pulse of `trureturing`: **rigid, orderly boundary dials hiding exponentially vast fibers underneath.** Open the full `FIB//OBSERVER` laboratory below to move freely across its three live scenes and check every exact arithmetic invariant yourself.
 
 ::: {.viz src="fib-atom-observer" height="560"}
-**Full Laboratory: `FIB//OBSERVER`.** Switch freely across Graft Affine Closure, Genealogical Fiber Transport, and Three-Valued Golden Carry Deficit to test exact instances of all three frozen Lean 4 theorems in this chapter.
+**Full Laboratory: `FIB//OBSERVER`.** Switch freely across Graft Affine Closure, Genealogical Fiber Transport, and Three-Valued Golden Carry Deficit to test exact instances from all four frozen theorems in this chapter (three explored live inside `FIB//OBSERVER`).
 :::
 
 An immediate, unforgiving question follows: if every finite observer lives with blind spots, how do we tell—without hand-waving or vanity scoring—whether a newly proved theorem genuinely shrinks the blind spot or merely dresses an old fact in fresh paint? Chapter 2 forges the formal filter: **Information Escape and the Irreversible Truth DAG.**

@@ -23,11 +23,11 @@ Now write the numbers most launch decks would bury in a footnote straight across
 
 Why stamp both zeros onto page one? Because in science, blurred categories rot everything they touch: **a paper-level Lean source link is not an independent verifier receipt, and a posted source-backed preprint is never peer review.** Standing cleanly behind two honest zeros beats painting half-built infrastructure green.
 
-Standing directly beside those zeros is the complete external scholarly ledger (`trureturing-outreach`, November 27, 2026), every debit and credit intact:
+Standing directly beside those zeros is the complete external scholarly ledger (`trureturing-outreach`, `data @ d22e63c8`, November 27, 2026), every debit and credit intact:
 
 - **`1,049` scholars contacted, `485` replied (`46.2%`)** top-line (`1,034` contacted / `478` replied after non-system filtering, spanning ~**`299` institutional domains** and **`47` countries**);
-- **`316` positive responses** (`697` recorded quotes), **`177` engaged in proof-checking**, and **`120` in gap-repair**;
-- **`70` opt-outs immediately honored**—recorded openly right beside the wins, never quietly swept away;
+- **`316` positive responses** (`697` recorded quotes), **`223` collaborating** (including **`44` co-authoring**, alongside `177` engaged in proof-checking and `120` in gap-repair), and **`70` credited/acknowledged**;
+- **`66` declined/stop-outreach requests immediately honored**—recorded openly right beside the wins, never quietly swept away;
 - Concrete scholarly outputs to date: **`1` published journal paper** (*RAIRO-ITA* 60, 29), **`17` identity-checked collaborative arXiv preprints (`16` externally coauthored)**, and **`21` OEIS entries** (newly adding `A024718`, `A048585`, and `A392984`).
 
 ## `trureturing-books`: The Continuously Published Bilingual Trilogy
@@ -43,7 +43,35 @@ Beneath the prose sits dense formal steel: the trilogy embeds **`918` Lean-verif
 | `omega-unification` (`OMEGA//UNIFY`) | **Deep-Water Sounding Log** | `1` lab | `16` films | Frontispiece `4/4 model-internal · 0/4 zero-fit` |
 | **Live Trilogy Total (`main b83ae321`)** | **`344` bilingual pages/lang (`688` total); `~1.99M` Han chars / `~1.59M` English words** | **`135` labs (`847` `.viz` cards)** | **`83` films (`3` feature >120MB MP4s)** | **`918` theorem blocks / `2,043` frozen GIDs (`132` bare-CIC zero-axiom, `22` `axioms: []`); `283` figure scripts, `93` preview assets** |
 
-Pause over the epigraph carved across the front of **`omega-unification` (`OMEGA//UNIFY`)**—the sharpest sentence in the entire library:
+To see what that "Zero-Axiom Rational Hull" looks like up close, inspect two flagship frozen theorems lifted straight from the `omega-math` spine. The first renders inside an automatic **blue** zero-axiom frame:
+
+:::: {.theorem #thm-omega-simplicial-exact title="Zero-Axiom Simplicial Poincaré Lemma: Closed 2-Cochains Are Exact" lean="D5/S3/Quantum/AURICOmega/OmegaSimplicialExactness.d2_eq_zero_iff"}
+For any vertex type $V$, additive abelian group structure `G : AddCommGroup A` obeying `laws : G.Laws`, chosen base vertex `base : V`, and degree-two simplicial cochain `F : C2 V A`, pointwise closedness and exactness are equivalent:
+$$
+(\forall x, y, z, w,\; d_2\, G\, F\, x\, y\, z\, w = G.\mathrm{zero})
+\iff
+(\exists\, e : C^1(V, A),\; \forall x, y, z,\; d_1\, G\, e\, x\, y\, z = F\, x\, y\, z).
+$$
+::::
+
+::: {.proof}
+In [`d2_eq_zero_iff`](lean:D5/S3/Quantum/AURICOmega/OmegaSimplicialExactness.d2_eq_zero_iff), the reverse direction follows directly from the pointwise coboundary identity `d2_d1`, while the forward direction uses the explicit constructive cone homotopy $d_1(H_2(\mathrm{base}, F)) + H_3(\mathrm{base}, d_2 F) = F$ (`d1_H2_add_H3_d2`) to produce the primitive $e = H_2(\mathrm{base}, F)$ with zero non-constructive steps. Crucially, this theorem depends on **literally zero axioms (`axioms: []`) on BOTH official Lean (`Init + OmegaMath`) and bare-CIC `strict_omega`**—not even `Classical.choice`, `Quot.sound`, or `propext`—which is why `tbook` automatically turns this theorem box **blue** instead of green.
+:::
+
+Now step one inch further along the same hull to see why reporting exact axiom footprints per kernel matters just as much as zero-axiom construction itself:
+
+:::: {.theorem #thm-omega-peter-weyl title="All-Degree Peter–Weyl Spherical Haar Orthonormality Without π, ℝ, or Choice" lean="D5/S3/Quantum/AURICOmega/OmegaSphericalHaarMidpoint.all_degree_peter_weyl_orthonormal"}
+For all natural-number degrees $m, n : \mathbb{N}$, the even character polynomials `evenCharPoly m` and `evenCharPoly n` satisfy exact rational spherical Haar orthonormality under `IntRatio.Equivalent`:
+$$
+\forall m, n : \mathbb{N},\; \mathrm{Equivalent}\bigl(\mathrm{haarInner}(\mathrm{evenCharPoly}\,m,\, \mathrm{evenCharPoly}\,n),\; \mathrm{degreeDelta}\,m\,n\bigr).
+$$
+::::
+
+::: {.proof}
+In [`all_degree_peter_weyl_orthonormal`](lean:D5/S3/Quantum/AURICOmega/OmegaSphericalHaarMidpoint.all_degree_peter_weyl_orthonormal), the purely algebraic proof first expands the product `(evenCharPoly m).mul (evenCharPoly n)` into the inclusive sum of even characters from $|m - n|$ to $m + n$ (`evenChar_product_sum`), then applies the factorial moment functional `haarKappaPoly` (`haar_evenChar_expectation`, which maps degree $0$ to $1$ and every positive even degree to $0$)—recovering `degreeDelta m n` without ever introducing $\pi$, $\mathbb{R}$, or real integration. Reporting the **dual-backend axiom footprint** with surgical honesty: on official Lean (`Init + OmegaMath`), this declaration uses **`propext` only** (zero `Classical.choice`, zero `Quot.sound`, zero $\pi$, zero $\mathbb{R}$), so `tbook` renders an honest **green** badge rather than blue; on the bare-CIC **`strict_omega`** kernel (`OmegaInit + OmegaMath`), the exact same statement verifies with **`axioms: []`** (zero axioms).
+:::
+
+Next, pause over the epigraph carved across the front of **`omega-unification` (`OMEGA//UNIFY`)**—the sharpest sentence in the entire library:
 
 > **`"4/4 model-internal · 0/4 zero-fit first-principles closure"`**—*Why Zero-Completion Is Stronger Than a Fake Grand Unification*.
 

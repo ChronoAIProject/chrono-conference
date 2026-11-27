@@ -18,13 +18,17 @@ Directly from `chronoai-lobby` v40 (`seat-catalog.json`), the `street-corner` ve
 - **By row `1 → 8`:** **`144, 144, 144, 140, 136, 136, 132, 132`** (summing strictly to `1,108`), addressed by real coordinates such as `N1-17`, `E1-20`, and `W8-01`; live metaverse events light seats up or down in **`~55–81 seconds`**.
 - **Flower Town's `18` celebratory stands:** **`2` rows × `9` mats** (`basket-01` through `basket-18`, each `0.6 × 0.6 m` along the world-map wall), ordered via Telegram **`@flowerassis_bot`** → Donna → `chrono-metaverse` (`~2.5 minutes` end-to-end across three live test orders).
 
+Keeping `street-corner` crisp when launch-day crowds pour in takes far more than a static seat map. Underneath the plaza, engineers dressed the Marina Bay sky-screen corridor with **`1,132` scene anchors** and **`15` airborne craft** (`chrono-metaverse#61/#315`), fixing a clipping glitch where the bay's navigation cylinder sliced across orbital pullback cameras; then **`#298` deleted `10,656` lines** of bespoke CMA glue in one sweep, mounting the Spatial Workbench directly onto **`nyx-assistant-sdk v0.1.0` GA** (`#307`) so ten thousand lines of custom plumbing stopped racing the same event loop.
+
+What keeps ordinary laptops smooth while guests stroll from the Fullerton waterfront into the stadium stands is ruthless memory arithmetic. **`#326`** quantizes the **`96 MiB` geometry cache** down to tight **`i16`/`u8`** encodings, paired with **`#345`/`#346`**'s multi-elevation tower radiance and wave-slope water lookup tables (LUTs)—eliminating the city-tile cache evictions that used to stutter browsers right as visitors crossed the plaza threshold, so rendering frames and front-desk booking locks never fight over the same thread.
+
 ::: {.figure src="ch02-seat-ring-allocation"}
 **Exact `street-corner` Four-Stand × 8-Row (`1,108` Seats) and `2 × 9` Flower-Mat Ledger.** Maps North (`248`), South (`248`), East (`306`), and West (`306`) stands across tiered rows `1–8` (`144, 144, 144, 140, 136, 136, 132, 132`; codes `N1-17`, `E1-20`, `W8-01`) alongside the `18` `0.6 × 0.6 m` Flower Town mats (`basket-01..18`) lining the world-map wall; arrivals past `1,108` overflow transparently to the livestream.
 :::
 
 ### A Kitchen-Bench Scar: The `750`-Row Sheet Crash and the `sheet-v3` Bitmask Rewrite
 
-**[ANALOGY]** If you track a thousand stadium seats one line per page in a notebook and the binding snaps at row 750, you do not pray that three hundred guests stay home—you switch to a punched-card bitmask that fits on one rigid board.
+**(Analogy)** If you track a thousand stadium seats one line per page in a notebook and the binding snaps at row 750, you do not pray that three hundred guests stay home—you switch to a punched-card bitmask that fits on one rigid board.
 
 We hit that exact ceiling during live stress prep: a naive one-row-per-seat sheet snapped against a **`750`-row spreadsheet limit**, well short of `1,108` seats. Instead of hoping turnout stayed tiny, engineers rebuilt seating into a compact **`sheet-v3` bitmask**—turning `1,108` seats into an atomic state vector whose single-row readback held at ~**`7.5 s`** under `nyxid-nyxbot-trials` PR #181's `1,500`-row load check.
 
