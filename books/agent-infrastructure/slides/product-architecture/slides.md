@@ -85,6 +85,7 @@ section: "死穴二 · 失控"
 <p class="kicker">死穴 02 · 失控递归</p>
 <h2 class="t">万能聊天框，<br>必死于<em>上下文浑浊与事件风暴</em></h2>
 <p class="lead">财务准则、30 题口径、1,108 个座位和最新提交，全塞进同一个窗口：指令开始互相打架，出了错也说不清是哪一条带偏了它。</p>
+<p class="sm muted mt">口径快照：30 题问答库截至 2026-11-27（第四卷第四章）· 1,108 席截至 2026-11-25</p>
 
 ---
 # 06 NyxBot：有硬预算的专家网格
@@ -269,7 +270,7 @@ layout: cover
 
 <p class="kicker">核心栈开源 · heca 整理中 · 欢迎来敲</p>
 <h1 class="display">拆开代码，<br><em>亲自敲打</em></h1>
-<p class="lead">别信幻灯片，去读仓库：这里每个数字都带着版本号和日期。</p>
+<p class="lead">别信幻灯片，去读仓库：这里每个数字都标着出处和日期。</p>
 <dl class="readout mt">
   <dt>代码</dt><dd class="cy"><a href="https://github.com/ChronoAIProject">github.com/ChronoAIProject</a></dd>
   <dt>联系</dt><dd>contact@chrono-ai.fun</dd>

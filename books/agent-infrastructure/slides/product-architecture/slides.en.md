@@ -85,6 +85,7 @@ section: "Failure 02 · Runaway"
 <p class="kicker">Failure 02 · Runaway loops</p>
 <h2 class="t">Chatboxes Die of <em>Context Rot and Event Storms</em></h2>
 <p class="lead">Finance rules, a 30-question press script, 1,108 seats and the latest commits in one window: the instructions start to fight.</p>
+<p class="sm muted mt">Snapshot: 30-question bank as of 2026-11-27 (Vol. IV, Ch. 4) · 1,108 seats as of 2026-11-25</p>
 
 ---
 # 06 NyxBot: a mesh with hard budgets
@@ -269,7 +270,7 @@ layout: cover
 
 <p class="kicker">Core stack open · heca pending · skeptics welcome</p>
 <h1 class="display">Open the Repos,<br><em>Bring a Hammer</em></h1>
-<p class="lead">Don't trust the slides; read the repositories. Every number here carries a version and a date.</p>
+<p class="lead">Don't trust the slides; read the repositories. Every number here carries a source and a date.</p>
 <dl class="readout mt">
   <dt>Code</dt><dd class="cy"><a href="https://github.com/ChronoAIProject">github.com/ChronoAIProject</a></dd>
   <dt>Contact</dt><dd>contact@chrono-ai.fun</dd>

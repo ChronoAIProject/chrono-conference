@@ -37,13 +37,13 @@ section: "Scale"
 <Source>trureturing@05ceb90 (Nov 20, 2026) · cadence @e55900e (Nov 19) · Lean 4.35.0</Source>
 
 ---
-# 03 Act I
+# 03 Part I
 layout: section
 chapter: "01"
-section: "Act I · FIB ATOM"
+section: "Part I · FIB ATOM"
 ---
 
-<p class="kicker">Act I · FIB ATOM</p>
+<p class="kicker">Part I · FIB ATOM</p>
 <h2 class="t">Identical on the Boundary,<br><em>Singular in Lineage</em></h2>
 <p class="lead">Substitution <Tex t="\alpha \mapsto \beta,\ \beta \mapsto \beta\alpha" />:<br>boundary readings match exactly, yet the lineage law turns asymptotically singular to the uniform one.</p>
 
@@ -74,13 +74,13 @@ For all $1 \le a + b$: substitution keeps every tree of a source fiber at the sa
 <Source>D5/S1/Deficit · D5/S3/Arith/FibonacciAtomic · Vol. III, Ch. 1</Source>
 
 ---
-# 05 Act II
+# 05 Part II
 layout: section
 chapter: "02"
-section: "Act II · Information Escape"
+section: "Part II · Information Escape"
 ---
 
-<p class="kicker">Act II · Information Escape · Intuition</p>
+<p class="kicker">Part II · Information Escape · Intuition</p>
 <h2 class="t">You Cannot Mine<br><em>the Same Gold Twice</em></h2>
 <p class="lead">The intuition behind recoverability: a new theorem counts as new information only if it separates states the old catalog could not. The next slide gives the exact Lean statements.</p>
 
@@ -111,13 +111,13 @@ Distinct entries with identical agreement relations both have zero unique captur
 <Source>Headline is an intuition; the cards state the Lean theorems · D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty · Vol. III, Ch. 2</Source>
 
 ---
-# 07 Act III
+# 07 Part III
 layout: section
 chapter: "03"
-section: "Act III · Forced Geometry"
+section: "Part III · Forced Geometry"
 ---
 
-<p class="kicker">Act III · Forced Geometry</p>
+<p class="kicker">Part III · Forced Geometry</p>
 <h2 class="t">Assume Neither Complex<br>Numbers Nor 3D.<br><em>Does Logic Force Both?</em></h2>
 <p class="lead">Keep only observable fibers, a three-way balancing law, and compact reciprocity—then see whether mathematics has any other choice.</p>
 
@@ -170,13 +170,13 @@ and the range of the action is exactly the skew endomorphisms of $B$, that is, $
 <Source>D5/S3/Quantum/Completion · D5/S3/Quantum/Algebra · Vol. III, Ch. 3</Source>
 
 ---
-# 10 Act IV
+# 10 Part IV
 layout: section
 chapter: "04"
-section: "Act IV · Literature"
+section: "Part IV · Literature"
 ---
 
-<p class="kicker">Act IV · Literature</p>
+<p class="kicker">Part IV · Literature</p>
 <h2 class="t">Into the Open<br>Literature: <em>74 Days,<br>2,128 Resolutions</em></h2>
 <p class="lead">No self-set exams—straight into the Open Problems scholars leave at the end of their papers.</p>
 

@@ -25,7 +25,7 @@ section: "此刻"
 ---
 
 <div class="body center">
-  <p class="kicker">Cold Open</p>
+  <p class="kicker">开场 · 实拍前厅</p>
   <h2 class="t">你正坐在一场<em>没有人类摄制组</em>的发布会里</h2>
   <div class="split mt">
     <div>
@@ -47,7 +47,7 @@ section: "第一幕 · 立场"
 ---
 
 <div class="body center">
-  <p class="kicker">Revaluation · 立场（非定理）</p>
+  <p class="kicker">价值重估 · 立场（非定理）</p>
   <h2 class="t">执行跌穿地板，<em>判断加冕为王</em></h2>
   <div class="g2 mt-l">
     <div class="card">
@@ -70,7 +70,7 @@ section: "第一幕 · 实证"
 ---
 
 <div class="body center">
-  <p class="kicker">Open the Logs</p>
+  <p class="kicker">翻开仓库日志</p>
   <h2 class="t">约十五名工程师，六十天，<em>141,624</em> 次提交</h2>
   <div class="g3 mt-l">
     <Stat value="141,624" label="60 天总提交 · 74 仓横跨 ChronoAI 与 The Omega Institute" />
@@ -91,7 +91,7 @@ chapter: "02"
 section: "第二幕 · 北极星"
 ---
 
-<p class="kicker">Act II · The Omega Institute</p>
+<p class="kicker">第二幕 · The Omega Institute</p>
 <h2 class="t">北极星：<em>逻辑的棘轮</em></h2>
 <p class="lead">只会奉承制造者的系统只是玩具。The Omega Institute 将这套工程底座开进了人类最冷酷的试车场——纯粹数学与 Lean 4 编译器内核。</p>
 
@@ -101,7 +101,7 @@ section: "北极星 · 规模"
 ---
 
 <div class="body">
-  <p class="kicker">From Intuition to Kernel</p>
+  <p class="kicker">从直觉到内核</p>
   <h2 class="t">把一条直觉交给 <em>Lean 4</em> 昼夜不停地敲打</h2>
   <div class="split mt">
     <div>
@@ -125,7 +125,7 @@ section: "北极星 · 文献"
 ---
 
 <div class="body">
-  <p class="kicker">74 Days in the Open Literature</p>
+  <p class="kicker">74 天公开文献实战</p>
   <h2 class="t">74 天，<em>2,128</em> 道公开文献题解</h2>
   <div class="split mt">
     <img src="./img/ch05-trureturing-growth.zh.svg" alt="trureturing 文献题解累计曲线" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -144,7 +144,7 @@ section: "北极星 · 铁律"
 ---
 
 <div class="body">
-  <p class="kicker">Kernel-Checked Iron Laws · 类比与定理</p>
+  <p class="kicker">内核检验的铁律 · 类比与定理</p>
   <h2 class="t">同一块金子挖不了两次，<em>局部绿灯不等于全局真</em></h2>
   <div class="g2 mt">
 <TheoremCard class="compact" label="定理5.1" title="可恢复的定理不能降低信息逃逸" gid="D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_false_of_recoverable" cite="thm-keynote-novelty">
@@ -167,7 +167,7 @@ section: "北极星 · 玻璃房"
 ---
 
 <div class="body">
-  <p class="kicker">live.trureturing.org</p>
+  <p class="kicker">实时观测站 · live.trureturing.org</p>
   <h2 class="t">砸掉黑箱的墙：<em>八部门透明玻璃观测站</em></h2>
   <div class="split mt">
     <img src="./img/trureturing-live.png" alt="live.trureturing.org 观测站实拍" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -188,7 +188,7 @@ section: "北极星 · 诚实"
 ---
 
 <div class="body center">
-  <p class="kicker">External Reality &amp; Red Lines</p>
+  <p class="kicker">外部核验与红线边界</p>
   <h2 class="t">440 位学者回信，以及我们<em class="warn">绝不遮掩的红区</em></h2>
   <div class="g4 mt">
     <Stat class="md" value="440" label="位学者回信 · 联络 838 位（53%，46 国 273 机构）" />
@@ -212,7 +212,7 @@ chapter: "03"
 section: "第三幕 · 整车"
 ---
 
-<p class="kicker">Act III · ChronoAI Infrastructure · 类比</p>
+<p class="kicker">第三幕 · ChronoAI 基础设施 · 类比</p>
 <h2 class="t">发动机人人可买，<br><em>我们造的是整车</em></h2>
 <p class="lead">把五百马力的裸发动机放在水泥地上踩油门，你得到的不是速度，而是事故。</p>
 
@@ -222,7 +222,7 @@ section: "整车 · 剖面"
 ---
 
 <div class="body">
-  <p class="kicker">Hot-Swappable Core · 类比（非定理）</p>
+  <p class="kicker">热插拔核心 · 类比（非定理）</p>
   <h2 class="t">明天换掉机舱里的发动机，<em>整辆车一秒不停</em></h2>
   <img class="mt-s" src="./img/ch02-engine-vs-vehicle.zh.svg" alt="裸发动机与整车的结构剖面" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
   <p class="lead mt">模型半年换一代。<b>把身份、技能、沙箱与判官焊进底盘，每一次上游换代都在给你的整车免费提速。</b></p>
@@ -235,7 +235,7 @@ section: "整车 · 红皇后"
 ---
 
 <div class="body center">
-  <p class="kicker">NyxID v0.78.0 · Open Today</p>
+  <p class="kicker">NyxID v0.78.0 · 今日开放</p>
   <h2 class="t">我们造了自己的<em>红皇后</em>——只不过这一次，她听你的</h2>
   <div class="split mt">
     <div>
@@ -260,7 +260,7 @@ section: "整车 · 一张网"
 ---
 
 <div class="body center">
-  <p class="kicker">Not Four Apps — One Network</p>
+  <p class="kicker">不是四个应用 · 而是一张网</p>
   <h2 class="t">走出聊天框：<em>同一个 NyxBot，走进真实世界</em></h2>
   <div class="g4 mt-l">
     <div class="tile"><i>园区与家 · 已在跑</i><b>飞书遛机器狗</b><span>群里说一句「去溜达一圈」，经 NyxID → Home Assistant，机器狗立刻巡逻。</span></div>
@@ -277,7 +277,7 @@ section: "整车 · 其余三层"
 ---
 
 <div class="body center">
-  <p class="kicker">Skills · Runtimes · Judges — 未拧紧的螺栓同样摆上台面</p>
+  <p class="kicker">技能 · 运行时 · 判官 · 未拧紧的螺栓同样摆上台面</p>
   <h2 class="t">技能像软件、执行分云地、<em>纪律靠硬判官</em></h2>
   <div class="g3 mt-l">
     <div class="card">
@@ -309,7 +309,7 @@ chapter: "04"
 section: "第四幕 · 落地"
 ---
 
-<p class="kicker">Act IV · Real Operations</p>
+<p class="kicker">第四幕 · 真实运营</p>
 <h2 class="t">走出前厅，<br><em>雇佣你的第一位 AI 员工</em></h2>
 <p class="lead">别买无所不能的魔法聊天框。雇一支分工清晰、越权即停、账本透明的小团队。</p>
 
@@ -319,7 +319,7 @@ section: "前厅 · 实景"
 ---
 
 <div class="body">
-  <p class="kicker">Inside street-corner</p>
+  <p class="kicker">走进街角前厅</p>
   <h2 class="t">Donna 与小花：面向<em>零撞座、零编造</em>的前厅闭环</h2>
   <div class="split mt">
     <img src="./img/lobby-baskets.png" alt="street-corner 三维花篮长廊" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -338,13 +338,13 @@ section: "AI 员工 · 账本"
 ---
 
 <div class="body">
-  <p class="kicker">Six Scoped Roles · 2026-11-25</p>
+  <p class="kicker">六个清晰岗位 · 2026-11-25</p>
   <h2 class="t">77 项交给 AI，<em>20 项留守人工闸门或路线图边界</em></h2>
   <div class="split mt">
     <img src="./img/ch07-six-role-coverage.zh.svg" alt="六岗工作流覆盖率" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>为什么不追求 100% 自动？</h4>
-      <h3>敢把这 20 项留在人工审批闸门或路线图边界之内，才是商户敢把另外 77 项交给机器的理由。</h3>
+      <h3>敢把这 20 项留守审批闸门或路线图，<br>才是商户敢交出另外 77 项的理由。</h3>
       <p>其中资金对外划转、合同签章、法律表态与库外媒体承诺锁在人工审批闸门后，其余仍在公开路线图上。</p>
       <p class="sm muted mt"><b class="hl-warn">诚实声明</b>　财务 24/28 目前在演示账本验证，外部付费商户为 <b>0</b>；<b class="hl-amber">首批试点今天开放</b>。</p>
     </div>
@@ -358,7 +358,7 @@ section: "邀请"
 ---
 
 <div class="body center">
-  <p class="kicker">Not a Job Posting</p>
+  <p class="kicker">这不是招聘启事</p>
   <h2 class="t">四扇今天就<em>敞开着</em>的大门</h2>
   <div class="g4 mt-l">
     <div class="card">
@@ -390,7 +390,7 @@ section: "邀请"
 layout: cover
 ---
 
-<p class="kicker">ChronoAI 2026 Virtual Launch</p>
+<p class="kicker">ChronoAI 2026 线上发布会</p>
 <h1 class="display">面向未来的<em>造物</em></h1>
 <p class="lead">请不要相信掌声，请相信你亲手点开的每一行代码与定理。</p>
 <p class="lead mt mono hl-cyan">chrono-ai.fun · contact@chrono-ai.fun</p>

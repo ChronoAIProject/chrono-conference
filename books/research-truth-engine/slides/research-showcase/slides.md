@@ -25,7 +25,7 @@ section: "尺度"
 ---
 
 <div class="body center">
-  <p class="kicker">One Way Forward</p>
+  <p class="kicker">只进不退</p>
   <h2 class="t">棘轮只朝<em>一个方向</em>转</h2>
   <div class="g2 mt-l">
     <Stat value="167,819" label="冻结 Lean 4 定理" tone="ok" />
@@ -43,7 +43,7 @@ chapter: "01"
 section: "奇观一 · FIB ATOM"
 ---
 
-<p class="kicker">Act I · FIB ATOM</p>
+<p class="kicker">第一篇 · FIB ATOM</p>
 <h2 class="t">外表完全一样，<br><em>血统彻底分离</em></h2>
 <p class="lead">替换规则 <Tex t="\alpha \mapsto \beta,\ \beta \mapsto \beta\alpha" />：<br>边界读数分毫不差，血统分布却与均匀分布渐近奇异。</p>
 
@@ -53,7 +53,7 @@ section: "FIB ATOM"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 1.1 · Theorem 1.3</p>
+  <p class="kicker">定理 1.1 · 定理 1.3</p>
   <h2 class="t">黄金进位亏量只取<em>三值</em>，血统却<em>一代就分家</em></h2>
   <div class="split mt">
     <div>
@@ -82,7 +82,7 @@ chapter: "02"
 section: "奇观二 · 信息逃逸"
 ---
 
-<p class="kicker">Act II · Information Escape · 直觉类比</p>
+<p class="kicker">第二篇 · 信息逃逸 · 直觉类比</p>
 <h2 class="t">同一块金子，<br><em>挖不了两次</em></h2>
 <p class="lead">这是可恢复性的直觉：一条新定理，只有分辨出旧目录分不开的状态，才算真正的新信息。精确陈述见下页 Lean 定理。</p>
 
@@ -92,7 +92,7 @@ section: "信息逃逸"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 2.3 · Theorem 2.5</p>
+  <p class="kicker">定理 2.3 · 定理 2.5</p>
   <h2 class="t">换一千种写法复述旧定理，<em>盲区一毫米也不收缩</em></h2>
   <div class="row mt">
     <img src="./img/ch02-information-escape-lattice.zh.svg" alt="信息逃逸格与语义闭包" style="display:block;height:270px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -119,7 +119,7 @@ chapter: "03"
 section: "奇观三 · 强制几何"
 ---
 
-<p class="kicker">Act III · Forced Geometry</p>
+<p class="kicker">第三篇 · 强制几何</p>
 <h2 class="t">不预先假设复数与三维，<br><em>逻辑会把它们硬逼出来吗？</em></h2>
 <p class="lead">只保留可观测纤维、三向配平律与紧致倒易约束，看数学还有没有别的选择。</p>
 
@@ -129,7 +129,7 @@ section: "五模坐标"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 3.1</p>
+  <p class="kicker">定理 3.1</p>
   <h2 class="t">看得见的是金字塔，<em>藏起来的是一条 Fisher 纤维</em></h2>
   <div class="split mt">
     <img src="./img/ch03-five-mode-pyramid.zh.svg" alt="五模可见金字塔与隐藏 Fisher 纤维" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -150,7 +150,7 @@ section: "刚性定理"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 3.2 · Theorem 3.3</p>
+  <p class="kicker">定理 3.2 · 定理 3.3</p>
   <h2 class="t">配平律迫出<em>复希尔伯特空间</em>，倒易律迫出<em>三维</em></h2>
   <div class="g2 mt">
 <TheoremCard class="compact" label="定理3.2" title="原始配平律的完整复希尔伯特空间刻画" gid="D5/S3/Quantum/Completion/RawAnchoredRadicalDescent.raw_hilbert_characterization" cite="thm-raw-hilbert">
@@ -178,7 +178,7 @@ chapter: "04"
 section: "奇观四 · 文献前沿"
 ---
 
-<p class="kicker">Act IV · Literature</p>
+<p class="kicker">第四篇 · 文献前沿</p>
 <h2 class="t">冲进公开文献的真实悬案：<br><em>74 天，2,128 题</em></h2>
 <p class="lead">不做自己出的考题——直接跳进学者们写在论文末尾的 Open Problem。</p>
 
@@ -207,7 +207,7 @@ section: "代表证明"
 ---
 
 <div class="body">
-  <p class="kicker">Phys. Lett. A 2000 · Phys. Rev. A 2012</p>
+  <p class="kicker">原题出处 · Phys. Lett. A 2000 · Phys. Rev. A 2012</p>
   <h2 class="t">悬置 26 年的熵界，<em>对一切 K 成立的面片</em></h2>
   <div class="g2 mt">
 <TheoremCard class="compact" label="定理4.2" title="Higuchi–Sudbery 四量子比特平均两比特熵精确上界" gid="D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum.result" cite="thm-higuchi-sudbery">
@@ -238,7 +238,7 @@ section: "代表反驳"
 ---
 
 <div class="body">
-  <p class="kicker">Phys. Rev. A 2025 · Nat. Commun. 2021</p>
+  <p class="kicker">原题出处 · Phys. Rev. A 2025 · Nat. Commun. 2021</p>
   <h2 class="t">两个公开猜想，<em class="magenta">两枚内核反例</em></h2>
   <div class="g2 mt">
 <TheoremCard class="compact" label="定理4.1" title="Fredkin 门纠缠能力猜想的反驳" gid="D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result" cite="thm-fredkin-refutation">
@@ -268,7 +268,7 @@ section: "观测站"
 ---
 
 <div class="body">
-  <p class="kicker">live.trureturing.org</p>
+  <p class="kicker">实时观测站 · live.trureturing.org</p>
   <h2 class="t">八个部门，<em>一座玻璃房</em></h2>
   <div class="split mt">
     <img src="./img/trureturing-live-dept.png" alt="live.trureturing.org 部门视图实拍" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -290,7 +290,7 @@ section: "红色边界"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 6.1 · Open problem 6.2</p>
+  <p class="kicker">定理 6.1 · 开放问题 6.2</p>
   <h2 class="t">等价已冻结，<em class="warn">黎曼猜想本身仍然开放</em></h2>
   <div class="row mt-s">
     <img src="./img/ch06-three-evidence-tiers.zh.svg" alt="三层证据边界" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -316,7 +316,7 @@ $\mathrm{RiemannHypothesis}$ 成立，当且仅当对一切阶数 $N$ 与一切 
 layout: cover
 ---
 
-<p class="kicker">Replay It Yourself</p>
+<p class="kicker">亲手重放</p>
 <h1 class="display">五步核验，<br>亲自用 <em>Lean 4</em> 复验</h1>
 <p class="lead mono hl-cyan">live.trureturing.org</p>
 <p class="lead mt-s mono">github.com/the-omega-institute/trureturing @ <PinnedCommit /></p>
