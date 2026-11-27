@@ -1,6 +1,6 @@
 # Preface
 
-> "All truly great thoughts are conceived while walking" (Nietzsche)—and every mathematical proof worth keeping must walk barefoot over the hot coals of a cold typechecking kernel.
+> "All truly great thoughts are conceived while walking" (Nietzsche)—and every mathematical proof worth keeping must survive the cold scrutiny of a typechecking kernel.
 
 Welcome to the research monograph published alongside the 2026 launch by **`The Omega Institute`**: ***The Ratchet of Logic: trureturing, the Live Observatory, and the Open Math Frontier*** (code `OMEGA//TRUTH`). Keep the brand boundary sharp: `The Omega Institute` is an independent basic-research imprint, always kept in its original English name; its formal engine rides on shared engineering infrastructure, yet its scientific claims answer to one incorruptible court—**the Lean 4 kernel**.
 

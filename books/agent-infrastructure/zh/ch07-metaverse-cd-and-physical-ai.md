@@ -16,7 +16,7 @@ ChronoAI 在屏幕之外已经落地的三条真实表面，正是 **`chrono-met
 
 - **草稿—操作—预览—发布事务流**：无论是给 `street-corner` 布置 1,108 个剧场席位，还是让花店助手小花把第 12 号花篮放上长廊展台，所有空间变更都走严格的 `create_draft` → `append_draft_ops` → `create_draft_preview` → `publish_draft` 事务流水线，支持快照回溯（`get_snapshot`）、分块加载（`get_chunk`）与区域内容查询（`get_region_content`）；
 - **统一事件总线与组合世界**：空间内来宾入席、花篮落位与导播提示全部记录进可回放事件时间线（`write_events` / `list_timeline`），并支持把多个子空间拼装成更大的连续世界（`join_space_child` / `update_space_composition`）；
-- **与 `NyxID` 原生打通**：进入 `street-corner` 的身份签入与小花修改展台槽位的写入权限，全部走同一套零密钥代理与作用域控制，杜绝陌生访客越权篡改公共会场几何体。
+- **与 `NyxID` 原生打通**：进入 `street-corner` 的身份签入与小花修改展台槽位的写入权限，全部走同一套零密钥代理与作用域控制，防止未授权访客篡改公共会场几何体。
 
 ## `chrono-cd`：把应用交付压成声明式单步闭环
 

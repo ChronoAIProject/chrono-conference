@@ -3,7 +3,7 @@
 [Preface](README.md)
 
 - [Chapter 1: NyxID—The Zero-Secret Connectivity & Identity Substrate](ch01-nyxid-gateway.md)
-- [Chapter 2: NyxBot, NyxAgent, and the Assistant Browser SDK](ch02-nyxbot-and-sdk.md)
+- [Chapter 2: NyxBot, NyxAgent, and the Browser Assistant SDK](ch02-nyxbot-and-sdk.md)
 - [Chapter 3: Ornn—The Agent-Facing Skill-Lifecycle API](ch03-ornn-skill-lifecycle.md)
 - [Chapter 4: CMA—Cloud-Hosted Managed Agents and Event Gateway](ch04-cma-cloud-agents.md)
 - [Chapter 5: heca—Local-First Multi-Provider Orchestration](ch05-heca-orchestration.md)

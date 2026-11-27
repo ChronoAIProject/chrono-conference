@@ -30,7 +30,7 @@ Switch to the `merchant` card below to filter the six-role launch board into the
 | **Step 1** | Open `NyxID` workspace & zero-secret vault | `https://api.nyxid.ai` (open signup) | Connect read-only calendar/ticketing/ledger sources; confirm `0` plaintext keys in context |
 | **Step 2** | Bind live customer channels | `NyxID` 9 channel types / `nyx-assistant-sdk` | Round-trip test messages across Slack, Telegram, Lark, or web widget with zero drops |
 | **Step 3** | Install two-role starter skills from `Ornn` | `ornn.chrono-ai.fun` + `nyx-skills` | Verify AgentSeal scan pass, pin immutable versions, audit `NyxID` service scopes |
-| **Step 4** | Weld spend caps & human approval gates | `NyxID` Credits cap + write gates | Set daily credit limit; pass 10/10 adversarial refund & off-script refusal drills |
+| **Step 4** | Lock spend caps & human approval gates | `NyxID` Credits cap + write gates | Set daily credit limit; pass 10/10 adversarial refund & off-script refusal drills |
 | **Step 5** | Run 14-day audited shadow/pilot trial | `CMA` audit logs + 3-min daily owner review | 14 straight days with zero unauthorized writes and zero invented claims before adding roles |
 
 ## Three Ways to Join (All via `contact@chrono-ai.fun`)

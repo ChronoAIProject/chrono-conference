@@ -22,10 +22,12 @@
 | 16:01–16:05 | 01:00–05:00 | Donna 现场欢迎 | `keynote-main` P01–P02 + 镜头推至接待台与剧场全景 | Donna 宣读 30 题问答规则与 `contact@chrono-ai.fun` 升级口 |
 | 16:05–16:20 | 05:00–20:00 | 第一幕：执行贬值，判断加冕 | `keynote-main` P03–P04 + 60 天提交实测 | 口播核对：`141,624`（60d）/ `90,295`（30d）/ `74` 仓 / `~35%`（69 仓 11-07 身份审计，实测 34.9%） |
 | 16:20–16:35 | 20:00–35:00 | 第二幕：北极星五步核验 | `keynote-main` P05–P10 + 浏览器实操 `live.trureturing.org` | 现场演示 5 步核验至 `FredkinEntanglingPowerRefutation.lean` 与单模块 `lake build`；明示 Mathesis 审稿录用 `0` 篇与黎曼猜想 `OPEN` |
-| 16:35–16:50 | 35:00–50:00 | 第三幕：五层整车实操 | `keynote-main` P11–P15 + 现场交互 `VEHICLE//STACK` | 依次触发 `swap` → `vault`（`0` 明文）→ `approval` → `revoke`（CMA 约 2.1s）；口播明示 `heca` / `CMA` / `chrono-harness` 现状边界 |
+| 16:35–16:50 | 35:00–50:00 | 第三幕：五层整车实操 | `keynote-main` P11–P15 + 现场交互 `VEHICLE//STACK` | 依次触发 `swap` → `vault`（`0` 明文）→ `approval` → `revoke`（CMA 约 2.1 s）；口播明示 `heca` / `CMA` / `chrono-harness` 现状边界 |
 | 16:50–17:02 | 50:00–62:00 | 第四幕：六位 AI 员工与街角巡礼 | `keynote-main` P16–P18 + 短片 `from-flower-to-seat` + `OPS//LEDGER` | 展示 `77/97` 覆盖与 20 项留守人工闸门或路线图边界；明示目前无外部付费商户、开放首批试点 |
 | 17:02–17:13 | 62:00–73:00 | 公开记者与观众问答 | 左右分屏：提问流 + Donna 闸门裁决面板 | 严格执行 30 题核验库；拒绝任何融资额、无证宣称与未定日期承诺 |
 | 17:13–17:15 | 73:00–75:00 | 收束与开放邀请 | `keynote-main` P19–P20 + 四部书与仓库链接 | 提示回放通道、公开仓库地址与 `contact@chrono-ai.fun` |
+| 约 18:15 | 下播后 ~1 小时 | 高清回放上架 | YouTube `@ChronoAIOfficial` + LinkedIn Live 回放页 | 上架 75 分钟完整录像、中英章节时间戳与四卷书 HTML/PDF/EPUB 置顶入口 |
+| 12-18 | 次日（T+24h） | 切片分发与试点跟进 | 5 支短片切片 + 冻结定理卡片 | Auto-X 定时分发切片；人类团队清空 `contact@chrono-ai.fun` 工单并启动首批商户筛选排期 |
 
 ## 四级异常应急预案（零慌乱切换）
 

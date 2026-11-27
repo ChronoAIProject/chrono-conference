@@ -16,7 +16,7 @@ Start with the forty-seven-second film tracing how six scoped AI employees staff
 
 ## Six Chapters and Two Ready-to-Run Appendices
 
-1. **Chapter 1 (One Team, Six Roles)**: Auditing the exact 77/97 work ledger and welding the hard authority line between autonomous execution and human sign-off.
+1. **Chapter 1 (One Team, Six Roles)**: Auditing the exact 77/97 work ledger and enforcing the hard authority line between autonomous execution and human sign-off.
 2. **Chapter 2 (Concierge Donna & Blossom)**: Running 1,108 theater seats with atomic locks, 18 Flower Town stands, and zero-overpromise reception guardrails.
 3. **Chapter 3 (Behind the Curtain)**: Community Ops's 75 rehearsal actions, Auto-X's 13-day cadence, `NyxBot` Finance (`24/28` demo ledger), and HR/Admin packs.
 4. **Chapter 4 (Live Press Q&A Bank)**: All **30 verified answers** Donna may deliver verbatim on stage plus mandatory escalation rules for off-bank probes.

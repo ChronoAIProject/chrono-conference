@@ -39,7 +39,7 @@ Inspect the `observatory` card below to watch this mechanism on a 16-state arena
 **Truth DAG Snapshot (`observatory`).** Three base theorems partition the 16-state arena into 4 equivalence classes, with magenta chords marking the 24 remaining escaped pairs out of 120 distinct pairs (`20%` escape rate), illustrating [@thm-ie-antitone] and [@thm-ie-insert].
 :::
 
-## What Counts as a Genuinely New Theorem? Three Guillotine Theorems
+## What Counts as a Genuinely New Theorem? Three Structural Novelty Theorems
 
 With monotone kernel shrinkage in place, the decisive question arrives: when you add entry `index`, what separates a genuine discovery (`catalog.LowersEscape index`) from redundant noise?
 

@@ -109,4 +109,4 @@ Put all three pieces together and you feel the opening heartbeat of `trureturing
 **Full Laboratory: `FIB//OBSERVER`.** Switch freely across Graft Affine Closure, Genealogical Fiber Transport, and Three-Valued Golden Carry Deficit to test exact instances of all three frozen Lean 4 theorems in this chapter.
 :::
 
-Now an immediate razor-sharp question follows: if every finite observer lives with blind spots, how do we tell—without hand-waving—whether a newly proved theorem genuinely shrinks the blind spot or merely repeats what the existing catalog already knew? Chapter 2 brings in the guillotine: **Information Escape and the Irreversible Truth DAG.**
+Now an immediate razor-sharp question follows: if every finite observer lives with blind spots, how do we tell—without hand-waving—whether a newly proved theorem genuinely shrinks the blind spot or merely repeats what the existing catalog already knew? Chapter 2 introduces the formal filter: **Information Escape and the Irreversible Truth DAG.**

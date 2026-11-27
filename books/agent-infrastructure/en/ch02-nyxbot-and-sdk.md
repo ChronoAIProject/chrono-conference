@@ -1,4 +1,4 @@
-# Chapter 2: NyxBot, NyxAgent, and the Assistant Browser SDK
+# Chapter 2: NyxBot, NyxAgent, and the Browser Assistant SDK
 
 Drop a brand-new hire into an office without telling them which ledger they own or how many mass emails they are allowed to send in an hour, and the strongest keycard system on Earth will not save you from an afternoon disaster.
 

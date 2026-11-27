@@ -26,6 +26,8 @@ This appendix records the minute-by-minute broadcast schedule, visual switch cue
 | 16:50–17:02 | 50:00–62:00 | Act IV: Six AI Employees & Street Corner Tour | `keynote-main` P16–P18 + film `from-flower-to-seat` + `OPS//LEDGER` | Show `77/97` coverage and 20 workflows behind human gates or roadmap; state zero external paying merchants yet and open pilot cohort |
 | 17:02–17:13 | 62:00–73:00 | Open Press & Guest Q&A | Split screen: incoming feed + Donna gate status | Strict 30-question bank adherence; refuse any funding or valuation figures, hype, or unverified dates |
 | 17:13–17:15 | 73:00–75:00 | Closing Manifesto & Portal | `keynote-main` P19–P20 + links to all 4 books and repos | Direct replay, repo verification, and pilot inquiries to `contact@chrono-ai.fun` |
+| ~18:15 | ~1 hr post-stream | HD Replay Release | YouTube `@ChronoAIOfficial` + LinkedIn Live replay pages | Publish full 75-minute HD recording with bilingual chapter timestamps and pinned HTML/PDF/EPUB links |
+| Dec 18 | Next day (T+24h) | Clips & Pilot Follow-Up | 5 explainer film clips + verified theorem cards | Auto-X stages clips; human team clears `contact@chrono-ai.fun` tickets and begins pilot screening |
 
 ## Four-Tier Fail-Safe Fallbacks
 

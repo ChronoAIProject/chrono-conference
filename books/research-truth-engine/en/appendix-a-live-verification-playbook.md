@@ -28,6 +28,8 @@ EOF
 
 Expect `lake build` to exit with zero errors and `#print axioms` to list only standard Lean axioms (`propext`, `Classical.choice`, `Quot.sound`—zero `sorryAx` and zero custom axioms). Once both pass, that result no longer rests on ChronoAI, The Omega Institute, or any author's word—it rests solely on the Lean 4 kernel.
 
+> **Why three `trureturing` commit SHAs appear across the edition**: `e55900e` anchors the November 19, 2026 720-hour continuous commit cadence audit; `05ceb90` anchors the November 20, 2026 cumulative snapshot (`167,819` frozen theorems and `2,128` literature resolutions); and `trureturing.lock.json` pins [{commit}](trureturing:) on `dev` to resolve exact source line numbers and `statement_id` digests for all 21 cited theorems. Always check out the lockfile commit when replaying Step 5 above.
+
 ## Full Declaration Index for All 21 Frozen Theorems
 
 The identical five-step audit applies to **all 21 frozen Lean 4 theorems** cited across this monograph—covering `FIB ATOM`, Information Escape, forced complex Hilbert space, forced 3D rigidity, all seven flagship literature resolutions, and the Riemann Hypothesis integer Hankel equivalence. Open the build-generated declaration index below for direct pinned links to every file and line number:

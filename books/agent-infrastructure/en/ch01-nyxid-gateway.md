@@ -1,6 +1,6 @@
 # Chapter 1: NyxID—The Zero-Secret Connectivity & Identity Substrate
 
-Pasting production API keys into a `.env` file and handing them to an autonomous agent that browses the open web and reads external emails is security theater in reverse—like writing your vault combination on the back of an envelope and sending a courier down a street full of pickpockets.
+Pasting production API keys into a `.env` file and handing them to an autonomous agent that browses the open web and reads external emails is an open invitation to a breach—like writing your vault combination on the back of an envelope and sending a courier down a street full of pickpockets.
 
 One poisoned webpage carrying two lines of indirect prompt injection, and the agent politely exfiltrates every key sitting in its environment. Worse still, teams try to stop the bleed by appending an ALL-CAPS sentence to their system prompt: **"NEVER LEAK ANY API KEYS!"** As Richard Feynman closed Appendix F of the Rogers Commission Report (1986), nature cannot be fooled—and attackers do not back down because your prompt used exclamation marks.
 

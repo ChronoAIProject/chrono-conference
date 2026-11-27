@@ -2,7 +2,7 @@
 
 Most small businesses testing AI end up starring in the same slapstick comedy: a founder buys one "all-in-one AI assistant," dumps half the company wiki inside, watches it miscalculate a client quote by two decimal places in week one and invent an impossible warranty promise in week two, then marches everyone back to manual spreadsheets by week three concluding *"AI employees aren't ready."*
 
-The flaw was never hiring AI employees—it was hiring them with zero division of labor. Human teams separate cashier, controller, legal, reception, and HR behind explicit approval lines; handing every key in the office to one unguarded chat window was guaranteed to fail.
+The flaw was never hiring AI employees—it was hiring them with zero division of labor. Human teams separate cashier, controller, legal, reception, and HR behind explicit approval lines; handing every key in the office to one unguarded chat window invites predictable failure.
 
 ## The Live Work Ledger: 77 Automated and 20 Held Behind Gates or Roadmap
 
@@ -28,7 +28,7 @@ Set autonomous execution side by side with the human authority line in one diagr
 
 ## Why Leaving 20 Workflows Unautomated Builds Trust in the Other 77
 
-Real operational mastery shows up in knowing where to draw a hard line. In plain business terms: **welding irreversible actions behind hard human gates—and naming roadmap boundaries honestly—is the exact reason your team can safely hand the other 77 workflows to machines around the clock.**
+Real operational mastery shows up in knowing where to draw a hard line. In plain business terms: **locking irreversible actions behind hard human gates—and naming roadmap boundaries honestly—is the exact reason your team can safely hand the other 77 workflows to machines around the clock.**
 
 Under `NyxID`, those brakes live in network policy, never in polite prompt wishes—a finance agent literally holds no token scope capable of wiring cash out of an account. Its sharpest action is laying a reconciled invoice summary, anomaly alert, and staged draft neatly inside a human approval queue for a ten-second sign-off.
 

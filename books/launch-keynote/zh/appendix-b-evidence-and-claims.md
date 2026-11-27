@@ -9,7 +9,7 @@
 | 研发节奏 | 近 60 天 / 30 天企业提交 | `141,624`（60d）/ `90,295`（30d），覆盖 `74` 仓 | `chrono-company-slides`（`product-line-commits.csv`） | 2026-11-19 |
 | 研发身份 | 显式机器/Agent 账号占比 | `35%`（`36,819 / 105,363`，69 仓窗口；不含本地人签多代理） | `chrono-company-slides`（`team-structure.csv`） | 2026-11-07 |
 | `NyxID` | 线上版本与能力规模 | `v0.78.0`（`126` 标签、`63` 次版本/8 周）；`55` 服务、`41` MCP 规范、`7` LLM 网关、`9` 渠道类型（`10` 适配器）；公开注册（`invite_code_required: false`）；`1 credit = 1 USD` | `ChronoAIProject/NyxID@v0.78.0` & `api.nyxid.ai` | 2026-11-03 / 11-27 |
-| `NyxBot` | 专项代理与触发限额 | 默认 `8` / 上限 `32` 专家、群组上限 `8`、记忆 `50`、触发上限 `30/h` 与 `300/d` | `ChronoAIProject/NyxID@v0.78.0` | 2026-11-03 |
+| `NyxBot` | 专项代理与触发限额 | 默认 `8` / 上限 `32` 专项代理、群组上限 `8`、记忆 `50`、触发上限 `30/h` 与 `300/d` | `ChronoAIProject/NyxID@v0.78.0` | 2026-11-03 |
 | `Ornn` | 技能生命周期 API 与技能数 | `v0.18.0` Alpha、`134` OpenAPI 操作（`109` 路径，含 `58` 管理操作）、`18.7 万` LOC、`286` 测试文件；`nyx-skills` `163` 公开技能（`164` 插件项） | `ChronoAIProject/Ornn@v0.18.0` & `nyx-skills@d77457c` | 2026-11-19 / 11-27 |
 | `CMA` / `heca` | 托管与本地编排 | `CMA` 4 层架构、约 `2.1 s` 凭证热重载（当前单主编码运行时）；`heca` `27` 代理（`6` 主 + `21` ACP）、`361` 夜间构建（源码待公开） | `chrono-company-slides/decks/bp/BP.md` | 2026-11-27 |
 | `chrono-harness` | 治理工具链与 `sshx` | `v0.1.4`、Linux x86_64 与 macOS aarch64 各 `16` 个预编译二进制、`27.2 万` 行 Rust、`25` 模块仓（`SPEC.md` 标 `completeness_proven: false`）；`sshx v1.0.0-beta.58` | `ChronoAIProject/chrono-harness` & `consensus-rnd` | 2026-11-13 / 11-25 |

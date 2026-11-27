@@ -4,7 +4,7 @@
 
 自 2026 年 9 月 8 日启动公开问题登记，至 2026 年 11 月 20 日的 **74 个自然日**内，`trureturing`（`the-omega-institute/trureturing@05ceb90`）累计登记解决 **2,126 道带日期文献开放题**（另含 2 道未标入库日期记录，按 `problem_slug` 去重合计 **2,128 道**：**1,400 道证明**、**728 道反驳**，日均约 **29 道**；同期全库共有 2,151 份问题档案，尚有 23 道明确登记为未解）。
 
-按公开来源拆解这 2,128 道题解，分布极其均衡，覆盖多类公开文献前沿阵地：
+按公开来源拆解这 2,128 道题解，它们横跨多类公开文献前沿阵地：
 
 ::: {.figure src="ch04-resolution-velocity"}
 **2,128 道公开文献题解来源与证明／反驳分布（2026-11-20 冻结快照）。** 青色柱为证明（共 `1,400` 道），品红柱为反驳（共 `728` 道）：arXiv 预印本（`393` 证 / `343` 反）、OEIS 序列猜想（`641` 证 / `52` 反）、同行评审期刊（`354` 证 / `320` 反）、Erdős 公开问题集（`1` 证 / `3` 反）及其他文献（`11` 证 / `10` 反）；量子信息与物理领域独占 `582` 道，悬置超十年者 `124` 道，最久 `47` 年。
@@ -16,7 +16,7 @@
 
 2025 年，Qiu、Song 与 Chen（`arXiv:2410.15253`，*Phys. Rev. A*）研究四量子比特受控交换门（Fredkin 门 $F_4$）跨越 `AD:BC` 二分切口在允许携带局域辅助比特（local ancillas）的乘积输入态上的纠缠产生上确界（entangling power supremum），并猜想其精确等于 $2$ ebits（`claim : entanglementGeneration = 2`）。
 
-`trureturing` 构造出一个显式容许乘积态输入，将其约化密度矩阵共轭化为精确有理矩阵、由 Lean 内核直接通过 `decide` 核验谱结构，并结合对数严格下界算出其输出纠缠约为 `2.00034…` ebits（严格大于 $2$），一锤证伪原猜想！
+`trureturing` 构造出一个显式容许乘积态输入，将其约化密度矩阵共轭化为精确有理矩阵、由 Lean 内核直接通过 `decide` 核验谱结构，并结合对数严格下界算出其输出纠缠约为 `2.00034…` ebits（严格大于 $2$），从而严格证伪原猜想。
 
 ::: {.theorem #thm-fredkin-refutation title="四量子比特 Fredkin 门纠缠能力猜想的反驳" lean="D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result"}
 Qiu–Song–Chen（`arXiv:2410.15253`）关于四量子比特 Fredkin 门跨越 `AD:BC` 切口（允许局域辅助比特）纠缠产生上确界恰好等于 $2$ ebits 的猜想 `claim` 不成立：$\neg\,\mathrm{claim}$。
