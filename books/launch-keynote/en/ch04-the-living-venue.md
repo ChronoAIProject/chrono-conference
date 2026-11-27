@@ -8,7 +8,7 @@ So we skipped the hotel, skipped the film crew, and built a permanent, open onli
 
 Two clean doors lead inside: the public read-only viewer at `/u/street-corner?view=extended` or one-click open-signup **`NyxID`** entry into the interactive workspace (`invite_code_required: false`, GitHub / Google / Apple—while YouTube `@ChronoAIOfficial` and LinkedIn Live remain completely login-free). Official seat reservations run straight through Telegram concierge bot **`@chronoai_frontdesk_bot`** (the web booking form and phone line remain open pre-launch items—we never count unfinished doors).
 
-Instead of hitting a dead registration form, you walk into a live 3D plaza built on real coordinates. Dead ahead glows the reception desk staffed by AI Concierge **Donna**; along the world-map wall sits **Flower Town** with **2 rows × 9 flower mats (`basket-01`..`basket-18`)**, tended by **Blossom** via Telegram bot **`@flowerassis_bot`**; and rising behind the square stands the `星潮` virtual stadium—not a hand-waved sketch of imaginary circles, but the real `chronoai-lobby` (v40) catalog of **four stands × eight tiered rows totaling exactly `1,108` addressable seats**:
+Instead of hitting a dead registration form, you walk into a live 3D plaza built on real coordinates. Dead ahead glows the reception desk staffed by AI Concierge **Donna**; along the world-map wall sits **Flower Town** with **2 rows × 9 flower mats (`basket-01`..`basket-18`)**, tended by **Blossom** via Telegram bot **`@flowerassis_bot`**; and rising behind the square stands the **Xingchao (Star Tide)** virtual stadium—not a hand-waved sketch of imaginary circles, but the real `chronoai-lobby` (v40) catalog of **four stands × eight tiered rows totaling exactly `1,108` addressable seats**:
 
 - **By stand**: **North `248`**, **South `248`**, **East `306`**, **West `306`** ($248 + 248 + 306 + 306 = 1{,}108$).
 - **By tiered row (`1 → 8`)**: **`144, 144, 144, 140, 136, 136, 132, 132`** (`= 1,108`).
@@ -29,13 +29,13 @@ Here is the real kitchen-bench story: during early testing, an ordinary `750`-ro
 Rather than asking you to trust prose about concurrency, our client-side deterministic schematic lab `LAUNCH//ARENA` maps all four stands × eight tiered rows (North `248`, South `248`, East `306`, West `306` = `1,108` seats) alongside all `18` flower mats along the world-map wall. Start with the quiet pre-doors floor:
 
 ::: {.viz src="launch-arena" preset="lobby" height="500"}
-**Street Corner Overview (`lobby`).** Pre-doors architectural map of `street-corner`: Donna's reception desk and Blossom's 2 rows × 9 flower mats (`basket-01..18`) on the left, paired with four stands × eight tiered rows totaling `1,108` open seats on the right.
+**Street Corner Overview (`lobby`).** Pre-doors architectural map of `street-corner`: four floating glass tiered stands enclose the lobby bowl on all four sides (North `248`, South `248`, East `306`, West `306`—`1,108` open seats across eight rows), with the keynote screen (north), Donna's reception desk (west), Flower Town (east), and `2 × 9` flower-basket mats (`basket-01..18`) along the southern world-map wall positioned *inside* the bowl.
 :::
 
 Now throw the doors open. The `booking` card runs an opening arrival surge across the front tiered rows of all four stands. Keep your eyes glued to the collision counter at the bottom: under the atomic lock invariant, **duplicate-seat collisions stay identically `0`**, binding every confirmation token to one unique seat code (`N1-17`, `E1-20`, `W8-01`)—our exact pass bar for the December 11 load drill.
 
 ::: {.viz src="launch-arena" preset="booking" height="500"}
-**Atomic Seat Lock (`booking`).** Illustrates incoming arrivals filling the front tiered rows across all four stands in cyan while the atomic booking lock holds duplicate-seat collisions at `0`.
+**Atomic Seat Lock (`booking`).** Simulates **`N = 720` guests** paused at **`T−30` (minute `45`)**: **`432` seats (`144 × 3`)** cleanly fill rows 1–3 across all four stands in cyan while row 4 stays empty, holding duplicate-seat collisions strictly at `0`.
 :::
 
 Next comes the boundary that divides working operations from fragile theater: **what happens when 1,250 guests show up for a 1,108-seat arena?** Glossy virtual stages either crash or silently stack avatars on top of one another. Our routing switch is blunt: seats 1 through 1,108 stay strictly locked inside the four stands, and from Guest #1,109 onward, Donna hands over an immediate full-house notice and routes the visitor cleanly into login-free YouTube (`@ChronoAIOfficial`) and LinkedIn Live—modeled in the `overflow` card below and locked as our December 11 load-drill bar: **zero collisions, zero stranded errors.**

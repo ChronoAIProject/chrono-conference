@@ -18,16 +18,16 @@ On the afternoon of November 27, 2026, we pretended it was already launch day an
 
 ## Fifteen-Day Deterministic Calendar (2026-12-04 to 2026-12-18)
 
-Aligned with `chrono-goals/goals/chronoai-launch-event.yaml`, six fixed milestones plus **December 16's formal Discord dress rehearsal** lock every AI employee and human gate onto one clock:
+Aligned with `chrono-goals/goals/chronoai-launch-event.yaml`, seven primary milestones from November 27's full-flow rehearsal through December 18 (expanded to eight gates with December 8's media fact sheet in the interactive `countdown` view) lock every AI employee and human gate onto one clock:
 
 ::: {.figure src="ch05-event-countdown-milestones"}
-**Launch Milestone Calendar (Dec 04 – Dec 18, 2026).** Six primary gates—Dec 04 Doors Open (`T-13d`), Dec 08 Media Fact Sheet & Wave 2 (`T-9d`), Dec 11 Load & Stream Drill (`T-6d`), Dec 15 Artifact Freeze (`T-2d`, followed by Dec 16 Formal Discord Dress Rehearsal), **Dec 17 16:00–17:15 SGT** Live Broadcast (`T-0`, highlighted in amber), and Dec 18 Clips & Pilot Follow-up (`T+1d`).
+**Launch Milestone Calendar (Nov 27 – Dec 18, 2026).** Seven milestones in sequence: Nov 27 Full-Flow Rehearsal (`11/12` passed), Dec 04 Doors Open (`T-13d`), Dec 11 Load & Stream Drill (`T-6d`), Dec 15 Artifact Freeze (`T-2d`), Dec 16 Formal Discord Dress Rehearsal (`T-1d`), **Dec 17 16:00–17:15 SGT** Live Broadcast (`T-0`, highlighted in amber), and Dec 18 Clips & Pilot Follow-up (`T+1d`).
 :::
 
 Scrub the `countdown` card inside `OPS//LEDGER` below to walk day-by-day across the launch arc and inspect which AI roles wake up—and which human gates stay armed—at each checkpoint:
 
 ::: {.viz src="ai-team-work-ledger" preset="countdown" height="500"}
-**Launch Countdown Dispatch (`countdown`).** Steps from `Dec 04` through `Dec 18`, illuminating active AI roles and mandatory human approval checkpoints at every milestone.
+**Launch Countdown Dispatch (`countdown`).** Steps across **`8` gates from `Nov 27` through `Dec 18`** (including `11-27` rehearsal, `12-08` media sheet, and `12-16` formal Discord dress rehearsal), illuminating active AI roles and mandatory human approval checkpoints at every milestone.
 :::
 
 ## Four-Phase Execution and Failover Playbook
@@ -45,7 +45,7 @@ Scrub the `countdown` card inside `OPS//LEDGER` below to walk day-by-day across 
 
 ### Phase 3: Broadcast Day Telemetry & Replay Release (Dec 17, SGT)
 
-- **T-60 min (15:00):** Verify dual RTMP ingest heartbeats (YouTube `@ChronoAIOfficial` + LinkedIn Live), local offline backup reels, live Pages links, and `chrono-metaverse`'s four-stage extended broadcast pipeline (office `rb.cabinet-01` → Virtual Stadium `星潮` `1,108` seats → Marina Bay Sands `252.8m × 142.2m` sky-screen → Earth orbital `5,307km × 2,985km` planetary screen).
+- **T-60 min (15:00):** Verify dual RTMP ingest heartbeats (YouTube `@ChronoAIOfficial` + LinkedIn Live), local offline backup reels, live Pages links, and `chrono-metaverse`'s four-stage extended broadcast pipeline (office `rb.cabinet-01` → Virtual Stadium Xingchao (Star Tide), `1,108` seats → Marina Bay Sands `252.8m × 142.2m` sky-screen → Earth orbital `5,307km × 2,985km` planetary screen).
 - **T-15 min (15:45):** Switch to pre-show lobby camera and countdown; Donna flips to live check-in mode while on-call engineers watch four vitals (dual stream bitrate, booking-lock latency, escalation queue depth, and rate-limit alerts).
 - **T-0 to T+75 min (16:00–17:15):** Execute Volume I (*Build for What Comes Next*), Appendix A minute-by-minute; the scheduled one-shot task delivers the host Q&A sheet on clockwork; during the `62:00–73:00` live Q&A block, human engineers triage off-bank tickets live for 24-hour written follow-up.
 - **~1 Hour Post-Stream (Dec 17, ~18:15 SGT):** Once a human verifies the replay link and flips status to ready, Community Ops dispatches the 75-minute HD replay and four-book download links automatically.

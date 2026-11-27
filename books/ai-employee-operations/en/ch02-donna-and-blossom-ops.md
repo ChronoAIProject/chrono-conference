@@ -2,7 +2,9 @@
 
 Reception is the easiest job to belittle from the cheap seats. Outsiders picture a smiling welcome; anyone who has ever run a thousand-person launch knows reception is the **outer seawall**—one oversold block of seats, one overwritten partner plaque, or one improvised claim to a reporter can sink months of earned trust in ten minutes flat.
 
-Inside the 3D `street-corner` lobby, two strictly scoped AI employees hold that seawall: **Donna** at the ChronoAI front desk (skill `0.8`, locked November 27 to official Telegram seat bookings via `@chronoai_frontdesk_bot`, kept under personal scope for December 17 due to platform issues `NyxID#2912/#2913` so guests hit zero friction) and **Blossom** across the plaza at **Flower Town**. Public read-only viewing runs at `/u/street-corner?view=extended#share=...`: signed-out browsers see a one-click open **`NyxID` sign-in** (`invite_code_required: false`, no invite code required), while viewers preferring zero signup go straight to the synchronized YouTube (`@ChronoAIOfficial`) and LinkedIn Live stream. Both the web booking page and the telephone booking line (`con-14`) remain candidly open pre-launch items.
+Inside the 3D `street-corner` lobby, two strictly scoped AI employees hold that seawall: **Donna** at the ChronoAI front desk (skill `0.8`) and **Blossom** across the plaza at **Flower Town**. On November 27, the team locked official seat booking to Telegram `@chronoai_frontdesk_bot`—kept under personal scope for December 17 due to platform issues `NyxID#2912/#2913` so guests hit zero friction.
+
+Public read-only viewing runs at `/u/street-corner?view=extended#share=...`: signed-out browsers see a one-click open **`NyxID` sign-in** (`invite_code_required: false`, no invite code required), while viewers preferring zero signup go straight to the synchronized YouTube (`@ChronoAIOfficial`) and LinkedIn Live stream. Both the web booking page and the telephone booking line (`con-14`) remain candidly open pre-launch items.
 
 ![Operational 3D perspective of Street Corner showing Donna's reception desk, main plaza promenade, and Flower Town entrance](../assets/street-corner.png)
 
@@ -41,7 +43,7 @@ Across **`13` live Telegram operations** (`/start` `8 s`, `/cancel` `7 s`, `/boo
 Three honest rough edges stay visible in ink:
 
 - Only **`1` item (`con-14`, telephone booking line)** remains todo out of `15`;
-- Live seat glow on/off passed on November 24, while the live 3D avatar spawn immediately after replying `"入座"` remains queued for pre-December-16 check (`PR #181`);
+- Live seat glow on/off passed on November 24, while the live 3D avatar spawn immediately after replying "seated" ("入座") remains queued for pre-December-16 check (`PR #181`);
 - Rehearsal caught `/event` still serving test metadata (*"test event / time TBD"*), logged explicitly for production sheet cutover ahead of December 16.
 
 ## Donna's Four Iron Front-Desk Guardrails

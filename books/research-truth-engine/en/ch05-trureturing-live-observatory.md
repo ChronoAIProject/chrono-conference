@@ -22,7 +22,7 @@ Flatten the 3D observatory onto a blueprint and you see why a 24/7 formal engine
 8. **Tools & Studio (`工具与表达`)**: Maintains compiler governance rules, computed figures, interactive laboratories, and explainer films.
 
 ::: {.figure src="ch05-eight-dept-observatory"}
-**Architecture of the Eight-Department Glass Observatory (`live.trureturing.org`, November 27, 2026 snapshot).** Top layer connects `17` public repositories and eight spiral galaxies (`19,022` truth nodes / `36,865` total nodes, `28,774` edges); center cards display the eight real pipeline departments (**Direction, Math Research, Indep. Review, Verification, Monographs, Papers & Wiki, Scholar Outreach, Tools & Studio**) alongside Voice Guide Alexandra; footer reports unbroken `720 / 720` UTC hourly commit coverage (median `63` commits/hour, `217` merged PRs/day).
+**Architecture of the Eight-Department Glass Observatory (`live.trureturing.org`, November 27, 2026 snapshot).** Top layer links `17` public repositories to `19,022` DAG nodes; center cards list all eight live functional pipeline departments (**Direction, Math Research, Indep. Review, Verification, Monographs, Papers & Wiki, Scholar Outreach, Tools & Studio**); footer reports unbroken `720 / 720` UTC hourly commit coverage and a median of `63` commits/hour.
 :::
 
 Fly straight inside the central glass chamber—**Verification (`形式验证`, `CORE 00 · LEAN BRIDGE`)**, captured live below—and the panes expose five upstream handoff channels on the left (Math Research, Indep. Review, Monographs, Papers & Wiki, Scholar Outreach), parallel active verification lanes in the center, and frozen theorem return flows on the right:

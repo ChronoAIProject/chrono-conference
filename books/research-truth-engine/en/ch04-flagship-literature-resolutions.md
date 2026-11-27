@@ -2,7 +2,7 @@
 
 The worst way to grade a research engine is on final exams it wrote for itself. The only honest test is to throw it straight into the open ocean of published literature—where physicists, combinatorialists, and number theorists left explicit *Open Problems*, *Conjectures*, and *Question 1* at the backs of real papers.
 
-Across **81–82 calendar days** from September 8 to November 27–28, 2026 (`the-omega-institute/trureturing@548388cd`), `trureturing` logged **2,276 dated literature resolutions** (plus `2` undated entries, totaling **2,278** unique resolutions: **1,512 proved** and **766 refuted**, averaging ~**28 per day**; out of **`2,305`** tracked dossiers, **`27`** remain explicitly logged as unresolved).
+Across **`81` calendar days (`2026-09-08` to `2026-11-27`)** at `the-omega-institute/trureturing@548388cd`, `trureturing` logged **`2,276` dated literature resolutions** (plus `2` undated entries, totaling **`2,278`** unique resolutions: **1,512 proved** and **766 refuted**, averaging ~**28 per day**; out of **`2,305`** tracked dossiers, **`27`** remain explicitly logged as unresolved).
 
 Notice the weight of those **`766` refutations**: before nature and mathematics, cracking a false idol with one exact counterexample carries every ounce of dignity that building a positive theorem does. Split all 2,278 resolutions (and 2,305 dossiers) by published source, and the footprint spans five distinct arenas:
 

@@ -26,8 +26,8 @@
 
 如果你想亲眼检验一台全天候运转的真理挖掘机到底在证明什么、又在哪些悬崖边诚实标红，请翻开第三卷《逻辑的棘轮》，推开 [`live.trureturing.org`](https://live.trureturing.org/) 与 The Omega Institute 的公开仓库群：
 
-- 在 [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing)（`223,231` 条冻结定理、`17,968` 个模块、`602 万`行代码）里挑一道你领域内的公开题解，按第三卷附录 A 的五步剧本在本地跑一次 `lake build`，或在 [`trureturing-books`](https://github.com/the-omega-institute/trureturing-books) 检阅三部持续出版的双语专著（每语种 `347` 章）；
-- 前往 [`the-omega-institute/riemann-hypothesis`](https://github.com/the-omega-institute/riemann-hypothesis) 用 `./verify` 亲手重放 Levent Alpöge 古典 RH / 狄利克雷 GRH 证明的 **`8,490` 个分片**，或翻阅伴书 `riemann-hypothesis-book` 与 [`mathesis-papers`](https://github.com/mathesis-papers)（`236` 仓、`225` 篇论文、同行评审录用仍坦诚标 `0`）；
+- 在 [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing)（`223,231` 条冻结定理、`17,968` 个模块、`602 万`行代码）里挑一道你领域内的公开题解，按第三卷附录 A 的五步剧本在本地跑一次 `lake build`，或在 [`trureturing-books`](https://github.com/the-omega-institute/trureturing-books) 检阅三部持续出版的双语专著（每语种 `344` 双语页、`918` 条定理块 / `2,043` 个独立冻结 GID）；
+- 前往 [`the-omega-institute/riemann-hypothesis`](https://github.com/the-omega-institute/riemann-hypothesis) 用 `./verify` 亲手重放 Levent Alpöge 古典 RH / 狄利克雷 GRH 证明的 **`8,490` 个分片**，或翻阅伴书 `riemann-hypothesis-book` 与 [`mathesis-papers`](https://github.com/mathesis-papers)（`237` 仓 / `236` 公开、`225` 篇公开论文、双重归零诚实：`0` 篇 Mathesis 同行评审录用且 `0 / 1,534` 独立验证器回执）；
 - 揪出我们自然语言表述里哪怕半句越过 Lean 签名的措辞，或指明已有文献先例——所有指正均由 The Omega Institute 记入 `trureturing-outreach` 公开汇总台账；若你手头有形式清晰、渴望机器排查反例或搭起 Lean 4 骨架的开放猜想，欢迎带题来信。
 
 ### 第三扇门：给首批敢真刀真枪试水的试点商户与部署伙伴

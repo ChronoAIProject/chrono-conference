@@ -21,7 +21,7 @@ Compress the entire rollout into five verifiable steps:
 Switch to the `merchant` card below to filter the full launch roster into the clean two-role starter footprint built for external stores:
 
 ::: {.viz src="ai-team-work-ledger" preset="merchant" height="500"}
-**Merchant Adoption Mode (`merchant`).** Filters the AI employee work ledger to the recommended two-role starter pack (Front-Desk Concierge + Finance Ledger), showing Day-1 verified workflows alongside non-negotiable human approval lines.
+**Merchant Adoption Mode (`merchant`).** Filters the AI employee work ledger to the recommended two-role starter pack totaling **`38 / 43 = 88.4%`** (Concierge Donna `14/15` + `NyxBot` Finance `24/28`), candidly displaying **`0` external paying merchants** alongside every non-negotiable human approval line.
 :::
 
 ## Five-Step Deployment Checklist (First Live Production Run in Two Weeks)
@@ -43,7 +43,7 @@ Switch to the `merchant` card below to filter the full launch roster into the cl
 Open the full **`OPS//LEDGER`** workbench below to inspect the live workflow counts, honest downgrades, and human gates, fire simulated off-script press or unauthorized-refund probes, and switch freely between the full team and the two-role merchant starter view.
 
 ::: {.viz src="ai-team-work-ledger" height="560"}
-**Full Laboratory: `OPS//LEDGER`.** Inspect live AI employee coverage, candid downgrades, and human approval gates, simulate off-script press and unauthorized-refund blocks, and scrub the Dec 4–18 launch countdown or merchant starter mode.
+**Full Laboratory: `OPS//LEDGER`.** Inspect live AI employee coverage, candid downgrades, and human approval gates, simulate off-script press and unauthorized-refund blocks, and scrub the `Nov 27 – Dec 18` countdown (**`8` gates** including `11-27` rehearsal, `12-08` media sheet, and `12-16` formal Discord dress rehearsal) or two-role merchant starter mode (`38 / 43 = 88.4%`).
 :::
 
 [Appendix A](appendix-a-social-and-press-kit.md) and [Appendix B](appendix-b-acceptance-and-rehearsal.md) close this volume with our ready-to-stage bilingual countdown copy, verified Media Fact Sheet, publication gates, November 27 rehearsal telemetry, and pre-launch stress checklist. Here is to hiring an AI employee that clocks in Monday at 9:00 AM—and always knows exactly where to hit the brake.

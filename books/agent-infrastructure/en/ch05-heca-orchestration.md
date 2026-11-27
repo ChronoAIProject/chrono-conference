@@ -32,6 +32,6 @@ Across the 60-day cadence window ending November 19, 2026, the `heca` line logge
 - **Four usable runtimes today, one still blocked**: `heca` currently runs cleanly across **4 local isolation runtimes (`Host`, `macOS Sandbox`, `Docker`, `Podman`)**; **Apple's `container` runtime remains blocked**, and we do not pad the count to five.
 - **`getheca/heca` source remains private/internal**: While public release artifacts and site documentation live under the `getheca` GitHub organization, the core source repository has not been open-sourced yet. Calling a private repository "open source" is a cheap fraud; every ledger in this book marks `heca` plainly as **private/internal source** so no outside developer wastes five minutes hitting a 404.
 
-Cloud `CMA` and local `heca` push execution speed through the roof. Yet speed without brakes only builds bigger craters: **how do you stop high-velocity agents from silently skipping tests, softening grading scripts, or burning two hours of full-repo browser matrices over a three-word typo?**
+Cloud `CMA` and local `heca` push commit velocity straight into the redline—and without brakes, every slip turns into a pileup: **how do you stop high-velocity agents from silently skipping tests, softening grading scripts, or burning two hours of full-repo browser matrices over a three-word typo?**
 
 Enter Layer 4—the coldest mechanical referee in the stack: **`chrono-harness` and `sshx`**. Chapter 6 takes apart the brake calipers.

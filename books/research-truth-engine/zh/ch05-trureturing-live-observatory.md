@@ -22,7 +22,7 @@
 8. **工具与表达（`Tools & Studio`）**：维护编译器治理规则、静态图、交互实验室与科普短片流水线。
 
 ::: {.figure src="ch05-eight-dept-observatory"}
-**`live.trureturing.org` 八部门透明玻璃观测站架构（2026-11-27 快照）。** 顶层汇集 `17` 个公开仓库与八座螺旋星系（`19,022` 个真值节点 / 总计 `36,865` 节点、`28,774` 条边），中段列出八大真实功能流水线部门（研究方向 `Direction`、数学攻坚 `Math Research`、独立评审 `Indep. Review`、形式验证 `Verification`、理论书写 `Monographs`、论文与知识 `Papers & Wiki`、学术交流 `Scholar Outreach`、工具与表达 `Tools & Studio`），并标出语音导览 Alexandra 与连续 `720 / 720` UTC 小时提交覆盖（中位数 `63` 提交/时、`217` 合并 PR/天）。
+**`live.trureturing.org` 八部门透明玻璃观测站架构（2026-11-27 快照）。** 顶层汇集 `17` 个公开仓库与 `19,022` 个 DAG 真值节点，中段列出八大真实功能流水线部门（研究方向 `Direction`、数学攻坚 `Math Research`、独立评审 `Indep. Review`、形式验证 `Verification`、理论书写 `Monographs`、论文与知识 `Papers & Wiki`、学术交流 `Scholar Outreach`、工具与表达 `Tools & Studio`），底栏标注连续 `720 / 720` UTC 小时提交覆盖与中位数 `63` 提交/时。
 :::
 
 推门飞入最核心的一座透明舱室——下图中实时展开的 **形式验证（`Verification`，即 `CORE 00 · LEAN BRIDGE`）**——玻璃墙立刻把左侧来自数学攻坚、独立评审、理论书写、论文与知识、学术交流五条上游接力通道、中央正在编译的多条并行验证管线，以及右侧回流至全院的冻结定理通道全部摊在阳光下：

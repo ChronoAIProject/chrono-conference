@@ -15,7 +15,7 @@ The December 17 `street-corner` lobby walked in Volume I is not a dead artist me
 Its signature engineering exhibit for December 17 is the **4-stage extended broadcast pipeline**:
 
 1. **Stage 1 — Office Origin (`rb.cabinet-01`)**: Live presenter and operational demonstration feed;
-2. **Stage 2 — Virtual Stadium (`星潮` / `street-corner`)**: **`1,108` live seats** built cleanly as **4 tiered stands × 8 rows** (North `248`, South `248`, East `306`, West `306`; rows `1→8` holding `144, 144, 144, 140, 136, 136, 132, 132` seats with live addresses such as `N1-17`, `E1-20`, `W8-01`), bordered along the world-map wall by **`18` flower basket mats** (`2 rows × 9`);
+2. **Stage 2 — Virtual Stadium: Xingchao (Star Tide) (`street-corner`)**: **`1,108` live seats** built cleanly as **4 tiered stands × 8 rows** (North `248`, South `248`, East `306`, West `306`; rows `1→8` holding `144, 144, 144, 140, 136, 136, 132, 132` seats with live addresses such as `N1-17`, `E1-20`, `W8-01`), bordered along the world-map wall by **`18` flower basket mats** (`2 rows × 9`);
 3. **Stage 3 — Marina Bay Sands Sky-Screen**: A **`252.8 m × 142.2 m`** skyline screen anchored over Singapore's waterfront;
 4. **Stage 4 — Earth Orbital Planetary Screen**: Camera pullback to a **`5,307 km × 2,985 km`** orbital display.
 
@@ -51,4 +51,4 @@ Internal recorded proofs (documented in `chrono-company-slides`, November 2026) 
 - Read-only sensor inspection and safety-critical physical actuations stay strictly separated behind scoped grants and local human sign-off;
 - Drawing on our event-driven actor heritage in **`aevatar`** (`1.31M` LOC of C# and `16,366` test assertions as of October 12, 2026), reactive orchestration extends cleanly from cloud sandboxes to edge devices at home.
 
-All five layers of the complete vehicle are now open down to the frame. [Appendix A](appendix-a-enterprise-repo-atlas.md) maps all **`538` repositories across 6 GitHub organizations**, and [Appendix B](appendix-b-security-and-readiness.md) lays out our unpainted **Trust Boundary, License & Honest Readiness Matrix**.
+All five layers of the complete vehicle are now open down to the frame. [Appendix A](appendix-a-enterprise-repo-atlas.md) maps all **`539` repositories across 6 GitHub organizations**, and [Appendix B](appendix-b-security-and-readiness.md) lays out our unpainted **Trust Boundary, License & Honest Readiness Matrix**.

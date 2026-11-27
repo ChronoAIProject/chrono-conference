@@ -2,7 +2,9 @@
 
 前台接待是现场活动里最容易被轻视的岗位。没管过千人活动的人以为前台只是「笑着说欢迎光临」；真正站过检票口的人都知道，前台是整场活动的**第一道防波堤**——座位超卖、花篮写错人名、或者顺口替公司许下一个并不存在的功能，任何一条都能在十分钟内炸穿整场发布会的信用。
 
-在 `street-corner` 三维虚拟前厅里，把守这道防波堤的是两位权责钉死的前厅 AI 员工：守在 ChronoAI 接待台的礼宾 **Donna**（技能 `0.8`，2026-11-27 拍板正式订座入口绑定 Telegram `@chronoai_frontdesk_bot`，因平台缺陷 `NyxID#2912/#2913` 当前锁定个人作用域以保证来宾低摩擦订座），以及广场对面花店（Flower Town）的助手 **小花（Blossom）**。公开只读观展页位于 `/u/street-corner?view=extended#share=...`；未登录浏览器首次打开会弹出开放注册的 **`NyxID` 一键登录**（`invite_code_required: false`，无需邀请码），不愿注册的观众亦可直接进入全程免登录的 YouTube（`@ChronoAIOfficial`）与 LinkedIn Live 高清同步直播。网页订座页与电话订座专线（`con-14`）目前诚实标为上线前未完项。
+在 `street-corner` 三维虚拟前厅里，把守这道防波堤的是两位权责钉死的前厅 AI 员工：守在 ChronoAI 接待台的礼宾 **Donna**（技能 `0.8`），以及广场对面花店（Flower Town）的助手 **小花（Blossom）**。11 月 27 日团队拍板将正式订座入口锁定在 Telegram `@chronoai_frontdesk_bot`——受平台缺陷 `NyxID#2912/#2913` 约束，当前维持个人作用域，确保来宾订座顺畅无阻。
+
+公开只读观展页位于 `/u/street-corner?view=extended#share=...`：未登录浏览器首次打开会弹出开放注册的 **`NyxID` 一键登录**（`invite_code_required: false`，无需邀请码）；不愿注册的观众亦可直接进入全程免登录的 YouTube（`@ChronoAIOfficial`）与 LinkedIn Live 高清同步直播。网页订座页与电话订座专线（`con-14`）目前均诚实标为上线前未完项。
 
 ![街角前厅三维运营视角：Donna 接待前台、广场主通道与 Flower Town 入口实景](../assets/street-corner.png)
 

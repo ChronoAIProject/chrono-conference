@@ -8,29 +8,46 @@ Across `The Omega Institute`'s publishing ecosystem, three bridges carry kernel 
 **Three Epistemic Evidence Marks.** Stacked top to bottom: top green `LEAN ✓` (kernel checked) belongs strictly to frozen Lean 4 `theorem` declarations resolved in `trureturing.lock.json` (`223,231` theorems in the Nov 27, 2026 `548388cd` snapshot); middle violet (`Written proof`) marks source-backed prose arguments paired with a DOI or source repository and a formalization request; bottom red `OPEN` isolates genuinely unproved frontiers—including Extended/Grand RH, simplicity of zeros, pair correlation, and `trureturing`'s internal universal Hankel sign assertion.
 :::
 
-## Mathesis, `mathesis-papers`, and the Outreach Ledger: Putting `0` on Page One
+## Mathesis, `mathesis-papers`, and the Outreach Ledger: Putting Double-Zero Honesty on Page One
 
-As of November 27, 2026, the open publication organization **`https://github.com/mathesis-papers`** hosts **`236` repositories** (`235` public, `1` private), while the live Mathesis portal (`papers.trureturing.org` / `mathesis-omega-research.apps.chrono-ai.fun`) serves **`225` collected papers** (`224` linked directly to Lean formal source and `225` PDFs; the org catalog snapshot tracks `224` public paper repositories, `1,528` registered formal statements, `217` DOIs, alongside the `human-in-the-loop-automated-research` methodology manuscript).
+As of **`2026-11-27T21:31Z`** (`catalog@293dc68c37`), the open publication organization **`https://github.com/mathesis-papers`** has grown to **`237` repositories (`236` public)** powering **`225` public collected papers** on `Mathesis` (`papers.trureturing.org`). Open the full inventory drawer:
 
-Now write the number most launch decks would bury in fine print straight across the center of the chalkboard: as of November 27, 2026, **formal peer-review acceptances through Mathesis's own review pipeline stand at `0`** (`mathesis.accepted = 0`, `mathesis.collected = 225`).
+- **Source bindings, persistent DOIs, and multi-format editions**: across those `225` public collected papers sit **`224` pinned Lean links**, **`218` Zenodo DOIs**, and **`1,534` registered statements**, flanked by **`60` bilingual reading editions**, **`43` slide decks**, and **`42` explainer videos**;
+- **Open protocol for humans and research agents**: the organization logs **`756` shared formalization requests** and **`138` merged PRs**; `mathesis` OpenAPI **`v1.3.0`** exposes **`77` paths** with machine-readable `/skill.md`, `/llms.txt`, and `mathesis-contribute` onboarding, while PRs `#157–#159` opened prose theoretical and versioned methodology publishing (housing the `human-in-the-loop-automated-research v1.0` audit dissected in Chapter 7);
+- **Four concrete November 27 shelf entries**: to ground abstract totals in real mathematics, the same single day landed `hagele-2026-refined-bmv-33-all-dimensions`, `lagarias-sun-2024-supernorm-size-asymptotic`, `peng-zero-dimensional-shadowing-extension`, and `su-hu-2026-minimum-rectangular-size` (proving exact minimum rectangular size **`81`**).
 
-Why print a stark `0` inside a flagship monograph? Because Feynman's rule against fooling yourself admits no exceptions: rebranding open source-backed preprints as peer-reviewed journal acceptances is the cheapest insult one can offer working scientists. Standing directly beside that `0` is the complete external scholarly ledger (`trureturing-outreach@d22e63c8`, November 27, 2026), every debit and credit intact:
+Now write the numbers most launch decks would bury in a footnote straight across the center of the chalkboard—not one `0`, but **double-zero honesty**:
+
+1. **Formal peer-review acceptances through Mathesis's own review pipeline stand at `0`** (`mathesis.accepted = 0`, `mathesis.collected = 225`);
+2. **Independent Mathesis verifier receipts stand at `0 / 1,534`**.
+
+Why stamp both zeros onto page one? Because in science, blurred categories rot everything they touch: **a paper-level Lean source link is not an independent verifier receipt, and a posted source-backed preprint is never peer review.** Standing cleanly behind two honest zeros beats painting half-built infrastructure green.
+
+Standing directly beside those zeros is the complete external scholarly ledger (`trureturing-outreach`, November 27, 2026), every debit and credit intact:
 
 - **`1,049` scholars contacted, `485` replied (`46.2%`)** top-line (`1,034` contacted / `478` replied after non-system filtering, spanning ~**`299` institutional domains** and **`47` countries**);
-- **`316` positive responses** (`697` recorded quotes), **`223` active collaborations** (**`44` co-authoring**), and **`70` explicitly credited**;
-- **`66` declined or requested stop-outreach**—recorded openly right beside the wins, never painted green;
-- Concrete scholarly outputs to date: **`1` published journal paper** (*RAIRO-ITA* 60, 29), **`15` public arXiv preprints**, and **`21` OEIS entries** (newly adding `A024718`, `A048585`, and `A392984`).
+- **`316` positive responses** (`697` recorded quotes), **`177` engaged in proof-checking**, and **`120` in gap-repair**;
+- **`70` opt-outs immediately honored**—recorded openly right beside the wins, never quietly swept away;
+- Concrete scholarly outputs to date: **`1` published journal paper** (*RAIRO-ITA* 60, 29), **`17` identity-checked collaborative arXiv preprints (`16` externally coauthored)**, and **`21` OEIS entries** (newly adding `A024718`, `A048585`, and `A392984`).
 
-## `trureturing-books`: Three Continuously Published Bilingual Monographs
+## `trureturing-books`: The Continuously Published Bilingual Trilogy
 
-The four-volume launch edition in your hands runs on **`trureturing-books-template v1.26.0`**, the same open-source publishing engine powering **`the-omega-institute/trureturing-books`** (PR `#1,556`, `415` preview release assets as of November 28, 2026). On `https://books.trureturing.org/`, that engine continuously publishes three living bilingual monographs:
+The four-volume launch edition in your hands runs on **`trureturing-books-template v1.26.0`**, the same open-source publishing engine driving **`the-omega-institute/trureturing-books`** (`https://books.trureturing.org/`). At live **`main b83ae321`** (`2,284` commits, `1,169` merged PRs), that trilogy spans **`~1.99M` Chinese Han characters and `~1.59M` English words** across **`344` bilingual pages per language (`688` total)**, backed by **`283` Python figure scripts**, **`135` interactive labs (`847` `.viz` cards)**, **`83` explainer films (including `3` feature-length >`120 MB` MP4s)**, and **`93` reader-facing preview Release assets**.
 
-| Continuously Published Monograph | Chapters / Lang | Interactive Labs | Explainer Films | Notes / Persistent Identifier |
+Beneath the prose sits dense formal steel: the trilogy embeds **`918` Lean-verified theorem blocks** resolving to **`2,043` unique frozen GIDs** at `548388cd`—including **`132` bare-CIC zero-axiom `strict_omega` theorems** and **`22` official `axioms: []` theorems** that touch neither classical choice nor propositional extensionality. Along Auric's three-book narrative arc, each volume carries a distinct job:
+
+| Monograph & Code | Trilogy Role | Interactive Labs | Explainer Films | Key Identifiers & Boundaries |
 | --- | --- | --- | --- | --- |
-| `quantum-geometry` | `304` | `130` | `48` | DOI `10.5281/zenodo.24156135` |
-| `omega-math` | `23` | `4` | `19` | Source-only bilingual pipeline |
-| `omega-unification` | `20` | `1` | `16` | Source-only bilingual pipeline |
-| **Combined Total** | **`347` bilingual ch (`694` zh/en)** | **`135` labs** | **`83` films** | **`2,017` frozen Lean 4 theorems directly cited** |
+| `quantum-geometry` (`ORTHO//QUANTUM`) | **Compass**: orienting from discrete observation geometry | `130` labs | `48` films | DOI `10.5281/zenodo.24156135` |
+| `omega-math` (`OMEGA//MATH`) | **Zero-Axiom Rational Hull** | `4` labs | `19` films | Bare-CIC constructive core spine |
+| `omega-unification` (`OMEGA//UNIFY`) | **Deep-Water Sounding Log** | `1` lab | `16` films | Frontispiece `4/4 model-internal · 0/4 zero-fit` |
+| **Live Trilogy Total (`main b83ae321`)** | **`344` bilingual pages/lang (`688` total); `~1.99M` Han chars / `~1.59M` English words** | **`135` labs (`847` `.viz` cards)** | **`83` films (`3` feature >120MB MP4s)** | **`918` theorem blocks / `2,043` frozen GIDs (`132` bare-CIC zero-axiom, `22` `axioms: []`); `283` figure scripts, `93` preview assets** |
+
+Pause over the epigraph carved across the front of **`omega-unification` (`OMEGA//UNIFY`)**—the sharpest sentence in the entire library:
+
+> **`"4/4 model-internal · 0/4 zero-fit first-principles closure"`**—*Why Zero-Completion Is Stronger Than a Fake Grand Unification*.
+
+In theoretical physics and popular science alike, the cheapest temptation is smuggling three or four free fitting parameters under the rug and declaring a "first-principles Theory of Everything." `omega-unification` does the opposite: where all four model-internal channels close cleanly, it marks **`4/4`**; where zero channels achieve genuine zero-fit first-principles closure against nature, it stamps **`0/4`** across the cover. When a sounding lead has not hit bottom, reporting "no bottom yet" beats drawing a fake seabed every single time.
 
 Every volume enforces the same unforgiving build hygiene: source-only Git commits with computed figures materialized across dark, light, mobile, and print themes, interactive laboratories emitting per-card print stills, deterministic canvas explainer films, strict zh/en structural parity, and automated `statement_id` digest checks on every lock bump.
 
@@ -72,6 +89,6 @@ Following the Lean and Mathlib communities' November 20–21, 2026 certification
 4. **Native internal assertion inside `trureturing`**: proving the universal all-degree integer Hankel nonnegativity on the right-hand side of [@thm-rh-hankel] directly inside `ActualXiIntegerCriterion` without importing an external proof.
 :::
 
-Printing Mathesis's `0` on page one, crediting another mathematician's breakthrough cleanly while claiming only the sharded verification machinery we built, and marking the true open frontier in stark red—that stubborn honesty is the sole foundation giving green `LEAN ✓` badges their weight.
+Printing Mathesis's double zeros (`0` acceptances and `0 / 1,534` independent verifier receipts) alongside `omega-unification`'s `0/4` zero-fit closure on page one, crediting another mathematician's breakthrough cleanly while claiming only the sharded verification machinery we built, and marking the true open frontier in stark red—that stubborn honesty is the sole foundation giving green `LEAN ✓` badges their weight.
 
-One decisive question remains for Chapter 7: **if anyone on Earth can rent the same frontier reasoning engines by the token, why do ordinary chat windows churn out fluent hallucinations while `trureturing` carved out `2,278` unique Lean-checked literature resolutions (`2,276` dated across 81–82 days plus `2` undated)?**
+One decisive question remains for Chapter 7: **if anyone on Earth can rent the same frontier reasoning engines by the token, why do ordinary chat windows churn out fluent hallucinations while `trureturing` carved out `2,278` unique Lean-checked literature resolutions (`2,276` dated across `81` days from `2026-09-08` to `2026-11-27`, plus `2` undated)?** Chapter 7 opens the hood with controlled experiments.
