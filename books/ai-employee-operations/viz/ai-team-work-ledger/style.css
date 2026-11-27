@@ -4,3 +4,8 @@
 /* six rows of workflow cells need room even in a short full lab; a cited figure fits its frame */
 .lab .center > #stage { min-height: 380px; }
 :root[data-embed][data-figure] .lab .center > #stage { min-height: 0; }
+
+/* Stacked plots need their full height in mid-width embeds. */
+@media (600px < width <= 1080px) {
+  :root[data-embed] .lab .strip { height: auto; }
+}

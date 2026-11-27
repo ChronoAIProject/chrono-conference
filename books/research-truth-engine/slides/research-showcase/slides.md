@@ -5,6 +5,7 @@ title: "逻辑的棘轮 · 科研成果展示"
 info: "The Omega Institute 科研成果展示：FIB ATOM、信息逃逸、强制几何、文献前沿与红色边界。"
 htmlAttrs:
   lang: "zh-CN"
+  data-polarity: "deep-space"
 deck:
   code: "OMEGA//TRUTH"
   book: "逻辑的棘轮"

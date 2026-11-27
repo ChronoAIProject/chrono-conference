@@ -492,6 +492,7 @@ class Book:
     fold_level: int = 1
     max_chapter_depth: int | None = None
     long_form_films: tuple[str, ...] = ()
+    polarity: str | None = None
 
     def edition(self, lang: str) -> Edition:
         for ed in self.editions:
@@ -576,6 +577,12 @@ def load_book(slug_or_dir: str | Path) -> Book:
         raise ConfigError(f"{where}: html.fold.enable must be true or false")
     if type(fold_level) is not int or not 0 <= fold_level <= 255:
         raise ConfigError(f"{where}: html.fold.level must be an integer from 0 to 255")
+    theme = raw.get("theme", {})
+    if not isinstance(theme, dict):
+        raise ConfigError(f"{where}: theme must be a table")
+    polarity = theme.get("polarity")
+    if polarity is not None and polarity not in ("daylight", "deep-space"):
+        raise ConfigError(f'{where}: theme.polarity must be "daylight" or "deep-space"')
     films = raw.get("films", {})
     if not isinstance(films, dict):
         raise ConfigError(f"{where}: films must be a table")
@@ -627,6 +634,7 @@ def load_book(slug_or_dir: str | Path) -> Book:
         fold_level=fold_level,
         unnumbered=dict(unnumbered),
         long_form_films=tuple(long_form),
+        polarity=polarity,
         max_page_lines=page_line_limit(meta.get("max_page_lines"), where),
         max_chapters=_positive_book_limit(meta.get("max_chapters"), where, "max_chapters"),
         max_chapter_depth=_nonnegative_book_limit(meta.get("max_chapter_depth"), where, "max_chapter_depth"),

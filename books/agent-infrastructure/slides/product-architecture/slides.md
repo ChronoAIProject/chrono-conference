@@ -5,6 +5,11 @@ title: "整车工程 · 产品架构"
 info: "《整车工程》配套演示：六个把智能体原型撞散的工程死穴，以及 NyxID、NyxBot、Ornn、CMA、heca、chrono-harness 给出的机械解法。"
 htmlAttrs:
   lang: "zh-CN"
+  data-polarity: "daylight"
+  data-tr-palette: "paper"
+colorSchema: "light"
+defaults:
+  class: "tr-own-bg tr-daylight"
 deck:
   code: "CHRONO//STACK"
   book: "整车工程"

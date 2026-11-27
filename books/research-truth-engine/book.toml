@@ -25,6 +25,9 @@ en = "trureturing, the Live Observatory, and the Open Math Frontier"
 zh = "从斐波那契替换与信息逃逸出发，考察有限观测保留了什么信息，以及新结果如何改进区分能力。跟随 trureturing 全息观测站追溯文献问题、研究记录与 Lean 冻结声明，并辨明书面证明和开放问题各自的证据边界。"
 en = "Starting with Fibonacci substitution and information escape, this book examines what finite observations retain and how new results distinguish previously indistinguishable states. The trureturing live observatory traces literature problems through research records to frozen Lean declarations, with separate treatment of written proofs and open questions."
 
+[theme]
+polarity = "deep-space"
+
 [outputs]
 html = true
 # PDF 版本：screen = 深色霓虹屏幕版；print = 白底印刷版；academic = A4 单栏学术预印本（可选）。

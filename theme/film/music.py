@@ -1,21 +1,15 @@
-"""Procedural dark-synth score and sound effects, synced to the film's timeline.
+"""Render the deterministic 48 kHz stereo score to <film dir>/out/music_bed.wav.
 
+script.json music settings select bpm, progression and style (dual-polarity, minimalist or legacy).
+Each scene can set polarity, the five existing pad/bass/motif/kick/hat levels, and line-timed cues.
 Usage: python3 theme/film/music.py <film dir>
 
-Writes <film dir>/out/music_bed.wav (48 kHz stereo): pads, bass, arpeggio, drums with
-per-scene intensity, risers/impacts/glitches on every scene cut, the same rare micro glitches
-the engine draws (identical pseudo-random rule), and cue hits from script.json.
-
-script.json controls (all optional):
-  "music": {"bpm": 84, "progression": "d-minor" | "a-minor"}
-  scene "music": [pad, bass, arp, kick, hat]  levels 0–1.5 (default by position in the film)
-  scene "cues": [{"line": k, "at": seconds after the line starts, "kind": "stamp" | "chime" | "impact" | "glitch"}]
-
-Deterministic (fixed seed). Adapted from trureturing-film films/*/music.py (Apache-2.0, the-omega-institute).
+Adapted from trureturing-film films/*/music.py (Apache-2.0, the-omega-institute).
 """
 
 from __future__ import annotations
 
+import math
 import os
 import sys
 
@@ -27,7 +21,13 @@ PROGRESSIONS = {  # (root midi, chord tones), one chord per bar
                 (38, [0, 3, 7]), (34, [0, 4, 7]), (43, [0, 3, 7]), (33, [0, 4, 7])],
     "a-minor": [(45, [0, 3, 7]), (41, [0, 4, 7]), (36, [0, 4, 7]), (43, [0, 4, 7]),
                 (45, [0, 3, 7]), (41, [0, 4, 7]), (38, [0, 3, 7]), (40, [0, 4, 7])],
+    "daylight-warm": [(38, [0, 7, 14, 16]), (43, [0, 7, 11, 14]),
+                      (40, [0, 7, 12, 14]), (45, [0, 7, 12, 16])],
+    "dual-polarity": [(38, [0, 3, 7, 14]), (36, [0, 7, 12, 14]),
+                      (43, [0, 3, 7, 14]), (41, [0, 7, 12, 14])],
 }
+# The two voicings share roots and fifths, so the scene can change harmony within a bar.
+DAY_VOICINGS = ([0, 7, 11, 14], [0, 7, 12, 16], [0, 7, 11, 14], [0, 7, 14, 16])
 OPEN_LEVEL = (1.0, 0.4, 0.3, 0.0, 0.1)
 MID_LEVELS = ((0.9, 0.7, 0.8, 0.5, 0.4), (1.0, 0.6, 0.7, 0.4, 0.3))
 END_LEVEL = (1.0, 0.8, 0.7, 0.5, 0.4)
@@ -42,228 +42,194 @@ def main(argv: list[str]) -> int:
         fail(f"{exc.name} is not installed; run theme/film/setup.sh")
     film_dir = film_dir_arg(argv)
     film = load(film_dir)
-    script = film.script or {}
     tl, provisional = timeline(film, allow_provisional=os.environ.get("FILM_STRICT") != "1")
     if provisional:
         print("film: warning: scoring against provisional timing; rerun after tts", file=sys.stderr)
+    script = film.script or {}
     settings = script.get("music") or {}
-    prog = PROGRESSIONS.get(settings.get("progression", "a-minor"))
-    if prog is None:
+    style = settings.get("style", "dual-polarity")
+    if style not in ("dual-polarity", "minimalist", "legacy"):
+        fail("script.json: music.style must be dual-polarity, minimalist or legacy")
+    progression = settings.get("progression", "a-minor")
+    if progression not in PROGRESSIONS:
         fail(f"script.json: music.progression must be one of {', '.join(PROGRESSIONS)}")
+    chords = PROGRESSIONS[progression]
     bpm = float(settings.get("bpm", 80))
-
-    dur = tl["duration"] + 0.5
-    n_total = int(dur * SR)
-    rng = np.random.default_rng(7)
+    if not 40 <= bpm <= 200:
+        fail("script.json: music.bpm must be between 40 and 200")
     beat = 60.0 / bpm
     bar = 4 * beat
+    duration = tl["duration"] + 0.5
+    bed = np.zeros((int(duration * SR), 2), dtype=np.float32)
+    tau = math.tau
+
+    def midi(note):
+        return 440 * 2 ** ((note - 69) / 12)
+
+    def clock(seconds):
+        return np.arange(int(seconds * SR)) / SR
+
+    # Automation holds each scene's levels, then eases into the next across its cut.
+    # A short scene still gets its own control point. The sixth lane is daylight presence.
+    by_id = {s["id"]: s for s in script["scenes"]}
+    points, values = [], []
     scenes = tl["scenes"]
-    by_id = {sc.get("id"): sc for sc in script.get("scenes") or []}
+    for i, scene in enumerate(scenes):
+        source = by_id[scene["id"]]
+        default = MID_LEVELS[i % 2]
+        if i == 0:
+            default = OPEN_LEVEL
+        elif i == len(scenes) - 1:
+            default = END_LEVEL
+        day = {"deep-space": 0, "dual-split": 0.5, "daylight": 1}[source.get("polarity", "deep-space")]
+        controls = (*source.get("music", default), day)
+        margin = min(0.6, (scene["end"] - scene["start"]) / 3)
+        points.extend((scene["start"] + margin, scene["end"] - margin))
+        values.extend((controls, controls))
+    lanes = np.asarray(values).T
 
-    def midi(m):
-        return 440.0 * 2 ** ((m - 69) / 12)
+    def add(start, signal, left=1, right=1):
+        offset = round(start * SR)
+        lo, hi = max(0, offset), min(len(bed), offset + len(signal))
+        if hi > lo:
+            part = signal[lo - offset:hi - offset]
+            bed[lo:hi, 0] += left * part
+            bed[lo:hi, 1] += right * part
 
-    def lp(x, f, order=2):
-        return sosfilt(butter(order, f, "low", fs=SR, output="sos"), x)
+    # All automation and filters are bar-local. The stereo mix is the only film-length buffer.
+    t = clock(bar + 1.2)
+    pad_env = np.sin(0.5 * np.pi * np.minimum(1, t / 0.85)) ** 2
+    pad_env *= np.cos(0.5 * np.pi * np.clip((t - bar) / 1.2, 0, 1)) ** 2
+    low = butter(2, 430, fs=SR, output="sos")
+    high = butter(2, 920, fs=SR, output="sos")
+    motif_beats = {"minimalist": (1.5,), "dual-polarity": (0.5, 2.75), "legacy": (0.5, 1.5, 2.5, 3.5)}[style]
+    pulse_beats = (0, 1, 2, 3) if style == "legacy" else (0, 2)
 
-    def hp(x, f, order=2):
-        return sosfilt(butter(order, f, "high", fs=SR, output="sos"), x)
+    def bell(t, frequency, glass):
+        phase = tau * frequency * t
+        fundamental = np.sin(phase) * np.exp(-2.8 * t)
+        felt = 0.14 * np.sin(2 * phase) * np.exp(-7 * t)
+        overtone = 0.19 * np.sin(2.51 * phase) * np.exp(-4.8 * t)
+        return -np.expm1(-85 * t) * (fundamental + (1 - glass) * felt + glass * overtone)
 
-    def bp(x, lo, hi, order=2):
-        return sosfilt(butter(order, [lo, hi], "band", fs=SR, output="sos"), x)
-
-    def saw(ph):
-        return 2.0 * (ph - np.floor(ph + 0.5))
-
-    def env_adsr(n, a, d, s, r):
-        e = np.ones(n) * s
-        na, nd, nr = int(a * SR), int(d * SR), int(r * SR)
-        if na:
-            e[:na] = np.linspace(0, 1, na)
-        if nd:
-            e[na:na + nd] = np.linspace(1, s, len(e[na:na + nd]))
-        if nr and nr < n:
-            e[-nr:] *= np.linspace(1, 0, nr)
-        return e
-
-    def add(buf, start, sig, gain=1.0):
-        a = int(start * SR)
-        if a >= len(buf) or a + len(sig) <= 0:
-            return
-        if a < 0:
-            sig = sig[-a:]
-            a = 0
-        b = min(len(buf), a + len(sig))
-        buf[a:b] += gain * sig[:b - a]
-
-    # ---------- intensity automation per scene ----------
-    def level(k):
-        custom = (by_id.get(scenes[k]["id"]) or {}).get("music")
-        if custom:
-            return tuple(custom)
-        if k == 0:
-            return OPEN_LEVEL
-        if k == len(scenes) - 1:
-            return END_LEVEL
-        return MID_LEVELS[k % 2]
-
-    levels = [level(k) for k in range(len(scenes))]
-
-    def automation(idx):
-        ctl_t, ctl_v = [], []
-        for k, s in enumerate(scenes):
-            v = levels[k][idx]
-            ctl_t += [s["start"] + 0.6, max(s["start"] + 0.61, s["end"] - 0.4)]
-            ctl_v += [v, v]
-        return np.interp(np.arange(n_total) / SR, ctl_t, ctl_v)
-
-    nbars = int(np.ceil(dur / bar)) + 1
-    pad = np.zeros((n_total, 2))
-    bass = np.zeros(n_total)
-    arp = np.zeros((n_total, 2))
-    kick = np.zeros(n_total)
-    hat = np.zeros(n_total)
-
-    for b in range(nbars):  # pad
-        root, tones = prog[b % len(prog)]
-        n = int((bar + 1.2) * SR)
-        t = np.arange(n) / SR
-        e = env_adsr(n, 0.9, 0.5, 0.85, 1.2)
-        for ch, det in ((0, -1), (1, 1)):
-            sig = np.zeros(n)
-            for off in tones + [12]:
-                f = midi(root + 24 + off)
-                for dv in (-0.08, 0.0, 0.08):
-                    fr = f * 2 ** ((dv * det + 0.03 * det) / 12)
-                    sig += saw(fr * t + rng.random())
-            sig = lp(sig, 900 + 500 * np.sin(b * 0.7) ** 2)
-            add(pad[:, ch], b * bar, sig * e, 0.035)
-    for b in range(nbars):  # bass, 8th-note pulse
-        root, _ = prog[b % len(prog)]
-        for q in range(8):
-            n = int(beat / 2 * SR)
-            t = np.arange(n) / SR
-            f = midi(root)
-            sig = lp(np.sin(2 * np.pi * f * t) + 0.35 * saw(f * t), 380)
-            add(bass, b * bar + q * beat / 2, sig * np.minimum(1, t / 0.03) * np.exp(-t * 3.2), 0.28)
-    pattern = [0, 1, 2, 3, 2, 1, 0, 2, 3, 1, 2, 0, 3, 2, 1, 2]
-    for b in range(nbars):  # arpeggio, 16ths
-        root, tones = prog[b % len(prog)]
-        notes = [root + 36 + tones[0], root + 36 + tones[1], root + 36 + tones[2], root + 48 + tones[0]]
-        for q in range(16):
-            n = int(0.24 * SR)
-            t = np.arange(n) / SR
-            f = midi(notes[pattern[q]])
-            sig = 0.6 * np.sign(np.sin(2 * np.pi * f * t)) + 0.4 * saw(f * t * 1.003)
-            sig = lp(sig, 1400 + 1800 * (0.5 + 0.5 * np.sin(b * 0.37 + q * 0.2))) * np.exp(-t * 14)
-            pan = 0.5 + 0.35 * np.sin(q * 0.9 + b)
-            add(arp[:, 0], b * bar + q * beat / 4, sig * (1 - pan), 0.06)
-            add(arp[:, 1], b * bar + q * beat / 4, sig * pan, 0.06)
-    dl = int(beat * 0.75 * SR)  # ping-pong delay
-    for k in range(1, 4):
-        if dl * k < n_total:
-            arp[dl * k:, 0] += arp[:-dl * k, 1] * 0.35 ** k
-            arp[dl * k:, 1] += arp[:-dl * k, 0] * 0.35 ** k
-    kn = int(0.45 * SR)
-    kt = np.arange(kn) / SR
-    kick_s = np.sin(2 * np.pi * (45 * kt + (110 / 18) * (1 - np.exp(-kt * 18)))) * np.exp(-kt * 7.5)
-    kick_s += 0.25 * np.exp(-kt * 80) * rng.standard_normal(kn) * 0.3
-    hn = int(0.09 * SR)
-    hat_s = hp(rng.standard_normal(hn), 7000) * np.exp(-np.arange(hn) / SR * 55)
-    for b in range(nbars):
-        for q in range(4):
-            t0 = b * bar + q * beat
-            add(kick, t0, kick_s, 0.55)
-            add(hat, t0 + beat / 2, hat_s, 0.10)
-            add(hat, t0 + beat * 0.75, hat_s, 0.045)
-
-    auto = [automation(i) for i in range(5)]
-    music = pad * auto[0][:, None] + (bass * auto[1])[:, None] + arp * auto[2][:, None] \
-        + (kick * auto[3])[:, None] + (hat * auto[4])[:, None]
-    pump = 1 - 0.35 * auto[3] * np.exp(-((np.arange(n_total) / SR) % beat) * 9)  # sidechain from the kick
-    music *= pump[:, None]
-
-    # ---------- SFX ----------
-    sfx = np.zeros((n_total, 2))
-
-    def riser(tend, d=1.6, g=0.12):
-        n = int(d * SR)
-        t = np.arange(n) / SR
-        x = rng.standard_normal(n)
-        out = np.zeros(n)
-        chunks = 32
-        for c in range(chunks):
-            a, b2 = c * n // chunks, (c + 1) * n // chunks
-            fc = 300 * (20 ** (c / chunks))
-            out[a:b2] = bp(x[max(0, a - 2000):b2], fc * 0.7, min(fc * 1.4, 20000))[-(b2 - a):]
-        out *= (t / d) ** 2
-        add(sfx[:, 0], tend - d, out, g)
-        add(sfx[:, 1], tend - d, out, g * 0.9)
-
-    def impact(t0, g=0.5):
-        n = int(1.6 * SR)
-        t = np.arange(n) / SR
-        s = np.sin(2 * np.pi * (38 * t + 60 / 6 * (1 - np.exp(-t * 6)))) * np.exp(-t * 2.4)
-        s = s + lp(rng.standard_normal(n), 2500) * np.exp(-t * 9) * 0.5
-        add(sfx[:, 0], t0, s, g)
-        add(sfx[:, 1], t0, s, g)
-
-    def glitch(t0, d=0.3, g=0.12):
-        n = int(d * SR)
-        x = rng.standard_normal(n)
-        hold = 60 + int(rng.random() * 200)
-        x = np.round(np.repeat(x[::hold], hold)[:n] * 3) / 3
-        gate = (np.sin(np.arange(n) / SR * 2 * np.pi * (18 + rng.random() * 30)) > 0).astype(float)
-        s = bp(x * gate, 400, 6000)
-        add(sfx[:, 0], t0, s, g)
-        add(sfx[:, 1], t0 + 0.01, s, g * 0.8)
-
-    def chime(t0, f=880, g=0.08):
-        n = int(2.2 * SR)
-        t = np.arange(n) / SR
-        s = sum(np.sin(2 * np.pi * f * m * t) * np.exp(-t * (2 + m)) / m for m in (1, 2.01, 3.03))
-        add(sfx[:, 0], t0, s, g)
-        add(sfx[:, 1], t0 + 0.012, s, g)
-
-    for i, s in enumerate(scenes):
-        if i > 0:
-            riser(s["start"], 1.5, 0.10)
-            impact(s["start"], 0.42)
-            glitch(s["start"] - 0.05, 0.35, 0.10)
-    for slot in range(int(dur / 0.2)):  # the engine's micro-glitch rule: rnd(slot, 77) > 0.965
-        x = np.sin(slot * 127.1 + 77 * 311.7 + 17.13) * 43758.5453
-        if x - np.floor(x) > 0.965:
-            glitch(slot * 0.2, 0.18, 0.05)
-    starts: dict[str, list[float]] = {}
-    for ln in tl["lines"]:
-        starts.setdefault(ln["scene"], []).append(ln["start"])
-    for sc in script.get("scenes") or []:
-        for cue in sc.get("cues") or []:
-            ls = starts.get(sc.get("id"), [])
-            if cue.get("line", 0) >= len(ls):
+    for index in range(math.ceil(duration / bar)):
+        start = index * bar
+        pad, bass, motif, kick, hat, day = [np.interp(start + t, points, lane) for lane in lanes]
+        root, tones = chords[index % len(chords)]
+        bright_tones = DAY_VOICINGS[index % len(DAY_VOICINGS)] if progression == "dual-polarity" else tones
+        breath = 0.5 + 0.5 * np.sin(tau * (start + t) / 11)
+        for off in sorted(set(tones) | set(bright_tones)):
+            # Keep common voices sounding while thirds, sevenths and extensions crossfade.
+            weight = (1 - day) * (off in tones) + day * (off in bright_tones)
+            if not weight.any():
                 continue
-            t0 = ls[cue["line"]] + float(cue.get("at", 0))
-            kind = cue.get("kind")
-            if kind == "stamp":
-                impact(t0, 0.3)
-                glitch(t0, 0.2, 0.08)
-            elif kind == "chime":
-                chime(t0, 660, 0.09)
-            elif kind == "impact":
-                impact(t0, 0.4)
-            elif kind == "glitch":
-                glitch(t0, 0.3, 0.1)
-    chime(max(0.0, tl["duration"] - 3.0), 440, 0.1)  # end swell
+            phase = midi(root + 12 + off) * t
+            tri = 1 - 4 * np.abs((phase + 0.25) % 1 - 0.5)
+            voice = 0.62 * tri + 0.38 * np.sin(tau * phase) + 0.08 * np.sin(2 * tau * phase)
+            warmth = 0.12 + 0.48 * day + 0.22 * breath
+            voice = (1 - warmth) * sosfilt(low, voice) + warmth * sosfilt(high, voice)
+            pan = 0.17 * np.sin(index * 0.7 + off)
+            add(start, 0.105 * voice * pad_env * pad * weight, 1 - pan, 1 + pan)
 
-    bed = music + sfx
-    fade_in = np.minimum(1, np.arange(n_total) / (1.5 * SR))
-    fade_out = np.minimum(1, (n_total - np.arange(n_total)) / (3.5 * SR))
-    bed *= (fade_in * fade_out)[:, None]
-    bed = np.tanh(bed * 1.1) / 1.1
+        for q in pulse_beats:
+            offset = round(q * beat * SR)
+            u = clock(min(1.1, 1.3 * beat))
+            phase = tau * midi(root) * u
+            pulse = (np.sin(phase) + 0.12 * np.sin(2 * phase)) * (-np.expm1(-38 * u)) * np.exp(-4.5 * u)
+            pulse *= np.minimum(1, (len(u) / SR - u) / 0.06)
+            add(start + q * beat, 0.16 * pulse * bass[offset:offset + len(u)])
+
+        for i, q in enumerate(motif_beats):
+            offset = round(q * beat * SR)
+            u = clock(min(1.55, len(t[offset:]) / SR))
+            light = day[offset:offset + len(u)]
+            step = (0, 7, 14, 7, 12)[(index + i) % 5]
+            pluck = bell(u, midi(root + 24 + step), 1 - light)
+            pluck *= np.minimum(1, (len(u) / SR - u) / 0.12)
+            pluck *= 0.064 * motif[offset:offset + len(u)]
+            pan = 0.23 if (index + i) % 2 else -0.23
+            add(start + q * beat, pluck, 1 - pan, 1 + pan)
+            add(start + q * beat + 0.14, pluck, 0.16 * (1 + pan), 0.16 * (1 - pan))
+
+        for q in pulse_beats:
+            offset = round(q * beat * SR)
+            u = clock(0.38)
+            thump = np.sin(tau * (48 * u - 0.4 * np.expm1(-15 * u))) * (-np.expm1(-80 * u)) * np.exp(-15 * u)
+            add(start + q * beat, 0.11 * thump * kick[offset:offset + len(u)])
+            offset = round((q + 0.5) * beat * SR)
+            u = clock(0.09)
+            brush = sum(np.sin(tau * f * u) for f in (462, 707, 887)) / 3
+            brush *= -np.expm1(-160 * u) * np.exp(-67 * u)
+            add(start + (q + 0.5) * beat, 0.04 * brush * hat[offset:offset + len(u)], 0.75, 1)
+
+    def riser(end, frequency):
+        u = clock(1.5)
+        envelope = np.sin(np.pi * u / 1.5) ** 2 * u / 1.5
+        phase = tau * frequency * (u + 0.015 * u ** 2)
+        add(end - 1.5, 0.085 * envelope * (np.sin(phase) + 0.4 * np.sin(1.5 * phase)), 0.9, 1)
+
+    def impact(start, frequency):
+        u = clock(1.75)
+        resonance = np.sin(tau * (frequency * u - 0.6 * np.expm1(-4 * u)))
+        add(start, 0.13 * resonance * (-np.expm1(-35 * u)) * np.exp(-3.8 * u))
+
+    def chime(start, frequency, gain=0.06, duration=2):
+        u = clock(duration)
+        note = gain * bell(u, frequency, 1) * np.minimum(1, (duration - u) / 0.045)
+        add(start, note, 1, 0.7)
+        add(start + 0.025, note, 0.18, 0.48)
+
+    def root_hz(time):
+        return midi(chords[int(max(0, time) / bar) % len(chords)][0])
+
+    for scene in scenes[1:]:
+        cut = scene["start"]
+        frequency = root_hz(cut)
+        riser(cut, frequency * 2)
+        impact(cut, frequency)
+        if by_id[scene["id"]].get("chapter"):
+            chime(cut, frequency * 4, gain=0.035)
+
+    starts: dict[str, list[float]] = {}
+    for line in tl["lines"]:
+        starts.setdefault(line["scene"], []).append(line["start"])
+    for scene in script["scenes"]:
+        times = starts.get(scene["id"], [])
+        for cue in scene.get("cues") or []:
+            index = cue.get("line", 0)
+            if not 0 <= index < len(times):
+                continue
+            at = times[index] + float(cue.get("at", 0))
+            frequency = root_hz(at)
+            kind = cue["kind"]
+            if kind in ("stamp", "impact"):
+                impact(at, frequency)
+            if kind in ("stamp", "chime"):
+                chime(at, frequency * 4)
+            elif kind == "glitch":
+                chime(at, frequency * 6, gain=0.032, duration=0.16)
+    end_chime = max(0, tl["duration"] - 3)
+    chime(end_chime, root_hz(end_chime) * 3)
+
+    def fade(seconds, opening):
+        count = min(len(bed), round(seconds * SR))
+        ramp = np.linspace(0, min(1, count / (seconds * SR)), count, dtype=np.float32)
+        if opening:
+            bed[:count] *= ramp[:, None]
+        else:
+            bed[-count:] *= ramp[::-1, None]
+
+    fade(1.5, True)
+    fade(3.5, False)
+    # Leave headroom over narration and preserve intentionally quiet arrangements.
+    rms = np.sqrt(np.einsum("ij,ij->", bed, bed, dtype=np.float64) / bed.size)
+    peak = max(float(bed.max()), -float(bed.min()), 1e-12)
+    gain = min(10 ** (-19 / 20) / max(rms, 1e-12), 1.6, 0.8 / peak)
+    bed *= gain
     out = out_dir(film_dir) / "music_bed.wav"
-    sf.write(str(out), bed.astype(np.float32), SR)
-    rms = 20 * np.log10(np.sqrt(np.mean(bed ** 2)) + 1e-12)
-    print(f"film: score {dur:.1f} s at {bpm:g} bpm ({settings.get('progression', 'a-minor')}), rms {rms:.1f} dB → {out}")
+    sf.write(str(out), bed, SR)
+    db = 20 * np.log10(max(rms * gain, 1e-12))
+    print(f"film: score {duration:.1f} s at {bpm:g} bpm ({style}, {progression}), rms {db:.1f} dB → {out}")
     return 0
 
 

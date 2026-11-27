@@ -10,32 +10,65 @@
 
    Colour semantics (theme/tokens.json "semantic"): C.lean (green) only for Lean-verified results, C.now
    (amber) for the current focus, C.open (red) for open problems, C.argued (violet) for argued claims that the
-   kernel has not checked. Everything else uses cyan / magenta / white / dim. */
+   kernel has not checked. Editorial elements use neutral ink and optical glass. */
 'use strict';
 
 const W = 1920, H = 1080, TAU = Math.PI * 2;
 const DATA = window.DATA;
 const TL = DATA.timeline;
 const FPS = (DATA.film && DATA.film.fps) || 30;
-const TOK = window.FILM_TOKENS;
+const TOK = window.FILM_TOKENS || {};
 const cv = document.getElementById('c');
-const ctx = cv.getContext('2d');
+// Keep Chromium's raster path stable when frame capture interleaves drawing and readback.
+const ctx = cv.getContext('2d', { willReadFrequently: false });
 
 /* ---------- palette and fonts (from the design tokens) ---------- */
-const C = Object.assign({}, TOK.film, { lean: TOK.sem.lean, open: TOK.sem.open, argued: TOK.sem.argued, now: TOK.sem.now });
+const DEEP_SPACE = {
+  bg: '#05080E', surface: '#0A101B', panel: 'rgba(10, 16, 27, 0.84)',
+  edge: 'rgba(255, 255, 255, 0.14)', edgeHot: 'rgba(148, 163, 184, 0.36)',
+  ink: '#F1F5F9', dim: '#94A3B8', faint: '#475569', accent: '#7DD3FC',
+  secondary: '#CBD5E1', lean: '#34D399', open: '#F87171', amber: '#FBBF24', argued: '#A78BFA'
+};
+const DAYLIGHT = {
+  bg: '#F4F1EE', surface: '#F9F7F5', panel: 'rgba(249, 247, 245, 0.90)',
+  edge: '#D5CFC9', edgeHot: '#ABA39B', ink: '#1A1A1A', dim: '#57524C',
+  faint: '#9A938C', accent: '#1A1A1A', secondary: '#5C5752', lean: '#0D6E4C',
+  open: '#C92A2A', amber: '#B4690E', argued: '#6D28D9'
+};
+// dayBg was introduced with Scheme B. Older generated bundles still carry the neon aliases.
+const filmTokens = TOK.film || {};
+const legacyTokens = !filmTokens.dayBg && filmTokens.bg?.toLowerCase() === '#010208';
+const optics = legacyTokens ? {} : filmTokens;
+const semantics = legacyTokens ? {} : TOK.sem || {};
+const POLARITY = {
+  daylight: { ...DAYLIGHT, bg: optics.dayBg || DAYLIGHT.bg, surface: optics.daySurface || DAYLIGHT.surface,
+    edge: optics.dayEdge || DAYLIGHT.edge, ink: optics.dayInk || DAYLIGHT.ink, accent: optics.dayInk || DAYLIGHT.accent,
+    dim: optics.dayDim || DAYLIGHT.dim, lean: optics.dayOk || DAYLIGHT.lean, open: optics.dayWarn || DAYLIGHT.open,
+    amber: optics.dayAmber || DAYLIGHT.amber },
+  'deep-space': { ...DEEP_SPACE, bg: optics.bg || DEEP_SPACE.bg, ink: optics.white || DEEP_SPACE.ink,
+    dim: optics.dim || DEEP_SPACE.dim, accent: optics.cyan || DEEP_SPACE.accent, secondary: optics.mag || DEEP_SPACE.secondary,
+    lean: semantics.lean || optics.green || DEEP_SPACE.lean, open: semantics.open || optics.red || DEEP_SPACE.open,
+    amber: semantics.now || optics.gold || DEEP_SPACE.amber, argued: semantics.argued || optics.vio || DEEP_SPACE.argued }
+};
+function pal(mode) { return mode === 'daylight' ? POLARITY.daylight : POLARITY['deep-space']; }
+const dark = pal('deep-space');
+const C = { ...filmTokens, ...dark, white: dark.ink, cyan: dark.accent, mag: dark.secondary,
+  vio: dark.argued, green: dark.lean, red: dark.open, gold: dark.amber, now: dark.amber,
+  blue: optics.blue || '#38BDF8', orange: optics.orange || '#FB923C' };
 const GENERIC = /^(serif|sans-serif|monospace|system-ui|ui-monospace|cursive|fantasy)$/;
 /* `local` names fonts present on the Linux render machines (not design tokens); they go before the generic family. */
 function stack(list, local = []) {
   const named = list.filter(f => !GENERIC.test(f)), generic = list.filter(f => GENERIC.test(f));
   return [...new Set([...named, ...local, ...generic])].map(f => (GENERIC.test(f) ? f : `"${f}"`)).join(', ');
 }
+const fonts = TOK.font || {};
 const F = {
-  orb: stack(TOK.font['film-display'], ['DejaVu Sans']),
-  raj: stack(TOK.font['film-subtitle'], ['DejaVu Sans']),
-  disp: stack(TOK.font.display, ['DejaVu Sans']),
-  mono: stack(TOK.font.data, ['DejaVu Sans Mono']),
-  zh: stack(TOK.font.body, ['Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'DejaVu Sans']),
-  math: stack(['DejaVu Sans'].concat(TOK.font.data), ['FreeSerif'])
+  orb: stack(fonts['film-display'] || [], ['DejaVu Sans']),
+  raj: stack(fonts['film-subtitle'] || [], ['DejaVu Sans']),
+  disp: stack(fonts.display || [], ['DejaVu Sans']),
+  mono: stack(fonts.data || [], ['DejaVu Sans Mono']),
+  zh: stack(fonts.body || [], ['Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'DejaVu Sans']),
+  math: stack(['DejaVu Sans'].concat(fonts.data || []), ['FreeSerif'])
 };
 const STR = DATA.strings || { zh: {}, en: {} };
 
@@ -93,35 +126,9 @@ function Q(S, k, phrase, dur = 0.5, delay = 0) { return clamp((S.u - phraseAt(S,
 
 /* ---------- offscreen resources ---------- */
 function mk(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
-const small = mk(480, 270), sctx = small.getContext('2d');
-const buf = mk(W, H), bctx = buf.getContext('2d');
-let nebula, scan, vign;
-const grains = [], pearl = {};
+const pearl = {};
 const PEARLS = { c: 'cyan', m: 'mag', g: 'gold', w: 'white', o: 'orange', r: 'red', v: 'vio', n: 'green', b: 'blue' };
 function buildResources() {
-  nebula = mk(W, H); const n = nebula.getContext('2d');
-  n.fillStyle = C.bg; n.fillRect(0, 0, W, H);
-  const blobs = [[0.2, 0.3, 700, C.vio, 0.18], [0.82, 0.22, 600, C.mag, 0.1], [0.7, 0.8, 800, C.blue, 0.14],
-    [0.3, 0.85, 520, C.cyan, 0.07], [0.5, 0.5, 900, mix(C.vio, C.bg, 0.7), 0.3]];
-  for (const [x, y, r, c, a] of blobs) {
-    const g = n.createRadialGradient(x * W, y * H, 0, x * W, y * H, r);
-    g.addColorStop(0, rgba(c, a)); g.addColorStop(1, rgba(c, 0));
-    n.fillStyle = g; n.fillRect(0, 0, W, H);
-  }
-  scan = mk(W, H); const s = scan.getContext('2d');
-  for (let y = 0; y < H; y += 3) { s.fillStyle = 'rgba(0,0,0,0.2)'; s.fillRect(0, y, W, 1); }
-  vign = mk(W, H); const v = vign.getContext('2d');
-  const g = v.createRadialGradient(W / 2, H / 2, H * 0.35, W / 2, H / 2, H * 1.0);
-  g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,0.78)');
-  v.fillStyle = g; v.fillRect(0, 0, W, H);
-  for (let k = 0; k < 6; k++) {
-    const gc = mk(480, 270), gx = gc.getContext('2d'); const im = gx.createImageData(480, 270);
-    for (let i = 0; i < im.data.length; i += 4) {
-      const r = rnd(i * 0.013 + k * 91.7, k) * 255;
-      im.data[i] = im.data[i + 1] = im.data[i + 2] = r; im.data[i + 3] = 20;
-    }
-    gx.putImageData(im, 0, 0); grains.push(gc);
-  }
   for (const [name, key] of Object.entries(PEARLS)) {
     const p = mk(64, 64), px = p.getContext('2d');
     const gr = px.createRadialGradient(26, 26, 1, 32, 32, 32);
@@ -133,19 +140,13 @@ function buildResources() {
 
 /* ---------- drawing helpers ---------- */
 function font(w, size, fam) { ctx.font = `${w} ${size}px ${fam}`; }
-/* text: o = { size, fam, w, c, a, align, base, ls (letter spacing px), ab (chromatic aberration px) } */
+/* text: o = { size, fam, w, c, a, align, base, ls (letter spacing px) }. */
 function txt(s, x, y, o = {}) {
   const size = o.size || 28, fam = o.fam || F.mono, w = o.w || 400, a = o.a == null ? 1 : o.a;
   if (a <= 0.003 || s === '' || s == null) return;
   ctx.save();
   font(w, size, fam); ctx.textAlign = o.align || 'left'; ctx.textBaseline = o.base || 'alphabetic';
   ctx.letterSpacing = (o.ls || 0) + 'px';
-  if (o.ab) {
-    ctx.globalCompositeOperation = 'lighter';
-    ctx.globalAlpha = a * 0.7; ctx.fillStyle = C.mag; ctx.fillText(s, x - o.ab, y);
-    ctx.fillStyle = C.cyan; ctx.fillText(s, x + o.ab, y);
-    ctx.globalCompositeOperation = 'source-over';
-  }
   ctx.globalAlpha = a; ctx.fillStyle = o.c || C.white; ctx.fillText(s, x, y);
   ctx.restore();
 }
@@ -178,6 +179,14 @@ function arrow(x1, y1, x2, y2, col, a, w = 2.5) {
 }
 function ring(x, y, r, col, a, lw = 2) { if (a <= 0) return; ctx.globalAlpha = a; ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.stroke(); ctx.globalAlpha = 1; }
 function fillBox(x, y, w, h, col, a) { if (a <= 0) return; ctx.globalAlpha = a; ctx.fillStyle = col; ctx.fillRect(x, y, w, h); ctx.globalAlpha = 1; }
+function cornerTicks(x, y, w, h, k) {
+  ctx.beginPath();
+  ctx.moveTo(x, y + k); ctx.lineTo(x, y); ctx.lineTo(x + k, y);
+  ctx.moveTo(x + w - k, y); ctx.lineTo(x + w, y); ctx.lineTo(x + w, y + k);
+  ctx.moveTo(x + w, y + h - k); ctx.lineTo(x + w, y + h); ctx.lineTo(x + w - k, y + h);
+  ctx.moveTo(x + k, y + h); ctx.lineTo(x, y + h); ctx.lineTo(x, y + h - k);
+  ctx.stroke();
+}
 /* rectangle with heavier corner brackets (the trureturing-film panel frame) */
 function box(x, y, w, h, col, a = 1, lw = 1.5, fill = null) {
   if (a <= 0.003) return;
@@ -185,36 +194,26 @@ function box(x, y, w, h, col, a = 1, lw = 1.5, fill = null) {
   if (fill) { ctx.fillStyle = fill; ctx.fillRect(x, y, w, h); }
   ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.strokeRect(x, y, w, h);
   const k = Math.min(18, w / 4, h / 4); ctx.lineWidth = lw * 2.2;
-  ctx.beginPath();
-  ctx.moveTo(x, y + k); ctx.lineTo(x, y); ctx.lineTo(x + k, y);
-  ctx.moveTo(x + w - k, y); ctx.lineTo(x + w, y); ctx.lineTo(x + w, y + k);
-  ctx.moveTo(x + w, y + h - k); ctx.lineTo(x + w, y + h); ctx.lineTo(x + w - k, y + h);
-  ctx.moveTo(x + k, y + h); ctx.lineTo(x, y + h); ctx.lineTo(x, y + h - k);
-  ctx.stroke(); ctx.globalAlpha = 1;
+  cornerTicks(x, y, w, h, k);
+  ctx.globalAlpha = 1;
 }
-/* cut-corner path (top-right and bottom-left corners cut by k), as theme tokens' --tr-fx-cut-corner */
-function cutPath(x, y, w, h, k = 16) {
-  ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + w - k, y); ctx.lineTo(x + w, y + k); ctx.lineTo(x + w, y + h);
-  ctx.lineTo(x + k, y + h); ctx.lineTo(x, y + h - k); ctx.closePath();
+/* Rectangle path retained as the public helper used by older scene scripts. */
+function cutPath(x, y, w, h) {
+  ctx.beginPath(); ctx.rect(x, y, w, h);
 }
-/* cut-corner panel with corner brackets and an optional title strip */
-function panel(x, y, w, h, a, col = C.cyan, title = null, o = {}) {
+/* Swiss architectural translucent card with a clean header strip and small corner ticks. */
+function panel(x, y, w, h, a, col, title = null, o = {}) {
   if (a <= 0.003) return;
-  const k = o.cut == null ? 16 : o.cut;
+  const p = paletteAt(x + w / 2, o.polarity);
+  const border = o.border || p.edge;
   ctx.save(); ctx.globalAlpha = a;
-  cutPath(x, y, w, h, k); ctx.fillStyle = o.fill || 'rgba(4,10,24,0.74)'; ctx.fill();
-  ctx.strokeStyle = rgba(col, 0.7); ctx.lineWidth = 1.2; ctx.stroke();
-  ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.beginPath();
-  const b = 22;
-  ctx.moveTo(x, y + b); ctx.lineTo(x, y); ctx.lineTo(x + b, y);
-  ctx.moveTo(x + w - b, y + h); ctx.lineTo(x + w, y + h); ctx.lineTo(x + w, y + h - b);
-  ctx.stroke();
-  if (title) {
-    ctx.save(); cutPath(x, y, w, h, k); ctx.clip();
-    ctx.fillStyle = rgba(col, 0.16); ctx.fillRect(x, y, w, 32); ctx.restore();
-  }
+  ctx.fillStyle = o.fill || p.panel; ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = border; ctx.lineWidth = 1; ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1);
+  ctx.globalAlpha = a * 0.72; ctx.strokeStyle = p.edgeHot; ctx.lineWidth = 1;
+  cornerTicks(x + 0.5, y + 0.5, w - 1, h - 1, Math.min(14, w / 2, h / 2));
+  if (title) { ctx.globalAlpha = a * 0.08; ctx.fillStyle = col || p.secondary; ctx.fillRect(x, y, w, 32); }
   ctx.restore();
-  if (title) txt(title, x + 16, y + 22, { size: 15, fam: F.mono, c: col, a, w: 700, ls: 2 });
+  if (title) txt(title, x + 16, y + 22, { size: 15, fam: F.mono, c: col || p.ink, a, w: 700, ls: 2 });
 }
 /* a framed label: centred text in a small bracketed box */
 function chip(x, y, w, h, s, col, a, size = 24, fam = F.mono) {
@@ -284,42 +283,85 @@ function drawHyper(cube, planes, o) {
   return P;
 }
 
-/* ---------- background ---------- */
-const STARS = [];
-for (let i = 0; i < 700; i++) STARS.push([rnd(i, 1) * 2 - 1, rnd(i, 2) * 2 - 1, rnd(i, 3), rnd(i, 4)]);
-/* star-field speed per scene id (films may set FILM.speed[id]) */
-const FILM = { init: [], speed: {}, names: Object.assign({}, DATA.names || {}), poster: null, hud: true };
+/* ---------- background and film configuration ---------- */
+const opticalDust = Array.from({ length: 120 }, (_, i) => [rnd(i, 1) * W, rnd(i, 2) * H, rnd(i, 4)]);
+const FILM = {
+  init: [], speed: {}, polarity: {}, alphaScenes: {}, defaultPolarity: 'deep-space', cinemaSubtitles: false,
+  names: Object.assign({}, DATA.names || {}), poster: null, hud: true
+};
+let CURRENT_SCENE_ID = TL.scenes[0] && TL.scenes[0].id;
+function scenePolarity(sceneId) { return FILM.polarity[sceneId] || FILM.defaultPolarity || 'deep-space'; }
+function alphaScene(sceneId) { return window.ALPHA_MODE === true && FILM.alphaScenes && FILM.alphaScenes[sceneId]; }
+function paletteAt(x, mode = scenePolarity(CURRENT_SCENE_ID)) {
+  return pal(mode === 'dual-split' && x < W / 2 ? 'daylight' : mode);
+}
 const starPhase = [];
 function computeStarPhase() {
   starPhase.length = 0; let acc = 0;
-  for (const s of TL.scenes) { starPhase.push(acc); acc += (FILM.speed[s.id] || 0.02) * (s.end - s.start); }
+  for (const s of TL.scenes) { starPhase.push(acc); acc += (FILM.speed[s.id] ?? 0.02) * (s.end - s.start); }
+}
+function drawPolarityBackground(mode, t, x0 = 0, x1 = W) {
+  const p = pal(mode);
+  ctx.save(); ctx.beginPath(); ctx.rect(x0, 0, x1 - x0, H); ctx.clip();
+  if (mode === 'daylight') {
+    const g = ctx.createRadialGradient(W * 0.5, H * 0.36, 0, W * 0.5, H * 0.42, H * 0.95);
+    g.addColorStop(0, '#FAF8F6'); g.addColorStop(1, '#ECE8E2');
+    ctx.fillStyle = g; ctx.fillRect(x0, 0, x1 - x0, H);
+    ctx.strokeStyle = p.edge; ctx.lineWidth = 1; ctx.globalAlpha = 0.035;
+    for (let k = 0; k < 5; k++) {
+      const xx = x0 + (x1 - x0) * (0.18 + k * 0.19), yy = 160 + k * 128;
+      ctx.beginPath(); ctx.moveTo(xx - 18, yy); ctx.lineTo(xx + 18, yy); ctx.moveTo(xx, yy - 18); ctx.lineTo(xx, yy + 18); ctx.stroke();
+    }
+  } else {
+    ctx.fillStyle = p.bg; ctx.fillRect(x0, 0, x1 - x0, H);
+    const g = ctx.createRadialGradient(W * 0.48, H * 0.42, 0, W * 0.48, H * 0.42, H * 0.9);
+    g.addColorStop(0, 'rgba(125,211,252,0.035)'); g.addColorStop(1, 'rgba(5,8,14,0)');
+    ctx.fillStyle = g; ctx.fillRect(x0, 0, x1 - x0, H);
+    ctx.strokeStyle = p.edgeHot; ctx.lineWidth = 1; ctx.globalAlpha = 0.36;
+    for (let k = 0; k < 4; k++) {
+      const r = 250 + k * 170, phase = t * (1 + k * 0.16) + k * 0.7;
+      ctx.beginPath(); ctx.arc(W * 0.63, H * 0.47, r, phase, phase + Math.PI * 1.22); ctx.stroke();
+    }
+    ctx.fillStyle = p.secondary;
+    for (const [x, y, luminance] of opticalDust) {
+      ctx.globalAlpha = 0.025 + luminance * 0.045;
+      ctx.fillRect(x, y, 1, 1);
+    }
+  }
+  ctx.restore();
 }
 function background(t, sc, si, u) {
   ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
-  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
-  ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate(Math.sin(t * 0.02) * 0.05); ctx.scale(1.25 + 0.05 * Math.sin(t * 0.013), 1.25); ctx.globalAlpha = 0.9;
-  ctx.drawImage(nebula, -W / 2, -H / 2, W, H); ctx.restore();
-  const z0 = (starPhase[si] || 0) + (FILM.speed[sc.id] || 0.02) * u;
-  ctx.globalCompositeOperation = 'lighter';
-  for (let i = 0; i < STARS.length; i++) {
-    const s = STARS[i]; let z = (s[2] - z0) % 1; if (z < 0) z += 1; z = z + 0.02;
-    const x = W / 2 + s[0] * W * 0.55 / z, y = H / 2 + s[1] * H * 0.55 / z;
-    if (x < 0 || x > W || y < 0 || y > H) continue;
-    const r = clamp(1.8 / z * 0.3, 0.4, 3.2); const a = clamp((1 - z) * 1.2) * (0.4 + 0.6 * s[3]);
-    ctx.globalAlpha = a; ctx.fillStyle = s[3] > 0.85 ? C.mag : s[3] > 0.7 ? C.cyan : C.white;
-    ctx.fillRect(x, y, r, r);
-  }
-  ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+  CURRENT_SCENE_ID = sc.id;
+  if (alphaScene(sc.id)) { ctx.clearRect(0, 0, W, H); return; }
+  const mode = scenePolarity(sc.id);
+  const phase = (starPhase[si] || 0) + (FILM.speed[sc.id] ?? 0.02) * u;
+  if (mode === 'dual-split') {
+    drawPolarityBackground('daylight', phase, 0, W / 2);
+    drawPolarityBackground('deep-space', phase, W / 2, W);
+    line(W / 2 + 0.5, 0, W / 2 + 0.5, H, pal('daylight').edge, 1, 1);
+  } else drawPolarityBackground(mode, phase);
 }
-/* synthwave floor grid below the horizon hy */
-function grid(t, a = 0.5, hy = H * 0.64, col = C.mag, speed = 0.3) {
+/* restrained architectural perspective grid below the horizon hy */
+function grid(t, a = 0.5, hy = H * 0.64, col, speed = 0.3) {
   if (a <= 0) return;
-  ctx.save(); ctx.globalCompositeOperation = 'lighter';
-  const g = ctx.createLinearGradient(0, hy, 0, H); g.addColorStop(0, rgba(col, 0)); g.addColorStop(1, rgba(col, 0.9 * a));
-  ctx.strokeStyle = g; ctx.lineWidth = 1.5;
-  for (let i = -24; i <= 24; i++) { ctx.beginPath(); ctx.moveTo(W / 2 + i * 12, hy); ctx.lineTo(W / 2 + i * 260, H + 40); ctx.stroke(); }
-  const ph = (t * speed) % 1;
-  for (let k = 0; k < 16; k++) { const z = (k + 1 - ph); const y = hy + 1400 / (z * z + 3.5) * z * 0.9; if (y > H) continue; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  const mode = scenePolarity(CURRENT_SCENE_ID);
+  const p = pal(mode);
+  let stroke = mode === 'daylight' ? p.ink : p.dim;
+  if (mode === 'dual-split') {
+    stroke = ctx.createLinearGradient(0, 0, W, 0);
+    stroke.addColorStop(0.5, pal('daylight').ink);
+    stroke.addColorStop(0.5, pal('deep-space').dim);
+  }
+  ctx.save(); ctx.globalAlpha = Math.min(0.18, a * 0.18); ctx.strokeStyle = stroke; ctx.lineWidth = 1;
+  for (let i = -12; i <= 12; i++) {
+    ctx.beginPath(); ctx.moveTo(W / 2 + i * 24, hy); ctx.lineTo(W / 2 + i * 210, H); ctx.stroke();
+  }
+  const ph = ((t * speed) % 1 + 1) % 1;
+  for (let k = 0; k < 12; k++) {
+    const depth = (k + ph) / 12, y = hy + (H - hy) * depth * depth;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
   ctx.restore();
 }
 
@@ -425,13 +467,14 @@ function leanCite(gid) { return (DATA.lean || []).find(z => z.gid === gid) || nu
 function leanList(x, y, a, o = {}) {
   if (a <= 0) return y;
   const size = o.size || 22, gap = o.gap || 44, align = o.align || 'left';
+  const p = o.palette || C;
   for (const r of DATA.lean.filter(z => z.kind === 'theorem')) {
     const name = r.label || r.name;
     const head = STR.en.lean || 'LEAN ✓', wh = tw(head, size * 0.72, F.mono, 700, 1) + 18, wn = tw(name, size, F.mono, 700);
     const total = wh + 14 + wn, x0 = align === 'center' ? x - total / 2 : x;
-    fillBox(x0, y - size * 0.95, wh, size * 1.25, C.lean, a * 0.95);
-    txt(head, x0 + 9, y - size * 0.12, { size: size * 0.72, fam: F.mono, w: 700, c: C.bg, a, ls: 1 });
-    txt(name, x0 + wh + 14, y, { size, fam: F.mono, w: 700, c: C.lean, a });
+    fillBox(x0, y - size * 0.95, wh, size * 1.25, p.lean, a * 0.95);
+    txt(head, x0 + 9, y - size * 0.12, { size: size * 0.72, fam: F.mono, w: 700, c: p.bg, a, ls: 1 });
+    txt(name, x0 + wh + 14, y, { size, fam: F.mono, w: 700, c: p.lean, a });
     y += gap;
   }
   return y;
@@ -462,47 +505,20 @@ function missingScene(S) {
 }
 
 /* ---------- post-processing, HUD, subtitles ---------- */
-function bloom(strength = 0.62) {
-  sctx.globalCompositeOperation = 'source-over'; sctx.filter = 'none';
-  sctx.clearRect(0, 0, 480, 270);
-  sctx.filter = 'blur(5px)'; sctx.drawImage(cv, 0, 0, 480, 270); sctx.filter = 'none';
-  ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = strength; ctx.drawImage(small, 0, 0, W, H); ctx.restore();
-}
+function bloom() {}
 function sceneName(id) { return FILM.names[id] || id.toUpperCase(); }
 function hud(t, f, si, s) {
-  const a = 0.75;
-  ctx.globalAlpha = a; ctx.strokeStyle = C.cyan; ctx.lineWidth = 2;
-  const m = 34, k = 46;
-  ctx.beginPath();
-  ctx.moveTo(m, m + k); ctx.lineTo(m, m); ctx.lineTo(m + k, m);
-  ctx.moveTo(W - m - k, m); ctx.lineTo(W - m, m); ctx.lineTo(W - m, m + k);
-  ctx.moveTo(W - m, H - m - k); ctx.lineTo(W - m, H - m); ctx.lineTo(W - m - k, H - m);
-  ctx.moveTo(m + k, H - m); ctx.lineTo(m, H - m); ctx.lineTo(m, H - m - k);
-  ctx.stroke(); ctx.globalAlpha = 1;
-  const book = DATA.book || {}, film = DATA.film || {}, pin = DATA.pin || {};
-  txt(`${book.code || 'TRURETURING'} · ${(STR.en.film || 'FILM').toUpperCase()}`, 60, 72, { size: 16, fam: F.mono, w: 700, c: C.cyan, a: 0.8, ls: 2 });
-  txt(`SEQ ${String(si + 1).padStart(2, '0')}/${String(TL.scenes.length).padStart(2, '0')} · ${sceneName(s.id)}`, 60, 96, { size: 14, fam: F.mono, w: 700, c: C.mag, a: 0.9, ls: 2 });
-  const tc = x => String(Math.floor(x)).padStart(2, '0');
-  txt(`T+${tc(t / 60)}:${tc(t % 60)}:${tc((t * FPS) % FPS)}`, W - 60, 72, { size: 16, fam: F.mono, w: 700, c: C.cyan, a: 0.8, align: 'right', ls: 2 });
-  if (pin.commit) txt(`TRURETURING@${pin.commit.slice(0, 8)} · ${STR.en.pinned || 'PINNED'}`, W - 60, 96, { size: 14, fam: F.mono, w: 700, c: C.cyan, a: 0.6, align: 'right', ls: 1 });
-  /* right edge: statement digests of the cited Lean modules, scrolling */
-  const ids = (DATA.lean || []).map(r => (r.statement_id || '').replace(/^sha256:/, '')).filter(Boolean);
-  if (ids.length) {
-    font(400, 12, F.mono); ctx.textAlign = 'right'; ctx.fillStyle = C.cyan;
-    const off = Math.floor(t * 6);
-    for (let r = 0; r < 18; r++) {
-      const hsh = ids[(r + off) % ids.length], o = ((r + off) * 7) % Math.max(1, hsh.length - 16);
-      ctx.globalAlpha = 0.16; ctx.fillText(hsh.slice(o, o + 16), W - 58, 170 + r * 20);
-    }
-    ctx.globalAlpha = 1;
-  }
-  /* reticle and level meter, bottom left */
-  const rx = 80, ry = H - 110;
-  ctx.globalAlpha = 0.6; ctx.strokeStyle = C.cyan; ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.arc(rx, ry, 26, t * 1.5, t * 1.5 + 4.5); ctx.stroke();
-  ctx.beginPath(); ctx.arc(rx, ry, 16, -t * 2.2, -t * 2.2 + 3.5); ctx.stroke(); ctx.globalAlpha = 1;
-  for (let i = 0; i < 7; i++) { const h = 4 + 18 * Math.abs(Math.sin(t * 3 + i * 0.9) * Math.sin(t * 1.7 + i)); ctx.globalAlpha = 0.5; ctx.fillStyle = i % 3 ? C.cyan : C.mag; ctx.fillRect(116 + i * 6, ry + 12 - h, 4, h); }
+  const mode = scenePolarity(s.id), p = pal(mode), a = 0.78;
+  ctx.globalAlpha = a; ctx.strokeStyle = p.edgeHot; ctx.lineWidth = 1;
+  const m = 34.5;
+  cornerTicks(m, m, W - 2 * m, H - 2 * m, 30);
   ctx.globalAlpha = 1;
+  const book = DATA.book || {}, pin = DATA.pin || {};
+  const left = mode === 'dual-split' ? pal('daylight') : p;
+  txt(`${book.code || 'TRURETURING'} · ${(STR.en.film || 'FILM').toUpperCase()}`, 60, 67, { size: 15, fam: F.mono, w: 700, c: left.ink, a, ls: 2 });
+  txt(`SEQ ${String(si + 1).padStart(2, '0')}/${String(TL.scenes.length).padStart(2, '0')} · ${sceneName(s.id)}`, 60, 90, { size: 13, fam: F.mono, w: 700, c: left.dim, a, ls: 1.5 });
+  txt(timecode(t), W - 60, 67, { size: 15, fam: F.mono, w: 700, c: p.ink, a, align: 'right', ls: 2 });
+  if (pin.commit) txt(`PIN ${pin.commit.slice(0, 8)} · ${STR.en.pinned || 'PINNED'}`, W - 60, 90, { size: 13, fam: F.mono, w: 700, c: p.dim, a: 0.72, align: 'right', ls: 1 });
 }
 /* line breaking for subtitles: CJK per character (Latin runs kept whole), Latin per word */
 function wrap(s, size, fam, w, maxW) {
@@ -523,50 +539,189 @@ function wrap(s, size, fam, w, maxW) {
 }
 const SUBS = { zh: true, en: true };
 (DATA.film && DATA.film.subtitles ? ['zh', 'en'] : []).forEach(l => { SUBS[l] = DATA.film.subtitles.includes(l); });
-const SUB_EN = mix(C.cyan, C.white, 0.55);
-function subtitles(t) {
+// The semantic role selects both text and stroke. Neutral is the default for editorial labels.
+function pill(x, y, label, opts = {}) {
+  const p = paletteAt(x, opts.polarity);
+  const colors = { lean: p.lean, open: p.open, amber: p.amber, now: p.amber, argued: p.argued };
+  const color = colors[opts.kind] || p.dim;
+  const a = opts.a ?? 1, size = opts.size ?? 15, h = opts.h ?? 28;
+  const w = opts.w ?? tw(label, size, F.mono, 700, 1) + 24;
+  if (a <= 0) return w;
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(x + 0.5, y + 0.5, w - 1, h - 1, opts.radius ?? h / 2);
+  ctx.fillStyle = p.panel;
+  ctx.globalAlpha = a;
+  ctx.fill();
+  ctx.strokeStyle = color;
+  ctx.globalAlpha = a * 0.75;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  ctx.restore();
+  txt(label, x + w / 2, y + h / 2, { size, fam: F.mono, w: 700, align: 'center', base: 'middle', c: color, a, ls: 1 });
+  return w;
+}
+function statusTag(x, y, kind, text, a = 1, polarity) {
+  const labels = { lean: 'LEAN ✓', open: 'OPEN', amber: 'NOW', now: 'NOW', argued: 'ARGUED' };
+  return pill(x, y, text || labels[kind] || '', { kind, a, polarity, radius: 2 });
+}
+function glassCard(x, y, w, h, a = 1, opts = {}) {
+  if (w < 1 || h < 1 || a <= 0) return;
+  const p = paletteAt(x + w / 2, opts.polarity);
+  ctx.save();
+  ctx.globalAlpha = a;
+  ctx.beginPath();
+  ctx.roundRect(x + 0.5, y + 0.5, w - 1, h - 1, opts.radius ?? 2);
+  ctx.fillStyle = opts.fill ?? p.panel;
+  ctx.fill();
+  ctx.strokeStyle = opts.border ?? p.edge;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  if (opts.topRule !== false) line(x + 2, y + 1.5, x + w - 2, y + 1.5, p.edgeHot, a, 1);
+  if (opts.kicker) {
+    txt(opts.kicker, x + 24, y + 28, { size: 13, fam: F.mono, w: 600, c: opts.accent || p.dim, a, ls: 2 });
+    if (h > 48) line(x + 24, y + 42.5, x + w - 24, y + 42.5, p.edge, a, 1);
+  }
+  txt(opts.title, x + 24, y + (opts.kicker ? 79 : 39), { size: 28, fam: F.disp, w: 700, c: p.ink, a });
+  ctx.restore();
+}
+function timecode(t) {
+  const frame = Math.max(0, Math.round(t * FPS));
+  const fields = [Math.floor(frame / (60 * FPS)), Math.floor(frame / FPS) % 60, frame % FPS];
+  return 'T+' + fields.map(n => String(n).padStart(2, '0')).join(':');
+}
+const MATTE_HEIGHT = 131;
+const VIEWPORT = { x: 0, y: MATTE_HEIGHT, w: W, h: H - 2 * MATTE_HEIGHT };
+let frameBarHeight = null;
+function cinemaFrame(S, opts = {}) {
+  const mode = opts.polarity || scenePolarity(S.id);
+  const bar = clamp(opts.barHeight ?? MATTE_HEIGHT, 0, H / 2);
+  const progress = clamp(opts.progress ?? S.p ?? 0);
+  const day = pal('daylight'), night = pal('deep-space');
+  // An explicit blend is an absolute position along the daylight-to-deep-space transition.
+  function drawBars(p) {
+    ctx.fillStyle = p.bg;
+    ctx.fillRect(0, 0, W, bar);
+    ctx.fillRect(0, H - bar, W, bar);
+    const inset = 64, center = bar / 2, baseline = H - center;
+    line(0, bar - 0.5, W, bar - 0.5, p.edge, 1, 1);
+    line(0, H - bar + 0.5, W, H - bar + 0.5, p.edge, 1, 1);
+    const detail = { size: 15, fam: F.mono, w: 600, c: p.dim, ls: 2, base: 'middle' };
+    txt(opts.leftLabel ?? DATA.book?.code, inset, center, detail);
+    txt(opts.chapterLabel ?? sceneName(S.id), W / 2, center,
+      { size: 22, fam: F.disp, w: 700, c: p.ink, ls: 2, align: 'center', base: 'middle' });
+    const right = [timecode(S.t), opts.rightLabel].filter(Boolean).join(' · ');
+    txt(right, W - inset, center, { ...detail, align: 'right' });
+    txt(opts.slateLeft, inset, baseline, detail);
+    txt(opts.slateRight, W - inset, baseline, { ...detail, align: 'right' });
+    const y = H - bar / 4 + 0.5;
+    line(inset, y, W - inset, y, p.edge, 1, 1);
+    line(inset, y, inset + (W - 2 * inset) * progress, y, p.dim, 0.8, 1);
+  }
+  frameBarHeight = bar;
+  ctx.save();
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 1;
+  if (opts.blend != null) {
+    const k = clamp(opts.blend);
+    // The night edge is translucent white on obsidian. Interpolate its visible matte colour.
+    const edge = k === 1 ? night.edge : mix(day.edge, mix(night.bg, '#FFFFFF', 0.14), k);
+    drawBars({ bg: mix(day.bg, night.bg, k), ink: mix(day.ink, night.ink, k), dim: mix(day.dim, night.dim, k), edge });
+  } else if (mode === 'dual-split') {
+    drawBars(day);
+    ctx.beginPath(); ctx.rect(W / 2, 0, W / 2, H); ctx.clip();
+    drawBars(night);
+  } else {
+    drawBars(pal(mode));
+  }
+  ctx.restore();
+}
+const ASSETS = {};
+async function preloadImage(name) {
+  const img = new Image();
+  // Install both listeners before setting src, including for a cached or failed load.
+  const loaded = new Promise((resolve, reject) => {
+    img.onload = resolve;
+    img.onerror = () => reject(new Error(`film: cannot load image assets/${name}`));
+  });
+  img.src = 'assets/' + encodeURIComponent(name);
+  await loaded;
+  if (img.decode) {
+    try { await img.decode(); } catch (e) { if (!img.naturalWidth) throw e; }
+  }
+  return [name, img];
+}
+function plate(name, rect = VIEWPORT, opts = {}) {
+  const { x, y, w, h } = { ...VIEWPORT, ...rect };
+  if (alphaScene(CURRENT_SCENE_ID)) {
+    ctx.clearRect(x, y, w, h);
+    return;
+  }
+  const img = ASSETS[name], a = clamp(opts.a ?? 1);
+  if (!img || a === 0 || w <= 0 || h <= 0) return;
+  const p = ease(opts.p ?? 0);
+  const zoom = Math.max(1, lerp(opts.zoomFrom ?? 1, opts.zoomTo ?? 1.06, p));
+  const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight) * zoom;
+  const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
+  const dx = x + clamp((w - dw) / 2 + (opts.panX || 0) * p, w - dw, 0);
+  const dy = y + clamp((h - dh) / 2 + (opts.panY || 0) * p, h - dh, 0);
+  ctx.save();
+  ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  ctx.globalAlpha = a;
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(img, dx, dy, dw, dh);
+  if (opts.dim > 0) fillBox(x, y, w, h, '#000', a * clamp(opts.dim));
+  const vignette = clamp(opts.vignette ?? 0.15);
+  if (vignette > 0) {
+    const cx = x + w / 2, cy = y + h / 2;
+    const shade = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.hypot(w, h) / 2);
+    shade.addColorStop(0.3, 'transparent');
+    shade.addColorStop(1, rgba('#000000', vignette));
+    fillBox(x, y, w, h, shade, a);
+  }
+  ctx.restore();
+}
+function subtitles(t, polarity) {
   const l = TL.lines.find(x => t >= x.start - 0.15 && t <= x.end + 0.35);
   if (!l) return;
   const a = clamp((t - (l.start - 0.15)) / 0.15) * clamp((l.end + 0.35 - t) / 0.2);
-  const zh = SUBS.zh ? wrap(l.zh, 40, F.zh, 700, 1500) : [];
-  const en = SUBS.en ? wrap(l.en, 27, F.raj, 600, 1560) : [];
-  if (!zh.length && !en.length) return;
-  const h = zh.length * 52 + en.length * 33 + 26;
-  const y0 = H - 46 - h;
-  const bw = Math.max(...zh.map(s => tw(s, 40, F.zh, 700)), ...en.map(s => tw(s, 27, F.raj, 600)), 200) + 70;
-  ctx.globalAlpha = 0.55 * a; ctx.fillStyle = '#000'; ctx.fillRect(W / 2 - bw / 2, y0, bw, h); ctx.globalAlpha = 1;
-  line(W / 2 - bw / 2, y0, W / 2 - bw / 2, y0 + h, C.cyan, a * 0.9, 3);
-  line(W / 2 + bw / 2, y0, W / 2 + bw / 2, y0 + h, C.mag, a * 0.9, 3);
-  let y = y0 + 50;
-  zh.forEach(s => { txt(s, W / 2, y, { size: 40, fam: F.zh, w: 700, align: 'center', c: C.white, a }); y += 52; });
-  if (!zh.length) y -= 12; else y -= 8;
-  en.forEach(s => { txt(s, W / 2, y + 4, { size: 27, fam: F.raj, w: 600, align: 'center', c: SUB_EN, a: a * 0.96 }); y += 33; });
-}
-function post(f) {
-  ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-  ctx.drawImage(scan, 0, 0);
-  ctx.drawImage(vign, 0, 0);
-  ctx.globalCompositeOperation = 'overlay'; ctx.drawImage(grains[((f % grains.length) + grains.length) % grains.length], 0, 0, W, H);
-  ctx.globalCompositeOperation = 'source-over';
-}
-/* RGB-split tears at scene cuts plus rare micro glitches (theme/film/music.py adds the matching sound) */
-function glitchAmount(t) {
-  let g = 0;
-  for (let i = 1; i < TL.scenes.length; i++) { const d = t - TL.scenes[i].start; if (d > -0.3 && d < 0.45) g = Math.max(g, 1 - Math.abs(d - 0.05) / 0.4); }
-  const slot = Math.floor(t / 0.2); if (rnd(slot, 77) > 0.965) g = Math.max(g, 0.3);
-  return clamp(g);
-}
-function glitch(t, f) {
-  const g = glitchAmount(t); if (g <= 0.02) return;
-  bctx.globalCompositeOperation = 'copy'; bctx.drawImage(cv, 0, 0); bctx.globalCompositeOperation = 'source-over';
-  const n = Math.floor(4 + g * 18);
-  for (let i = 0; i < n; i++) {
-    const y = Math.floor(rnd(f, i) * H), h = Math.floor(4 + rnd(f, i + 50) * 70 * g), dx = (rnd(f, i + 90) - 0.5) * 180 * g;
-    ctx.drawImage(buf, 0, y, W, h, dx, y, W, h);
-    if (rnd(f, i + 130) > 0.7) { ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = 0.25 * g; ctx.fillStyle = rnd(f, i + 170) > 0.5 ? C.mag : C.cyan; ctx.fillRect(0, y, W, h); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; }
+  const id = TL.scenes[sceneIndex(t)].id;
+  const cinema = FILM.cinemaSubtitles || FILM.polarity[id];
+  const mode = polarity || scenePolarity(id), p = pal(mode);
+  const daylight = mode === 'daylight';
+  const rows = [
+    { text: SUBS.zh && l.zh, size: 40, family: F.zh, weight: 700, leading: 52, color: p.ink },
+    { text: SUBS.en && l.en, size: 27, family: F.raj, weight: 600, leading: 33, color: daylight ? p.dim : p.secondary }
+  ].filter(row => row.text);
+  if (!rows.length) return;
+  // Reserve the same bilingual safe zone when long lines wrap or one language is disabled.
+  const padding = 13;
+  for (const row of rows) row.lines = wrap(row.text, row.size, row.family, row.weight, 1500);
+  const textHeight = rows.reduce((sum, row) => sum + row.leading * row.lines.length, 0);
+  const scale = cinema ? Math.min(1, 85 / textHeight) : 1;
+  const h = textHeight * scale + 2 * padding;
+  const bottom = cinema ? H - (frameBarHeight ?? MATTE_HEIGHT) - 13 : H - 46;
+  const y0 = bottom - h;
+  const widths = rows.flatMap(row => row.lines.map(s => tw(s, row.size * scale, row.family, row.weight)));
+  const bw = Math.max(200, ...widths) + 70, x = (W - bw) / 2;
+  const scrim = daylight ? 'rgba(244,241,238,0.88)' : 'rgba(5,8,14,0.82)';
+  fillBox(x, y0, bw, h, scrim, a);
+  line(x, y0 + 0.5, x + bw, y0 + 0.5, p.edge, a, 1);
+  let y = y0 + padding;
+  for (const row of rows) {
+    const leading = row.leading * scale;
+    for (const s of row.lines) {
+      txt(s, W / 2, y + leading / 2, { size: row.size * scale, fam: row.family, w: row.weight,
+        c: row.color, a, align: 'center', base: 'middle' });
+      y += leading;
+    }
   }
-  ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = 0.35 * g; ctx.drawImage(buf, 10 * g, 0, W, H, 0, 0, W, H); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
 }
+// Legacy scene and poster callbacks retain these entry points.
+function post() {}
+function glitchAmount() { return 0; }
+function glitch() {}
 
 function sceneIndex(t) {
   let si = TL.scenes.findIndex(s => t >= s.start && t < s.end);
@@ -584,41 +739,51 @@ function renderAt(t) {
   const f = Math.round(t * FPS);
   const si = sceneIndex(t), s = TL.scenes[si], S = sceneState(t, si);
   resetCtx();
+  frameBarHeight = null;
   background(t, s, si, S.u);
   ctx.save();
   (SCENES[s.id] || missingScene)(S);
   ctx.restore(); resetCtx();
-  /* cross-dip between scenes */
+
+  const mode = scenePolarity(s.id);
   const fade = Math.min(clamp(S.u / 0.45), clamp((S.d - S.u) / 0.45));
-  if (fade < 1) { ctx.globalAlpha = (1 - fade) * 0.85; ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H); ctx.globalAlpha = 1; }
-  bloom();
-  if (FILM.hud) hud(t, f, si, s);
-  subtitles(t);
-  post(f);
-  glitch(t, f);
-  /* global fade in/out */
-  const gIn = clamp(t / 0.8), gOut = clamp((TL.duration - t) / 1.2);
-  if (gIn < 1 || gOut < 1) { ctx.globalAlpha = 1 - Math.min(gIn, gOut); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); ctx.globalAlpha = 1; }
+  function dip(amount, color) {
+    if (amount <= 0) return;
+    ctx.save();
+    // In a composited shot fade only the painted overlays inside the aperture.
+    const alpha = alphaScene(s.id);
+    if (alpha) ctx.globalCompositeOperation = 'destination-out';
+    const inset = alpha ? frameBarHeight ?? 0 : 0;
+    fillBox(0, inset, W, H - 2 * inset, color, amount);
+    ctx.restore();
+  }
+  dip((1 - fade) * 0.85, pal(mode).bg);
+  if (FILM.hud && frameBarHeight === null) hud(t, f, si, s);
+  subtitles(t, mode);
+  dip(1 - Math.min(clamp(t / 0.8), clamp((TL.duration - t) / 1.2)), '#000');
 }
 
-/* Default poster: film and book titles over a hypercube; films may set FILM.poster = () => { … }. */
+/* Film-specific posters can still draw any scene with the shared helpers. */
 function defaultPoster() {
-  const t = 23.7, si = Math.min(1, TL.scenes.length - 1);
-  resetCtx();
-  background(t, TL.scenes[si], si, 4);
-  drawHyper(CUBE5, [[0, 4, t * 0.21], [1, 3, t * 0.17], [2, 4, t * 0.13], [3, 4, t * 0.19], [0, 2, t * 0.07]], { scale: 2.0, rx: 0.3, ry: t * 0.05, a: 0.45, lw: 1.4, camZ: 7, cy: H / 2 - 40 });
-  grid(t, 0.6);
+  const mode = FILM.defaultPolarity, p = pal(mode);
+  drawPolarityBackground(mode, 0.6);
   const b = DATA.book, f = DATA.film;
-  txt(f.title_zh, W / 2, 300, { size: 84, fam: F.zh, w: 900, align: 'center', c: C.white, ab: 4 });
-  txt(f.title.toUpperCase(), W / 2, 420, { size: 64, fam: F.orb, w: 900, align: 'center', c: C.white, ab: 5, ls: 6 });
-  bloom(0.65);
-  txt(`${b.code} · ${(STR.en.film || 'FILM').toUpperCase()} ${f.number}`, W / 2, 520, { size: 30, fam: F.mono, w: 700, align: 'center', c: C.cyan, ls: 8 });
-  leanList(W / 2, 680, 1, { align: 'center', size: 26, gap: 50 });
-  txt(`${b.title.zh} · ${b.title.en}`, W / 2, 960, { size: 32, fam: F.zh, w: 700, align: 'center', c: C.cyan });
-  hud(t, 711, si, TL.scenes[si]);
-  post(3);
+  for (const r of [175, 226, 295]) ring(W * 0.75, H * 0.42, r, p.dim, 0.17, 1);
+  const label = { fam: F.mono, size: 20, c: p.dim, ls: 3 };
+  txt([b.code, STR.en.film || 'FILM', f.number].filter(Boolean).join(' · '), 120, 192, label);
+  txt(f.title_zh, 120, 386, { size: 76, fam: F.zh, w: 700, c: p.ink });
+  const titleSize = Math.min(60, 60 * (W - 240) / tw(f.title, 60, F.disp, 700));
+  txt(f.title, 120, 480, { size: titleSize, fam: F.disp, w: 700, c: p.ink });
+  line(120, 551.5, W - 120, 551.5, p.edge, 1, 1);
+  leanList(120, 650, 1, { size: 22, gap: 46, palette: p });
+  txt([b.title.zh, b.title.en].filter(Boolean).join(' · '), 120, 965, { ...label, fam: F.zh });
 }
-function poster() { resetCtx(); (FILM.poster || defaultPoster)(); }
+function poster() {
+  resetCtx();
+  CURRENT_SCENE_ID = undefined;
+  frameBarHeight = null;
+  (FILM.poster || defaultPoster)();
+}
 
 /* Called once after scenes.js has loaded: fonts, resources, the film's init hooks. */
 window.FILM_ERRORS = window.FILM_ERRORS || [];
@@ -627,15 +792,17 @@ async function boot() {
   const faces = DATA.fonts || [];
   await Promise.all(faces.map(([fam, w]) => document.fonts.load(`${w} 40px "${fam}"`, text).catch(e => { window.FILM_ERRORS.push(`font ${fam} ${w}: ${e}`); })));
   await document.fonts.ready;
+  if (Array.isArray(DATA.assets)) {
+    // The build lists all bundled files, including clips or attribution alongside the plates.
+    const images = DATA.assets.filter(name => /\.(?:avif|bmp|gif|ico|jpe?g|png|svg|webp)$/i.test(name));
+    Object.assign(ASSETS, Object.fromEntries(await Promise.all(images.map(preloadImage))));
+  }
   if (DATA.solid) await solidInit();
   buildResources();
-  computeStarPhase();
   for (const fn of FILM.init) fn();
+  computeStarPhase();
   for (const s of TL.scenes) if (!SCENES[s.id]) console.warn(`film: SCENES.${s.id} is not defined in scenes.js`);
   return true;
 }
-window.renderAt = renderAt;
-window.poster = poster;
-window.SUBS = SUBS;
-window.FILM = FILM;
-window.solid = solid;
+Object.assign(window, { POLARITY, pal, scenePolarity, ASSETS, plate, cinemaFrame, glassCard, pill, statusTag,
+  cutPath, renderAt, poster, SUBS, FILM, solid });

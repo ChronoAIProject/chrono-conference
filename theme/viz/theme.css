@@ -2,7 +2,10 @@
    Adapted from trureturing-visualize/assets/theme.css (Apache-2.0, the-omega-institute).
    Every colour comes from tokens.css (generated from theme/tokens.json); the short names below (--void, --cyan, …)
    are the trureturing-visualize names, mapped onto the --tr-* tokens so code ported from that repository runs unchanged.
-   Deliberately single-theme (night console): pages look the same on light or dark systems.
+   Two polarities (Scheme B), independent of the reader's system scheme: deep-space optical glass (the default; The
+   Omega Institute) and, on <html data-polarity="daylight" data-tr-palette="paper"> (ChronoAI; shell.js adds the
+   palette attribute), warm architectural stone. 1px hairlines and type carry the structure: no glow, no scanlines,
+   no cut corners.
    Page-specific layout lives next to each page (viz/<id>/style.css); only reusable pieces belong here.
    Modes set on <html> by shell.js: data-lang="zh|en", data-embed (?embed=1, inside the book), data-thumb-mode (?thumb=1). */
 @import url("tokens.css");
@@ -11,10 +14,10 @@
   color-scheme: dark;
   /* visualize names → design tokens. The second var() argument is a self-contained fallback used only if
      tokens.css failed to load (values of theme/tokens.json "screen"), so text stays readable. */
-  --void: var(--tr-void, #03060c);
-  --ink: var(--tr-ink, #d4efff);
-  --dim: var(--tr-dim, #6f8ea5);
-  --cyan: var(--tr-cyan, #19f0ff);
+  --void: var(--tr-void, #070b12);
+  --ink: var(--tr-ink, #f1f5f9);
+  --dim: var(--tr-dim, #94a3b8);
+  --cyan: var(--tr-cyan, #7dd3fc);
   --panel: var(--tr-panel);
   --panel-solid: var(--tr-panel-solid);
   --panel-edge: var(--tr-panel-edge);
@@ -35,11 +38,13 @@
   --glow-cyan: var(--tr-fx-glow-cyan);
   --glow-cyan-strong: var(--tr-fx-glow-cyan-strong);
   --glow-amber: var(--tr-fx-glow-amber);
-  --cut: var(--tr-fx-cut-corner);
   --grid-line: var(--panel-edge);
-  --radius: 0px;
+  --radius: 2px;
   --gutter: 16px;
+  --glass-blur: blur(14px) saturate(1.08);
 }
+/* daylight: the paper tokens are in place (tokens.css); the page is opaque stone, not glass */
+:root[data-tr-palette="paper"], :root[data-polarity="daylight"] { color-scheme: light; --glass-blur: none; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
@@ -53,7 +58,9 @@ body {
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
+:root[data-tr-palette="paper"] body { background-image: none; }
 img { max-width: 100%; }
 [hidden] { display: none !important; }
 button, input, select { font: inherit; color: inherit; }
@@ -67,7 +74,7 @@ sub, sup { line-height: 0; }
 /* English (shell.js sets <html lang>): a Latin face first, so curly quotes and apostrophes are not the full-width
    glyphs of the CJK face (Chinese keeps them) */
 :root:not(:lang(zh), :lang(ja), :lang(ko)) { --font-body: var(--tr-font-body-latin, system-ui, sans-serif); }
-.langs { display: inline-flex; border: 1px solid var(--line-hot); align-self: center; }
+.langs { display: inline-flex; border: 1px solid var(--line-hot); border-radius: var(--radius); align-self: center; }
 .langs button {
   background: transparent; border: 0; color: var(--dim); cursor: pointer;
   font-family: var(--font-data); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 9px;
@@ -91,20 +98,12 @@ header.top {
 .crumb:hover { color: var(--cyan); border-color: var(--cyan); }
 .logo {
   position: relative;
-  font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: 0.06em;
+  font-family: var(--font-display); font-weight: 600; font-size: 26px; letter-spacing: 0.04em;
   color: var(--ink);
-  text-shadow: var(--glow-cyan);
   margin: 0; line-height: 1.2;
   overflow-wrap: anywhere;
 }
-.logo b { color: var(--cyan); font-weight: 700; }
-.logo::before, .logo::after { content: attr(data-text); position: absolute; inset: 0; pointer-events: none; opacity: 0; }
-.logo::before { color: var(--magenta); transform: translate(2px, 0); }
-.logo::after { color: var(--cyan); transform: translate(-2px, 0); }
-.glitching .logo::before { animation: trv-gl1 0.42s steps(2) 1; }
-.glitching .logo::after { animation: trv-gl2 0.42s steps(2) 1; }
-@keyframes trv-gl1 { 0% { opacity: .8; clip-path: inset(10% 0 60% 0); } 50% { clip-path: inset(55% 0 20% 0); } 100% { opacity: 0; } }
-@keyframes trv-gl2 { 0% { opacity: .8; clip-path: inset(60% 0 8% 0); } 50% { clip-path: inset(15% 0 55% 0); } 100% { opacity: 0; } }
+.logo b { color: var(--cyan); font-weight: 600; }
 .tagline { color: var(--dim); font-size: 12.5px; min-width: 0; }
 .tagline em { font-style: normal; color: var(--amber); }
 .status { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; min-width: 0; }
@@ -118,18 +117,18 @@ header.top {
 a.pill:hover { border-color: var(--cyan); color: var(--cyan); }
 
 /* ---------- panels ---------- */
+/* deep-space: a translucent glass pane with a lit top rim; daylight: an opaque stone-white slab */
 .panel {
   background: var(--panel);
   border: 1px solid var(--panel-edge);
-  clip-path: var(--cut);
+  border-radius: var(--radius);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   position: relative;
   min-width: 0;
 }
-.panel::after {
-  content: ""; position: absolute; right: 0; top: 0; width: 17px; height: 17px;
-  background: linear-gradient(225deg, transparent 49%, var(--line-hot) 50%, transparent 56%);
-  pointer-events: none;
-}
+:root[data-tr-palette="paper"] .panel { background: var(--panel-solid); box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 5%, transparent); }
 .col { overflow-y: auto; min-height: 0; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; scrollbar-color: var(--line-hot) transparent; }
 .sec { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .sec h2 {
@@ -151,16 +150,15 @@ input[type=range]::-webkit-slider-runnable-track { height: 2px; background: line
 input[type=range]::-moz-range-track { height: 2px; background: linear-gradient(90deg, var(--cyan), var(--line-hot)); }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; width: 12px; height: 12px; margin-top: -5px; background: var(--void);
-  border: 2px solid var(--cyan); transform: rotate(45deg); box-shadow: 0 0 10px var(--cyan);
+  border: 1.5px solid var(--cyan); border-radius: 50%;
 }
 input[type=range]::-moz-range-thumb {
-  width: 9px; height: 9px; background: var(--void); border: 2px solid var(--cyan); border-radius: 0;
-  transform: rotate(45deg); box-shadow: 0 0 10px var(--cyan);
+  width: 9px; height: 9px; background: var(--void); border: 1.5px solid var(--cyan); border-radius: 50%;
 }
 input[type=range]:focus-visible { outline-offset: 4px; }
 input[type=range]:disabled { opacity: 0.35; cursor: not-allowed; }
 /* stepper: [−] [number] [+]; the number input keeps native keyboard and mobile keypad behaviour */
-.stepper { display: inline-flex; align-items: stretch; border: 1px solid var(--line-hot); }
+.stepper { display: inline-flex; align-items: stretch; border: 1px solid var(--line-hot); border-radius: var(--radius); }
 .stepper button {
   width: 30px; min-height: 28px; border: 0; background: transparent; color: var(--cyan); cursor: pointer;
   font-family: var(--font-data); font-size: 14px; line-height: 1;
@@ -175,12 +173,12 @@ input[type=range]:disabled { opacity: 0.35; cursor: not-allowed; }
 .stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
-  border: 1px solid var(--line-hot); background: transparent; color: var(--ink); cursor: pointer;
+  border: 1px solid var(--line-hot); border-radius: var(--radius); background: transparent; color: var(--ink); cursor: pointer;
   font-family: var(--font-display); font-weight: 500; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
   padding: 5px 9px; line-height: 1.2; text-decoration: none; display: inline-block;
 }
 .chip:hover { border-color: var(--cyan); color: var(--cyan); }
-.chip[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--on-accent); box-shadow: var(--glow-cyan-strong); }
+.chip[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--on-accent); }
 .chip:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ---------- readouts ---------- */
@@ -227,13 +225,16 @@ canvas.plot { width: 100%; display: block; }
 .stage.still { cursor: default; touch-action: auto; }
 .stage.still:active { cursor: default; }
 .stage .tags { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.stage .scan, .scan { position: absolute; inset: 0; pointer-events: none; background: var(--tr-fx-scanlines); mix-blend-mode: overlay; }
+/* .scan was a CRT scanline overlay: pages still carry the element, which now draws nothing */
+.stage .scan, .scan { display: none; }
 .stage .vig, .vig { position: absolute; inset: 0; pointer-events: none; background: var(--tr-fx-vignette); }
-.bracket { position: absolute; width: 22px; height: 22px; border-color: var(--cyan); border-style: solid; pointer-events: none; opacity: 0.8; }
-.bracket.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
-.bracket.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
-.bracket.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
-.bracket.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+:root[data-tr-palette="paper"] :is(.stage .vig, .vig) { display: none; }
+/* corner brackets of a stage: 1px crop marks */
+.bracket { position: absolute; width: 18px; height: 18px; border-color: var(--line-hot); border-style: solid; pointer-events: none; }
+.bracket.tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+.bracket.tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+.bracket.bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+.bracket.br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
 .hud-tl { position: absolute; top: 14px; left: 20px; pointer-events: none; display: flex; flex-direction: column; gap: 2px; max-width: calc(100% - 40px); }
 .hud-tl .big { font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; color: var(--amber); }
 .hud-tl .sub { font-size: 12px; color: var(--ink); text-shadow: 0 0 6px var(--tr-void-deep); }
@@ -272,8 +273,8 @@ canvas.plot { width: 100%; display: block; }
 .sw.ik { background: var(--ink); }
 .toast {
   position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); max-width: min(560px, calc(100% - 40px));
-  background: color-mix(in srgb, var(--tr-void-deep) 90%, transparent); border: 1px solid var(--amber); color: var(--ink); padding: 8px 12px; font-size: 12.5px;
-  box-shadow: 0 0 22px color-mix(in srgb, var(--amber) 25%, transparent); pointer-events: none; transition: opacity 0.4s; opacity: 0;
+  background: color-mix(in srgb, var(--tr-void-deep) 92%, transparent); border: 1px solid var(--amber); color: var(--ink); padding: 8px 12px; font-size: 12.5px;
+  pointer-events: none; transition: opacity 0.4s; opacity: 0;
 }
 .toast b { color: var(--amber); font-weight: 600; }
 .nogl { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--dim); }
@@ -282,10 +283,10 @@ canvas.plot { width: 100%; display: block; }
 footer.rail { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; border-top: 1px solid var(--panel-edge); padding-top: 8px; }
 .transport { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .tbtn {
-  min-width: 34px; height: 30px; border: 1px solid var(--line-hot); background: transparent; cursor: pointer; display: inline-grid; place-items: center;
+  min-width: 34px; height: 30px; border: 1px solid var(--line-hot); border-radius: var(--radius); background: transparent; cursor: pointer; display: inline-grid; place-items: center;
   color: var(--cyan); font-family: var(--font-data); font-size: 13px; padding: 0 6px;
 }
-.tbtn:hover { border-color: var(--cyan); box-shadow: 0 0 10px color-mix(in srgb, var(--cyan) 35%, transparent); }
+.tbtn:hover { border-color: var(--cyan); background: color-mix(in srgb, var(--cyan) 10%, transparent); }
 .tbtn[aria-pressed="true"] { background: var(--cyan); color: var(--on-accent); }
 .tbtn:disabled { color: var(--faint); border-color: var(--panel-edge); box-shadow: none; cursor: not-allowed; }
 .clock { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: center; min-width: 0; }
@@ -293,8 +294,8 @@ footer.rail { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; ga
 .clock .tau small { font-size: 11px; color: var(--dim); }
 .clock input[type=range]::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(90deg, color-mix(in srgb, var(--amber) 90%, transparent), color-mix(in srgb, var(--amber) 12%, transparent)); }
 .clock input[type=range]::-moz-range-track { height: 4px; background: linear-gradient(90deg, color-mix(in srgb, var(--amber) 90%, transparent), color-mix(in srgb, var(--amber) 12%, transparent)); }
-.clock input[type=range]::-webkit-slider-thumb { width: 14px; height: 14px; margin-top: -5px; border-color: var(--amber); box-shadow: 0 0 12px var(--amber); }
-.clock input[type=range]::-moz-range-thumb { border-color: var(--amber); box-shadow: 0 0 12px var(--amber); }
+.clock input[type=range]::-webkit-slider-thumb { width: 14px; height: 14px; margin-top: -5px; border-color: var(--amber); }
+.clock input[type=range]::-moz-range-thumb { border-color: var(--amber); }
 .keys { font-size: 11px; color: var(--dim); text-align: right; }
 .keys kbd { font-family: var(--font-data); border: 1px solid var(--line-hot); padding: 0 4px; color: var(--ink); font-size: 10.5px; }
 .keys .chip { margin-top: 4px; }
@@ -302,8 +303,8 @@ footer.rail { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; ga
 /* ---------- theory drawer ---------- */
 .drawer { position: fixed; inset: 0; background: color-mix(in srgb, var(--tr-void-deep) 72%, transparent); display: grid; place-items: center; padding: var(--gutter); z-index: 20; }
 .drawer .sheet {
-  width: min(760px, 100%); max-height: calc(100% - 20px); overflow-y: auto; background: var(--sheet); border: 1px solid var(--cyan);
-  box-shadow: 0 0 40px color-mix(in srgb, var(--cyan) 18%, transparent); padding: 18px 20px 20px;
+  width: min(760px, 100%); max-height: calc(100% - 20px); overflow-y: auto; background: var(--sheet); border: 1px solid var(--line-hot);
+  border-radius: var(--radius); box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--tr-void-deep) 85%, transparent); padding: 18px 20px 20px;
 }
 .sheet h2 { margin: 0 0 4px; font-family: var(--font-display); letter-spacing: 0.12em; color: var(--cyan); font-size: 16px; text-wrap: balance; }
 .sheet .lede { color: var(--dim); margin: 0 0 12px; max-width: 68ch; }
@@ -339,13 +340,13 @@ body:has(> .app.lab) { overflow-x: hidden; overflow-y: auto; }
 /* experiment cards: one click = one named scenario; the note under them says what to look at */
 .presets.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 .preset {
-  text-align: left; border: 1px solid var(--line-hot); background: color-mix(in srgb, var(--panel-solid, var(--void)) 60%, transparent); cursor: pointer;
+  text-align: left; border: 1px solid var(--line-hot); border-radius: var(--radius); background: color-mix(in srgb, var(--panel-solid, var(--void)) 60%, transparent); cursor: pointer;
   padding: 6px 8px; display: flex; flex-direction: column; gap: 1px; min-width: 0;
 }
 .preset .code { font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 0.12em; color: var(--cyan); text-transform: uppercase; }
 .preset .cn { font-size: 12.5px; color: var(--ink); line-height: 1.35; }
 .preset:hover { border-color: var(--cyan); }
-.preset[aria-pressed="true"] { border-color: var(--amber); box-shadow: inset 0 0 0 1px var(--amber), 0 0 14px color-mix(in srgb, var(--amber) 25%, transparent); }
+.preset[aria-pressed="true"] { border-color: var(--amber); box-shadow: inset 0 0 0 1px var(--amber); }
 .preset[aria-pressed="true"] .code { color: var(--amber); }
 /* tour bar: step through the experiment cards without leaving the stage (shown where the deck is out of view) */
 .tour { display: none; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 8px; align-items: center; border: 1px solid var(--panel-edge); background: var(--panel); padding: 6px 8px; }
@@ -358,7 +359,7 @@ body:has(> .app.lab) { overflow-x: hidden; overflow-y: auto; }
 /* readouts: one line that matters, set large */
 dl.ro .key { grid-column: 1 / -1; }
 dl.ro .key dd { font-size: 12px; color: var(--dim); }
-dl.ro .key dd b { display: block; font-weight: 600; font-size: 19px; line-height: 1.3; color: var(--ink); text-shadow: 0 0 12px color-mix(in srgb, currentColor 45%, transparent); }
+dl.ro .key dd b { display: block; font-weight: 600; font-size: 19px; line-height: 1.3; color: var(--ink); }
 dl.ro dd small { font-size: 11px; color: var(--dim); }
 dl.ro .ok dd, .okmark { color: var(--ok); }
 /* a number the page checked itself (a sum, a bound, an identity at these values): neutral, not green; green ✓ (.okmark)
@@ -452,7 +453,6 @@ dl.ro .ok dd, .okmark { color: var(--ok); }
 :root[data-shot] .toast, :root[data-shot] .hud-tr { opacity: 0 !important; }
 
 @media (prefers-reduced-motion: reduce) {
-  .glitching .logo::before, .glitching .logo::after { animation: none; }
   .toast { transition: none; }
 }
 @media (max-width: 520px) {

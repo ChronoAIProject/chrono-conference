@@ -15,7 +15,7 @@ languages = ["zh", "en"]
 # 设为 true 后，EPUB 随 Release 发布，Pages 只提供 Release 附件链接。
 # epub_release_only = true
 # 开启后 Pages 实时绘制影片，完整 MP4 随书籍 Release 发布。
-# film_release_only = true
+film_release_only = true
 
 [site.title]
 zh = "ChronoAI 2026 线上发布会"

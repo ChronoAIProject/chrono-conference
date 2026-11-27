@@ -5,6 +5,11 @@ title: "把发布会交给 AI 员工 · AI 员工方案"
 info: "面向店主、工作室与部署伙伴：六岗 AI 员工怎样分工、在哪儿停、怎样两周上岗，以及服务商怎样持临时能力句柄进场。"
 htmlAttrs:
   lang: "zh-CN"
+  data-polarity: "daylight"
+  data-tr-palette: "paper"
+colorSchema: "light"
+defaults:
+  class: "tr-own-bg tr-daylight"
 deck:
   code: "CHRONO//OPS"
   book: "把发布会交给 AI 员工"

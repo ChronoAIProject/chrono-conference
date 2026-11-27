@@ -1,26 +1,42 @@
-/* trureturing slides — cyberpunk deck styles (Slidev theme theme/slides, shared by every deck).
+/* trureturing slides — dual-polarity deck styles (Slidev theme theme/slides, shared by every deck).
  *
  * Canvas 1920×1080 (canvasWidth 1920, 16/9); Slidev scales it. Every colour is a --tr-* variable from
  * theme/generated/tokens.css; translucent variants are mixed from those with color-mix().
  * Colour semantics: --tr-sem-lean (green) only for Lean-verified, --tr-sem-now (amber) only for
  * "now"/current page, --tr-sem-open (red) for open problems and warnings, --tr-sem-argued (violet)
- * for argued but not kernel-verified. Cyan/magenta are the neutral neon accents.
- * Readability first: body text is ≥ 26px on the canvas, ink on void, glow only on accents.
+ * for argued but not kernel-verified. Cyan/magenta are the two neutral accent roles: ice-silver and
+ * optical silver on deep space, architectural ink and graphite on daylight.
+ * Polarity (Scheme B): a deck is deep-space optical glass by default (The Omega Institute). A ChronoAI deck
+ * is daylight architectural stone: its headmatter sets
+ *   htmlAttrs: { lang: …, data-polarity: "daylight", data-tr-palette: "paper" }   (the paper tokens)
+ *   colorSchema: light
+ *   defaults: { class: "tr-own-bg tr-daylight" }   (flat stone in the PDF too; see backdrop.css)
+ * One slide of a deep-space deck turns daylight with class: "tr-own-bg tr-paper tr-daylight".
+ * Readability first: body text is ≥ 26px on the canvas, ink on void; no glow, no scanlines, no cut corners —
+ * 1px hairlines and type carry the structure.
  * Structure and helper names follow chrono-company-slides theme/styles/deck.css (Apache-2.0). */
 
 :root {
   --pad-x: 120px;
-  --cut: 26px;
-  --cut-sm: 10px;
-  --glass: color-mix(in srgb, var(--tr-panel-solid) 88%, transparent);
-  --hair: color-mix(in srgb, var(--tr-cyan) 22%, transparent);
+  --glass: color-mix(in srgb, var(--tr-panel-solid) 86%, transparent);
+  --hair: color-mix(in srgb, var(--tr-ink) 16%, transparent);
   --ink-2: color-mix(in srgb, var(--tr-ink) 78%, var(--tr-dim));
+  --rim: inset 0 1px 0 color-mix(in srgb, var(--tr-ink) 8%, transparent);
   /* The bundled faces come first so that per-glyph fallback stays inside fonts the theme ships
      (JetBrains Mono covers Greek, "TR Math" — KaTeX Main, styles/index.ts — arrows and operators);
      the token stacks follow for anything else. Rendering is then the same on every machine. */
   --display: "Chakra Petch", "Noto Sans SC", "JetBrains Mono", "TR Math", var(--tr-font-display);
   --sans: "Noto Sans SC", "JetBrains Mono", "TR Math", var(--tr-font-body);
   --mono: "JetBrains Mono", "Noto Sans SC", "TR Math", var(--tr-font-data);
+}
+
+/* daylight: opaque stone-white cards on warm stone; the derived variables are re-derived where a single slide
+   switches palette (they are computed on :root otherwise) */
+:root[data-polarity="daylight"], .tr-daylight {
+  --glass: var(--tr-panel-solid);
+  --hair: color-mix(in srgb, var(--tr-ink) 18%, transparent);
+  --ink-2: color-mix(in srgb, var(--tr-ink) 80%, var(--tr-dim));
+  --rim: 0 1px 0 color-mix(in srgb, var(--tr-ink) 5%, transparent);
 }
 
 /* ---------- canvas ----------
@@ -87,13 +103,13 @@
   position: absolute;
   left: 0; right: 0; bottom: -10px;
   height: 1px;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--tr-cyan) 55%, transparent), var(--hair) 40%, transparent);
+  background: var(--hair);
 }
 .hdr-l { display: flex; align-items: baseline; gap: 14px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.hdr-l b { color: var(--tr-cyan); font-weight: 700; text-shadow: var(--tr-fx-glow-cyan); }
+.hdr-l b { color: var(--tr-cyan); font-weight: 700; }
 .hdr-sep { color: var(--tr-magenta); }
 .hdr-r { color: var(--tr-ink); display: flex; align-items: center; gap: 14px; letter-spacing: .1em; }
-.hdr-r::before { content: ""; width: 10px; height: 10px; background: var(--tr-magenta); transform: rotate(45deg); box-shadow: 0 0 10px var(--tr-magenta); }
+.hdr-r::before { content: ""; width: 28px; height: 1px; background: var(--tr-magenta); }
 
 .ftr {
   bottom: 40px;
@@ -108,14 +124,14 @@
   position: absolute;
   left: 0; right: 0; top: -12px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--hair) 30%, var(--hair) 70%, transparent);
+  background: var(--hair);
 }
 .ftr-l { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-family: var(--sans); font-size: 19px; }
 .ftr-sep { margin: 0 12px; color: var(--tr-faint); }
 .ftr-c { position: absolute; left: 50%; transform: translateX(-50%); color: var(--tr-faint); text-transform: uppercase; letter-spacing: .14em; font-size: 15px; }
 .ftr-at { color: var(--tr-magenta); margin: 0 2px; }
 .pg { font-family: var(--mono); font-size: 20px; color: var(--tr-dim); letter-spacing: .06em; }
-.pg b { color: var(--tr-sem-now); font-weight: 700; text-shadow: var(--tr-fx-glow-amber); }
+.pg b { color: var(--tr-sem-now); font-weight: 700; }
 .pg i { font-style: normal; color: var(--tr-faint); margin: 0 6px; }
 
 /* ---------- body and grids ---------- */
@@ -143,7 +159,7 @@
   margin: 0 0 22px;
 }
 :lang(zh) .kicker, :lang(ja) .kicker { letter-spacing: .12em; }
-.kicker::before { content: ""; width: 38px; height: 3px; background: var(--tr-magenta); box-shadow: 0 0 10px var(--tr-magenta); }
+.kicker::before { content: ""; width: 44px; height: 1px; background: var(--tr-magenta); }
 .display {
   font-family: var(--display);
   font-weight: 700;
@@ -152,7 +168,6 @@
   letter-spacing: .01em;
   margin: 0;
   color: var(--tr-ink);
-  text-shadow: 0 0 28px color-mix(in srgb, var(--tr-cyan) 35%, transparent);
 }
 .display em { color: var(--tr-cyan); }
 h2.t {
@@ -164,10 +179,10 @@ h2.t {
   margin: 0 0 22px;
   color: var(--tr-ink);
 }
-h2.t em { color: var(--tr-cyan); text-shadow: var(--tr-fx-glow-cyan); }
-:is(h2.t, .display) em.warn { color: var(--tr-sem-open); text-shadow: 0 0 18px color-mix(in srgb, var(--tr-sem-open) 45%, transparent); }
-:is(h2.t, .display) em.ok { color: var(--tr-sem-lean); text-shadow: var(--tr-fx-glow-ok); }
-:is(h2.t, .display) em.magenta { color: var(--tr-magenta); text-shadow: 0 0 18px color-mix(in srgb, var(--tr-magenta) 45%, transparent); }
+h2.t em { color: var(--tr-cyan); }
+:is(h2.t, .display) em.warn { color: var(--tr-sem-open); }
+:is(h2.t, .display) em.ok { color: var(--tr-sem-lean); }
+:is(h2.t, .display) em.magenta { color: var(--tr-magenta); }
 .lead { font-size: 32px; line-height: 1.6; color: var(--ink-2); margin: 0; }
 .lead b, .lead strong { color: var(--tr-ink); }
 .muted { color: var(--ink-2); }
@@ -187,11 +202,10 @@ ul.plain li::before {
   content: "";
   position: absolute;
   left: 4px;
-  top: .62em;
-  width: 11px;
-  height: 11px;
-  border: 2px solid var(--tr-cyan);
-  transform: rotate(45deg);
+  top: .72em;
+  width: 18px;
+  height: 1px;
+  background: var(--tr-cyan);
 }
 ul.plain.tight li { margin-bottom: 8px; }
 
@@ -208,23 +222,24 @@ ul.plain.tight li { margin-bottom: 8px; }
 .tex-display { margin: .4em 0; text-align: center; }
 .tex-display .katex { font-size: 1.5em; }
 
-/* ---------- cut-corner panels ---------- */
+/* ---------- panels: optical glass (deep space) or a stone-white slab (daylight), on a 1px hairline ---------- */
 .card, .tr-thm {
   position: relative;
   background: var(--glass);
   border: 1px solid var(--tr-panel-edge);
-  clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+  border-radius: 3px;
+  box-shadow: var(--rim);
 }
-.card::before, .card::after, .tr-thm::before, .tr-thm::after {
+/* a registration tick in the top-right corner: the card reads as a drawn plate */
+.card::after, .tr-thm::after {
   content: "";
   position: absolute;
-  width: var(--cut);
-  height: var(--cut);
+  right: 12px; top: 12px;
+  width: 14px; height: 14px;
+  border-top: 1px solid var(--tr-line-hot);
+  border-right: 1px solid var(--tr-line-hot);
   pointer-events: none;
 }
-/* the two cut edges, drawn as hairlines (clip-path removes the border there) */
-.card::after, .tr-thm::after { right: 0; top: 0; background: linear-gradient(225deg, transparent calc(50% - 1px), var(--tr-line-hot) 50%, transparent calc(50% + 1px)); }
-.card::before, .tr-thm::before { left: 0; bottom: 0; background: linear-gradient(45deg, transparent calc(50% - 1px), var(--tr-panel-edge) 50%, transparent calc(50% + 1px)); }
 .card { padding: 34px 38px 32px; }
 .card h3 { font-family: var(--display); font-weight: 600; font-size: 34px; line-height: 1.25; margin: 0 0 14px; color: var(--tr-ink); }
 .card h4 { font-family: var(--mono); font-weight: 500; font-size: 18px; letter-spacing: .16em; text-transform: uppercase; color: var(--tr-cyan); margin: 0 0 16px; }
@@ -256,12 +271,12 @@ ul.plain.tight li { margin-bottom: 8px; }
   padding: 10px 18px 9px;
   color: var(--c);
   border: 2px solid var(--c);
-  background: color-mix(in srgb, var(--c) 12%, transparent);
-  clip-path: polygon(0 0, calc(100% - var(--cut-sm)) 0, 100% var(--cut-sm), 100% 100%, var(--cut-sm) 100%, 0 calc(100% - var(--cut-sm)));
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+  border-radius: 2px;
   text-decoration: none !important;
   white-space: nowrap;
 }
-.tr-badge-lean { --c: var(--tr-sem-lean); box-shadow: var(--tr-fx-glow-ok); }
+.tr-badge-lean { --c: var(--tr-sem-lean); }
 .tr-badge-defined { --c: var(--tr-sem-theory); } /* a Lean definition: neutral, never the verified green */
 .tr-badge-open { --c: var(--tr-sem-open); }
 .tr-badge-argued, .tr-badge-written-proof { --c: var(--tr-sem-argued); }
@@ -270,7 +285,6 @@ ul.plain.tight li { margin-bottom: 8px; }
 /* ---------- theorem card (components/TheoremCard.vue) ---------- */
 .tr-thm {
   --c: var(--tr-sem-lean);
-  --cut: 30px;
   padding: 34px 46px 30px 52px;
 }
 .tr-thm-open, .tr-thm-unverified { --c: var(--tr-sem-open); }
@@ -280,9 +294,8 @@ ul.plain.tight li { margin-bottom: 8px; }
   content: "";
   position: absolute;
   left: 0; top: 0; bottom: 0;
-  width: 6px;
+  width: 4px;
   background: var(--c);
-  box-shadow: 0 0 18px var(--c);
 }
 .tr-thm-unverified > .tr-thm-head::before { background: repeating-linear-gradient(180deg, var(--c) 0 14px, transparent 14px 24px); }
 .tr-thm-head { display: flex; align-items: center; gap: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--tr-panel-edge); }
@@ -308,9 +321,9 @@ ul.plain.tight li { margin-bottom: 8px; }
 .tr-thm.compact .tr-badge { font-size: 17px; padding: 8px 14px 7px; }
 
 /* ---------- figures (components/Stat.vue) ---------- */
-.tr-stat { --c: var(--tr-cyan); border-top: 2px solid color-mix(in srgb, var(--c) 60%, transparent); padding-top: 18px; min-width: 0; }
-.tr-stat-n { font-family: var(--display); font-weight: 700; font-size: 104px; line-height: 1; color: var(--c); text-shadow: 0 0 22px color-mix(in srgb, var(--c) 45%, transparent); font-variant-numeric: tabular-nums; }
-.tr-stat-n small { font-size: .42em; font-weight: 600; margin-left: 8px; color: var(--ink-2); text-shadow: none; }
+.tr-stat { --c: var(--tr-cyan); border-top: 1px solid color-mix(in srgb, var(--c) 60%, transparent); padding-top: 18px; min-width: 0; }
+.tr-stat-n { font-family: var(--display); font-weight: 700; font-size: 104px; line-height: 1; color: var(--c); font-variant-numeric: tabular-nums; }
+.tr-stat-n small { font-size: .42em; font-weight: 600; margin-left: 8px; color: var(--ink-2); }
 .tr-stat-l { margin-top: 14px; font-size: 24px; line-height: 1.45; color: var(--ink-2); }
 .tr-stat.tone-magenta { --c: var(--tr-magenta); }
 .tr-stat.tone-ok { --c: var(--tr-sem-lean); }
@@ -325,8 +338,8 @@ ul.plain.tight li { margin-bottom: 8px; }
 .readout dt { font-family: var(--mono); font-size: 22px; letter-spacing: .04em; color: var(--tr-dim); }
 .readout dt .katex { font-size: 1.1em; color: var(--tr-dim); }
 .readout dd { margin: 0; font-family: var(--mono); font-size: 46px; font-weight: 500; color: var(--tr-ink); font-variant-numeric: tabular-nums; letter-spacing: .02em; white-space: nowrap; }
-.readout dd.hot { color: var(--tr-magenta); text-shadow: 0 0 16px color-mix(in srgb, var(--tr-magenta) 45%, transparent); }
-.readout dd.cy { color: var(--tr-cyan); text-shadow: var(--tr-fx-glow-cyan); }
+.readout dd.hot { color: var(--tr-magenta); }
+.readout dd.cy { color: var(--tr-cyan); }
 .readout dd small { font-size: .5em; color: var(--tr-dim); margin-left: 14px; letter-spacing: .04em; }
 
 /* ---------- source line (components/Source.vue) ---------- */
@@ -357,38 +370,38 @@ table.t td:first-child { color: var(--tr-ink); }
 table.t td.num { font-family: var(--mono); text-align: right; white-space: nowrap; }
 
 /* ---------- output tiles (deck "outputs" page) ---------- */
-.tile { position: relative; padding: 30px 30px 26px; background: var(--glass); border: 1px solid var(--tr-panel-edge); clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); }
+.tile { position: relative; padding: 30px 30px 26px; background: var(--glass); border: 1px solid var(--tr-panel-edge); border-radius: 3px; box-shadow: var(--rim); }
 .tile b { display: block; font-family: var(--display); font-size: 34px; font-weight: 700; color: var(--tr-cyan); letter-spacing: .04em; }
 .tile span { display: block; margin-top: 10px; font-size: 22px; line-height: 1.5; color: var(--ink-2); }
 .tile i { display: block; font-style: normal; font-family: var(--mono); font-size: 16px; color: var(--tr-dim); letter-spacing: .12em; margin-bottom: 14px; }
 .tile.now { border-color: color-mix(in srgb, var(--tr-sem-now) 60%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tr-sem-now) 25%, transparent); }
-.tile.now b { color: var(--tr-sem-now); text-shadow: var(--tr-fx-glow-amber); }
+.tile.now b { color: var(--tr-sem-now); }
 .tile.now i { color: var(--tr-sem-now); }
 
 /* ---------- pipeline ---------- */
 .flow { display: flex; align-items: stretch; gap: 0; }
-.flow .step { flex: 1; position: relative; padding: 20px 36px 0 0; border-top: 3px solid var(--tr-line-hot); }
-.flow .step::before { content: ""; position: absolute; top: -9px; left: 0; width: 15px; height: 15px; background: var(--tr-void); border: 3px solid var(--tr-cyan); transform: rotate(45deg); box-shadow: 0 0 12px color-mix(in srgb, var(--tr-cyan) 60%, transparent); }
-.flow .step.ok::before { border-color: var(--tr-sem-lean); box-shadow: var(--tr-fx-glow-ok); }
+.flow .step { flex: 1; position: relative; padding: 20px 36px 0 0; border-top: 1px solid var(--tr-line-hot); }
+.flow .step::before { content: ""; position: absolute; top: -7px; left: 0; width: 13px; height: 13px; border-radius: 50%; background: var(--tr-void); border: 1px solid var(--tr-cyan); }
+.flow .step.ok::before { border-color: var(--tr-sem-lean); background: var(--tr-sem-lean); }
 .flow .step .i { font-family: var(--mono); font-size: 18px; color: var(--tr-dim); letter-spacing: .14em; }
 .flow .step b { display: block; font-family: var(--display); font-size: 31px; margin: 6px 0 8px; color: var(--tr-ink); }
 .flow .step p { margin: 0; font-size: 23px; color: var(--ink-2); line-height: 1.45; }
 
 /* ---------- cover (layouts/cover.vue) ---------- */
+/* .cover-grid: a flat architectural scale along the foot of the cover — one hairline with a tick every 96px,
+   a taller one every 480px (no perspective floor) */
 .cover-grid {
   position: absolute !important;
-  left: 0; right: 0; bottom: 0;
-  height: 430px;
+  left: var(--pad-x); right: var(--pad-x); bottom: 168px;
+  height: 22px;
   z-index: 0 !important;
+  border-bottom: 1px solid var(--hair);
   background-image:
-    linear-gradient(color-mix(in srgb, var(--tr-cyan) 26%, transparent) 2px, transparent 2px),
-    linear-gradient(90deg, color-mix(in srgb, var(--tr-cyan) 18%, transparent) 2px, transparent 2px);
-  background-size: 96px 54px;
-  transform: perspective(520px) rotateX(58deg);
-  transform-origin: 50% 100%;
-  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, .9), transparent 92%); /* mask alpha only, not a colour */
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, .9), transparent 92%);
-  opacity: .8;
+    linear-gradient(90deg, color-mix(in srgb, var(--tr-ink) 30%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--tr-ink) 14%, transparent) 1px, transparent 1px);
+  background-size: 480px 100%, 96px 40%;
+  background-position: 0 0, 0 100%;
+  background-repeat: repeat-x;
 }
 .cover-top {
   position: absolute !important;
@@ -398,25 +411,28 @@ table.t td.num { font-family: var(--mono); text-align: right; white-space: nowra
 }
 .cover-code {
   font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: .22em;
-  color: var(--tr-cyan); text-shadow: var(--tr-fx-glow-cyan);
+  color: var(--tr-cyan);
   padding: 10px 22px 9px;
-  border: 2px solid color-mix(in srgb, var(--tr-cyan) 60%, transparent);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border: 1px solid color-mix(in srgb, var(--tr-cyan) 60%, transparent);
+  border-radius: 2px;
 }
 .cover-pin-sep { color: var(--tr-magenta); margin: 0 12px; }
 .cover-body { top: 150px; bottom: 190px; right: 760px; justify-content: center; }
 .cover-body .lead { margin-top: 36px; }
 .cover-hud { position: absolute !important; z-index: 0 !important; right: 118px; top: 50%; width: 640px; height: 640px; transform: translateY(-50%); overflow: visible; }
-.hud-ring { fill: none; stroke: var(--tr-panel-edge); stroke-width: 2; }
-.hud-ring.dashed { stroke: var(--tr-line-hot); stroke-dasharray: 4 10; }
-.hud-tick { stroke: color-mix(in srgb, var(--tr-cyan) 30%, transparent); stroke-width: 2; }
-.hud-tick.major { stroke: color-mix(in srgb, var(--tr-cyan) 75%, transparent); stroke-width: 3; }
-.hud-arc { fill: none; stroke: var(--tr-magenta); stroke-width: 5; }
-.hud-arc.alt { stroke: var(--tr-cyan); stroke-width: 3; }
-.hud-cross { stroke: var(--tr-panel-edge); stroke-width: 1.5; stroke-dasharray: 2 8; }
-.hud-spiral { fill: none; stroke: var(--tr-cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.hud-spiral.glow { stroke: color-mix(in srgb, var(--tr-cyan) 22%, transparent); stroke-width: 14; }
-.hud-dot { fill: var(--tr-magenta); }
+/* the dial: an astrolabe of fine orbits (deep space) or a drafting compass (daylight), all 1–2px strokes */
+.hud-ring { fill: none; stroke: var(--tr-line-hot); stroke-width: 1.5; }
+.hud-ring.dashed { stroke: var(--tr-panel-edge); stroke-dasharray: 2 8; }
+.hud-tick { stroke: color-mix(in srgb, var(--tr-magenta) 34%, transparent); stroke-width: 1; }
+.hud-tick.major { stroke: color-mix(in srgb, var(--tr-magenta) 80%, transparent); stroke-width: 1.5; }
+.hud-arc { fill: none; stroke: var(--tr-magenta); stroke-width: 2; }
+.hud-arc.alt { stroke: var(--tr-cyan); stroke-width: 2; }
+.hud-cross { stroke: var(--tr-panel-edge); stroke-width: 1; stroke-dasharray: 2 8; }
+.hud-spiral { fill: none; stroke: var(--tr-cyan); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hud-spiral.glow { display: none; }
+.hud-dot { fill: var(--tr-cyan); }
+:is(:root[data-polarity="daylight"], .tr-daylight) .hud-spiral { stroke: var(--tr-ink); stroke-width: 1.5; }
+:is(:root[data-polarity="daylight"], .tr-daylight) .hud-arc.alt { stroke: var(--tr-sem-now); }
 .cover-meta {
   position: absolute !important;
   left: var(--pad-x); right: var(--pad-x); bottom: 60px;
@@ -440,8 +456,7 @@ table.t td.num { font-family: var(--mono); text-align: right; white-space: nowra
   font-size: 400px;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 3px color-mix(in srgb, var(--tr-magenta) 70%, transparent);
-  text-shadow: 0 0 60px color-mix(in srgb, var(--tr-magenta) 30%, transparent);
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--tr-magenta) 70%, transparent);
   letter-spacing: -.02em;
   opacity: .9;
 }
@@ -461,7 +476,7 @@ html.fonts-pending .slide { visibility: hidden; }
   background: color-mix(in srgb, var(--tr-void) 82%, transparent);
   color: var(--tr-cyan);
   border: 1px solid var(--tr-line-hot);
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  border-radius: 2px;
 }
 .site-nav-btn:hover { border-color: var(--tr-cyan); background: var(--tr-panel-solid); }
 .site-nav-btn:focus-visible { outline: 2px solid var(--tr-amber); outline-offset: 2px; }

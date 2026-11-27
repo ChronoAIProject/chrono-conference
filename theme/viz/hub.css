@@ -44,7 +44,7 @@
 .card .thumb .code {
   position: absolute; left: 12px; bottom: 10px; z-index: 1;
   font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: 0.08em; color: var(--ink);
-  text-shadow: 0 0 12px color-mix(in srgb, var(--cyan) 80%, transparent), 0 0 3px var(--tr-void-deep);
+  text-shadow: 0 1px 3px rgba(5, 8, 14, 0.55);
 }
 .card:hover .thumb img, .card:focus-within .thumb img { transform: scale(1.03); filter: saturate(1.25) brightness(1.08); }
 .card .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }

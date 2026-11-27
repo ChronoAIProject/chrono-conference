@@ -5,6 +5,11 @@ title: "Build for What Comes Next · 2026 Virtual Launch Keynote"
 info: "The ChronoAI 2026 virtual launch keynote: devalued execution, the logic ratchet, the complete vehicle, and Street Corner."
 htmlAttrs:
   lang: "en"
+  data-polarity: "daylight"
+  data-tr-palette: "paper"
+colorSchema: "light"
+defaults:
+  class: "tr-own-bg tr-daylight"
 deck:
   code: "CHRONO//KEYNOTE"
   book: "Build for What Comes Next"
@@ -29,7 +34,7 @@ section: "Right Now"
   <h2 class="t">You're Inside a Launch With <em>Zero Film Crew</em></h2>
   <div class="split mt">
     <div>
-      <p class="lead">This 3D lobby, 1,108 theater seats, 18 flower stands, five films, four bilingual books, and Concierge Donna—built on ChronoAI's own agent stack under human review and gates, and published in the open.</p>
+      <p class="lead">This 3D lobby, 1,108 theater seats, 18 flower stands, the full launch film plus five shorts, four bilingual books, and Concierge Donna—built on ChronoAI's own agent stack under human review and gates, and published in the open.</p>
       <div class="g3 mt-l">
         <Stat class="md" value="0" label="cameras" tone="magenta" />
         <Stat class="md" value="1,108" label="locked seats" />

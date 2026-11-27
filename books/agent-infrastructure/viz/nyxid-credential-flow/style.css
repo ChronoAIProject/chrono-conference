@@ -5,3 +5,8 @@
 .lab .center > #stage { min-height: 380px; }
 :root[data-embed][data-figure] .lab .center > #stage { min-height: 0; }
 .sec h2.sub-h { margin-top: 14px; }
+
+/* Stacked plots need their full height in mid-width embeds. */
+@media (600px < width <= 1080px) {
+  :root[data-embed] .lab .strip { height: auto; }
+}

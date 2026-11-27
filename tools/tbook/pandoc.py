@@ -1579,6 +1579,7 @@ def book_meta(site: config.Site, book: config.Book, edition: config.Edition, mod
     return {
         "schema": "trureturing-books.pdf-meta.v1",
         "slug": book.slug,
+        "polarity": book.polarity or "deep-space",
         "lang": lang.split("-")[0],
         "bcp47": edition.bcp47,
         "region": _region(edition.bcp47),

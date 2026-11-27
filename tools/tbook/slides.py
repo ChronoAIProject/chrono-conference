@@ -2011,7 +2011,7 @@ def index_html(site: config.Site, book: config.Book, decks: list[dict[str, Any]]
     hide_default = f':root:not([data-lang]) [class^="l-"]:not(.l-{primary}) {{ display: none; }}'
     commit = (f'<p class="pin">{pair(lambda lang: config.s(lang, "ui.pinned_at"))} '
               f'<a href="{esc(lock.tree_url)}"><code>{esc(lock.commit[:12])}</code></a></p>') if lock else ""
-    from .site import _google_fonts  # theme/tokens.json font.google-fonts-css, as the other pages use
+    from .site import _google_fonts, polarity_attrs
 
     fonts_css = _google_fonts()
     fonts_head = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
@@ -2019,7 +2019,7 @@ def index_html(site: config.Site, book: config.Book, decks: list[dict[str, Any]]
                   f'<link rel="stylesheet" href="{esc(fonts_css)}">\n') if fonts_css else ""
     title_text = " · ".join(dict.fromkeys(f"{book.edition(lang).title} · {config.s(lang, 'ui.slides') or 'Slides'}" for lang in langs))
     return f"""<!doctype html>
-<html lang="{esc(config.bcp47(primary))}">
+<html lang="{esc(config.bcp47(primary))}"{polarity_attrs(book.polarity)}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

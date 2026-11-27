@@ -4,12 +4,18 @@
 
 Welcome to the flagship manifesto and complete broadcast script of the **ChronoAI 2026 Virtual Launch**. On **December 17, 2026, 16:00–17:15 SGT**, we are hosting a pure online English livestream on YouTube (`@ChronoAIOfficial`) and LinkedIn Live, paired with our open interactive virtual lobby, `street-corner`.
 
-There is no film crew behind this launch, no rented hotel ballroom, no external production agency, and no sanitized PR deck locked behind an embargo. The launch itself—the 1,108-seat virtual lobby, the 18 flower-basket stands, our AI Concierge **Donna**, Flower Town assistant **Blossom**, all five narrated explainer films, four bilingual Slidev decks, seven interactive laboratories, twenty-six computed static figures, and the four bilingual books you are reading—was built and verified by AI systems running on ChronoAI's own infrastructure under human architectural boundaries, and published openly in Git.
+There is no film crew behind this launch, no rented hotel ballroom, no external production agency, and no sanitized PR deck locked behind an embargo. The launch itself—the 1,108-seat virtual lobby, the 18 flower-basket stands, our AI Concierge **Donna**, Flower Town assistant **Blossom**, the complete virtual launch conference film plus five focused explainer shorts, four bilingual Slidev decks, seven interactive laboratories, twenty-six computed static figures, and the four bilingual books you are reading—was built and verified by AI systems running on ChronoAI's own infrastructure under human architectural boundaries, and published openly in Git.
 
-Start with the one-minute opening film that puts all four pillars of the launch on the table.
+To experience the entire keynote arc in one sitting—moving from the sunlit Street Corner lobby into the deep-space optical glass observatory of `live.trureturing.org`, auditing frozen Lean 4 theorems and candid red `OPEN` frontiers, and returning to daylight to inspect the five-layer complete vehicle and six AI employees—watch the complete virtual launch film below.
+
+::: {.film src="virtual-launch-2026"}
+**Build for What Comes Next: The 2026 Virtual Launch (Full Film, Six Chapters, Dual-Polarity).** Combines Street Corner venue plates, live 3D camera sweeps from `live.trureturing.org`, verified Lean 4 `#print axioms` evidence at pinned commit `8a3f20fb`, the five-layer complete vehicle blueprint, and the six-role 77/97 operations ledger.
+:::
+
+Short on time? Watch the condensed one-minute opening film below for the four core pillars at a glance.
 
 ::: {.film src="build-for-what-comes-next"}
-**Build for What Comes Next (Opening Film).** From devalued execution and crowned judgment, through the five-layer complete vehicle and `trureturing`'s irreversible logic ratchet, to an open seat in Street Corner on December 17.
+**Build for What Comes Next (Opening Short).** From devalued execution and crowned judgment, through the five-layer complete vehicle and `trureturing`'s irreversible logic ratchet, to an open seat in Street Corner on December 17.
 :::
 
 ## Why Turn a Product Launch Into Four Auditable Books

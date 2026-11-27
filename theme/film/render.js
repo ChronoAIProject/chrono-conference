@@ -1,4 +1,4 @@
-// Capture frames of <film>/out/index.html with headless Chromium and pipe them to ffmpeg (x264).
+// Capture frames of <film>/out/index.html with headless Chromium and pipe them to ffmpeg.
 // Adapted from trureturing-film films/*/render.js (Apache-2.0, the-omega-institute).
 //
 // usage: node theme/film/render.js <out dir> [--worker 0 --workers 1] [--start s] [--end s] [--fps 30]
@@ -12,11 +12,13 @@
 //   720p    the frames denoised (hqdn3d) and scaled to 1280x720 with lanczos, CRF 19, preset slow
 //           → --output-720p (seg720_<worker>.mp4): the 720p videos, encoded from the frames, never from a master
 // Both are H.264 yuv420p at the film's frame rate, x264 with 2 threads (deterministic for the same frames).
+// --alpha captures transparent PNG frames and writes a QuickTime Animation overlay to --output (alpha_overlay.mov).
 // Chromium: $PW_CHROMIUM_PATH when set, else Playwright's own. ffmpeg: $FFMPEG, else `ffmpeg` on PATH. Exits
 // non-zero on any page error.
 import { spawn } from 'node:child_process';
 import { resolve, isAbsolute, join } from 'node:path';
 import { existsSync } from 'node:fs';
+import { pipeline } from 'node:stream/promises';
 import { launch, openFilm, frameJPEG, parseArgs, parseSize } from './lib.js';
 
 // The 720p rendition: the same filter and quality as the 720p videos always had (two-pass 900 kb/s from the
@@ -26,23 +28,29 @@ const CRF_720P = '19', PRESET_720P = 'slow';
 const RENDITIONS = ['master', '720p'];
 
 const { pos, opt } = parseArgs(process.argv.slice(2));
-if (!pos[0]) { console.error('usage: node render.js <out dir> [--worker w --workers n] [--start s --end s] [--size WxH] [--renditions master,720p]'); process.exit(2); }
+if (!pos[0]) { console.error('usage: node render.js <out dir> [--worker w --workers n] [--start s --end s] [--size WxH] [--renditions master,720p | --alpha] [--output file]'); process.exit(2); }
 const outDir = resolve(pos[0]);
 if (!existsSync(join(outDir, 'index.html'))) { console.error(`render: ${outDir}/index.html is missing; run film.sh <dir> build`); process.exit(2); }
 const worker = +(opt.worker || 0), workers = +(opt.workers || 1);
 const [width, height] = parseSize(opt.size);
+const alpha = opt.alpha === true;
 const renditions = String(opt.renditions || 'master').split(',').filter(Boolean);
-if (!renditions.length || renditions.some(r => !RENDITIONS.includes(r))) {
+if (!alpha && (!renditions.length || renditions.some(r => !RENDITIONS.includes(r)))) {
   console.error(`render: --renditions ${opt.renditions}: expected a comma list of ${RENDITIONS.join(', ')}`); process.exit(2);
+}
+if (alpha && workers > 1 && !opt.output) {
+  console.error('render: --alpha with multiple workers requires a distinct --output for each worker'); process.exit(2);
 }
 const FF = process.env.FFMPEG || 'ffmpeg';
 const place = name => (isAbsolute(name) ? name : join(outDir, name));
 
-/** ffmpeg arguments: the JPEG frames on stdin, one output per rendition. */
+/** ffmpeg arguments: frames on stdin, one output per rendition. */
 function ffmpegArgs(fps, outputs) {
+  const args = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps),
+    '-c:v', alpha ? 'png' : 'mjpeg', '-i', '-'];
+  if (alpha) return [...args, '-c:v', 'qtrle', '-pix_fmt', 'argb', '-f', 'mov', outputs.alpha];
   const x264 = (crf, preset) => ['-c:v', 'libx264', '-preset', preset, '-crf', crf, '-pix_fmt', 'yuv420p',
     '-r', String(fps), '-threads', '2', '-movflags', '+faststart'];
-  const args = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-'];
   const master = x264(String(opt.crf || 17), String(opt.preset || 'medium'));
   const small = x264(CRF_720P, PRESET_720P);
   if (outputs.master && outputs['720p']) {
@@ -59,8 +67,16 @@ function ffmpegArgs(fps, outputs) {
 const browser = await launch();
 let code = 0;
 try {
-  const film = await openFilm(browser, outDir);
+  let pages = browser;
+  if (alpha) {
+    pages = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: 1 });
+    await pages.addInitScript(() => { window.ALPHA_MODE = true; });
+  }
+  const film = await openFilm(pages, outDir);
   const page = film.page;
+  if (alpha) {
+    await page.addStyleTag({ content: 'html, body { background: transparent !important; } #c { width: 100vw; height: 100vh; margin: 0; }' });
+  }
   const fps = +(opt.fps || (await page.evaluate(() => (window.DATA.film && window.DATA.film.fps) || 30)));
   const duration = await page.evaluate(() => window.DATA.timeline.duration);
   const t0 = opt.start != null ? +opt.start : 0, t1 = Math.min(duration, opt.end != null ? +opt.end : duration);
@@ -68,18 +84,36 @@ try {
   const per = Math.ceil(total / workers);
   const f0 = first + worker * per, f1 = Math.min(first + total, f0 + per);
   const outputs = {};
-  if (renditions.includes('master')) outputs.master = place(opt.output || `seg_${worker}.mp4`);
-  if (renditions.includes('720p')) outputs['720p'] = place(opt['output-720p'] || `seg720_${worker}.mp4`);
+  if (alpha) {
+    outputs.alpha = place(opt.output || 'alpha_overlay.mov');
+  } else {
+    if (renditions.includes('master')) outputs.master = place(opt.output || `seg_${worker}.mp4`);
+    if (renditions.includes('720p')) outputs['720p'] = place(opt['output-720p'] || `seg720_${worker}.mp4`);
+  }
   const ff = spawn(FF, ffmpegArgs(fps, outputs), { stdio: ['pipe', 'inherit', 'inherit'] });
   const ffDone = new Promise((ok, fail) => { ff.on('error', fail); ff.on('close', c => (c === 0 ? ok() : fail(new Error(`ffmpeg exited with ${c}`)))); });
   const started = Date.now();
-  for (let f = f0; f < f1; f++) {
-    const jpg = await frameJPEG(page, f / fps, { width, height });
-    if (!ff.stdin.write(jpg)) await new Promise(r => ff.stdin.once('drain', r));
-    if ((f - f0) % 300 === 0) console.log(`w${worker} frame ${f - f0}/${f1 - f0} ${((Date.now() - started) / 1000).toFixed(0)}s`);
+  async function* frames() {
+    for (let f = f0; f < f1; f++) {
+      const time = f / fps;
+      let frame;
+      if (alpha) {
+        await page.evaluate(t => { window.renderAt(t); }, time);
+        frame = await page.screenshot({ type: 'png', omitBackground: true });
+      } else {
+        frame = await frameJPEG(page, time, { width, height });
+      }
+      yield frame;
+      if ((f - f0) % 300 === 0) console.log(`w${worker} frame ${f - f0}/${f1 - f0} ${((Date.now() - started) / 1000).toFixed(0)}s`);
+    }
   }
-  ff.stdin.end();
-  await ffDone;
+  try {
+    await Promise.all([pipeline(frames(), ff.stdin), ffDone]);
+  } catch (e) {
+    ff.kill();
+    await ffDone.catch(() => {});
+    throw e;
+  }
   const late = film.errors.length ? film.errors : await page.evaluate(() => window.FILM_ERRORS || []);
   if (late.length) throw new Error(`page errors while rendering:\n  ${late.slice(0, 5).join('\n  ')}`);
   console.log(`w${worker} done ${f1 - f0} frames (${(f0 / fps).toFixed(2)}–${(f1 / fps).toFixed(2)} s, ${width}x${height}) ` +

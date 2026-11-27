@@ -25,6 +25,9 @@ en = "Operations Playbook, Press Q&A, and Merchant Onboarding"
 zh = "跟随六类 AI 员工完成会场接待、席位预订、社群与后台运营，了解哪些事项需要人工审批。收录彩排与发布会当日值守剧本、记者问答和商户接入步骤。"
 en = "Follow six AI employee roles through guest reception, seat booking, community engagement, and backstage operations, with clear points for human approval. Includes rehearsal and show-day playbooks, press Q&A, and step-by-step merchant onboarding."
 
+[theme]
+polarity = "daylight"
+
 [outputs]
 html = true
 # PDF 版本：screen = 深色霓虹屏幕版；print = 白底印刷版；academic = A4 单栏学术预印本（可选）。
