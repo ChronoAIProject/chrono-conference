@@ -1,22 +1,22 @@
-# 第四章 2,128 道文献开放题：台上可当场点开核验的代表成果
+# 第四章 2,278 道文献开放题：台上可当场点开核验的代表成果
 
-测试一台科研引擎，最好的方式不是让它做自己出的期末考题，而是把它直接丢进全世界的公开文献海洋——那里漂着物理学家、组合学家与数论学家在顶级期刊和 arXiv 论文末尾写下的 `Open Problem`、`Conjecture` 与 `Question 1`。
+检验一台科研引擎，最下乘的做法是让它做自己出的期末考题；唯一诚实的做法，是把它直接抛进全世界的公开文献海域——那里漂着物理学家、组合学家与数论学家在顶级期刊和 arXiv 论文末尾亲笔留下的 `Open Problem`、`Conjecture` 与 `Question 1`。
 
-自 2026 年 9 月 8 日启动公开问题登记，至 2026 年 11 月 20 日的 **74 个自然日**内，`trureturing`（`the-omega-institute/trureturing@05ceb90`）累计登记解决 **2,126 道带日期文献开放题**（另含 2 道未标入库日期记录，按 `problem_slug` 去重合计 **2,128 道**：**1,400 道证明**、**728 道反驳**，日均约 **29 道**；同期全库共有 2,151 份问题档案，尚有 23 道明确登记为未解）。
+自 `2026-09-08` 启动公开问题登记，至 `2026-11-27` 的连续 **`81` 个自然日**内，`trureturing`（`the-omega-institute/trureturing@548388cd`）累计登记解决 **`2,276` 道带日期文献开放题**（另含 `2` 道未标入库日期记录，按 `problem_slug` 去重合计 **`2,278` 道**：**1,512 道证明**、**766 道反驳**，日均约 **28 道**；全库共有 **2,305 份**问题档案，其中 **27 道**坦白登记为未解）。
 
-按公开来源拆解这 2,128 道题解，它们横跨多类公开文献前沿阵地：
+请注意那个 **766 道反驳**的比重：在自然与数学面前，用一记精确反例敲碎一尊流传多年的错误猜想，与正面盖起一座新定理同等珍贵。按公开来源拆解这 2,278 道题解（连同全部 2,305 份档案），它们横跨多条公开文献战线：
 
 ::: {.figure src="ch04-resolution-velocity"}
-**2,128 道公开文献题解来源与证明／反驳分布（2026-11-20 冻结快照）。** 青色柱为证明（共 `1,400` 道），品红柱为反驳（共 `728` 道）：arXiv 预印本（`393` 证 / `343` 反）、OEIS 序列猜想（`641` 证 / `52` 反）、同行评审期刊（`354` 证 / `320` 反）、Erdős 公开问题集（`1` 证 / `3` 反）及其他文献（`11` 证 / `10` 反）；量子信息与物理领域独占 `582` 道，悬置超十年者 `124` 道，最久 `47` 年。
+**2,278 道公开文献题解来源与证明／反驳分布（2026-11-27 `548388cd` 冻结快照）。** 青色柱为证明（共 `1,512` 道），品红柱为反驳（共 `766` 道；总档案 `2,305` 份，尚余 `27` 道未解）：arXiv 预印本（`465` 证 / `375` 反，共 `860` 份档案）、OEIS 序列猜想（`677` 证 / `52` 反，`732` 份）、同行评审期刊（`358` 证 / `326` 反，`687` 份）、Erdős 公开问题集（`1` 证 / `3` 反，`5` 份）及其他文献（`11` 证 / `10` 反，`21` 份）；量子信息与物理领域独占 `598` 道（`314` 证 / `284` 反），悬置超十年者 `127` 道（三年以上 `478` 道），最久 `47` 年。
 :::
 
-统计数字可以供宏观鸟瞰，但数学家只相信摆在桌上的**具体定理**。本章精选 **7 条横跨量子纠缠、贝尔多面体、量子行走、量子通道与黎曼几何的旗舰证明与反驳**——每一条都配有构建生成的绿色 Lean 内核徽章，你在 12 月 17 日发布会直播中或此刻就能直接点进 Lean 源码逐行复查。
+统计柱状图只能让你看清地平线，数学家只信任摊在桌面上的**具体定理**。本章精选 **7 条横跨量子纠缠、贝尔多面体、量子行走、量子通道与黎曼几何的旗舰证明与反驳**——每一条都钉着构建生成的绿色 Lean 内核徽章，无论是在 12 月 17 日直播现场还是此刻，你都可以直接点入 Lean 源码逐行核查。
 
 ## 反驳一：四量子比特 Fredkin 门能产生超过 2 ebits 纠缠（*Phys. Rev. A* 2025）
 
-2025 年，Qiu、Song 与 Chen（`arXiv:2410.15253`，*Phys. Rev. A*）研究四量子比特受控交换门（Fredkin 门 $F_4$）跨越 `AD:BC` 二分切口在允许携带局域辅助比特（local ancillas）的乘积输入态上的纠缠产生上确界（entangling power supremum），并猜想其精确等于 $2$ ebits（`claim : entanglementGeneration = 2`）。
+2025 年，Qiu、Song 与 Chen（`arXiv:2410.15253`，*Phys. Rev. A*）研究四量子比特受控交换门（Fredkin 门 $F_4$）跨越 `AD:BC` 二分切口在允许携带局域辅助比特（local ancillas）的乘积输入态上的纠缠产生上确界（entangling power supremum），并猜想这个天花板恰为 $2$ ebits（`claim : entanglementGeneration = 2`）。
 
-`trureturing` 构造出一个显式容许乘积态输入，将其约化密度矩阵共轭化为精确有理矩阵、由 Lean 内核直接通过 `decide` 核验谱结构，并结合对数严格下界算出其输出纠缠约为 `2.00034…` ebits（严格大于 $2$），从而严格证伪原猜想。
+一个看上去无比整齐的整数界——用精确有理矩阵的铁锤轻轻一敲，它就在小数点后第四位裂开了：`trureturing` 构造出一个显式容许乘积输入态，将其约化密度矩阵共轭化为精确有理矩阵、由 Lean 内核直接通过 `decide` 锁死谱结构，并结合严格对数下界算出其输出纠缠约为 `2.00034…` ebits（严格大于 $2$），一击证伪原猜想。
 
 ::: {.theorem #thm-fredkin-refutation title="四量子比特 Fredkin 门纠缠能力猜想的反驳" lean="D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result"}
 Qiu–Song–Chen（`arXiv:2410.15253`）关于四量子比特 Fredkin 门跨越 `AD:BC` 切口（允许局域辅助比特）纠缠产生上确界恰好等于 $2$ ebits 的猜想 `claim` 不成立：$\neg\,\mathrm{claim}$。
@@ -28,7 +28,7 @@ Qiu–Song–Chen（`arXiv:2410.15253`）关于四量子比特 Fredkin 门跨越
 
 ## 证明一：Higuchi–Sudbery 四量子比特平均纠缠熵精确最大值（*Phys. Lett. A* 2000）
 
-整整二十六年前，Higuchi 与 Sudbery（*Phys. Lett. A* 2000）提出了量子多体纠缠领域最著名的经典问题之一：对所有归一化的四量子比特纯态 $z \in \mathbb{C}^{16}$，跨三个两比特二分切口（`AB`、`AC`、`AD`）的平均冯诺依曼熵是否恒不超过 $1 + \frac{1}{2}\log_2 3$，且在他们构造的显式态 $M_4$ 上达到精确等号？
+整整二十六年前，Higuchi 与 Sudbery（*Phys. Lett. A* 2000）在量子多体纠缠领域抛出一道经典难题：对所有归一化的四量子比特纯态 $z \in \mathbb{C}^{16}$，跨三个两比特二分切口（`AB`、`AC`、`AD`）的平均冯诺依曼熵是否恒不超过 $1 + \frac{1}{2}\log_2 3$，且恰好在他们写下的显式极值态 $M_4$ 上取到等号？
 
 ::: {.theorem #thm-higuchi-sudbery title="Higuchi–Sudbery 四量子比特平均两比特熵精确上界" lean="D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum.result"}
 对所有满足 $\sum_{i=0}^{15} |z_i|^2 = 1$ 的四量子比特振幅向量 $z : \mathrm{Fin}\,16 \to \mathbb{C}$，其三个两比特切口（`AB`、`AC`、`AD`）的平均冯诺依曼熵满足
@@ -44,7 +44,7 @@ $$
 
 ## 证明二：全 $K \ge 2$ 的三方 Mermin–CGLMP 贝尔不等式面片定理（*Phys. Rev. A* 2012）
 
-Grandjean 等人（*Phys. Rev. A* 2012）提出了三方 $K$ 结果贝尔不等式 $(K - 1) \le I_K(p)$，此前仅对有限个小 $K$ 数值验证其为局域多面体 $L_K$ 的紧面片（facet），对一切 $K \ge 2$ 的普遍证明长期悬置。下面这条冻结定理不靠穷举枚举，一次性对所有整数 $K \ge 2$ 证明了它的普遍面片性：
+Grandjean 等人（*Phys. Rev. A* 2012）提出了三方 $K$ 结果贝尔不等式 $(K - 1) \le I_K(p)$，此前仅对若干小 $K$ 做过数值检验，对一切 $K \ge 2$ 的普遍面片性长期悬而未决。下面这条冻结定理不靠有限穷举，一次性对全部整数 $K \ge 2$ 锁死它的余维数为 $1$：
 
 ::: {.theorem #thm-mermin-facet title="三方 Mermin–CGLMP 不等式对所有 $K \ge 2$ 都是局域多面体的面片" lean="D5/S3/QuantumBounds/MerminCglmpFacet.result"}
 对任意整数 $K \ge 2$：
@@ -63,7 +63,7 @@ $$
 
 ## 证明三：Godsil 平均混合矩阵判别式整性猜想（*JCTA* 2013）
 
-连续时间量子行走领域的权威学者 Chris Godsil 在 *Journal of Combinatorial Theory, Series A*（`arXiv:1103.2578v3` §11 Question 1）中提问：任意有限简单图 $G$ 的邻接矩阵有理极小多项式判别式，乘上其平均混合矩阵（average mixing matrix）的每一个矩阵元，是否永远是一个整数？
+连续时间量子行走领域的权威学者 Chris Godsil 在 *Journal of Combinatorial Theory, Series A*（`arXiv:1103.2578v3` §11 Question 1）中追问：任意有限简单图 $G$ 的邻接矩阵有理极小多项式判别式，乘上其平均混合矩阵（average mixing matrix）的每一个矩阵元，是否永远把分母扫得一干二净、只留下整数？
 
 ::: {.theorem #thm-godsil-mixing title="极小多项式判别式消去图平均混合矩阵的一切分母" lean="D5/S3/Quantum/Dynamics/AverageMixingDiscriminantIntegrality.result"}
 对任意自然数 $n$、任意有限简单图 $G$（顶点集 $\mathrm{Fin}\,n$）及任意顶点对 $i, j$，存在整数 $z \in \mathbb{Z}$ 使得
@@ -93,7 +93,7 @@ $$
 
 ## 反驳二：四维相容量子通道未必 Jordan 相容（*Nat. Commun.* 2021）
 
-Girard、Plávala 与 Sikora（*Nature Communications* 2021）在研究广义概率论与量子通道相容性时，追问任意一对相容量子通道（`Compatible Φ Ψ`）是否必然 Jordan 相容（`JordanCompatible Φ Ψ`）。`trureturing` 在维度 $d = 4$ 构造出显式测量—制备通道反例，直接证伪该全维断言！
+Girard、Plávala 与 Sikora（*Nature Communications* 2021）在研究广义概率论与量子通道相容性时，追问任意一对相容量子通道（`Compatible Φ Ψ`）是否必然 Jordan 相容（`JordanCompatible Φ Ψ`）。`trureturing` 在维度 $d = 4$ 构造出显式测量—制备通道反例，直接敲碎该全维断言！
 
 ::: {.theorem #thm-jordan-refutation title="相容量子通道在 $d = 4$ 上未必 Jordan 相容" lean="D5/S3/QuantumChannels/JordanCompatibilityRefutation.result"}
 「对一切维度 $d$ 及一切相容量子通道对 $(\Phi, \Psi)$ 皆必满足 Jordan 相容」的命题 `claim` 不成立：$\neg\,\mathrm{claim}$，且在维度 $d = 4$ 存在显式通道反例。
@@ -105,7 +105,7 @@ Girard、Plávala 与 Sikora（*Nature Communications* 2021）在研究广义概
 
 ## 证明五：Zeitlin 度量平均 Ricci 曲率的调和极限（*Commun. Math. Phys.* 2026）
 
-最后看一道刚刚发表于 2026 年 *Communications in Mathematical Physics* 的最新前沿问题：Lichtenfelz、Modin 与 Preston 研究二维球面矩阵量子化（Zeitlin 截断）的平均 Ricci 曲率 $\tilde{r}_\ell(N)$，猜想对任意角动量阶数 $\ell \ge 2$，当矩阵截断维数 $N \to \infty$ 时其极限等于 $-(H_\ell - 1)/2$（其中 $H_\ell = \sum_{k=1}^\ell 1/k$ 为第 $\ell$ 个调和数），并且充分大时严格为负。
+最后看一道刚刚发表于 2026 年 *Communications in Mathematical Physics* 的热腾腾前沿问题：Lichtenfelz、Modin 与 Preston 研究二维球面矩阵量子化（Zeitlin 截断）的平均 Ricci 曲率 $\tilde{r}_\ell(N)$，猜想对任意角动量阶数 $\ell \ge 2$，当矩阵截断维数 $N \to \infty$ 时其极限精确等于 $-(H_\ell - 1)/2$（其中 $H_\ell = \sum_{k=1}^\ell 1/k$ 为第 $\ell$ 个调和数），并且充分大时严格为负。
 
 ::: {.theorem #thm-zeitlin-ricci title="Zeitlin 平均 Ricci 曲率的调和极限与终负性" lean="D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.result"}
 对所有整数 $\ell \ge 2$，平均 Zeitlin Ricci 曲率序列 $\tilde{r}_\ell(N)$ 满足
@@ -119,4 +119,4 @@ $$
 在 [`RicciLimit.result`](lean:D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.result) 中，证明将平均曲率拆分为除以 $N^2 - 1$ 后的正项与负项 $6j$-符号和：一旦 $N > \ell$，负项即恒等于常数 $(H_\ell - 1)/2$；而对正项应用 $6j$-符号求和规则与 Tannery 级数极限论证证明其趋于 $0$。再由 $\ell \ge 2 \implies H_\ell \ge \frac{3}{2} > 1$ 直接迫出极限严格为负及终负性。完整证明由 Lean 4 内核验证并冻结。
 :::
 
-七条涵盖五份国际顶级物理学与数学期刊的定理就摆在眼前——没有一句「我们相信它对」，每一条都有可点击的绿色 Lean 冻结源码。那么，这些跨越 14,701 个模块、167,819 条定理的庞大真值图，在实时运转时到底长什么模样？下一章，我们推开 **`live.trureturing.org`** 的玻璃门。
+七条涵盖五份国际顶级物理学与数学期刊的定理就摆在眼前——没有一句「我们坚信它成立」，每一条都连着可当场点开验核的绿色 Lean 冻结源码。那么，这座横跨 **17,968 个冻结模块、223,231 条冻结定理**的庞大真值图，在 24/7 实时运转时到底长什么模样？下一章，我们推开 **`live.trureturing.org`** 的透明玻璃门。
