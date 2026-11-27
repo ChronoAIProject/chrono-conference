@@ -5,11 +5,11 @@ WRAP = True
 ALT = {
     "zh": "九个独立 AI 员工岗位覆盖 120 项工作流中的 102 项。左栏的青色进度条按 102/120 比例绘制，"
           "列出受理、分流、拟稿、预约锁定、账本对账和定时发布。右栏列出必须由人掌握的权限："
-          "资金拨付、对外法律承诺、未经批准的媒体表述及不可逆撤销。六核心岗位为 82/99（83%），审计日期为 2026-11-27。",
+          "资金拨付、对外法律承诺、未经批准的媒体表述及不可逆撤销。六核心岗位为 82/99（82.8%），审计日期为 2026-11-27。",
     "en": "Nine standalone AI employee roles cover 102 of 120 workflows. The cyan bar shows the exact coverage fraction "
           "and the left panel lists intake, triage, drafting, booking locks, ledger reconciliation and "
           "scheduled posts. The right panel reserves capital release, external legal commitments, "
-          "unapproved press claims and irreversible revocations for human authority. The six-core roster is 82/99 (83%) on November 27, 2026.",
+          "unapproved press claims and irreversible revocations for human authority. The six-core roster is 82/99 (82.8%) on November 27, 2026.",
 }
 
 # Audited standalone roster, 2026-11-27.
@@ -33,7 +33,9 @@ def draw(fig):
     autonomous.rect(18, 72, width, 13, color="edge", fill="bg", rx=3)
     autonomous.rect(18, 72, width * COVERED / TOTAL, 13, color=None, fill="cyan", rx=3)
     autonomous.text(18, 104, t("九岗位覆盖工作流", "Nine-role workflow coverage"), size=14, color="dim")
-    autonomous.text(18, 123, t(f"六核心 {CORE_COVERED}/{CORE_TOTAL} · 83%", f"Six-core {CORE_COVERED}/{CORE_TOTAL} · 83%"), size=14, color="dim")
+    core_rate = f"{CORE_COVERED / CORE_TOTAL:.1%}"
+    autonomous.text(18, 123, t(f"六核心 {CORE_COVERED}/{CORE_TOTAL} · {core_rate}",
+                               f"Six-core {CORE_COVERED}/{CORE_TOTAL} · {core_rate}"), size=14, color="dim")
     tasks = [
         t("受理", "Intake"), t("分流", "Triage"), t("拟稿", "Drafting"),
         t("预约锁定", "Booking locks"), t("账本对账", "Ledger reconciliation"),

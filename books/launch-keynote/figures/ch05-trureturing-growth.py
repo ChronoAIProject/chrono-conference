@@ -2,8 +2,8 @@ from datetime import date, timedelta
 
 SIZE = (500, 310)
 ALT = {
-    "zh": "折线绘出 trureturing 有登记日期的文献问题累计结项数。2026 年 9 月 8 日首日为 24，10 月 1 日第 24 天为 486，10 月 24 日第 47 天为 1,301，11 月 20 日第 74 天为 2,126；审计延伸到 11 月 27 日第 81 天的 2,273 项。",
-    "en": "The line shows cumulative dated literature problem resolutions in trureturing. Day 1, September 8, 2026, starts at 24. Day 24, October 1, reaches 486. Day 47, October 24, reaches 1,301. Day 74, November 20, reaches 2,126, and the audited endpoint on November 27, day 81, reaches 2,273.",
+    "zh": "折线绘出 trureturing 有登记日期的文献问题累计结项数。2026 年 9 月 8 日首日为 24，10 月 1 日第 24 天为 486，10 月 24 日第 47 天为 1,301，11 月 20 日第 74 天为 2,126；审计延伸到 11 月 27 日第 81 天的 2,276 项。",
+    "en": "The line shows cumulative dated literature problem resolutions in trureturing. Day 1, September 8, 2026, starts at 24. Day 24, October 1, reaches 486. Day 47, October 24, reaches 1,301. Day 74, November 20, reaches 2,126, and the audited endpoint on November 27, day 81, reaches 2,276.",
 }
 
 # Audited dated checkpoints from trureturing Problems/ history and Blueprint records.
@@ -18,7 +18,7 @@ CUMULATIVE = (
     1818, 1843, 1869, 1896, 1918, 1934, 1950, 1987, 2026, 2059,
     2078, 2094, 2117, 2126,
 )
-FINAL_DAY, FINAL_VALUE = 81, 2273
+FINAL_DAY, FINAL_VALUE = 81, 2276
 MILESTONES = (1, 24, 47, 74, FINAL_DAY)
 MONTHS = {9: "Sep", 10: "Oct", 11: "Nov"}
 
@@ -26,10 +26,12 @@ MONTHS = {9: "Sep", 10: "Oct", 11: "Nov"}
 def draw(fig):
     days = FINAL_DAY
     daily_average = round(FINAL_VALUE / days)
+    points = tuple(enumerate(CUMULATIVE, start=1)) + ((FINAL_DAY, FINAL_VALUE),)
     assert len(CUMULATIVE) == 74 and CUMULATIVE[0] == 24 and CUMULATIVE[-1] == 2126
     assert tuple(CUMULATIVE[day - 1] for day in MILESTONES[:-1]) == (24, 486, 1301, 2126)
     assert START + timedelta(days=days - 1) == date(2026, 11, 27) and daily_average == 28
-    assert all(before <= after for before, after in zip(CUMULATIVE, CUMULATIVE[1:]))
+    assert points[-1] == (81, 2276)
+    assert all(before[1] <= after[1] for before, after in zip(points, points[1:]))
 
     ax = fig.axes(64, 47, 396, 191, (1, days), (0, 2350))
     fig.text(64, 24, fig.t("有日期的文献问题结项数", "Dated literature resolutions"), size=18, weight=700)
@@ -40,7 +42,6 @@ def draw(fig):
     axis_dates = [START + timedelta(days=day - 1) for day in axis_milestones]
     ax.xaxis(ticks=axis_milestones, labels=[fig.t(f"{d.month}/{d.day}", f"{MONTHS[d.month]} {d.day}") for d in axis_dates], size=15)
 
-    points = tuple(enumerate(CUMULATIVE, start=1)) + ((FINAL_DAY, FINAL_VALUE),)
     ax.area(points, "cyan", fill_opacity=0.14)
     ax.path(points, "cyan", 3)
     milestone_counts = (CUMULATIVE[0], CUMULATIVE[23], CUMULATIVE[46], CUMULATIVE[73], FINAL_VALUE)
