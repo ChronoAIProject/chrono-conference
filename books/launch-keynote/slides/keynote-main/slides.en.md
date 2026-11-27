@@ -196,7 +196,7 @@ section: "North Star · Candor"
     <Stat class="md" value="21" label="OEIS entries · 17 collaborative arXiv preprints · 1 RAIRO-ITA paper" />
     <Stat class="md" value="0" label="Mathesis peer-review acceptances of 225 papers" tone="warn" />
   </div>
-<TheoremCard class="compact mt-s" label="Open problem" title="Extended and Grand Riemann Hypotheses" status="open">
+<TheoremCard class="compact mt-s" label="Open problem 5.4" title="The Riemann Hypothesis and All-Degree Integer Hankel Positivity" status="open" cite="prob-keynote-rh">
 
 The Extended RH for Dedekind $\zeta$ of general number fields, the Grand RH for automorphic $L$-functions, simplicity of zeros, and pair correlation: <b>still open today</b>.
 

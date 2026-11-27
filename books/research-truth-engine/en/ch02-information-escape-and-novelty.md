@@ -1,14 +1,16 @@
 # Chapter 2: Mine No Gold Twice—Information Escape and the Truth DAG
 
-Any system claiming to have formalized over a hundred thousand theorems deserves one ruthless question first: **how do we know you are not spinning in circles, relabeling one trivial lemma ten thousand times to pad a counter?**
+Any system claiming to have frozen over two hundred thousand theorems (`223,231` and counting) deserves one ruthless question before anyone claps: **how do we know you are not spinning in circles, relabeling one trivial lemma ten thousand times to inflate a scoreboard?**
 
-Answering that challenge with polite assurances is PR; answering it with a fuzzy "novelty score of 8.7/10" is self-deception. `trureturing` takes a far colder two-part route: **formally, it freezes a finite-set mathematical criterion for genuine structural novelty inside the Lean 4 kernel (captured by the analogy "you cannot mine the same gold twice"); operationally, independent deduplication and ledger audits check catalog execution against it.**
+Answering with polite assurances is PR; answering with a black-box "novelty score of 8.7/10" is upholstered self-deception. `trureturing` takes a far colder two-part road: **formally, it freezes a finite-set mathematical criterion for genuine structural novelty inside the Lean 4 kernel** ("you cannot mine the same gold twice" **(Analogy)**); **operationally, independent repository deduplication and ledger audits check catalog execution against it.**
 
-## Monotone Kernel Contraction: The Teeth of the Ratchet
+## Monotone Kernel Contraction: The Steel Pawl of the Ratchet
 
-Picture a finite state `arena` and a growing `catalog` of theorems. Each theorem tests whether any two states `(left, right)` agree under its primitives. Given a `selected` subset of theorems, the pairs of states that remain indistinguishable across *every* selected theorem form the **joint kernel** (`jointKernel selected`)—the exact blind spot left unpenetrated by your current theory.
+On a watchmaker's bench, a real ratchet advances one tooth at a time because its **steel pawl** refuses to give way; fashion that pawl out of soft tin and the mainspring snaps straight back to zero **(Analogy)**. What is the steel pawl of formal discovery?
 
-Add one more theorem to the catalog. What happens to the blind spot? Two aphorism-short frozen theorems form the one-way pawl of the logic ratchet:
+Picture a finite state `arena` and a growing `catalog` of theorems. Each theorem tests whether any two states `(left, right)` agree under its primitives. Given a `selected` subset of theorems, the pairs of states remaining indistinguishable across *every* selected theorem form the **joint kernel** (`jointKernel selected`)—the exact blind spot your current theory still cannot cut apart.
+
+Drop one more theorem into the catalog. What happens to the blind spot? Two aphorism-short frozen theorems form the one-way pawl of the logic ratchet:
 
 ::: {.theorem #thm-ie-antitone title="Enlarging a Theorem Set Can Only Shrink Its Joint Kernel" lean="D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone"}
 For any theorem catalog `catalog` on `arena`, whenever `smaller ⊆ larger`, the corresponding joint kernels reverse inclusion:
@@ -33,7 +35,7 @@ $$
 Universal quantification over `Set.insert index selected` splits identically into agreement over `selected` conjoined with agreement at `index`. Verified and frozen by the Lean 4 kernel in [`jointKernel_insert`](lean:D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_insert).
 :::
 
-Inspect the `observatory` card below to watch this mechanism on a 16-state arena: three base theorems slice the 16 states into 4 equivalence classes, leaving `24` of the `120` unordered distinct state pairs escaped (`escapeRate = 0.20`).
+Inspect the `observatory` card below to watch those teeth engage on a 16-state arena: three base theorems slice 16 states into 4 equivalence classes, leaving `24` of the `120` unordered distinct state pairs escaped (`escapeRate = 0.20`).
 
 ::: {.viz src="truth-dag-observatory" preset="observatory" height="500"}
 **Truth DAG Snapshot (`observatory`).** Three base theorems partition the 16-state arena into 4 equivalence classes, with magenta chords marking the 24 remaining escaped pairs out of 120 distinct pairs (`20%` escape rate), illustrating [@thm-ie-antitone] and [@thm-ie-insert].
@@ -41,9 +43,9 @@ Inspect the `observatory` card below to watch this mechanism on a 16-state arena
 
 ## What Counts as a Genuinely New Theorem? Three Structural Novelty Theorems
 
-With monotone kernel shrinkage in place, the decisive question arrives: when you add entry `index`, what separates a genuine discovery (`catalog.LowersEscape index`) from redundant noise?
+With monotone kernel shrinkage locked down, the sharp question arrives: when you add entry `index`, what separates a genuine discovery (`catalog.LowersEscape index`) from vanity volume?
 
-The exact separator is the **leave-one-out semantic closure** (`semanticClosureWithout index`) generated by all other entries in the catalog. On any nondegenerate arena (`arena.Nondegenerate`), entry `index` strictly reduces information escape if and only if its distinguishing kernel (`toKernel index`) lies strictly outside `semanticClosureWithout index`.
+The scalpel is the **leave-one-out semantic closure** (`semanticClosureWithout index`) generated by all remaining entries. On any nondegenerate arena (`arena.Nondegenerate`), entry `index` strictly lowers information escape if and only if its distinguishing kernel (`toKernel index`) lies strictly outside `semanticClosureWithout index`. If the rest of the catalog already recovers it, a hundred-page proof still shrinks the blind spot by exactly zero.
 
 ::: {.theorem #thm-ie-closure title="Lowering Escape Equals Strict Novelty Outside Semantic Closure" lean="D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout"}
 On any nondegenerate arena (`arena.Nondegenerate`), catalog entry `index` strictly lowers information escape if and only if its kernel lies outside the semantic closure of the remaining entries:
@@ -56,13 +58,13 @@ $$
 On a nondegenerate arena, strictly lowering escape is equivalent to `uniqueCaptureCount index > 0`—the existence of a distinct pair of states agreed upon by every other entry yet separated by `index`—which is precisely non-membership in `semanticClosureWithout index`. Verified and frozen by the Lean 4 kernel in [`lowersEscape_iff_not_mem_semanticClosureWithout`](lean:D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout).
 :::
 
-Watch that exact cut happen in the `novel-cut` experiment card: inserting `T4` (outside the leave-one-out closure) slices the 4 classes into 8 and drops escaped pairs straight from `24` to `8`.
+Watch that exact cut happen in the `novel-cut` card: inserting `T4` outside the leave-one-out closure splits 4 classes into 8 and drops escaped pairs straight from `24` to `8`—one crisp click forward on the ratchet.
 
 ::: {.viz src="truth-dag-observatory" preset="novel-cut" height="500"}
 **Strictly Novel Cut (`novel-cut`).** Inserting `T4` outside `semanticClosureWithout` refines 4 equivalence classes into 8 and drops escaped pairs strictly from `24` to `8` ([@thm-ie-closure]).
 :::
 
-Now try to cheat the system. Package a Boolean consequence of `T1` and `T2` as a "new theorem `T5`," or disguise a duplicate copy of `T4`'s kernel as `T6`. The next two frozen theorems hand down an immediate verdict of zero:
+Now try to game the meter. Repackage a Boolean consequence of `T1` and `T2` as a "new theorem `T5`," or smuggle a renamed twin of `T4`'s kernel in as `T6`. The next two frozen theorems hand down a cold verdict of zero:
 
 ::: {.theorem #thm-ie-recoverable title="A Recoverable Theorem Cannot Lower Information Escape" lean="D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_false_of_recoverable"}
 If agreement on all remaining catalog entries (`other ≠ index`) implies agreement on `index` for every pair `(left, right)`, then `index` cannot lower information escape: $\neg\,\mathrm{LowersEscape}(\mathrm{index})$.
@@ -83,19 +85,19 @@ $$
 Each entry is recoverable from the other inside its respective leave-one-out subcatalog, leaving neither with any uniquely separated state pair. Verified and frozen by the Lean 4 kernel in [`same_kernel_both_zero`](lean:D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.same_kernel_both_zero).
 :::
 
-Set a strictly novel cut side by side with redundant insertion in one static figure to lock the whole law into visual memory:
+Place a strictly novel cut beside redundant insertion in one static figure to burn the entire law into visual memory:
 
 ::: {.figure src="ch02-information-escape-lattice"}
 **Kernel Refinement vs. Zero-Gain Redundancy.** Left: a novel theorem strictly refines the 16-state partition, dropping escaped pairs from `24` to `8`. Right: recoverable restatements and same-kernel twins leave the partition untouched with `uniqueCaptureCount = 0` ([@thm-ie-recoverable], [@thm-ie-same-kernel]).
 :::
 
-Verify both zero-gain traps live on the canvas—first inserting recoverable `T5` (`redundant`), where escaped pairs remain frozen at `8`:
+Test both zero-gain traps live on the canvas—first inserting recoverable `T5` (`redundant`), where escaped pairs stay frozen at `8`:
 
 ::: {.viz src="truth-dag-observatory" preset="redundant" height="500"}
 **Recoverable Theorem = Zero Gain (`redundant`).** Inserting `T5`, recoverable from `T1` and `T2`, leaves escaped pairs locked at `8` with `LowersEscape = false` ([@thm-ie-recoverable]).
 :::
 
-And next inserting same-kernel twin `T6` (`freeze`), instantly collapsing the unique capture counts of both `T4` and `T6` to zero simultaneously:
+Next insert same-kernel twin `T6` (`freeze`), watching the unique capture counts of both `T4` and `T6` drop to zero simultaneously:
 
 ::: {.viz src="truth-dag-observatory" preset="freeze" height="500"}
 **Same-Kernel Twins Both Zero (`freeze`).** Inserting `T6` with the exact kernel of `T4` forces `uniqueCaptureCount(T4) = 0` and `uniqueCaptureCount(T6) = 0` simultaneously ([@thm-ie-same-kernel]).
@@ -103,7 +105,7 @@ And next inserting same-kernel twin `T6` (`freeze`), instantly collapsing the un
 
 ## Locally Green Everywhere, Globally Impossible
 
-Before leaving this chapter, we record the companion obstruction introduced in Volume I: **even when every local pairwise check passes with compatible marginals, no global consistent state need exist.**
+Before leaving this chapter, nail its twin obstruction to the floor—the antidote to one of the deadliest illusions in both mathematics and engineering: **the belief that if every pairwise local check flashes green, a consistent global state must exist.**
 
 ::: {.theorem #thm-gluing-obstruction title="Pairwise Compatible Local Laws Can Lack Any Global State" lean="D5/S3/ConceptDynamics/Gluing/LocalLawGluingObstruction.compatible_local_laws_can_lack_global_state"}
 On $\mathrm{Bool}$, let $\mathrm{sameLaw} = \{p \mid p_1 = p_2\}$ and $\mathrm{differentLaw} = \{p \mid p_1 \neq p_2\}$. Their pairwise projections coincide identically, yet no global triple $(b_1, b_2, b_3) \in \mathrm{Bool}^3$ satisfies $(b_1, b_2) \in \mathrm{sameLaw}$, $(b_2, b_3) \in \mathrm{sameLaw}$, and $(b_1, b_3) \in \mathrm{differentLaw}$ simultaneously.
@@ -119,4 +121,4 @@ Open the full `TRUTH//DAG` laboratory below and toggle any combination of `T1`�
 **Full Laboratory: `TRUTH//DAG`.** Toggle any subset of six catalog theorems (four independent cuts, one recoverable restatement, one same-kernel twin) to inspect exact joint kernels, escape rates, and unique capture counts across all 120 state pairs.
 :::
 
-With finite observers and irreversible truth graphs firmly under our boots, Chapter 3 turns to the sharpest architectural surprise inside `trureturing`: **how minimal balancing and reciprocity laws force complex Hilbert space and three spatial dimensions—not as arbitrary postulates, but as frozen rigidity theorems.**
+With finite observers and irreversible truth graphs firmly under our boots, Chapter 3 turns to the sharpest architectural surprise inside `trureturing`: **throw page one's complex-number and three-dimensional postulates out of the room, lock the doors, and watch raw balancing and compact reciprocity force complex Hilbert space and $\mathfrak{so}(3)$ straight back through the chimney.**

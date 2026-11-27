@@ -61,13 +61,13 @@ section: "FIB ATOM"
   <div class="split mt">
     <div>
       <img src="./img/ch01-fib-substitution-tree.zh.svg" alt="斐波那契替换树与血统全变差曲线" style="display:block;height:285px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
-<TheoremCard class="compact mt" label="定理1.1" title="黄金进位亏量只取三个值" gid="D5/S1/Deficit/DeficitThreeValued.deficit_three_valued" cite="thm-fib-deficit">
+<TheoremCard class="compact mt" label="定理1.2" title="黄金进位亏量只取三个值" gid="D5/S1/Deficit/DeficitThreeValued.deficit_three_valued" cite="thm-fib-deficit">
 
 对所有自然数 $v_1, v_2$：$c(v_1, v_2) \in \{-1,\ 0,\ 1\}$。
 
 </TheoremCard>
     </div>
-<TheoremCard class="compact" label="定理1.3" title="有序源纤维与单射斐波那契血统输运" gid="D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" cite="thm-fib-lineage">
+<TheoremCard class="compact" label="定理1.4" title="有序源纤维与单射斐波那契血统输运" gid="D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" cite="thm-fib-lineage">
 
 对所有 $1 \le a + b$：同一源纤维里的每棵树，替换后边界组成完全相同；输运映射是单射，推前分布与目标纤维均匀分布的全变差精确为 $\mathrm{TV}(a, b, n) = 1 - \mathrm{fiberCount}(a, b) / \mathrm{fiberCount}(\mathrm{step}^{[n]}(a, b))$，且 $\mathrm{TV}(a, b, n) \to 1$（$n \to \infty$）。当 $2 \le a + b$ 时，一代即有下界 $1 - 2^{-b} \le \mathrm{TV}(a, b, 1)$；最小例子
 
@@ -298,12 +298,12 @@ section: "红色边界"
   <div class="row mt-s">
     <img src="./img/ch06-three-evidence-tiers.zh.svg" alt="三层证据边界" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="grow">
-<TheoremCard class="compact" label="定理6.1" title="黎曼猜想与真实 ξ 整系数 Hankel 非负性的等价判据" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
+<TheoremCard class="compact" label="定理6.3" title="黎曼猜想与真实 ξ 整系数 Hankel 非负性的等价判据" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
 
 $\mathrm{RiemannHypothesis}$ 成立，当且仅当对一切阶数 $N$ 与一切 $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$，真实 $\xi$ 系数的 Hankel 二次型非负。本定理只断言等价，不断言任何一端成立。
 
 </TheoremCard>
-<TheoremCard class="compact mt-s" label="开放问题" title="扩展 RH 与大 RH" status="open">
+<TheoremCard class="compact mt-s" label="开放问题6.4" title="黎曼猜想本身仍然开放" status="open" cite="prob-rh-open">
 
 Dedekind $\zeta$ 的扩展 RH、自守 $L$ 函数的大 RH、零点单重与对关联：<b>依然开放。</b>
 

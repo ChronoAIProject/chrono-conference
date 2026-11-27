@@ -196,7 +196,7 @@ section: "北极星 · 诚实"
     <Stat class="md" value="21" label="条 OEIS · 17 篇合作 arXiv 预印本 · 1 篇 RAIRO-ITA 期刊论文" />
     <Stat class="md" value="0" label="篇经 Mathesis 审稿流程录用（公开收录 225 篇）" tone="warn" />
   </div>
-<TheoremCard class="compact mt-l" label="开放问题" title="扩展黎曼猜想与大黎曼猜想" status="open">
+<TheoremCard class="compact mt-l" label="开放问题5.4" title="黎曼猜想与全阶整系数 Hankel 符号判定" status="open" cite="prob-keynote-rh">
 
 一般数域 Dedekind $\zeta$ 的扩展黎曼猜想、自守 $L$ 函数的大黎曼猜想、零点单重性与对关联：<b>今天依然开放</b>。
 
