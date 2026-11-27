@@ -29,7 +29,7 @@ section: "此刻"
   <h2 class="t">你正坐在一场<em>没有人类摄制组</em>的发布会里</h2>
   <div class="split mt">
     <div>
-      <p class="lead">这座前厅、1,108 个剧场座位、18 座花篮、五部短片、四部双语书，以及门口的礼宾 Donna——在人类审校与闸门下，由 ChronoAI 智能体底座协同生成并公开托管。</p>
+      <p class="lead">这座前厅、1,108 个剧场座位、18 块花篮垫位、一部发布会全片与五部短片、四部双语书，以及门口的礼宾 Donna——在人类审校与闸门下，由 ChronoAI 智能体底座协同生成并公开托管。</p>
       <div class="g3 mt-l">
         <Stat class="md" value="0" label="台摄影机" tone="magenta" />
         <Stat class="md" value="1,108" label="原子锁席位" />
@@ -266,7 +266,7 @@ section: "整车 · 一张网"
     <div class="tile"><i>园区与家 · 已在跑</i><b>飞书遛机器狗</b><span>群里说一句「去溜达一圈」，经 NyxID → Home Assistant，机器狗立刻巡逻。</span></div>
     <div class="tile"><i>办公室 · 已在跑</i><b>零食管家</b><span>摄像头看见薯片见底，自动在群里征集口味、备好补货单。</span></div>
     <div class="tile"><i>凌晨三点 · 运维</i><b>先查日志，等你拍板</b><span>告警响起时查清根因、备好补丁；早上你点一下「批准」，它才动手。</span></div>
-    <div class="tile now"><i>此刻 · 发布会</i><b>四面看台 1,108 席</b><span>同一张网撑起 Donna 礼宾、原子锁座与 18 座实时祝贺花篮。</span></div>
+    <div class="tile now"><i>此刻 · 发布会</i><b>四面看台 1,108 席</b><span>同一张网撑起 Donna 礼宾、原子锁座与 18 块花篮垫位。</span></div>
   </div>
 </div>
 <Source>nyx-homeassistant-node v1.1.1-alpha.52 · 团队真实演示与 12-17 会场</Source>
@@ -325,7 +325,7 @@ section: "前厅 · 实景"
     <img src="./img/lobby-baskets.png" alt="street-corner 三维花篮长廊" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
       <li><b class="hl-cyan">四面看台 × 8 排 = 1,108 席</b><br><span class="sm muted">北 248 · 南 248 · 东 306 · 西 306；逐排 144、144、144、140、136、136、132、132；座号如 N1-17、E1-20、W8-01</span></li>
-      <li class="mt"><b class="hl-cyan">2 排 × 9 块花篮地垫</b><br><span class="sm muted">basket-01 至 basket-18 沿世界地图墙排开；小花引导挑花、写贺卡，逐只落位</span></li>
+      <li class="mt"><b class="hl-cyan">18 块花篮垫位（2 排 × 9 块）</b><br><span class="sm muted">basket-01 至 basket-18 沿世界地图墙排开；小花引导挑花、写贺卡，逐只落位</span></li>
       <li class="mt"><b class="hl-cyan">彩排实测：13 次预约与签到，0 丢单</b><br><span class="sm muted">中位 29 秒，最长 63 秒——量出来的，不是喊出来的</span></li>
       <li class="mt"><b class="hl-cyan">Donna 30 题核验问答闸门</b><br><span class="sm muted">库内带出处即答；库外零编造，升级至 contact@chrono-ai.fun</span></li>
     </ul>
@@ -342,7 +342,7 @@ section: "AI 员工 · 账本"
   <p class="kicker">九个独立岗位 · 2026-11-27</p>
   <h2 class="t">102 项交给 AI，<em>18 项留在人工闸门或路线图上</em></h2>
   <div class="split mt">
-    <img src="./img/ch07-six-role-coverage.zh.svg" alt="核心岗位工作流覆盖率" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/ch07-six-role-coverage.zh.svg" alt="九个独立岗位覆盖 102/120 项工作流" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>为什么不追求 100% 自动？</h4>
       <h3>敢把这 18 项留在闸门后，<br>商户才敢交出另外 102 项。</h3>
@@ -380,7 +380,7 @@ section: "邀请"
     <div class="card hot">
       <h4>部署与服务商</h4>
       <h3>拿临时门禁卡赚钱</h3>
-      <p>与客户直接签约，用完即撤临时 key，把每个场景沉淀为可复用技能。</p>
+      <p>与客户直接签约，用完即撤临时能力句柄，把每个场景沉淀为可复用技能。</p>
     </div>
   </div>
 </div>

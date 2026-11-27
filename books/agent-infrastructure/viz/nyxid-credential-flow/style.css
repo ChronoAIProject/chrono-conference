@@ -5,3 +5,9 @@
 .lab .center > #stage { min-height: 380px; }
 :root[data-embed][data-figure] .lab .center > #stage { min-height: 0; }
 .sec h2.sub-h { margin-top: 14px; }
+
+#revokeHandle { border-color: var(--violet); color: var(--ink); min-height: 32px; }
+#revokeHandle:active { transform: translateY(1px); background: var(--violet); color: var(--void); }
+.protocol { display: grid; gap: .2em; margin: .7em 0 0; border-inline-start: 2px solid var(--violet); padding-inline-start: .75em; }
+.protocol dt { color: var(--dim); font-size: .8em; }
+.protocol dd { margin: 0 0 .45em; color: var(--ink); font: .8em var(--font-data); overflow-wrap: anywhere; }

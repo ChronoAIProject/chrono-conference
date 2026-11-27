@@ -50,9 +50,12 @@
     if (sc === 'revoke') {
       audit = (t >= 10 ? 1 : 0) + (t >= REVOKE_T ? 1 : 0) + (t >= 86 ? 1 : 0);
       const state = t < REVOKE_T ? 'active' : t < CONVERGE_T ? 'propagating' : 'revoked';
-      reload = { revokedAt: REVOKE_T * SEC_PER_T, convergedAt: CONVERGE_T * SEC_PER_T, seconds: RELOAD_S, state,
+      // Model one issued handle. The binding revision changes when the proxy applies the update.
+      const handleRevision = 1, eligibilityRevision = state === 'revoked' ? 2 : 1;
+      const denied = t >= 70 && handleRevision !== eligibilityRevision;
+      reload = { denied, handleRevision, eligibilityRevision, revokedAt: REVOKE_T * SEC_PER_T, convergedAt: CONVERGE_T * SEC_PER_T, seconds: RELOAD_S, state,
         elapsed: t < REVOKE_T ? 0 : Math.min(t, CONVERGE_T) * SEC_PER_T - REVOKE_T * SEC_PER_T, sandboxRestarts: 0 };
-      verdict = t >= 70 ? ['403 REVOKED', '403 REVOKED'] : state === 'revoked' ? ['绑定已收敛 · 未重启', 'binding converged · no restart'] : state === 'propagating' ? ['热重载中', 'hot reload in progress'] : ['200 OK', '200 OK'];
+      verdict = denied ? ['403 REVOKED', '403 REVOKED'] : state === 'revoked' ? ['绑定已收敛 · 未重启', 'binding converged · no restart'] : state === 'propagating' ? ['热重载中', 'hot reload in progress'] : ['200 OK', '200 OK'];
     }
     let bill = null;
     if (sc === 'meter') {
@@ -289,7 +292,7 @@
     const handleY = slot.y + slot.h + (na.y + na.h - slot.y - slot.h) / 2;
     chip(ctx, na.x + na.w / 2, handleY, Math.min(na.w * 0.6, 34), Math.min(10, (na.y + na.h - slot.y - slot.h) * 0.5), rv && rv.state === 'revoked' ? 'revoked' : 'lit');
     box(ctx, nt, { stroke: P.cyan, alpha: 0.85 });
-    text(ctx, fit(ctx, L('能力令牌', 'TOKEN'), nt.w - 8, small, 'display'), nt.x + nt.w / 2, nt.y + nt.h * 0.36, P.ink, { size: small, face: 'display', weight: 600, align: 'center' });
+    text(ctx, fit(ctx, L('临时句柄', 'HANDLE'), nt.w - 8, small, 'display'), nt.x + nt.w / 2, nt.y + nt.h * 0.36, P.ink, { size: small, face: 'display', weight: 600, align: 'center' });
     stack(ctx, lines(ctx, ['read:', 'issues'], nt.w - 6, small - 0.5), nt.x + nt.w / 2, nt.y + nt.h * 0.68, small + 1, P.cyan, { size: small - 0.5, align: 'center' });
     box(ctx, np, { stroke: P.cyan, glow: 6 });
     text(ctx, fit(ctx, L('NyxID 代理 · 策略引擎', 'NyxID PROXY · POLICY'), np.w - 12, small, 'display'), np.x + 8, np.y + titleH / 2 + 2, P.cyan, { size: small, face: 'display', weight: 600 });
@@ -297,6 +300,11 @@
     const gx = np.x + 3, gy0 = np.y + titleH + 2, gy1 = np.y + np.h - 4;
     ctx.strokeStyle = P.cyan; ctx.lineWidth = 3; ctx.globalAlpha = 0.9; ctx.beginPath(); ctx.moveTo(gx, gy0); ctx.lineTo(gx, gy1); ctx.stroke(); ctx.globalAlpha = 1;
     const footH = clamp(np.h * 0.24, 14, 26), vault = { x: np.x + 12, y: np.y + titleH + 2, w: np.w - 20, h: np.h - titleH - footH - 8 };
+    // Reserve a vault label only when there is space above the key grid.
+    if (!TRV.thumbMode && vault.h >= 42) {
+      text(ctx, 'ring-v1', vault.x, vault.y + 6, P.ink, { size: small, weight: 600 });
+      vault.y += 13; vault.h -= 13;
+    }
     const gv = grid(vault, S.k), injecting = (S.scenario === 'read' && t >= 25 && t < 40) || (S.scenario === 'inject' && t >= 6 && t < 14);
     const scrubbing = (S.scenario === 'read' && t >= 62 && t < 70) || (S.scenario === 'inject' && t >= 24 && t < 32);
     gv.pts.forEach(([x, y], i) => chip(ctx, x, y, gv.w, gv.h, i === 0 && rv && rv.state !== 'active' ? 'revoked' : i === 0 && injecting ? 'lit' : 'sealed'));
@@ -346,7 +354,7 @@
     const gateStamp = (s, colr) => stamp(ctx, s, gx + 6, nt.y - 2 > np.y + titleH ? nt.y - 2 : np.y + titleH + 8, colr, small - 0.5, 'left');
     if (S.scenario === 'read' && t >= 20 && t < 30) gateStamp('SCOPE ✓', P.cyan);
     if (S.scenario === 'inject' && t >= 7 && t < 15) gateStamp('SCOPE ✓', P.cyan);
-    if ((S.scenario === 'write' && t >= 22) || (S.scenario === 'inject' && t >= 62) || (S.scenario === 'revoke' && t >= 70)) gateStamp('DENIED ✕', P.ink);
+    if ((S.scenario === 'write' && t >= 22) || (S.scenario === 'inject' && t >= 62) || (rv && rv.denied)) gateStamp('DENIED ✕', P.ink);
     if (meterMode && M.nyxid.bill.stopped) gateStamp('CAP ✕', P.violet);
     if (injecting) stamp(ctx, 'INJECT', vault.x + vault.w / 2, vault.y + vault.h - 6, P.cyan, small - 0.5);
     if (scrubbing) stamp(ctx, 'SCRUB', vault.x + vault.w / 2, vault.y + vault.h - 6, P.cyan, small - 0.5);
@@ -435,6 +443,10 @@
       sub = L(`${b.issued} 次调用：放行 ${b.served}、封顶后硬停 ${b.stopped} · ${fix(b.spend, 2)} USD`, `${b.issued} calls: ${b.served} served, ${b.stopped} stopped at the ceiling · ${fix(b.spend, 2)} USD`);
     }
     $('hudBig').textContent = `${L(NAME[sc][0], NAME[sc][1])} · k = ${S.k}`;
+    if (M.nyxid.reload?.denied) {
+      const { handleRevision, eligibilityRevision } = M.nyxid.reload;
+      sub = L('句柄版本', 'Handle revision') + ' ' + handleRevision + ' ≠ eligibility_revision ' + eligibilityRevision + ' · 403 REVOKED';
+    }
     $('hudSub').textContent = sub;
     $('roBlast').innerHTML = `<span class="c-mg">${S.k}</span> / <span class="c-cy">0</span> <span class="nummark">${M.nyxid.exposed === 0 && M.legacy.exposed === S.k ? '= k / 0 ✓' : '✗'}</span>`;
     $('roBlastSub').textContent = L('直连 / NyxID', 'legacy / NyxID');
@@ -477,6 +489,12 @@
     paint();
   }
   const scenarioChips = kit.chips($('scenarioChips'), 'scenario', (v) => { leave(); setScenario(v); });
+  $('revokeHandle').addEventListener('click', () => {
+    leave();
+    // Replay the next call made with the old handle once the new revision is active.
+    setScenario('revoke', 70);
+    if (!TRV.reduceMotion) clock.play();
+  });
   const modeChips = kit.chips($('modeChips'), 'mode', (v) => { leave(); S.mode = v; paint(); });
   $('rew').addEventListener('click', () => { clock.pause(); clock.set(0); });
   const keymap = {};

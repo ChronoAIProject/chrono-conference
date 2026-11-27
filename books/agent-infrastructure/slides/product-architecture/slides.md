@@ -97,7 +97,7 @@ section: "NyxBot"
   <p class="kicker">NyxBot · NyxAgent · nyx-assistant-sdk</p>
   <h2 class="t">把巨型聊天框拆成<em>有硬预算的专家网格</em></h2>
   <div class="split mt">
-    <img src="./img/ch02-nyxbot-specialist-mesh.zh.svg" alt="NyxBot 专项代理网格：默认 8 名专家、上限 32、每组 8、记忆槽 50、默认触发 30 次每小时与 300 次每日" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+    <img src="./img/ch02-nyxbot-specialist-mesh.zh.svg" alt="NyxBot 专项代理网格：默认 8 名专家、上限 32、每组 8、记忆槽 50、默认触发 30/hr · 300/day，上限 300/hr · 3,000/day；浏览器使用 nyx-assistant-sdk v0.2.4" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <Stat value="300" unit="次/日" label="默认自动触发上限（另默认每小时 30 次）；可调硬顶 300 次/时、3,000 次/日" />
       <ul class="plain mt">

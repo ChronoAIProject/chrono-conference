@@ -212,7 +212,9 @@
       if (h > fs * 1.4) {
         const nm = merchant && r.merchant ? L(...r.merchant) : narrow ? L(...r.short) : L(...r.name);
         text(ctx, fit(ctx, nm, labelW - 10, fs, 'display', 600), bx.x + 4, cy, P.ink, { size: fs, face: 'display', weight: 600, alpha });
-        text(ctx, `${r.ready} / ${r.total}`, bx.x + bx.w - 4, cy - (h > fs * 2.8 ? fs * 0.55 : 0), P.ink, { size: fs, align: 'right', alpha });
+        const audited = r.id === 'hr';
+        const ratio = (audited ? '↓ ' : '') + r.ready + ' / ' + r.total;
+        text(ctx, ratio, bx.x + bx.w - 4, cy - (h > fs * 2.8 ? fs * 0.55 : 0), audited ? P.magenta : P.ink, { size: fs, align: 'right', alpha });
         if (h > fs * 2.8) text(ctx, `${fix(pct(r.ready, r.total), 1)}%`, bx.x + bx.w - 4, cy + fs * 0.7, P.dim, { size: fs - 1.5, align: 'right', alpha });
       }
       for (let i = 0; i < r.total; i++) {
@@ -220,6 +222,11 @@
         rrect(ctx, cell, Math.min(2.5, cw / 3));
         if (ready) { ctx.fillStyle = TRV.alpha(P.cyan, thumb ? 0.85 : 0.7); ctx.fill(); }
         else { ctx.fillStyle = TRV.alpha(P.violet, 0.16); ctx.fill(); ctx.strokeStyle = TRV.alpha(P.violet, 0.9); ctx.lineWidth = 1; ctx.stroke(); }
+        if (r.id === 'hr' && i === r.ready) {
+          ctx.strokeStyle = P.magenta;
+          ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(cell.x, cell.y + cell.h); ctx.lineTo(cell.x + cell.w, cell.y); ctx.stroke();
+        }
       }
       // the human line: between the last ready cell and the first gated one
       const sx = cellsX + r.ready * pitch;
@@ -306,6 +313,17 @@
 
   /* ---------- scene: the countdown ---------- */
   function drawCountdown(ctx, bx, t, M) {
+    if (M.date.milestone === 'T-20' && !TRV.thumbMode) {
+      // Measured durations share one scale; the calendar below has its own axis.
+      const h = 40, x = bx.x + 5, w = bx.w - 10, y = bx.y + 22;
+      const split = w * 65 / 68;
+      text(ctx, L('11/12 首次通过 · NyxID#2534', '11/12 first pass · NyxID#2534'), x, y - 12, P.ink, { size: 11, weight: 600 });
+      ctx.fillStyle = P.magenta; ctx.fillRect(x, y, split - 2, 4);
+      ctx.fillStyle = P.cyan; ctx.fillRect(x + split, y, w - split, 4);
+      text(ctx, L('排队 ≥65 分钟', 'Queue ≥65 min'), x, y + 12, P.magenta, { size: 10 });
+      text(ctx, L('绕行 3 分钟', 'Bypass 3 min'), x + w, y + 12, P.cyan, { size: 10, align: 'right' });
+      bx = { ...bx, y: bx.y + h + 5, h: bx.h - h - 5 };
+    }
     const fs = clamp(bx.w / 60, 9, 12), axisH = fs * 3.4, labelW = clamp(bx.w * 0.2, 56, 170), gx0 = bx.x + labelW, gx1 = bx.x + bx.w - 10;
     const X = (u) => gx0 + (gx1 - gx0) * u / T_MAX, laneH = (bx.h - axisH) / ROLES.length;
     geo.rows = {};

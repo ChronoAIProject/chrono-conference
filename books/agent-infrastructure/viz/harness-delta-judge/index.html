@@ -49,6 +49,7 @@
       <p class="note"><span class="zh">在图上点任一单元，把它标为“已改动”或取消；DELTA 立即重算。</span><span class="en">Click any unit on the graph to mark it changed or not; DELTA recomputes at once.</span></p>
       <div class="chips">
         <button class="chip" id="ghostBtn" aria-pressed="false"><span class="zh">加入一个未登记文件</span><span class="en">Add an unregistered file</span></button>
+        <button class="chip" id="omitEdge" aria-pressed="false"><span class="zh">试删消费边</span><span class="en">Omit consumer edge</span></button>
         <button class="chip" id="clearBtn"><span class="zh">清空改动</span><span class="en">Clear changes</span></button>
       </div>
       <p class="note" id="changeNote"></p>
@@ -96,6 +97,8 @@
         <div class="m wide"><dt><span class="zh">判官</span><span class="en">Judges</span></dt><dd id="roJudge">—</dd></div>
       </dl>
       <p class="note" id="roNote"></p>
+      <p class="note"><code>completeness_proven: false</code></p>
+      <p class="note"><span class="zh">2026-11-27 21:15 UTC，chrono-harness 组织共有 540 个 Rust 文件含 <code>verus!</code> 宏。Verus 验证已登记的 Rust 证明目标。试删 chapter → structure 的边，再用 Z3 重放这个两单元模型的反例。</span><span class="en">At 21:15 UTC on Nov 27, 2026, 540 Rust files across chrono-harness contained the <code>verus!</code> macro. Verus verifies registered Rust proof targets. Omit the chapter → structure edge and replay the two-unit counterexample in Z3.</span> <a href="consumer-edge.smt2" download>Z3 · SMT-LIB</a></p>
     </section>
 
     <section class="panel sec" id="evidence">

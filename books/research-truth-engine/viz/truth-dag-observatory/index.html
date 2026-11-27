@@ -68,6 +68,12 @@
       <canvas class="fill" id="cv"></canvas>
       <div class="scan"></div><div class="vig"></div>
       <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tr" id="viewChips" role="group" aria-label="视图" data-aria-en="View">
+        <button class="chip" data-view="kernel" aria-pressed="true"><span class="zh">核</span><span class="en">Kernel</span></button>
+        <button class="chip" data-view="stations" aria-pressed="false"><span class="zh">空间站</span><span class="en">Stations</span></button>
+        <button class="chip" data-view="galaxies" aria-pressed="false"><span class="zh">星系</span><span class="en">Galaxies</span></button>
+      </div>
+      <div id="atlasTargets" hidden></div>
       <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
       <div class="hud-bl" id="legend">
         <span><i class="sw cy"></i><span class="zh">定理的切线（独占 &gt; 0）</span><span class="en">cut of a theorem (unique capture &gt; 0)</span></span>
@@ -94,6 +100,14 @@
   </main>
 
   <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="atlasContext" hidden>
+      <h2>The Omega Institute</h2>
+      <dl class="ro"><div class="key"><dt id="atlasLabel"></dt><dd id="atlasValue"></dd></div></dl>
+      <p class="note"><span class="zh">2026-11-27 · 空间站展示部门分工。星系按学科汇总定理节点。</span><span class="en">Nov 27, 2026 · stations organize research work. Galaxies group truth nodes by subject.</span> <a href="https://live.trureturing.org/">live.trureturing.org</a></p>
+      <p class="note"><span class="zh">2026 年 11 月，Alpöge 给出经典 RH 的 Lean 4 证明。The Omega Institute 的 <code>riemann-hypothesis</code> 提供 8,490 个分片的重放。</span><span class="en">In November 2026 Levent Alpöge proved classical RH in Lean 4. The Omega Institute published the 8,490-shard replay in <code>riemann-hypothesis</code>.</span></p>
+      <div class="lean open"><span class="ok">OPEN</span><span><span class="zh">扩展 RH、广义自守 RH、零点单重性与零点对关联。</span><span class="en">Extended RH, Grand RH, simplicity of zeros, and pair correlation.</span></span></div>
+      <p class="note"><code>trureturing-books @ b83ae321</code> · <span class="zh">每种语言 344 页，918 个 Lean 定理块。官方标为蓝色的零公理定理共 22 条。</span><span class="en">344 pages per language, 918 Lean theorem blocks, and 22 official blue zero-axiom theorems.</span></p>
+    </section>
     <section class="panel sec" id="readouts" aria-live="polite">
       <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside">16 · 15 / 2 = 120</span></h2>
       <dl class="ro">

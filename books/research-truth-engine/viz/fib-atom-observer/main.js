@@ -165,20 +165,25 @@
     const C = (r) => [gx + (r[0] + 0.5) * cs, gy + side - (r[1] + 0.5) * cs], res = (u) => [mod(u[0], H), mod(u[1], H)];
     for (let y = 0; y < H; y++) for (let x = 0; x < H; x++) {
       if (G.space.has(x + H * y)) { ctx.fillStyle = TRV.alpha(P.cyan, 0.12); ctx.fillRect(gx + x * cs + 1, gy + side - (y + 1) * cs + 1, cs - 2, cs - 2); }
-      ctx.strokeStyle = TRV.alpha(P.lineHot, 0.5); ctx.lineWidth = 1; ctx.strokeRect(gx + x * cs + 0.5, gy + side - (y + 1) * cs + 0.5, cs - 1, cs - 1);
+      ctx.strokeStyle = TRV.alpha(P.dim, 0.62); ctx.lineWidth = 1; ctx.strokeRect(gx + x * cs + 0.5, gy + side - (y + 1) * cs + 0.5, cs - 1, cs - 1);
     }
     for (let k = 0; k < H; k++) { text(ctx, String(k), gx + (k + 0.5) * cs, gy + side + 11, P.dim, { align: 'center', size: 10 }); text(ctx, String(k), gx - 10, gy + side - (k + 0.5) * cs, P.dim, { align: 'center', size: 10 }); }
     text(ctx, `a mod ${H} →`, gx + side, gy + side + 24, P.dim, { align: 'right', size: 10 });
     // the path of residues, letter by letter: R violet, G cyan
-    for (let i = 1; i <= m; i++) { const [x0, y0] = C(res(G.rows[i - 1].u)), [x1, y1] = C(res(G.rows[i].u)); arrow(ctx, x0, y0, x1, y1, S.word[i - 1] === 'R' ? P.violet : P.cyan, 1.6, 0.75); }
+    for (let i = 1; i <= m; i++) { const [x0, y0] = C(res(G.rows[i - 1].u)), [x1, y1] = C(res(G.rows[i].u)); arrow(ctx, x0, y0, x1, y1, S.word[i - 1] === 'R' ? P.violet : P.cyan, 2.1, 0.95); }
     let cur = C(res(row.u));
+    // Keep the visited residues legible where the path doubles back.
+    for (let i = 1; i < m; i++) {
+      const [x, y] = C(res(G.rows[i].u));
+      ring(ctx, x, y, clamp(cs * 0.1, 2, 4), S.word[i - 1] === 'R' ? P.violet : P.cyan, 1.6);
+    }
     if (e > 0 && m < len) { const [x0, y0] = cur, [x1, y1] = C(res(G.rows[m + 1].u)); arrow(ctx, x0, y0, x0 + (x1 - x0) * e, y0 + (y1 - y0) * e, P.amber, 2.2); cur = [x0 + (x1 - x0) * e, y0 + (y1 - y0) * e]; }
     const start = C(res(G.v)), pred = C(res(stepN(G.v, row.k))), r0 = clamp(cs * 0.26, 4, 11);
     ring(ctx, start[0], start[1], r0 + 1, P.ink, 1.4); text(ctx, 'v', start[0] - r0 - 4, start[1] - r0 - 2, P.ink, { align: 'right', size: 11, halo: true });
     ring(ctx, pred[0], pred[1], r0 + 4, P.magenta, 2);
     const here = C(res(row.u));
     if (Math.hypot(here[0] - pred[0], here[1] - pred[1]) > 2) { ctx.setLineDash([5, 4]); arrow(ctx, pred[0], pred[1], here[0], here[1], P.cyan, 1.6); ctx.setLineDash([]); }
-    dot(ctx, cur[0], cur[1], r0, P.amber, 12);
+    dot(ctx, cur[0], cur[1], r0, P.amber, 4);
     // the word and the decomposition
     const pane = wide ? { x: gx + side + 40, y: bx.y + 6, w: bx.x + bx.w - (gx + side + 40), h: bx.h - 6 } : { x: bx.x, y: gy + side + 32, w: bx.w, h: bx.y + bx.h - (gy + side + 32) };
     const ts = clamp(Math.min(wide ? 34 : 26, (pane.w - 6) / len - 6), 16, 34), tokens = [];

@@ -156,5 +156,10 @@ for (const sc of ['read', 'write', 'inject', 'revoke', 'meter']) {
 }
 await D(() => localStorage.removeItem('tr-lang'));
 
+await page.click('#revokeHandle');
+await settle(page);
+const revoked = await state();
+check('revoking rejects the old revision without exposing a key', revoked.reload.denied && revoked.reload.handleRevision !== revoked.reload.eligibilityRevision && revoked.exposed.nyxid === 0 && (await page.textContent('#hudSub')).includes('403 REVOKED'));
+
 check('no page error, console error or failed request (page-specific part)', T.errors.length === 0, T.errors.slice(0, 4).join(' | '));
 await T.finish();

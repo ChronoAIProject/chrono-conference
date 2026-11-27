@@ -62,7 +62,7 @@
 
   <main class="center">
     <div class="stage still" id="stage" data-thumb aria-label="舞台：四座玻璃看台（北 248、南 248、东 306、西 306 席，各 8 排）环绕街角前厅；前厅里是主屏、Donna 前台、花店与世界地图墙前 2 × 9 块花篮垫位；直播分流口在一角" data-aria-en="Stage: four glass stands (North 248, South 248, East 306, West 306 seats, eight rows each) around the Street Corner lobby; inside, the keynote screen, Donna's desk, Flower Town and 2 × 9 basket mats along the world-map wall; the live-stream exit in a corner">
-      <canvas class="fill" id="cv"></canvas>
+      <canvas class="fill" id="cv" tabindex="0" aria-label="座位检查器：左右换座，上下换排" data-aria-en="Seat inspector: left and right change seats, up and down change rows" aria-describedby="hudSub"></canvas>
       <div class="scan"></div><div class="vig"></div>
       <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
       <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
@@ -97,6 +97,7 @@
         <div class="a"><dt><span class="zh">选中</span><span class="en">Selected</span></dt><dd id="roSel">—</dd></div>
       </dl>
       <p class="note" id="roNote"></p>
+      <p class="rehearsal"><span class="zh">11 月 27 日彩排 · 预约中位 29 秒 · 席位点亮 55–81 秒</span><span class="en">Nov 27 rehearsal · booking median 29 s · seat glow 55–81 s</span></p>
     </section>
 
     <section class="panel sec" id="evidence">

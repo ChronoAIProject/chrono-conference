@@ -44,12 +44,20 @@
   for (const [a, b] of EDGES) OUT[a].push(b);
 
   /* ---------- the selection ---------- */
-  const S = { changed: new Set(['docs/chapter']), ghost: false, hover: null };
+  const S = { changed: new Set(['docs/chapter']), ghost: false, omitEdge: false, hover: null };
   /** Breadth-first from the changed units: the level at which each unit is reached (changed units are level 0). */
   function bfs(changed) {
     const level = new Map(), queue = [];
     for (const id of UNITS.map((u) => u.id)) if (changed.has(id)) { level.set(id, 0); queue.push(id); }
-    for (let i = 0; i < queue.length; i++) for (const nb of OUT[queue[i]]) if (!level.has(nb)) { level.set(nb, level.get(queue[i]) + 1); queue.push(nb); }
+    for (let i = 0; i < queue.length; i++) {
+      const parent = queue[i];
+      for (const nb of OUT[parent]) {
+        if (S.omitEdge && parent === 'docs/chapter' && nb === 'docs/structure') continue;
+        if (level.has(nb)) continue;
+        level.set(nb, level.get(parent) + 1);
+        queue.push(nb);
+      }
+    }
     return level;
   }
   let R = null;
@@ -60,10 +68,10 @@
     const policy = changed.filter(isPolicy), product = changed.filter((id) => !isPolicy(id));
     const mixed = !S.ghost && policy.length > 0 && product.length > 0;
     const group = (ids) => { const lv = bfs(new Set(ids)); return { units: [...lv.keys()], cost: [...lv.keys()].reduce((s, id) => s + BY[id].cost, 0) }; };
-    R = { key: `${changed.join()}|${S.ghost}`, level, depth, selected, cost, changed, mixed, policyGroup: mixed ? group(policy) : null, productGroup: mixed ? group(product) : null,
+    R = { key: `${changed.join()}|${S.ghost}|${S.omitEdge}`, level, depth, selected, cost, changed, mixed, policyGroup: mixed ? group(policy) : null, productGroup: mixed ? group(product) : null,
       error: S.ghost ? GHOST : null, saved: FULL - cost };
   }
-  const fresh = () => { if (!R || R.key !== `${UNITS.map((u) => u.id).filter((id) => S.changed.has(id)).join()}|${S.ghost}`) derive(); return R; };
+  const fresh = () => { if (!R || R.key !== `${UNITS.map((u) => u.id).filter((id) => S.changed.has(id)).join()}|${S.ghost}|${S.omitEdge}`) derive(); return R; };
   /** The time at which BFS level d is reached on the rail. */
   const levelAt = (d, D) => LOOKUP_END + (EXPAND_END - LOOKUP_END) * (D ? d / D : 0);
   function now(t) {
@@ -138,6 +146,10 @@
     // edges: dim, cyan once the consumer is reached along them, the advancing front in amber
     for (const [a, b] of EDGES) {
       const ra = rect(BY[a]), rb = rect(BY[b]), p0 = [ra.x + ra.w, ra.y + ra.h / 2], p1 = [rb.x, rb.y + rb.h / 2];
+      if (S.omitEdge && a === 'docs/chapter' && b === 'docs/structure') {
+        text(ctx, '×', (p0[0] + p1[0]) / 2, p0[1], P.magenta, { size: 16, align: 'center' });
+        continue;
+      }
       const same = BY[a].row === BY[b].row, skip = BY[b].col - BY[a].col > 1;
       const curve = (f) => {
         if (skip && same) { const mx = (p0[0] + p1[0]) / 2, my = Math.min(p0[1], p1[1]) - (nh + 16); const u = 1 - f; return [u * u * p0[0] + 2 * u * f * mx + f * f * p1[0], u * u * p0[1] + 2 * u * f * my + f * f * p1[1]]; }
@@ -146,7 +158,7 @@
       };
       const la = D.level.get(a), lb = D.level.get(b), live = la != null && lb === la + 1 && !N.failed;
       const t0 = live ? levelAt(la, D.depth) : 0, t1 = live ? levelAt(lb, D.depth) : 0, f = live ? clamp((N.t - t0) / Math.max(1e-9, t1 - t0), 0, 1) : 0;
-      ctx.strokeStyle = P.lineHot; ctx.lineWidth = 1.2; ctx.globalAlpha = done && !(reached.has(a) && reached.has(b)) ? 0.35 : 0.8;
+      ctx.strokeStyle = P.lineHot; ctx.lineWidth = 1.2; ctx.globalAlpha = done && !(reached.has(a) && reached.has(b)) ? 0.74 : 0.9;
       ctx.beginPath(); for (let i = 0; i <= 24; i++) { const p = curve(i / 24); if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } ctx.stroke(); ctx.globalAlpha = 1;
       const head = curve(1), prev = curve(0.92), ang = Math.atan2(head[1] - prev[1], head[0] - prev[0]);
       ctx.fillStyle = P.lineHot; ctx.beginPath(); ctx.moveTo(head[0], head[1]); ctx.lineTo(head[0] - 7 * Math.cos(ang - 0.4), head[1] - 7 * Math.sin(ang - 0.4)); ctx.lineTo(head[0] - 7 * Math.cos(ang + 0.4), head[1] - 7 * Math.sin(ang + 0.4)); ctx.fill();
@@ -161,7 +173,7 @@
       const r = rect(u), ch = S.changed.has(u.id), sel = reached.has(u.id), skipped = done && !sel && !ch;
       geo.nodes[u.id] = r;
       rrect(ctx, r, 5);
-      ctx.fillStyle = ch ? TRV.alpha(P.amber, 0.16) : sel ? TRV.alpha(P.cyan, 0.16) : TRV.alpha(P.void, 0.9); ctx.globalAlpha = skipped ? 0.45 : 1; ctx.fill();
+      ctx.fillStyle = ch ? TRV.alpha(P.amber, 0.16) : sel ? TRV.alpha(P.cyan, 0.16) : TRV.alpha(P.void, 0.9); ctx.globalAlpha = skipped ? 0.83 : 1; ctx.fill();
       ctx.strokeStyle = ch ? P.amber : sel ? P.cyan : POLICY.has(u.group) ? TRV.alpha(P.violet, 0.8) : P.lineHot; ctx.lineWidth = ch || sel ? 1.8 : 1.1;
       if ((ch && N.phase === 'lookup') || (sel && N.phase === 'judge')) { ctx.shadowColor = ch ? P.amber : P.cyan; ctx.shadowBlur = 12; }
       ctx.stroke(); ctx.shadowBlur = 0;
@@ -170,7 +182,7 @@
       if (S.hover === u.id) { ctx.strokeStyle = P.ink; ctx.lineWidth = 1; ctx.setLineDash([2, 2]); ctx.strokeRect(r.x - 3, r.y - 3, r.w + 6, r.h + 6); ctx.setLineDash([]); }
       const twoLine = r.h >= fs * 2.6;
       text(ctx, fit(ctx, u.name, r.w - 8, fs, 'display'), r.x + r.w / 2, r.y + r.h / 2 - (twoLine ? fs * 0.55 : 0), skipped ? P.dim : P.ink, { size: fs, face: 'display', weight: 600, align: 'center' });
-      if (twoLine) text(ctx, fit(ctx, `${u.group} · ${u.cost}`, r.w - 8, fs - 2), r.x + r.w / 2, r.y + r.h / 2 + fs * 0.65, skipped ? P.faint : P.dim, { size: fs - 2, align: 'center' });
+      if (twoLine) text(ctx, fit(ctx, `${u.group} · ${u.cost}`, r.w - 8, fs - 2), r.x + r.w / 2, r.y + r.h / 2 + fs * 0.65, P.dim, { size: fs - 2, align: 'center' });
     }
     // the unregistered file, next to the unit whose directory it sits in, and the registry error
     if (S.ghost) {
@@ -186,6 +198,13 @@
       banner(ctx, L('policy.mixed-warning · 政策与产品同改', 'policy.mixed-warning · POLICY + PRODUCT'),
         L(`政策组 ${D.policyGroup.units.length} 项（成本 ${D.policyGroup.cost}）· 产品组 ${D.productGroup.units.length} 项（成本 ${D.productGroup.cost}）· 两组都要验证`, `policy ${D.policyGroup.units.length} units (cost ${D.policyGroup.cost}) · product ${D.productGroup.units.length} units (cost ${D.productGroup.cost}) · verify both`),
         free, P.magenta, clamp(fs, 8.5, 12));
+    }
+    if (done && !D.mixed && !S.ghost && !TRV.thumbMode) {
+      const witness = S.omitEdge && S.changed.has('docs/chapter') && !reached.has('docs/structure');
+      const head = witness ? L('Z3 · 反例', 'Z3 · COUNTEREXAMPLE') : L('已判定单元', 'JUDGED UNITS');
+      const detail = witness ? L('chapter 已改 · structure 漏检', 'chapter changed · structure missed')
+        : N.reached.length + ' / ' + UNITS.length;
+      banner(ctx, head, detail, free, witness ? P.magenta : P.cyan, clamp(fs + 1, 10, 14));
     }
     geo.bx = bx;
   }
@@ -236,6 +255,7 @@
     $('changeNote').textContent = S.hover ? `${S.hover} · ${L('成本', 'cost')} ${BY[S.hover].cost}` : L(`已改动 ${D.changed.length} 个单元${S.ghost ? '，另有 1 个未登记文件' : ''}`, `${D.changed.length} unit(s) changed${S.ghost ? ', plus 1 unregistered file' : ''}`);
     $('pillSel').querySelector('strong').textContent = D.error ? 'ERR' : `${n}/${UNITS.length}`;
     $('pillSaved').querySelector('strong').textContent = D.error ? '—' : `${D.saved}%`;
+    $('omitEdge').setAttribute('aria-pressed', String(S.omitEdge));
     $('ghostBtn').setAttribute('aria-pressed', String(S.ghost));
   }
 
@@ -252,7 +272,13 @@
   const changed = () => { leave(); clock.pause(); clock.set(T_MAX); paint(); };
   const toggle = (id) => { if (S.changed.has(id)) S.changed.delete(id); else S.changed.add(id); changed(); };
   const toggleGhost = () => { S.ghost = !S.ghost; changed(); };
-  const clear = () => { S.changed.clear(); S.ghost = false; changed(); };
+  const clear = () => { S.changed.clear(); S.ghost = false; S.omitEdge = false; changed(); };
+  $('omitEdge').addEventListener('click', () => {
+    S.omitEdge = !S.omitEdge;
+    S.changed = new Set(['docs/chapter']);
+    S.ghost = false;
+    changed();
+  });
   $('ghostBtn').addEventListener('click', toggleGhost);
   $('clearBtn').addEventListener('click', clear);
   $('rew').addEventListener('click', () => { clock.pause(); clock.set(0); });
@@ -288,7 +314,7 @@
   let booting = true;
   function applyPreset(id) {
     const p = PRESETS[id];
-    S.changed = new Set(p.changed); S.ghost = p.ghost; S.hover = null;
+    S.omitEdge = false; S.changed = new Set(p.changed); S.ghost = p.ghost; S.hover = null;
     clock.pause(); clock.set(p.still);
     if (!p.play || TRV.still || (booting && !TRV.embed)) { paint(); return; }
     clock.set(0);

@@ -97,7 +97,7 @@ section: "NyxBot"
   <p class="kicker">NyxBot · NyxAgent · nyx-assistant-sdk</p>
   <h2 class="t">Split the Chatbox Into a <em>Budgeted Specialist Mesh</em></h2>
   <div class="split mt">
-    <img src="./img/ch02-nyxbot-specialist-mesh.en.svg" alt="NyxBot specialist mesh: 8 specialists by default, 32 at most, 8 per group, 50 memory slots, default 30 triggers per hour and 300 per day" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+    <img src="./img/ch02-nyxbot-specialist-mesh.en.svg" alt="NyxBot specialist mesh: 8 specialists by default, 32 at most, 8 per group, 50 memory slots, default 30/hr · 300/day, ceilings 300/hr · 3,000/day, browser client nyx-assistant-sdk v0.2.4" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <Stat value="300" unit="/day" label="default cap on automatic triggers (plus 30 per hour by default); hard ceiling 300/hour, 3,000/day" />
       <ul class="plain mt">

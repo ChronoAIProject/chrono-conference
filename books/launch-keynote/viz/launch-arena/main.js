@@ -209,7 +209,7 @@
   }
 
   /* ---------- the stage ---------- */
-  let geo = null;
+  let geo = null, hover = null;
   /** The glass tray of a stand: from just inside its front row to just behind its back row, over its whole arc. */
   function trayPath(ctx, G, si) {
     const axis = axisOf(si), n = 40;
@@ -224,6 +224,23 @@
     ctx.beginPath();
     for (let i = 0; i <= 96; i++) { const [x, y] = G.at(...curve((i / 96) * kit.TAU, -1.1)); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
     ctx.closePath(); ctx.fillStyle = TRV.alpha(P.lineHot, 0.07); ctx.fill(); ctx.strokeStyle = TRV.alpha(P.lineHot, 0.45); ctx.lineWidth = 1; ctx.stroke();
+    // Schematic wayfinding from the mat wall through each aisle. The rail drives the arrows.
+    G.bridge.forEach(([endX, endY], si) => {
+      const mat = G.mats[[4, 13, 8, 0][si]];
+      const dx = endX - mat.x, dy = endY - mat.y;
+      ctx.save();
+      ctx.translate(mat.x, mat.y);
+      ctx.rotate(Math.atan2(dy, dx));
+      const distance = Math.hypot(dx, dy);
+      ctx.strokeStyle = TRV.alpha(P.cyan, 0.32);
+      ctx.setLineDash([2, 4]);
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(distance, 0); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.translate(distance * (0.18 + 0.7 * ((D.t / 8 + si / 4) % 1)), 0);
+      ctx.strokeStyle = P.cyan;
+      ctx.beginPath(); ctx.moveTo(-4, -3); ctx.lineTo(0, 0); ctx.lineTo(-4, 3); ctx.stroke();
+      ctx.restore();
+    });
     // keynote screen: lit once the keynote is live
     const sc = G.screen;
     if (D.live) {
@@ -285,15 +302,16 @@
     }
     // seats: one small square each, cyan when locked
     const s = clamp(k * 0.42, 1.3, 3.4) * (thumb ? 1.35 : 1), h = s / 2;
-    ctx.globalAlpha = 0.9 * dim; ctx.fillStyle = P.faint; ctx.beginPath();
+    ctx.globalAlpha = 0.87 * dim; ctx.fillStyle = P.dim; ctx.beginPath();
     for (let g = 0; g < CAP; g++) if (!D.hold[g]) ctx.rect(G.sx[g] - h, G.sy[g] - h, s, s);
     ctx.fill();
-    ctx.globalAlpha = 0.95 * dim; ctx.fillStyle = P.cyan; ctx.shadowColor = P.cyan; ctx.shadowBlur = thumb ? 6 : 3; ctx.beginPath();
+    ctx.globalAlpha = 0.95 * dim; ctx.fillStyle = P.cyan; ctx.shadowColor = P.cyan; ctx.shadowBlur = thumb ? 5 : 0; ctx.beginPath();
     for (let g = 0; g < CAP; g++) if (D.hold[g]) ctx.rect(G.sx[g] - h, G.sy[g] - h, s, s);
     ctx.fill(); ctx.shadowBlur = 0; ctx.globalAlpha = 1;
     // the selected seat and its row of its stand
-    if (S.sel && S.sel.seat != null) {
-      const g0 = S.sel.seat, si = STAND_OF[g0], r = ROW_OF[g0], a = SEGMENT[si][r], n = STANDS[si].rows[r];
+    const inspected = hover || S.sel;
+    if (inspected && inspected.seat != null) {
+      const g0 = inspected.seat, si = STAND_OF[g0], r = ROW_OF[g0], a = SEGMENT[si][r], n = STANDS[si].rows[r];
       ctx.strokeStyle = P.amber; ctx.lineWidth = 1.4; ctx.shadowColor = P.amber; ctx.shadowBlur = 6; ctx.lineCap = 'round';
       for (const [lo, hi] of [[a, a + n / 2 - 1], [a + n / 2, a + n - 1]]) {
         ctx.beginPath(); for (let g = lo; g <= hi; g++) { if (g === lo) ctx.moveTo(G.sx[g], G.sy[g]); else ctx.lineTo(G.sx[g], G.sy[g]); } ctx.stroke();
@@ -390,6 +408,13 @@
       sub = D.live ? L(`${rel} · 16:00 SGT 已开场 · ${fmt(D.over)} 人转直播 · 重座 ${D.dup}`, `${rel} · 16:00 SGT, keynote live · ${fmt(D.over)} to the stream · ${D.dup} duplicate seats`)
         : L(`${rel} ${mins} · 已到场 ${fmt(D.A)} · 重座 ${D.dup}`, `${rel} ${mins} · ${fmt(D.A)} arrived · ${D.dup} duplicate seats`);
     }
+    const inspected = hover || S.sel;
+    if (inspected) {
+      const g = inspected.seat;
+      sub = g != null
+        ? CODE[g] + ' · ' + (D.hold[g] ? L('已锁定', 'locked') : L('空位', 'open'))
+        : matCode(inspected.mat) + ' · ' + (inspected.mat < D.baskets ? L('已摆', 'placed') : L('待领', 'open'));
+    }
     $('hudBig').textContent = big; $('hudSub').textContent = sub;
     const items = focus ? [['mg', '已摆花篮', 'basket placed'], ['am', '待领垫位', 'open mat'], ['cy', '已锁定席位', 'locked seat']]
       : [['cy', '已锁定席位', 'locked seat'], ['vi', '转入直播', 'routed to the stream'], ['mg', '已摆花篮', 'basket placed']].concat(S.sel ? [['am', '当前选中', 'current selection']] : []);
@@ -451,6 +476,28 @@
     for (let g = 0; g < CAP; g++) { const d = Math.hypot(x - G.sx[g], y - G.sy[g]); if (d < bd) { bd = d; best = g; } }
     return best >= 0 ? { seat: best } : null;
   }
+  $('cv').addEventListener('pointermove', ev => {
+    if (ev.pointerType === 'touch') return;
+    const b = ev.currentTarget.getBoundingClientRect();
+    hover = hit(ev.clientX - b.left, ev.clientY - b.top);
+    paint();
+  });
+  $('cv').addEventListener('pointerleave', () => { hover = null; paint(); });
+  $('cv').addEventListener('focus', () => {
+    if (!S.sel && $('cv').matches(':focus-visible')) S.sel = { seat: BY_CODE.get('N1-17') };
+    paint();
+  });
+  $('cv').addEventListener('keydown', ev => {
+    const step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -1, ArrowDown: 1 }[ev.key];
+    if (!step) return;
+    ev.preventDefault(); ev.stopPropagation(); hover = null;
+    const seat = S.sel?.seat ?? BY_CODE.get('N1-17');
+    if (ev.key === 'ArrowUp' || ev.key === 'ArrowDown') {
+      const si = STAND_OF[seat], row = (ROW_OF[seat] + step + NROW) % NROW;
+      S.sel = { seat: SEGMENT[si][row] + Math.min(NUM_OF[seat], STANDS[si].rows[row]) - 1 };
+    } else S.sel = { seat: (seat + step + CAP) % CAP };
+    paint();
+  });
   $('cv').addEventListener('click', (ev) => {
     const b = $('cv').getBoundingClientRect(), h = hit(ev.clientX - b.left, ev.clientY - b.top);
     if (!h && !S.sel) return;
@@ -486,7 +533,7 @@
   let booting = true;
   function applyPreset(id) {
     const p = PRESETS[id];
-    S.N = p.N; S.sel = null; S.focus = p.focus || null;
+    S.N = p.N; hover = null; S.sel = null; S.focus = p.focus || null;
     clock.pause(); clock.set(p.at);
     if (TRV.still && p.still != null) clock.set(p.still === 'end' ? clock.max : p.still);
     // a still (cover, cited figure for PDF/EPUB) and the opening view of the full page show the telling frame;

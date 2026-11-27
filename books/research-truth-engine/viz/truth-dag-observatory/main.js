@@ -223,6 +223,80 @@
     return { nodes, mode };
   }
 
+  // live.trureturing.org, 2026-11-27: organization.departments and truth-nebula.clusters @ 687878cf.
+  // Stations describe work. The galaxies partition the corpus by subject.
+  const stations = [
+    ['研究方向', 'Direction', '提出研究问题', 'Choose research questions'],
+    ['数学攻坚', 'Math Research', '探索证明与反例', 'Develop proofs and counterexamples'],
+    ['独立评审', 'Indep. Review', '复核论证边界', 'Review arguments independently'],
+    ['形式验证', 'Verification', '由内核核查声明', 'Check declarations in Lean'],
+    ['理论书写', 'Monographs', '编写双语专著', 'Publish bilingual monographs'],
+    ['论文与知识', 'Papers & Wiki', '编论文与知识目录', 'Maintain the paper and wiki catalogs'],
+    ['学术交流', 'Scholar Outreach', '联系外部研究者', 'Coordinate with scholars'],
+    ['工具与表达', 'Tools & Studio', '维护工具与影像', 'Build tools and research media']
+  ];
+  const galaxies = [
+    ['组合数学', 'Combinatorics', 3400], ['量子结构', 'Quantum', 3382],
+    ['数论算术', 'Arithmetic', 2005], ['概念动力', 'Concept Dynamics', 1254],
+    ['解析分析', 'Analysis', 784], ['Weil 理论', 'Weil', 776],
+    ['观察者论', 'Observer', 702], ['公理星带', 'Foundations', 6719]
+  ];
+  const corpus = galaxies.reduce((sum, item) => sum + item[2], 0);
+  let viewMode = 'kernel';
+  const focused = { stations: 0, galaxies: 0 };
+  const kernelLegend = $('legend').innerHTML;
+  const targets = Array.from({ length: 8 }, (_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.addEventListener('click', () => { focused[viewMode] = i; paint(); });
+    $('atlasTargets').appendChild(b);
+    return b;
+  });
+  function drawAtlas(ctx, bx) {
+    const sky = viewMode === 'galaxies', rows = sky ? galaxies : stations;
+    const cols = bx.w >= 510 ? 4 : 2, cw = bx.w / cols, rh = bx.h / (8 / cols);
+    const current = focused[viewMode], chosen = rows[current];
+    $('atlasLabel').textContent = L(chosen[0], chosen[1]);
+    $('atlasValue').textContent = sky
+      ? (100 * chosen[2] / corpus).toFixed(1) + L('% 的节点', '% of nodes')
+      : L(chosen[2], chosen[3]);
+    $('hudBig').textContent = sky ? L('8 个螺旋星系 · 19,022 个真值节点', '8 spiral galaxies · 19,022 truth nodes')
+      : L('8 座空间站 · 8 个职能部门', '8 space stations · 8 departments');
+    $('hudSub').textContent = L(chosen[0], chosen[1]) + ' · ' + (sky
+      ? chosen[2].toLocaleString('en-US') + ' / ' + corpus.toLocaleString('en-US') : L(chosen[2], chosen[3]));
+    $('legend').textContent = sky ? L('面积 ∝ 节点数 · 2026-11-27', 'Area ∝ node count · Nov 27, 2026')
+      : L('按职能选择空间站 · The Omega Institute', 'Select a station by function · The Omega Institute');
+    for (const [i, row] of rows.entries()) {
+      const x = bx.x + (i % cols) * cw, y = bx.y + Math.floor(i / cols) * rh;
+      const b = targets[i], label = L(row[0], row[1]);
+      Object.assign(b.style, { left: (x + 2) + 'px', top: (y + 2) + 'px', width: (cw - 4) + 'px', height: (rh - 4) + 'px' });
+      b.textContent = label;
+      b.setAttribute('aria-pressed', String(i === current));
+      const col = i === current ? P.amber : sky ? P.violet : P.cyan;
+      const radius = Math.max(5, Math.min(cw * .3, (rh - 21) * .43));
+      ctx.save(); ctx.translate(x + cw / 2, y + (rh - 17) / 2);
+      if (sky) {
+        const r = radius * Math.sqrt(row[2] / 6719);
+        for (let arm = 0; arm < 3; arm++) {
+          for (let j = 0; j < 30; j++) {
+            const f = (j + 1) / 30, a = arm * kit.TAU / 3 + 3.7 * f + i;
+            ctx.fillStyle = TRV.alpha(col, 1 - f * .32);
+            ctx.beginPath(); ctx.arc(r * f * Math.cos(a), r * f * Math.sin(a), 1 + (1 - f), 0, kit.TAU); ctx.fill();
+          }
+        }
+      } else {
+        ctx.strokeStyle = col; ctx.lineWidth = 1.6;
+        for (let dock = 0; dock < 4; dock++) {
+          ctx.rotate(Math.PI / 2);
+          ctx.strokeRect(radius * .38, -radius * .16, radius * .62, radius * .32);
+        }
+        ctx.beginPath(); ctx.arc(0, 0, radius * .45, 0, kit.TAU); ctx.stroke();
+        ctx.fillStyle = col; ctx.fillRect(-2, -2, 4, 4);
+      }
+      ctx.restore();
+    }
+  }
+
   function drawStage() {
     const g = kit.plot($('cv'), { x: [0, 1], y: [0, 1], pad: [0, 0, 0, 0] }), ctx = g.ctx, W = g.W, H = g.H, A = analyse(mask());
     if (TRV.thumbMode) {   // the cover is wordless: the lattice after the novel cut, the catalog beside it
@@ -235,6 +309,11 @@
     const st = $('stage').getBoundingClientRect(), below = (el) => (el ? el.getBoundingClientRect().bottom - st.top : 0);
     const top = Math.max(46, below($('hudBig').parentElement)) + 14, bottom = Math.max(18, $('legend').offsetHeight + 22);
     const bx = { x: 18, y: top, w: W - 36, h: Math.max(120, H - top - bottom) };
+    if (viewMode !== 'kernel') {
+      geo = null;
+      drawAtlas(ctx, bx);
+      return;
+    }
     const mode = bx.w >= 560 && bx.w >= bx.h * 1.45 ? 'column' : bx.w >= bx.h * 1.05 ? 'mini' : 'row';
     let lat, nodes;
     if (mode !== 'row') {
@@ -322,6 +401,7 @@
     format: (t) => (S.custom != null ? `${L('自选目录', 'CUSTOM')} <small>${members(S.custom).length} / ${K}</small>`
       : `${L('已插入 ', 'INSERTED ')}${Math.min(K, Math.floor(t + 1e-9))} <small>/ ${K}</small>`),
     onChange: (t, C) => {
+      if (viewMode !== 'kernel') setView('kernel');
       S.custom = null;   // moving the rail (or playing) returns to the catalog in order
       if (S.stopAt != null && C.playing && t >= S.stopAt - 1e-9) { const end = S.stopAt; S.stopAt = null; C.pause(); C.set(end); return; }
       paint();
@@ -333,7 +413,18 @@
     S.custom = m & ALL; S.last = last == null ? -1 : last;
     relabel(); paint();
   }
-  const leave = () => cards.mark(null);
+  function setView(next) {
+    if (next !== 'kernel') clock.pause();
+    viewMode = next;
+    $('app').toggleAttribute('data-atlas', next !== 'kernel');
+    $('atlasContext').hidden = next === 'kernel';
+    $('atlasTargets').hidden = next === 'kernel';
+    if (next === 'kernel') $('legend').innerHTML = kernelLegend;
+    viewChips.set(next, true);
+    paint();
+  }
+  const viewChips = kit.chips($('viewChips'), 'view', setView);
+  const leave = () => { if (viewMode !== 'kernel') setView('kernel'); cards.mark(null); };
   function toggle(i) { leave(); const m = mask() ^ (1 << i); setCustom(m, i); }
   /** A click with the pointer hands the focus to the stage, so that Space plays at once (as kit does for its chips). */
   const release = (ev) => { if (!ev || !(ev.detail > 0)) return; const st = $('stage'); if (!st.hasAttribute('tabindex')) st.setAttribute('tabindex', '-1'); st.focus({ preventScroll: true }); };
@@ -390,6 +481,7 @@
   };
   let booting = true;
   function applyPreset(id) {
+    if (viewMode !== 'kernel') setView('kernel');
     const p = PRESETS[id];
     S.stopAt = null; S.probe = null; clock.pause(); clock.set(p.at);
     if (TRV.still && p.still != null) clock.set(p.still);

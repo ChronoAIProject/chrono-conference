@@ -302,10 +302,10 @@ $\mathrm{RiemannHypothesis} \iff$ the actual-$\xi$ integer Hankel form is nonneg
 </TheoremCard>
 <TheoremCard class="compact mt-s" label="Open problem" title="Extended and Grand RH" status="open">
 
-Extended RH (Dedekind $\zeta$), Grand RH (automorphic $L$): <b>still open.</b>
+Extended RH, Grand RH, simplicity of zeros, and pair correlation.
 
 </TheoremCard>
-      <p class="sm muted mt-s">Classical RH: Levent Alpöge's external Lean 4 proof, certified Nov 20–21; ours is only the 8,490-shard replay.</p>
+      <p class="sm muted mt-s">Classical RH · Alpöge’s Lean 4 proof (Nov 20–21). The Omega Institute replayed 8,490 shards.</p>
     </div>
   </div>
 </div>

@@ -207,5 +207,13 @@ left = await cjkLeftovers(page);
 check('English: no Chinese left after selecting seat W8-01', left.length === 0 && /W8-01/.test(await page.textContent('#roSel')) && /West row 8/.test(await page.textContent('#roSel')), left.slice(0, 3).join(' | '));
 await D(() => localStorage.removeItem('tr-lang'));
 
+await page.mouse.move(pt.x, pt.y);
+await settle(page);
+check('hover inspects W8-01 on stage', (await page.textContent('#hudSub')).includes('W8-01'));
+await page.locator('#cv').focus();
+await page.keyboard.press('ArrowUp');
+await settle(page);
+check('keyboard crosses rows with the same seat number', (await page.textContent('#hudSub')).includes('W7-01'));
+
 check('no page error, console error or failed request (page-specific part)', T.errors.length === 0, T.errors.slice(0, 4).join(' | '));
 await T.finish();

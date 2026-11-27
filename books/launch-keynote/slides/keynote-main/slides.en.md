@@ -29,7 +29,7 @@ section: "Right Now"
   <h2 class="t">You're Inside a Launch With <em>Zero Film Crew</em></h2>
   <div class="split mt">
     <div>
-      <p class="lead">This 3D lobby, 1,108 theater seats, 18 flower stands, five films, four bilingual books, and Concierge Donna—built on ChronoAI's own agent stack under human review and gates, and published in the open.</p>
+      <p class="lead">This 3D lobby, 1,108 theater seats, 18 flower-basket mats, the full launch film plus five shorts, four bilingual books, and Concierge Donna—built on ChronoAI's own agent stack under human review and gates, and published in the open.</p>
       <div class="g3 mt-l">
         <Stat class="md" value="0" label="cameras" tone="magenta" />
         <Stat class="md" value="1,108" label="locked seats" />
@@ -266,7 +266,7 @@ section: "Vehicle · One Network"
     <div class="tile"><i>Campus · Running</i><b>Walk the Robot Dog</b><span>One chat message routes through NyxID → Home Assistant and sends the quadruped out on patrol.</span></div>
     <div class="tile"><i>Office · Running</i><b>The Snack Butler</b><span>A shelf camera spots the chips running out, polls the team chat, and stages the restock order.</span></div>
     <div class="tile"><i>3:00 AM · Ops</i><b>Diagnose First, Wait for Yes</b><span>Reads logs and drafts the fix overnight; touches production only after your morning tap.</span></div>
-    <div class="tile now"><i>Live · Dec 17</i><b>Four Stands, 1,108 Seats</b><span>The same network drives Donna's reception desk, atomic seat locks, and 18 live flower stands.</span></div>
+    <div class="tile now"><i>Live · Dec 17</i><b>Four Stands, 1,108 Seats</b><span>The same network drives Donna's reception desk, atomic seat locks, and 18 flower-basket mats.</span></div>
   </div>
 </div>
 <Source>nyx-homeassistant-node v1.1.1-alpha.52 · live team demos and the Dec 17 venue</Source>
@@ -325,7 +325,7 @@ section: "Lobby · Live"
     <img src="./img/lobby-baskets.png" alt="The street-corner 3D flower-basket promenade" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
       <li><b class="hl-cyan">Four stands × 8 rows = 1,108 seats</b><br><span class="sm muted">N 248 · S 248 · E 306 · W 306; rows 144, 144, 144, 140, 136, 136, 132, 132; codes N1-17, E1-20, W8-01</span></li>
-      <li class="mt"><b class="hl-cyan">2 rows × 9 flower-basket mats</b><br><span class="sm muted">basket-01…basket-18 along the world-map wall, by Blossom</span></li>
+      <li class="mt"><b class="hl-cyan">18 flower-basket mats (2 rows of 9)</b><br><span class="sm muted">basket-01…basket-18 along the world-map wall, by Blossom</span></li>
       <li class="mt"><b class="hl-cyan">Rehearsal: 13 bookings and check-ins, 0 dropped</b><br><span class="sm muted">Median 29 s, max 63 s—measured, not promised</span></li>
       <li class="mt"><b class="hl-cyan">Donna's 30-question press gate</b><br><span class="sm muted">In-bank: cited answers. Off-bank: contact@chrono-ai.fun</span></li>
     </ul>
@@ -342,7 +342,7 @@ section: "AI Staff · Ledger"
   <p class="kicker">Nine Standalone Roles · Nov 27, 2026</p>
   <h2 class="t">102 on AI. <em>18 Behind Human Gates or Roadmap.</em></h2>
   <div class="split mt">
-    <img src="./img/ch07-six-role-coverage.en.svg" alt="Workflow coverage across the core roles" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/ch07-six-role-coverage.en.svg" alt="Nine standalone roles cover 102/120 workflows" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>Why We Refuse 100% Automation</h4>
       <h3>Hold those 18 behind the gates, and a store owner can hand over the other 102.</h3>
@@ -380,7 +380,7 @@ section: "Invitation"
     <div class="card hot">
       <h4>Deployment Partners</h4>
       <h3>Temp Badges, Real Revenue</h3>
-      <p>Contract directly with clients, revoke temporary keys when done, and turn each scenario into a reusable skill.</p>
+      <p>Contract directly with clients, revoke temporary capability handles when done, and turn each scenario into a reusable skill.</p>
     </div>
   </div>
 </div>

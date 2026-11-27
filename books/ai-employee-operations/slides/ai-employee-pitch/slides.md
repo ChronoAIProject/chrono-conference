@@ -133,7 +133,7 @@ section: "十五天剧本"
   <p class="kicker">11-27 彩排已跑 · 12-04 至 12-18 · 新加坡时间</p>
   <h2 class="t">十五天，<em>每道闸门提前刻成剧本</em></h2>
   <div class="split mt">
-    <img src="./img/ch05-event-countdown-milestones.zh.svg" alt="发布会十五天里程碑：12-04 开放预约、12-08 媒体包、12-11 负载与演练、12-15 彩排与冻结、12-17 直播、12-18 切片、工单与商户跟进" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+    <img src="./img/ch05-event-countdown-milestones.zh.svg" alt="发布会十五天里程碑：12-04 开放预约、12-08 媒体包、12-11 负载与演练、12-15 产物冻结、12-16 Discord 彩排、12-17 直播、12-18 切片、工单与商户跟进" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <ul class="plain">
         <li><b class="mono hl-cyan">11-27</b>　全流程彩排 11 / 12 一次过 · 中位 29 s · 0 丢单</li>

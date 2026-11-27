@@ -133,7 +133,7 @@ section: "15-Day Runbook"
   <p class="kicker">Nov 27 rehearsal done · Dec 04 to Dec 18, 2026 · Singapore time</p>
   <h2 class="t">Fifteen Days, <em>Every Gate Scripted Ahead</em></h2>
   <div class="split mt">
-    <img src="./img/ch05-event-countdown-milestones.en.svg" alt="Fifteen-day launch calendar: Dec 04 bookings open, Dec 08 media kit, Dec 11 load and drills, Dec 15 rehearsal and freeze, Dec 17 live, Dec 18 clips, tickets and pilot follow-up" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+    <img src="./img/ch05-event-countdown-milestones.en.svg" alt="Fifteen-day launch calendar: Dec 04 bookings open, Dec 08 media kit, Dec 11 load and drills, Dec 15 artifact freeze, Dec 16 Discord rehearsal, Dec 17 live, Dec 18 clips, tickets and pilot follow-up" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <ul class="plain">
         <li><b class="mono hl-cyan">Nov 27</b>&ensp;Full-flow rehearsal 11 / 12 first try · median 29 s · 0 dropped</li>

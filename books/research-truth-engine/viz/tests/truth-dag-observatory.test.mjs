@@ -227,5 +227,19 @@ await seek(3.5); left = await cjkLeftovers(page); check('English: no Chinese lef
 check('English readouts name the current theorem', /Unique capture of the current theorem T₄/.test(await text('#roCurT')));
 await D(() => localStorage.removeItem('tr-lang'));
 
+await page.click('[data-view="galaxies"]');
+await settle(page);
+check('eight selectable galaxies account for the published corpus', await page.locator('#atlasTargets button').count() === 8 && (await page.textContent('#hudBig')).includes('19,022'));
+await page.locator('#atlasTargets button').last().click();
+await settle(page);
+check('Foundations has 6,719 nodes', (await page.textContent('#hudSub')).includes('6,719'));
+await page.click('[data-view="stations"]');
+await page.locator('#atlasTargets button').nth(3).click();
+await settle(page);
+check('station four describes verification', /Lean|内核/.test(await page.textContent('#hudSub')));
+await page.click('[data-view="kernel"]');
+await settle(page);
+check('returning to the kernel restores its legend', await page.locator('#legend .sw').count() === 4);
+
 check('no page error, console error or failed request (page-specific part)', T.errors.length === 0, T.errors.slice(0, 4).join(' | '));
 await T.finish();
