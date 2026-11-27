@@ -2,6 +2,8 @@
 
 在仓库根目录运行 `mise trust` 和 `mise run harness-setup`。绿色模板默认在每次安装时为所选工具查询 GitHub Releases，按公开发布时间选择最新测试版，并校验当前平台的 SHA-256。安装通道适用于任意分支与直接检出的提交。Rust 和 Verus 使用模板登记的配套版本。安装成功后取得的版本和 Linux、macOS SHA-256 存在 `.chrono-harness/state/tool-selection/versions.toml`。检出中的 `.config/mise/conf.d/selected-chrono-harness.toml` 为 mise 提供对应的下载地址。读取 GitHub 分页失败时，安装器退出并保留上次成功的选版。
 
+开发分支为 `dev`，正式分支为 `main`。本仓选装 `cache`、`ci`、`diagnostics`、`distribution`、`harness`、`host-bootstrap`、`host-release`、`inputs`、`instructions`、`judge-ci`、`judge-cost`、`judge-filemap`、`judge-mixed`、`judge-projects`、`registration`、`judge-routes`、`judge-workflow`、`pr`、`test-git`、`worktree`、`verus`。
+
 ### 保存各工具的版本选择
 
 首次准备完成后，在干净的 Git 工作区运行 Copier 更新。下面的命令把仓库默认值设为最新测试版，让 `chrono-pr` 跟随最新正式版，并把 `chrono-diagnostics` 固定到 `v0.1.0`。其余已选工具跟随仓库默认值。
@@ -22,7 +24,9 @@ mise run harness-setup
 
 首次准备宿主使用 Git、mise 和系统命令。模板会从 origin 识别 GitHub 仓库及其默认分支，再用本次核验过的 `chrono-host-bootstrap` 执行 `prepare-template`。若用户禁用该工具，首次准备仍会从随附配方临时安装一份，校验摘要并在用完后删除。
 
-本仓默认接纳全部上游规则，可在 `.chrono-harness/rules.json` 按 ID 选择。安装后即可从根 [CLAUDE.md](../CLAUDE.md) 阅读本仓选中的规则与追加说明。
+本仓默认接纳全部上游规则，可在 `.chrono-harness/rules.json` 按 ID 选择。安装后即可从[PROJECT.md](../PROJECT.md) 阅读本仓选中的规则与追加说明。
+
+`harness-setup` 的规则同步会临时写入模板托管的 `CLAUDE.md`。更新规则时，将生成的 `chrono-instructions` 区块替换到 `PROJECT.md` 对应区块，再恢复模板版本的 `CLAUDE.md`，保留 `AGENTS.md` 指向它的相对符号链接。
 
 用 `mise exec -- chrono-pr pr-reminders` 查看本地提醒，再运行 `mise exec -- chrono-pr pr-status --pr NUMBER --head-sha SHA` 查询 GitHub。
 
