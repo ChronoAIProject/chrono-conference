@@ -72,6 +72,7 @@
       <canvas class="fill" id="cv"></canvas>
       <div class="scan"></div><div class="vig"></div>
       <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tr"><button type="button" class="chip" id="revokeHandle"><span class="zh">撤销句柄</span><span class="en">Revoke Handle</span></button></div>
       <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
       <div class="hud-bl" id="legend">
         <span><i class="sw mg"></i><span class="zh">明文密钥</span><span class="en">plaintext key</span></span>
@@ -108,11 +109,16 @@
         <div class="wide"><dt id="roXLabel"></dt><dd id="roX">—</dd></div>
       </dl>
       <p class="note" id="roNote"></p>
+      <dl class="protocol">
+        <dt><span class="zh">密钥环信封</span><span class="en">Key-ring envelope</span></dt><dd>ring-v1</dd>
+        <dt><span class="zh">出站 Webhook 签名头</span><span class="en">Outbound webhook signature</span></dt><dd>X-NyxID-Signature-V2</dd>
+        <dt><span class="zh">调用资格版本</span><span class="en">Eligibility check</span></dt><dd>eligibility_revision</dd>
+      </dl>
     </section>
 
     <section class="panel sec" id="evidence">
       <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">NyxID v0.78.0</span></h2>
-      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">示意模型：两条通道、数据包的路线与时刻、示例单价与封顶都是为画面选定的，不是生产系统的抓包。架构数字按 2026-11-26 的 ChronoAIProject/NyxID@v0.78.0 与 api.nyxid.ai 公开配置：55 项内置服务、41 份 OpenAPI→MCP 规范、7 家 LLM 上游路由、9 类消息渠道；约 2.1 s 的凭证热重载来自第四章 CMA 的口径。</span><span class="en">A schematic model: the two lanes, the routes and times of the packets, and the example price and ceiling were chosen for the picture; this is not a capture of the production system. The architecture numbers are those of ChronoAIProject/NyxID@v0.78.0 and the public config of api.nyxid.ai as of 2026-11-26: 55 built-in services, 41 OpenAPI→MCP specs, 7 upstream LLM routes, 9 channel types; the hot credential reload of about 2.1 s is the figure chapter 4 gives for CMA.</span></span></div>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">示意模型：两条通道、数据包的路线与时刻、示例单价与封顶都是为画面选定的，不是生产系统的抓包。架构数字按 2026-11-27 核对的 ChronoAIProject/NyxID 与 api.nyxid.ai 公开配置：线上运行 v0.78.0（898fdf245d，2026-11-23 部署），55 项内置服务、42 份 OpenAPI→MCP 目录规范（新增 nyx-panel.openapi.json）、7 家 LLM 上游路由、9 类消息渠道（10 个适配器）；dev 分支 0.79.0（1a69258325，2026-11-27）扩到 11 类渠道（12 个适配器，新增的 Meta Messenger 与 Instagram 仍在功能开关之后），尚未上线。约 2.1 s 的凭证热重载来自第四章 CMA 的口径。</span><span class="en">A schematic model: the two lanes, the routes and times of the packets, and the example price and ceiling were chosen for the picture; this is not a capture of the production system. The architecture numbers are those of ChronoAIProject/NyxID and the public config of api.nyxid.ai as checked on 2026-11-27: production runs v0.78.0 (898fdf245d, deployed 2026-11-23) with 55 built-in services, 42 OpenAPI→MCP catalog specs (nyx-panel.openapi.json added), 7 upstream LLM routes and 9 messaging channel types (10 adapters); the dev branch at 0.79.0 (1a69258325, 2026-11-27) extends this to 11 channel types (12 adapters, the new Meta Messenger and Instagram still behind feature flags), not yet live. The hot credential reload of about 2.1 s is the figure chapter 4 gives for CMA.</span></span></div>
       <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面算出的数：直连通道的泄露面等于挂载服务数 k，NyxID 一侧对每个 k ∈ 1…55、每种工况、时间轴上的每一刻都是 0；热重载用时 = 收敛时刻 − 吊销时刻；计量按 1 credit = 1 USD 逐笔累加，到封顶即停。数值演示，不是证明。</span><span class="en">Computed on the page: the legacy blast radius equals the number k of attached services; on the NyxID side it is 0 for every k in 1…55, every scenario and every moment of the rail; the reload time is the moment of convergence minus the moment of revocation; metering adds up call by call at 1 credit = 1 USD and stops at the ceiling. A numerical illustration, not a proof.</span></span></div>
       <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
     </section>

@@ -26,7 +26,7 @@
     { id: 'runtime', code: 'L3', name: ['CMA / heca', 'CMA / heca'], role: ['托管运行时与本地编排', 'managed runtime, local orchestration'], short: ['运行时', 'runtime'] },
     { id: 'skills', code: 'L2', name: ['Ornn', 'Ornn'], role: ['技能注册与安全扫描', 'skill registry and scan'], short: ['技能', 'skills'] },
     { id: 'vault', code: 'L1', name: ['NyxID', 'NyxID'], role: ['凭证金库、策略与代理', 'credential vault, policy and proxy'], short: ['金库', 'vault'] },
-    { id: 'surface', code: 'L5', name: ['上线表面', 'Live Surface'], role: ['chrono-metaverse · trureturing · 商户渠道', 'chrono-metaverse · trureturing · merchants'], short: ['上线', 'live'] }
+    { id: 'surface', code: 'L5', name: ['上线表面', 'Live Surface'], role: ['chrono-metaverse · 商户渠道', 'chrono-metaverse · merchant channels'], short: ['上线', 'live'] }
   ];
   const CONTEXT = ['bay', 'harness', 'runtime', 'skills'];   // what the engine's context can see: everything above NyxID
   const NAME = Object.fromEntries(LAYERS.map((l) => [l.id, l]));
@@ -166,6 +166,10 @@
       roundRect(ctx, bx.x + 0.5, r.y + 0.5, bx.w - 1, r.h - 1, 5);
       ctx.fillStyle = TRV.alpha(l.id === 'vault' ? P.violet : l.id === 'surface' ? P.sigma : P.lineHot, l.id === 'bay' ? 0.1 : 0.07); ctx.fill();
       ctx.strokeStyle = TRV.alpha(l.id === 'vault' ? P.violet : P.lineHot, ctxZone || l.id === 'surface' ? 0.55 : 0.75); ctx.lineWidth = 1; ctx.stroke();
+      if (D.layer === l.id) {
+        ctx.fillStyle = P.amber;
+        ctx.fillRect(bx.x + 1, r.y + 3, 3, r.h - 6);
+      }
       if (thumb) continue;
       const lx = bx.x + 10, lw = bx.w * (l.id === 'bay' ? 0.27 : 0.44) - 14, title = (l.code ? `${l.code}  ` : '') + L(l.name[0], l.name[1]);
       const ts = fitText(ctx, title, lw, fs, 'display', 600), two = r.h >= ts * 2.6;
@@ -192,8 +196,8 @@
   function drawLanes(ctx, G, D, thumb) {
     const { rows, xL, xR, boundary, bx } = G, top = rows.bay.y + rows.bay.h * 0.9, bottom = rows.surface.cy;
     for (const [x, dir] of [[xL, 1], [xR, -1]]) {
-      ctx.strokeStyle = TRV.alpha(P.cyan, 0.32); ctx.lineWidth = thumb ? 2.4 : 1.4; ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, boundary); ctx.stroke();
-      ctx.strokeStyle = TRV.alpha(P.violet, 0.45); ctx.beginPath(); ctx.moveTo(x, boundary); ctx.lineTo(x, bottom); ctx.stroke();
+      ctx.strokeStyle = TRV.alpha(P.cyan, 0.68); ctx.lineWidth = thumb ? 2.4 : 1.4; ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, boundary); ctx.stroke();
+      ctx.strokeStyle = TRV.alpha(P.violet, 0.7); ctx.beginPath(); ctx.moveTo(x, boundary); ctx.lineTo(x, bottom); ctx.stroke();
       ctx.fillStyle = TRV.alpha(P.dim, 0.7);
       for (const l of LAYERS) {
         if (l.id === 'bay' || l.id === 'surface') continue;
@@ -201,7 +205,7 @@
         ctx.beginPath(); ctx.moveTo(x - 3.5, cy - 2.5 * dir); ctx.lineTo(x + 3.5, cy - 2.5 * dir); ctx.lineTo(x, cy + 2.5 * dir); ctx.closePath(); ctx.fill();
       }
     }
-    ctx.strokeStyle = TRV.alpha(P.violet, 0.45); ctx.lineWidth = thumb ? 2.4 : 1.4; ctx.beginPath(); ctx.moveTo(xL, bottom); ctx.lineTo(xR, bottom); ctx.stroke();
+    ctx.strokeStyle = TRV.alpha(P.violet, 0.7); ctx.lineWidth = thumb ? 2.4 : 1.4; ctx.beginPath(); ctx.moveTo(xL, bottom); ctx.lineTo(xR, bottom); ctx.stroke();
     // the NyxID boundary
     ctx.strokeStyle = P.violet; ctx.lineWidth = thumb ? 2.6 : 1.6; ctx.setLineDash([6, 4]); ctx.beginPath(); ctx.moveTo(bx.x + 4, boundary); ctx.lineTo(bx.x + bx.w - 4, boundary); ctx.stroke(); ctx.setLineDash([]);
     // the write gate on the request lane, on the boundary
@@ -210,7 +214,8 @@
     ctx.strokeStyle = waiting ? P.amber : P.dim;
     ctx.beginPath(); ctx.moveTo(xL - gw / 2, boundary - 7); ctx.lineTo(xL - gw / 2, boundary + 7); ctx.moveTo(xL + gw / 2, boundary - 7); ctx.lineTo(xL + gw / 2, boundary + 7); ctx.stroke();
     if (S.policy === 'gate') {
-      const open = D.gate === 'approved' && D.t >= D.gateOpen - 1e-9, a = open ? -1.05 : 0;
+      const elapsed = D.t - D.gateOpen;
+      const a = D.gate === 'approved' ? -1.05 * TRV.smooth(clamp(elapsed / 1.8, 0, 1)) : 0;
       ctx.save(); ctx.translate(xL - gw / 2, boundary); ctx.rotate(a);
       ctx.strokeStyle = waiting ? P.amber : P.lineHot; ctx.lineWidth = waiting ? 3 : 2.2; if (waiting) { ctx.shadowColor = P.amber; ctx.shadowBlur = 10; }
       ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(gw, 0); ctx.stroke(); ctx.restore(); ctx.shadowBlur = 0;

@@ -23,9 +23,7 @@
       "tools/tbook/model.py",
       "tools/tbook/paths.py",
       "tools/tbook/summary.py",
-      "tools/tbook/viz.py",
-      "books/ai-employee-operations/en/ch01-six-role-ai-workforce.md",
-      "books/ai-employee-operations/zh/ch01-six-role-ai-workforce.md"
+      "tools/tbook/viz.py"
     ]
   }
 }
