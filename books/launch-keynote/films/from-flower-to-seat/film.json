@@ -8,10 +8,10 @@
   "released": "2026-11-26",
   "duration": "0:47",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · a wireframe lobby, 1,108 seats drawn one by one, a promenade of 18 stands",
+  "style": "dual-polarity optical glass · a wireframe lobby, 1,108 seats drawn one by one, a promenade of 18 stands",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [

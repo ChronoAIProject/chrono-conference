@@ -1,0 +1,31 @@
+{
+  "title": "Build for What Comes Next: The 2026 Virtual Launch",
+  "title_zh": "面向未来的造物 · 2026 线上发布会全片",
+  "summary": "At Street Corner, ChronoAI Pte. Ltd. opens the hood on NyxID, Ornn, CMA, heca, chrono-harness and sshx, from chrono-metaverse, chrono-cd and Living with AI to six launch roles including Finance NyxBot. In its own observatory, independent research organization The Omega Institute opens a pinned Lean 4 proof for inspection and records the open questions and Mathesis review counts alongside it.",
+  "summary_zh": "在街角前厅，ChronoAI Pte. Ltd. 展示 NyxID、Ornn、CMA、heca、chrono-harness 与 sshx 如何支撑 chrono-metaverse、chrono-cd 和 Living with AI，并公开包括财务 NyxBot 在内的六个发布会岗位的实操边界。独立科研机构 The Omega Institute 则在自己的观测站里打开一条可核验的 Lean 4 反驳定理，列出开放问题与 Mathesis 审稿记录。",
+  "subject": "https://github.com/the-omega-institute/trureturing",
+  "publication_basis": "pinned",
+  "released": "2026-11-27",
+  "duration": "8:20",
+  "resolution": "1920x1080@30",
+  "style": "dual-polarity architectural cinema · warm architectural stone (ChronoAI) and deep-space optical glass (The Omega Institute), live 3D observatory sweeps, verified Lean 4 audit",
+  "narration": {
+    "language": "en",
+    "engine": "local-neural-tts",
+    "voice": "bm_george"
+  },
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "lean": [
+    "D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone",
+    "D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout",
+    "D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result"
+  ],
+  "outputs": {
+    "narrated": "launch-keynote_virtual-launch-2026_narrated_EN_subs_ZH-EN.mp4",
+    "narrated_720p": "launch-keynote_virtual-launch-2026_720p_narrated.mp4",
+    "cover": "launch-keynote_virtual-launch-2026_cover.jpg"
+  }
+}

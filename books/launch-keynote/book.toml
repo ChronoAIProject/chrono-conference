@@ -25,6 +25,9 @@ en = "The 2026 ChronoAI Virtual Launch Manifesto & Keynote"
 zh = "从执行成本下降与判断力的稀缺谈起，沿着整车架构演示、开放科研核验和 Street Corner 虚拟会场，走完 75 分钟的线上发布会。收录全程讲稿、导播提示与证据总账。"
 en = "Follow the 75-minute virtual launch from the falling cost of execution and the scarcity of judgment through the complete-vehicle demo, an open research audit, and a tour of Street Corner. Includes the full script, broadcast cues, and claims ledger."
 
+[films]
+long_form = ["virtual-launch-2026"]
+
 [outputs]
 html = true
 # PDF 版本：screen = 深色霓虹屏幕版；print = 白底印刷版；academic = A4 单栏学术预印本（可选）。
