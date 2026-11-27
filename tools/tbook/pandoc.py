@@ -1571,7 +1571,7 @@ def book_meta(site: config.Site, book: config.Book, edition: config.Edition, mod
         date = {"year": 1970, "month": 1, "day": 1, "iso": book.date}
     online = site.book_url(book.slug, lang) + "/" if site.base_url else ""
     repo_url = f"https://github.com/{site.repo}" if site.repo else ""
-    polarity = book.polarity or "deep-space"
+    polarity = getattr(book, "polarity", "deep-space") or "deep-space"
     independent = polarity == "deep-space" and "The Omega Institute" in book.authors
     publisher = "The Omega Institute" if independent else site.text(site.title, lang)
     screen_label = "pdf.variant_screen_daylight" if polarity == "daylight" else "pdf.variant_screen"

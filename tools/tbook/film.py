@@ -1514,8 +1514,9 @@ def hub_html(site: config.Site, book: config.Book, lock: lean.Lock | None = None
         head_fonts = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
                       '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
                       f'<link rel="stylesheet" href="{esc(fonts)}">\n')
+    theme_attrs = polarity_attrs(getattr(book, "polarity", "deep-space"))
     return f"""<!doctype html>
-<html lang="zh-CN" data-lang="zh" data-title-zh="{esc(book.code)} · {esc(films_zh)} · {esc(title_zh)}" data-title-en="{esc(book.code)} · {esc(films_en)} · {esc(title_en)}"{polarity_attrs(book.polarity)}>
+<html lang="zh-CN" data-lang="zh" data-title-zh="{esc(book.code)} · {esc(films_zh)} · {esc(title_zh)}" data-title-en="{esc(book.code)} · {esc(films_en)} · {esc(title_en)}"{theme_attrs}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">

@@ -242,7 +242,7 @@ def build(book, only: list[str] | None = None, *, check: bool = False) -> tuple[
             wanted = [(out_path(book, name, ed.lang), svg)]
             copies = slide_copies(book, name, ed.lang)
             if copies:
-                fixed_svg = slide_svg(svg, book.polarity)
+                fixed_svg = slide_svg(svg, getattr(book, "polarity", "deep-space"))
                 wanted.extend((p, fixed_svg) for p in copies)
             for dst, text in wanted:
                 if not dst.is_file() or dst.read_text(encoding="utf-8") != text:
@@ -348,7 +348,7 @@ def check(book) -> list[Issue]:
         issues.append(Issue("error", d, 0, msg))
     for p in changed:
         if p.parent.name == "img" and p.parent.parent.parent.name == "slides":
-            palette = "paper" if book.polarity == "daylight" else "screen"
+            palette = "paper" if getattr(book, "polarity", "deep-space") == "daylight" else "screen"
             what = f"is not the {palette}-palette copy of the figure its script draws now"
         else:
             what = "is stale: its script draws something else" if p.is_file() else "has not been generated"

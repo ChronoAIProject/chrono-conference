@@ -2019,7 +2019,7 @@ def index_html(site: config.Site, book: config.Book, decks: list[dict[str, Any]]
                   f'<link rel="stylesheet" href="{esc(fonts_css)}">\n') if fonts_css else ""
     title_text = " · ".join(dict.fromkeys(f"{book.edition(lang).title} · {config.s(lang, 'ui.slides') or 'Slides'}" for lang in langs))
     return f"""<!doctype html>
-<html lang="{esc(config.bcp47(primary))}"{polarity_attrs(book.polarity)}>
+<html lang="{esc(config.bcp47(primary))}"{polarity_attrs(getattr(book, "polarity", "deep-space"))}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

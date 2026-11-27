@@ -923,8 +923,9 @@ def book_card(frame: Frame, view: BookView, lang: str = "") -> str:
     sub = bi.text(lambda lang: config.pick(book.subtitle, view.edition_for(lang), book.languages)) if book.subtitle else ""
     desc = bi.text(lambda lang: config.pick(book.description, view.edition_for(lang), book.languages)) if book.description else ""
     hid = f"book-{slug}"
+    polarity = getattr(book, "polarity", "deep-space") or "deep-space"
     return (
-        f'<article class="book panel" aria-labelledby="{esc(hid)}" data-book-polarity="{esc(book.polarity or "deep-space")}">'
+        f'<article class="book panel" aria-labelledby="{esc(hid)}" data-book-polarity="{esc(polarity)}">'
         f'<a class="cover-link" href="{esc(landing)}" tabindex="-1" aria-hidden="true">{cover_html(bi, view, content, alt=False)}</a>'
         f'<div class="body">'
         f'<p class="code">{logo_html(book.code)} <span class="ver">· v{esc(book.version)}</span></p>'
@@ -1465,7 +1466,8 @@ def landing_html(frame: Frame, view: BookView, lang: str = "") -> str:
     return page(frame, prefix=assets,
                 titles=lambda lang: f"{ed_text(book.title)(lang)} · {site_title(lang)}",
                 description=lambda lang: ed_text(book.description)(lang) or ed_text(book.subtitle)(lang),
-                body=body, og_image=og, canonical=canonical, lang=lang, slug=book.slug, polarity=book.polarity)
+                body=body, og_image=og, canonical=canonical, lang=lang, slug=book.slug,
+                polarity=getattr(book, "polarity", "deep-space"))
 
 
 # --------------------------------------------------------------------------- 404 and manifest

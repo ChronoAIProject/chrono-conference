@@ -1150,8 +1150,9 @@ def hub_html(site, book, lock: lean.Lock | None = None) -> str:
                       f'<link rel="stylesheet" href="{esc(fonts)}">\n')
     desc_zh = f"{title_zh} · {viz_zh}"
     desc_en = f"{title_en} · {viz_en}"
+    theme_attrs = polarity_attrs(getattr(book, "polarity", "deep-space"))
     return f"""<!doctype html>
-<html lang="zh-CN" data-title-en="{esc(book.code)} · {esc(viz_en)} · {esc(title_en)}"{polarity_attrs(book.polarity)}>
+<html lang="zh-CN" data-title-en="{esc(book.code)} · {esc(viz_en)} · {esc(title_en)}"{theme_attrs}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1304,7 +1305,8 @@ def build(site, book, out_dir: Path) -> None:
     if lock:
         (out_dir / "assets" / "trureturing.json").write_text(
             json.dumps(asdict(lock), ensure_ascii=False) + "\n", encoding="utf-8")
-    daylight_attrs = polarity_attrs(book.polarity) if book.polarity == "daylight" else ""
+    polarity = getattr(book, "polarity", "deep-space")
+    daylight_attrs = polarity_attrs(polarity) if polarity == "daylight" else ""
     for v in live_entries(book):
         dst = out_dir / v["id"]
         shutil.copytree(book.viz_dir / v["id"], dst, ignore=_ignore)
