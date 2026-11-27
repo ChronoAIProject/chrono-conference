@@ -22,8 +22,8 @@ zh = "运营剧本、记者问答与商户上手手册"
 en = "Operations Playbook, Press Q&A, and Merchant Onboarding"
 
 [book.description]
-zh = "跟随六类 AI 员工完成会场接待、席位预订、社群与后台运营，了解哪些事项需要人工审批。收录彩排与发布会当日值守剧本、记者问答和商户接入步骤。"
-en = "Follow six AI employee roles through guest reception, seat booking, community engagement, and backstage operations, with clear points for human approval. Includes rehearsal and show-day playbooks, press Q&A, and step-by-step merchant onboarding."
+zh = "跟随六大核心岗位与三类运维守卫（九个独立 AI 员工岗位，102/120 流程覆盖）完成会场接待、席位预订、社群与后台运营，明确每一道人工审批闸门。收录彩排与发布会当日值守剧本、记者问答和商户上手步骤。"
+en = "Follow six core AI employee roles and three operations watchdogs (nine standalone roles covering 102/120 workflows) through guest reception, seat booking, community engagement, and backstage operations, with explicit human approval gates. Includes rehearsal and show-day playbooks, press Q&A, and step-by-step merchant onboarding."
 
 [theme]
 polarity = "daylight"
