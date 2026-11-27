@@ -1,0 +1,18 @@
+/* VEHICLE//STACK: the shared lab layout (../assets/theme.css) carries the page. Only what belongs to this page is here;
+   colours come from the tokens (var(--cyan) …), never from hex values. */
+#cv { cursor: default; }
+#stage { container-type: inline-size; }
+/* six bands (engine bay and five layers) need some height in the full lab; a cited figure fits its frame */
+.lab .center > #stage { min-height: max(360px, var(--hud-min-height, 0px), var(--plot-min-height, 0px)); }
+:root[data-embed] .lab .center > #stage { min-height: max(280px, var(--hud-min-height, 0px), var(--plot-min-height, 0px)); }
+:root[data-embed][data-figure] .lab .center > #stage { min-height: max(var(--hud-min-height, 0px), var(--plot-min-height, 0px)); }
+/* amber stays for the current engine and the waiting gate: the stage title and the tagline emphasis take other tokens */
+.hud-tl .big { color: var(--sigma); }
+.tagline em { color: var(--cyan); }
+#approve:disabled { opacity: 0.45; cursor: default; }
+#revoke[aria-pressed="true"] { background: var(--magenta); border-color: var(--magenta); color: var(--on-accent); box-shadow: none; }
+@container (max-width: 560px) {
+  .hud-tl .big { font-size: 11.5px; }
+  .hud-tl .sub { font-size: 11px; }
+  .hud-bl { font-size: 10px; gap: 2px 10px; }
+}

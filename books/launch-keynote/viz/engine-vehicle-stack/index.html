@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN" data-title-en="VEHICLE//STACK · Engine-to-Vehicle Stack · swap the engine without stopping the car">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VEHICLE//STACK 从发动机到整车 · 换发动机不停车，明文密钥不进上下文</title>
+<meta name="description" content="整车的五层剖面：可替换的机舱（Engine Alpha、Engine Beta、Local Core）装在 NyxID、Ornn、CMA / heca、chrono-harness 与上线表面之上。沿时间轴追踪一次读调用与一次写调用：机舱只拿到能力句柄，明文密钥只在 NyxID 边界之下出现；写操作停在人工闸门前；吊销授权后调用当场收到 403 REVOKED。时序是示意模型。A five-layer cutaway of the vehicle: a swappable engine bay (Engine Alpha, Engine Beta, Local Core) on NyxID, Ornn, CMA / heca, chrono-harness and the live surfaces. Trace a read call and a write call: the engine only holds a capability handle, the plaintext key appears only below the NyxID boundary, a write waits at the human gate, and a revoked grant is refused with 403 REVOKED. The timing is an illustrative model.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../assets/shell.js"></script>
+<script src="../assets/kit.js"></script>
+</head>
+<body data-viz-id="engine-vehicle-stack">
+<div class="app lab" id="app">
+  <header class="top">
+    <div class="brand">
+      <a class="crumb" href="../"><span class="zh">◂ 可视化索引</span><span class="en">◂ Visualizations</span></a>
+      <h1 class="logo" data-text="VEHICLE//STACK">VEHICLE<b>//</b>STACK</h1>
+      <div class="tagline">
+        <span class="zh">从发动机到整车 · <em>发动机可替换，整车不停转：把任意推理引擎插进 NyxID、Ornn、CMA、heca 与 chrono-harness</em></span>
+        <span class="en">Engine-to-Vehicle Stack · <em>swap the engine without stopping the car: plug any reasoning core into NyxID, Ornn, CMA, heca and chrono-harness</em></span>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span class="pill" id="pillEngine"><span class="zh">机舱</span><span class="en">ENGINE</span> <strong>—</strong></span>
+      <span class="pill hot" id="pillPlain"><span class="zh">上下文明文</span><span class="en">PLAINTEXT IN CONTEXT</span> <strong>—</strong></span>
+      <span class="pill" id="pillGrant"><span class="zh">授权</span><span class="en">GRANT</span> <strong>—</strong></span>
+      <div class="langs" role="group" aria-label="语言 Language"><button data-lang-set="zh" aria-pressed="true">中</button><button data-lang-set="en" aria-pressed="false">EN</button></div>
+    </div>
+  </header>
+
+  <aside class="col deck" aria-label="实验控制" data-aria-en="Experiment controls">
+    <section class="panel sec">
+      <h2><span class="zh">实验卡带</span><span class="en">Experiments</span><span class="aside">PRESETS</span></h2>
+      <div class="presets cards" id="presets">
+        <button class="preset" data-preset="swap" aria-pressed="false"><span class="code">HOT-SWAP</span><span class="cn zh">热换发动机：会话一个不丢</span><span class="cn en">Hot engine swap: no session lost</span></button>
+        <button class="preset" data-preset="vault" aria-pressed="false"><span class="code">VAULT</span><span class="cn zh">凭证不进上下文：明文 0</span><span class="cn en">Zero-secret vault: plaintext 0</span></button>
+        <button class="preset" data-preset="approval" aria-pressed="false"><span class="code">APPROVAL</span><span class="cn zh">写操作停在人工闸门前</span><span class="cn en">A write waits at the human gate</span></button>
+        <button class="preset" data-preset="revoke" aria-pressed="false"><span class="code">REVOKE</span><span class="cn zh">一键吊销：403 REVOKED</span><span class="cn en">Instant revocation: 403 REVOKED</span></button>
+      </div>
+      <p class="note" id="presetNote"></p>
+    </section>
+
+    <section class="panel sec">
+      <h2><span class="zh">机舱</span><span class="en">Engine bay</span><span class="aside">SWAP</span></h2>
+      <div class="chips" id="engineChips" role="group" aria-label="推理引擎" data-aria-en="Reasoning engine">
+        <button class="chip" data-engine="alpha" aria-pressed="true">Engine Alpha</button><button class="chip" data-engine="beta" aria-pressed="false">Engine Beta</button><button class="chip" data-engine="local" aria-pressed="false">Local Core</button>
+      </div>
+      <p class="note"><span class="zh">在任何时刻换引擎：会话、技能与判官都在底盘里，不随引擎走。</span><span class="en">Swap at any moment: the session, the skills and the judges live in the chassis, not in the engine.</span></p>
+    </section>
+
+    <section class="panel sec">
+      <h2><span class="zh">写操作策略</span><span class="en">Write policy</span><span class="aside">GATE</span></h2>
+      <div class="chips" id="policyChips" role="group" aria-label="写操作策略" data-aria-en="Write policy">
+        <button class="chip" data-policy="gate" aria-pressed="true"><span class="zh">写入需人工批准</span><span class="en">Human-gate writes</span></button><button class="chip" data-policy="auto" aria-pressed="false"><span class="zh">全部自动放行</span><span class="en">Auto-pass all</span></button>
+      </div>
+      <div class="chips">
+        <button class="chip" id="approve"><span class="zh">批准这次写入</span><span class="en">Approve this write</span></button>
+        <button class="chip" id="revoke" aria-pressed="false"><span class="zh">吊销会话授权</span><span class="en">Revoke the session grant</span></button>
+      </div>
+      <p class="note"><span class="zh">页面从不替你批准；吊销在当前时刻发出，再按一次撤回。</span><span class="en">The page never approves for you; a revocation is issued at the current moment, press again to withdraw it.</span></p>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="stage still" id="stage" data-thumb aria-label="舞台：机舱与五层底盘的剖面，一个工具调用数据包沿请求道下行、沿响应道上行" data-aria-en="Stage: a cutaway of the engine bay and the five layers of the chassis, with a tool-call packet going down the request lane and up the response lane">
+      <canvas class="fill" id="cv"></canvas>
+      <div class="scan"></div><div class="vig"></div>
+      <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
+      <div class="hud-bl" id="legend"></div>
+    </div>
+    <div class="tour" id="tour">
+      <button class="tbtn" data-tour="prev" aria-label="上一个实验" data-aria-en="Previous experiment">◀</button>
+      <div class="what"></div>
+      <button class="tbtn" data-tour="next" aria-label="下一个实验" data-aria-en="Next experiment">▶</button>
+    </div>
+    <div class="strip">
+      <section class="panel">
+        <div class="head"><h2><span class="zh">明文密钥在哪里</span><span class="en">Where the plaintext key is</span></h2><span id="pAMeta"></span></div>
+        <canvas id="plotA" aria-label="上下文中与 NyxID 边界之下的明文密钥份数随时间的变化" data-aria-en="Copies of the plaintext key in context and below the NyxID boundary over time"></canvas>
+      </section>
+      <section class="panel">
+        <div class="head"><h2><span class="zh">每层停留与闸门等待（模型）</span><span class="en">Time in each layer and the gate wait (model)</span></h2><span id="pBMeta"></span></div>
+        <canvas id="plotB" aria-label="数据包在每一层停留的模型时长与人工闸门的等待" data-aria-en="Model time the packets spend in each layer, and the wait at the human gate"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="readouts" aria-live="polite">
+      <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside">plaintext_in_context</span></h2>
+      <dl class="ro">
+        <div class="key"><dt><span class="zh">上下文中的明文密钥（机舱与 NyxID 之上各层）</span><span class="en">Plaintext keys in context (engine bay and every layer above NyxID)</span></dt><dd><b id="roPlain">—</b><span id="roPlainSub"></span></dd></div>
+        <div class="a"><dt><span class="zh">当前引擎</span><span class="en">Current engine</span></dt><dd id="roEngine">—</dd></div>
+        <div class="c"><dt><span class="zh">数据包</span><span class="en">Packet</span></dt><dd id="roPacket">—</dd></div>
+        <div class="wide"><dt><span class="zh">写入闸门</span><span class="en">Write gate</span></dt><dd id="roGate">—</dd></div>
+        <div class="wide"><dt><span class="zh">会话授权</span><span class="en">Session grant</span></dt><dd id="roGrant">—</dd></div>
+        <div class="wide"><dt><span class="zh">换引擎之后：重新鉴权 · 丢失状态</span><span class="en">After engine swaps: re-authentications · state lost</span></dt><dd id="roSwap">—</dd></div>
+      </dl>
+      <p class="note" id="roNote"></p>
+    </section>
+
+    <section class="panel sec" id="evidence">
+      <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">ChronoAI stack</span></h2>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">示意模型：五层的分工取自第二章对整车架构的描述；两次调用的时序（一格 = 0.1 s）、闸门位置、吊销后约 2.1 s 的热重载窗口都是为画面选定的模型，不是对线上系统的测量。引擎名 Engine Alpha、Engine Beta、Local Core 是占位名，不指任何具体产品。</span><span class="en">An illustrative model: the division of labour between the five layers follows Chapter 2's description of the vehicle; the timing of the two calls (one tick = 0.1 s), the position of the gate and the ~2.1 s hot-reload window after a revocation are choices made for the picture, not measurements of the live system. Engine Alpha, Engine Beta and Local Core are placeholder names, not specific products.</span></span></div>
+      <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面逐格算出的数，不是证明：每一格时间里数据包在哪一层、带着句柄还是明文密钥，都由同一张时序表算出；上下文中的明文份数是对机舱与 NyxID 之上各层的逐层求和。</span><span class="en">Numbers the page computes tick by tick, not a proof: in every tick, which layer the packet is in and whether it carries a handle or the plaintext key follow from one timing table; plaintext in context is the sum over the engine bay and every layer above NyxID.</span></span></div>
+      <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
+    </section>
+  </aside>
+
+  <footer class="rail" id="rail">
+    <div class="transport">
+      <button class="tbtn" id="rew" aria-label="回到起点" data-aria-en="Back to the start">⏮</button>
+      <button class="tbtn" id="play" aria-label="播放 / 暂停" data-aria-en="Play / pause" aria-pressed="false">▶</button>
+      <span class="chips" id="speedChips" role="group" aria-label="播放速度" data-aria-en="Playback speed">
+        <button class="chip" data-speed="0.35" aria-pressed="false">0.35×</button><button class="chip" data-speed="1" aria-pressed="true">1×</button><button class="chip" data-speed="2.5" aria-pressed="false">2.5×</button>
+      </span>
+    </div>
+    <div class="clock">
+      <span class="tau" id="tau"></span>
+      <input type="range" id="now" min="0" max="100" step="any" value="0" aria-label="时间轴：一次读调用与一次写调用，共 10 秒（模型）" data-aria-en="Rail: one read call and one write call, 10 seconds in all (model)">
+    </div>
+    <div class="keys">
+      <kbd>Space</kbd> <span class="zh">播放</span><span class="en">play</span> · <kbd>←</kbd><kbd>→</kbd> <span class="zh">每次 0.2 s</span><span class="en">0.2 s at a time</span> · <kbd>A</kbd> <span class="zh">批准</span><span class="en">approve</span> · <kbd>R</kbd> <span class="zh">吊销</span><span class="en">revoke</span>
+    </div>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
+    <div class="zh">
+      <p class="lede">整车的剖面：最上面是可替换的机舱，下面依次是 chrono-harness（判官）、CMA / heca（运行时）、Ornn（技能）、NyxID（金库与代理），最底下是调用最终作用的上线表面（chrono-metaverse、trureturing、商户渠道）。时间轴追踪两次工具调用：先读、后写。不变的是：机舱与 NyxID 之上各层里的明文密钥永远是 0。本页是示意模型与数值演示，不是证明，也不是对线上系统的测量；“发动机与整车”是结构类比，不是定理。</p>
+      <ol>
+        <li><b>能力句柄。</b>引擎发出的调用只带一个不透明的能力句柄。数据包下行到 NyxID 时先核对作用域，再在代理内存里注入真实凭证；带着明文密钥的只有 NyxID 边界之下的那一段（代理与上线表面之间）。回程时 NyxID 先剥掉凭证相关的头，再把数据交回上面各层。</li>
+        <li><b>热换发动机。</b>会话、技能版本与判官都登记在底盘里，不在引擎里。换引擎时（任何时刻都可以）会话数仍是 1，重新鉴权 0 次，正在外面跑的调用照常回来，交给新引擎。</li>
+        <li><b>写操作人工闸门。</b>读调用在 NyxID 的策略检查处自动放行；写调用在“写入需人工批准”策略下停在琥珀色闸门前，直到有人按下“批准这次写入”。页面从不自动批准。改成“全部自动放行”可以对照看写调用直接穿过。</li>
+        <li><b>一键吊销。</b>吊销在当前时刻发出：此后到达 NyxID 策略检查（或正在闸门前等待）的调用当场收到 403 REVOKED，不再注入凭证；运行中的沙箱在约 2.1 s 的热重载窗口内换上新的绑定，不必重启，也不必轮换上游服务的主密钥。约 2.1 s 是第二章所述 CMA 凭证热重载的量级，本页没有测量它。</li>
+        <li><b>时序。</b>一格是 0.1 s，整条时间轴 10 s。读调用在 0–6 s 走完一圈，写调用 6 s 出发、6.6 s 到达闸门。这张时序表只为画面而定。</li>
+      </ol>
+      <p class="lede refs">书中：<a href="../../zh/ch02-engine-and-vehicle.html" target="_top">第二章 · 发动机人人可买，我们造的是整车</a></p>
+    </div>
+    <div class="en">
+      <p class="lede">A cutaway of the vehicle: at the top the swappable engine bay, then chrono-harness (the judges), CMA / heca (the runtime), Ornn (the skills), NyxID (the vault and proxy), and at the bottom the live surfaces the calls finally act on (chrono-metaverse, trureturing, the merchant channel). The rail traces two tool calls: a read, then a write. What does not move: plaintext keys in the engine bay and in every layer above NyxID stay at 0. The page is an illustrative model and a numerical illustration, not a proof, and not a measurement of the live system; "engine and vehicle" is a structural analogy, not a theorem.</p>
+      <ol>
+        <li><b>Capability handle.</b> A call from the engine carries nothing but an opaque capability handle. On its way down, NyxID first checks the scope, then injects the real credential in proxy memory; only the stretch below the NyxID boundary (between the proxy and the live surface) carries the plaintext key. On the way back, NyxID strips the credential headers before handing the data to the layers above.</li>
+        <li><b>Hot engine swap.</b> The session, the skill versions and the judges are registered in the chassis, not in the engine. On a swap (at any moment) the session count stays 1, re-authentications stay 0, and a call that is out comes back as usual, to the new engine.</li>
+        <li><b>Write approval gate.</b> A read passes NyxID's policy check on its own; under "human-gate writes" a write stops at the amber gate until someone presses "approve this write". The page never approves by itself. Switch to "auto-pass all" to see the write go straight through, for comparison.</li>
+        <li><b>Instant revocation.</b> A revocation is issued at the current moment: from then on a call reaching NyxID's policy check (or waiting at the gate) is refused at once with 403 REVOKED and no credential is injected; running sandboxes pick up the new binding within the ~2.1 s hot-reload window, with no restart and no rotation of the upstream services' master keys. About 2.1 s is the order of the CMA credential hot reload described in Chapter 2; the page does not measure it.</li>
+        <li><b>Timing.</b> One tick is 0.1 s and the rail is 10 s long. The read completes its round trip in 0–6 s; the write leaves at 6 s and reaches the gate at 6.6 s. This table is chosen for the picture only.</li>
+      </ol>
+      <p class="lede refs">In the book: <a href="../../en/ch02-engine-and-vehicle.html" target="_top">Chapter 2 · Anyone can buy an engine; we build the vehicle</a></p>
+    </div>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
