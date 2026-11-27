@@ -2,8 +2,8 @@
   "schema": "trureturing-books.lock.v1",
   "repo": "the-omega-institute/trureturing",
   "branch": "dev",
-  "commit": "8a3f20fbde61f3e07c7a7a966c073c8e0ac39350",
-  "pinned_at": "2026-11-26T23:06:28Z",
+  "commit": "548388cde9b27d282a17a3ead04870288e40d197",
+  "pinned_at": "2026-11-27T22:39:20Z",
   "declarations": {
     "D5/S1/Deficit/DeficitThreeValued.deficit_three_valued": {
       "module": "D5/S1/Deficit/DeficitThreeValued",
