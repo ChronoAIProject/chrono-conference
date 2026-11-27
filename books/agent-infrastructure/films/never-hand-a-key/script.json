@@ -1,0 +1,19 @@
+{
+  "voice": "af_heart", "speed": 0.94,
+  "say": {"NyxID": "Nix I D", "OpenAPI-to-MCP": "Open A P I to M C P"},
+  "music": {"bpm": 96, "progression": "d-minor"},
+  "scenes": [
+    {"id": "leak", "name": "PLAINTEXT", "lead": 1.8, "tail": 0.5, "music": [0.8, 0.6, 0.3, 0.0, 0.3], "lines": [
+      ["Giving an autonomous agent your raw API keys is like taping your house keys to a stranger's forehead.", "把明文 API 密钥塞进 Agent 环境变量，就像把家门钥匙贴在陌生人额头上。"],
+      ["One poisoned webpage or prompt injection, and every connected service falls in a single turn.", "只需一页带毒网页或一次提示注入，所有相连服务就会在一轮之内全线沦陷。"]
+    ]},
+    {"id": "vault", "name": "VAULT", "lead": 0.3, "tail": 0.5, "music": [1.0, 0.8, 0.8, 0.5, 0.4], "lines": [
+      ["NyxID breaks that assumption. Secrets stay inside an encrypted proxy; the agent receives only a narrow capability handle.", "NyxID 打破了这个错误前提。密钥留在加密代理金库内，Agent 拿到的只是窄作用域能力句柄。"],
+      ["Fifty-five built-in services, forty-one OpenAPI-to-MCP specs, nine messaging channels—zero plaintext secrets in the model window.", "五十五项内置服务、四十一份 OpenAPI 转 MCP 规范、九类消息渠道——上下文里的明文密钥始终为零。"]
+    ]},
+    {"id": "revoke", "name": "REVOKE", "lead": 0.3, "tail": 3.2, "music": [1.0, 0.7, 0.6, 0.6, 0.4], "lines": [
+      ["Write operations pause at a human approval gate, and revoking a grant converges in roughly two seconds without restarting the sandbox.", "写操作在人工闸门前暂停，吊销授权约两秒热生效，无需重启沙箱。"],
+      ["Trust boundaries are engineering, not polite instructions.", "信任边界靠工程硬约束，不靠客气的提示词。"]
+    ]}
+  ]
+}

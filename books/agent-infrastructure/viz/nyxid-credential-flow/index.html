@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN" data-title-en="NYXID//VAULT · NyxID credential flow · raw keys in the agent against a zero-secret proxy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NYXID//VAULT NyxID 凭证流 · 明文密钥直连对照零密钥代理</title>
+<meta name="description" content="同一次调用、同一条带毒的工具响应，分别走两条通道：上方是把 k 把明文密钥放进智能体环境的传统直连，下方是 NyxID 的四层零密钥代理（智能体运行时 → 受限能力令牌 → NyxID 代理与策略引擎 → 上游服务）。传统通道的泄露面随挂载服务数 k 线性增长，NyxID 一侧智能体能读到的明文密钥恒为 0；另演示约 2.1 s 的凭证热重载与 1 credit = 1 USD 的计量封顶。示意模型，不是证明。The same call and the same poisoned tool response travel two lanes: legacy wiring that puts k raw keys in the agent's environment, and NyxID's four-layer zero-secret proxy (agent runtime → scoped capability token → NyxID proxy and policy engine → upstream service). The legacy blast radius grows linearly with the number k of attached services; on the NyxID side the agent can read 0 plaintext secrets. Also: a hot credential reload of about 2.1 s, and metering at 1 credit = 1 USD with a per-agent ceiling. A schematic model, not a proof.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../assets/shell.js"></script>
+<script src="../assets/kit.js"></script>
+</head>
+<body data-viz-id="nyxid-credential-flow">
+<div class="app lab" id="app">
+  <header class="top">
+    <div class="brand">
+      <a class="crumb" href="../"><span class="zh">◂ 可视化索引</span><span class="en">◂ Visualizations</span></a>
+      <h1 class="logo" data-text="NYXID//VAULT">NYXID<b>//</b>VAULT</h1>
+      <div class="tagline">
+        <span class="zh">NyxID 凭证流 · <em>凭证留在金库，能力才穿过边界：明文密钥的泄露面随 k 增长，NyxID 一侧恒为 0</em></span>
+        <span class="en">NyxID credential flow · <em>credentials stay in the vault, only scoped capabilities cross the wire: the raw-key blast radius grows with k, NyxID's stays 0</em></span>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span class="pill" id="pillK">k <strong>—</strong></span>
+      <span class="pill" id="pillLegacy"><span class="zh">直连</span><span class="en">LEGACY</span> <strong>—</strong></span>
+      <span class="pill hot" id="pillNyx"><span class="keepcase">NyxID</span> <strong>0</strong></span>
+      <div class="langs" role="group" aria-label="语言 Language"><button data-lang-set="zh" aria-pressed="true">中</button><button data-lang-set="en" aria-pressed="false">EN</button></div>
+    </div>
+  </header>
+
+  <aside class="col deck" aria-label="实验控制" data-aria-en="Experiment controls">
+    <section class="panel sec">
+      <h2><span class="zh">实验卡带</span><span class="en">Experiments</span><span class="aside">PRESETS</span></h2>
+      <div class="presets cards" id="presets">
+        <button class="preset" data-preset="direct-leak" aria-pressed="false"><span class="code">DIRECT-LEAK</span><span class="cn zh">明文注入泄露：k 把钥匙全部外流</span><span class="cn en">Raw-key injection: all k keys leave</span></button>
+        <button class="preset" data-preset="scoped-proxy" aria-pressed="false"><span class="code">SCOPED-PROXY</span><span class="cn zh">受限能力代理：55 项服务，泄露 0</span><span class="cn en">Scoped proxy: 55 services, 0 leaked</span></button>
+        <button class="preset" data-preset="hot-reload" aria-pressed="false"><span class="code">HOT-RELOAD</span><span class="cn zh">热重载吊销：约 2.1 s，不重启</span><span class="cn en">Hot reload: about 2.1 s, no restart</span></button>
+        <button class="preset" data-preset="billing-meter" aria-pressed="false"><span class="code">BILLING-METER</span><span class="cn zh">计量封顶：1 credit = 1 USD</span><span class="cn en">Metering cap: 1 credit = 1 USD</span></button>
+      </div>
+      <p class="note" id="presetNote"></p>
+    </section>
+
+    <section class="panel sec">
+      <h2><span class="zh">工况</span><span class="en">Scenario</span><span class="aside">1–5</span></h2>
+      <div class="chips" id="scenarioChips" role="group" aria-label="工况" data-aria-en="Scenario">
+        <button class="chip" data-scenario="read" aria-pressed="false"><span class="zh">读取</span><span class="en">Read</span></button>
+        <button class="chip" data-scenario="write" aria-pressed="false"><span class="zh">写入</span><span class="en">Write</span></button>
+        <button class="chip" data-scenario="inject" aria-pressed="true"><span class="zh">注入攻击</span><span class="en">Injection</span></button>
+        <button class="chip" data-scenario="revoke" aria-pressed="false"><span class="zh">吊销</span><span class="en">Revoke</span></button>
+        <button class="chip" data-scenario="meter" aria-pressed="false"><span class="zh">计量</span><span class="en">Meter</span></button>
+      </div>
+      <div class="field">
+        <label for="kRange"><span class="zh">挂载服务数 k</span><span class="en">Attached services k</span><small class="zh">NyxID 内置 55 项服务</small><small class="en">NyxID ships 55 built-in services</small></label><output id="oK" for="kRange">12</output>
+        <input type="range" id="kRange" min="1" max="55" step="1" value="12" aria-label="挂载服务数 k" data-aria-en="Attached services k">
+      </div>
+      <h2 class="sub-h"><span class="zh">计费方式</span><span class="en">Billing</span><span class="aside">METER</span></h2>
+      <div class="chips" id="modeChips" role="group" aria-label="计费方式" data-aria-en="Billing mode">
+        <button class="chip" data-mode="credits" aria-pressed="true">CREDITS</button>
+        <button class="chip" data-mode="byok" aria-pressed="false">BYOK</button>
+      </div>
+      <p class="note"><span class="zh">计量工况下，CREDITS 从 NyxID 余额扣 credit；BYOK 由你自己的上游密钥结算，单代理封顶照样生效。</span><span class="en">In the meter scenario CREDITS debits the NyxID balance; BYOK bills your own upstream key, and the per-agent ceiling still applies.</span></p>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="stage still" id="stage" data-thumb aria-label="舞台：上方是明文密钥直连通道，下方是 NyxID 四层零密钥代理通道" data-aria-en="Stage: the legacy raw-key lane above, the NyxID four-layer zero-secret proxy lane below">
+      <canvas class="fill" id="cv"></canvas>
+      <div class="scan"></div><div class="vig"></div>
+      <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
+      <div class="hud-bl" id="legend">
+        <span><i class="sw mg"></i><span class="zh">明文密钥</span><span class="en">plaintext key</span></span>
+        <span><i class="sw cy"></i><span class="zh">受限能力 · NyxID</span><span class="en">scoped capability · NyxID</span></span>
+        <span><i class="sw vi"></i><span class="zh">审计与计量</span><span class="en">audit and metering</span></span>
+        <span><i class="sw am"></i><span class="zh">当前数据包</span><span class="en">current packet</span></span>
+      </div>
+    </div>
+    <div class="tour" id="tour">
+      <button class="tbtn" data-tour="prev" aria-label="上一个实验" data-aria-en="Previous experiment">◀</button>
+      <div class="what"></div>
+      <button class="tbtn" data-tour="next" aria-label="下一个实验" data-aria-en="Next experiment">▶</button>
+    </div>
+    <div class="strip">
+      <section class="panel">
+        <div class="head"><h2 id="pATitle"></h2><span id="pAMeta"></span></div>
+        <canvas id="plotA" aria-label="泄露面随挂载服务数 k 的变化" data-aria-en="Blast radius against the number k of attached services"></canvas>
+      </section>
+      <section class="panel">
+        <div class="head"><h2 id="pBTitle"></h2><span id="pBMeta"></span></div>
+        <canvas id="plotB" aria-label="沿时间轴：泄露的密钥或累计花费" data-aria-en="Along the rail: leaked keys or cumulative spend"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="readouts" aria-live="polite">
+      <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside">exposed_secrets</span></h2>
+      <dl class="ro">
+        <div class="key"><dt><span class="zh">智能体能读到的明文密钥（泄露面）</span><span class="en">Plaintext secrets the agent can read (blast radius)</span></dt><dd><b id="roBlast">—</b><span id="roBlastSub"></span></dd></div>
+        <div class="m"><dt><span class="zh">本次轨迹中外流的密钥</span><span class="en">Keys leaked in this trace</span></dt><dd id="roLeak">—</dd></div>
+        <div class="c"><dt><span class="zh">NyxID 判定</span><span class="en">NyxID verdict</span></dt><dd id="roVerdict">—</dd></div>
+        <div class="a"><dt><span class="zh">审计账本条目</span><span class="en">Audit ledger entries</span></dt><dd id="roAudit">—</dd></div>
+        <div class="wide"><dt id="roXLabel"></dt><dd id="roX">—</dd></div>
+      </dl>
+      <p class="note" id="roNote"></p>
+    </section>
+
+    <section class="panel sec" id="evidence">
+      <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">NyxID v0.78.0</span></h2>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">示意模型：两条通道、数据包的路线与时刻、示例单价与封顶都是为画面选定的，不是生产系统的抓包。架构数字按 2026-11-26 的 ChronoAIProject/NyxID@v0.78.0 与 api.nyxid.ai 公开配置：55 项内置服务、41 份 OpenAPI→MCP 规范、7 家 LLM 上游路由、9 类消息渠道；约 2.1 s 的凭证热重载来自第四章 CMA 的口径。</span><span class="en">A schematic model: the two lanes, the routes and times of the packets, and the example price and ceiling were chosen for the picture; this is not a capture of the production system. The architecture numbers are those of ChronoAIProject/NyxID@v0.78.0 and the public config of api.nyxid.ai as of 2026-11-26: 55 built-in services, 41 OpenAPI→MCP specs, 7 upstream LLM routes, 9 channel types; the hot credential reload of about 2.1 s is the figure chapter 4 gives for CMA.</span></span></div>
+      <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面算出的数：直连通道的泄露面等于挂载服务数 k，NyxID 一侧对每个 k ∈ 1…55、每种工况、时间轴上的每一刻都是 0；热重载用时 = 收敛时刻 − 吊销时刻；计量按 1 credit = 1 USD 逐笔累加，到封顶即停。数值演示，不是证明。</span><span class="en">Computed on the page: the legacy blast radius equals the number k of attached services; on the NyxID side it is 0 for every k in 1…55, every scenario and every moment of the rail; the reload time is the moment of convergence minus the moment of revocation; metering adds up call by call at 1 credit = 1 USD and stops at the ceiling. A numerical illustration, not a proof.</span></span></div>
+      <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
+    </section>
+  </aside>
+
+  <footer class="rail" id="rail">
+    <div class="transport">
+      <button class="tbtn" id="rew" aria-label="回到起点" data-aria-en="Back to the start">⏮</button>
+      <button class="tbtn" id="play" aria-label="播放 / 暂停" data-aria-en="Play / pause" aria-pressed="false">▶</button>
+      <span class="chips" id="speedChips" role="group" aria-label="播放速度" data-aria-en="Playback speed">
+        <button class="chip" data-speed="0.35" aria-pressed="false">0.35×</button><button class="chip" data-speed="1" aria-pressed="true">1×</button><button class="chip" data-speed="2.5" aria-pressed="false">2.5×</button>
+      </span>
+    </div>
+    <div class="clock">
+      <span class="tau" id="tau"></span>
+      <input type="range" id="now" min="0" max="100" step="any" value="0" aria-label="时间轴：一次调用的轨迹" data-aria-en="Rail: the trace of one call">
+    </div>
+    <div class="keys">
+      <kbd>Space</kbd> <span class="zh">播放</span><span class="en">play</span> · <kbd>←</kbd><kbd>→</kbd> <span class="zh">逐步</span><span class="en">step</span> · <kbd>1</kbd>–<kbd>5</kbd> <span class="zh">工况</span><span class="en">scenario</span>
+    </div>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
+    <div class="zh">
+      <p class="lede">同一次调用、同一条带毒的工具响应，同时走两条通道。上方是传统直连：k 项服务的明文密钥放在智能体的环境变量里；下方是 NyxID 的四层零密钥代理：智能体只持有一个受限能力句柄，真正的令牌封存在代理金库里，在请求离开边界前注入、在响应回传前洗掉。本页是示意模型与数值演示，不是证明，也不是生产系统的抓包。</p>
+      <ol>
+        <li><b>泄露面。</b>“智能体能读到的明文密钥”在直连通道里就是 k：一次成功的提示注入能把它们全部带走，所以泄露面随 k 线性增长。NyxID 一侧智能体的上下文里没有明文密钥，这个数对每个 k、每种工况都是 0。拖动 k（1 到 55），上方的钥匙格随之增减，下方智能体框里始终是空的。</li>
+        <li><b>作用域。</b>能力令牌只允许 <code>read:issues</code>：读取放行，越权写入与注入后发往攻击者的横向外联都在策略引擎处被拒绝，每一次放行或拒绝都记进审计账本。</li>
+        <li><b>热重载。</b>在 NyxID 里吊销一项绑定后，运行中的沙箱在约 2.1 s 内收敛到新绑定，不重启；之后的调用返回 <code>403 REVOKED</code>。直连通道要轮换上游密钥并重新部署，进程会重启一次。2.1 s 是第四章给出的 CMA 口径，页面按这个时长画。</li>
+        <li><b>计量。</b>每次代理调用按示例单价 0.25 credit 计量，1 credit = 1 USD；单代理封顶为示例值 4 credit，到顶后后续调用在代理处硬停。BYOK 模式下花费记在你自己的上游密钥上、不扣 credit，封顶仍然生效。示例单价与封顶不是 ChronoAI 的实际价格。</li>
+      </ol>
+      <p class="lede refs">书中：<a href="../../zh/ch01-nyxid-gateway.html" target="_top">第一章 · NyxID：零密钥连接与身份底座</a> · <a href="../../zh/ch04-cma-cloud-agents.html" target="_top">第四章 · CMA 与约 2.1 s 的凭证热重载</a></p>
+    </div>
+    <div class="en">
+      <p class="lede">The same call and the same poisoned tool response travel two lanes at once. Above is legacy wiring: plaintext keys for k services sit in the agent's environment. Below is NyxID's four-layer zero-secret proxy: the agent holds one scoped capability handle, and the real tokens stay sealed in the proxy vault, injected just before a request leaves the boundary and scrubbed before the response comes back. The page is a schematic model and a numerical illustration, not a proof, and not a capture of the production system.</p>
+      <ol>
+        <li><b>Blast radius.</b> "Plaintext secrets the agent can read" is k in the legacy lane: one successful prompt injection can carry all of them away, so the blast radius grows linearly with k. On the NyxID side there is no plaintext secret in the agent's context, and the number is 0 for every k and every scenario. Drag k from 1 to 55: the key grid above grows and shrinks, the agent box below stays empty.</li>
+        <li><b>Scope.</b> The capability token allows <code>read:issues</code> only: a read passes, while an out-of-scope write and the lateral call to the attacker after the injection are refused at the policy engine, and every pass and refusal is written to the audit ledger.</li>
+        <li><b>Hot reload.</b> After a binding is revoked in NyxID, the running sandbox converges to the new binding in about 2.1 s without a restart; later calls get <code>403 REVOKED</code>. The legacy lane has to rotate the upstream key and redeploy, which restarts the process once. The 2.1 s is the figure chapter 4 gives for CMA, and the page draws that duration.</li>
+        <li><b>Metering.</b> Each proxied call is metered at an example price of 0.25 credit, with 1 credit = 1 USD; the per-agent ceiling is an example value of 4 credits, after which further calls stop hard at the proxy. In BYOK mode the spend is billed to your own upstream key and no credits are debited, and the ceiling still applies. The example price and ceiling are not ChronoAI's actual prices.</li>
+      </ol>
+      <p class="lede refs">In the book: <a href="../../en/ch01-nyxid-gateway.html" target="_top">Chapter 1 · NyxID, the zero-secret connectivity and identity substrate</a> · <a href="../../en/ch04-cma-cloud-agents.html" target="_top">Chapter 4 · CMA and the hot credential reload of about 2.1 s</a></p>
+    </div>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
