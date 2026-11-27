@@ -152,8 +152,8 @@ def out_path(book, name: str, lang: str) -> Path:
 
 def slide_copies(book, name: str, lang: str) -> list[Path]:
     """Copies of figure ``name`` that ``book``'s slide decks show: ``slides/<deck>/img/<name>.<lang>.svg``.
-    The decks are dark, and an SVG in an ``<img>`` follows the viewer's colour scheme rather than the
-    page, so a copy holds the screen palette only (:func:`slide_svg`); ``build`` keeps it current."""
+    A copy fixes the palette to match the book's slide background (:func:`slide_svg`), independently
+    of the viewer's colour scheme. ``build`` keeps it current."""
     copies = set((book.dir / "slides").glob(f"*/img/{name}.{lang}.svg"))
     for source in (book.dir / "slides").glob("*/*"):
         if source.suffix in {".md", ".tex"} and source.is_file():
@@ -162,9 +162,9 @@ def slide_copies(book, name: str, lang: str) -> list[Path]:
     return sorted(copies)
 
 
-def slide_svg(svg: str) -> str:
+def slide_svg(svg: str, polarity: str | None = None) -> str:
     """What a slide deck's copy of the canonical figure ``svg`` holds."""
-    return materialize(svg, "screen")
+    return materialize(svg, "paper" if polarity == "daylight" else "screen")
 
 
 def names(book) -> list[str]:
@@ -240,7 +240,10 @@ def build(book, only: list[str] | None = None, *, check: bool = False) -> tuple[
                 errors.append(str(exc))
                 continue
             wanted = [(out_path(book, name, ed.lang), svg)]
-            wanted += [(p, slide_svg(svg)) for p in slide_copies(book, name, ed.lang)]
+            copies = slide_copies(book, name, ed.lang)
+            if copies:
+                fixed_svg = slide_svg(svg, book.polarity)
+                wanted.extend((p, fixed_svg) for p in copies)
             for dst, text in wanted:
                 if not dst.is_file() or dst.read_text(encoding="utf-8") != text:
                     changed.append(dst)
@@ -345,7 +348,8 @@ def check(book) -> list[Issue]:
         issues.append(Issue("error", d, 0, msg))
     for p in changed:
         if p.parent.name == "img" and p.parent.parent.parent.name == "slides":
-            what = "is not the screen-palette copy of the figure its script draws now (slide decks are dark)"
+            palette = "paper" if book.polarity == "daylight" else "screen"
+            what = f"is not the {palette}-palette copy of the figure its script draws now"
         else:
             what = "is stale: its script draws something else" if p.is_file() else "has not been generated"
         issues.append(Issue("error", p, 0, f"{what} (run ./tbook fig build --book {book.slug} ; only commit its source)"))

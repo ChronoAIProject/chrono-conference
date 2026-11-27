@@ -124,17 +124,17 @@ SCENES.act1_judgment = S => {
 
 SCENES.act2_observatory = S => {
   plate('plate-obs-cosmos.jpg', VIEWPORT, { p: S.p, zoomTo: 1.07, panX: -32, vignette: 0.05 });
-  glassCard(68, 168, 500, 420, 1, { kicker: 'LIVE.TRURETURING.ORG  /  OBSERVATORY' });
+  glassCard(68, 168, 560, 420, 1, { kicker: 'LIVE.TRURETURING.ORG  /  OBSERVATORY' });
   heading('167,819', 95, 285, 66, space.lean);
   caption('LEAN ✓  FROZEN THEOREMS', 99, 319, space.lean, 21);
   caption('trureturing@05ceb90 · 2026-11-20', 99, 346, space.dim, 16);
-  rule(98, 537, 365, space);
+  rule(98, 598, 365, space);
   caption('19,022 NODES · 8 DEPTS · 17 REPOS', 98, 397, space.ink, 19);
   caption('Live graph · 2026-11-27', 98, 423, space.dim, 16);
   caption('720 / 720 UTC HRS', 98, 458, space.ink, 21);
   caption('@e55900e · 2026-11-19', 98, 482, space.dim, 16);
-  rule(98, 537, 495, space);
-  caption('2,128 RESOLUTIONS / 74 DAYS', 98, 525, space.ink, 19);
+  rule(98, 598, 495, space);
+  caption('2,128 RESOLUTIONS · 2,126 IN 74D + 2 UNDATED', 98, 525, space.ink, 19);
   caption('1,400 proofs · 728 refutations', 98, 550, space.dim, 17);
   caption('582 quantum / physics · @05ceb90', 98, 574, space.dim, 16);
   frame(S, 'ACT II  /  THE RATCHET OF LOGIC', 'COSMOS ORBIT', 'LIVE.TRURETURING.ORG · COSMOS', 'VOL III · LIVE GRAPH / FROZEN CATALOG', ease(clamp(S.u / 1.6)));
@@ -142,29 +142,34 @@ SCENES.act2_observatory = S => {
 
 SCENES.act2_kernel_audit = S => {
   plate('plate-obs-galaxy.jpg', VIEWPORT, { p: S.p, zoomTo: 1.09, panX: 38, vignette: 0.06 });
-  glassCard(940, 168, 912, 628, 1, { kicker: 'THE OMEGA INSTITUTE  /  FROZEN DECLARATION' });
-  heading('Live Lean 4 kernel audit', 970, 279, 52, space.ink);
-  caption(pinLabel, 972, 319, space.dim, 23);
+  glassCard(598, 168, 1254, 628, 1, { kicker: 'THE OMEGA INSTITUTE  /  FROZEN DECLARATION' });
+  heading('Live Lean 4 kernel audit', 628, 279, 52, space.ink);
+  caption(pinLabel, 630, 319, space.dim, 23);
   const fredkin = leanCite(fredkinGid);
   if (fredkin?.kind === 'theorem') statusTag(1710, 293, 'lean', 'LEAN ✓');
-  rule(972, 1820, 344, space);
-  caption('D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.lean:142', 972, 378, space.dim, 18);
-  caption('theorem result : ¬ claim', 972, 430, space.ink, 35);
-  caption('witness > 2.00034 ebits', 972, 467, space.ink, 22);
-  caption('statement_id sha256:96a43ff10b04...', 972, 499, space.dim, 18);
-  const audit = ease(Q(S, 2, 'Running print axioms', 1));
-  fillBox(964, 519, 864, 123, space.bg, 0.87);
-  fillBox(964, 519, 3, 123, space.lean, 0.25 + 0.75 * audit);
-  caption('#print axioms ...FredkinEntanglingPowerRefutation.result', 984, 552, space.secondary, 19);
-  caption('depends on axioms: [propext, Classical.choice, Quot.sound]', 984, 586, space.ink, 20);
-  caption('custom axioms: 0   sorryAx: 0', 984, 620, mix(space.dim, space.lean, audit), 20);
-  const ratchet = ease(Q(S, 2, 'zero sorry', 0.9));
+  rule(630, 1820, 344, space);
+  caption('D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.lean:142', 630, 378, space.dim, 18);
+  caption('theorem result : ¬ claim', 630, 430, space.ink, 35);
+  caption('witness > 2.00034 ebits', 630, 467, space.ink, 22);
+  caption('statement_id sha256:96a43ff10b04...', 630, 499, space.dim, 18);
+  const audit = ease(Q(S, 2, 'Running #print axioms', 1));
+  fillBox(622, 515, 1206, 154, space.bg, 0.87);
+  fillBox(622, 515, 3, 154, space.lean, 0.25 + 0.75 * audit);
+  caption('#print axioms', 642, 537, space.secondary, 16);
+  const axioms = [
+    "'D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result' depends on axioms: [propext,",
+    ' Classical.choice,',
+    ' Quot.sound]'
+  ];
+  axioms.forEach((lineText, i) => caption(lineText, 642, 565 + i * 26, space.ink, 20));
+  caption('custom axioms: 0 · sorryAx: 0', 642, 653, mix(space.dim, space.lean, audit), 20);
+  const ratchet = ease(Q(S, 2, 'zero uses of sorryAx', 0.9));
   for (const [i, gid] of [kernelGid, noveltyGid].entries()) {
     const citation = leanCite(gid);
     if (citation?.kind !== 'theorem') continue;
-    const y = 665 + i * 58;
-    statusTag(972, y, 'lean', 'LEAN ✓', 0.65 + ratchet * 0.35);
-    caption(citation.name.split('.').pop(), 1092, y + 22, mix(space.dim, space.lean, ratchet), 22);
+    const y = 689 + i * 49;
+    statusTag(630, y, 'lean', 'LEAN ✓', 0.65 + ratchet * 0.35);
+    caption(citation.name.split('.').pop(), 750, y + 22, mix(space.dim, space.lean, ratchet), 22);
   }
   frame(S, 'ACT II  /  KERNEL AUDIT', 'GALAXY DRIFT', 'TRURETURING · FROZEN SOURCE / LINE 142', 'LEAN 4 · PIN 8A3F20FB');
 };
@@ -299,7 +304,7 @@ SCENES.act4_employees = S => {
 /* Give each full frozen identifier two readable lines. The shared leanList owns the chip and label.
    Break only at the last namespace separator, preserving every character and the native font. */
 function frozenRegister(x, y) {
-  const size = 21, spacing = 72;
+  const size = 19, spacing = 72, width = 822;
   const badgeWidth = tw(STR.en.lean || 'LEAN ✓', size * 0.72, F.mono, 700, 1) + 32;
   const refs = DATA.lean.filter(z => z.kind === 'theorem');
   refs.forEach((ref, i) => {
@@ -309,7 +314,7 @@ function frozenRegister(x, y) {
     const row = y + i * spacing;
     const draw = (xx, yy) => leanList(xx, yy - i * spacing, 1, { size, gap: spacing, palette: space });
     throughWindow(x - 1, row - 24, breakX + 1, 32, () => draw(x, row));
-    throughWindow(x + badgeWidth, row + 7, 840 - badgeWidth, 28, () => draw(x + badgeWidth - breakX, row + 29));
+    throughWindow(x + badgeWidth, row + 7, width - badgeWidth, 28, () => draw(x + badgeWidth - breakX, row + 29));
   });
 }
 function portalPhotos(y, h, p = 0) {
@@ -319,6 +324,12 @@ function portalPhotos(y, h, p = 0) {
 function splitPaper() {
   fillBox(0, VIEWPORT.y, 960, VIEWPORT.h, plaza.bg, 1);
   fillBox(960, VIEWPORT.y, 960, VIEWPORT.h, '#070B12', 1);
+}
+function splitChapterBadge(label) {
+  const width = tw(label, 20, F.disp, 700, 2) + 48;
+  glassCard(960 - width / 2, MATTE_HEIGHT / 2 - 21, width, 42, 1,
+    { polarity: 'deep-space', fill: space.bg, border: space.dim, topRule: false });
+  heading(label, 960, MATTE_HEIGHT / 2, 20, space.ink, { align: 'center', base: 'middle', ls: 2 });
 }
 SCENES.coda_invitation = S => {
   splitPaper();
@@ -334,9 +345,10 @@ SCENES.coda_invitation = S => {
   caption('https://chrono-ai.fun/', 70, 707, plaza.ink, 29);
   caption('contact@chrono-ai.fun', 70, 758, plaza.dim, 25);
   frozenRegister(1028, 607);
-  cinemaFrame(S, { polarity: 'dual-split', leftLabel: 'CHRONOAI PTE. LTD.', chapterLabel: 'BUILD FOR WHAT COMES NEXT',
+  cinemaFrame(S, { polarity: 'dual-split', leftLabel: 'CHRONOAI PTE. LTD.', chapterLabel: '',
     rightLabel: 'THE OMEGA INSTITUTE', slateLeft: 'https://chrono-ai.fun/ · contact@chrono-ai.fun',
     slateRight: 'live.trureturing.org · ' + pinLabel });
+  splitChapterBadge('BUILD FOR WHAT COMES NEXT');
 };
 
 FILM.poster = () => {
@@ -355,9 +367,10 @@ FILM.poster = () => {
     statusTag(1029, 848, 'lean', 'LEAN ✓', 1, 'deep-space');
     caption('FredkinEntanglingPowerRefutation.result', 1142, 870, space.lean, 22);
   }
-  cinemaFrame(S, { polarity: 'dual-split', leftLabel: company, chapterLabel: '2026 VIRTUAL LAUNCH',
+  cinemaFrame(S, { polarity: 'dual-split', leftLabel: company, chapterLabel: '',
     rightLabel: 'THE OMEGA INSTITUTE', slateLeft: 'CHRONO-AI.FUN · SGT 2026-12-17',
     slateRight: 'INDEPENDENT RESEARCH · ' + pinLabel });
+  splitChapterBadge('2026 VIRTUAL LAUNCH');
   // Use the event date in the poster's timecode position.
   fillBox(1390, 36, 480, 59, space.bg, 1);
   caption('DEC 17, 2026 · THE OMEGA INSTITUTE', 1856, MATTE_HEIGHT / 2, space.dim, 15,
@@ -388,12 +401,13 @@ const captionCuts = {
     [['independent research', '独立科研机构'], ['drove this discipline', '把这套方法']],
     [['tracks nineteen', '实时追踪']],
     [['trureturing holds', 'trureturing 已冻结'], ['across fourteen', '一万四千七百'], ['and maintained', '并在连续']],
-    [['one thousand four hundred', '一千四百道'], ['including five hundred', '其中五百']]
+    [['two thousand one hundred twenty-six', '其中两千一百二十六'], ['plus two undated', '另含两条'],
+      ['yielding one thousand', '共一千四百'], ['including five hundred', '其中五百']]
   ],
   act2_kernel_audit: [
     [['Follow the five-step', '沿着五步']],
     [['The Omega Institute', 'The Omega Institute'], ['and froze', '并在源码']],
-    [['it depends', '它仅依赖'], ['propext,', 'propext、'], ['with zero', '零自定义']],
+    [['D5.S3.', 'D5.S3.'], ['gives exactly', '输出恰好'], ['There are zero', '自定义公理为零']],
     [['adding frozen', '新增冻结'], ['and a new claim', '而一条'], ['if and only if', '当且仅当']]
   ],
   act2_open_frontier: [

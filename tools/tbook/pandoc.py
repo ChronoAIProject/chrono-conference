@@ -117,6 +117,7 @@ LOCAL_STRINGS: dict[str, dict[str, str]] = {
         "pdf.publisher": "出版",
         "pdf.edition": "版本说明",
         "pdf.variant_screen": "屏幕版（深色）",
+        "pdf.variant_screen_daylight": "屏幕版（浅色）",
         "pdf.variant_print": "印刷版（浅色）",
         "pdf.variant_academic": "学术预印本",
         "pdf.typeset": "排版",
@@ -142,6 +143,7 @@ LOCAL_STRINGS: dict[str, dict[str, str]] = {
         "pdf.publisher": "Published by",
         "pdf.edition": "Edition",
         "pdf.variant_screen": "Screen edition (dark)",
+        "pdf.variant_screen_daylight": "Screen edition (light)",
         "pdf.variant_print": "Print edition (light)",
         "pdf.variant_academic": "Research preprint",
         "pdf.typeset": "Typeset with",
@@ -1568,6 +1570,11 @@ def book_meta(site: config.Site, book: config.Book, edition: config.Edition, mod
     except ValueError:
         date = {"year": 1970, "month": 1, "day": 1, "iso": book.date}
     online = site.book_url(book.slug, lang) + "/" if site.base_url else ""
+    repo_url = f"https://github.com/{site.repo}" if site.repo else ""
+    polarity = book.polarity or "deep-space"
+    independent = polarity == "deep-space" and "The Omega Institute" in book.authors
+    publisher = "The Omega Institute" if independent else site.text(site.title, lang)
+    screen_label = "pdf.variant_screen_daylight" if polarity == "daylight" else "pdf.variant_screen"
     s = lambda key: config.s(lang, key)  # noqa: E731
     repo = lock.repo if lock else site.trureturing_repo
     repo_name = repo.rsplit("/", 1)[-1]
@@ -1579,7 +1586,7 @@ def book_meta(site: config.Site, book: config.Book, edition: config.Edition, mod
     return {
         "schema": "trureturing-books.pdf-meta.v1",
         "slug": book.slug,
-        "polarity": book.polarity or "deep-space",
+        "polarity": polarity,
         "lang": lang.split("-")[0],
         "bcp47": edition.bcp47,
         "region": _region(edition.bcp47),
@@ -1596,12 +1603,14 @@ def book_meta(site: config.Site, book: config.Book, edition: config.Edition, mod
         "license": book.license,
         "isbn": edition_isbn(book, edition),
         "identifier": edition_identifier(book, edition),
-        "publisher": site.text(site.title, lang),
+        "publisher": publisher,
         "keywords": _keywords(book, edition),
         "paper": str(book.pdf.get("paper", "a4")),
         "academic_paper": str(book.pdf.get("academic_paper", "a4")),
         "online_url": online,
-        "repo_url": f"https://github.com/{site.repo}" if site.repo else "",
+        "online_label": edition.title if independent else online,
+        "repo_url": repo_url,
+        "repo_label": site.repo.rsplit("/", 1)[-1] if independent else repo_url,
         "formal_count": formal,
         "open_count": opens,
         "trureturing": {
@@ -1630,7 +1639,7 @@ def book_meta(site: config.Site, book: config.Book, edition: config.Edition, mod
             "doi": t(lang, "pdf.doi"),
             "publisher": t(lang, "pdf.publisher"),
             "edition": t(lang, "pdf.edition"),
-            "variant_screen": t(lang, "pdf.variant_screen"),
+            "variant_screen": t(lang, screen_label),
             "variant_print": t(lang, "pdf.variant_print"),
             "variant_academic": t(lang, "pdf.variant_academic"),
             "typeset": t(lang, "pdf.typeset"),
@@ -1910,9 +1919,9 @@ def epub_colophon(meta: dict) -> str:
     if tru["commit"]:
         out.append(f"[{_md_escape(s['pinned_at'])}]{{.tr-k}} [`{tru['short']}`]({tru['url']}) · `{tru['repo']}`  ")
     if meta["online_url"]:
-        out.append(f"[{_md_escape(s['online'])}]{{.tr-k}} <{meta['online_url']}>  ")
+        out.append(f"[{_md_escape(s['online'])}]{{.tr-k}} [{_md_escape(meta['online_label'])}](<{meta['online_url']}>)  ")
     if meta["repo_url"]:
-        out.append(f"[{_md_escape(s['source'])}]{{.tr-k}} <{meta['repo_url']}>  ")
+        out.append(f"[{_md_escape(s['source'])}]{{.tr-k}} [{_md_escape(meta['repo_label'])}](<{meta['repo_url']}>)  ")
     out += [":::", ""]
     out += ["::: {.tr-verified}", _md_escape(s["verified_statement"]), ":::", ""]
     if s["open_statement"]:

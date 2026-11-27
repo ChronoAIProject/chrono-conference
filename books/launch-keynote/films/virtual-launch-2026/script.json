@@ -17,7 +17,12 @@
     "chrono-metaverse": "chrono metaverse",
     "chrono-cd": "chrono C D",
     "OpenAPI-to-MCP": "open A P I to M C P",
-    "propext": "prop ext"
+    "#print axioms": "print axioms",
+    "D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result": "D five dot S three dot Quantum dot Entanglement dot Fredkin Entangling Power Refutation dot result",
+    "propext": "prop ext",
+    "Classical.choice": "Classical dot choice",
+    "Quot.sound": "Quot dot sound",
+    "sorryAx": "sorry ax"
   },
   "music": {
     "bpm": 74,
@@ -176,8 +181,8 @@
           "截至二零二六年十一月二十日，trureturing 已冻结十六万七千八百一十九条 Lean 4 定理、一万四千七百零一个模块，并在连续七百二十个 UTC 小时窗口保持百分之百小时级提交覆盖。"
         ],
         [
-          "Over seventy-four days, it resolved two thousand one hundred twenty-eight literature problems—one thousand four hundred proofs and seven hundred twenty-eight refutations, including five hundred eighty-two in quantum information and physics.",
-          "在七十四天窗口内，累计解决两千一百二十八道文献问题——一千四百道证明与七百二十八道反驳，其中五百八十二道属于量子信息与理论物理。"
+          "Across the catalog, it has resolved two thousand one hundred twenty-eight literature problems—two thousand one hundred twenty-six dated inside a seventy-four-day window plus two undated entries—yielding one thousand four hundred proofs and seven hundred twenty-eight refutations, including five hundred eighty-two in quantum information and physics.",
+          "目录累计解决两千一百二十八道文献问题——其中两千一百二十六道落在七十四天窗口内、另含两条未标注日期条目——共一千四百道证明与七百二十八道反驳，其中五百八十二道属于量子信息与理论物理。"
         ]
       ]
     },
@@ -211,8 +216,8 @@
           "以二零二五年 Physical Review A 的四量子比特 Fredkin 门纠缠能力猜想为例：The Omega Institute 构造出超过 2.00034 ebits 的显式乘积态见证，并在源码第 142 行冻结了反驳定理。"
         ],
         [
-          "Running print axioms directly on the pinned commit confirms it depends only on Lean's three standard axioms—propext, classical choice, and quotient soundness—with zero custom axioms and zero sorry.",
-          "在所钉提交上实跑 #print axioms 确认，它仅依赖 Lean 三条标准公理（propext、Classical.choice、Quot.sound），零自定义公理、零 sorry。"
+          "Running #print axioms on the pinned theorem D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result gives exactly three axioms: [propext, Classical.choice, Quot.sound]. There are zero custom axioms and zero uses of sorryAx.",
+          "在所钉提交上，用 #print axioms 检查定理 D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result，输出恰好是三条公理：[propext, Classical.choice, Quot.sound]。自定义公理为零，也未使用 sorryAx。"
         ],
         [
           "Two foundational theorems formalize why this acts as a ratchet: adding frozen theorems monotonically shrinks indistinguishable states, and a new claim lowers information escape if and only if it lies outside the semantic closure of what is already known.",

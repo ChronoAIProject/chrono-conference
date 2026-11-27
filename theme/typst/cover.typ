@@ -46,9 +46,6 @@
   let W = size.width
   let H = size.height
   let polarity = meta.at("polarity", default: "deep-space")
-  let publisher = if polarity == "deep-space" and "The Omega Institute" in meta.authors {
-    if meta.lang == "zh" { "独立科研专著" } else { "Independent Research Monograph" }
-  } else { meta.publisher }
   let is-daylight = (polarity == "daylight") or (variant == "print")
   let dark = variant == "screen" and not is-daylight
   let pal = if dark { tr-screen } else { tr-paper }
@@ -71,7 +68,7 @@
       v(H * 0.035)
       block(text(size: W * 0.027, meta.subtitle.replace(regex("\\s*=\\s*"), "\u{A0}=\u{A0}")))
       v(1fr)
-      block(text(size: W * 0.021, publisher))
+      block(text(size: W * 0.021, meta.publisher))
       v(H * 0.012)
       block(text(size: W * 0.018, [#S.lang_name · #meta.date.year]))
     }))
@@ -234,7 +231,7 @@
     set par(leading: 0.5em)
     text(font: title-font, weight: 600, size: 2.9 * u, fill: ink, authors)
     v(0.6 * u)
-    mono(1.7 * u, pal.dim, publisher)
+    mono(1.7 * u, pal.dim, meta.publisher)
   }))
 
   // ---------------------------------------------------------------- LEAN ✓ stamp

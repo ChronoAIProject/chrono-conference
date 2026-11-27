@@ -8,8 +8,8 @@
  *                                   no aurora; ayu: the darkest obsidian canvas)
  *   light · rust                  → daylight architectural-stone palette (paper tokens; rust: warmer stone)
  *
- * Polarity (Scheme B): a ChronoAI book is set in daylight stone (html[data-polarity="daylight"], mdBook's
- * light theme), an Omega Institute book in deep-space glass (html[data-polarity="deep-space"], navy).
+ * Polarity (Scheme B): a ChronoAI book defaults to daylight stone (html.light), and an Omega Institute
+ * book defaults to deep-space glass (html.navy).
  * Structure is carried by 1px hairlines and type: no glow, no scanlines, no cut corners.
  *
  * Lean verification uses green (ok), with blue for documented axiom-free results.
@@ -110,7 +110,7 @@ html.navy .page-wrapper, html:not(.js) .page-wrapper {
   background-image: var(--tr-fx-aurora);
   background-attachment: fixed;
 }
-html[data-polarity="daylight"] .page-wrapper { background-image: none; }
+html.light .page-wrapper { background-image: none; }
 @media (hover: none) {
   html.navy .page-wrapper, html:not(.js) .page-wrapper { background-attachment: scroll; }
 }

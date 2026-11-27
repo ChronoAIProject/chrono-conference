@@ -534,7 +534,8 @@ def slides_unit(site: config.Site, book: config.Book, out_dir: Path) -> Unit:
     decks = slides.deck_names(book)
     academic_decks = [d for d in decks if academic.is_academic(book.slides_dir / d)]
     inputs = (_book_inputs(book, slides=True)
-              .files(paths.TOKENS, paths.TOOLS / "figkit", paths.I18N_THEME, paths.I18N_LOCAL, paths.TOOLS / "node",
+              .files(paths.TOKENS, paths.I18N_THEME, paths.I18N_LOCAL, paths.TOOLS / "node",
+                     paths.TOOLS / "tbook" / "figure.py", paths.TOOLS / "tbook" / "figkit.py",
                      paths.TOOLS / "tbook" / "slides.py", paths.LOCK_FILE, paths.SITE_TOML,
                      paths.ROOT / "package-lock.json")
               .text("base", slides.base_path(site))
