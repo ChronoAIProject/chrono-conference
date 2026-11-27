@@ -1,0 +1,122 @@
+# Chapter 4: 2,128 Literature Problems—Flagship Proofs and Refutations
+
+The honest way to benchmark a research engine is never to grade it on exams it wrote for itself. Drop it straight into the published literature—where physicists, combinatorialists, and number theorists left explicit *Open Problems*, *Conjectures*, and *Question 1* at the ends of real papers.
+
+Across **74 calendar days** from September 8 to November 20, 2026 (`the-omega-institute/trureturing@05ceb90`), `trureturing` logged **2,126 dated literature resolutions** (plus `2` undated entries, totaling **2,128** unique resolutions: **1,400 proved** and **728 refuted**, averaging ~**29 per day**; out of `2,151` tracked dossiers, `23` remain explicitly logged as unresolved).
+
+Split those 2,128 resolutions by published source, and the spread cuts cleanly across multiple public literature arenas:
+
+::: {.figure src="ch04-resolution-velocity"}
+**Source and Verdict Breakdown of 2,128 Resolved Literature Problems (November 20, 2026 frozen snapshot).** Cyan bars show proofs (`1,400` total) and magenta bars show refutations (`728` total): arXiv (`393` proved / `343` refuted), OEIS (`641` / `52`), peer-reviewed journals (`354` / `320`), Erdős problems (`1` / `3`), and other literature (`11` / `10`). Quantum information and physics account for `582` resolutions; `124` stood open for over a decade, up to `47` years.
+:::
+
+Aggregate bars give the horizon; mathematicians trust only **individual theorems laid bare on the desk**. Here are **seven flagship proofs and refutations** spanning *Phys. Rev. A*, *Phys. Lett. A*, *Nat. Commun.*, *JCTA*, and *Commun. Math. Phys.*—each pinned to a build-generated green Lean declaration you can click straight into Lean source right now.
+
+## Refutation 1: Four-Qubit Fredkin Gate Exceeds 2 ebits (*Phys. Rev. A* 2025)
+
+In 2025, Qiu, Song, and Chen (`arXiv:2410.15253`, *Phys. Rev. A*) studied the entangling power—the supremum over admissible product inputs carrying local ancillas—of the four-qubit controlled-swap (Fredkin) gate $F_4$ across the `AD:BC` bipartition and conjectured that it equals $2$ ebits (`claim : entanglementGeneration = 2`).
+
+`trureturing` constructed an explicit admissible product input with local ancillas whose reduced state conjugates to an exact rational matrix, verified its spectrum via kernel `decide`, and proved with pinned logarithm bounds that it generates approximately `2.00034…` ebits (strictly exceeding $2$)—refuting the conjecture cleanly.
+
+::: {.theorem #thm-fredkin-refutation title="Refutation of the Four-Qubit Fredkin Entangling-Power Conjecture" lean="D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result"}
+The conjecture `claim` of Qiu–Song–Chen (`arXiv:2410.15253`) that the four-qubit Fredkin gate's entangling-power supremum across `AD:BC` (with local ancillas) equals $2$ ebits is false: $\neg\,\mathrm{claim}$.
+:::
+
+::: proof
+In [`FredkinEntanglingPowerRefutation.result`](lean:D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result), the output amplitude on an explicit admissible product input with local ancillas conjugates the reduced density state to exact rational matrices `Nq` and `Vq`; kernel decision procedures certify the spectrum and rigorous logarithm inequalities prove von Neumann entropy strictly above $2$ (witness value approximately `2.00034…` ebits). Verified and frozen by the Lean 4 kernel.
+:::
+
+## Proof 1: Exact Maximum of Higuchi–Sudbery Four-Qubit Entropy (*Phys. Lett. A* 2000)
+
+Twenty-six years ago, Higuchi and Sudbery (*Phys. Lett. A* 2000) posed a landmark question in multipartite entanglement: over all normalized four-qubit pure states $z \in \mathbb{C}^{16}$, is the average two-qubit von Neumann entropy across the three bipartitions (`AB`, `AC`, `AD`) bounded above by $1 + \frac{1}{2}\log_2 3$, attained by their explicit state $M_4$?
+
+::: {.theorem #thm-higuchi-sudbery title="Sharp Higuchi–Sudbery Average Two-Qubit Entropy Bound" lean="D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum.result"}
+For every normalized four-qubit amplitude vector $z : \mathrm{Fin}\,16 \to \mathbb{C}$ with $\sum_{i=0}^{15} |z_i|^2 = 1$, its average two-qubit von Neumann entropy across cuts `AB`, `AC`, and `AD` satisfies
+$$
+\mathrm{averageEntropy}(z) \le 1 + \frac{1}{2}\log_2 3,
+$$
+and the explicit Higuchi–Sudbery state $M_4$ is normalized and achieves equality: $\mathrm{averageEntropy}(M_4) = 1 + \frac{1}{2}\log_2 3$.
+:::
+
+::: proof
+In [`HiguchiSudberyEntropyMaximum.result`](lean:D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum.result), the spectral reduction uses the lower bound $\ge 1$ on the sum of the three cut purities together with a prime certificate identity bounding the sum of degree-3 elementary symmetric polynomials of the three cut spectra by $\le \frac{5}{36}$ (inclusive, attained at $M_4$). A cubic Hermite majorant $p_{\mathrm{nat}}(x)$ then converts that spectral bound into the sharp entropy maximum because the **gap function** $\mathrm{gap}(x) = p_{\mathrm{nat}}(x) + x\ln x$ has double zeros at $x = \frac{1}{6}$ and $x = \frac{1}{2}$ and strictly positive fourth derivative $\mathrm{gap}^{(4)}(x) = 2/x^3 > 0$ on $(0, \infty)$; direct evaluation verifies equality at $M_4$. Verified and frozen by the Lean 4 kernel.
+:::
+
+## Proof 2: Universal Tripartite Mermin–CGLMP Facet Theorem for All $K \ge 2$ (*Phys. Rev. A* 2012)
+
+Grandjean et al. (*Phys. Rev. A* 2012) introduced the tripartite $K$-outcome Bell inequality $(K - 1) \le I_K(p)$, checked numerically only for small $K$. Without enumeration or finite-case reduction, the frozen theorem below settles facetness universally for every $K \ge 2$:
+
+::: {.theorem #thm-mermin-facet title="Mermin–CGLMP Inequality Is a Local-Polytope Facet for Every $K \ge 2$" lean="D5/S3/QuantumBounds/MerminCglmpFacet.result"}
+For every integer $K \ge 2$:
+
+1. Every behavior $p$ in the tripartite local polytope $L_K$ obeys $(K - 1) \le I_K(p)$;
+2. The affine face saturating $I_K(p) = K - 1$ has codimension exactly $1$ inside $L_K$:
+$$
+\dim_{\mathbb{R}}\bigl(\mathrm{vectorSpan}_{\mathbb{R}}\{p \in L_K \mid I_K(p) = K - 1\}\bigr) + 1
+= \dim_{\mathbb{R}}\bigl(\mathrm{vectorSpan}_{\mathbb{R}}(L_K)\bigr).
+$$
+:::
+
+::: proof
+In [`MerminCglmpFacet.result`](lean:D5/S3/QuantumBounds/MerminCglmpFacet.result), vertex evaluation plus convexity establishes validity on all of $L_K$, and tripartite rigidity via the Charlie slice and rectangular gluing establishes exact codimension-$1$ span for every $K \ge 2$. Verified and frozen by the Lean 4 kernel.
+:::
+
+## Proof 3: Godsil's Average Mixing Discriminant Integrality (*JCTA* 2013)
+
+In *Journal of Combinatorial Theory, Series A* (`arXiv:1103.2578v3`, §11 Question 1), Chris Godsil asked whether multiplying every entry of the continuous-time quantum walk average mixing matrix of a finite simple graph $G$ by the discriminant of the rational minimal polynomial of $A(G)$ always yields an integer.
+
+::: {.theorem #thm-godsil-mixing title="Minimal-Polynomial Discriminant Clears All Average Mixing Denominators" lean="D5/S3/Quantum/Dynamics/AverageMixingDiscriminantIntegrality.result"}
+For every natural number $n$, every finite simple graph $G$ on $\mathrm{Fin}\,n$, and every vertex pair $i, j$, there exists an integer $z \in \mathbb{Z}$ such that
+$$
+\mathrm{discr}\bigl(\mathrm{minpoly}_{\mathbb{Q}}(A_G)\bigr) \cdot \mathrm{avgMixing}(G)_{i,j} = z.
+$$
+:::
+
+::: proof
+In [`AverageMixingDiscriminantIntegrality.result`](lean:D5/S3/Quantum/Dynamics/AverageMixingDiscriminantIntegrality.result), local discriminant cancellation (`discr_scaled_entry`) expresses every scaled entry as an integer symmetric polynomial in the distinct eigenvalues; Vieta's formulas and the fundamental theorem of symmetric polynomials then force integrality. Verified and frozen by the Lean 4 kernel.
+:::
+
+## Proof 4: $\ell_1$-Norm Coherence Dominates Relative Entropy Coherence (*Phys. Rev. A* 2016)
+
+Rana, Parashar, and Lewenstein (*Phys. Rev. A* 2016) conjectured that in every finite dimension $n$, the relative entropy of coherence never exceeds the $\ell_1$-norm coherence for any density matrix $\rho$.
+
+::: {.theorem #thm-coherence-l1 title="$\ell_1$ Coherence Dominates Relative Entropy Coherence in Every Finite Dimension" lean="D5/S3/Divergence/CoherenceL1RelativeEntropyBound.result"}
+For every natural number $n \in \mathbb{N}$ and every $n \times n$ complex density matrix $\rho$ (`IsState ρ`),
+$$
+\mathrm{coherenceRel}(\rho) \le \mathrm{l1Coherence}(\rho).
+$$
+:::
+
+::: proof
+In [`CoherenceL1RelativeEntropyBound.result`](lean:D5/S3/Divergence/CoherenceL1RelativeEntropyBound.result), the proof reduces the inequality across all finite dimensions to the Audenaert binary Holevo bound and log-derivative trace bounds. Verified and frozen by the Lean 4 kernel.
+:::
+
+## Refutation 2: Compatible Channels Need Not Be Jordan Compatible (*Nat. Commun.* 2021)
+
+Girard, Plávala, and Sikora (*Nature Communications* 2021) asked whether every pair of compatible quantum channels (`Compatible Φ Ψ`) must also be Jordan compatible (`JordanCompatible Φ Ψ`). `trureturing` constructs an explicit counterexample in dimension $d = 4$:
+
+::: {.theorem #thm-jordan-refutation title="Compatible Quantum Channels in Dimension 4 Need Not Be Jordan Compatible" lean="D5/S3/QuantumChannels/JordanCompatibilityRefutation.result"}
+The universal claim that every pair of compatible quantum channels $(\Phi, \Psi)$ in every dimension $d$ is Jordan compatible is false: $\neg\,\mathrm{claim}$, witnessed explicitly at $d = 4$.
+:::
+
+::: proof
+In [`JordanCompatibilityRefutation.result`](lean:D5/S3/QuantumChannels/JordanCompatibilityRefutation.result), two explicit quantum channels $\Phi, \Psi$ on $\mathrm{Fin}\,4$ are verified to admit a joint mother channel (`compatible_witness`) while satisfying `not_jordanCompatible`. Verified and frozen by the Lean 4 kernel.
+:::
+
+## Proof 5: Harmonic Limit of Averaged Zeitlin Ricci Curvature (*Commun. Math. Phys.* 2026)
+
+Finally, a brand-new 2026 problem from *Communications in Mathematical Physics*: Lichtenfelz, Modin, and Preston studied the averaged Ricci curvature $\tilde{r}_\ell(N)$ of Zeitlin matrix quantizations of the sphere and asked whether, for every angular mode $\ell \ge 2$, $\tilde{r}_\ell(N) \to -(H_\ell - 1)/2$ as $N \to \infty$ (with $H_\ell = \sum_{k=1}^\ell 1/k$) and becomes eventually strictly negative.
+
+::: {.theorem #thm-zeitlin-ricci title="Harmonic Limit and Eventual Negativity of Averaged Zeitlin Ricci Curvature" lean="D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.result"}
+For every integer $\ell \ge 2$, the averaged Zeitlin Ricci curvature satisfies
+$$
+\lim_{N \to \infty} \tilde{r}_\ell(N) = -\frac{H_\ell - 1}{2},
+$$
+and there exists $N_0 \in \mathbb{N}$ such that $\tilde{r}_\ell(N) < 0$ for all $N \ge N_0$.
+:::
+
+::: proof
+In [`RicciLimit.result`](lean:D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.result), splitting $\tilde{r}_\ell(N)$ into positive and negative $6j$-symbol sums divided by $N^2 - 1$ makes the negative piece identically constant (equal to $(H_\ell - 1)/2$) for all $N > \ell$, while $6j$ sum rules and Tannery's limit theorem drive the positive piece to $0$; since $H_\ell \ge \frac{3}{2} > 1$ for all $\ell \ge 2$, strict negativity follows for all sufficiently large $N$. Verified and frozen by the Lean 4 kernel.
+:::
+
+Seven theorems across five flagship physics and mathematics journals—zero hand-waving, every single one backed by a clickable green Lean declaration. Now, what does this living graph of 14,701 frozen modules and 167,819 theorems actually look like while it runs 24/7? Chapter 5 walks straight inside **`live.trureturing.org`**.

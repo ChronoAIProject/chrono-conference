@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN" data-title-en="TRUTH//DAG · Truth DAG observatory · every genuinely new theorem strictly shrinks the blind spot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TRUTH//DAG 真值图观测站 · 每添一条真正新定理，盲区就严格收缩一次</title>
+<meta name="description" content="十六个态排成 4×4 格点，六条二值定理组成目录。页面逐对枚举 120 个无序态对，实时算出联合核的等价类、仍不可分的逃逸对与每条定理的独占捕获：真正新的切线让逃逸对严格减少；可由其余定理恢复的定理与同核双胞胎独占为 0，逃逸率不降（对应 trureturing 中由 Lean 内核验证并冻结的五条定理）。Sixteen states on a 4×4 lattice and a catalog of six binary theorems. The page enumerates all 120 unordered pairs and computes, live, the classes of the joint kernel, the escaped pairs and each theorem's unique capture: a genuinely new cut strictly lowers the escape; a theorem recoverable from the others and a same-kernel twin capture nothing alone and leave the escape rate where it was (five theorems kernel-verified in Lean and frozen in trureturing).">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../assets/shell.js"></script>
+<script src="../assets/kit.js"></script>
+</head>
+<body data-viz-id="truth-dag-observatory">
+<div class="app lab" id="app">
+  <header class="top">
+    <div class="brand">
+      <a class="crumb" href="../"><span class="zh">◂ 可视化索引</span><span class="en">◂ Visualizations</span></a>
+      <h1 class="logo" data-text="TRUTH//DAG">TRUTH<b>//</b>DAG</h1>
+      <div class="tagline">
+        <span class="zh">真值图观测站 · <em>每添一条真正新的定理，盲区就严格收缩一次；复述与同核副本一对也切不开</em></span>
+        <span class="en">Truth DAG observatory · <em>every genuinely new theorem strictly shrinks the blind spot; restatements and same-kernel twins separate nothing</em></span>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span class="pill" id="pillCat"><span class="zh">目录</span><span class="en">CATALOG</span> <strong>—</strong></span>
+      <span class="pill hot" id="pillEsc"><span class="zh">逃逸</span><span class="en">ESCAPE</span> <strong>—</strong></span>
+      <span class="pill" id="pillCls"><span class="zh">等价类</span><span class="en">CLASSES</span> <strong>—</strong></span>
+      <div class="langs" role="group" aria-label="语言 Language"><button data-lang-set="zh" aria-pressed="true">中</button><button data-lang-set="en" aria-pressed="false">EN</button></div>
+    </div>
+  </header>
+
+  <aside class="col deck" aria-label="实验控制" data-aria-en="Experiment controls">
+    <section class="panel sec">
+      <h2><span class="zh">实验卡带</span><span class="en">Experiments</span><span class="aside">PRESETS</span></h2>
+      <div class="presets cards" id="presets">
+        <button class="preset" data-preset="observatory" aria-pressed="false"><span class="code">OBSERVATORY</span><span class="cn zh">三条切线：4 类，24 对仍不可分</span><span class="cn en">Three cuts: 4 classes, 24 pairs unresolved</span></button>
+        <button class="preset" data-preset="novel-cut" aria-pressed="false"><span class="code">NOVEL-CUT</span><span class="cn zh">插入 T₄：逃逸对从 24 降到 8</span><span class="cn en">Insert T₄: escaped pairs fall from 24 to 8</span></button>
+        <button class="preset" data-preset="redundant" aria-pressed="false"><span class="code">REDUNDANT</span><span class="cn zh">插入可恢复的 T₅：一对也不降</span><span class="cn en">Insert the recoverable T₅: not one pair less</span></button>
+        <button class="preset" data-preset="freeze" aria-pressed="false"><span class="code">FREEZE</span><span class="cn zh">同核双胞胎 T₄、T₆：独占都为 0</span><span class="cn en">Same-kernel twins T₄, T₆: both capture 0</span></button>
+      </div>
+      <p class="note" id="presetNote"></p>
+    </section>
+
+    <section class="panel sec" id="catalogPanel">
+      <h2><span class="zh">目录 · 选中的定理</span><span class="en">Catalog · selected theorems</span><span class="aside">T₁ … T₆</span></h2>
+      <div class="chips thms" id="thmChips" role="group" aria-label="切换目录中的定理" data-aria-en="Toggle theorems in the catalog">
+        <button class="chip th" data-th="0" aria-pressed="false">T₁ · y ≥ 1</button>
+        <button class="chip th" data-th="1" aria-pressed="false">T₂ · y ≥ 2</button>
+        <button class="chip th" data-th="2" aria-pressed="false">T₃ · y ≥ 3</button>
+        <button class="chip th" data-th="3" aria-pressed="false">T₄ · x ≥ 2</button>
+        <button class="chip th" data-th="4" aria-pressed="false">T₅ · T₁ ∧ ¬T₂</button>
+        <button class="chip th" data-th="5" aria-pressed="false">T₆ · x ≤ 1</button>
+      </div>
+      <div class="chips">
+        <button class="chip" id="selAll"><span class="zh">全部六条</span><span class="en">All six</span></button>
+        <button class="chip" id="selNone"><span class="zh">清空</span><span class="en">Clear</span></button>
+      </div>
+      <p class="note"><span class="zh">也可以点舞台右侧的定理节点（数字键 1–6），或点格点上的一个态，看目录分不开它的那些态。</span><span class="en">Or click a theorem node on the right of the stage (keys 1–6), or a state of the lattice to see which states the catalog cannot tell it apart from.</span></p>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="stage still" id="stage" data-thumb aria-label="舞台：4×4 格点上的十六个态、目录中各定理的切线、仍不可分的态对，以及右侧的定理节点" data-aria-en="Stage: sixteen states on a 4×4 lattice, the cuts of the theorems in the catalog, the pairs still indistinguishable, and the theorem nodes on the right">
+      <canvas class="fill" id="cv"></canvas>
+      <div class="scan"></div><div class="vig"></div>
+      <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
+      <div class="hud-bl" id="legend">
+        <span><i class="sw cy"></i><span class="zh">定理的切线（独占 &gt; 0）</span><span class="en">cut of a theorem (unique capture &gt; 0)</span></span>
+        <span><i class="sw vi"></i><span class="zh">独占为 0 的切线</span><span class="en">cut with zero unique capture</span></span>
+        <span><i class="sw mg"></i><span class="zh">仍不可分的态对</span><span class="en">pair still indistinguishable</span></span>
+        <span><i class="sw am"></i><span class="zh">当前定理</span><span class="en">current theorem</span></span>
+      </div>
+    </div>
+    <div class="tour" id="tour">
+      <button class="tbtn" data-tour="prev" aria-label="上一个实验" data-aria-en="Previous experiment">◀</button>
+      <div class="what"></div>
+      <button class="tbtn" data-tour="next" aria-label="下一个实验" data-aria-en="Next experiment">▶</button>
+    </div>
+    <div class="strip">
+      <section class="panel">
+        <div class="head"><h2><span class="zh">沿时间轴：逃逸率只降不升</span><span class="en">Along the rail: the escape rate never rises</span></h2><span id="pAMeta"></span></div>
+        <canvas id="plotA" aria-label="逃逸率随插入的定理数变化" data-aria-en="Escape rate against the number of theorems inserted"></canvas>
+      </section>
+      <section class="panel">
+        <div class="head"><h2><span class="zh">每条定理的独占捕获</span><span class="en">Unique capture of each theorem</span></h2><span id="pBMeta"></span></div>
+        <canvas id="plotB" aria-label="当前目录中每条定理独占切开的态对数" data-aria-en="Pairs each theorem of the current catalog separates on its own"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="readouts" aria-live="polite">
+      <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside">16 · 15 / 2 = 120</span></h2>
+      <dl class="ro">
+        <div class="key"><dt><span class="zh">仍不可分的态对（无序）/ 全部</span><span class="en">Pairs still indistinguishable (unordered) / all</span></dt><dd><b id="roEsc">—</b><span id="roEscSub"></span></dd></div>
+        <div class="c"><dt><span class="zh">联合核的等价类</span><span class="en">Classes of the joint kernel</span></dt><dd id="roCls">—</dd></div>
+        <div class="m"><dt><span class="zh">Lean 的计数（有序对）</span><span class="en">Lean's count (ordered pairs)</span></dt><dd id="roOrd">—</dd></div>
+        <div class="wide"><dt id="roCurT"><span class="zh">当前定理的独占捕获</span><span class="en">Unique capture of the current theorem</span></dt><dd id="roCur">—</dd></div>
+        <div class="wide"><dt><span class="zh">去掉它之后的逃逸对 = 现在 + 独占</span><span class="en">Escaped pairs without it = now + unique</span></dt><dd id="roWithout">—</dd></div>
+        <div class="wide"><dt><span class="zh">可由其余定理恢复？ → 降低逃逸？</span><span class="en">Recoverable from the others? → lowers the escape?</span></dt><dd id="roLowers">—</dd></div>
+      </dl>
+      <p class="note" id="roNote"></p>
+    </section>
+
+    <section class="panel sec" id="evidence">
+      <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">trureturing</span></h2>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">插入一条定理，就是把旧的联合核与这条定理的一致关系取交：jointKernel(insert i S) = jointKernel(S) ∩ {(s, s′) | 定理 i 在 s、s′ 上一致}。已冻结：</span><span class="en">Inserting one theorem intersects the old joint kernel with its agreement relation: jointKernel(insert i S) = jointKernel(S) ∩ {(s, s′) | theorem i agrees on s and s′}. Frozen: </span><a class="leanref" data-lean-gid="D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_insert" href="#" target="_blank" rel="noopener"><code>jointKernel_insert</code></a></span></div>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">选中的定理集合变大，联合核只能变小：若 S ⊆ S′，则 jointKernel(S′) ⊆ jointKernel(S)。已冻结：</span><span class="en">Enlarging the selected theorem set can only shrink its joint kernel: if S ⊆ S′, then jointKernel(S′) ⊆ jointKernel(S). Frozen: </span><a class="leanref" data-lean-gid="D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone" href="#" target="_blank" rel="noopener"><code>jointKernel_antitone</code></a></span></div>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">在至少有两个态的场地上：定理 i 降低逃逸（LowersEscape：整个目录的精确逃逸率严格低于去掉 i 后的逃逸率），当且仅当 i 的核不在 semanticClosureWithout(i) 之中，即不能由其余定理的一致关系推出。已冻结：</span><span class="en">On an arena with at least two states: theorem i lowers the escape (LowersEscape: the exact escape rate of the whole catalog is strictly below the rate without i) if and only if the kernel of i is not in semanticClosureWithout(i), i.e. cannot be implied by the agreement of the other theorems. Frozen: </span><a class="leanref" data-lean-gid="D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout" href="#" target="_blank" rel="noopener"><code>lowersEscape_iff_not_mem_semanticClosureWithout</code></a></span></div>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">若其余定理在 s、s′ 上都一致时定理 i 也一致（i 可由其余定理恢复），则 i 不降低逃逸。已冻结：</span><span class="en">If theorem i agrees on s and s′ whenever every other theorem does (i is recoverable from the others), then i does not lower the escape. Frozen: </span><a class="leanref" data-lean-gid="D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_false_of_recoverable" href="#" target="_blank" rel="noopener"><code>lowersEscape_false_of_recoverable</code></a></span></div>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">目录中两条不同的定理若一致关系完全相同（同核），二者的独占捕获计数 uniqueCaptureCount 都为 0。已冻结：</span><span class="en">If two distinct entries of the catalog have exactly the same agreement relation (the same kernel), both have uniqueCaptureCount = 0. Frozen: </span><a class="leanref" data-lean-gid="D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.same_kernel_both_zero" href="#" target="_blank" rel="noopener"><code>same_kernel_both_zero</code></a></span></div>
+      <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面上的数值演示，不是证明：页面逐对枚举全部 120 个无序态对，算出联合核的等价类、逃逸对、每条定理的独占捕获与可恢复性。Lean 的 escapeNumerator 与 uniqueCaptureCount 数的是有序对（恰为无序对的两倍，分母 16 · 15 = 240），逃逸率相同。</span><span class="en">A numerical illustration on the page, not a proof: the page enumerates all 120 unordered pairs of states and computes the classes of the joint kernel, the escaped pairs, each theorem's unique capture and whether it is recoverable. Lean's escapeNumerator and uniqueCaptureCount count ordered pairs (exactly twice the unordered count, over 16 · 15 = 240), so the escape rate is the same.</span></span></div>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">为画面选定的有限例子：16 个态排成 4×4 格点，六条定理都是二值读数（T₁、T₂、T₃：y ≥ 1、2、3；T₄：x ≥ 2；T₅ = T₁ ∧ ¬T₂，即 y = 1；T₆：x ≤ 1）。页面把当前选中的定理当作 Lean 中的整个目录。Lean 定理对任意有限场地与目录成立，这里只是其中一例。</span><span class="en">A finite example chosen for the picture: 16 states on a 4×4 lattice and six binary readouts (T₁, T₂, T₃: y ≥ 1, 2, 3; T₄: x ≥ 2; T₅ = T₁ ∧ ¬T₂, that is y = 1; T₆: x ≤ 1). The page treats the selected theorems as the whole catalog of the Lean statements. The Lean theorems hold for every finite arena and catalog; this is one instance.</span></span></div>
+      <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
+    </section>
+  </aside>
+
+  <footer class="rail" id="rail">
+    <div class="transport">
+      <button class="tbtn" id="rew" aria-label="回到空目录" data-aria-en="Back to the empty catalog">⏮</button>
+      <button class="tbtn" id="play" aria-label="播放 / 暂停" data-aria-en="Play / pause" aria-pressed="false">▶</button>
+      <span class="chips" id="speedChips" role="group" aria-label="播放速度" data-aria-en="Playback speed">
+        <button class="chip" data-speed="0.35" aria-pressed="false">0.35×</button><button class="chip" data-speed="1" aria-pressed="true">1×</button><button class="chip" data-speed="2.5" aria-pressed="false">2.5×</button>
+      </span>
+    </div>
+    <div class="clock">
+      <span class="tau" id="tau"></span>
+      <input type="range" id="now" min="0" max="6" step="any" value="3" aria-label="时间轴：按 T₁ … T₆ 的顺序插入的定理数" data-aria-en="Rail: the number of theorems inserted, in the order T₁ … T₆">
+    </div>
+    <div class="keys">
+      <kbd>Space</kbd> <span class="zh">播放</span><span class="en">play</span> · <kbd>←</kbd><kbd>→</kbd> <span class="zh">逐条插入</span><span class="en">one theorem</span> · <kbd>1</kbd>–<kbd>6</kbd> <span class="zh">切换定理</span><span class="en">toggle a theorem</span>
+    </div>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
+    <div class="zh">
+      <p class="lede">一个有限观察者面对 16 个态。目录里的每条定理是一次二值读数；两个态在所有选中的定理上读数都相同，就仍然分不开，这一对“逃逸”了。所有分不开的态对组成联合核。本页是数值演示，不是证明。</p>
+      <ol>
+        <li><b>联合核与逃逸率。</b>选中定理集合 S，联合核 jointKernel(S) 是 S 中每条定理都一致的态对。格点上品红的连线就是联合核中的不同态对；逃逸率 = 这些态对 / 全部态对。页面数无序对（共 120 对），Lean 数有序对（共 240 对），比率相同。</li>
+        <li><b>插入只会收缩。</b>插入一条定理，就是把旧联合核与它的一致关系取交（jointKernel_insert），所以集合越大，联合核越小（jointKernel_antitone）：时间轴上逃逸率只降不升。</li>
+        <li><b>真正新的切线。</b>T₄（x ≥ 2）的核不能由 T₁、T₂、T₃ 推出，于是它独占切开 16 对，逃逸对从 24 降到 8。在至少两个态的场地上，“降低逃逸”恰好等价于“不在其余定理的语义闭包里”（lowersEscape_iff_not_mem_semanticClosureWithout）。</li>
+        <li><b>可恢复的定理。</b>T₅ = T₁ ∧ ¬T₂ 只说“恰在第 1 行”（y = 1），它的两条边界正是 T₁、T₂ 已有的切线：其余定理一致时它也一致，所以它一对也切不开、不降低逃逸（lowersEscape_false_of_recoverable）。独占捕获是留一法的量：T₅ 进来之后，T₁ = T₅ ∨ T₂、T₂ = T₁ ∧ ¬T₅ 也都能由另外两条推出，三者的独占捕获一起为 0，而联合核与逃逸对一对都没变。</li>
+        <li><b>同核双胞胎。</b>T₆（x ≤ 1）与 T₄ 是同一条切线的两种说法，一致关系完全相同。两者互相恢复，独占捕获同时为 0（same_kernel_both_zero）；去掉其中任一条，逃逸率都不变。</li>
+      </ol>
+      <p class="lede refs">书中：<a href="../../zh/ch02-information-escape-and-novelty.html" target="_top">第二章 · 同一块金子挖不了两次</a> · <a href="../../zh/ch05-trureturing-live-observatory.html" target="_top">第五章 · 八部门透明玻璃观测站</a> · trureturing（所钉提交）：<a data-trureturing-path="Blueprint/D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.md" href="#" target="_blank" rel="noopener">Blueprint · CatalogKernel</a> · <a data-trureturing-path="Blueprint/D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.md" href="#" target="_blank" rel="noopener">Blueprint · StructuralNovelty</a></p>
+    </div>
+    <div class="en">
+      <p class="lede">A finite observer faces 16 states. Each theorem of the catalog is one binary reading; two states that read the same on every selected theorem still cannot be told apart, and that pair has "escaped". All pairs that cannot be told apart form the joint kernel. The page is a numerical illustration, not a proof.</p>
+      <ol>
+        <li><b>The joint kernel and the escape rate.</b> For a set S of selected theorems, the joint kernel jointKernel(S) is the set of pairs on which every theorem of S agrees. The magenta links on the lattice are the pairs of distinct states in the joint kernel; the escape rate is those pairs over all pairs. The page counts unordered pairs (120 in all), Lean counts ordered pairs (240), and the rate is the same.</li>
+        <li><b>Insertion only shrinks.</b> Inserting one theorem intersects the old joint kernel with its agreement relation (jointKernel_insert), so a larger set has a smaller joint kernel (jointKernel_antitone): along the rail the escape rate never rises.</li>
+        <li><b>A genuinely new cut.</b> The kernel of T₄ (x ≥ 2) cannot be implied by T₁, T₂, T₃, so it separates 16 pairs on its own and the escaped pairs fall from 24 to 8. On an arena of at least two states, "lowers the escape" is exactly "not in the semantic closure of the other theorems" (lowersEscape_iff_not_mem_semanticClosureWithout).</li>
+        <li><b>A recoverable theorem.</b> T₅ = T₁ ∧ ¬T₂ only says "exactly in row 1" (y = 1), and its two edges are the cuts T₁ and T₂ have already drawn: it agrees wherever the others agree, so it separates not one pair and does not lower the escape (lowersEscape_false_of_recoverable). Unique capture is a leave-one-out count: once T₅ is in, T₁ = T₅ ∨ T₂ and T₂ = T₁ ∧ ¬T₅ follow from the other two as well, so all three capture 0, while the joint kernel and the escaped pairs have not changed at all.</li>
+        <li><b>Same-kernel twins.</b> T₆ (x ≤ 1) and T₄ are two ways of stating one cut, with exactly the same agreement relation. Each recovers the other, and both have unique capture 0 (same_kernel_both_zero); removing either one leaves the escape rate unchanged.</li>
+      </ol>
+      <p class="lede refs">In the book: <a href="../../en/ch02-information-escape-and-novelty.html" target="_top">Chapter 2 · You cannot mine the same gold twice</a> · <a href="../../en/ch05-trureturing-live-observatory.html" target="_top">Chapter 5 · An eight-department glass observatory</a> · trureturing (pinned commit): <a data-trureturing-path="Blueprint/D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.md" href="#" target="_blank" rel="noopener">Blueprint · CatalogKernel</a> · <a data-trureturing-path="Blueprint/D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.md" href="#" target="_blank" rel="noopener">Blueprint · StructuralNovelty</a></p>
+    </div>
+    <h3 class="evh"><span class="zh">全部依据</span><span class="en">All evidence</span></h3>
+    <div id="drawerEvidence"></div>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

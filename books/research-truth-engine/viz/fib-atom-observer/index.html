@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN" data-title-en="FIB//OBSERVER · FIB ATOM observer · identical on the boundary, apart in lineage">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FIB//OBSERVER FIB ATOM 观测器 · 外表完全相同，血统彻底分离</title>
+<meta name="description" content="三个场景看同一个对象：组成 (a, b) 与可观测量 q = 2a + 3b。嫁接：由 Fibonacci 一步 R 与嫁接 G 组成的词作用在组成上恰是 stepᵏ(v) + t，t 的模 H 余数落在嫁接空间里。血统：组成相同的有序二叉树经 n 代替换后组成与可观测量仍相同，却只占新纤维的一小部分，全变差趋于 1，TV((1, 1), 1) = 2/3。亏量：黄金进位亏量只取 −1、0、1（三条结论均已由 Lean 内核验证并冻结）。Three scenes on one object: a composition (a, b) and its quantity q = 2a + 3b. Graft: a word of Fibonacci steps R and grafts G acts as stepᵏ(v) + t with t mod H in the graft space. Lineage: ordered binary trees of one composition keep the same composition and quantity after n substitutions but fill a vanishing part of the new fiber; the total variation tends to 1 and TV((1, 1), 1) = 2/3. Deficit: the golden carry deficit only takes −1, 0, 1 (all three kernel-verified in Lean and frozen).">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="style.css">
+<script src="../assets/shell.js"></script>
+<script src="../assets/kit.js"></script>
+</head>
+<body data-viz-id="fib-atom-observer">
+<div class="app lab" id="app">
+  <header class="top">
+    <div class="brand">
+      <a class="crumb" href="../"><span class="zh">◂ 可视化索引</span><span class="en">◂ Visualizations</span></a>
+      <h1 class="logo" data-text="FIB//OBSERVER">FIB<b>//</b>OBSERVER</h1>
+      <div class="tagline">
+        <span class="zh">FIB ATOM 观测器 · <em>外表完全相同，血统彻底分离：边界读数一样的树，替换几代后只占新纤维的一小部分</em></span>
+        <span class="en">FIB ATOM observer · <em>identical on the boundary, apart in lineage: trees with the same reading fill a vanishing part of the new fiber</em></span>
+      </div>
+    </div>
+    <div class="status" aria-live="polite">
+      <span class="pill" id="pillComp"><span class="zh">组成</span><span class="en">COMPOSITION</span> <strong>—</strong></span>
+      <span class="pill hot" id="pillKey"><span id="pillKeyName">TV</span> <strong>—</strong></span>
+      <div class="langs" role="group" aria-label="语言 Language"><button data-lang-set="zh" aria-pressed="true">中</button><button data-lang-set="en" aria-pressed="false">EN</button></div>
+    </div>
+  </header>
+
+  <aside class="col deck" aria-label="实验控制" data-aria-en="Experiment controls">
+    <section class="panel sec">
+      <h2><span class="zh">实验卡带</span><span class="en">Experiments</span><span class="aside">PRESETS</span></h2>
+      <div class="presets cards" id="presets">
+        <button class="preset" data-preset="graft" aria-pressed="false"><span class="code">GRAFT</span><span class="cn zh">嫁接词 RGRG：stepᵏ(v) + t</span><span class="cn en">Graft word RGRG: stepᵏ(v) + t</span></button>
+        <button class="preset" data-preset="boundary" aria-pressed="false"><span class="code">BOUNDARY</span><span class="cn zh">同一组成，六棵不同的树</span><span class="cn en">One composition, six distinct trees</span></button>
+        <button class="preset" data-preset="lineage" aria-pressed="false"><span class="code">LINEAGE</span><span class="cn zh">TV(1) = 2/3，随后逼近 1</span><span class="cn en">TV(1) = 2/3, then close to 1</span></button>
+        <button class="preset" data-preset="deficit" aria-pressed="false"><span class="code">DEFICIT</span><span class="cn zh">进位亏量困在 −1、0、1</span><span class="cn en">The carry deficit trapped in −1, 0, 1</span></button>
+      </div>
+      <p class="note" id="presetNote"></p>
+    </section>
+
+    <section class="panel sec" data-scenes="graft lineage">
+      <h2><span class="zh">组成 v = (a, b)</span><span class="en">Composition v = (a, b)</span><span class="aside">q = 2a + 3b</span></h2>
+      <div class="num-field">
+        <label for="aNum"><span class="zh">α 叶数 a</span><span class="en">α leaves a</span></label>
+        <div class="stepper"><button type="button" id="aDec" aria-label="a 减一" data-aria-en="Decrease a">−</button><input type="number" id="aNum" min="0" max="3" step="1" value="2" inputmode="numeric" aria-label="a 的值" data-aria-en="Value of a"><button type="button" id="aInc" aria-label="a 加一" data-aria-en="Increase a">+</button></div>
+      </div>
+      <div class="num-field">
+        <label for="bNum"><span class="zh">β 叶数 b</span><span class="en">β leaves b</span></label>
+        <div class="stepper"><button type="button" id="bDec" aria-label="b 减一" data-aria-en="Decrease b">−</button><input type="number" id="bNum" min="0" max="3" step="1" value="1" inputmode="numeric" aria-label="b 的值" data-aria-en="Value of b"><button type="button" id="bInc" aria-label="b 加一" data-aria-en="Increase b">+</button></div>
+      </div>
+      <p class="note"><span class="zh">a + b ≥ 1；每一代最多画出 6 棵树，计数总是精确的。</span><span class="en">a + b ≥ 1; up to 6 trees are drawn per generation, and the counts are always exact.</span></p>
+    </section>
+
+    <section class="panel sec" data-scenes="graft">
+      <h2><span class="zh">嫁接与模数</span><span class="en">Graft and modulus</span><span class="aside">L<sub>w</sub> = ⟨w, Mw⟩</span></h2>
+      <div class="num-field">
+        <label for="hNum"><span class="zh">模数 H</span><span class="en">Modulus H</span></label>
+        <div class="stepper"><button type="button" id="hDec" aria-label="H 减一" data-aria-en="Decrease H">−</button><input type="number" id="hNum" min="2" max="9" step="1" value="5" inputmode="numeric" aria-label="H 的值" data-aria-en="Value of H"><button type="button" id="hInc" aria-label="H 加一" data-aria-en="Increase H">+</button></div>
+      </div>
+      <div class="num-field">
+        <label for="jNum"><span class="zh">嫁接块 stepʲ(1, 0) 的 j</span><span class="en">Block stepʲ(1, 0): j</span></label>
+        <div class="stepper"><button type="button" id="jDec" aria-label="j 减一" data-aria-en="Decrease j">−</button><input type="number" id="jNum" min="0" max="5" step="1" value="2" inputmode="numeric" aria-label="j 的值" data-aria-en="Value of j"><button type="button" id="jInc" aria-label="j 加一" data-aria-en="Increase j">+</button></div>
+      </div>
+      <div class="num-field">
+        <label for="mNum"><span class="zh">倍数 c（w = c · 块）</span><span class="en">Multiple c (w = c · block)</span></label>
+        <div class="stepper"><button type="button" id="mDec" aria-label="c 减一" data-aria-en="Decrease c">−</button><input type="number" id="mNum" min="1" max="3" step="1" value="1" inputmode="numeric" aria-label="c 的值" data-aria-en="Value of c"><button type="button" id="mInc" aria-label="c 加一" data-aria-en="Increase c">+</button></div>
+      </div>
+      <div class="chips" id="wordChips">
+        <button class="chip" id="addR"><span class="zh">+ R 一步</span><span class="en">+ R step</span></button>
+        <button class="chip" id="addG"><span class="zh">+ G 嫁接</span><span class="en">+ G graft</span></button>
+        <button class="chip" id="popW"><span class="zh">删去末字母</span><span class="en">Drop last</span></button>
+      </div>
+      <p class="note"><span class="zh">点舞台上的字母可在 R 与 G 之间切换；词长 1 到 10。</span><span class="en">Click a letter on the stage to switch it between R and G; words of length 1 to 10.</span></p>
+    </section>
+
+    <section class="panel sec" data-scenes="deficit" hidden>
+      <h2><span class="zh">这一对数</span><span class="en">The pair</span><span class="aside">0 ≤ v ≤ 89</span></h2>
+      <div class="num-field">
+        <label for="v1Num"><span class="zh">第一个数 v₁</span><span class="en">First number v₁</span></label>
+        <div class="stepper"><button type="button" id="v1Dec" aria-label="v₁ 减一" data-aria-en="Decrease v₁">−</button><input type="number" id="v1Num" min="0" max="89" step="1" value="1" inputmode="numeric" aria-label="v₁ 的值" data-aria-en="Value of v₁"><button type="button" id="v1Inc" aria-label="v₁ 加一" data-aria-en="Increase v₁">+</button></div>
+        <input type="range" id="v1" min="0" max="89" step="1" value="1" aria-label="v₁ 滑块" data-aria-en="Slider for v₁">
+      </div>
+      <div class="num-field">
+        <label for="v2Num"><span class="zh">第二个数 v₂（即时间轴）</span><span class="en">Second number v₂ (the rail)</span></label>
+        <div class="stepper"><button type="button" id="v2Dec" aria-label="v₂ 减一" data-aria-en="Decrease v₂">−</button><input type="number" id="v2Num" min="0" max="89" step="1" value="1" inputmode="numeric" aria-label="v₂ 的值" data-aria-en="Value of v₂"><button type="button" id="v2Inc" aria-label="v₂ 加一" data-aria-en="Increase v₂">+</button></div>
+      </div>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="stage still" id="stage" data-thumb aria-label="舞台：模 H 的余数格与嫁接词；同一组成的有序二叉树及其各代纤维；或 Zeckendorf 筹码与收缩窗口" data-aria-en="Stage: the residue grid mod H and a graft word; ordered binary trees of one composition and their fibers by generation; or Zeckendorf tokens and the contraction window">
+      <canvas class="fill" id="cv"></canvas>
+      <div class="scan"></div><div class="vig"></div>
+      <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+      <div class="hud-tl"><span class="big" id="hudBig"></span><span class="sub" id="hudSub"></span></div>
+      <div class="hud-tr chips" id="sceneChips" role="group" aria-label="场景" data-aria-en="Scene">
+        <button class="chip" data-scene="graft" aria-pressed="true"><span class="zh">嫁接</span><span class="en">Graft</span></button>
+        <button class="chip" data-scene="lineage" aria-pressed="false"><span class="zh">血统</span><span class="en">Lineage</span></button>
+        <button class="chip" data-scene="deficit" aria-pressed="false"><span class="zh">亏量</span><span class="en">Deficit</span></button>
+      </div>
+      <div class="hud-bl" id="legend"></div>
+    </div>
+    <div class="tour" id="tour">
+      <button class="tbtn" data-tour="prev" aria-label="上一个实验" data-aria-en="Previous experiment">◀</button>
+      <div class="what"></div>
+      <button class="tbtn" data-tour="next" aria-label="下一个实验" data-aria-en="Next experiment">▶</button>
+    </div>
+    <div class="strip">
+      <section class="panel">
+        <div class="head"><h2><span class="zh">血统全变差 TV(n) 逼近 1</span><span class="en">Lineage total variation TV(n) approaches 1</span></h2><span id="pAMeta"></span></div>
+        <canvas id="plotA" aria-label="当前组成的全变差随代数 n 的变化" data-aria-en="Total variation of the current composition against the generation n"></canvas>
+      </section>
+      <section class="panel">
+        <div class="head"><h2><span class="zh">亏量 c(v₁, v₂) 只取 −1、0、1</span><span class="en">The deficit c(v₁, v₂) takes −1, 0, 1 only</span></h2><span id="pBMeta"></span></div>
+        <canvas id="plotB" aria-label="固定 v₁ 时 v₂ 从 0 到 89 的亏量" data-aria-en="The deficit for v₂ from 0 to 89 at fixed v₁"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <aside class="col side" aria-label="读数与依据" data-aria-en="Readouts and evidence">
+    <section class="panel sec" id="readouts" aria-live="polite">
+      <h2><span class="zh">读数</span><span class="en">Readouts</span><span class="aside">step(a, b) = (b, a + b)</span></h2>
+      <dl class="ro" data-scenes="graft">
+        <div class="key"><dt><span class="zh">当前组成 u = stepᵏ(v) + t</span><span class="en">Current composition u = stepᵏ(v) + t</span></dt><dd><b id="roU">—</b><span id="roUSub"></span></dd></div>
+        <div class="c"><dt><span class="zh">已执行字母 · 其中 R 的个数 k</span><span class="en">Letters run · of them R: k</span></dt><dd id="roK">—</dd></div>
+        <div class="m"><dt><span class="zh">step 模 H 的周期</span><span class="en">Period of step mod H</span></dt><dd id="roPer">—</dd></div>
+        <div class="wide"><dt><span class="zh">平移 t 的模 H 余数 ∈ 嫁接空间 L<sub>w</sub></span><span class="en">Translation t mod H ∈ graft space L<sub>w</sub></span></dt><dd id="roT">—</dd></div>
+        <div class="wide"><dt><span class="zh">观测者的读数 gcd(q(u), H)</span><span class="en">The observer's reading gcd(q(u), H)</span></dt><dd id="roRead">—</dd></div>
+      </dl>
+      <dl class="ro" data-scenes="lineage" hidden>
+        <div class="key"><dt><span class="zh">全变差 TV(n) = 1 − |纤维(v)| / |纤维(stepⁿ v)|</span><span class="en">Total variation TV(n) = 1 − |Fiber(v)| / |Fiber(stepⁿ v)|</span></dt><dd><b id="roTV">—</b><span id="roTVSub"></span></dd></div>
+        <div class="c"><dt><span class="zh">源纤维 Catalan · 二项式</span><span class="en">Source fiber Catalan · binomial</span></dt><dd id="roSrc">—</dd></div>
+        <div class="m"><dt><span class="zh">第 n 代纤维</span><span class="en">Fiber at generation n</span></dt><dd id="roTgt">—</dd></div>
+        <div class="wide"><dt><span class="zh">每棵像树的组成与可观测量</span><span class="en">Composition and quantity of every image tree</span></dt><dd id="roBnd">—</dd></div>
+        <div class="wide"><dt><span class="zh">像两两不同（单射）· 下界 1 − 2<sup>−b</sup> ≤ TV(1)</span><span class="en">Images pairwise distinct (injective) · bound 1 − 2<sup>−b</sup> ≤ TV(1)</span></dt><dd id="roInj">—</dd></div>
+      </dl>
+      <dl class="ro" data-scenes="deficit" hidden>
+        <div class="key"><dt><span class="zh">亏量 c(v₁, v₂) = β(v₁) + β(v₂) − β(v₁ + v₂)</span><span class="en">Deficit c(v₁, v₂) = β(v₁) + β(v₂) − β(v₁ + v₂)</span></dt><dd><b id="roC">—</b><span id="roCSub"></span></dd></div>
+        <div class="c"><dt><span class="zh">β(v₁) 在 ℤ[φ] 中</span><span class="en">β(v₁) in ℤ[φ]</span></dt><dd id="roB1">—</dd></div>
+        <div class="m"><dt><span class="zh">β(v₂) 在 ℤ[φ] 中</span><span class="en">β(v₂) in ℤ[φ]</span></dt><dd id="roB2">—</dd></div>
+        <div class="wide"><dt><span class="zh">φ 的系数相消</span><span class="en">The φ-coefficients cancel</span></dt><dd id="roPhi">—</dd></div>
+        <div class="wide"><dt><span class="zh">收缩面上的三个读数 β′</span><span class="en">The three readings β′ on the contraction face</span></dt><dd id="roWin">—</dd></div>
+      </dl>
+      <p class="note" id="roNote"></p>
+    </section>
+
+    <section class="panel sec" id="evidence">
+      <h2><span class="zh">依据</span><span class="en">Evidence</span><span class="aside">trureturing</span></h2>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">嫁接仿射闭包（长合取的一部分）：对每个正整数 H 与嫁接组成 w，任意有限词 W（R 为 step，G 为加 w）作用在组成上都是 v ↦ step^[k] v + t，且 t 的模 H 余数属于 L<sub>w</sub> = {a·ρ(w) + b·Mρ(w)}；step^[(H²)!] 在模 H 余数上是恒等映射；当 w 是原子块 stepʲ(1, 0) 时，两个源在一切词下的读数 gcd(q, H) 都相同，当且仅当它们模 H 同余。已冻结：</span><span class="en">Graft affine closure (part of a long conjunction): for every positive H and graft composition w, every finite word W (R = step, G = add w) acts on compositions as v ↦ step^[k] v + t with the residue of t mod H in L<sub>w</sub> = {a·ρ(w) + b·Mρ(w)}; step^[(H²)!] is the identity on residues mod H; and when w is an atomic block stepʲ(1, 0), two sources give the same reading gcd(q, H) under every word if and only if they agree mod H. Frozen: </span><a class="leanref" data-lean-gid="D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.result" href="#" target="_blank" rel="noopener"><code>GraftAffineClosure.result</code></a></span></div>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">血统纤维传输：a + b ≥ 1 时，组成为 (a, b) 的有序二叉树恰有 Catalan(a + b − 1)·C(a + b, a) 棵；n 次替换把它们单射地送进 Fiber(stepⁿ(a, b))，组成与可观测量 q 随之变成 stepⁿ(a, b) 与 q(stepⁿ(a, b))；均匀分布的推前与目标纤维均匀分布的全变差为 1 − |Fiber(a, b)| / |Fiber(stepⁿ(a, b))|；a + b ≥ 2 时 1 − (1/2)ᵇ ≤ TV(1)；TV(n) → 1；且 TV((1, 1), 1) = 2/3。已冻结：</span><span class="en">Genealogical fiber transport: for a + b ≥ 1 there are exactly Catalan(a + b − 1)·C(a + b, a) ordered binary trees of composition (a, b); n substitutions send them injectively into Fiber(stepⁿ(a, b)), their composition and quantity q becoming stepⁿ(a, b) and q(stepⁿ(a, b)); the total variation between the pushforward of the uniform law and the uniform law of the target fiber is 1 − |Fiber(a, b)| / |Fiber(stepⁿ(a, b))|; for a + b ≥ 2, 1 − (1/2)ᵇ ≤ TV(1); TV(n) → 1; and TV((1, 1), 1) = 2/3. Frozen: </span><a class="leanref" data-lean-gid="D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" href="#" target="_blank" rel="noopener"><code>GenealogicalFiberTransport.result</code></a></span></div>
+      <div class="lean"><span class="ok">LEAN ✓</span><span><span class="zh">对所有自然数 v₁、v₂，黄金进位亏量 c(v₁, v₂) = β(v₁) + β(v₂) − β(v₁ + v₂) 等于 −1、0 或 1。已冻结：</span><span class="en">For all natural numbers v₁, v₂, the golden carry deficit c(v₁, v₂) = β(v₁) + β(v₂) − β(v₁ + v₂) equals −1, 0 or 1. Frozen: </span><a class="leanref" data-lean-gid="D5/S1/Deficit/DeficitThreeValued.deficit_three_valued" href="#" target="_blank" rel="noopener"><code>deficit_three_valued</code></a></span></div>
+      <div class="lean num"><span class="ok">NUM</span><span><span class="zh">页面上的数值演示，不是证明：组成、平移、余数与嫁接空间用精确整数算出；纤维逐棵枚举（a + b ≤ 6）并与 Catalan·二项式计数对照，每一代最多画出 6 棵，大纤维用大整数计数；β 在 ℤ[φ] 中精确计算；收缩面读数 β′ 用双精度，页面逐个核对它们落在窗口 [−ψ², −ψ] 里（这一窗口出现在 deficit_three_valued 的 Lean 证明中）。</span><span class="en">A numerical illustration on the page, not a proof: compositions, translations, residues and graft spaces are exact integers; fibers are enumerated tree by tree (a + b ≤ 6) and checked against the Catalan · binomial count, with up to 6 drawn per generation, large fibers are counted with big integers; β is exact in ℤ[φ]; the contraction-face readings β′ use double precision, and the page checks one by one that they lie in the window [−ψ², −ψ] (the window used in the Lean proof of deficit_three_valued).</span></span></div>
+      <div class="lean model"><span class="ok">MODEL</span><span><span class="zh">为画面选定的参数：嫁接词、H、j 与倍数 c，组成 a、b ≤ 3，代数 n ≤ 5，v ≤ 89。三条 Lean 定理对一切参数成立，页面只画出其中有限个例子。</span><span class="en">Parameters chosen for the picture: the graft word, H, j and the multiple c, compositions with a, b ≤ 3, generations n ≤ 5, v ≤ 89. The three Lean theorems hold for all parameters; the page draws finitely many instances.</span></span></div>
+      <button class="chip" id="infoBtn"><span class="zh">理论接口 DATA SHARD</span><span class="en">DATA SHARD · theory</span></button>
+    </section>
+  </aside>
+
+  <footer class="rail" id="rail">
+    <div class="transport">
+      <button class="tbtn" id="rew" aria-label="回到起点" data-aria-en="Back to the start">⏮</button>
+      <button class="tbtn" id="play" aria-label="播放 / 暂停" data-aria-en="Play / pause" aria-pressed="false">▶</button>
+      <span class="chips" id="speedChips" role="group" aria-label="播放速度" data-aria-en="Playback speed">
+        <button class="chip" data-speed="0.35" aria-pressed="false">0.35×</button><button class="chip" data-speed="1" aria-pressed="true">1×</button><button class="chip" data-speed="2.5" aria-pressed="false">2.5×</button>
+      </span>
+    </div>
+    <div class="clock">
+      <span class="tau" id="tau"></span>
+      <input type="range" id="now" min="0" max="4" step="any" value="0" aria-label="时间轴：嫁接词的字母、替换的代数或 v₂" data-aria-en="Rail: the letters of the graft word, the generation, or v₂">
+    </div>
+    <div class="keys">
+      <kbd>Space</kbd> <span class="zh">播放</span><span class="en">play</span> · <kbd>←</kbd><kbd>→</kbd> <span class="zh">逐步</span><span class="en">step</span> · <kbd>1</kbd>–<kbd>3</kbd> <span class="zh">场景</span><span class="en">scene</span>
+    </div>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
+    <div class="zh">
+      <p class="lede">有限观察者只读到边界：一个组成 v = (a, b)（α 叶与 β 叶的个数）和它的可观测量 q(v) = 2a + 3b。Fibonacci 一步 step(a, b) = (b, a + b) 就是替换 α → β、β → βα 在组成上的效果。本页是数值演示，不是证明。</p>
+      <ol>
+        <li><b>嫁接。</b>词里的 R 做一步 step，G 加上嫁接组成 w。无论词怎样排，结果都等于 stepᵏ(v) 加一个平移 t（k 是 R 的个数），t 模 H 的余数落在 w 与 Mw 张成的嫁接空间 L<sub>w</sub> 里。舞台左边是 (ℤ/H)² 的余数格：青色格是 L<sub>w</sub>，品红圈是 stepᵏ(v)，琥珀点是当前组成，虚线是 +t。w 是原子块时 L<sub>w</sub> 是整个格；把 H 设为 6、倍数 c 设为 2，可以看到真子格。</li>
+        <li><b>血统。</b>组成为 (a, b) 的有序二叉树共有 Catalan(a + b − 1)·C(a + b, a) 棵。替换 n 代后，每棵树的组成都是 stepⁿ(a, b)、可观测量都是 q(stepⁿ(a, b))：边界读数完全相同；而替换是单射，这些树在新纤维里只占 |Fiber(a, b)| 个位置。舞台上排是祖先（第 0 代），下排是它们第 n 代的像，虚线连起每一条血统。页面沿用 Lean 的记法：组成 (a, b) = (α 叶数, β 叶数)，step(a, b) = (b, a + b)，M = [[0, 1], [1, 1]]；把 β 记作 A、α 记作 B，替换就是 A → AB、B → A，(#A, #B) 一步变为 (#A + #B, #A)，两种写法是同一件事。均匀分布推前后与新纤维上均匀分布的全变差 TV(n) = 1 − |Fiber(a, b)| / |Fiber(stepⁿ(a, b))| 趋于 1；(1, 1) 在第一代恰为 1 − 2/6 = 2/3。</li>
+        <li><b>亏量。</b>把 Zeckendorf 表示的权重 Wᵢ 换成 φ^(i+2) 得到 β(v)，亏量 c(v₁, v₂) = β(v₁) + β(v₂) − β(v₁ + v₂) 在 ℤ[φ] 中精确算出：φ 的系数相消，c 是整数。在收缩面上（φ 换成 ψ = 1 − φ）三个读数都在长度为 1 的窗口 [−ψ², −ψ] 里，所以 c 落在开区间 (−1.382, 1.618) 中，只能是 −1、0、1。时间轴让 v₂ 从 0 走到 89。</li>
+      </ol>
+      <p class="lede refs">书中：<a href="../../zh/ch01-finite-observer-and-fib-atom.html" target="_top">第一章 · 从一位二进制窗口到 FIB ATOM</a> · trureturing（所钉提交）：<a data-trureturing-path="Blueprint/D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.md" href="#" target="_blank" rel="noopener">Blueprint · GraftAffineClosure</a> · <a data-trureturing-path="Blueprint/D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.md" href="#" target="_blank" rel="noopener">Blueprint · GenealogicalFiberTransport</a> · <a data-trureturing-path="Blueprint/D5/S1/Deficit/DeficitThreeValued.md" href="#" target="_blank" rel="noopener">Blueprint · DeficitThreeValued</a></p>
+    </div>
+    <div class="en">
+      <p class="lede">A finite observer reads only the boundary: a composition v = (a, b) (the numbers of α and β leaves) and its quantity q(v) = 2a + 3b. One Fibonacci step step(a, b) = (b, a + b) is what the substitution α → β, β → βα does to a composition. The page is a numerical illustration, not a proof.</p>
+      <ol>
+        <li><b>Graft.</b> In a word, R takes one step and G adds the graft composition w. However the word is arranged, the result is stepᵏ(v) plus a translation t (k is the number of R's), and the residue of t mod H lies in the graft space L<sub>w</sub> spanned by w and Mw. On the left of the stage is the residue grid (ℤ/H)²: cyan cells are L<sub>w</sub>, the magenta ring is stepᵏ(v), the amber dot is the current composition, the dashed line is +t. For an atomic block, L<sub>w</sub> is the whole grid; set H to 6 and the multiple c to 2 to see a proper subgrid.</li>
+        <li><b>Lineage.</b> There are Catalan(a + b − 1)·C(a + b, a) ordered binary trees of composition (a, b). After n generations of substitution every one of them has composition stepⁿ(a, b) and quantity q(stepⁿ(a, b)): identical boundary readings; and since substitution is injective, they occupy only |Fiber(a, b)| places of the new fiber. On the stage the upper row holds the ancestors (generation 0), the lower row their images at generation n, and a dashed line joins each lineage. The page keeps Lean's notation: a composition (a, b) = (number of α leaves, number of β leaves), step(a, b) = (b, a + b), M = [[0, 1], [1, 1]]; writing A for β and B for α, the substitution reads A → AB, B → A and (#A, #B) becomes (#A + #B, #A) in one step: the two notations say the same thing. The total variation between the pushforward of the uniform law and the uniform law of the new fiber, TV(n) = 1 − |Fiber(a, b)| / |Fiber(stepⁿ(a, b))|, tends to 1; for (1, 1) at the first generation it is exactly 1 − 2/6 = 2/3.</li>
+        <li><b>Deficit.</b> Replacing the Zeckendorf weights Wᵢ by φ^(i+2) gives β(v), and the deficit c(v₁, v₂) = β(v₁) + β(v₂) − β(v₁ + v₂) is computed exactly in ℤ[φ]: the φ-coefficients cancel, so c is an integer. On the contraction face (φ replaced by ψ = 1 − φ) the three readings lie in the window [−ψ², −ψ] of length 1, so c lies in the open interval (−1.382, 1.618) and can only be −1, 0 or 1. The rail runs v₂ from 0 to 89.</li>
+      </ol>
+      <p class="lede refs">In the book: <a href="../../en/ch01-finite-observer-and-fib-atom.html" target="_top">Chapter 1 · From a one-bit window to FIB ATOM</a> · trureturing (pinned commit): <a data-trureturing-path="Blueprint/D5/S3/Arith/FibonacciAtomic/GraftAffineClosure.md" href="#" target="_blank" rel="noopener">Blueprint · GraftAffineClosure</a> · <a data-trureturing-path="Blueprint/D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.md" href="#" target="_blank" rel="noopener">Blueprint · GenealogicalFiberTransport</a> · <a data-trureturing-path="Blueprint/D5/S1/Deficit/DeficitThreeValued.md" href="#" target="_blank" rel="noopener">Blueprint · DeficitThreeValued</a></p>
+    </div>
+    <h3 class="evh"><span class="zh">全部依据</span><span class="en">All evidence</span></h3>
+    <div id="drawerEvidence"></div>
+  </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

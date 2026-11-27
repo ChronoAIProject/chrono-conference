@@ -1,0 +1,19 @@
+{
+  "voice": "af_heart", "speed": 0.94,
+  "say": {},
+  "music": {"bpm": 84, "progression": "d-minor"},
+  "scenes": [
+    {"id": "ratchet", "name": "RATCHET", "lead": 1.8, "tail": 0.5, "music": [1.0, 0.5, 0.5, 0.2, 0.2], "lines": [
+      ["A ratchet turns one way. In prose, an eloquent mistake can survive for decades; in Lean four, the kernel rejects it on the spot.", "棘轮只朝一个方向咬合。散文里，雄辩的错误能活几十年；Lean 4 的内核当场拒收。"],
+      ["Every theorem added to a catalog intersects the joint kernel of indistinguishable states—blind spots can shrink, never grow.", "每向目录加入一条定理，不可分辨状态对的联合核就取一次交——盲区只缩不胀。"]
+    ]},
+    {"id": "novelty", "name": "NOVELTY", "lead": 0.3, "tail": 0.6, "music": [0.9, 0.8, 0.9, 0.5, 0.5], "lines": [
+      ["More subtly, on a nondegenerate arena, a theorem lowers information escape if and only if it stands outside the semantic closure of what is already known.", "在非退化竞技场上，定理降低信息逃逸，当且仅当它落在已有结论的语义闭包之外。"],
+      ["You cannot mine the same gold twice.", "同一块金子，挖不了两次。"]
+    ]},
+    {"id": "frontier", "name": "FRONTIER", "lead": 0.3, "tail": 4.4, "music": [1.0, 0.8, 0.8, 0.6, 0.4], "lines": [
+      ["Across seven hundred twenty unbroken UTC hours, commits to trureturing never stopped; its cumulative snapshot holds one hundred sixty-seven thousand frozen theorems, and over seventy-four days it logged two thousand one hundred twenty-six dated literature resolutions—two thousand one hundred twenty-eight in total.", "七百二十 UTC 小时提交从未间断；trureturing 累计快照冻结十六万七千余条定理，七十四天里登记两千一百二十六道带日期文献题解，合计两千一百二十八道。"],
+      ["From proving four-qubit entropy bounds to refuting the four-qubit Fredkin entangling-power conjecture—and marking what remains open in stark red.", "从证明四量子比特熵上界，到反驳四量子比特 Fredkin 纠缠能力猜想——同时以红色醒目标出尚未攻克的边界。"]
+    ]}
+  ]
+}
