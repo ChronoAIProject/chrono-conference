@@ -18,6 +18,7 @@
     "chrono-cd": "chrono C D",
     "OpenAPI-to-MCP": "open A P I to M C P",
     "#print axioms": "print axioms",
+    "8a3f20fb": "eight a three f two zero f b",
     "D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result": "D five dot S three dot Quantum dot Entanglement dot Fredkin Entangling Power Refutation dot result",
     "propext": "prop ext",
     "Classical.choice": "Classical dot choice",
@@ -134,8 +135,8 @@
           "当执行成本滑向归零，做错事情的速度就放大一百倍——失去护栏的智能体三十分钟就能造完错误架构，再附赠一片绿灯自测。"
         ],
         [
-          "From September twentieth to November nineteenth, twenty twenty-six, seventy-four active repositories across ChronoAI and The Omega Institute recorded one hundred forty-one thousand six hundred twenty-four commits—about fifteen engineers alongside autonomous agents accounting for roughly thirty-five percent of explicit commits.",
-          "从二零二六年九月二十日至十一月十九日，横跨 ChronoAI 与 The Omega Institute 的七十四个活跃仓落下十四万一千六百二十四次提交；约十五位工程师协同智能体推进，其中显式机器与代理账号占比约百分之三十五。"
+          "From September twentieth to November nineteenth, twenty twenty-six, seventy-four active repositories across ChronoAI and The Omega Institute recorded one hundred forty-one thousand six hundred twenty-four commits, maintained by about fifteen engineers—while a separate sixty-nine-repository identity sample on November seventh measured roughly thirty-five percent explicit bot and agent commits.",
+          "从二零二六年九月二十日至十一月十九日，横跨 ChronoAI 与 The Omega Institute 的七十四个活跃仓落下十四万一千六百二十四次提交，由约十五位工程师维护；另在十一月七日对六十九个仓库的显式身份抽样中，机器与代理账号提交占比约百分之三十五。"
         ],
         [
           "Never applaud commit count. Ask the only question that matters: why didn't fourteen thousand commits a week collapse the repositories into uncompilable rubble by day seven?",
@@ -216,8 +217,8 @@
           "以二零二五年 Physical Review A 的四量子比特 Fredkin 门纠缠能力猜想为例：The Omega Institute 构造出超过 2.00034 ebits 的显式乘积态见证，并在源码第 142 行冻结了反驳定理。"
         ],
         [
-          "Running #print axioms on the pinned theorem D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result gives exactly three axioms: [propext, Classical.choice, Quot.sound]. There are zero custom axioms and zero uses of sorryAx.",
-          "在所钉提交上，用 #print axioms 检查定理 D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result，输出恰好是三条公理：[propext, Classical.choice, Quot.sound]。自定义公理为零，也未使用 sorryAx。"
+          "Running #print axioms at commit 8a3f20fb prints: 'D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result' depends on axioms: [propext, Classical.choice, Quot.sound] — zero custom axioms and zero uses of sorryAx.",
+          "在所钉提交 8a3f20fb 上运行 #print axioms，输出为：'D5.S3.Quantum.Entanglement.FredkinEntanglingPowerRefutation.result' depends on axioms: [propext, Classical.choice, Quot.sound]——自定义公理为零，也未使用 sorryAx。"
         ],
         [
           "Two foundational theorems formalize why this acts as a ratchet: adding frozen theorems monotonically shrinks indistinguishable states, and a new claim lowers information escape if and only if it lies outside the semantic closure of what is already known.",

@@ -20,8 +20,3 @@
   #stage .hud-tl .sub { font-size: 11px; }
   #stage .hud-bl { font-size: 10.5px; gap: 2px 10px; }
 }
-
-/* Stacked plots need their full height in mid-width embeds. */
-@media (600px < width <= 1080px) {
-  :root[data-embed] .lab .strip { height: auto; }
-}

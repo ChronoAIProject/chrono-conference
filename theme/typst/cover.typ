@@ -230,8 +230,10 @@
   place(dx: x0, dy: H * 0.775, block(width: W * 0.5, {
     set par(leading: 0.5em)
     text(font: title-font, weight: 600, size: 2.9 * u, fill: ink, authors)
-    v(0.6 * u)
-    mono(1.7 * u, pal.dim, meta.publisher)
+    if meta.publisher != "" and meta.publisher != authors {
+      v(0.6 * u)
+      mono(1.7 * u, pal.dim, meta.publisher)
+    }
   }))
 
   // ---------------------------------------------------------------- LEAN ✓ stamp

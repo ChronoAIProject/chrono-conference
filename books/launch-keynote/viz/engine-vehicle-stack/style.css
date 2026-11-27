@@ -16,8 +16,3 @@
   .hud-tl .sub { font-size: 11px; }
   .hud-bl { font-size: 10px; gap: 2px 10px; }
 }
-
-/* Stacked plots need their full height in mid-width embeds. */
-@media (600px < width <= 1080px) {
-  :root[data-embed] .lab .strip { height: auto; }
-}

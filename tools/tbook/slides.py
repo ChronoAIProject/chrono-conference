@@ -2032,6 +2032,7 @@ def index_html(site: config.Site, book: config.Book, decks: list[dict[str, Any]]
 * {{ box-sizing: border-box; }}
 body {{ margin: 0; min-height: 100vh; background: var(--tr-void); background-image: var(--tr-fx-aurora); color: var(--tr-ink);
   font: 16px/1.65 var(--tr-font-body); }}
+html[data-polarity="daylight"] body {{ background-image: none; }}
 body::before {{ content: ""; position: fixed; inset: 0; pointer-events: none; background: var(--tr-fx-scanlines); }}
 main {{ position: relative; max-width: 880px; margin: 0 auto; padding: 40px 16px 64px; }}
 a {{ color: var(--tr-sem-link); text-underline-offset: 3px; }}

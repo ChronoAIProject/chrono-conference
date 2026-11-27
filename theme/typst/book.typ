@@ -322,10 +322,17 @@
   h(4pt)
   box(width: 8pt, height: 2.2pt, fill: pal.cyan)
   v(1fr)
-  text(font: f-display, size: 13pt, weight: "semibold", fill: ink, meta.authors.join(if cjk { "、" } else { ", " }))
+  let authors = meta.authors.join(if cjk { "、" } else { ", " })
+  text(font: f-display, size: 13pt, weight: "semibold", fill: ink, authors)
   v(10pt)
-  grid(columns: (auto, auto, auto), column-gutter: 10pt, align: horizon,
-    mono-text(size: 8pt, fill: pal.dim, meta.publisher),
+  let publisher = if meta.publisher != "" and meta.publisher != authors {
+    (mono-text(size: 8pt, fill: pal.dim, meta.publisher),)
+  } else {
+    ()
+  }
+  let columns = if publisher.len() > 0 { (auto, auto, auto) } else { (auto, auto) }
+  grid(columns: columns, column-gutter: 10pt, align: horizon,
+    ..publisher,
     box(stroke: 0.6pt + pal.magenta, inset: (x: 4pt, y: 2.5pt), mono-text(size: 7pt, fill: pal.magenta, [#S.lang_short · #S.lang_name])),
     mono-text(size: 8pt, fill: pal.faint, [v#meta.version]),
   )

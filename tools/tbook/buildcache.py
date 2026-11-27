@@ -303,7 +303,7 @@ def site_inputs(site: config.Site) -> Inputs:
     """Common edition inputs, including unclassified downstream theme resources."""
     renderer_dirs = ("beamer", "epub", "film", "generated", "mdbook", "site", "slides", "typst", "viz")
     return (Inputs()
-            .files(paths.TOOLS / "tbook", paths.TOOLS / "node", paths.TOOLS / "figkit", paths.THEME,
+            .files(paths.TOOLS / "tbook", paths.TOOLS / "node", paths.THEME,
                    paths.I18N_LOCAL, paths.SITE_TOML, paths.LOCK_FILE, paths.ROOT / "requirements.txt",
                    paths.ROOT / "package-lock.json", exclude=tuple(f"/theme/{d}/" for d in renderer_dirs))
             .text("base_url", site.base_url or "")

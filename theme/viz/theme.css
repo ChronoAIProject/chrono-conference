@@ -403,12 +403,13 @@ dl.ro .ok dd, .okmark { color: var(--ok); }
 :root[data-embed] .lab .side { order: 3; overflow: visible; }
 :root[data-embed] .lab .deck { order: 4; overflow: visible; }
 :root[data-embed] .lab .tour { display: grid; }
-:root[data-embed] .lab .strip { height: 160px; }
+@media (width > 1080px) {
+  :root[data-embed] .lab .strip { height: 160px; }
+}
 :root[data-embed] .lab .keys { display: none; }
 :root[data-embed] .app.lab > footer.rail { grid-template-columns: auto minmax(0, 1fr); }
 @media (max-width: 600px) {
   :root[data-embed] .app.lab { grid-template-columns: minmax(0, 1fr); }
-  :root[data-embed] .lab .strip { grid-auto-flow: row; height: auto; }
   /* the whole lab in a narrow frame: the transport (with its speed chips), the readout and the slider each take a
      row, so the slider spans the frame whatever the other two need. A cited figure hides the chips and keeps one row. */
   :root[data-embed]:not([data-figure]) .app.lab > footer.rail,

@@ -35,11 +35,9 @@ const DAYLIGHT = {
   faint: '#9A938C', accent: '#1A1A1A', secondary: '#5C5752', lean: '#0D6E4C',
   open: '#C92A2A', amber: '#B4690E', argued: '#6D28D9'
 };
-// dayBg was introduced with Scheme B. Older generated bundles still carry the neon aliases.
 const filmTokens = TOK.film || {};
-const legacyTokens = !filmTokens.dayBg && filmTokens.bg?.toLowerCase() === '#010208';
-const optics = legacyTokens ? {} : filmTokens;
-const semantics = legacyTokens ? {} : TOK.sem || {};
+const optics = filmTokens;
+const semantics = TOK.sem || {};
 const POLARITY = {
   daylight: { ...DAYLIGHT, bg: optics.dayBg || DAYLIGHT.bg, surface: optics.daySurface || DAYLIGHT.surface,
     edge: optics.dayEdge || DAYLIGHT.edge, ink: optics.dayInk || DAYLIGHT.ink, accent: optics.dayInk || DAYLIGHT.accent,

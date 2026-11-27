@@ -114,10 +114,10 @@ SCENES.act1_judgment = S => {
     caption('30 DAYS', 1000, 563, plaza.dim);
     heading('74', 1510, 533, 52, plaza.ink);
     caption('REPOSITORIES', 1510, 563, plaza.dim);
-    caption('PRODUCT-LINE-COMMITS.CSV · 2026-11-19', 1000, 609, plaza.dim, 17);
+    caption('PRODUCT-LINE-COMMITS.CSV · 2026-11-19 · ~15 HUMAN ENGINEERS', 1000, 609, plaza.dim, 17);
     rule(1000, 1784, 634, plaza);
     heading('34.9% explicit bot/agent share', 1000, 690, 34, plaza.ink);
-    caption('69 REPOS · 2026-11-07     ~15 HUMAN ENGINEERS', 1000, 735, plaza.dim, 18);
+    caption('69 REPOS · 2026-11-07 · IDENTITY SAMPLE', 1000, 735, plaza.dim, 18);
   });
   frame(S, 'ACT I  /  THE PRICE OF JUDGMENT', 'VOL I', 'CHRONO-COMPANY-SLIDES · REPOSITORY CENSUS', 'TWO WINDOWS · APPENDIX B');
 };
@@ -393,8 +393,8 @@ const captionCuts = {
   act1_judgment: [
     [['writing code', '写代码'], ['That price sheet', '而今天']],
     [['An unguarded', '失去护栏']],
-    [['seventy-four active', '横跨'], ['recorded one hundred', '落下十四万'], ['about fifteen', '约十五位'],
-      ['accounting for', '其中显式']],
+    [['seventy-four active', '横跨'], ['recorded one hundred', '落下十四万'], ['maintained by', '由约十五位'],
+      ['while a separate', '另在十一月七日'], ['measured roughly', '机器与代理账号']],
     [['why didn', '为什么每周']]
   ],
   act2_observatory: [
@@ -407,7 +407,7 @@ const captionCuts = {
   act2_kernel_audit: [
     [['Follow the five-step', '沿着五步']],
     [['The Omega Institute', 'The Omega Institute'], ['and froze', '并在源码']],
-    [['D5.S3.', 'D5.S3.'], ['gives exactly', '输出恰好'], ['There are zero', '自定义公理为零']],
+    [["'D5.S3.", "'D5.S3."], ['depends on axioms', 'depends on axioms'], ['— zero custom', '——自定义公理']],
     [['adding frozen', '新增冻结'], ['and a new claim', '而一条'], ['if and only if', '当且仅当']]
   ],
   act2_open_frontier: [
