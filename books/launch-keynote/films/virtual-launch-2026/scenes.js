@@ -7,7 +7,10 @@ Object.assign(FILM.polarity, {
   act2_observatory: 'deep-space', act2_kernel_audit: 'deep-space', act2_open_frontier: 'deep-space',
   act3_vehicle: 'daylight', act3_limits: 'daylight', act4_employees: 'daylight', coda_invitation: 'dual-split'
 });
-Object.assign(FILM.alphaScenes, { act2_observatory: true, act2_kernel_audit: true, act4_employees: true });
+Object.assign(FILM.alphaScenes, {
+  prologue_street: true, prologue_lobby: true,
+  act2_observatory: true, act2_kernel_audit: true, act4_employees: true
+});
 
 const plaza = pal('daylight'), space = pal('deep-space');
 const company = 'CHRONOAI PTE. LTD.', institute = 'THE OMEGA INSTITUTE (INDEPENDENT)';
@@ -340,12 +343,12 @@ FILM.poster = () => {
   const S = { id: 'coda_invitation', t: 0, p: 1 };
   splitPaper();
   heading('面向未来的造物', 64, 297, 94, plaza.ink, { fam: F.zh });
-  heading('· 2026 线上发布会全片', 1024, 289, 71, space.ink, { fam: F.zh });
+  heading('2026 线上发布会全片', 1024, 289, 71, space.ink, { fam: F.zh });
   heading('BUILD FOR WHAT COMES NEXT:', 70, 363, 47, plaza.ink);
   heading('THE 2026 VIRTUAL LAUNCH', 1030, 363, 47, space.ink);
   portalPhotos(399, 338);
   rule(68, 890, 763, plaza); rule(1028, 1850, 763, space);
-  caption('STREET CORNER · SINGAPORE', 70, 810, plaza.dim, 22, { ls: 1 });
+  caption('MARINA BAY · STREET CORNER · SINGAPORE', 70, 810, plaza.dim, 22, { ls: 1 });
   caption('LIVE.TRURETURING.ORG · VOL III', 1029, 810, space.dim, 21);
   heading('1,108 seats  /  18 stands  /  0 cameras', 69, 876, 36, plaza.ink);
   if (leanCite(fredkinGid)?.kind === 'theorem') {
@@ -355,6 +358,10 @@ FILM.poster = () => {
   cinemaFrame(S, { polarity: 'dual-split', leftLabel: company, chapterLabel: '2026 VIRTUAL LAUNCH',
     rightLabel: 'THE OMEGA INSTITUTE', slateLeft: 'CHRONO-AI.FUN · SGT 2026-12-17',
     slateRight: 'INDEPENDENT RESEARCH · ' + pinLabel });
+  // Use the event date in the poster's timecode position.
+  fillBox(1390, 36, 480, 59, space.bg, 1);
+  caption('DEC 17, 2026 · THE OMEGA INSTITUTE', 1856, MATTE_HEIGHT / 2, space.dim, 15,
+    { w: 600, ls: 2, align: 'right', base: 'middle' });
 };
 
 /* The director's narration lines are also the motion cue addresses (SC[id].lines).
