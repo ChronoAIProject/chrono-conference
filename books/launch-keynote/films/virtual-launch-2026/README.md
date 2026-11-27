@@ -4,30 +4,33 @@
 
 ## Overview
 
-`virtual-launch-2026` is the flagship long-form conference film of Volume I (*Build for What Comes Next*, `books/launch-keynote/`), built in the **Dual-Polarity (*Daylight Plaza × Deep-Space Glass*)** visual language:
+`virtual-launch-2026` is the ten-scene flagship film for Volume I. Its visual language moves between ChronoAI Pte. Ltd.'s daylight plaza and the independent The Omega Institute's deep-space glass observatory. Every analogy and stance is labelled on screen. `LEAN ✓` is reserved for the three frozen theorem declarations listed in `film.json`, and open research boundaries carry red `OPEN` stamps.
 
-- **ChronoAI Daylight Polarity** (`Prologue`, `Act I`, `Act III`, `Act IV`): warm architectural stone (`#F4F1EE`), matte charcoal typography (`#1A1A1A`), razor-sharp hairlines (`#D5CFC9`), bronze-emerald (`#0D6E4C`) reserved strictly for verified Lean results, and vermilion (`#C92A2A`) reserved strictly for open problems.
-- **The Omega Institute Deep-Space Optical Glass Polarity** (`Act II`): obsidian void (`#05080E` / `#070B12`), optical silver-white typography (`#F1F5F9`), frosted optical glass cards, emerald (`#34D399`) for verified Lean 4 theorems, and crimson (`#F87171`) for open problems.
-- **Dual-Polarity Split Coda** (`Coda`): 50/50 side-by-side split keeping `ChronoAI Pte. Ltd.` and independent research organization `The Omega Institute` visually and institutionally distinct.
+The three local cinema clips are full-frame 1920×1080 H.264 inputs at 30 fps. They are kept in the ignored `clips/` and `out/clips/` release-input directories and are checked against the SHA-256 values in `clips.json` before compositing.
 
-## Two Publication Editions
+- `office-to-stadium.mp4` carries the Stage 1 office LED-wall PiP through the glass into Stage 2 `星潮`.
+- `stadium-bay-orbit.mp4` carries the logarithmic Stage 2 → Marina Bay Sands → Earth-orbit pullback.
+- `observatory-stations-to-galaxies.mp4` carries the eight live research stations into eight spiral galaxies and the final `曜白` reveal.
 
-1. **In-Browser Canvas Edition (`player.html`, GitHub Pages)**: Lightweight deterministic 1080p Canvas playback driven by the five tracked live-captured 3D hero plates (`assets/plate-*.jpg`) plus narrated MP3 and six-chapter WebVTT cues—zero multi-hundred-MB video bloat in the static site.
-2. **Cinema Master MP4 Edition (`outputs.narrated` 1080p & `outputs.narrated_720p` 720p, GitHub Release)**: Full 30fps live-captured 3D WebGL footage from local `chrono-metaverse` (`extended` view with live 3D Picture-in-Picture on `tide-arena.mirror` and `rb.cabinet-01`) and `live.trureturing.org` (`星穹`, `星系`, `曜白`), composited directly behind `--alpha` HUD/typography overlays via the standard `theme/film/film.sh books/launch-keynote/films/virtual-launch-2026 all` pipeline (`clips.json` + `theme/film/compose.mjs`). Release mastering **fails closed by default** (exit `1`) if any clip listed in `clips.json` is missing from `out/clips/` or fails its declared SHA-256 digest—preventing silent still-plate substitution under the live-3D release asset names (local dev fallback requires explicit `FILM_ALLOW_STILL_FALLBACK=1`, isolated under a separate build-cache mode). Viewers on the Films hub (`_site/launch-keynote/films/`) can play the Canvas edition immediately or download the full 30fps live-3D MP4 release assets directly beside the player once published.
+The web edition keeps compact tracked JPEG plates in `assets/`. Release masters composite the clips behind the standard transparent HUD layer. `FILM_REQUIRE_CLIPS=1` therefore fails closed if a clip is absent or its digest differs.
 
-## Six-Chapter Structure (10 Scenes)
+## Scene map
 
-1. **Chapter 0 · Prologue — Zero Cameras** (`prologue_street`, `prologue_lobby`): Street Corner virtual venue (`1,108` atomic-locked seats, `18` flower-basket stands, concierge Donna's `30`-question verified press bank).
-2. **Chapter 1 · Act I — Cheap Execution, Scarce Judgment** (`act1_judgment`): execution-cost vs. judgment-value structural curve (explicitly stamped `STANCE / NOT A THEOREM`) alongside the 60-day multi-repo commit ledger (`141,624` commits across `74` repos, `2026-11-19`; separate `69`-repo `2026-11-07` identity sample measuring `34.9%` explicit bot/agent share).
-3. **Chapter 2 · Act II — The Ratchet of Logic** (`act2_observatory`, `act2_kernel_audit`, `act2_open_frontier`): `live.trureturing.org` (`星穹` / `星系`) observatory plates (canvas edition) / live 3D camera sweeps (MP4 release masters), dated frozen theorem snapshot (`2026-11-20`) vs. `720 / 720` UTC hourly cadence cutoff (`2026-11-19`), frozen Lean 4 refutation of the *Phys. Rev. A* 2025 `AD:BC` bipartition + local-ancilla four-qubit Fredkin entangling-power supremum conjecture at pinned commit `8a3f20fb` (including verified `#print axioms` output `[propext, Classical.choice, Quot.sound]`), and stark red `OPEN` honesty stamps (`0` Mathesis peer-review acceptances; Riemann Hypothesis `OPEN`).
-4. **Chapter 3 · Act III — The Complete Vehicle** (`act3_vehicle`, `act3_limits`): five-layer architectural blueprint (`ANALOGY`) covering `NyxID v0.78.0`, `Ornn v0.18.0`, `CMA`, `heca`, `chrono-harness v0.1.4`, `sshx`, `chrono-metaverse`, `chrono-cd`, and `Living with AI`, followed by candid disclosure of unfinished seams (`heca` source pending public release, `CMA` single runtime today, `chrono-harness` `completeness_proven: false`).
-5. **Chapter 4 · Act IV — Six AI Employees Run the Launch** (`act4_employees`): alabaster daylight 3D observatory backdrop (`曜白`, still plate in canvas edition / live 3D sweep in MP4 masters) paired with the `77 / 97` live workflow ledger (`2026-11-25`), `20 / 97` human-gated/roadmap workflows, and candid `0` external paying merchants status.
-6. **Chapter 5 · Coda — Build for What Comes Next** (`coda_invitation`): 50/50 Dual-Polarity closing split with all three pinned `LEAN ✓` theorem citations and sole public contact `contact@chrono-ai.fun`.
+1. `prologue_office_to_stadium` opens the 14F MBFC Tower 1 office and crosses into four stands, eight rows, 1,108 seats, and 2×9 flower mats.
+2. `prologue_bay_to_orbit` passes the 112 m and 180 km thresholds, Marina Bay Sands, 457 bay buildings, 14 shuttles, and the 5,307 km orbital screen.
+3. `act1_judgment` frames 141,624 commits across 74 repositories and the 538-repository six-organization atlas as an explicit `STANCE`.
+4. `act2_stations_to_galaxies` cruises the eight named departments, then dives through 19,022 truth nodes and 28,774 edges.
+5. `act2_kernel_ratchet` shows the verbatim `#print axioms` receipt and the two Lean ratchet theorems with an explicit `ANALOGY` badge.
+6. `act2_red_stamps` records 1,049 outreach contacts, 485 replies, Mathesis' 225 papers and 0 acceptances, and the exact Levent Alpöge provenance alongside open ERH, Grand RH, zero simplicity, and pair correlation.
+7. `act3_vehicle_chassis` presents the five-layer ChronoAI vehicle with NyxID, Ornn, CMA, heca, chrono-harness, and the real surfaces.
+8. `act3_unfinished_bolts` exposes the private heca source, single CMA runtime, and `completeness_proven: false` boundary.
+9. `act4_nine_employees_rehearsal` shows 102/120 workflows across nine roles, the 11/12 rehearsal, the 65-minute NyxID#2534 stall and three-minute bypass, the HR downgrade, and zero paying merchants.
+10. `coda_choir_and_chalk` keeps ChronoAI Pte. Ltd. and The Omega Institute institutionally separate and gives the sole public contact `contact@chrono-ai.fun`.
 
-## Epistemic & Source Discipline
+## Capture and verification
 
-- **Pinned Lean 4 Citations (`trureturing@8a3f20fb`)**:
-  - `D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone`
-  - `D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout`
-  - `D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result`
-- Every operational metric is dated and traceable to `books/launch-keynote/zh/appendix-b-evidence-and-claims.md` and `books/launch-keynote/en/appendix-b-evidence-and-claims.md`.
+The two venue takes use Chrome’s WebGL renderer with the seq-53 Marina Bay scene. The office and stadium share a coordinate system. The broadcast relay moves the stadium screen to the bay at 112 m and to Earth orbit at 180 km. The office and relay iframes decode the same local ChronoAI observatory video at the camera’s 30 Hz presentation times.
+
+The observatory take uses the live WebGL scene at live.trureturing.org. It starts in mixed mode, focuses four departments, triggers a radar pulse, enters the cabin, then switches to galaxy mode at 14 s and daylight at 25 s. All five web plates come from these captures.
+
+Stage the three MP4s in `out/clips/`, then run `FILM_REQUIRE_CLIPS=1 theme/film/film.sh books/launch-keynote/films/virtual-launch-2026 all`. The compositor verifies the three hashes and plays each clip forward and backward to cover the narration. In the rendered film, only the cinema bars and bilingual subtitles overlay these scenes.
