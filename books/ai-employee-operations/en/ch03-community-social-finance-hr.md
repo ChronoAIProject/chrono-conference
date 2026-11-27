@@ -1,36 +1,50 @@
-# Chapter 3: Behind the Curtain—Community Ops, Auto-X, Finance, and HR Packs
+# Chapter 3: Behind the Curtain—Community, Social, Finance, HR, Admin, and Three Watchdogs
 
-A gleaming front lobby is only the visible tenth of an iceberg. Running a thirteen-day bilingual countdown (December 4–17) across YouTube, LinkedIn, X, Discord, and GitHub without an agency normally crushes small teams under four relentless backstage pipelines: community triage, multi-timezone social dispatch, ledger reconciliation, and HR/admin housekeeping.
+A clean front lobby is only the tenth of the iceberg floating above the waterline. Running a thirteen-day global launch (December 4–17) across YouTube, LinkedIn, X, Discord, and GitHub without an outside agency never breaks teams during the seventy-five-minute broadcast itself—it breaks them in the relentless backstage grind of guest triage, timezone staging, receipt matching, recruiting queues, and recurring reminders.
 
-Inside ChronoAI, five backstage AI employees organized across those four pipelines carry the load—every single one routed through `NyxID`, packaged via `Ornn`, and bounded by human approval queues.
+**[ANALOGY]** Picture the backstage team as a **samba drumline**: bass, snare, and agogô each hold one narrow rhythmic lane without stepping across another player's chart—and in the back row sits a **cold-eyed Monday critic** with a metronome whose sole job is calling out whoever drifted off-beat, wasted cycles, or burned money the week before.
+
+Inside ChronoAI, five core operational desks plus three newly standalone watchdogs hold those lanes—driven underneath by **`13` scheduled agents** in our Social and Community playbook (`8` X Content Studio + `3` Community/Concierge + `2` Reputation/Retro) and audited end to end in `audit-2026-11-26.md` across **`15` live agents, `89` scheduled tasks, and `931` passing automated operational tests** (`374` state-repo + `182` studio + `279` community + `96` retro).
 
 ::: {.figure src="ch03-community-ops-pipeline"}
-**Four Core Backstage Event-Driven Pipelines.** Live signals from Discord, X, and GitHub flow across four backstage pipelines—Community Ops (`9/11`, 75 rehearsal actions), Social Auto-X (`11/13`), `NyxBot` Finance (`24/28`), and HR/Admin packs (showing HR `15/20`, with Admin `5/10` running in parallel); major public releases and state-mutating writes halt at the amber human approval queue before committing and logging to audit.
+**Backstage Event-Driven Pipelines and Three Standalone Watchdogs.** Live Discord, X, and GitHub signals route through Community Ops (`10/12`), Social Auto-X + LinkedIn (`12/14`), `NyxBot` Finance (`24/28` + `17` permanently human items), honestly downgraded HR (`14/20`), and Admin (`8/10`), overseen by Sentiment Monitor (`6/7`), KB Maintainer (`3/3`), and Retrospective Analyst (`11/11`); major public posts and state-mutating writes halt at the amber human gate before committing.
 :::
 
-## Community Ops (`9 / 11`) and Auto-X (`11 / 13`): 75 Rehearsals
+## Community Ops (`10 / 12`) and Social Auto-X + LinkedIn (`12 / 14`): Mechanical Rejections and a 55-Minute Zero-Human Run
 
-Handing a brand's social keys directly to an unguarded bot to "improvise posts" is the fastest self-inflicted crisis on the internet. We split the wire cleanly: **AI owns high-frequency drafting, timezone staging, FAQ routing, and clip assembly; humans own the final publish trigger on sensitive announcements.**
+Handing a company's social accounts to an unguarded bot to "improvise posts" is the fastest self-inflicted disaster on the internet. We split the circuit cleanly: **AI owns high-frequency drafting, mechanical checks, timezone scheduling, FAQ triage, and clip staging; humans own milestone announcements, sensitive replies, and moderation rulings.**
 
-- **Community Ops (`9 / 11` workflows wired)**: As of November 25, 2026, rehearsal logs in `nyxid-nyxbot-trials` record **75 completed rehearsal actions**—onboarding new arrivals, routing booking links, deduplicating recurring questions, drafting bug issues, and compiling daily digests. The remaining 2 workflows (heated conflict mediation and ban appeals) stay explicitly with human moderators.
-- **Social Auto-X (`11 / 13` workflows wired)**: Stages the thirteen-day bilingual countdown matrix from Appendix A, attaches verified screenshots and short film clips across SGT/US/EU windows, and tracks conversion—holding major milestone posts and sensitive public replies at the amber approval gate. During the November 26–27 pre-launch operational audit (`nyxid-nyxbot-trials@e50c4eb`), the combined social, studio, community, and retro suites passed **931 automated tests** (`374` state-repo, `182` studio, `279` community, `96` retro), locked formal December 17 announcements and reminders to the official Discord server, and held the **Sentiment Monitor off live Discord channels pending PDPA sign-off**.
+- **Community Ops (`10 / 12 = 83.3%`, up from `9/11`):** Runs skill `4.36` paired with `reply-queue 0.3`. Building on 75 earlier rehearsal actions, the November 27 full-flow launch rehearsal executed the entire event arc end to end: open-booking announcement (`3m01s`), `T-1d` and `T-1h` reminders (**`49 s`** and **`46 s`** past schedule), post-event thanks (`2m43s`), replay link (`3m06s`), and four Discord guest questions (**`56–76 s`** when not queued behind a reminder, all four written cleanly into `Questions`). Rehearsal also exposed two genuine warts we logged on the spot: one stale template in `Event_Config` leaked backstage phrasing (*"noted, will compile for the host"*)—patched live at `13:30` to natural guest wording—and a no-op *"not yet time"* check task burned **`16.6 minutes`** occupying the worker slot, now queued for trimming. Heated conflict mediation and ban appeals stay permanently human.
+- **Social (`Auto-X` + LinkedIn, `12 / 14 = 85.7%`, up from `11/13`):** Delivered three concrete, auditable milestones in a single week:
+  1. **November 25:** `@li-publisher` crossed Lark approval and published **the first live Lark-approved post directly to ChronoAI's LinkedIn company page** via `NyxID` (`#187`);
+  2. **November 26:** Auto-X carried an **urgent video brief end-to-end in `55 minutes` with zero human intervention steps**;
+  3. **November 27 rehearsal proof of brakes:** After receiving a launch-promo schedule request, the writer turned in three drafts plus art by `12:20`—and the automated checker **mechanically rejected all three round-1 drafts** because none named the product. The writer rewrote (`14:15–14:21`), cleared fact and tone review (`14:45`/`15:00`), flagged high-risk for human sign-off (`15:15`), and shipped at `15:26:15`—three minutes and twenty-three seconds after the human lead replied **`"发 149"`** in Lark.
 
-## `NyxBot` Finance (`24 / 28`): The Most Restrained Bookkeeper in Town
+## `NyxBot` Finance (`24 / 28` + `17` Permanently Human): A Real 34-Minute Kitchen-Bench Install, Not "15-Minute Magic"
 
-Among all six roles, **finance** allows the least margin for sloppy boundaries.
+Finance leaves zero room for glossy exaggeration. Plenty of demos promise "a 15-minute magical AI CFO." Inside `ChronoAIProject/nyxbot-finance`, we timed a genuine clean-account installation from scratch: the verified second pass took **`34 minutes`**, walking deliberately through **`10` confirmations and `8` explicit approvals**. Thirty-four minutes is not a flaw—it is what careful wiring looks like when money sits on the table.
 
-Inside `ChronoAIProject/nyxbot-finance` (verified November 25, 2026), `NyxBot` Finance runs **24 of 28 standard small-business accounting workflows (`85.7%`)**—expense categorization, recurring invoice checks, Credits reconciliation (`1 credit = 1 USD`), anomaly alerts, draft monthly statements, and multi-currency sanity checks.
+As of November 27, 2026, `NyxBot` Finance runs **`24` of `28` AI-scoped accounting workflows (`85.7%`)**—receipt categorization, invoice drafting, recurring bill anomaly flags, Credits reconciliation (`1 credit = 1 USD`), read-only cashflow forecasts, journal-entry drafts, budget-variance alerts, and payroll worksheet drafts. On Lark Bitable, receipt photos and text-layer PDFs archive byte-for-byte with each row; scanned image-only PDFs are refused candidly with a prompt to snap a photo instead.
 
-Two bright red borders remain printed in bold:
+Three bold borders remain welded in place:
 
-1. **Authority border**: `NyxBot` Finance holds read-only ledger and draft-preparation scopes only—**zero capability to initiate cash transfers, bank wires, or statutory tax filings** (the remaining 4 workflows stay permanently behind human locks).
-2. **Commercial maturity border**: All 24 verified workflows currently run on internal and demo ledgers, with **zero external paying merchants live in production yet**—our pilot cohort opens in Chapter 6 to prove real store ledgers one merchant at a time.
+1. **Authority border:** **`17` additional finance workflows remain permanently human** (bank wires, cash disbursements, statutory tax filings, payroll release)—neither granted to any agent nor padded into the AI denominator.
+2. **Ledger border:** Currently verified on **real bank balances + a demo bookkeeping ledger**, with zero outbound write authority.
+3. **Commercial border:** External paying merchants remain **`0`** as of `2026-11-27`—Chapter 6 opens our first external pilot cohort to prove live store ledgers one merchant at a time.
 
-## HR Pack (`15 / 20`) and Admin (`5 / 10`): Automate the Clean Work, Refuse the Reckless Work
+## HR Pack (`14 / 20`, Honestly Downgraded) and Admin (`8 / 10`, Up Three Steps)
 
-The final two roles embody pragmatic restraint:
+Putting these two desks side by side shows both halves of an honest ledger:
 
-- **HR Pack (`chrono-hr`, `15 / 20`)**: Automates job-description drafting, interview scheduling, open-source contribution summaries, and onboarding checklists; compensation bands, reference judgment, formal offer issuance, and terminations (`5` workflows) stay strictly human.
-- **Admin (`5 / 10`)**: Honestly covers half of admin operations today—structured meeting notes, cross-timezone calendar conflict resolution, archival reminders, and launch-asset checklists—leaving legal contracts, statutory filings, and major procurement (`5` workflows) strictly in human hands.
+- **HR Pack (`chrono-hr`, `14 / 20 = 70.0%`, honestly DOWNGRADED from `15/20`):** Real workflows shipped this week—JobStreet intake and candidate sync into Lark (`hr-13`, 4 runs/day with backfilled rows), a 22-row HR calendar (`hr-15`), and a `09:50` weekday read-only recruiting check (`hr-20`). Yet on November 26, a strict evidence audit caught that `hr-04` **cannot parse PDF resumes** without manual copy-paste. Instead of leaving a fake green check, the owner demoted `hr-04` from `done` to `part`, pulling HR openly down to `14/20`. Compensation bands, formal offers, and terminations stay strictly human.
+- **Admin (`Admin`, `8 / 10 = 80.0%`, up from `5/10`):** Weekday `09:00` Singapore group briefs (weather, 7/30-day calendar, MOM holidays), monthly/annual recurring reminders that silence on completion and roll over cleanly, and live Singapore office front/back door and lighting controls via Apple Home and Lark `ChronoAI-Nyxbot`. Whole-shelf pantry vision counting remains honestly marked partial; legal contracts, corporate seals, and major procurement stay human.
 
-Together, our front-desk role (Donna partnered with Blossom) and five backstage roles form one audited operational unit. Yet the single sharpest test waiting on December 17 is eleven minutes of unscripted press and public questioning. Chapter 4 publishes **all 30 verified answers in Donna's press Q&A bank**—alongside the exact escalation circuit that fires the instant a question steps outside the line.
+## Three Standalone Watchdogs (`20 / 21`): Even the AI Team Faces Monday Judgment
+
+Hire only workers and never an auditor, and any automated operation drifts silently off key. Across November 26–27, we split three cross-cutting guardians into standalone tracked roles, lifting our nine standalone AI employees to **`102 / 120` (`85.0%`; equal-weight average `87.1%`)**:
+
+- **`#7` Sentiment Monitor (`6 / 7 = 85.7%`):** Watches Discord and X hourly, escalates recurring pain points to P2, sends `21:30` closed-item counts and a `22:15` daily digest—under one iron compliance lock: **zero reads from live official Discord channels until PDPA sign-off clears**.
+- **`#8` KB Maintainer (`3 / 3 = 100.0%`):** Curates verified FAQs twice daily and previews topic updates on demand before publishing, keeping Community Ops grounded in checked answers rather than wandering onto web search.
+- **`#9` Retrospective Analyst (`11 / 11 = 100.0%`, added `2026-11-27`):** The built-in Nietzschean critic sitting in the back row. Every Monday, it skips applause and audits the rest of the AI team against **`40`-item masked weekly samples**, **`7`-peer X benchmarks**, and **per-agent unit cost**—calling out whoever drifted off-beat or burned sixteen minutes on a no-op, and delivering a formal post-mortem within 48 hours of the December 17 broadcast (`#188`).
+
+Front-of-house holds its 1,108 seats; backstage holds its lanes and its Monday critic. Next comes the sharpest live stress test on broadcast day: eleven minutes of unscripted press and developer scrutiny. Chapter 4 lays out **all 30 verified answers in Donna's canonical press specification**—and the exact circuit that fires the instant a question steps over the line.

@@ -1,10 +1,10 @@
 # Preface
 
-> "What I cannot create, I do not understand." Richard Feynman left that sentence on his final blackboard, and it governs agent infrastructure just as ruthlessly: any architecture that hides its trust boundaries, raw counts, and unfinished edges behind glossy slides has not truly been built.
+> "What I cannot create, I do not understand." Richard Feynman left that sentence on his final blackboard, and it serves as a merciless caliper for agent infrastructure: any architecture that hides its trust boundaries, raw counts, and unfinished seams behind painted-green slides is a clay showroom mockup, not a working machine.
 
 Welcome to Volume II of the ChronoAI 2026 Virtual Launch edition: ***The Complete Vehicle: ChronoAI Full-Stack Product & Security Architecture*** (code `CHRONO//STACK`).
 
-Volume I stated the thesis from center stage: when execution plunges toward zero marginal cost and frontier reasoning engines become metered commodities, durable value shifts to the **complete vehicle** that keeps running while engines swap beneath the hood. This volume turns off the stage spotlights, puts the car on hydraulic lifts, and walks underneath with a wrench—engineer to engineer, documenting real boundaries, real protocols, real numbers, and the unfinished seams we refuse to hide.
+Volume I put the core thesis on center stage: **(Analogy)** when execution tumbles toward zero marginal cost and frontier reasoning "engines" become metered commodities, a bare engine screaming on wet concrete without brakes, flywheel, or roll cage only tears itself apart; durable value belongs to the **complete vehicle** that swaps engines beneath the hood without stopping traffic. **(Stance)** This volume kills the stage spotlights, puts the car on hydraulic lifts, and taps every glossy claim with a tuning-fork hammer—engineer to engineer, documenting live versions, hard boundaries, measured latencies, private repos, pending licenses, and honest gaps without flattery (all core figures audited through **November 27–28, 2026**).
 
 Before turning the first bolt, spend fifty-one seconds on the single security invariant holding the entire stack together: **never hand a plaintext secret into an agent's context window.**
 
@@ -14,16 +14,16 @@ Before turning the first bolt, spend fifty-one seconds on the single security in
 
 ## Five-Layer Mechanical Teardown
 
-Across seven chapters and two reference appendices, this volume dissects every layer from zero-secret identity out to physical-home hardware:
+Across seven chapters and two auditable reference appendices, this volume dissects every layer from zero-secret identity out to physical-home sensors and hardware:
 
-1. **Chapter 1 — `NyxID` (`v0.78.0`)**: Zero-secret proxy boundaries, 55 built-in services, 41 OpenAPI-to-MCP specs, 7 LLM gateways, 9 messaging channel types, and `1 credit = 1 USD` billing.
-2. **Chapter 2 — `NyxBot`, `NyxAgent` & Browser Assistant SDK**: Specialist mesh (`8` default / `32` max), 50 bounded memory slots, and `30/hr` & `300/day` anti-runaway trigger ceilings.
-3. **Chapter 3 — `Ornn` (`v0.18.0`) & `nyx-skills`**: 134 OpenAPI operations across 109 paths, 187k LOC, 286 test files, and 163 public skills governed like real software.
-4. **Chapter 4 — `CMA` & `cmaeg`**: Four-layer cloud managed agents, event gateway, and ~`2.1 s` hot credential reload—candidly documenting single-runtime status today.
-5. **Chapter 5 — `heca`**: Local-first spatial orchestrator (`6` primary providers + `21` ACP = `27` agent types, `361` nightlies—candidly noting public source is pending).
-6. **Chapter 6 — `chrono-harness` (`v0.1.4`) & `sshx` (`v1.0.0-beta.58`)**: 272k LOC of Rust across 25 modular repos and 16 binaries replacing wishful prompts with declarative `FILEMAP` and `DELTA` judges.
-7. **Chapter 7 — Beyond the Screen**: 3D `chrono-metaverse`, GitOps `chrono-cd`, and `Living with AI` (`nyx-homeassistant-node v1.1.1-alpha.52`).
-8. **Appendices A & B**: Complete enterprise repository atlas and our candid **Trust Boundary & Readiness Matrix**.
+1. **Chapter 1 — `NyxID` (Live `v0.78.0` / `dev` `0.79.0`)**: Zero-secret proxy vault, **55 built-in services**, **42 OpenAPI-to-MCP specs**, **7 LLM gateway routes**, **9 live messaging channel types (10 adapters)** plus **5 call/voice profiles** (`dev` expanding to **11 messaging types / 12 adapters** with Meta Messenger & Instagram), and `1 credit = 1 USD` + BYOK spend breakers.
+2. **Chapter 2 — `NyxBot`, `NyxAgent` & `nyx-assistant-sdk`**: Specialist mesh (`8` default / `32` max), group cap `8`, `50` bounded memory slots (`500` chars each), up to `16` pinned Ornn skills, **`30/hr` & `300/day` default trigger caps** (configurable hard ceilings **`300/hr` & `3,000/day`**), and shipped **`nyx-assistant-sdk v0.2.4`** (powering live Voice Guide Alexandra on `live.trureturing.org`).
+3. **Chapter 3 — `Ornn` (`v0.18.0` Alpha) & `nyx-skills`**: `134` OpenAPI operations across `109` paths (`58` admin, `3` health probes), `187k` LOC, `286` test files, TS `0.4.0` / Python `0.2.0` SDKs, and `163` public skills (`164` plugins, `1` skillset) in `nyx-skills@25ef75934d`.
+4. **Chapter 4 — `CMA` (`v0.12.0`, `Apache-2.0`) & `cmaeg`**: Consolidated into two core application services (`cma-agent-manager`, `cma-event-gateway`) plus the Kubernetes `agent-sandbox` controller, covering `6` IM platforms plus `github`/`custom`, with ~`2.1 s` hot credential reload—candidly documenting **single primary coding agent runtime status today**.
+5. **Chapter 5 — `heca`**: Local-first multi-provider spatial orchestrator (`6` primary providers + `21` ACP = `27` agent integrations, **`360` nightlies**, latest `0.1.0-nightly-20261121-1`, `6` platforms, `4` usable runtimes with Apple `container` still blocked)—candidly marking **`getheca/heca` source private/internal**.
+6. **Chapter 6 — `chrono-harness` & `sshx`**: Active home migrated to **`https://github.com/chrono-harness/`** (`25` public repos, `20` independently versioned component repos shipping **`21` prebuilt binaries per platform**, Copier **`v0.1.52`**, **`29` atomic rules**, ~`276k` est. LOC of Rust; legacy monorepo `ChronoAIProject/chrono-harness` archived `2026-11-22`), paired with `sshx v1.0.0-beta.58` (MIT)—proudly exposing **`completeness_proven: false`** hardcoded right inside the live Rust crates.
+7. **Chapter 7 — Beyond the Screen**: Programmable 3D `chrono-metaverse` (featuring the 4-stage extended broadcast pipeline from Office to the `1,108`-seat Virtual Stadium to Marina Bay Sands' `252.8 m` sky-screen to Earth orbit's `5,307 km` planetary screen), private GitOps plane `chrono-cd`, and `Living with AI` (`nyx-homeassistant-node v1.1.1-alpha.52`, `video-event-monitor 0.5.0-alpha.2`, plus public `nyxid-esp-panel v1.0.0`).
+8. **Appendices A & B**: Enterprise repository atlas mapping **`538` repositories across 6 GitHub organizations**, and a **Trust Boundary, License & Honest Readiness Matrix** stripped of cosmetic green paint.
 
 For technical walkthroughs with engineering leads or partners, open the companion sixteen-slide bilingual architecture deck below.
 

@@ -1,39 +1,46 @@
 # Chapter 2: NyxBot, NyxAgent, and the Browser Assistant SDK
 
-Drop a brand-new hire into an office without telling them which ledger they own or how many mass emails they are allowed to send in an hour, and the strongest keycard system on Earth will not save you from an afternoon disaster.
+Drop a brand-new hire into an office without defining which ledger they own or how many mass emails they may send in an hour, and the strongest keycard system on Earth will not save you from an afternoon wreck.
 
-`NyxID` locks down keys and identity. The next layer must govern **role separation, memory hygiene, and anti-runaway budgets**. Across ChronoAI's stack, the surface users and business teams actually interact with is formed by **`NyxBot`**, **`NyxAgent`**, and the embeddable **`nyx-assistant-sdk`**.
+`NyxID` locks down keys and spend ceilings. The next layer has to govern **role separation, memory discipline, and pressure-relief budgets**. Across ChronoAI's stack, the operational surface that business teams, launch guests, and browser visitors actually meet is formed by **`NyxBot`**, **`NyxAgent`**, and the freshly GA'd **`nyx-assistant-sdk`**.
 
-## Why a Specialist Mesh Beats One Giant Chat Window
+## A Mechanical Gearbox and Dual Relief Valves: Why a Specialist Mesh Wins
 
-Cram corporate accounting rules, a 30-question press bank, 1,108 theater seat locks, and live GitHub triage into one sprawling context window and watch accuracy collapse: instructions collide, attention smears, and debugging becomes guesswork.
+Stuff corporate accounting rules, a 30-question press bank, 1,108 theater seat locks, and live GitHub triage into one giant chat box and watch performance smear: instructions collide, context rots, and when something breaks nobody can tell which sentence tugged the wheel.
 
-`NyxBot` builds a mechanical gearbox instead—splitting duties into narrow **specialists** governed by hard numeric budgets baked directly into backend source models (`ChronoAIProject/NyxID@v0.78.0`, verified November 3, 2026):
+**(Analogy)** Rather than building a single-gear monster with no safety valve on the boiler, `NyxBot` operates like a calibrated mechanical gearbox backed by two-stage pressure relief. Duties split into narrow **specialists**; each agent's persistent memory shelf holds at most 50 short index cards (`500` characters apiece—forcing distilled facts instead of hoarded clutter); and automated triggers run through **two distinct valves**: a gentle **default cap (`30/hr` and `300/day`)** that vents runaway webhook loops early, backed by an unyielding **configurable hard upper ceiling (`300/hr` and `3,000/day`)** that operators can dial up for legitimate burst workloads without ever removing the steel burst disc.
+
+Every number in the figure and table below comes straight from backend source models in `ChronoAIProject/NyxID@v0.78.0` (`backend/src/models/`):
 
 ::: {.figure src="ch02-nyxbot-specialist-mesh"}
-**`NyxBot` Specialist Mesh and Hard Operational Ceilings (`NyxID@v0.78.0`).** A central dispatcher coordinates `8` default specialists (scaling up to `32` max) with a group cap of `8` agents per room, `50` bounded persistent memory slots per agent, and strict dual trigger rate ceilings (`30/hr` and `300/day`) preventing infinite webhook storms.
+**`NyxBot` Specialist Mesh and Dual-Stage Operational Limits (`NyxID@v0.78.0`).** A central dispatcher coordinates `8` default specialists (`32` max) with an `8`-agent group room cap, `50` persistent memory notes (`500` chars each), and up to `16` pinned Ornn skills; automated triggers run under `30/hr` and `300/day` defaults backed by `300/hr` and `3,000/day` configurable hard upper ceilings.
 :::
 
-Inspect each hard constant (all under `backend/src/models/` in `ChronoAIProject/NyxID@v0.78.0`) and the exact failure mode it kills:
+Inspect each baked-in limit and the exact failure mode it kills:
 
-| Source Constant | Exact Cap | Source File | Failure Mode Prevented |
+| Source Constraint | Verified Limit | Source File | Failure Mode Prevented |
 | --- | ---: | --- | --- |
 | Default specialists | `8` | `assistant_settings.rs` | Covers core small-company roles out of the box |
-| Maximum specialists | `32` | `assistant_settings.rs` | Scales horizontally while bounding routing sprawl |
-| Group room cap | `8` | `assistant_group.rs` | Prevents >8-agent group chats from degrading into echo loops |
-| Persistent memory slots | `50` | `assistant_agent.rs` | Forces high-signal memory distillation instead of unbounded bloat |
-| Hourly trigger ceiling | `30 / hr` | `assistant_settings.rs` | Stops recursive webhooks or retry loops from draining quotas |
-| Daily trigger ceiling | `300 / day` | `assistant_settings.rs` | Bounds overnight autonomous action volume predictably |
+| Max live subagents / specialists | `32` | `assistant_settings.rs` | Scales horizontally while bounding routing sprawl |
+| Group room cap | `8` | `assistant_group.rs` | Stops >8-agent rooms from degenerating into echo chambers |
+| Persistent memory slots | `50` notes (`500` chars each) | `assistant_agent.rs` | Forces concise, auditable facts instead of unbounded bloat |
+| Max pinned Ornn skills | `16` | `assistant_agent.rs` | Prevents contradictory tool-manual sprawl on a single worker |
+| Default trigger rate caps | **`30 / hr`** · **`300 / day`** | `assistant_settings.rs` | Default relief valve catching retry loops and webhook storms early |
+| Configurable hard trigger ceilings | **`300 / hr`** · **`3,000 / day`** | `assistant_settings.rs` | Steel burst disc: operators may tune throughput up, never past the hard wall |
 
-## Active in Two Live Environments: From Demo Finance Ledgers to Browser Guides
+## Active Under Real Load: Trial Workforce Ledgers and `nyx-assistant-sdk v0.2.4`
 
-This mesh runs today across two concrete operational environments:
+As of **November 27–28, 2026**, this mesh and its relief valves are running under real traffic across two live fronts:
 
-1. **Back-Office & Launch Operations (`nyxbot-finance` & `nyxid-nyxbot-trials`)**: As of November 25, 2026, `NyxBot` Finance covers **24 of 28 accounting workflows** on its demo ledger (categorization, anomaly flags, reconciliation), while December 17 launch roles—Concierge **Donna** (`13/15`), Flower Town **Blossom**, Community Ops (`9/11`, 75 rehearsal actions), and Social **Auto-X** (`11/13`)—ride the exact same specialist routing and rate-limit rails.
-2. **Embedded Browser Concierge (`nyx-assistant-sdk`)**: The floating assistant embedded inside `https://live.trureturing.org/` and the `street-corner` virtual lobby runs on the same lightweight browser SDK. Zero backend secrets ship inside frontend JavaScript: the widget handshakes strictly against `NyxID` session endpoints so any web surface—from a formal research observatory to a retail storefront—gains a scoped live guide with minimal integration code.
+1. **Back-Office Workforce & November 27 Full-Flow Rehearsal (`nyxid-nyxbot-trials@df5ef47`)**:
+   - Across **6 core small-business roles**, verified coverage stands at **`82 / 99` (`82.8%`)**: Concierge **Donna** (+ Blossom) `14 / 15` (only phone line `con-14` left), `NyxBot` Finance `24 / 28` (second-pass clean-account install verified in `34 min` with `10` confirmations and `8` approvals), Social **Auto-X** + LinkedIn `12 / 14` (first Lark-approved live LinkedIn post published November 25 by `@li-publisher`; urgent video brief executed end-to-end in `55 min` with zero human steps on November 26), Community Ops `10 / 12`, Admin `8 / 10`, and **HR Pack `14 / 20`**. **(Stance)** We put that last number front and center on purpose: under strict evidence auditing that caught PDF-reading limits, the team honestly **downgraded HR from `15 / 20` back down to `14 / 20`**—because painted-green scorecards only ambush you on opening night. Including 3 newly broken-out standalone ops/watchdog roles (Sentiment Monitor `6/7`, KB Maintainer `3/3`, and the Monday Retrospective Analyst `11/11` auditing the rest of the AI team), **9 standalone AI employee roles reach `102 / 120` (`85.0%`)**.
+   - In the **November 27, 2026 12-stage end-to-end launch dress rehearsal** (`trials#225`/`#226`), **`11 / 12` stages passed on the first try** with only `4` human actions (Donna logged `13` booking/check-in ops, `0` dropped, median `29 s`). The single real failure is logged just as plainly: a Lark internal-group Q&A request stalled in the gateway queue for **`65–70 min`** (`NyxID#2534`), cleanly bypassed via a one-shot scheduled task that delivered the 7-topic host sheet in `3.0 min`.
+2. **Shipped Browser Assistant SDK (`nyx-assistant-sdk v0.2.4`)**:
+   - Embedded web guidance is no longer an internal prototype: **`nyx-assistant-sdk`** shipped **`v0.1.0` GA on November 27, 2026**, and advanced to **`v0.2.4` on November 28, 2026** (`23` tags), delivering **voice relay, page screenshot capture, guided tour briefings, and bilingual zh/en catalogs**.
+   - It already powers live **Voice Guide Alexandra** on independent research observatory **`https://live.trureturing.org/`** alongside the `street-corner` lobby assistant. Exactly **`0` backend secrets** enter browser JavaScript: every widget handshakes solely against `NyxID` session endpoints, giving any web surface a scoped live guide in minimal integration code.
 
-## One Missing Piece Between "Chatting" and "Shipping"
+## One Steel Plate Missing Between "Chatting" and "Shipping"
 
-Once specialist meshes and hard caps are running, a sharp systems engineer immediately asks: **"If every specialist's procedure is just text pasted into an admin form, how do we version, security-scan, freeze, and distribute the reception and finance workflows perfected for December 17 to the next hundred stores?"**
+Once specialist meshes and relief valves are humming, a seasoned engineer asks the obvious hard question: **"If every specialist's playbook is just prose pasted into an admin text area, how do we security-scan, version-freeze, diff, and ship the reception, finance, and audit routines forged for December 17 to the next hundred merchants?"**
 
-That is Layer 2 of the complete vehicle: our agent-facing skill lifecycle API, **`Ornn` and `nyx-skills`**. Chapter 3 opens the forge.
+That brings us to Layer 2 of the complete vehicle—our agent-facing skill-lifecycle API, **`Ornn` and `nyx-skills`**. Chapter 3 opens the forge.
