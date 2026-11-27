@@ -405,6 +405,7 @@ class ValidationTest(unittest.TestCase):
         d = self.book.films_dir / "clip-test"
         clip = d / "out" / "clips" / "scene-01.mp4"
         clip.parent.mkdir(parents=True)
+        (d / "script.json").write_text(json.dumps({"scenes": [{"id": "open"}]}), encoding="utf-8")
         manifest = d / "clips.json"
         data = {
             "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
@@ -440,6 +441,83 @@ class ValidationTest(unittest.TestCase):
         result = subprocess.run(command, env=fallback, capture_output=True, text=True, timeout=15)
         self.assertEqual(result.returncode, 1, result.stderr)
         self.assertIn("sha256 has an entry for unreferenced clip unreferenced.mp4", result.stderr)
+
+    @unittest.skipUnless(NODE, "node not available")
+    def test_compose_unknown_clip_scene_parity(self):
+        import subprocess
+
+        created = film.scaffold(self.book, "clip-test", "测试", "Clip Test", released="2026-11-08")
+        d = created[0].parent
+        (d / "poster.jpg").touch()
+        item = film.load_film(self.book, d)
+        clip = d / "out" / "clips" / "missing.mp4"
+        clip.parent.mkdir(parents=True)
+        manifest = d / "clips.json"
+        data = {
+            "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
+            "loop": "ping-pong",
+            "scenes": {"typo": clip.name},
+        }
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        issues = film.check_film(item, fake_lock())
+        self.assertEqual([(i.severity, i.path) for i in issues], [("error", manifest)])
+        self.assertIn("unknown scene 'typo'", issues[0].message)
+
+        env = os.environ.copy()
+        env.pop("FILM_REQUIRE_CLIPS", None)
+        env.pop("FILM_ALLOW_STILL_FALLBACK", None)
+        fallback = {**env, "FILM_ALLOW_STILL_FALLBACK": "1"}
+        command = [NODE, str(THEME_FILM / "compose.mjs"), str(d), "--renditions", "720p"]
+        for run_env in (env, fallback):
+            with self.subTest(fallback=run_env.get("FILM_ALLOW_STILL_FALLBACK")):
+                result = subprocess.run(command, env=run_env, capture_output=True, text=True, timeout=15)
+                self.assertEqual(result.returncode, 1, result.stderr)
+                self.assertIn("unknown clip scene: typo", result.stderr)
+
+        data["scenes"] = {"open": clip.name}
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        self.assertEqual(film.check_film(item, fake_lock()), [])
+        result = subprocess.run(command, env=fallback, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 3, result.stderr)
+        self.assertIn("missing live 3D clips", result.stderr)
+        self.assertIn(str(clip), result.stderr)
+
+    @unittest.skipUnless(NODE, "node not available")
+    def test_compose_matching_sha256_and_one_byte_tamper(self):
+        import hashlib
+        import subprocess
+
+        d = self.book.films_dir / "clip-test"
+        clip = d / "out" / "clips" / "scene-01.mp4"
+        missing = clip.with_name("scene-02.mp4")
+        clip.parent.mkdir(parents=True)
+        (d / "script.json").write_text(json.dumps({"scenes": [{"id": "open"}, {"id": "close"}]}),
+                                       encoding="utf-8")
+        clip.write_bytes(b"clip bytes")
+        data = {
+            "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
+            "loop": "ping-pong",
+            "scenes": {"open": clip.name, "close": missing.name},
+            "sha256": {
+                clip.name: hashlib.sha256(clip.read_bytes()).hexdigest(),
+                missing.name: hashlib.sha256(b"missing clip bytes").hexdigest(),
+            },
+        }
+        (d / "clips.json").write_text(json.dumps(data), encoding="utf-8")
+
+        env = os.environ.copy()
+        env.pop("FILM_REQUIRE_CLIPS", None)
+        env["FILM_ALLOW_STILL_FALLBACK"] = "1"
+        command = [NODE, str(THEME_FILM / "compose.mjs"), str(d), "--renditions", "720p"]
+        result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 3, result.stderr)
+        self.assertIn("missing live 3D clips", result.stderr)
+        self.assertIn(str(missing), result.stderr)
+
+        clip.write_bytes(b"Clip bytes")
+        result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn(f"SHA-256 mismatch for {clip}", result.stderr)
 
     @needs_example
     def test_missing_scene_definition_warns(self):

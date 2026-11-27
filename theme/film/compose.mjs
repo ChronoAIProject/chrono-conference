@@ -147,6 +147,11 @@ async function main() {
       if (!filenames.has(file)) throw Error(`sha256 has an entry for unreferenced clip ${file}`);
     }
   }
+  const script = await json(join(film, 'script.json'));
+  const sceneIds = new Set(Array.isArray(script?.scenes) ? script.scenes.map(s => s?.id).filter(Boolean) : []);
+  for (const id of clips.keys()) {
+    if (!sceneIds.has(id)) throw Error(`unknown clip scene: ${id}`);
+  }
   for (const file of filenames) {
     const path = join(out, 'clips', file);
     const expected = sha256?.[file];
@@ -189,7 +194,8 @@ async function main() {
 
     await writeFile(join(work, 'segments.txt'), slices.length + '\n');
     for (const file of await readdir(out)) {
-      if ((file.startsWith('seg_') || file.startsWith('seg720_')) && file.endsWith('.mp4')) {
+      if (file.endsWith('.mp4') && ((sizes.includes('master') && file.startsWith('seg_')) ||
+          (sizes.includes('720p') && file.startsWith('seg720_')))) {
         await rm(join(out, file));
       }
     }
