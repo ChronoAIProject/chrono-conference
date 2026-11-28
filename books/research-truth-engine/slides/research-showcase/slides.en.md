@@ -286,26 +286,28 @@ section: "Observatory"
 
 ---
 # 15 Red frontier
-section: "The Red Frontier"
+section: "The Red Frontier · 2026-11-28"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 6.1 · External Certification · Open Problem</p>
-  <h2 class="t">Equivalence Frozen; <em class="warn">the Red Zone Moved Out</em></h2>
+  <h2 class="t mb-0">An RH Criterion and <em class="warn">Open Questions</em></h2>
+  <p class="sm my-0">Levent Alpöge released his Lean 4 proof on Nov 20. Its five theorems cover classical RH and the generalized Riemann hypothesis (GRH) for Dirichlet <i>L</i>-functions. The community certified classical RH on Nov 21. The Omega Institute split the replay into 8,490 shards.</p>
   <div class="row mt-s">
-    <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <figure class="my-0">
+      <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+      <figcaption class="sm muted">Evidence snapshot · 2026-11-20</figcaption>
+    </figure>
     <div class="grow">
 <TheoremCard class="compact" label="Theorem 6.1" title="Integer Hankel Criterion for the Riemann Hypothesis" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
 
-$\mathrm{RiemannHypothesis} \iff$ the actual-$\xi$ integer Hankel form is nonnegative for every $N$ and every $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$. Equivalence only.
+Classical RH holds iff, for every order $N$ and every $u \in \mathbb{Z}^{N+1}$, the Hankel quadratic form from the actual $\xi$ coefficients is nonnegative at $u$.
 
 </TheoremCard>
 <TheoremCard class="compact mt-s" label="Open problem" title="Extended and Grand RH" status="open">
 
-Extended RH, Grand RH, simplicity of zeros, and pair correlation.
+Dedekind $\zeta$ over general number fields, higher-rank automorphic $L$-functions, simplicity of zeros, and pair correlation.
 
 </TheoremCard>
-      <p class="sm muted mt-s">Classical RH &amp; Dirichlet GRH · Alpöge’s Lean 4 proof (Nov 20–21). The Omega Institute replayed 8,490 shards.</p>
     </div>
   </div>
 </div>

@@ -288,26 +288,28 @@ section: "观测站"
 
 ---
 # 15 红色边界
-section: "红色边界"
+section: "红色边界 · 2026-11-28"
 ---
 
 <div class="body">
-  <p class="kicker">定理 6.1 · 外部认证 · 开放问题</p>
-  <h2 class="t">等价归我们，证明归外部，<em class="warn">红区在更远处</em></h2>
+  <h2 class="t mb-0">黎曼猜想的等价判据与<em class="warn">开放问题</em></h2>
+  <p class="sm my-0">Levent Alpöge 于 11 月 20 日发布 Lean 4 证明，5 条定理涵盖经典黎曼猜想与 Dirichlet <i>L</i> 函数的广义黎曼猜想（GRH）。社区于 21 日认证经典 RH。本所将重放拆为 8,490 个分片。</p>
   <div class="row mt-s">
-    <img src="./img/ch06-three-evidence-tiers.zh.svg" alt="三层证据边界" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <figure class="my-0">
+      <img src="./img/ch06-three-evidence-tiers.zh.svg" alt="三层证据边界" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+      <figcaption class="sm muted">证据快照 · 2026-11-20</figcaption>
+    </figure>
     <div class="grow">
 <TheoremCard class="compact" label="定理6.1" title="黎曼猜想与真实 ξ 整系数 Hankel 非负性的等价判据" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
 
-$\mathrm{RiemannHypothesis}$ 成立，当且仅当对一切阶数 $N$ 与一切 $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$，真实 $\xi$ 系数的 Hankel 二次型非负。本定理只断言等价，不断言任何一端成立。
+经典 RH 成立，当且仅当对每一阶 $N$ 和每个 $u \in \mathbb{Z}^{N+1}$，真实 $\xi$ 系数的 Hankel 二次型在 $u$ 处非负。
 
 </TheoremCard>
 <TheoremCard class="compact mt-s" label="开放问题" title="扩展 RH 与大 RH" status="open">
 
-Dedekind $\zeta$ 的扩展 RH、自守 $L$ 函数的大 RH、零点单重与对关联：<b>依然开放。</b>
+一般数域的 Dedekind $\zeta$ 函数、高阶自守 $L$ 函数，以及零点的单重性与对关联。
 
 </TheoremCard>
-      <p class="sm muted mt-s">经典 RH 与 Dirichlet GRH：Levent Alpöge 的外部 Lean 4 证明，11-20/21 获社区认证；本所只做 8,490 分片重放。</p>
     </div>
   </div>
 </div>
