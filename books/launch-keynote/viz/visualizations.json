@@ -4,16 +4,16 @@
     {
       "id": "launch-arena",
       "code": "LAUNCH//ARENA",
-      "title": "发布会会场 · 1,108 个席位、18 座花篮展台与零撞座选座锁",
-      "title_en": "Launch Arena · 1,108 seats, 18 basket stands and a zero-collision seat lock",
-      "summary": "街角前厅的平面舞台：右侧 6 圈同心剧场共 96 + 144 + 176 + 204 + 232 + 256 = 1,108 个席位，左侧是 Donna 的接待前台、18 座编号花篮展台与小花看守的花店。拖动到场人数（1–1,250）与时间轴（T−75 到 T+25），看原子选座锁按圈逐个落座、重座恒为 0，第 1,109 位起转入 YouTube 与 LinkedIn 直播；小图把原子锁与无锁竞态（反事实）的重座数并排画出。五张实验卡：街角全貌、原子选座、满座溢流、花篮贺礼、T−0 开场。到场、选座与花篮时间表是示意模型，不是线上实测。",
-      "summary_en": "A floor plan of the Street Corner lobby: six concentric rings on the right with 96 + 144 + 176 + 204 + 232 + 256 = 1,108 seats, and on the left Donna's reception desk, 18 numbered flower-basket stands and Blossom's Flower Town. Drag the arrival load (1–1,250) and the rail (T−75 to T+25) to watch an atomic seat lock fill the rings one guest at a time with zero duplicate seats, routing guest 1,109 onward to the YouTube and LinkedIn live stream; a small plot sets the lock beside a naive race (a counterfactual). Five cards: the overview, the atomic seat lock, the full-house overflow, the flower baskets and T−0. The arrival, seating and basket schedules are an illustrative model, not measurements of the live system.",
+      "title": "发布会会场 · 4 座看台 × 8 排共 1,108 席、18 块花篮垫位与零撞座选座锁",
+      "title_en": "Launch Arena · 1,108 seats in 4 stands × 8 rows, 18 basket mats and a zero-collision seat lock",
+      "summary": "街角前厅的平面舞台：四座悬浮玻璃看台围住前厅，北 248 + 南 248 + 东 306 + 西 306 = 1,108 席，每座 8 排阶梯，逐排合计 144、144、144、140、136、136、132、132，席位编号沿用 chronoai-lobby v40 座位目录的写法（N1-17、E1-20、W8-01）；前厅里是主屏、Donna 的接待前台、小花看守的花店，以及世界地图墙前 2 排 × 9 块花篮垫位（basket-01 … basket-18）。拖动到场人数（1–1,250）与时间轴（T−75 到 T+25），看原子选座锁逐排逐个落座、重座恒为 0，第 1,109 位起转入 YouTube 与 LinkedIn 直播；小图把原子锁与无锁竞态（反事实）的重座数并排画出。五张实验卡：街角全貌、原子选座、满座溢流、花篮贺礼、T−0 开场。到场、选座与花篮时间表是示意模型，不是线上实测；2026-11-27 全流程彩排的实测（Donna 13 次预约与签到、0 掉单、中位 29 秒）另记在依据栏。",
+      "summary_en": "A floor plan of the Street Corner lobby: four floating glass stands enclose the lobby, North 248 + South 248 + East 306 + West 306 = 1,108 seats, eight tiered rows each with row totals 144, 144, 144, 140, 136, 136, 132, 132, and seat codes written the way the chronoai-lobby v40 seat catalog writes them (N1-17, E1-20, W8-01); inside sit the keynote screen, Donna's reception desk, Blossom's Flower Town and 2 rows × 9 basket mats along the world-map wall (basket-01 … basket-18). Drag the arrival load (1–1,250) and the rail (T−75 to T+25) to watch an atomic seat lock fill the rows one guest at a time with zero duplicate seats, routing guest 1,109 onward to the YouTube and LinkedIn live stream; a small plot sets the lock beside a naive race (a counterfactual). Five cards: the overview, the atomic seat lock, the full-house overflow, the flower baskets and T−0. The arrival, seating and basket schedules are an illustrative model, not measurements of the live system; the 2026-11-27 full-flow rehearsal measurements (Donna: 13 bookings and check-ins, 0 dropped, median 29 s) are noted separately in the evidence panel.",
       "path": "launch-arena/",
       "thumbnail": "launch-arena/thumb.jpg",
       "status": "live",
       "added": "2026-11-26",
-      "tags": ["虚拟会场", "原子锁", "高并发", "满座溢流", "花篮展台"],
-      "tags_en": ["virtual venue", "atomic lock", "concurrency", "overflow routing", "basket stands"],
+      "tags": ["虚拟会场", "原子锁", "高并发", "满座溢流", "四座看台"],
+      "tags_en": ["virtual venue", "atomic lock", "concurrency", "overflow routing", "four stands"],
       "theory": [
         { "label": "第四章 · 街角前厅：一座自己运转的虚拟会场", "label_en": "Chapter 4 · Street Corner: a virtual venue that runs itself", "href": "../zh/ch04-the-living-venue.html", "href_en": "../en/ch04-the-living-venue.html" }
       ],

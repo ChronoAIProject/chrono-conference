@@ -17,7 +17,7 @@ preloadImages: false
 
 <p class="kicker">ChronoAI · AI Employee Pitch</p>
 <h1 class="display">Hand the Launch<br>to <em>AI Employees</em></h1>
-<p class="lead">From Monday 9:00 AM workflows to auditable, instantly revocable AI staff for stores and deployment partners.</p>
+<p class="lead">From Monday 9:00 AM workflows to auditable, revocable at any time (~2.1 s CMA converge) AI staff for stores and deployment partners.</p>
 
 ---
 # 02 Why bots fail
@@ -26,7 +26,7 @@ section: "Why Bots Fail"
 
 <div class="body">
   <p class="kicker">The first week</p>
-  <h2 class="t">Why Most “AI Employees” <em class="warn">Don't Last a Week</em></h2>
+  <h2 class="t">Why Many "AI Employee" Pilots Stall Early</h2>
   <div class="g3 mt-l">
     <div class="card"><h4>01 · No job scope</h4><h3>One god-mode window</h3><p>Finance, support and marketing in one context: in week one, a quote ships two decimal places off.</p></div>
     <div class="card"><h4>02 · No key control</h4><h3>Raw passwords handed over</h3><p>Keys sit in environment variables, and one poisoned web page walks off with all of them.</p></div>
@@ -45,14 +45,14 @@ section: "A Real Day"
   <p class="kicker">Four jobs running today</p>
   <h2 class="t">Four Jobs Running Today, <em>Each Knows Where to Stop</em></h2>
   <div class="g4 mt-l">
-    <div class="tile"><i>street-corner lobby</i><b>Donna</b><span><em>Does</em>: locks the seat, gets a seat_id, then says "reserved."</span><span><em class="hl-magenta">Stops</em>: off-bank press questions go to a human.</span></div>
+    <div class="tile"><i>street-corner lobby</i><b>Donna</b><span><em>Does</em>: locks a seat code (say N1-17), then says "reserved."</span><span><em class="hl-magenta">Stops</em>: off-bank press questions go to a human.</span></div>
     <div class="tile"><i>Demo ledger</i><b>NyxBot Finance</b><span><em>Does</em>: sorts invoices, reconciles, flags anomalies.</span><span><em class="hl-magenta">Stops</em>: any outbound payment.</span></div>
-    <div class="tile"><i>Three time zones</i><b>Auto-X</b><span><em>Does</em>: drafts threads, proposes posting windows.</span><span><em class="hl-magenta">Stops</em>: milestone posts wait for a human.</span></div>
+    <div class="tile"><i>Social Auto-X</i><b>Auto-X</b><span><em>Does</em>: Nov 26, an urgent video brief end to end in 55 min, zero human steps.</span><span><em class="hl-magenta">Stops</em>: milestone posts wait for a human.</span></div>
     <div class="tile"><i>Living room</i><b>Living with AI</b><span><em>Does</em>: reads the home's sensors.</span><span><em class="hl-magenta">Stops</em>: asks the owner before moving an actuator.</span></div>
   </div>
   <p class="lead mt-l">Doing the work is common. <b>Knowing where to stop</b> is what makes an employee hireable.</p>
 </div>
-<Source>Handing the Launch to AI Employees, Chapters 2–3 · nyx-homeassistant-node@v1.1.1-alpha.52 · as of 2026-11-25</Source>
+<Source>Handing the Launch to AI Employees, Chapters 2–3 · nyxid-nyxbot-trials@df5ef47 · nyx-homeassistant-node@v1.1.1-alpha.52 · as of 2026-11-27</Source>
 
 ---
 # 04 The boundary
@@ -60,12 +60,12 @@ section: "The Boundary"
 ---
 
 <div class="body">
-  <p class="kicker">Six-role ledger · as of 2026-11-25</p>
-  <h2 class="t">77 Jobs to AI, <em>20 at Human Gates or on the Roadmap</em></h2>
-  <img class="mt" src="./img/ch01-human-ai-boundary.en.svg" alt="AI execution zone and human authority boundary: six roles cover 77 of 97 workflows; disbursements, external legal commitments, unapproved media statements and irreversible revocations stay with humans" style="height: 460px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
-  <p class="lead mt">Of 97 workflows, AI runs 77 (79.4%). The other 20 stay behind human gates or on the roadmap.</p>
+  <p class="kicker">Nine-role ledger · as of 2026-11-27</p>
+  <h2 class="t">102 / 120 AI-Scoped Workflows Covered, <em>18 Behind Gates or Roadmap</em></h2>
+  <img class="mt" src="./img/ch01-human-ai-boundary.en.svg" alt="AI execution zone and human authority boundary: the six core roles cover 82 of 99 workflows and all nine roles 102 of 120; disbursements, external legal commitments, unapproved media statements and irreversible revocations stay with humans" style="height: 460px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+  <p class="lead mt">Six core roles: 82 / 99. Nine roles: 102 / 120 (85.0%). These are demo-covered AI-scoped workflows. The other 18 stay behind human gates or on the roadmap; 17 permanently human finance decisions sit outside the denominators.</p>
 </div>
-<Source>nyxbot-finance · nyxid-nyxbot-trials · six-role ledger as of 2026-11-25</Source>
+<Source>nyxid-nyxbot-trials@df5ef47 · role audit 2026-11-27 · core and nine-role denominators kept apart</Source>
 
 ---
 # 05 Front desk
@@ -77,11 +77,11 @@ section: "Front Desk"
   <h2 class="t"><em>1,108</em> Seats. Lock First, Then Speak.</h2>
   <div class="g2 mt">
     <img src="./img/street-corner.png" alt="The street-corner 3D lobby: Donna's reception desk, the main plaza walkway and the Flower Town entrance" style="height: 470px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
-    <img src="./img/ch02-seat-ring-allocation.en.svg" alt="Six theater rings holding 96, 144, 176, 204, 232 and 256 seats from the inside out, 1,108 in total, plus 18 flower stands" style="height: 470px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+    <img src="./img/ch02-seat-ring-allocation.en.svg" alt="Four stands of 8 rows each: North 248, South 248, East 306, West 306, 1,108 seats in total (rows 1 to 8 hold 144, 144, 144, 140, 136, 136, 132 and 132); 2 rows of 9 flower-basket mats, basket-01 to basket-18, along the world-map wall" style="height: 470px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
   </div>
-  <p class="lead mt">Donna (13 / 15) holds the desk, Blossom the 18 flower stands; guest 1,109 onward goes to the livestream.</p>
+  <p class="lead mt">Four stands × 8 rows = 1,108 seats. Donna (14 / 15) locks the seat code; Blossom keeps 2 × 9 basket mats by the map wall. Guest 1,109 onward goes to the livestream.</p>
 </div>
-<Source>street-corner · chrono-metaverse · Handing the Launch to AI Employees, Chapter 2</Source>
+<Source>street-corner · chronoai-lobby v40 seat-catalog.json · Nov 27 rehearsal: Donna median 29 s, 0 dropped · Handing the Launch to AI Employees, Chapter 2</Source>
 
 ---
 # 06 Press gate
@@ -90,13 +90,13 @@ section: "Press Gate"
 
 <div class="body">
   <p class="kicker">Donna · 30-question bank</p>
-  <h2 class="t">Inside the 30, Cite. <em>Outside, Never Invent.</em></h2>
+  <h2 class="t">30-Question Press Policy: <em>Cite Inside, Escalate Outside.</em></h2>
   <div class="split mt">
     <img src="./img/ch04-qa-gating-flow.en.svg" alt="Donna's press gate: a match in the 30-question bank gets a faithful answer with date and repository; anything else passes a disclosure check, then is logged and escalated to contact@chrono-ai.fun" style="height: 560px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <div class="card"><h4>01 · In the bank</h4><p>Verified answer, with its date and repository.</p></div>
       <div class="card hot mt-s"><h4>02 · Red lines</h4><p>Funding figures, model identifiers, hype: never answered.</p></div>
-      <div class="card mt-s"><h4>03 · Off the bank</h4><p>Never guess: log it, escalate to contact@chrono-ai.fun;<br>a human replies within 24 hours.</p></div>
+      <div class="card mt-s"><h4>03 · Off the bank</h4><p>Never guess: log it, escalate to contact@chrono-ai.fun;<br>target a human reply within 24 hours.</p></div>
     </div>
   </div>
 </div>
@@ -108,20 +108,21 @@ section: "Backstage"
 ---
 
 <div class="body">
-  <p class="kicker">Five Backstage Roles · Four Streams · as of 2026-11-25</p>
+  <p class="kicker">Five Backstage Roles + Three Standalone Roles · as of 2026-11-27</p>
   <h2 class="t">Five Roles Backstage, <em>Every Denominator on the Books</em></h2>
   <div class="g4 mt-l">
-    <Stat value="9/11" label="Community Ops · 75 rehearsal actions run; disputes and ban appeals stay human" />
-    <Stat value="11/13" label="Auto-X · three-time-zone scheduling; milestone posts wait for a human" />
-    <Stat value="24/28" label="NyxBot Finance · read and draft only, demo ledgers; no payment rights" />
+    <Stat value="10/12" label="Community Ops · skill 4.36 and reply-queue 0.3; disputes and ban appeals stay human" />
+    <Stat value="12/14" label="Auto-X · Nov 25, first Lark-approved post live on the LinkedIn company page" />
+    <Stat value="24/28" label="NyxBot Finance · clean-account install in 34 min; read and draft only, no payment rights" />
     <div>
-      <Stat class="md" value="15/20" label="HR templates · pay bands and offers stay human" />
-      <Stat class="md mt-s" value="5/10" label="Admin · contract signatures and major purchasing stay human" />
+      <Stat class="md" value="14/20" label="HR templates · audit caught PDF-reading limits, down from 15/20" />
+      <Stat class="md mt-s" value="8/10" label="Admin · up from 5/10; signatures and major purchasing stay human" />
     </div>
   </div>
-  <p class="lead mt-l">What isn't automated is written down as not automated.</p>
+  <p class="lead mt">Watch roles: Sentiment 6/7 · KB 3/3 · Retro Analyst 11/11. The audit pulled HR down a notch; we booked it.</p>
+  <p class="sm dim mt-s">ANALOGY: a samba drumline, everyone keeping time; each Monday the Retrospective Analyst samples 40 items against 7 peers and names who drifted.</p>
 </div>
-<Source>nyxid-nyxbot-trials · nyxbot-finance · chrono-hr · as of 2026-11-25</Source>
+<Source>nyxid-nyxbot-trials@df5ef47 · chrono-hr · 2026-11-27 · six core roles 82/99, nine roles 102/120</Source>
 
 ---
 # 08 Fifteen-day runbook
@@ -129,23 +130,23 @@ section: "15-Day Runbook"
 ---
 
 <div class="body">
-  <p class="kicker">Dec 04 to Dec 18, 2026 · Singapore time</p>
+  <p class="kicker">Nov 27 rehearsal done · Dec 04 to Dec 18, 2026 · Singapore time</p>
   <h2 class="t">Fifteen Days, <em>Every Gate Scripted Ahead</em></h2>
   <div class="split mt">
-    <img src="./img/ch05-event-countdown-milestones.en.svg" alt="Fifteen-day launch calendar: Dec 04 bookings open, Dec 08 media kit, Dec 11 load and drills, Dec 15 rehearsal and freeze, Dec 17 live, Dec 18 clips, tickets and pilot follow-up" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
+    <img src="./img/ch05-event-countdown-milestones.en.svg" alt="Fifteen-day launch calendar: Dec 04 bookings open, Dec 08 media kit, Dec 11 load and drills, Dec 15 artifact freeze, Dec 16 Discord rehearsal, Dec 17 live, Dec 18 clips, tickets and pilot follow-up" style="height: 540px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <ul class="plain">
+        <li><b class="mono hl-cyan">Nov 27</b>&ensp;Full-flow rehearsal 11 / 12 first try · median 29 s · 0 dropped</li>
         <li><b class="mono hl-cyan">Dec 04</b>&ensp;Bookings open, lobby opens</li>
         <li><b class="mono hl-cyan">Dec 11</b>&ensp;1,250-concurrent seat-lock drill · 20 traps</li>
-        <li><b class="mono hl-cyan">Dec 15</b>&ensp;Full rehearsal, artifacts frozen</li>
+        <li><b class="mono hl-cyan">Dec 16</b>&ensp;Frozen Dec 15, formal Discord dress rehearsal</li>
         <li><b class="mono hl-cyan">Dec 17</b>&ensp;16:00–17:15 SGT, dual-stream live</li>
-        <li><b class="mono hl-cyan">Dec 18</b>&ensp;Clips up, tickets &amp; pilot follow-ups</li>
       </ul>
-      <p class="lead mt">Dec 11 pass bar: 100% of red-line traps refused and correctly escalated.</p>
+      <p class="lead mt">11/12 stages passed first try; Lark Q&amp;A stuck 65–70 min in the gateway (NyxID#2534); a scheduled task bypassed it in 3 min.</p>
     </div>
   </div>
 </div>
-<Source>chrono-goals/goals/chronoai-launch-event.yaml · Handing the Launch to AI Employees, Chapter 5</Source>
+<Source>chrono-goals/goals/chronoai-launch-event.yaml · trials#225 / #226 (2026-11-27) · Handing the Launch to AI Employees, Chapter 5</Source>
 
 ---
 # 09 For merchants
@@ -155,7 +156,7 @@ section: "For Merchants"
 ---
 
 <p class="kicker">For your store</p>
-<h2 class="t">Don't Hire Six on Day One. <em>Start With Two.</em></h2>
+<h2 class="t">Don't Hire Six in Week One. <em>Start With Two.</em></h2>
 <p class="lead">A front desk for hours, prices and bookings. A bookkeeper that only reads the ledger and leaves a three-minute nightly brief. Neither pays anyone.</p>
 
 ---
@@ -175,7 +176,7 @@ section: "Five Steps"
         <dt>Traps stopped</dt><dd>10 / 10</dd>
         <dt>Owner review</dt><dd>3 min a day</dd>
         <dt>Metering &amp; cap</dt><dd style="font-size: 38px;">1 credit = 1 USD · per-agent cap</dd>
-        <dt>Clean run</dt><dd>14 days</dd>
+        <dt>Clean run</dt><dd>14 days · 0 unauthorized / 0 invented</dd>
       </dl>
     </div>
   </div>
@@ -194,8 +195,8 @@ section: "For Partners"
 <p class="lead">Keys stay in the NyxID vault. A partner gets a narrow, short-lived capability handle, and the badge comes back the moment the job is done.</p>
 
 ---
-# 12 Partner handoff
-section: "Partner Handoff"
+# 12 Partner Onboarding
+section: "Partner Onboarding"
 ---
 
 <div class="body">
@@ -217,7 +218,7 @@ section: "Candid Baseline"
 ---
 
 <div class="body">
-  <p class="kicker">No cosmetics · as of 2026-11-25</p>
+  <p class="kicker">No cosmetics · as of 2026-11-27</p>
   <h2 class="t">Where We Start, <em>Without the Makeup</em></h2>
   <div class="g2 mt">
     <div class="card">
@@ -225,7 +226,7 @@ section: "Candid Baseline"
       <ul class="plain">
         <li>NyxID public signup, no invite code</li>
         <li>Ornn: 163 public skills in nyx-skills</li>
-        <li>77 / 97 workflows across six roles, on internal and demo ledgers</li>
+        <li>102 / 120 workflows across nine roles (six core: 82 / 99), on internal and demo ledgers</li>
       </ul>
     </div>
     <div class="card hot">
@@ -235,7 +236,7 @@ section: "Candid Baseline"
     </div>
   </div>
 </div>
-<Source>chrono-goals/goals/chronoai-first-merchant.yaml · Handing the Launch to AI Employees, Chapters 4 and 6</Source>
+<Source>chrono-goals/goals/chronoai-first-merchant.yaml · chrono-goals@35d7cfd (2026-11-27) · Handing the Launch to AI Employees, Chapters 4 and 6</Source>
 
 ---
 # 14 Closing

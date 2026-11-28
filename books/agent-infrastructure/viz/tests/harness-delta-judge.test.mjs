@@ -180,5 +180,10 @@ for (const [ids, ghost] of [[['docs/chapter'], false], [['policy/rules', 'api/se
 }
 await D(() => localStorage.removeItem('tr-lang'));
 
+await page.click('#omitEdge');
+check('omitting the consumer reproduces the two-unit witness', (await state()).selected.join() === 'docs/chapter');
+await page.click('#omitEdge');
+check('restoring the edge reaches the structure check', (await state()).selected.includes('docs/structure'));
+
 check('no page error, console error or failed request (page-specific part)', T.errors.length === 0, T.errors.slice(0, 4).join(' | '));
 await T.finish();

@@ -28,13 +28,15 @@ section: "Scale"
   <p class="kicker">One Way Forward</p>
   <h2 class="t">A Ratchet Turns <em>Only One Way</em></h2>
   <div class="g2 mt-l">
-    <Stat value="167,819" label="frozen Lean 4 theorems" tone="ok" />
-    <Stat value="14,701" label="frozen modules · 4.78M lines of Lean" />
-    <Stat class="mt" value="720/720" label="consecutive UTC hours, every hour with commits" tone="magenta" />
-    <Stat class="mt" value="2,128" label="open literature resolutions · 74 days" />
+    <Stat value="223,231" label="frozen Lean 4 theorems (400,377 frozen declarations)" tone="ok" />
+    <Stat value="17,968" label="frozen modules · 6.02M lines of Lean" />
+    <Stat class="mt" value="720/720" label="consecutive UTC hours with commits · median 63/hr · 217 PRs/day" tone="magenta" />
+    <Stat class="mt" value="2,278" label="open literature resolutions · 2,276 dated + 2 undated · 81 days" />
   </div>
+  <p class="sm muted mt-l">Three bilingual trureturing-books monographs: 344 pages per language · 135 interactive labs · 83 films · 918 theorem blocks / 2,043 distinct frozen GIDs</p>
+  <p class="sm muted mt-s">Red ink on the same page: Mathesis collects 225 source-backed papers, with <b class="hl-warn">0</b> Mathesis peer-review acceptances (Nov 27)</p>
 </div>
-<Source>trureturing@05ceb90 (Nov 20, 2026) · cadence @e55900e (Nov 19) · Lean 4.35.0</Source>
+<Source>trureturing@548388cd (Nov 27, 2026) · cadence Oct 28–Nov 26 · PRs Nov 20–26 · trureturing-books@b83ae321 (Nov 28) · Lean 4.35.0</Source>
 
 ---
 # 03 Part I
@@ -54,7 +56,7 @@ section: "FIB ATOM"
 
 <div class="body">
   <p class="kicker">Theorem 1.1 · Theorem 1.3</p>
-  <h2 class="t"><em>Three</em> Carry Values; <em>One-Step</em> Lineage Split</h2>
+  <h2 class="t"><em>Three</em> Carry Values; <em>One-Step Split at (1,1)</em></h2>
   <div class="split mt">
     <div>
       <img src="./img/ch01-fib-substitution-tree.en.svg" alt="Fibonacci substitution tree and lineage total-variation curve" style="display:block;height:285px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -66,7 +68,7 @@ For all natural numbers $v_1, v_2$: $c(v_1, v_2) \in \{-1,\ 0,\ 1\}$.
     </div>
 <TheoremCard class="compact" label="Theorem 1.3" title="Injective Fibonacci Genealogical Transport" gid="D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" cite="thm-fib-lineage">
 
-For all $1 \le a + b$: substitution keeps every tree of a source fiber at the same boundary composition; transport is injective, with exact total variation from the uniform target-fiber law $\mathrm{TV}(a, b, n) = 1 - \mathrm{fiberCount}(a, b) / \mathrm{fiberCount}(\mathrm{step}^{[n]}(a, b)) \to 1$ as $n \to \infty$. If $2 \le a + b$, one step gives $1 - 2^{-b} \le \mathrm{TV}(a, b, 1)$; smallest case $\mathrm{TV}(1, 1, 1) = \tfrac{2}{3}$.
+For all $1 \le a + b$: substitution keeps every tree of a source fiber at the same boundary composition; transport is injective, with exact total variation from the uniform target-fiber law $\mathrm{TV}(a, b, n) = 1 - \mathrm{fiberCount}(a, b) / \mathrm{fiberCount}(\mathrm{step}^{[n]}(a, b)) \to 1$ as $n \to \infty$. If $2 \le a + b$, one step gives $1 - 2^{-b} \le \mathrm{TV}(a, b, 1)$; the smallest composition with both leaf types ($a,b \ge 1$) is $\mathrm{TV}(1, 1, 1) = \tfrac{2}{3}$.
 
 </TheoremCard>
   </div>
@@ -153,7 +155,7 @@ section: "Rigidity"
   <div class="g2 mt">
 <TheoremCard class="compact" label="Theorem 3.2" title="Raw Balancing Forces Complex Hilbert Space" gid="D5/S3/Quantum/Completion/RawAnchoredRadicalDescent.raw_hilbert_characterization" cite="thm-raw-hilbert">
 
-For a unital magma $M$ with $U(1) = 1$ and $\omega = (-1 + i\sqrt{3})/2$, `RawBalance` ($c \ge 0$, $c(a, a) = 0$, three-way balancing) holds iff a minimal complex Hilbert rep exists; any $F$ with $F(ab) = F(a) + F(b)$, $F(Ua) = \omega F(a)$, $c(a, b) = \|F(a) - F(b)\|^2$ forces it; then any two minimal reps $S, T$ admit a **unique** surjective complex-linear isometry $e$ preserving all labels ($\forall a,\ e(S.\mathrm{label}\,a) = T.\mathrm{label}\,a$).
+For a unital magma $M$ with $U(1) = 1$ and $\omega = (-1 + i\sqrt{3})/2$, `RawBalance` ($c \ge 0$, $c(a, a) = 0$, three-way balancing) holds iff a minimal complex Hilbert rep exists; any map $F : M \to H$ into a complex Hilbert space $H$ with $F(ab) = F(a) + F(b)$, $F(Ua) = \omega F(a)$, $c(a, b) = \|F(a) - F(b)\|^2$ forces it; then any two minimal reps $S, T$ admit a **unique** surjective complex-linear isometry $e$ preserving all labels ($\forall a,\ e(S.\mathrm{label}\,a) = T.\mathrm{label}\,a$).
 
 </TheoremCard>
 <TheoremCard class="compact" label="Theorem 3.3" title="Compact Reciprocity Forces Three Dimensions" gid="D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity" cite="thm-rigidity-3d">
@@ -176,8 +178,8 @@ chapter: "04"
 section: "Part IV · Literature"
 ---
 
-<p class="kicker">Part IV · Literature</p>
-<h2 class="t">Into the Open<br>Literature: <em>74 Days,<br>2,128 Resolutions</em></h2>
+<p class="kicker">Part IV · Literature · 2,276 dated + 2 undated = 2,278</p>
+<h2 class="t">Into the Open<br>Literature: <em>81 Days,<br>2,278 Resolutions</em></h2>
 <p class="lead">No self-set exams—straight into the Open Problems scholars leave at the end of their papers.</p>
 
 ---
@@ -186,18 +188,18 @@ section: "Breakdown"
 ---
 
 <div class="body">
-  <p class="kicker">Sep 8 → Nov 20, 2026</p>
-  <h2 class="t">2,128 Resolutions: <em>1,400 Proved</em>, <em class="magenta">728 Refuted</em></h2>
+  <p class="kicker">Sep 8 → Nov 27, 2026</p>
+  <h2 class="t">2,278 Resolutions: <em>1,512 Proved</em>, <em class="magenta">766 Refuted</em></h2>
   <div class="split mt">
     <img src="./img/ch04-resolution-velocity.en.svg" alt="Sources of literature resolutions, proved versus refuted" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat class="md" value="674" label="from peer-reviewed journals · plus 736 arXiv, 693 OEIS" />
-      <Stat class="md mt" value="124" label="open for over a decade, the oldest for 47 years" tone="magenta" />
-      <Stat class="md mt" value="582" label="in quantum information &amp; physics (299 proved · 283 refuted)" />
+      <Stat class="md" value="684" label="from peer-reviewed journals · plus 840 arXiv, 729 OEIS" />
+      <Stat class="md mt" value="127" label="open for at least ten years, the oldest for 47 years" tone="magenta" />
+      <Stat class="md mt" value="598" label="in quantum information &amp; physics (314 proved · 284 refuted)" />
     </div>
   </div>
 </div>
-<Source>trureturing@05ceb90 (Nov 20, 2026) · 2,126 dated + 2 undated = 2,128</Source>
+<Source>trureturing@548388cd (Nov 27, 2026) · 2,276 dated + 2 undated = 2,278</Source>
 
 ---
 # 12 Flagship proofs
@@ -206,7 +208,7 @@ section: "Flagship Proofs"
 
 <div class="body">
   <p class="kicker">Phys. Lett. A 2000 · Phys. Rev. A 2012</p>
-  <h2 class="t">A 26-Year-Old Entropy Bound; <em>a Facet for Every K</em></h2>
+  <h2 class="t">A 26-Year-Old Entropy Bound; <em>a Facet for Every K ≥ 2</em></h2>
   <div class="g2 mt">
 <TheoremCard class="compact" label="Theorem 4.2" title="Sharp Higuchi–Sudbery Entropy Bound" gid="D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum.result" cite="thm-higuchi-sudbery">
 
@@ -241,7 +243,7 @@ section: "Flagship Refutations"
   <div class="g2 mt">
 <TheoremCard class="compact" label="Theorem 4.1" title="Fredkin Entangling-Power Conjecture Refuted" gid="D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result" cite="thm-fredkin-refutation">
 
-The Qiu–Song–Chen conjecture that the four-qubit Fredkin gate's entangling-power supremum across `AD:BC` with local ancillas equals $2$ ebits is false: $\neg\,\mathrm{claim}$.
+The Qiu–Song–Chen conjecture that the four-qubit Fredkin gate's entangling-power supremum across `AD:BC` with local ancillas equals $2$ ebits is false: $\neg\,\mathrm{claim}$&nbsp;.
 
 <span class="sm muted">Witness from the proof, not in the statement: about 2.00034… ebits.</span>
 
@@ -269,45 +271,47 @@ section: "Observatory"
   <p class="kicker">live.trureturing.org</p>
   <h2 class="t">Eight Departments, <em>One Glass House</em></h2>
   <div class="split mt">
-    <img src="./img/trureturing-live-dept.png" alt="Live capture of the live.trureturing.org department view" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img src="./img/trureturing-live-dept.png" alt="Live capture of the live.trureturing.org department view" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
-      <Stat value="19,022" label="live DAG nodes · 8 departments · 17 public repositories" />
-      <ul class="plain mt-l">
-        <li><b>24 active StrataLint rules</b><br><span class="sm muted">Static governance rules and the Lean 4 kernel form a double gate</span></li>
-        <li class="mt"><b>838 scholars contacted, 440 replied</b><br><span class="sm muted">273 institutions in 46 countries; 44 in co-authoring tracks</span></li>
-        <li class="mt"><b>1 <i>RAIRO-ITA</i> 2026 paper · 18 OEIS entries</b><br><span class="sm muted">Logged with equal candor: 64 scholars declined</span></li>
+      <Stat value="19,022" label="live truth nodes · 8 spiral galaxies · 17 public repositories" />
+      <ul class="plain mt tight">
+        <li><b>Eight functional departments, not subjects</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Direction · Math Research · Independent Review · Verification · Monographs · Papers &amp; Wiki · Scholar Outreach · Tools &amp; Studio</span></li>
+        <li class="mt-s"><b>1,049 scholars contacted, 485 replied</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">1 <i>RAIRO-ITA</i> paper · 17 collaborative arXiv preprints · 21 OEIS; 66 declined</span></li>
+        <li class="mt-s"><b>StrataLint: 23 active of 27 registered</b><br><span class="sm muted" style="font-size:22px;line-height:1.3">Now in trureturing-tools; a second gate beside the Lean 4 kernel</span></li>
       </ul>
     </div>
   </div>
 </div>
-<Source>Live capture of live.trureturing.org (Nov 27, 2026) · trureturing-outreach (Nov 8) · StrataLint (Nov 20)</Source>
+<Source>live.trureturing.org (Nov 27, 2026) · trureturing-outreach@d22e63c8 (Nov 27; 46.2% reply rate) · trureturing-tools</Source>
 
 ---
 # 15 Red frontier
-section: "The Red Frontier"
+section: "The Red Frontier · 2026-11-28"
 ---
 
 <div class="body">
-  <p class="kicker">Theorem 6.1 · Open problem 6.2</p>
-  <h2 class="t">Equivalence Frozen; <em class="warn">RH Itself Stays Open</em></h2>
+  <h2 class="t mb-0">An RH Criterion and <em class="warn">Open Questions</em></h2>
+  <p class="sm" style="margin-block:0;">Levent Alpöge released his Lean 4 proof on Nov 20. Its five theorems cover classical RH and the generalized Riemann hypothesis (GRH) for Dirichlet <i>L</i>-functions; the open frontier also includes automorphic <i>L</i>-functions. The community certified classical RH on Nov 21. The Omega Institute split the replay into 8,490 shards.</p>
   <div class="row mt-s">
-    <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <figure style="margin-block:0;">
+      <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+      <figcaption class="sm muted">Evidence snapshot · 2026-11-20</figcaption>
+    </figure>
     <div class="grow">
 <TheoremCard class="compact" label="Theorem 6.1" title="Integer Hankel Criterion for the Riemann Hypothesis" gid="D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion.rh_iff_actual_xi_integer_hankel_nonnegative" cite="thm-rh-hankel">
 
-$\mathrm{RiemannHypothesis} \iff$ the actual-$\xi$ integer Hankel form is nonnegative for every $N$ and every $u : \mathrm{Fin}\,(N+1) \to \mathbb{Z}$. Equivalence only.
+Classical RH holds iff, for every order $N$ and every $u \in \mathbb{Z}^{N+1}$, the Hankel quadratic form from the actual $\xi$ coefficients is nonnegative at $u$.
 
 </TheoremCard>
-<TheoremCard class="compact mt-s" label="Open problem 6.2" title="The Riemann Hypothesis Remains Open" status="open" cite="prob-rh-open">
+<TheoremCard class="compact mt-s" label="Open problem" title="Extended and Grand RH" status="open">
 
-Is it true? Equivalently, is that form nonnegative for all $N$, $u$? <b>Completely open.</b>
+Dedekind $\zeta$ over general number fields, higher-rank automorphic $L$-functions, simplicity of zeros, and pair correlation.
 
 </TheoremCard>
-      <p class="sm muted mt-s">Mathesis collects 212 source-backed papers; Mathesis peer-review acceptances: <b class="hl-warn">0</b>.</p>
     </div>
   </div>
 </div>
-<Source>D5/S3/Zeros/Resolvent/ActualXiIntegerCriterion · Mathesis (Nov 27, 2026) · Vol. III, Ch. 6</Source>
+<Source>ActualXiIntegerCriterion · riemann-hypothesis@c2dabc97 · riemann-hypothesis-book@ebd24a4d (Nov 27) · Vol. III, Ch. 6</Source>
 
 ---
 # 16 Closing

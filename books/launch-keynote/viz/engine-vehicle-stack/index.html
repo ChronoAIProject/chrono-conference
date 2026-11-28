@@ -103,6 +103,7 @@
         <div class="wide"><dt><span class="zh">换引擎之后：重新鉴权 · 丢失状态</span><span class="en">After engine swaps: re-authentications · state lost</span></dt><dd id="roSwap">—</dd></div>
       </dl>
       <p class="note" id="roNote"></p>
+      <p class="note"><span class="zh">2026-11-28 仓库图谱：6 个组织共 539 个仓库。图中商业底座属于 ChronoAI Pte. Ltd.，独立研究由 The Omega Institute 开展。</span><span class="en">Nov 28 repository atlas · 539 repositories across six organizations. ChronoAI Pte. Ltd. operates the commercial stack. The Omega Institute conducts independent research.</span></p>
     </section>
 
     <section class="panel sec" id="evidence">
@@ -135,7 +136,7 @@
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
     <div class="row"><h2 id="drawerTitle"><span class="zh">理论接口 · 这个页面在演示什么</span><span class="en">Theory interface · what this page shows</span></h2><button class="chip" id="drawerClose"><span class="zh">关闭 Esc</span><span class="en">Close Esc</span></button></div>
     <div class="zh">
-      <p class="lede">整车的剖面：最上面是可替换的机舱，下面依次是 chrono-harness（判官）、CMA / heca（运行时）、Ornn（技能）、NyxID（金库与代理），最底下是调用最终作用的上线表面（chrono-metaverse、trureturing、商户渠道）。时间轴追踪两次工具调用：先读、后写。不变的是：机舱与 NyxID 之上各层里的明文密钥永远是 0。本页是示意模型与数值演示，不是证明，也不是对线上系统的测量；“发动机与整车”是结构类比，不是定理。</p>
+      <p class="lede">整车的剖面：最上面是可替换的机舱，下面依次是 chrono-harness（判官）、CMA / heca（运行时）、Ornn（技能）、NyxID（金库与代理），最底下是调用最终作用的上线表面（chrono-metaverse、商户渠道）。时间轴追踪两次工具调用：先读、后写。不变的是：机舱与 NyxID 之上各层里的明文密钥永远是 0。本页是示意模型与数值演示，不是证明，也不是对线上系统的测量；“发动机与整车”是结构类比，不是定理。</p>
       <ol>
         <li><b>能力句柄。</b>引擎发出的调用只带一个不透明的能力句柄。数据包下行到 NyxID 时先核对作用域，再在代理内存里注入真实凭证；带着明文密钥的只有 NyxID 边界之下的那一段（代理与上线表面之间）。回程时 NyxID 先剥掉凭证相关的头，再把数据交回上面各层。</li>
         <li><b>热换发动机。</b>会话、技能版本与判官都登记在底盘里，不在引擎里。换引擎时（任何时刻都可以）会话数仍是 1，重新鉴权 0 次，正在外面跑的调用照常回来，交给新引擎。</li>
@@ -146,7 +147,7 @@
       <p class="lede refs">书中：<a href="../../zh/ch02-engine-and-vehicle.html" target="_top">第二章 · 发动机人人可买，我们造的是整车</a></p>
     </div>
     <div class="en">
-      <p class="lede">A cutaway of the vehicle: at the top the swappable engine bay, then chrono-harness (the judges), CMA / heca (the runtime), Ornn (the skills), NyxID (the vault and proxy), and at the bottom the live surfaces the calls finally act on (chrono-metaverse, trureturing, the merchant channel). The rail traces two tool calls: a read, then a write. What does not move: plaintext keys in the engine bay and in every layer above NyxID stay at 0. The page is an illustrative model and a numerical illustration, not a proof, and not a measurement of the live system; "engine and vehicle" is a structural analogy, not a theorem.</p>
+      <p class="lede">A cutaway of the vehicle: at the top the swappable engine bay, then chrono-harness (the judges), CMA / heca (the runtime), Ornn (the skills), NyxID (the vault and proxy), and at the bottom the live surfaces the calls finally act on (chrono-metaverse and merchant channels). The rail traces two tool calls: a read, then a write. What does not move: plaintext keys in the engine bay and in every layer above NyxID stay at 0. The page is an illustrative model and a numerical illustration, not a proof, and not a measurement of the live system; "engine and vehicle" is a structural analogy, not a theorem.</p>
       <ol>
         <li><b>Capability handle.</b> A call from the engine carries nothing but an opaque capability handle. On its way down, NyxID first checks the scope, then injects the real credential in proxy memory; only the stretch below the NyxID boundary (between the proxy and the live surface) carries the plaintext key. On the way back, NyxID strips the credential headers before handing the data to the layers above.</li>
         <li><b>Hot engine swap.</b> The session, the skill versions and the judges are registered in the chassis, not in the engine. On a swap (at any moment) the session count stays 1, re-authentications stay 0, and a call that is out comes back as usual, to the new engine.</li>
