@@ -19,6 +19,7 @@
 
 #import "../generated/tokens.typ": tr-screen, tr-paper
 #import "cover.typ": tr-cover
+#import "academic.typ" as academic
 
 #let variant = sys.inputs.at("tr-variant", default: "screen")
 #let meta = json(sys.inputs.at("tr-meta", default: "/meta.json"))
@@ -451,9 +452,8 @@
   show table: set align(start)
   show table: set par(justify: false, first-line-indent: 0pt, leading: 0.55em)
   show table: it => {
-    // Raw identifiers can contain a segment wider than an entire narrow column.
-    show raw.where(block: false): code => text(code.text.clusters().join("\u{200B}"))
     show table.cell: cell => layout(size => {
+      show raw.where(block: false): code => academic.table-raw(code, cell, size.width)
       show math.equation.where(block: false): equation => fit-width(equation, size.width)
       cell
     })
@@ -523,7 +523,6 @@
 }
 
 // The scholarly edition uses the same semantic interface with its own book typography.
-#import "academic.typ" as academic
 #let is-academic = variant == "academic"
 #let tr-book = if is-academic { academic.tr-book } else { tr-book }
 #let tr-chapter = if is-academic { academic.tr-chapter } else { tr-chapter }

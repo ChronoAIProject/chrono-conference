@@ -33,7 +33,7 @@ const DAYLIGHT = {
   bg: '#F4F1EE', surface: '#F9F7F5', panel: 'rgba(249, 247, 245, 0.90)',
   edge: '#D5CFC9', edgeHot: '#ABA39B', ink: '#1A1A1A', dim: '#57524C',
   faint: '#615B55', accent: '#1A1A1A', secondary: '#5C5752', lean: '#0D6E4C',
-  open: '#C92A2A', amber: '#B4690E', argued: '#6D28D9'
+  open: '#C92A2A', amber: '#9A5204', argued: '#6D28D9'
 };
 const filmTokens = TOK.film || {};
 const optics = filmTokens;
