@@ -201,7 +201,7 @@ section: "North Star · Candor"
 The Extended RH for Dedekind $\zeta$ of general number fields, the Grand RH for automorphic $L$-functions, simplicity of zeros, and pair correlation: <b>still open today</b>.
 
 </TheoremCard>
-  <p class="sm muted mt-s">Classical RH and Dirichlet GRH sit outside the red zone: Levent Alpöge's Lean 4 proof, certified by the Lean and Mathlib communities (Nov 20–21), is external work; The Omega Institute built only the 8,490-shard <code>./verify</code> replay, and trureturing proves only the integer Hankel equivalence. 66 scholars declined or asked to stop—logged too.</p>
+  <p class="sm muted mt-s">Levent Alpöge released his Lean 4 proof on Nov 20. The Lean and Mathlib communities certified classical RH on Nov 21. Independent audits checked all five theorems, including Dirichlet GRH. The Omega Institute split the <code>./verify</code> replay into 8,490 shards. trureturing proves only the integer Hankel equivalence. 66 scholars declined or asked to stop.</p>
 </div>
 <Source>trureturing-outreach@d22e63c8 (Nov 27) · Mathesis (Nov 27) · riemann-hypothesis@c2dabc97 · candor gives green badges their weight</Source>
 
@@ -346,7 +346,7 @@ section: "AI Staff · Ledger"
     <div class="card hot">
       <h4>Why We Refuse 100% Automation</h4>
       <h3>102 / 120 are covered AI-scoped workflows.</h3>
-      <p>Six core roles: 82/99; nine roles reach 102/120 (85.0%), all demo-covered AI-scoped workflows. The other 18 stay behind human gates or on the roadmap; permanently human finance decisions sit outside the denominators.</p>
+      <p>Six core roles: 82/99; nine roles reach 102/120 (85.0%), all demo-covered AI-scoped workflows. The other 18 stay behind human gates or on the roadmap; 17 permanently human finance decisions sit outside the denominators.</p>
       <p class="sm muted mt"><b class="hl-warn">Full candor</b>  Nov 27 rehearsal: 11 of 12 stages passed first try; a Lark Q&amp;A stalled 65–70 min in the gateway queue (NyxID#2534), bypassed by a one-shot task in 3.0 min. Paying merchants: <b>0</b>; <b class="hl-amber">pilot applications open Dec 17</b>.</p>
     </div>
   </div>

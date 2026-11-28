@@ -64,7 +64,7 @@ section: "NyxID"
     <img src="./img/ch01-nyxid-proxy-layers.zh.svg" alt="NyxID 四层零密钥代理：智能体上下文、策略与审批关口、加密凭据库、上游服务" style="height: 560px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <Stat value="0" label="条明文密钥进入智能体上下文" />
-      <dl class="readout mt" style="grid-template-columns:5em minmax(0,1fr);line-height:1.1;row-gap:4px">
+      <dl class="readout mt" style="line-height:1.1;row-gap:4px">
         <dt>迭代</dt><dd>8 周 63 个次版本</dd>
         <dt>注册</dt><dd>公开 · 无需邀请码</dd>
         <dt>计量</dt><dd class="cy">1 credit = 1 USD · BYOK</dd>

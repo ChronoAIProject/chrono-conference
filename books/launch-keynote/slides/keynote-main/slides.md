@@ -201,7 +201,7 @@ section: "北极星 · 诚实"
 一般数域 Dedekind $\zeta$ 的扩展黎曼猜想、自守 $L$ 函数的大黎曼猜想、零点单重性与对关联：<b>今天依然开放</b>。
 
 </TheoremCard>
-  <p class="sm muted mt-s">经典 RH 与 Dirichlet 广义 RH 不在红区：Levent Alpöge 的 Lean 4 证明经 Lean 与 Mathlib 社区认证（11-20/21），是外部成果；The Omega Institute 只做 8,490 分片 <code>./verify</code> 重放，trureturing 内只证整系数 Hankel 等价。同样记账：66 位学者婉拒或要求停止联络。</p>
+  <p class="sm muted mt-s">Levent Alpöge 于 11 月 20 日发布 Lean 4 证明。Lean 与 Mathlib 社区于 11 月 21 日认证经典 RH。独立审计核查了全部五条定理，涵盖 Dirichlet 广义 RH。The Omega Institute 将 <code>./verify</code> 重放拆为 8,490 个分片。trureturing 内只证整系数 Hankel 等价。另有 66 位学者婉拒或要求停止联络。</p>
 </div>
 <Source>trureturing-outreach@d22e63c8（11-27）· Mathesis（11-27）· riemann-hypothesis@c2dabc97 · 诚实是绿标唯一的重量</Source>
 
@@ -346,7 +346,7 @@ section: "AI 员工 · 账本"
     <div class="card hot">
       <h4>为什么不追求 100% 自动？</h4>
       <h3>102 / 120 项是已覆盖的 AI 范围工作流。</h3>
-      <p>6 个核心岗位 82/99；9 岗合计 102/120（85.0%），均为 AI 范围工作流的演示覆盖。其余 18 项留在人工闸门或路线图；永久人工财务决策不计入分母。</p>
+      <p>6 个核心岗位 82/99；9 岗合计 102/120（85.0%），均为 AI 范围工作流的演示覆盖。其余 18 项留在人工闸门或路线图；17 项永久人工财务决策不计入分母。</p>
       <p class="sm muted mt"><b class="hl-warn">诚实声明</b>　11-27 全流程彩排 12 个环节首轮过 11 个；Lark 群问答在网关队列卡住 65–70 分钟（NyxID#2534），改走定时一次性任务 3.0 分钟送达。外部付费商户 <b>0</b>；<b class="hl-amber">首批试点 12-17 开放申请</b>。</p>
     </div>
   </div>

@@ -63,7 +63,7 @@ section: "The Boundary"
   <p class="kicker">Nine-role ledger · as of 2026-11-27</p>
   <h2 class="t">102 / 120 AI-Scoped Workflows Covered, <em>18 Behind Gates or Roadmap</em></h2>
   <img class="mt" src="./img/ch01-human-ai-boundary.en.svg" alt="AI execution zone and human authority boundary: the six core roles cover 82 of 99 workflows and all nine roles 102 of 120; disbursements, external legal commitments, unapproved media statements and irreversible revocations stay with humans" style="height: 460px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
-  <p class="lead mt">Six core roles: 82 / 99. Nine roles: 102 / 120 (85.0%). These are demo-covered AI-scoped workflows. The other 18 stay behind human gates or on the roadmap; permanently human finance decisions sit outside the denominators.</p>
+  <p class="lead mt">Six core roles: 82 / 99. Nine roles: 102 / 120 (85.0%). These are demo-covered AI-scoped workflows. The other 18 stay behind human gates or on the roadmap; 17 permanently human finance decisions sit outside the denominators.</p>
 </div>
 <Source>nyxid-nyxbot-trials@df5ef47 · role audit 2026-11-27 · core and nine-role denominators kept apart</Source>
 

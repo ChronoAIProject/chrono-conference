@@ -74,7 +74,7 @@ section: "NyxID"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID · live api.nyxid.ai v0.78.0 (898fdf245d, 2026-11-23) · dev 0.79.0 (6784b6dd36, Two additional channels behind feature flags) · checked 2026-11-27</Source>
+<Source>ChronoAIProject/NyxID · live api.nyxid.ai v0.78.0 (898fdf245d, 2026-11-23) · dev 0.79.0 (6784b6dd36, two additional channels behind feature flags) · checked 2026-11-27</Source>
 
 ---
 # 05 Failure 02: runaway
