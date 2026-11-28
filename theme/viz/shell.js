@@ -10,6 +10,7 @@
      TRV.thumbMode    true with ?thumb=1 (tools/node/viz-thumbs.mjs is capturing the wordless cover of [data-thumb])
      TRV.preset       the experiment card a chapter cites: ?preset=<id> (null when absent)
      TRV.figure       true with ?embed=1&preset=<id>: a cited figure (the stage, one sentence, the transport; no scrolling)
+     TRV.polarity     'daylight' (<html data-polarity="daylight">: warm stone, paper tokens) or 'deep-space' (the default)
      TRV.shot         true with ?shot=1 (viz-thumbs.mjs is capturing the labelled still of a cited card for PDF/EPUB)
      TRV.still        thumbMode || shot: no animation; show a representative state at once
      TRV.css(name)    the computed value of a CSS custom property, e.g. TRV.css('--tr-cyan')
@@ -34,6 +35,11 @@
   if (thumbMode) root.dataset.thumbMode = '1';
   if (shot) root.dataset.shot = '1';
   if (embed && preset) root.dataset.figure = '1';
+  // Polarity (Scheme B): a page of a ChronoAI book is <html data-polarity="daylight"> (warm architectural stone), an
+  // Omega Institute page deep-space optical glass (the default). Daylight takes the paper tokens, which tokens.css
+  // swaps in under [data-tr-palette="paper"]; set here, before first paint and before any colour is read.
+  const polarity = root.dataset.polarity === 'daylight' || root.dataset.trPalette === 'paper' ? 'daylight' : 'deep-space';
+  if (polarity === 'daylight') { root.dataset.polarity = 'daylight'; root.dataset.trPalette = 'paper'; }
 
   /* ---------- language: ?lang= beats the remembered choice, which beats the browser language ----------
      The choice is remembered under "tr-lang", shared with the library, the book landing pages, the films page and
@@ -103,7 +109,7 @@
     try { return getComputedStyle(root).getPropertyValue(name).trim(); } catch (e) { return ''; }
   }
   // Self-contained fallbacks, used only when tokens.css could not be read (values of theme/tokens.json "screen").
-  const FALLBACK = { ink: '#d4efff', dim: '#6f8ea5', faint: '#34506a', cyan: '#19f0ff', magenta: '#ff2fd0', amber: '#ffc83d', sigma: '#cfe3ff', ok: '#46ffb2', warn: '#ff5064', violet: '#9d8cff', void: '#03060c', stage: '#02040a', 'panel-edge': '#143049', 'line-hot': '#1f5d7c', blue: '#2a7bff', orange: '#ff8a3c' };
+  const FALLBACK = { ink: '#f1f5f9', dim: '#94a3b8', faint: '#475569', cyan: '#7dd3fc', magenta: '#cbd5e1', amber: '#fbbf24', sigma: '#e2e8f0', ok: '#34d399', warn: '#f87171', violet: '#a78bfa', void: '#070b12', stage: '#0a101b', 'panel-edge': 'rgba(255, 255, 255, 0.14)', 'line-hot': 'rgba(148, 163, 184, 0.34)', blue: '#38bdf8', orange: '#fb923c' };
   const PALETTE_KEYS = Object.keys(FALLBACK);
   let paletteCache = null;
   function readPalette() {
@@ -123,12 +129,22 @@
     ownKeys() { return Reflect.ownKeys(pal()); },
     getOwnPropertyDescriptor(_, k) { return k in pal() ? { value: pal()[k], enumerable: true, configurable: true } : undefined; }
   });
-  function hexToRgb(hex) {
-    const m = /^#?([0-9a-f]{6})$/i.exec(String(hex).trim());
-    if (!m) return [1, 1, 1];
-    const n = parseInt(m[1], 16);
-    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  // A token colour as [r, g, b, a] in 0..1: #rrggbb, or rgb()/rgba() (the deep-space hairlines are translucent).
+  function parseColour(c) {
+    const s = String(c).trim();
+    const h = /^#?([0-9a-f]{6})$/i.exec(s);
+    if (h) {
+      const n = parseInt(h[1], 16);
+      return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255, 1];
+    }
+    const m = /^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:[\s,/]+([\d.]+)(%?))?\s*\)$/i.exec(s);
+    if (m) {
+      const a = m[4] == null ? 1 : Number(m[4]) / (m[5] ? 100 : 1);
+      return [Number(m[1]) / 255, Number(m[2]) / 255, Number(m[3]) / 255, a];
+    }
+    return [1, 1, 1, 1];
   }
+  function hexToRgb(c) { return parseColour(c).slice(0, 3); }
   /** RGB triples in 0..1 for WebGL shaders (from the same tokens). */
   const rgb = new Proxy({}, {
     get(_, k) {
@@ -142,8 +158,11 @@
     get body() { return css('--tr-font-body') || 'sans-serif'; },
     get display() { return css('--tr-font-display') || 'sans-serif'; }
   };
-  /** Colour with alpha, e.g. TRV.alpha(TRV.palette.cyan, 0.4) → rgba(…). */
-  function alpha(hex, a) { const [r, g, b] = hexToRgb(hex); return `rgba(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)}, ${a})`; }
+  /** Colour with alpha, e.g. TRV.alpha(TRV.palette.cyan, 0.4) → rgba(…); a translucent token keeps its own alpha too. */
+  function alpha(c, a) {
+    const [r, g, b, own] = parseColour(c);
+    return `rgba(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)}, ${+(own * a).toFixed(4)})`;
+  }
 
   /** Match a canvas backing store to its CSS box; returns the device pixel ratio used. */
   function fitCanvas(cv) {
@@ -165,17 +184,9 @@
     toastTimers.set(el, setTimeout(() => { el.style.opacity = '0'; }, ms || 4200));
   }
 
-  /** One glitch pulse on the .logo inside root. */
-  function glitch(el) {
-    if (reduceMotion || !el || embed || thumbMode || shot) return;
-    el.classList.remove('glitching');
-    void el.offsetWidth;
-    el.classList.add('glitching');
-  }
-  function startGlitch(el, every) {
-    glitch(el);
-    if (!reduceMotion && !embed && !thumbMode && !shot) setInterval(() => glitch(el), every || 9000);
-  }
+  /** Kept for pages written against the earlier runtime: the logo no longer glitches (Scheme B), so these do nothing. */
+  function glitch() {}
+  function startGlitch() {}
 
   /** Wire a theory drawer. Escape closes it; returns { isOpen, open, close }. */
   function drawer(opts) {
@@ -330,6 +341,6 @@
   window.TRV = {
     keepCase, hudFit,
     reduceMotion, palette, rgb, fonts, alpha, css, esc, fitCanvas, toast, glitch, startGlitch, drawer, mulberry32, gauss, smooth,
-    embed, thumbMode, shot, still: thumbMode || shot, preset, figure: embed && !!preset, L, lang: () => lang, setLang, onLang: (fn) => langListeners.push(fn)
+    embed, thumbMode, shot, still: thumbMode || shot, preset, figure: embed && !!preset, polarity, L, lang: () => lang, setLang, onLang: (fn) => langListeners.push(fn)
   };
 })();

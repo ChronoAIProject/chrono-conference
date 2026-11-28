@@ -5,6 +5,11 @@ title: "The Complete Vehicle · Product Architecture"
 info: "Companion deck to The Complete Vehicle: six engineering failure modes that wreck agent prototypes, and the mechanical cures in NyxID, NyxBot, Ornn, CMA, heca and chrono-harness."
 htmlAttrs:
   lang: "en"
+  data-polarity: "daylight"
+  data-tr-palette: "paper"
+colorSchema: "light"
+defaults:
+  class: "tr-own-bg tr-daylight"
 deck:
   code: "CHRONO//STACK"
   book: "The Complete Vehicle"

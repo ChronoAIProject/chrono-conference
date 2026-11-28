@@ -1,17 +1,16 @@
 {
-  "title": "Six AI Employees Run a Launch",
-  "title_zh": "六位 AI 员工值守一场发布会",
-  "summary": "Six AI employee roles cover 77 of the 97 workflows of the 2026-12-17 launch (snapshot 2026-11-25): Donna and Blossom at the front, Community and Auto-X on the countdown, Finance on the demo ledger, HR and Admin on templates; the other 20 workflows stay behind human gates or on the roadmap.",
-  "summary_zh": "六个 AI 员工岗位覆盖 2026 年 12 月 17 日发布会 97 项流程中的 77 项（2026-11-25 快照）：Donna 与小花在前台，社群与 Auto-X 推进倒计时，财务员核对演示账本，HR 与行政维护模板；其余 20 项流程留守人工闸门或路线图边界。",
-  "subject": "https://github.com/the-omega-institute/trureturing",
+  "title": "Nine AI Employees Run a Launch",
+  "title_zh": "九位 AI 员工值守一场发布会",
+  "summary": "Nine standalone roles cover 102 of 120 workflows at df5ef47 on November 27. Read the six-role subtotal, the HR downgrade and the rehearsal queue failure alongside the count of external paying merchants.",
+  "summary_zh": "11 月 27 日 df5ef47 快照中，九个独立岗位覆盖 120 项流程中的 102 项。六岗小计、人事下调、排练中的排队故障和外部付费商户数都有据可查。",
   "publication_basis": "pinned",
-  "released": "2026-11-26",
-  "duration": "0:47",
+  "released": "2026-11-28",
+  "duration": "1:11",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · a shattered chat box, six role bars and a radar, an amber human gate",
+  "style": "dual-polarity optical glass · workflow counts, role audit and rehearsal timing",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [

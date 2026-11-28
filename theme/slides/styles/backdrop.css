@@ -1,5 +1,11 @@
 /* trureturing slides — the backdrop of every slide: void, aurora, scanlines, corner brackets, vignette.
  *
+ * Scheme B: on the deep-space polarity (the default) the void is obsidian, the aurora a faint high-altitude wash of
+ * ice-silver, the vignette a soft fall-off at the edges, and the brackets 1px crop marks; the scanlines token is
+ * "none", so its layer draws nothing (it stays wired so a deck theme could set it again). On the daylight polarity
+ * (html[data-polarity="daylight"], or a slide of class tr-daylight) the slide is flat warm stone with the crop marks
+ * only: no aurora, no vignette.
+ *
  * On screen these are CSS layers. In the PDF (Slidev's export opens the print view, which marks
  * <html class="print">) they are one image, backdrop.jpg: as vectors, the full-page translucent
  * gradients became soft masks and shadings that PDF readers composite again for every page, about two
@@ -8,7 +14,11 @@
  * slides-check reports a stale image, slides-build renders it again. Edit this file, then run
  *   node tools/node/slides-backdrop.mjs
  * and commit backdrop.jpg and backdrop.json. Layouts put <div class="tr-fx"> with the four corner
- * brackets first in .slide (layouts/default.vue, layouts/cover.vue). */
+ * brackets first in .slide (layouts/default.vue, layouts/cover.vue).
+ *
+ * The image shows the deep-space backdrop. A daylight deck therefore marks every slide tr-own-bg as well (headmatter
+ * defaults: { class: "tr-own-bg tr-daylight" }): its PDF pages keep the layers, which on daylight are only a flat
+ * fill and four 1px marks, cheap for any reader. */
 
 .slide {
   background-color: var(--tr-void);
@@ -16,14 +26,20 @@
   background-size: 100% 100%;
 }
 .tr-fx { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-.tr-fx::before { content: ""; position: absolute; inset: 0; background: var(--tr-fx-scanlines); opacity: .9; }
+.tr-fx::before { content: ""; position: absolute; inset: 0; background: var(--tr-fx-scanlines); }
 .tr-fx::after { content: ""; position: absolute; inset: 0; background: var(--tr-fx-vignette); }
-/* corner brackets, each open towards the centre of the slide */
-.tr-fx .bracket { position: absolute; box-sizing: border-box; width: 46px; height: 46px; border: 0 solid color-mix(in srgb, var(--tr-cyan) 70%, transparent); }
-.tr-fx .bracket.tl { top: 28px; left: 28px; border-width: 3px 0 0 3px; }
-.tr-fx .bracket.tr { top: 28px; right: 28px; border-width: 3px 3px 0 0; }
-.tr-fx .bracket.bl { bottom: 28px; left: 28px; border-width: 0 0 3px 3px; }
-.tr-fx .bracket.br { bottom: 28px; right: 28px; border-width: 0 3px 3px 0; }
+/* corner brackets, each open towards the centre of the slide: 1px crop marks */
+.tr-fx .bracket { position: absolute; box-sizing: border-box; width: 46px; height: 46px; border: 0 solid color-mix(in srgb, var(--tr-cyan) 52%, transparent); }
+.tr-fx .bracket.tl { top: 32px; left: 32px; border-width: 1px 0 0 1px; }
+.tr-fx .bracket.tr { top: 32px; right: 32px; border-width: 1px 1px 0 0; }
+.tr-fx .bracket.bl { bottom: 32px; left: 32px; border-width: 0 0 1px 1px; }
+.tr-fx .bracket.br { bottom: 32px; right: 32px; border-width: 0 1px 1px 0; }
+
+/* daylight polarity: flat warm stone, crop marks in graphite. :where() keeps the deck-wide rule at the specificity
+   of .slide, so a deck's own .slide.<class> background still wins. */
+:where(html[data-polarity="daylight"]) .slide, .slide.tr-daylight { background-image: none; }
+:where(html[data-polarity="daylight"]) .slide > .tr-fx::after, .slide.tr-daylight > .tr-fx::after { background: none; }
+:where(html[data-polarity="daylight"]) .slide > .tr-fx .bracket, .slide.tr-daylight > .tr-fx .bracket { border-color: color-mix(in srgb, var(--tr-magenta) 60%, transparent); }
 
 /* print view (PDF export): the rendered image instead of the layers, on every slide that keeps this
    backdrop. A slide with a background of its own (a deck rule .slide.<class> { background: … }) has the

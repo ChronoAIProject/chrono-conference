@@ -5,6 +5,11 @@ title: "Handing the Launch to AI Employees · AI Employee Pitch"
 info: "For store owners, studios and deployment partners: how six AI employee roles split the work, where each one stops, how a store goes live in two weeks, and how partners enter on temporary capability handles."
 htmlAttrs:
   lang: "en"
+  data-polarity: "daylight"
+  data-tr-palette: "paper"
+colorSchema: "light"
+defaults:
+  class: "tr-own-bg tr-daylight"
 deck:
   code: "CHRONO//OPS"
   book: "Handing the Launch to AI Employees"

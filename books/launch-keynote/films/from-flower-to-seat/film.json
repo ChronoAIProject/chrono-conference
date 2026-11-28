@@ -1,17 +1,16 @@
 {
   "title": "From a Flower Basket to a Seat",
   "title_zh": "从一束花到一个席位",
-  "summary": "A walk through the Street Corner lobby: concierge Donna and her 30-question verified press bank, six concentric rings of exactly 1,108 seats under an atomic booking lock, guest 1,109 routed to the live stream, and Blossom's 18 numbered flower-basket stands.",
-  "summary_zh": "走一遍街角前厅：礼宾 Donna 与三十题核验问答库，六圈同心剧场共 1,108 个原子锁席位，第 1,109 位来宾分流至直播流，以及小花照看的十八座编号花篮展台。",
-  "subject": "https://github.com/the-omega-institute/trureturing",
+  "summary": "Follow a signed basket to one of 18 map-wall mats, then read a seat code in Street Corner’s four eight-tier stands. On November 27, Donna’s median reply across 13 guest interactions was 29 seconds. In the November 24 test, seat-state changes took 55–81 seconds for booking, moving and cancellation.",
+  "summary_zh": "沿署名贺卡找到地图墙边 18 块花篮垫中的一块，再按座号找到四面八排看台中的席位。11 月 27 日排练中，Donna 与来宾互动 13 次，回复耗时中位数为 29 秒。11 月 24 日另测了订座、换座和取消后的席位变化，耗时 55 至 81 秒。",
   "publication_basis": "pinned",
-  "released": "2026-11-26",
-  "duration": "0:47",
+  "released": "2026-11-28",
+  "duration": "1:09",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · a wireframe lobby, 1,108 seats drawn one by one, a promenade of 18 stands",
+  "style": "dual-polarity optical glass · map-wall elevation, arena plan and rehearsal clocks",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [

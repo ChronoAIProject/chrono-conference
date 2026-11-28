@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { ROOT, THEME_VIZ, TOKENS_CSS, FONTSOURCE, readLock } from './viz-common.mjs';
+import { ROOT, THEME_VIZ, TOKENS_CSS, FONTSOURCE, readLock, readBookPolarity } from './viz-common.mjs';
 
 export const digest = (data) => crypto.createHash('sha256').update(data).digest('hex');
 export const fileDigest = (file) => fs.existsSync(file) ? digest(fs.readFileSync(file)) : null;
@@ -50,7 +50,10 @@ export function inputKey(book, v) {
   for (const name of ['viz-thumbs.mjs', 'viz-still-cache.mjs', 'viz-common.mjs', 'viz-server.mjs', 'viz-testkit.mjs', 'trureturing-lock.mjs']) {
     add(fileURLToPath(new URL(name, import.meta.url)), `capture/${name}`);
   }
-  hash.update(JSON.stringify({ schema: 2, thumbnail: v.thumbnail || null, capture_lock: v.capture_lock || 'all' }));
+  hash.update(JSON.stringify({
+    schema: 2, thumbnail: v.thumbnail || null, capture_lock: v.capture_lock || 'all',
+    polarity: readBookPolarity(book.dir)
+  }));
   return hash.digest('hex');
 }
 

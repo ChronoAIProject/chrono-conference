@@ -1,17 +1,17 @@
 {
   "title": "The Ratchet of Logic",
   "title_zh": "逻辑的棘轮",
-  "summary": "Three Lean theorems of trureturing: adding theorems can only shrink the joint kernel of indistinguishable states; on a nondegenerate arena, a theorem lowers information escape exactly when it lies outside the semantic closure of the others; and the four-qubit Fredkin entangling-power conjecture is false. With the 720-hour commit cadence, 167,819 cumulative frozen theorems, 2,128 literature resolutions over 74 days, and the Riemann Hypothesis marked open.",
-  "summary_zh": "trureturing 的三条 Lean 定理：增加定理只会缩小不可分辨状态对的联合核；在非退化竞技场上，一条定理降低信息逃逸，当且仅当它落在其余定理的语义闭包之外；四量子比特 Fredkin 纠缠能力猜想不成立。另附 720 个 UTC 小时连续提交节律、累计 167,819 条冻结定理、74 天 2,128 道文献题解，以及标为开放的黎曼猜想。",
+  "summary": "A 16-state example illustrates joint kernels and structural novelty. A counterexample to a Fredkin entangling-power conjecture appears among the 223,231 frozen theorems at The Omega Institute, an independent research institute. The November 21 joint statement certified Alpöge’s Lean proof of classical RH. Independent five-theorem audits also checked his Dirichlet GRH results. The film traces the Institute’s 8,490-shard replay, trureturing’s separate integer Hankel equivalence for classical RH and four questions still open.",
+  "summary_zh": "从 16 个状态的算例理解联合核与结构新颖性。独立研究机构 The Omega Institute 的 223,231 条冻结定理中，有一个反例推翻了关于 Fredkin 门纠缠能力的猜想。11 月 21 日的联合声明认证了 Alpöge 对经典黎曼猜想的 Lean 证明。独立审计核查的五条定理也包括他对狄利克雷广义黎曼猜想的结果。片中还介绍了研究院的 8,490 分片复现、trureturing 另证的经典黎曼猜想与整数 Hankel 判据的等价性，以及四个开放问题。",
   "subject": "https://github.com/the-omega-institute/trureturing",
   "publication_basis": "pinned",
-  "released": "2026-11-26",
-  "duration": "1:09",
+  "released": "2026-11-28",
+  "duration": "2:02",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · a one-way ratchet, a computed 16-state kernel lattice, an observatory wheel",
+  "style": "dual-polarity optical glass · ratchet, computed kernel, proof provenance and open questions",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [

@@ -15,6 +15,48 @@ SOURCE = paths.ROOT
 
 @unittest.skipUnless(shutil.which('node'), 'Node is required')
 class StillCacheTests(unittest.TestCase):
+    def test_book_polarity_changes_capture_key_and_served_root(self):
+        with Repo() as repo:
+            book = repo.book()
+            write(book.dir / 'viz/demo/index.html',
+                  """<html lang="en" data-polarity='stale' data-tr-palette=old><body></body></html>""")
+            env = dict(os.environ, TBOOK_ROOT=str(repo.root))
+            js = r'''
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const { inputKey } = await import(process.argv[1]);
+const { startServer, vizUrl } = await import(process.argv[2]);
+const book = { dir: path.join(process.env.TBOOK_ROOT, 'books/demo') };
+const viz = { id: 'demo' };
+const config = path.join(book.dir, 'book.toml');
+const base = fs.readFileSync(config, 'utf8');
+const key = inputKey(book, viz);
+const { server, origin } = await startServer();
+async function root() {
+  const response = await fetch(vizUrl(origin, 'demo', viz.id));
+  assert.equal(response.status, 200);
+  return (await response.text()).match(/<html\b[^>]*>/)[0];
+}
+try {
+  assert.equal(await root(), '<html lang="en">');
+  fs.writeFileSync(config, base + '\n[theme]\npolarity = "daylight"\n');
+  assert.notEqual(inputKey(book, viz), key);
+  assert.equal(await root(), '<html lang="en" data-polarity="daylight" data-tr-palette="paper">');
+  fs.writeFileSync(config, base + '\n[theme]\npolarity = "deep-space"\n');
+  assert.equal(inputKey(book, viz), key);
+  assert.equal(await root(), '<html lang="en">');
+} finally {
+  server.close();
+}
+'''
+            result = subprocess.run(
+                ['node', '--input-type=module', '-e', js,
+                 (SOURCE / 'tools/node/viz-still-cache.mjs').as_uri(),
+                 (SOURCE / 'tools/node/viz-server.mjs').as_uri()],
+                env=env, capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_link_only_capture_ignores_lock_but_ordinary_capture_keeps_full_dependency(self):
         with Repo() as repo:
             book = repo.book()

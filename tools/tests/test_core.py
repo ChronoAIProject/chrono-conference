@@ -1360,7 +1360,7 @@ class ThemeTests(unittest.TestCase):
         self.assertTrue(css.startswith(f"/* {theme.HEADER} */\n:root {{"))
         for key in tokens["screen"]:
             self.assertIn(f"  --tr-{key}: ", css)
-        self.assertIn('.tr-paper, [data-tr-palette="paper"] {', css)
+        self.assertIn('.tr-paper, [data-tr-palette="paper"], [data-book-polarity="daylight"] {', css)
         typ = theme.typst(tokens)
         self.assertIn("#let tr-screen = (", typ)
         self.assertIn("#let tr-fonts = (", typ)

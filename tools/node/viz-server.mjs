@@ -13,7 +13,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import {
   ROOT, BOOKS, THEME_VIZ, TOKENS_CSS, RUNTIME_FILES, RESERVED, FONTSOURCE, ID_RE,
-  isBook, listBooks, readRegistry, readLock, pinLinks, favicon, localFontsCss
+  isBook, listBooks, readRegistry, readLock, pinLinks, readBookPolarity, applyPolarityAttrs, favicon, localFontsCss
 } from './viz-common.mjs';
 
 export const BASE = '/site/';
@@ -92,7 +92,7 @@ export function route(pathname) {
     if (rest.length === 1 && !tail.endsWith('/')) return { redirect: `${pathname}/` };
     file = path.join(file, 'index.html');
   }
-  return { file, pin: file.endsWith('.html') };
+  return { file, pin: file.endsWith('.html'), slug };
 }
 
 export function createServer() {
@@ -118,7 +118,8 @@ export function createServer() {
       if (r.pin) {
         let body;
         try {
-          body = pinLinks(fs.readFileSync(r.file, 'utf8'), readLock());
+          const html = pinLinks(fs.readFileSync(r.file, 'utf8'), readLock());
+          body = applyPolarityAttrs(html, readBookPolarity(path.join(BOOKS, r.slug)));
         } catch (error) {
           console.error(error.message);
           res.writeHead(500, { 'content-type': TYPES['.txt'] });
