@@ -158,7 +158,7 @@
     <div class="zh">
       <p class="lede">一个有限观察者面对 16 个态。目录里的每条定理是一次二值读数；两个态在所有选中的定理上读数都相同，就仍然分不开，这一对“逃逸”了。所有分不开的态对组成联合核。本页是数值演示，不是证明。</p>
       <ol>
-        <li><b>联合核与逃逸率。</b>选中定理集合 S，联合核 jointKernel(S) 是 S 中每条定理都一致的态对。格点上品红的连线就是联合核中的不同态对；逃逸率 = 这些态对 / 全部态对。页面数无序对（共 120 对），Lean 数有序对（共 240 对），比率相同。</li>
+        <li><b>联合核与逃逸率。</b>选中定理集合 S，联合核 jointKernel(S) 是 S 中每条定理都一致的态对。格点上银灰连线就是联合核中的不同态对；逃逸率 = 这些态对 / 全部态对。页面数无序对（共 120 对），Lean 数有序对（共 240 对），比率相同。</li>
         <li><b>插入只会收缩。</b>插入一条定理，就是把旧联合核与它的一致关系取交（jointKernel_insert），所以集合越大，联合核越小（jointKernel_antitone）：时间轴上逃逸率只降不升。</li>
         <li><b>真正新的切线。</b>T₄（x ≥ 2）的核不能由 T₁、T₂、T₃ 推出，于是它独占切开 16 对，逃逸对从 24 降到 8。在至少两个态的场地上，“降低逃逸”恰好等价于“不在其余定理的语义闭包里”（lowersEscape_iff_not_mem_semanticClosureWithout）。</li>
         <li><b>可恢复的定理。</b>T₅ = T₁ ∧ ¬T₂ 只说“恰在第 1 行”（y = 1），它的两条边界正是 T₁、T₂ 已有的切线：其余定理一致时它也一致，所以它一对也切不开、不降低逃逸（lowersEscape_false_of_recoverable）。独占捕获是留一法的量：T₅ 进来之后，T₁ = T₅ ∨ T₂、T₂ = T₁ ∧ ¬T₅ 也都能由另外两条推出，三者的独占捕获一起为 0，而联合核与逃逸对一对都没变。</li>
@@ -169,7 +169,7 @@
     <div class="en">
       <p class="lede">A finite observer faces 16 states. Each theorem of the catalog is one binary reading; two states that read the same on every selected theorem still cannot be told apart, and that pair has "escaped". All pairs that cannot be told apart form the joint kernel. The page is a numerical illustration, not a proof.</p>
       <ol>
-        <li><b>The joint kernel and the escape rate.</b> For a set S of selected theorems, the joint kernel jointKernel(S) is the set of pairs on which every theorem of S agrees. The magenta links on the lattice are the pairs of distinct states in the joint kernel; the escape rate is those pairs over all pairs. The page counts unordered pairs (120 in all), Lean counts ordered pairs (240), and the rate is the same.</li>
+        <li><b>The joint kernel and the escape rate.</b> For a set S of selected theorems, the joint kernel jointKernel(S) is the set of pairs on which every theorem of S agrees. The silver-gray links on the lattice are the pairs of distinct states in the joint kernel; the escape rate is those pairs over all pairs. The page counts unordered pairs (120 in all), Lean counts ordered pairs (240), and the rate is the same.</li>
         <li><b>Insertion only shrinks.</b> Inserting one theorem intersects the old joint kernel with its agreement relation (jointKernel_insert), so a larger set has a smaller joint kernel (jointKernel_antitone): along the rail the escape rate never rises.</li>
         <li><b>A genuinely new cut.</b> The kernel of T₄ (x ≥ 2) cannot be implied by T₁, T₂, T₃, so it separates 16 pairs on its own and the escaped pairs fall from 24 to 8. On an arena of at least two states, "lowers the escape" is exactly "not in the semantic closure of the other theorems" (lowersEscape_iff_not_mem_semanticClosureWithout).</li>
         <li><b>A recoverable theorem.</b> T₅ = T₁ ∧ ¬T₂ only says "exactly in row 1" (y = 1), and its two edges are the cuts T₁ and T₂ have already drawn: it agrees wherever the others agree, so it separates not one pair and does not lower the escape (lowersEscape_false_of_recoverable). Unique capture is a leave-one-out count: once T₅ is in, T₁ = T₅ ∨ T₂ and T₂ = T₁ ∧ ¬T₅ follow from the other two as well, so all three capture 0, while the joint kernel and the escaped pairs have not changed at all.</li>

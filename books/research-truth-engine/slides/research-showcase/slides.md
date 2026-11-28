@@ -31,7 +31,7 @@ section: "尺度"
     <Stat value="223,231" label="冻结 Lean 4 定理（冻结声明共 400,377）" tone="ok" />
     <Stat value="17,968" label="冻结模块 · 602 万行 Lean 源码" />
     <Stat class="mt" value="720/720" label="连续 UTC 小时有提交 · 中位每小时 63 次 · 日均合入 217 PR" tone="magenta" />
-    <Stat class="mt" value="2,278" label="道公开文献题解 · 81 天" />
+    <Stat class="mt" value="2,278" label="道公开文献题解 · 2,276 带日期 + 2 未标日期 · 81 天" />
   </div>
   <p class="sm muted mt-l">三部双语专著 trureturing-books：344 双语页 · 135 个交互实验 · 83 部短片 · 918 定理块 / 2,043 独立冻结 GID</p>
   <p class="sm muted mt-s">同一页记下红字：Mathesis 收录 225 篇附源码论文，经 Mathesis 审稿流程录用 <b class="hl-warn">0</b> 篇（11-27）</p>
@@ -56,7 +56,7 @@ section: "FIB ATOM"
 
 <div class="body">
   <p class="kicker">定理 1.1 · 定理 1.3</p>
-  <h2 class="t">黄金进位亏量只取<em>三值</em>，血统却<em>一代就分家</em></h2>
+  <h2 class="t">黄金进位亏量<em>三值</em>，<em>最小双叶例子一代分家</em></h2>
   <div class="split mt">
     <div>
       <img src="./img/ch01-fib-substitution-tree.zh.svg" alt="斐波那契替换树与血统全变差曲线" style="display:block;height:285px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
@@ -68,7 +68,7 @@ section: "FIB ATOM"
     </div>
 <TheoremCard class="compact" label="定理1.3" title="有序源纤维与单射斐波那契血统输运" gid="D5/S3/Arith/FibonacciAtomic/GenealogicalFiberTransport.result" cite="thm-fib-lineage">
 
-对所有 $1 \le a + b$：同一源纤维里的每棵树，替换后边界组成完全相同；输运映射是单射，推前分布与目标纤维均匀分布的全变差精确为 $\mathrm{TV}(a, b, n) = 1 - \mathrm{fiberCount}(a, b) / \mathrm{fiberCount}(\mathrm{step}^{[n]}(a, b))$，且 $\mathrm{TV}(a, b, n) \to 1$（$n \to \infty$）。当 $2 \le a + b$ 时，一代即有下界 $1 - 2^{-b} \le \mathrm{TV}(a, b, 1)$；最小例子
+对所有 $1 \le a + b$：同一源纤维里的每棵树，替换后边界组成完全相同；输运映射是单射，推前分布与目标纤维均匀分布的全变差精确为 $\mathrm{TV}(a, b, n) = 1 - \mathrm{fiberCount}(a, b) / \mathrm{fiberCount}(\mathrm{step}^{[n]}(a, b))$，且 $\mathrm{TV}(a, b, n) \to 1$（$n \to \infty$）。当 $2 \le a + b$ 时，一代即有下界 $1 - 2^{-b} \le \mathrm{TV}(a, b, 1)$；含两类叶片的最小组成（$a,b \ge 1$）为
 
 $$\mathrm{TV}(1, 1, 1) = \tfrac{2}{3}.$$
 
@@ -157,7 +157,7 @@ section: "刚性定理"
   <div class="g2 mt">
 <TheoremCard class="compact" label="定理3.2" title="原始配平律的完整复希尔伯特空间刻画" gid="D5/S3/Quantum/Completion/RawAnchoredRadicalDescent.raw_hilbert_characterization" cite="thm-raw-hilbert">
 
-设 $M$ 为带单位元的乘性广群，$U(1) = 1$，$\omega = (-1 + i\sqrt{3})/2$；原始配平律 `RawBalance` 含非负性 $c \ge 0$、零对角 $c(a, a) = 0$ 与三向配平。它成立当且仅当存在最小复希尔伯特表示；任何满足 $F(ab) = F(a) + F(b)$、$F(Ua) = \omega F(a)$ 与 $c(a, b) = \|F(a) - F(b)\|^2$ 的映射都迫使配平律成立；配平律成立时，任意两个最小表示 $S, T$ 之间存在**唯一**保标签复线性等距同构 $e$（$\forall a,\ e(S.\mathrm{label}\,a) = T.\mathrm{label}\,a$）。
+设 $M$ 为带单位元的乘性广群，$U(1) = 1$，$\omega = (-1 + i\sqrt{3})/2$；原始配平律 `RawBalance` 含非负性 $c \ge 0$、零对角 $c(a, a) = 0$ 与三向配平。它成立当且仅当存在最小复希尔伯特表示；任何映射 $F : M \to H$（$H$ 为复希尔伯特空间）满足 $F(ab) = F(a) + F(b)$、$F(Ua) = \omega F(a)$ 与 $c(a, b) = \|F(a) - F(b)\|^2$ 都迫使配平律成立；配平律成立时，任意两个最小表示 $S, T$ 之间存在**唯一**保标签复线性等距同构 $e$（$\forall a,\ e(S.\mathrm{label}\,a) = T.\mathrm{label}\,a$&nbsp;）。
 
 </TheoremCard>
 <TheoremCard class="compact" label="定理3.3" title="紧致完全倒易律迫出三维空间与完整正交李代数" gid="D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity" cite="thm-rigidity-3d">
@@ -180,7 +180,7 @@ chapter: "04"
 section: "奇观四 · 文献前沿"
 ---
 
-<p class="kicker">第四篇 · 文献前沿</p>
+<p class="kicker">第四篇 · 文献前沿 · 2,276 带日期 + 2 未标日期 = 2,278</p>
 <h2 class="t">冲进公开文献的真实悬案：<br><em>81 天，2,278 题</em></h2>
 <p class="lead">不做自己出的考题——直接跳进学者们写在论文末尾的 Open Problem。</p>
 
@@ -196,7 +196,7 @@ section: "文献分布"
     <img src="./img/ch04-resolution-velocity.zh.svg" alt="文献题解来源与证明反驳分布" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div>
       <Stat class="md" value="684" label="道出自同行评审期刊 · 另有 arXiv 840、OEIS 729" />
-      <Stat class="md mt" value="127" label="道悬置逾十年，最久 47 年" tone="magenta" />
+      <Stat class="md mt" value="127" label="道至少十年，最久 47 年" tone="magenta" />
       <Stat class="md mt" value="598" label="道出自量子信息与理论物理（314 证 · 284 反）" />
     </div>
   </div>
@@ -210,7 +210,7 @@ section: "代表证明"
 
 <div class="body">
   <p class="kicker">原题出处 · Phys. Lett. A 2000 · Phys. Rev. A 2012</p>
-  <h2 class="t">悬置 26 年的熵界，<em>对一切 K 成立的面片</em></h2>
+  <h2 class="t">悬置 26 年的熵界，<em>对一切 K ≥ 2 成立的面片</em></h2>
   <div class="g2 mt">
 <TheoremCard class="compact" label="定理4.2" title="Higuchi–Sudbery 四量子比特平均两比特熵精确上界" gid="D5/S3/Quantum/Entanglement/HiguchiSudbery/HiguchiSudberyEntropyMaximum.result" cite="thm-higuchi-sudbery">
 

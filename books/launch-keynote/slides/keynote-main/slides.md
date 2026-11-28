@@ -39,7 +39,7 @@ section: "此刻"
     <img src="./img/street-corner.png" alt="street-corner 虚拟会场前厅" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
   </div>
 </div>
-<Source>street-corner 虚拟会场实拍 · 2026-12-17 同步开放</Source>
+<Source>street-corner 虚拟会场与预约 · 12-04 10:00 SGT 开放 · 直播 · 12-17 16:00 SGT</Source>
 
 ---
 # 03 立场
@@ -131,7 +131,7 @@ section: "北极星 · 文献"
     <img src="./img/ch05-trureturing-growth.zh.svg" alt="trureturing 文献题解累计曲线" style="display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
       <li><b class="hl-cyan">1,512 证明 · 766 反驳</b><br><span class="sm muted">日均约 28 道，其中量子与物理 598 道。</span></li>
-      <li class="mt"><b class="hl-cyan">684 道出自同行评审期刊</b><br><span class="sm muted">另有 arXiv 840 道、OEIS 729 道；127 道悬置逾十年，最久 47 年。</span></li>
+      <li class="mt"><b class="hl-cyan">684 道出自同行评审期刊</b><br><span class="sm muted">另有 arXiv 840 道、OEIS 729 道；127 道至少十年，最久 47 年。</span></li>
       <li class="mt"><b class="hl-magenta">当场可验</b><br><span class="sm muted">反驳 PRA 2025 Fredkin 门上界（&gt;2 ebits）；证明 Higuchi–Sudbery 熵界与 CMP 2026 Zeitlin 曲率极限。</span></li>
     </ul>
   </div>
@@ -225,7 +225,7 @@ section: "整车 · 剖面"
   <p class="kicker">热插拔核心 · 类比（非定理）</p>
   <h2 class="t">明天换掉机舱里的发动机，<em>整辆车一秒不停</em></h2>
   <img class="mt-s" src="./img/ch02-engine-vs-vehicle.zh.svg" alt="裸发动机与整车的结构剖面" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
-  <p class="lead mt">模型半年换一代。<b>把身份、技能、沙箱与判官焊进底盘，每一次上游换代都在给你的整车免费提速。</b></p>
+  <p class="lead mt">模型迭代很快。<b>把身份、技能、沙箱与判官焊进底盘，核心引擎更换时仍保住每一道护栏。</b></p>
 </div>
 <Source>结构类比，非数学定理 · 第一卷第二章</Source>
 
@@ -247,7 +247,7 @@ section: "整车 · 红皇后"
       <ul class="plain">
         <li><b>现已开放公开注册</b>（无需邀请码），透明计量 <code>1 credit = 1 USD</code> + BYOK</li>
         <li><b>55</b> 项内置服务 · <b>42</b> 份 OpenAPI→MCP 规范 · <b>9</b> 类消息渠道（dev 0.79.0 扩至 <b>11</b> 类）</li>
-        <li>写操作默认人工批准；撤销权限，下一次调用即失效</li>
+        <li>高风险写操作暂停等人工批准；撤销权限，下一次调用即失效</li>
       </ul>
     </div>
   </div>
@@ -320,14 +320,14 @@ section: "前厅 · 实景"
 
 <div class="body">
   <p class="kicker">走进街角前厅 · 11-27 全流程彩排</p>
-  <h2 class="t">Donna 与小花：<em>零撞座、零编造</em>，中位 29 秒</h2>
+  <h2 class="t">Donna 与小花：<em>零撞座</em>，中位 29 秒</h2>
   <div class="split mt">
     <img src="./img/lobby-baskets.png" alt="street-corner 三维花篮长廊" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
       <li><b class="hl-cyan">四面看台 × 8 排 = 1,108 席</b><br><span class="sm muted">北 248 · 南 248 · 东 306 · 西 306；逐排 144、144、144、140、136、136、132、132；座号如 N1-17、E1-20、W8-01</span></li>
       <li class="mt"><b class="hl-cyan">18 块花篮垫位（2 排 × 9 块）</b><br><span class="sm muted">basket-01 至 basket-18 沿世界地图墙排开；小花引导挑花、写贺卡，逐只落位</span></li>
       <li class="mt"><b class="hl-cyan">彩排实测：13 次预约与签到，0 丢单</b><br><span class="sm muted">中位 29 秒，最长 63 秒——量出来的，不是喊出来的</span></li>
-      <li class="mt"><b class="hl-cyan">Donna 30 题核验问答闸门</b><br><span class="sm muted">库内带出处即答；库外零编造，升级至 contact@chrono-ai.fun</span></li>
+      <li class="mt"><b class="hl-cyan">Donna 30 题媒体政策闸门</b><br><span class="sm muted">库内带出处即答；库外不猜，升级至 contact@chrono-ai.fun</span></li>
     </ul>
   </div>
 </div>
@@ -340,14 +340,14 @@ section: "AI 员工 · 账本"
 
 <div class="body">
   <p class="kicker">九个独立岗位 · 2026-11-27</p>
-  <h2 class="t">102 项交给 AI，<em>18 项留在人工闸门或路线图上</em></h2>
+  <h2 class="t">102 / 120 项 AI 范围工作流已覆盖，<em>18 项在人工闸门或路线图</em></h2>
   <div class="split mt">
     <img src="./img/ch07-six-role-coverage.zh.svg" alt="九个独立岗位覆盖 102/120 项工作流" style="display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>为什么不追求 100% 自动？</h4>
-      <h3>敢把这 18 项留在闸门后，<br>商户才敢交出另外 102 项。</h3>
-      <p>6 个核心岗位 82/99（82.8%）；加上舆情监测、知识库维护与复盘分析，9 岗合计 102/120（85.0%）。HR 主动从 15/20 降为 <b>14/20</b>：严格证据审计查出 PDF 读取短板——账本从不刷绿。</p>
-      <p class="sm muted mt"><b class="hl-warn">诚实声明</b>　11-27 全流程彩排 12 个环节首轮过 11 个；唯一故障是 Lark 群问答在网关队列卡住 65–70 分钟（NyxID#2534），改走定时一次性任务 3.0 分钟送达。外部付费商户 <b>0</b>；<b class="hl-amber">首批试点今天开放</b>。</p>
+      <h3>102 / 120 项是已覆盖的 AI 范围工作流。</h3>
+      <p>6 个核心岗位 82/99；9 岗合计 102/120（85.0%），均为 AI 范围工作流的演示覆盖。其余 18 项留在人工闸门或路线图；永久人工财务决策不计入分母。</p>
+      <p class="sm muted mt"><b class="hl-warn">诚实声明</b>　11-27 全流程彩排 12 个环节首轮过 11 个；Lark 群问答在网关队列卡住 65–70 分钟（NyxID#2534），改走定时一次性任务 3.0 分钟送达。外部付费商户 <b>0</b>；<b class="hl-amber">首批试点 12-17 开放申请</b>。</p>
     </div>
   </div>
 </div>
@@ -373,7 +373,7 @@ section: "邀请"
       <p>点开 live.trureturing.org 任意绿标，或带着你的开放猜想来一起攻关。</p>
     </div>
     <div class="card">
-      <h4>首批试点商户</h4>
+      <h4>首批试点商户 · 12-17</h4>
       <h3>双岗两周试跑</h3>
       <p>从「前台礼宾 + 财务对账」起步，零密码交出，带完整审计台账。</p>
     </div>

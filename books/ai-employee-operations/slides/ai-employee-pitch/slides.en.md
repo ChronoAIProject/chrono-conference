@@ -17,7 +17,7 @@ preloadImages: false
 
 <p class="kicker">ChronoAI · AI Employee Pitch</p>
 <h1 class="display">Hand the Launch<br>to <em>AI Employees</em></h1>
-<p class="lead">From Monday 9:00 AM workflows to auditable, instantly revocable AI staff for stores and deployment partners.</p>
+<p class="lead">From Monday 9:00 AM workflows to auditable, revocable at any time (~2.1 s CMA converge) AI staff for stores and deployment partners.</p>
 
 ---
 # 02 Why bots fail
@@ -26,7 +26,7 @@ section: "Why Bots Fail"
 
 <div class="body">
   <p class="kicker">The first week</p>
-  <h2 class="t">Why Most “AI Employees” <em class="warn">Don't Last a Week</em></h2>
+  <h2 class="t">Why Many "AI Employee" Pilots Stall Early</h2>
   <div class="g3 mt-l">
     <div class="card"><h4>01 · No job scope</h4><h3>One god-mode window</h3><p>Finance, support and marketing in one context: in week one, a quote ships two decimal places off.</p></div>
     <div class="card"><h4>02 · No key control</h4><h3>Raw passwords handed over</h3><p>Keys sit in environment variables, and one poisoned web page walks off with all of them.</p></div>
@@ -47,7 +47,7 @@ section: "A Real Day"
   <div class="g4 mt-l">
     <div class="tile"><i>street-corner lobby</i><b>Donna</b><span><em>Does</em>: locks a seat code (say N1-17), then says "reserved."</span><span><em class="hl-magenta">Stops</em>: off-bank press questions go to a human.</span></div>
     <div class="tile"><i>Demo ledger</i><b>NyxBot Finance</b><span><em>Does</em>: sorts invoices, reconciles, flags anomalies.</span><span><em class="hl-magenta">Stops</em>: any outbound payment.</span></div>
-    <div class="tile"><i>LinkedIn company page</i><b>Auto-X</b><span><em>Does</em>: Nov 26, an urgent video brief end to end in 55 min, zero human steps.</span><span><em class="hl-magenta">Stops</em>: milestone posts wait for a human.</span></div>
+    <div class="tile"><i>Social Auto-X</i><b>Auto-X</b><span><em>Does</em>: Nov 26, an urgent video brief end to end in 55 min, zero human steps.</span><span><em class="hl-magenta">Stops</em>: milestone posts wait for a human.</span></div>
     <div class="tile"><i>Living room</i><b>Living with AI</b><span><em>Does</em>: reads the home's sensors.</span><span><em class="hl-magenta">Stops</em>: asks the owner before moving an actuator.</span></div>
   </div>
   <p class="lead mt-l">Doing the work is common. <b>Knowing where to stop</b> is what makes an employee hireable.</p>
@@ -61,9 +61,9 @@ section: "The Boundary"
 
 <div class="body">
   <p class="kicker">Nine-role ledger · as of 2026-11-27</p>
-  <h2 class="t">102 Jobs to AI, <em>18 at Human Gates or on the Roadmap</em></h2>
+  <h2 class="t">102 / 120 AI-Scoped Workflows Covered, <em>18 Behind Gates or Roadmap</em></h2>
   <img class="mt" src="./img/ch01-human-ai-boundary.en.svg" alt="AI execution zone and human authority boundary: the six core roles cover 82 of 99 workflows and all nine roles 102 of 120; disbursements, external legal commitments, unapproved media statements and irreversible revocations stay with humans" style="height: 460px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
-  <p class="lead mt">Six core roles: 82 / 99 (82.8%). Add the sentiment, knowledge-base and retrospective roles: 102 / 120 (85.0%). The other 18 stay with humans.</p>
+  <p class="lead mt">Six core roles: 82 / 99. Nine roles: 102 / 120 (85.0%). These are demo-covered AI-scoped workflows. The other 18 stay behind human gates or on the roadmap; permanently human finance decisions sit outside the denominators.</p>
 </div>
 <Source>nyxid-nyxbot-trials@df5ef47 · role audit 2026-11-27 · core and nine-role denominators kept apart</Source>
 
@@ -90,13 +90,13 @@ section: "Press Gate"
 
 <div class="body">
   <p class="kicker">Donna · 30-question bank</p>
-  <h2 class="t">Inside the 30, Cite. <em>Outside, Never Invent.</em></h2>
+  <h2 class="t">30-Question Press Policy: <em>Cite Inside, Escalate Outside.</em></h2>
   <div class="split mt">
     <img src="./img/ch04-qa-gating-flow.en.svg" alt="Donna's press gate: a match in the 30-question bank gets a faithful answer with date and repository; anything else passes a disclosure check, then is logged and escalated to contact@chrono-ai.fun" style="height: 560px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <div class="card"><h4>01 · In the bank</h4><p>Verified answer, with its date and repository.</p></div>
       <div class="card hot mt-s"><h4>02 · Red lines</h4><p>Funding figures, model identifiers, hype: never answered.</p></div>
-      <div class="card mt-s"><h4>03 · Off the bank</h4><p>Never guess: log it, escalate to contact@chrono-ai.fun;<br>a human replies within 24 hours.</p></div>
+      <div class="card mt-s"><h4>03 · Off the bank</h4><p>Never guess: log it, escalate to contact@chrono-ai.fun;<br>target a human reply within 24 hours.</p></div>
     </div>
   </div>
 </div>
@@ -142,7 +142,7 @@ section: "15-Day Runbook"
         <li><b class="mono hl-cyan">Dec 16</b>&ensp;Frozen Dec 15, formal Discord dress rehearsal</li>
         <li><b class="mono hl-cyan">Dec 17</b>&ensp;16:00–17:15 SGT, dual-stream live</li>
       </ul>
-      <p class="lead mt">The one real failure: Lark Q&amp;A stuck 65–70 min in the gateway (NyxID#2534); a scheduled task bypassed it in 3 min.</p>
+      <p class="lead mt">11/12 stages passed first try; Lark Q&amp;A stuck 65–70 min in the gateway (NyxID#2534); a scheduled task bypassed it in 3 min.</p>
     </div>
   </div>
 </div>
@@ -156,7 +156,7 @@ section: "For Merchants"
 ---
 
 <p class="kicker">For your store</p>
-<h2 class="t">Don't Hire Six on Day One. <em>Start With Two.</em></h2>
+<h2 class="t">Don't Hire Six in Week One. <em>Start With Two.</em></h2>
 <p class="lead">A front desk for hours, prices and bookings. A bookkeeper that only reads the ledger and leaves a three-minute nightly brief. Neither pays anyone.</p>
 
 ---
@@ -176,7 +176,7 @@ section: "Five Steps"
         <dt>Traps stopped</dt><dd>10 / 10</dd>
         <dt>Owner review</dt><dd>3 min a day</dd>
         <dt>Metering &amp; cap</dt><dd style="font-size: 38px;">1 credit = 1 USD · per-agent cap</dd>
-        <dt>Clean run</dt><dd>14 days</dd>
+        <dt>Clean run</dt><dd>14 days · 0 unauthorized / 0 invented</dd>
       </dl>
     </div>
   </div>

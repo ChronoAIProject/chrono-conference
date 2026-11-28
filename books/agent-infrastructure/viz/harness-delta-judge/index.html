@@ -38,7 +38,7 @@
       <div class="presets cards" id="presets">
         <button class="preset" data-preset="prose-edit" aria-pressed="false"><span class="code">PROSE-EDIT</span><span class="cn zh">只改一章正文：2 / 14，省 86%</span><span class="cn en">One prose chapter: 2 / 14, 86% saved</span></button>
         <button class="preset" data-preset="core-change" aria-pressed="false"><span class="code">CORE-CHANGE</span><span class="cn zh">改核心内核：传递到 9 / 14</span><span class="cn en">Core kernel: reaches 9 / 14</span></button>
-        <button class="preset" data-preset="mixed-policy" aria-pressed="false"><span class="code">MIXED-POLICY</span><span class="cn zh">政策与产品同改：品红警告</span><span class="cn en">Policy and product together: magenta warning</span></button>
+        <button class="preset" data-preset="mixed-policy" aria-pressed="false"><span class="code">MIXED-POLICY</span><span class="cn zh">政策与产品同改：混合策略警告</span><span class="cn en">Policy and product together: policy-mixed warning</span></button>
         <button class="preset" data-preset="missing-edge" aria-pressed="false"><span class="code">MISSING-EDGE</span><span class="cn zh">漏登文件：报错而不是猜</span><span class="cn en">Unregistered file: an error, not a guess</span></button>
       </div>
       <p class="note" id="presetNote"></p>
@@ -134,7 +134,7 @@
       <p class="lede">一张 14 个单元的声明式依赖图（FILEMAP）。箭头从被依赖的单元指向消费它的单元：上游一改，下游就必须重判。时间轴分三段：查登记（0–20）、沿消费边逐层展开（20–80）、运行选中的判官（80–100）。本页是示意模型与数值演示，不是证明。</p>
       <ol>
         <li><b>delta.selection。</b>选中集合 = 改动集沿消费边的广度优先闭包，包括改动的单元本身；不在闭包里的单元跳过。每个单元带一个成本权重，全仓合计 100，所以“省下的比例”就是 100 减去选中单元的成本。只改一章正文，只选中它自己的对齐检查与结构检查（2 / 14，成本 14，省 86%）；改核心内核，选中它登记过的全部直接与传递消费者（9 / 14）。</li>
-        <li><b>policy.mixed-warning。</b>政策轨道（规则与判官，图中紫色虚线框）与产品单元在同一次改动里同时出现时，页面亮出品红警告，分别列出两组改动与各自的验证成本，并要求两组都完成验证；它不是人工审批关卡。</li>
+        <li><b>policy.mixed-warning。</b>政策轨道（规则与判官，图中紫色虚线框）与产品单元在同一次改动里同时出现时，页面亮出混合策略警告，政策组用紫色虚线框标出，并列出两组改动与各自的验证成本，要求两组都完成验证；它不是人工审批关卡。</li>
         <li><b>registry.explicit。</b>改动里有一个 FILEMAP 没有登记的文件时，执行器报出具体错误并拒绝这次选择：不按目录、扩展名或调用图去猜，也不退回全量运行。修正登记之后才能继续。</li>
         <li><b>诚实边界。</b>展开只对已声明的依赖完整：截至 2026-11-27，chrono-harness 的现役组件（runner、inputs、judge-*、cache）仍硬编码 completeness_proven: false，已归档旧仓库的 SPEC.md 也写着 parity: unestablished；未声明的外部副作用不在保证之内。判官能拦下没登记的改动，拦不下没声明的世界。</li>
       </ol>
@@ -144,7 +144,7 @@
       <p class="lede">A declarative dependency graph (FILEMAP) of 14 units. An arrow points from a unit to a unit that consumes it: when the first changes, the second must be judged again. The rail has three stretches: the registry lookup (0–20), the level-by-level expansion along the consumer edges (20–80), and the run of the selected judges (80–100). The page is a schematic model and a numerical illustration, not a proof.</p>
       <ol>
         <li><b>delta.selection.</b> The selection is the breadth-first closure of the change set along the consumer edges, the changed units included; units outside the closure are skipped. Each unit carries a cost weight, 100 for the whole repository, so the share saved is 100 minus the cost of the selected units. Changing one prose chapter selects only its own alignment check and the structure check (2 / 14, cost 14, 86% saved); changing the core kernel selects all of its registered direct and transitive consumers (9 / 14).</li>
-        <li><b>policy.mixed-warning.</b> When the policy track (rules and judges, the violet dashed frame) and product units change in the same change set, the page raises a magenta warning, lists the two groups with their verification costs, and requires both to be verified; it is not a manual approval gate.</li>
+        <li><b>policy.mixed-warning.</b> When the policy track (rules and judges, the violet dashed frame) and product units change in the same change set, the page raises a policy-mixed warning, marks the policy group with a violet dashed frame, lists both groups with their verification costs, and requires both to be verified; it is not a manual approval gate.</li>
         <li><b>registry.explicit.</b> When the change set holds a file the FILEMAP does not register, the executor reports a specific error and refuses the selection: it does not guess from directories, extensions or call graphs, and it does not fall back to a full run. The run continues once the registry is corrected.</li>
         <li><b>The honest boundary.</b> The expansion is complete only with respect to the declared dependencies: as of 2026-11-27 the live chrono-harness components (runner, inputs, judge-*, cache) still hard-code completeness_proven: false, and the SPEC.md of the archived old repository records parity: unestablished; undeclared external side effects are outside the guarantee. A judge can stop an unregistered change; it cannot stop a world nobody declared.</li>
       </ol>

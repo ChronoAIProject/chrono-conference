@@ -463,8 +463,8 @@
     freeze: { from: 5, at: 6, play: true, still: 6 }
   };
   const NOTES = {
-    observatory: ['三条水平切线 T₁、T₂、T₃ 把 16 个态切成 4 行。每行 4 个态仍互相分不开：品红连线还剩 4 × 6 = 24 对，逃逸率 24 / 120 = 0.200。',
-      'Three horizontal cuts T₁, T₂, T₃ slice the 16 states into 4 rows. The 4 states of a row still cannot be told apart: 4 × 6 = 24 magenta links remain, an escape rate of 24 / 120 = 0.200.'],
+    observatory: ['三条水平切线 T₁、T₂、T₃ 把 16 个态切成 4 行。每行 4 个态仍互相分不开：银灰连线还剩 4 × 6 = 24 对，逃逸率 24 / 120 = 0.200。',
+      'Three horizontal cuts T₁, T₂, T₃ slice the 16 states into 4 rows. The 4 states of a row still cannot be told apart: 4 × 6 = 24 silver-gray links remain, an escape rate of 24 / 120 = 0.200.'],
     'novel-cut': ['插入竖直切线 T₄（x ≥ 2）：它的核不能由 T₁、T₂、T₃ 推出，于是把每一行一分为二。4 类变成 8 类，逃逸对从 24 降到 8；T₄ 独占切开 16 对。',
       'Insert the vertical cut T₄ (x ≥ 2): its kernel cannot be implied by T₁, T₂, T₃, so it splits every row in two. Four classes become eight and the escaped pairs fall from 24 to 8; T₄ alone separates 16 pairs.'],
     redundant: ['插入 T₅ = T₁ ∧ ¬T₂（恰是第 1 行，y = 1）：它的两条边界正是 T₁、T₂ 已画出的切线，可由它们推出。联合核不变，逃逸对仍是 8，T₅ 的独占捕获为 0。留一法下 T₁、T₂ 此时也能由另外两条推出，独占同样变成 0。',
