@@ -9,7 +9,7 @@
 如果你希望一次性看完这场发布会的完整叙事——从阳光街角前厅推镜潜入 `live.trureturing.org` 深空玻璃观测站，逐条核验 Lean 4 冻结定理与红色开放边界，再回到白昼掀开五层整车底盘与九个独立 AI 员工岗位（六核心 82/99、九岗合计 102/120）的实测覆盖——请先看下方这支完整线上发布会影片。
 
 ::: {.film src="virtual-launch-2026"}
-**面向未来的造物 · 2026 线上发布会全片（六幕十景，昼夜双极）。** 页面内嵌播放器运行轻量级确定性静帧画布版（采用实拍采集的街角前厅与 `live.trureturing.org` 三维主图）；完整影院母带（随 1080p 与 720p MP4 Release 附件在本书「影片」页面播放器旁提供下载）搭载连续四阶段实时三维 WebGL 拉镜（新加坡 14 楼办公室 LED 墙画中画 → 悬浮 `星潮` 4 看台 × 8 排 `1,108` 座虚拟场馆 → 滨海湾金沙 `252.8m` 空中巨幕 → `5,307km` 近地轨道行星大屏）与 `live.trureturing.org` 8 座太空站直潜 8 座旋涡星系（`19,022` 节点）实时穿行。全片呈现所钉提交 `548388cd`（`223,231` 条冻结 Lean 4 定理）上的 `#print axioms` 核验清单（`jointKernel_antitone`、`lowersEscape_iff_not_mem_semanticClosureWithout` 与 `FredkinEntanglingPowerRefutation.result`；本书第五章另补充蓝色零公理定理 `d2_eq_zero_iff`）、五层整车架构与九个独立 AI 员工岗位（`102/120`；六核心 `82/99`）流程账本。
+**面向未来的造物 · 2026 线上发布会全片（五幕十二景，昼夜双极）。** 页面内嵌播放器运行轻量级确定性静帧画布版（采用实拍采集的街角前厅、真实产品界面与 `live.trureturing.org` 三维主图）；完整影院母带（随 1080p 与 720p MP4 Release 附件在本书「影片」页面播放器旁提供下载）以 116 BPM 节奏无缝串联两座实时三维 WebGL 世界（新加坡 14 楼办公室 LED 墙画中画、Donna 前厅与 18 块花篮垫 → 穿幕进入悬浮 `星潮` 4 看台 × 8 排 `1,108` 座虚拟场馆 → 滨海湾金沙 `252.8m` 空中巨幕与昼夜切换 → `5,307km` 轨道星际跃迁 → `live.trureturing.org` 8 座太空站与雷达扫频直潜 8 座旋涡星系、`星穹 → 矩阵 → 曜白` 极性桥接，以及终幕左右分屏双境合一）与真实运行的产品实录（`NyxID` 零密钥代理与即时吊销、`Ornn`、`CMA`、`heca`、`chrono-harness`、`trureturing`、`Mathesis` 与九岗交互实验台）。全片呈现所钉提交 `548388cd`（`223,231` 条冻结 Lean 4 定理）上的 `#print axioms` 核验清单（`jointKernel_antitone`、`lowersEscape_iff_not_mem_semanticClosureWithout` 与 `FredkinEntanglingPowerRefutation.result`；本书第五章另补充蓝色零公理定理 `d2_eq_zero_iff`）、五层整车架构与九个独立 AI 员工岗位（`102/120`；六核心 `82/99`）流程账本。
 :::
 
 如果只有 70 秒，也可以先看下方这支凝练版开场短片（1:10），一口气把四个核心命题亮在台面上。

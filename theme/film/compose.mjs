@@ -76,8 +76,10 @@ async function renderScene({ id, i, first, stop }, clip, manifest, fps, sizes, o
     }
     await run(process.execPath, args);
     for (const [j, output] of outputs.entries()) {
+      const small = sizes[j] === '720p';
       const codec = fade ? ['-vf', fades, '-frames:v', String(count), '-c:v', 'libx264',
-        '-crf', sizes[j] === '720p' ? '19' : '17'] : ['-c', 'copy'];
+        '-threads', '2', '-preset', small ? 'slow' : 'medium', '-crf', small ? '19' : '17',
+        '-pix_fmt', 'yuv420p'] : ['-c', 'copy'];
       await encode(['-i', output + '.render.mp4', ...codec, ...timescale, output]);
       await rm(output + '.render.mp4');
     }

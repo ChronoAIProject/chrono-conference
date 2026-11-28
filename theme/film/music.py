@@ -33,9 +33,8 @@ MID_LEVELS = ((0.9, 0.7, 0.8, 0.5, 0.4), (1.0, 0.6, 0.7, 0.4, 0.3))
 END_LEVEL = (1.0, 0.8, 0.7, 0.5, 0.4)
 
 
-def write_score(film_dir, bed, bpm, style, progression):
+def write_score(film_dir, bed, bpm, style, progression, write_audio):
     import numpy as np
-    import soundfile as sf
 
     # Leave headroom over narration and preserve intentionally quiet arrangements.
     rms = np.sqrt(np.einsum("ij,ij->", bed, bed, dtype=np.float64) / bed.size)
@@ -43,7 +42,7 @@ def write_score(film_dir, bed, bpm, style, progression):
     gain = min(10 ** (-19 / 20) / max(rms, 1e-12), 1.6, 0.8 / peak)
     bed *= gain
     out = out_dir(film_dir) / "music_bed.wav"
-    sf.write(str(out), bed, SR)
+    write_audio(str(out), bed, SR)
     db = 20 * np.log10(max(rms * gain, 1e-12))
     print(f"film: score {len(bed)/SR:.1f} s at {bpm:g} bpm ({style}, {progression}), rms {db:.1f} dB → {out}")
 
@@ -51,6 +50,7 @@ def write_score(film_dir, bed, bpm, style, progression):
 def main(argv: list[str]) -> int:
     try:
         import numpy as np
+        import soundfile as sf
         from scipy.signal import butter, sosfilt
     except ImportError as exc:
         fail(f"{exc.name} is not installed; run theme/film/setup.sh")
@@ -77,7 +77,7 @@ def main(argv: list[str]) -> int:
         from cinema_score import render
 
         bed = render(tl, script["scenes"], beat, chords)
-        write_score(film_dir, bed, bpm, style, progression)
+        write_score(film_dir, bed, bpm, style, progression, sf.write)
         return 0
 
     bar = 4 * beat
@@ -243,7 +243,7 @@ def main(argv: list[str]) -> int:
 
     fade(1.5, True)
     fade(3.5, False)
-    write_score(film_dir, bed, bpm, style, progression)
+    write_score(film_dir, bed, bpm, style, progression, sf.write)
     return 0
 
 

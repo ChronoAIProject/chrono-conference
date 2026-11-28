@@ -607,7 +607,7 @@ function cinemaFrame(S, opts = {}) {
     const detail = { size: 15, fam: F.mono, w: 600, c: p.dim, ls: 2, base: 'middle' };
     txt(opts.leftLabel ?? DATA.book?.code, inset, center, detail);
     txt(opts.chapterLabel ?? sceneName(S.id), W / 2, center,
-      { size: 22, fam: F.disp, w: 700, c: p.ink, ls: 2, align: 'center', base: 'middle' });
+      { size: 22, fam: F.disp, w: 700, c: opts.chapterInk ?? p.ink, ls: 2, align: 'center', base: 'middle' });
     const right = [timecode(S.t), opts.rightLabel].filter(Boolean).join(' · ');
     txt(right, W - inset, center, { ...detail, align: 'right' });
     txt(opts.slateLeft, inset, baseline, detail);

@@ -34,7 +34,10 @@ const kernelGid = 'D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKe
 const noveltyGid = 'D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout';
 const fredkinGid = 'D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result';
 
-function reel(S, maker, source, productMix = 0, productPlate = false) {
+const nightBars = { polarity: 'deep-space', chapterInk: `color-mix(in srgb, ${C.white}, white 75%)` };
+const independentBars = { ...nightBars, rightLabel: 'The Omega Institute (Independent)' };
+
+function reel(S, maker, source, productMix = 0, productPlate = false, bars = {}) {
   plate(S.id + '.jpg', aperture, { zoomTo: 1, vignette: 0 });
   // Product captures have their own captions below the app window. Give the
   // bilingual subtitle band its own matte during those shots and their dissolves.
@@ -43,7 +46,7 @@ function reel(S, maker, source, productMix = 0, productPlate = false) {
   cinemaFrame(S, {
     barHeight: 40, leftLabel: maker, chapterLabel: sceneName(S.id),
     rightLabel: String(S.i + 1).padStart(2, '0') + ' / 12',
-    slateLeft: source, slateRight: '2026 · 11 · 28'
+    slateLeft: source, slateRight: '2026 · 11 · 28', ...bars
   });
 }
 
@@ -99,102 +102,106 @@ function theoremBeat(p, gid, label) {
 
 SCENES.s01_cold_open_hook = S => {
   const productCut = (S.u >= 9 && S.u < 10.5) || (S.u >= 12 && S.u < 13.5);
-  reel(S, company, 'Singapore office', Number(productCut));
-  titleBeat(Q(S, 0, 'Zero cameras', 2.6), 'SINGAPORE', 'Zero cameras.');
-  meter(Q(S, 1, 'five hundred thirty-nine', 4.6), 539, 'REPOSITORIES');
-  titleBeat(at(S, 2, 2.5), 'COLD OPEN', 'Execution at zero.');
+  reel(S, company, 'Singapore office', Number(productCut), false, independentBars);
+  titleBeat(Q(S, 1, 'Zero cameras', 2.6), 'SINGAPORE', 'Zero cameras.');
+  meter(Q(S, 3, '539 repositories', 4.6), 539, 'REPOSITORIES');
+  telemetry(Q(S, 4, 'The other 296', 5.4), 'CHRONOAI 243 · THE OMEGA INSTITUTE 296');
+  titleBeat(Q(S, 6, 'The cost of execution', 3.5), 'COLD OPEN', 'Execution costs approach zero.');
 };
 
 SCENES.s02_office_through_glass_to_stadium = S => {
   reel(S, company, 'Donna reception  /  Tide Arena');
-  meter(Q(S, 0, 'Eighteen flower mats', 3.8), 18, 'FLOWER MATS');
-  telemetry(Q(S, 0, 'zero dropped seats', 3.5), '13 requests   /   0 dropped seats', { side: 'right' });
-  meter(Q(S, 1, 'four floating stands', 6.5), 1108, 'TIDE ARENA SEATS', 'right');
-  meter(at(S, 2, 5), 141624, 'COMMITS IN 60 DAYS');
+  meter(Q(S, 1, 'Eighteen flower mats', 3.8), 18, 'FLOWER MATS');
+  telemetry(Q(S, 2, 'thirteen booking', 5.1), '13 booking and check-in operations · 0 dropped seats', { side: 'right' });
+  meter(Q(S, 4, 'four floating stands', 6.5), 1108, 'TIDE ARENA SEATS', 'right');
+  meter(Q(S, 6, 'In 60 days', 5), 141624, 'COMMITS IN 60 DAYS');
+  telemetry(Q(S, 6, '74 active repositories', 3.7), '74 ACTIVE REPOS', { side: 'right' });
 };
 
 SCENES.s03_bay_mbs_night_to_orbit_warp = S => {
-  reel(S, company, 'chrono-metaverse  /  Marina Bay to Earth orbit');
+  reel(S, company, 'chrono-metaverse  /  Marina Bay to Earth orbit', 0, false, nightBars);
   telemetry(Q(S, 0, 'Marina Bay Sands', 4.3), 'Marina Bay Sands   /   Singapore');
-  meter(Q(S, 1, 'orbital screen', 4.6), 5307, 'KM  /  ORBITAL SCREEN', 'right');
-  titleBeat(Q(S, 2, "Earth's atmosphere", 2.6), 'OUTBOUND', 'Escape velocity');
+  meter(Q(S, 3, 'orbital screen', 4.6), 5307, 'KM  /  ORBITAL SCREEN', 'right');
+  titleBeat(Q(S, 5, "Earth's atmosphere", 2.6), 'OUTBOUND', 'Escape velocity');
 };
 
 SCENES.s04_omega_stations_radar_dive = S => {
   reel(S, observatory, 'live.trureturing.org');
   titleBeat(Q(S, 0, 'independent research observatory', 2.7), 'THE OMEGA INSTITUTE', 'Eight stations');
-  meter(Q(S, 1, 'eight spiral galaxies', 5.1), 19022, 'TRUTH NODES', 'right');
-  meter(Q(S, 2, 'frozen Lean four theorems', 4.9), 223231, 'FROZEN THEOREMS');
+  meter(Q(S, 3, 'eight spiral galaxies', 5.1), 19022, 'TRUTH NODES', 'right');
+  meter(Q(S, 5, 'frozen Lean 4 theorems', 4.9), 223231, 'FROZEN THEOREMS');
 };
 
 SCENES.s05_lean_kernel_anvil_live = S => {
   reel(S, observatory, 'trureturing.org  /  Lean 4 kernel  /  books.trureturing.org', clamp((S.u - 6) / 0.5), true);
-  titleBeat(at(S, 0, 2.6), 'THE LEAN KERNEL', 'Inspect the chalk.');
-  theoremBeat(Q(S, 1, 'One explicit witness', 7), fredkinGid, 'Fredkin witness · 2.00034 ebits');
-  telemetry(Q(S, 1, '#print axioms', 5.8), 'propext · Classical.choice · Quot.sound');
-  telemetry(Q(S, 2, "Feynman's tiny ratchet", 4.5), 'ANALOGY   Ratchet and pawl', { kind: 'amber' });
-  theoremBeat(Q(S, 2, 'truth narrows illusion', 2.7), kernelGid, 'Catalog kernel · antitonicity');
-  theoremBeat(Q(S, 2, 'old knowledge', 3.0, 0.82), noveltyGid, 'Structural novelty · semantic closure');
+  titleBeat(Q(S, 1, 'inspect the chalk', 2.6), 'THE LEAN KERNEL', 'Inspect the chalk.');
+  theoremBeat(Q(S, 3, 'One explicit witness', 6.2), fredkinGid, 'Fredkin witness · 2.00034 ebits');
+  telemetry(Q(S, 4, '#print axioms', 5.8), 'propext · Classical.choice · Quot.sound');
+  telemetry(Q(S, 6, "Feynman's tiny ratchet", 4.5), 'ANALOGY   Ratchet and pawl', { kind: 'amber' });
+  theoremBeat(Q(S, 7, 'new truth narrows illusion', 2.7), kernelGid, 'Catalog kernel · antitonicity');
+  theoremBeat(Q(S, 8, 'old knowledge', 2.7), noveltyGid, 'Structural novelty · semantic closure');
 };
 
 SCENES.s06_red_ink_honesty_rh = S => {
   reel(S, observatory, 'Mathesis  /  Riemann Hypothesis replay', clamp((25 - S.u) / 0.6), true);
-  meter(Q(S, 0, 'scholars contacted', 4.1), 1049, 'SCHOLARS CONTACTED');
-  meter(at(S, 1, 4.4), 225, 'OPEN PAPERS', 'right');
-  telemetry(Q(S, 1, 'formal peer-review acceptances', 5.4), '0 formal peer-review acceptances', { kind: 'open' });
-  telemetry(Q(S, 2, 'Levent Alpöge', 5.7), 'Levent Alpöge   /   Nov 20');
-  meter(Q(S, 2, 'Omega built', 4.6), 8490, 'REPLAY SHARDS', 'right');
-  telemetry(Q(S, 2, 'Extended RH', 6.2), 'OPEN   Extended RH · Grand RH · zero simplicity · pair correlation',
+  meter(Q(S, 2, '1,049 scholars contacted', 4.1), 1049, 'SCHOLARS CONTACTED');
+  meter(Q(S, 3, '225 open papers', 4.4), 225, 'OPEN PAPERS', 'right');
+  telemetry(Q(S, 4, 'formal peer-review acceptances', 3.2), '0 formal peer-review acceptances');
+  telemetry(Q(S, 5, 'Levent Alpöge', 4.7), 'Levent Alpöge · Nov 20 · Lean 4 proof');
+  telemetry(Q(S, 7, 'November 21', 4.7), 'Lean / Mathlib · classical RH certification');
+  telemetry(Q(S, 8, 'Independent audits', 4), 'Independent audits · Dirichlet GRH');
+  meter(Q(S, 9, 'The Omega Institute', 4.4), 8490, 'REPLAY SHARDS', 'right');
+  telemetry(Q(S, 10, 'Extended RH', 4.0), 'OPEN   Extended RH · Grand RH · zero simplicity · pair correlation',
     { kind: 'open', side: 'right' });
 };
 
 SCENES.s07_vehicle_nyxid_zero_secret = S => {
   reel(S, company, 'nyxid.ai  /  scoped access and revocation', 1, true);
-  telemetry(Q(S, 0, 'engine by the token', 5), 'ANALOGY   The rented engine', { kind: 'amber', side: 'right' });
-  titleBeat(Q(S, 1, 'complete vehicle', 2.6), 'NYXID', 'The complete vehicle');
-  telemetry(Q(S, 1, 'hotel keycard', 4.4), 'ANALOGY   Room 412 · until noon', { kind: 'amber' });
-  telemetry(Q(S, 2, 'one-command revocation', 4.6), 'HTTP 200   →   revoke   →   401', { side: 'right' });
+  telemetry(Q(S, 1, 'engine by the token', 4.5), 'ANALOGY   The rented engine', { kind: 'amber', side: 'right' });
+  titleBeat(Q(S, 3, 'complete vehicle', 2.6), 'NyxID v0.78.0', 'The complete vehicle');
+  telemetry(Q(S, 4, 'hotel keycard', 4.4), 'ANALOGY   Room 412 · until noon', { kind: 'amber' });
+  telemetry(Q(S, 7, 'one-command revocation', 4.6), 'HTTP 200   →   revoke   →   401', { side: 'right' });
 };
 
 SCENES.s08_ornn_cma_heca_live_montage = S => {
   reel(S, company, 'Ornn  /  CMA  /  heca  /  chrono-harness', 1, true);
-  meter(Q(S, 0, 'Ornn turns', 5), 163, 'SCANNED SKILLS', 'right');
-  telemetry(Q(S, 1, 'isolated sandboxes', 4.5), 'CMA   /   2.1 s hot reload', { side: 'right' });
-  meter(Q(S, 1, 'local canvas heca', 5), 27, 'HECA INTEGRATIONS');
-  meter(Q(S, 2, 'executable Rust judges', 4.8), 540, 'VERUS PROOFS', 'right');
+  meter(Q(S, 1, 'Ornn turns', 5), 163, 'SCANNED SKILLS', 'right');
+  telemetry(Q(S, 2, 'isolated sandboxes', 4.5), 'CMA v0.12.0   /   2.1 s hot reload', { side: 'right' });
+  meter(Q(S, 4, 'local canvas heca', 5), 27, 'HECA INTEGRATIONS');
+  meter(Q(S, 6, '21 executable Rust judges', 2.8), 540, 'VERUS PROOFS', 'right');
 };
 
 SCENES.s09_unfinished_steel_workbench = S => {
   reel(S, company, 'Blueprint Tide Arena  /  engineering boundaries');
   titleBeat(at(S, 0, 2.6), 'BLUEPRINT', 'Unfinished steel');
-  telemetry(Q(S, 0, "heca's source is still private", 2.9), 'heca   /   private source');
-  telemetry(Q(S, 0, 'one primary coding runtime', 3.7), 'CMA   /   one primary runtime', { side: 'right' });
-  telemetry(Q(S, 0, 'completeness proven', 4.5), 'chrono-harness   /   completeness_proven: false');
+  telemetry(Q(S, 2, 'heca source', 2.9), 'heca   /   private source');
+  telemetry(Q(S, 3, 'one primary coding runtime', 3.7), 'CMA   /   one primary runtime', { side: 'right' });
+  telemetry(Q(S, 4, 'completeness_proven', 4.5), 'chrono-harness   /   completeness_proven: false');
 };
 
 SCENES.s10_nine_ai_employees_live_ops = S => {
   reel(S, company, 'AI Team Work Ledger  /  Launch Arena  /  Donna reception', clamp((40 - S.u) / 0.5), true);
-  meter(Q(S, 0, 'nine disciplined roles', 5.8), 102, 'OF 120 WORKFLOWS', 'right');
-  telemetry(Q(S, 1, 'knocked HR down', 4.2), 'HR coverage   15 → 14 / 20');
-  telemetry(Q(S, 1, 'four human taps', 4.1), '11 / 12 on first try   ·   4 human taps', { side: 'right' });
-  telemetry(Q(S, 1, 'stalled sixty-five minutes', 4.2), 'NyxID #2534   /   65 min stall · 3 min bypass');
-  telemetry(at(S, 2, 5), 'External paying merchants   /   0', { side: 'right' });
+  meter(Q(S, 1, 'nine disciplined roles', 5.8), 102, 'OF 120 WORKFLOWS', 'right');
+  telemetry(Q(S, 3, 'knocked HR down', 4.2), 'HR coverage   15 → 14 / 20');
+  telemetry(Q(S, 5, 'Eleven of twelve', 4.1), '11 / 12 on first try   ·   4 human taps', { side: 'right' });
+  telemetry(Q(S, 6, 'stalled for 65 minutes', 4.2), 'NyxID #2534   /   65 min stall · 3 min bypass');
+  telemetry(Q(S, 8, 'external paying merchants', 4), 'External paying merchants   /   0', { side: 'right' });
 };
 
 SCENES.s11_unified_world_return_flight = S => {
-  reel(S, 'The Omega Institute  /  ChronoAI Pte. Ltd.', 'Observatory  /  Earth orbit  /  Tide Arena');
+  reel(S, company, 'Observatory  /  Earth orbit  /  Tide Arena', 0, false, independentBars);
   titleBeat(at(S, 0, 2.7), 'INBOUND', 'Return flight');
-  telemetry(Q(S, 0, 'Earth orbit', 4.3), 'Earth orbit   →   Marina Bay', { side: 'right' });
-  titleBeat(Q(S, 1, 'never fool yourself', 2.6), 'FEYNMAN', 'Never fool yourself.');
-  telemetry(Q(S, 2, 'open seams', 3), 'Tide Arena   /   Singapore');
+  telemetry(Q(S, 1, 'Earth orbit', 4.3), 'Earth orbit   →   Marina Bay', { side: 'right' });
+  titleBeat(Q(S, 3, 'never fool yourself', 2.6), 'FEYNMAN', 'Never fool yourself.');
+  telemetry(Q(S, 6, 'open seams', 2.0), 'Tide Arena   /   Singapore');
 };
 
 SCENES.s12_coda_pick_up_the_chalk = S => {
-  reel(S, 'ChronoAI Pte. Ltd.  /  The Omega Institute', 'Street Corner  /  live.trureturing.org');
+  reel(S, company, 'Street Corner  /  live.trureturing.org', 0, false, independentBars);
   telemetry(Q(S, 0, 'Street Corner', 5.4), 'Street Corner   /   Dec 17 · 16:00 SGT');
-  telemetry(Q(S, 0, 'green theorem', 4.3), 'live.trureturing.org', { side: 'right' });
-  telemetry(Q(S, 0, 'write to contact', 4.1), 'contact@chrono-ai.fun');
-  titleBeat(Q(S, 1, 'Pick up the chalk', 2.8), '面向未来的造物', 'Pick up the chalk.');
+  telemetry(Q(S, 1, 'green theorem', 3.2), 'live.trureturing.org', { side: 'right' });
+  telemetry(Q(S, 2, 'write to contact', 3.4), 'contact@chrono-ai.fun');
+  titleBeat(Q(S, 3, 'Pick up the chalk', 2.6), '面向未来的造物', 'Pick up the chalk.');
 };
 
 FILM.poster = () => {

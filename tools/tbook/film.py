@@ -815,9 +815,10 @@ def validate_script(script: dict) -> list[tuple[str, str]]:
                             or not isinstance(c.get("at", 0), (int, float)) or c.get("kind") not in cue_kinds):
                         err(f"{where}: cue {c!r} must be {{\"line\": <index>, \"at\": <seconds>, "
                             f"\"kind\": {'|'.join(cue_kinds)}}}")
-                    elif cinema and "mode" in c and c["mode"] not in CINEMA_MODES:
+                        continue
+                    if cinema and "mode" in c and c["mode"] not in CINEMA_MODES:
                         err(f"{where}: cue mode must be one of {', '.join(CINEMA_MODES)}")
-                    elif cinema and "rise" in c:
+                    if cinema and "rise" in c:
                         rise = c["rise"]
                         if (c["kind"] != "drop" or type(rise) not in (int, float)
                                 or not 0 < rise < float("inf")):

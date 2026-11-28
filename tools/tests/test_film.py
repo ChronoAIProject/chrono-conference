@@ -409,10 +409,48 @@ class ValidationTest(unittest.TestCase):
         scene["cues"].append({"line": 0, "at": 0.5, "kind": "drop", "mode": "groove", "rise": 1.6})
         script = {"voice": "bm_george", "speed": 1.02, "music": {"style": "cinema-keynote"}, "scenes": [scene]}
         self.assertEqual(film.validate_script(script), [])
-        scene["cues"][-1]["mode"] = "typo"
-        self.assertIn("cue mode", film.validate_script(script)[0][1])
-        scene["cues"][-1].update(mode="quiet", rise=-1)
-        self.assertIn("rise", film.validate_script(script)[0][1])
+        scene["mode"] = "typo"
+        self.assertIn("mode must be one of", film.validate_script(script)[0][1])
+        scene["mode"] = "build"
+        for kind, rise in (("drop", -1), ("drop", 0), ("drop", True), ("chime", 1.6)):
+            with self.subTest(kind=kind, rise=rise):
+                scene["cues"] = [{"line": 0, "kind": kind, "mode": "typo", "rise": rise}]
+                messages = [message for _, message in film.validate_script(script)]
+                self.assertEqual(len(messages), 2, messages)
+                self.assertTrue(any("cue mode" in message for message in messages), messages)
+                self.assertTrue(any("rise must be" in message for message in messages), messages)
+
+    def test_cinema_only_cues_require_cinema_style(self):
+        scene = {"id": "open", "lines": [["One", "一"]], "lead": 0.5, "tail": 0.5}
+        script = {"voice": "bm_george", "speed": 1.02, "scenes": [scene]}
+        for style in ("dual-polarity", "minimalist", "legacy"):
+            script["music"] = {"style": style}
+            for kind in set(film.CINEMA_CUES) - set(film.CUE_KINDS):
+                with self.subTest(style=style, kind=kind):
+                    scene["cues"] = [{"line": 0, "kind": kind}]
+                    issues = film.validate_script(script)
+                    self.assertEqual(len(issues), 1, issues)
+                    self.assertIn(f"'kind': '{kind}'", issues[0][1])
+
+    @unittest.skipUnless(NODE, "node not available")
+    def test_compose_once_and_fade_frames(self):
+        import subprocess
+
+        d = self.book.films_dir / "clip-test"
+        d.mkdir(parents=True)
+        (d / "script.json").write_text(json.dumps({"scenes": [{"id": "open"}]}), encoding="utf-8")
+        data = {"viewport": {"x": 0, "y": 131, "w": 1920, "h": 818}, "loop": "once",
+                "scenes": {"open": "missing.mp4"}}
+        env = {**os.environ, "FILM_ALLOW_STILL_FALLBACK": "1", "FILM_REQUIRE_CLIPS": "0"}
+        command = [NODE, str(THEME_FILM / "compose.mjs"), str(d), "--renditions", "720p"]
+        for settings, accepted in (({}, True), ({"fade_frames": 0}, True), ({"fade_frames": 15}, True),
+                                   ({"fade_frames": -1}, False), ({"fade_frames": 16}, False),
+                                   ({"fade_frames": True}, False), ({"fade_frames": 2.5}, False)):
+            with self.subTest(settings=settings):
+                (d / "clips.json").write_text(json.dumps({**data, **settings}), encoding="utf-8")
+                result = subprocess.run(command, capture_output=True, text=True, env=env, timeout=15)
+                self.assertEqual(result.returncode, 3 if accepted else 1, result.stderr)
+                self.assertIn("missing live 3D clips" if accepted else "fade_frames must be an integer", result.stderr)
 
     @unittest.skipUnless(NODE, "node not available")
     def test_compose_missing_clip_and_sha256_exit_codes(self):

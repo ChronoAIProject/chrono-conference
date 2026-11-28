@@ -2,12 +2,22 @@
   "voice": "bm_george",
   "speed": 1.02,
   "say": {
+    "live.trureturing.org": "live dot True Re-Turing dot org",
+    "github.com/chrono-harness": "Git Hub dot com slash Crow-no harness",
+    "contact@chrono-ai.fun": "contact at Crow-no A-I dot fun",
+    "CMA v0.12.0": "see em ay version zero point twelve point zero",
+    "Lean 4": "Leen four",
+    "8,490-shard": "eight thousand four hundred ninety shard",
+    "ChronoAI Pte. Ltd.": "Crow-no A-I Private Limited",
+    "completeness_proven": "completeness proven",
+    "#2534": "number twenty-five thirty-four",
+    "2.00034": "two point zero zero zero three four",
     "ChronoAI": "Crow-no A-I",
     "chrono-ai": "Crow-no A-I",
     "NyxID": "Niks eye dee",
     "Ornn": "Orn",
     "heca": "Heck-ah",
-    "trureturing": "True Re-Turing",
+    "trureturing": "trureturing",
     "Mathesis": "Mah-thee-sis",
     "chrono-harness": "Crow-no harness",
     "Verus": "Vair-us",
@@ -30,7 +40,6 @@
     "qubit": "cue-bit",
     "ebits": "ee-bits",
     "#print axioms": "hash print axioms",
-    "Lean four": "Leen four",
     "propext": "prop ext",
     "Classical.choice": "Classical dot choice",
     "Quot.sound": "Quote dot sound",
@@ -60,16 +69,36 @@
       ],
       "lines": [
         [
-          "Look at this room in Singapore. Zero cameras behind the glass. Zero agencies polishing a single word.",
-          "看看这间新加坡办公室：玻璃后面没有一台摄影机，也没有公关公司润色过半个字。"
+          "Look at this room in Singapore.",
+          "看看这间新加坡办公室。"
         ],
         [
-          "Everything you are about to watch is running live right now—across five hundred thirty-nine repositories, two 3D worlds, and two hundred twenty-three thousand machine-checked theorems.",
-          "你即将看到的一切此刻都在真实运行——横跨五百三十九座代码库、两座 3D 世界，以及二十二万三千条机器核验定理。"
+          "Zero cameras behind the glass.",
+          "玻璃后面没有一台摄影机。"
         ],
         [
-          "Execution just collapsed to zero. Now listen with a hammer to what actually holds weight.",
-          "执行的成本刚刚塌向零。现在，拿铁锤听一听，到底什么才真正压得住阵脚。"
+          "Zero agencies polishing a single word.",
+          "没有公关公司润色过半个字。"
+        ],
+        [
+          "Of the 539 repositories, 243 are commercial and engineering repositories at ChronoAI Pte. Ltd.",
+          "539 座仓库中，ChronoAI Pte. Ltd. 有 243 座商业与工程仓。"
+        ],
+        [
+          "The other 296 belong to The Omega Institute, an independent research body.",
+          "其余 296 座属于独立科研机构 The Omega Institute。"
+        ],
+        [
+          "Two live 3D worlds take us from the office to the Institute’s 223,231 machine-checked theorems.",
+          "两座实时 3D 世界带我们从办公室来到研究院的 223,231 条机器核验定理前。"
+        ],
+        [
+          "The cost of execution just collapsed toward zero.",
+          "执行的成本刚刚塌向零。"
+        ],
+        [
+          "Now listen with a hammer to what actually holds weight.",
+          "现在拿铁锤听一听，什么才真正压得住阵脚。"
         ]
       ],
       "cues": [
@@ -79,24 +108,24 @@
           "kind": "tick"
         },
         {
-          "line": 0,
-          "at": 2.26552,
-          "kind": "tick"
-        },
-        {
-          "line": 0,
-          "at": 4.46379,
-          "kind": "tick"
-        },
-        {
           "line": 1,
-          "at": 2.16783,
+          "at": 0.00307,
+          "kind": "tick"
+        },
+        {
+          "line": 2,
+          "at": -0.00179,
+          "kind": "tick"
+        },
+        {
+          "line": 3,
+          "at": 0.74076,
           "kind": "drop",
           "mode": "groove"
         },
         {
-          "line": 2,
-          "at": 5.04445,
+          "line": 7,
+          "at": 1.20441,
           "kind": "whoosh_up"
         }
       ]
@@ -111,51 +140,75 @@
       "ledger": [
         "60 days · 141,624 commits across 74 active repositories",
         "1,108 seats · 4 stands × 8 rows · 18 flower mats",
-        "Nov 27 · Donna · 13 requests · 0 dropped seats · median 29 s"
+        "Nov 27 · Donna · 13 booking and check-in operations · 0 dropped seats · median 29 s"
       ],
       "lines": [
         [
-          "Start at Donna's front desk. Eighteen flower mats, Flower Town right around the corner, and a November twenty-seventh rehearsal that booked thirteen requests with zero dropped seats in twenty-nine seconds median.",
-          "从 Donna 的前厅开始：十八块花篮垫位、转角就是鲜花小镇，十一月二十七日彩排十三次订座零漏单，中位响应二十九秒。"
+          "Start at Donna's front desk.",
+          "从 Donna 的前台开始。"
         ],
         [
-          "Now pull straight through the glass—into four floating stands, eight tiered rows, and one thousand one hundred eight atomic-locked seats hovering over Singapore.",
-          "现在直接穿破玻璃幕墙——四座悬空看台、八排阶梯、一千一百零八个原子锁席位，正悬停在新加坡上空。"
+          "Eighteen flower mats line the way to Flower Town.",
+          "十八块花篮垫位沿路排开，转角就是鲜花小镇。"
         ],
         [
-          "One hundred forty-one thousand commits landed in sixty days—roughly fifteen engineers conducting fleets of agents. Never clap for volume. A flood has volume.",
-          "六十天里落下十四万一千次提交，约十五位工程师指挥代理集群推进。别为数量鼓掌——洪水也有数量。"
+          "The November 27 rehearsal ran thirteen booking and check-in operations.",
+          "十一月二十七日的彩排完成了十三次订座与签到操作。"
+        ],
+        [
+          "Donna dropped no seats and responded in a median of 29 seconds.",
+          "Donna 没有漏掉一个席位，中位响应时间为 29 秒。"
+        ],
+        [
+          "Pull through the glass to four floating stands, each with eight rows.",
+          "穿过玻璃幕墙，四座悬空看台各有八排座位。"
+        ],
+        [
+          "Atomic locks protect all 1,108 seats above the bay.",
+          "海湾上空的 1,108 个席位，每个都有原子锁。"
+        ],
+        [
+          "In 60 days, about fifteen engineers and their agents landed 141,624 commits across 74 active repositories.",
+          "六十天里，约十五位工程师与代理在 74 座活跃仓库提交了 141,624 次。"
+        ],
+        [
+          "Never clap for volume alone.",
+          "别只为数量鼓掌。"
+        ],
+        [
+          "A flood has volume.",
+          "洪水也有数量。"
         ]
       ],
       "cues": [
         {
           "line": 0,
-          "at": 2.14707,
+          "at": 0.67534,
           "kind": "blip"
         },
         {
-          "line": 0,
-          "at": 2.66431,
+          "line": 1,
+          "at": -0.05331,
           "kind": "blip"
         },
         {
-          "line": 0,
-          "at": 3.69879,
+          "line": 2,
+          "at": 2.3019,
           "kind": "blip"
         },
         {
-          "line": 0,
-          "at": 10.16431,
+          "line": 3,
+          "at": 3.87821,
           "kind": "ding"
         },
         {
-          "line": 1,
-          "at": 0.60786,
+          "line": 4,
+          "at": 0.00362,
           "kind": "whoosh_up"
         },
         {
-          "line": 1,
-          "at": 5.52166,
+          "line": 5,
+          "at": 2.35169,
           "kind": "blip"
         }
       ]
@@ -168,31 +221,51 @@
       "tail": 0.6,
       "mode": "build",
       "ledger": [
-        "chrono-metaverse · 14 aircraft · 252.8 m Sky-Screen · 5,307 km orbital screen"
+        "chrono-metaverse · 15 live broadcast craft across bay and orbit · 252.8 m Sky-Screen · 5,307 km orbital screen"
       ],
       "lines": [
         [
-          "Climb past the stadium, bank over Marina Bay Sands and fourteen live broadcast craft, and watch daylight melt into neon across Singapore's skyline.",
-          "拉升越过体育场，掠过滨海湾金沙与十四架实时飞行器，看白昼在新加坡天际线滑入夜色霓虹。"
+          "Climb past the stadium and bank over Marina Bay Sands.",
+          "拉升越过剧场，再侧身掠过滨海湾金沙。"
         ],
         [
-          "Keep climbing until the entire bay shrinks beneath a five-thousand-kilometer orbital screen—four physical scales locked onto one unbroken live signal.",
-          "继续攀升，直到整片海湾缩成五千公里轨道大屏脚下的一点微光——四重物理尺度，锁在同一路实时信号上。"
+          "Watch the fifteen live broadcast craft across bay and orbit.",
+          "看横跨海湾与轨道的十五架实时飞行器。"
         ],
         [
-          "Now leave Earth's atmosphere. Because marketing slogans suffocate in vacuum—and only machine-checked proof survives.",
-          "现在冲出大气层。因为营销口号会在真空里窒息，唯有机器核验的证明才能活下来。"
+          "Daylight melts into neon across Singapore's skyline.",
+          "白昼在新加坡天际线滑入夜色霓虹。"
+        ],
+        [
+          "Keep climbing until the bay shrinks beneath the 5,307-kilometer orbital screen.",
+          "继续攀升，直到整片海湾缩成 5,307 公里轨道大屏下的一点微光。"
+        ],
+        [
+          "Four physical scales share one unbroken live signal.",
+          "四重物理尺度共用一路连续的实时信号。"
+        ],
+        [
+          "Now leave Earth's atmosphere.",
+          "现在冲出大气层。"
+        ],
+        [
+          "Marketing slogans suffocate in vacuum.",
+          "营销口号会在真空中窒息。"
+        ],
+        [
+          "Out here, you can still check the proof.",
+          "到了这里，你依然可以核查证明。"
         ]
       ],
       "cues": [
         {
           "line": 0,
-          "at": 1.84566,
+          "at": 2.73924,
           "kind": "whoosh_up"
         },
         {
-          "line": 2,
-          "at": 0.33362,
+          "line": 5,
+          "at": 0.77697,
           "kind": "drop",
           "mode": "groove"
         }
@@ -217,47 +290,63 @@
       ],
       "lines": [
         [
-          "Welcome to the independent research observatory of The Omega Institute at live dot trureturing dot org—not a product showcase, an open glass anvil.",
-          "欢迎来到独立科研机构 The Omega Institute 的 live.trureturing.org——这不是产品展厅，而是一座透明铁砧。"
+          "Welcome to the independent research observatory of The Omega Institute.",
+          "欢迎来到独立科研机构 The Omega Institute 的观测站。"
         ],
         [
-          "Fire a radar sweep across eight orbital stations, dive straight through the formal verification bridge, and drop into eight spiral galaxies of nineteen thousand living truth nodes.",
-          "一道灵识扫频掠过八座空间站，直穿形式验证主桥，坠入由一万九千个活真值节点组成的八座螺旋星系。"
+          "At live.trureturing.org, you can inspect the work as it happens.",
+          "在 live.trureturing.org，你能看到正在进行的工作。"
         ],
         [
-          "Seven hundred twenty straight hours without stopping. Median sixty-three commits an hour. Two hundred twenty-three thousand frozen Lean four theorems and two thousand two hundred seventy-eight literature problems resolved.",
-          "连续七百二十小时不停摆，中位每小时六十三次提交，累计二十二万三千条冻结 Lean 4 定理、攻克两千二百七十八道文献难题。"
+          "Send a radar sweep across eight orbital stations.",
+          "一道雷达扫频掠过八座空间站。"
+        ],
+        [
+          "Dive through the formal verification bridge into eight spiral galaxies with 19,022 truth nodes.",
+          "穿过形式验证主桥，飞入共有 19,022 个真值节点的八座螺旋星系。"
+        ],
+        [
+          "For 720 straight hours the median was 63 commits an hour.",
+          "连续 720 小时，每小时提交数的中位数为 63。"
+        ],
+        [
+          "The observatory holds 223,231 frozen Lean 4 theorems.",
+          "观测站收录了 223,231 条冻结的 Lean 4 定理。"
+        ],
+        [
+          "Of 2,278 problems from the literature, some have proofs and others have counterexamples.",
+          "2,278 道文献问题得到解决，有的得到了证明，有的找到了反例。"
         ]
       ],
       "cues": [
         {
-          "line": 1,
-          "at": 0.48872,
+          "line": 2,
+          "at": 0.414,
           "kind": "chime"
         },
         {
-          "line": 1,
-          "at": 6.82493,
+          "line": 3,
+          "at": 3.86869,
           "kind": "whoosh_down"
         },
         {
-          "line": 2,
-          "at": 0.00597,
+          "line": 4,
+          "at": 0.42917,
           "kind": "tick"
         },
         {
-          "line": 2,
-          "at": 3.75597,
+          "line": 4,
+          "at": 3.66193,
           "kind": "tick"
         },
         {
-          "line": 2,
-          "at": 6.47148,
+          "line": 5,
+          "at": 2.92866,
           "kind": "tick"
         },
         {
-          "line": 2,
-          "at": 10.35079,
+          "line": 6,
+          "at": 0.29845,
           "kind": "tick"
         }
       ]
@@ -276,32 +365,56 @@
       ],
       "lines": [
         [
-          "Never trust a narrator. Walk to the blackboard and inspect the chalk. A twenty twenty-five Physical Review A conjecture claimed four-qubit Fredkin gates cap out at two ebits.",
-          "别信旁白，走到黑板前查粉笔字。二零二五年 Physical Review A 曾猜想：四量子比特 Fredkin 门的纠缠上限不超过 2 ebits。"
+          "Never trust a narrator.",
+          "别信旁白。"
         ],
         [
-          "One explicit witness shattered it at two point zero zero zero three four ebits. Run #print axioms in Lean four: only propext, Classical.choice, and Quot.sound—zero sorryAx.",
-          "一个显式反例以 2.00034 ebits 当场击穿猜想。运行 #print axioms，Lean 4 内核只返回三条标准公理——零 sorryAx。"
+          "Walk to the blackboard and inspect the chalk.",
+          "走到黑板前，查查粉笔字。"
         ],
         [
-          "Like Feynman's tiny ratchet and pawl—an analogy, not a slogan—two frozen theorems lock every step: truth narrows illusion, and old knowledge can never be double-counted as new.",
-          "就像费曼的微米棘轮与棘爪——这是类比而非口号——两条冻结定理锁死棘齿：新真理压缩错觉，旧知识永不重复记功。"
+          "A 2025 Physical Review A conjecture put a two-ebit ceiling on the four-qubit Fredkin gate.",
+          "论文猜想四量子比特 Fredkin 门的纠缠上限为 2 ebits。"
+        ],
+        [
+          "One explicit witness exceeds that ceiling at 2.00034 ebits.",
+          "一个显式反例达到了 2.00034 ebits，越过了这道上限。"
+        ],
+        [
+          "Run #print axioms in Lean 4.",
+          "在 Lean 4 中运行 #print axioms。"
+        ],
+        [
+          "It returns propext, Classical.choice and Quot.sound, with zero sorryAx.",
+          "结果只有三条标准公理，sorryAx 为零。"
+        ],
+        [
+          "For an analogy, picture Feynman's tiny ratchet and pawl.",
+          "打个比方，想想费曼的微型棘轮和棘爪。"
+        ],
+        [
+          "One frozen theorem shows how new truth narrows illusion.",
+          "一条冻结定理说明新真理如何缩小错觉空间。"
+        ],
+        [
+          "The other tells us when old knowledge cannot count as new.",
+          "另一条说明，什么情况下旧知识不能再算作新发现。"
         ]
       ],
       "cues": [
         {
-          "line": 1,
-          "at": 5.6401,
+          "line": 4,
+          "at": 0.4009,
           "kind": "typing"
         },
         {
-          "line": 1,
-          "at": 12.49355,
+          "line": 5,
+          "at": 4.95583,
           "kind": "stamp"
         },
         {
-          "line": 1,
-          "at": 12.49355,
+          "line": 5,
+          "at": 4.95583,
           "kind": "chime"
         }
       ]
@@ -323,33 +436,65 @@
       ],
       "lines": [
         [
-          "Here is where every other launch cuts the camera. We stamp the bruises in crimson right next to the trophies. Out of a thousand forty-nine scholars contacted, four hundred eighty-five replied—and sixty-six politely declined.",
-          "换作别的发布会，这里早就切镜头了。我们偏把缺口用朱红印在奖杯旁：联络千余位学者，四百八十五位回信，也有六十六位礼貌婉拒。"
+          "This is where a launch usually cuts the camera.",
+          "发布会讲到这里，通常就切镜头了。"
         ],
         [
-          "On Mathesis, two hundred twenty-five open papers carry machine-checkable sources, yet formal peer-review acceptances still read zero. We leave that zero bright red until outside referees change it.",
-          "Mathesis 平台已收录两百二十五篇开源论文，但正式同行评审录用数至今仍是零。这枚红灯，留给外部审稿人亲手翻绿。"
+          "We stamp the bruises in crimson beside the trophies.",
+          "我们把缺口用朱红印在奖杯旁边。"
         ],
         [
-          "And we never steal credit. Levent Alpöge released his Lean four proof of the Riemann Hypothesis and Dirichlet GRH on November twentieth, certified by the Lean community on November twenty-first. Omega built the eight-thousand-four-hundred-ninety-shard replay—while Extended RH, Grand RH, zero simplicity, and pair correlation stay unmistakably open.",
-          "我们也绝不抢功：Levent Alpöge 于十一月二十日发布黎曼猜想与狄利克雷 GRH 的 Lean 4 证明，社区于二十一日认证古典黎曼猜想；Omega 只认领八千四百九十分片重放工程——而扩展 RH、大 RH、零点简单性与对关联，依然鲜红开放。"
+          "Of the 1,049 scholars contacted, 485 replied and 66 declined.",
+          "我们联络了 1,049 位学者，485 位回信，66 位婉拒。"
+        ],
+        [
+          "Mathesis hosts 225 open papers with machine-checkable sources.",
+          "Mathesis 已收录 225 篇开源论文，附有可机器核查的源文件。"
+        ],
+        [
+          "The count of formal peer-review acceptances is still zero.",
+          "正式同行评审录用数仍为零。"
+        ],
+        [
+          "On November 20, Levent Alpöge released his Lean 4 proof.",
+          "11 月 20 日，Levent Alpöge 发布了他的 Lean 4 证明。"
+        ],
+        [
+          "It covers classical RH and Dirichlet GRH.",
+          "这份证明涵盖经典黎曼猜想与狄利克雷广义黎曼猜想。"
+        ],
+        [
+          "On November 21, the Lean and Mathlib communities certified classical RH.",
+          "11 月 21 日，Lean 与 Mathlib 社区认证了经典黎曼猜想。"
+        ],
+        [
+          "Independent audits checked all five theorems, including Dirichlet GRH.",
+          "独立审计核查了全部五条定理，其中包括狄利克雷广义黎曼猜想。"
+        ],
+        [
+          "The Omega Institute built the 8,490-shard replay.",
+          "The Omega Institute 构建了 8,490 分片重放工程。"
+        ],
+        [
+          "Extended RH, Grand RH, zero simplicity and pair correlation remain open.",
+          "扩展 RH、大 RH、零点单重性与对关联猜想仍是开放问题。"
         ]
       ],
       "cues": [
         {
-          "line": 1,
-          "at": 8.16703,
+          "line": 4,
+          "at": 3.46283,
           "kind": "impact"
         },
         {
-          "line": 2,
-          "at": 0.03093,
+          "line": 5,
+          "at": 0.06331,
           "kind": "tick",
           "mode": "tension"
         },
         {
-          "line": 2,
-          "at": 23.04817,
+          "line": 10,
+          "at": 0.0231,
           "kind": "whoosh_up"
         }
       ]
@@ -371,38 +516,62 @@
       ],
       "lines": [
         [
-          "Step back into daylight and lift the hood. Anyone can rent a five-hundred-horsepower engine by the token today. Bolt that bare engine to wet concrete without brakes or a firewall, and the first tap of throttle is shrapnel.",
-          "走回白昼，掀开引擎盖。今天人人都能按次租到五百马力的裸发动机，但把它拧在湿水泥上不装刹车和防火墙，第一脚油门换来的只有碎铁片。"
+          "Step back into daylight and lift the hood.",
+          "走回白昼，掀开引擎盖。"
         ],
         [
-          "ChronoAI builds the complete vehicle around an engine you can swap tomorrow. Watch NyxID running live—like a hotel keycard that opens room four-twelve until noon and never touches the master safe.",
-          "ChronoAI 造的是明天就能整颗换掉发动机、底盘依然稳如磐石的整车。看正在运行的 NyxID——像一张定时门卡，只开 412 房门到中午，永不碰总保险柜。"
+          "Think of renting a five-hundred-horsepower engine by the token.",
+          "打个比方，你可以按 token 租一台五百马力的发动机。"
         ],
         [
-          "Fifty-five services, forty-two live MCP specs, instant one-command revocation, and zero plaintext keys ever entering an agent's prompt.",
-          "五十五项服务、四十二份线上 MCP 规范、一条命令即时吊销——进入代理上下文的明文密钥数，恒定为零。"
+          "Bolt it to wet concrete without brakes and the first tap of throttle sends metal flying.",
+          "没有刹车，只把它固定在湿水泥上，第一脚油门就会让碎铁四溅。"
+        ],
+        [
+          "ChronoAI builds the complete vehicle around an engine you can swap tomorrow.",
+          "ChronoAI 造的是一辆整车，明天还能换发动机。"
+        ],
+        [
+          "Watch NyxID work like a hotel keycard.",
+          "看 NyxID 如何像酒店房卡那样工作。"
+        ],
+        [
+          "It opens room 412 until noon and never touches the master safe.",
+          "它只开 412 房，到中午失效，碰不到总保险柜。"
+        ],
+        [
+          "NyxID serves 55 services with 42 live MCP specs.",
+          "NyxID 接入 55 项服务，提供 42 份线上 MCP 规范。"
+        ],
+        [
+          "Watch one-command revocation cut off access.",
+          "看一条吊销命令如何切断访问。"
+        ],
+        [
+          "No plaintext keys ever enter an agent's prompt.",
+          "明文密钥从未进入代理的提示词。"
         ]
       ],
       "cues": [
         {
-          "line": 1,
-          "at": -0.02972,
+          "line": 3,
+          "at": 1.45941,
           "kind": "drop",
           "mode": "groove"
         },
         {
-          "line": 2,
-          "at": 2.26186,
+          "line": 6,
+          "at": 1.47552,
           "kind": "typing"
         },
         {
-          "line": 2,
-          "at": 3.42566,
+          "line": 7,
+          "at": 0.38393,
           "kind": "ding"
         },
         {
-          "line": 2,
-          "at": 5.36531,
+          "line": 8,
+          "at": 0.03831,
           "kind": "stamp"
         }
       ]
@@ -422,62 +591,78 @@
       ],
       "lines": [
         [
-          "Stack the rest of the vehicle live. Ornn turns fragile prompt folklore into one hundred sixty-three scanned, versioned skills you call like an API.",
-          "继续把整车逐层立起来：Ornn 把玄学咒语锻成一百六十三项经扫描的版本化技能，像调 API 一样直接调用。"
+          "Stack the rest of the vehicle live.",
+          "接着装上整车的其他部件。"
         ],
         [
-          "Apache-licensed CMA zero point twelve runs hosted agents in isolated sandboxes with two-second hot credential reloads—while local canvas heca conducts twenty-seven agent integrations across three hundred sixty nightlies.",
-          "Apache 开源的 CMA v0.12.0 在隔离沙箱里托管代理、两秒热重载凭据；本地画布 heca 横跨二十七类代理集成，已迭代三百六十个夜间版本。"
+          "Ornn turns prompts into 163 scanned, versioned skills you can call like an API.",
+          "Ornn 把提示词做成 163 项经扫描的版本化技能，可以像 API 那样调用。"
         ],
         [
-          "And at github dot com slash chrono-harness, twenty-five public repositories replace wishful prompt checklists with twenty-one executable Rust judges and five hundred forty Verus proofs.",
-          "而在 github.com/chrono-harness 的二十五座公开仓里，二十一个可执行 Rust 判官与五百四十份 Verus 证明，彻底取代了温柔的提示词祈祷。"
+          "Apache-licensed CMA v0.12.0 runs hosted agents in isolated sandboxes.",
+          "按 Apache 许可开源的 CMA v0.12.0 在隔离沙箱里托管代理。"
+        ],
+        [
+          "Credentials reload in 2.1 seconds.",
+          "凭据可在 2.1 秒内热重载。"
+        ],
+        [
+          "The local canvas heca spans 27 agent integrations and 360 nightly builds.",
+          "本地画布 heca 支持 27 类代理集成，已发布 360 个夜间版本。"
+        ],
+        [
+          "At github.com/chrono-harness, 25 public repositories replace prompt checklists with executable checks.",
+          "github.com/chrono-harness 有 25 座公开仓库供核查。"
+        ],
+        [
+          "They ship 21 executable Rust judges and 540 Verus proofs.",
+          "其中有 21 个可执行的 Rust 判官与 540 份 Verus 证明。"
         ]
       ],
       "cues": [
         {
-          "line": 0,
-          "at": 2.41517,
-          "kind": "whoosh_up"
-        },
-        {
-          "line": 0,
-          "at": 2.41517,
-          "kind": "blip"
-        },
-        {
           "line": 1,
-          "at": -0.02997,
+          "at": 0.04662,
           "kind": "whoosh_up"
         },
         {
           "line": 1,
-          "at": -0.02997,
-          "kind": "blip"
-        },
-        {
-          "line": 1,
-          "at": 10.05624,
-          "kind": "whoosh_up"
-        },
-        {
-          "line": 1,
-          "at": 10.05624,
+          "at": 0.04662,
           "kind": "blip"
         },
         {
           "line": 2,
-          "at": -0.03631,
+          "at": 1.90359,
           "kind": "whoosh_up"
         },
         {
           "line": 2,
-          "at": -0.03631,
+          "at": 1.90359,
           "kind": "blip"
         },
         {
-          "line": 2,
-          "at": 12.11886,
+          "line": 4,
+          "at": 0.43459,
+          "kind": "whoosh_up"
+        },
+        {
+          "line": 4,
+          "at": 0.43459,
+          "kind": "blip"
+        },
+        {
+          "line": 5,
+          "at": 0.29228,
+          "kind": "whoosh_up"
+        },
+        {
+          "line": 5,
+          "at": 0.29228,
+          "kind": "blip"
+        },
+        {
+          "line": 6,
+          "at": 3.93693,
           "kind": "ding"
         }
       ]
@@ -494,28 +679,44 @@
       ],
       "lines": [
         [
-          "Every spotless brochure is hiding its weld marks. Look at the three unfinished bolts on our workbench right now: heca's source is still private, CMA runs one primary coding runtime today, and inside chrono-harness, completeness proven still reads false.",
-          "凡是毫无焊痕的精美手册，多半藏着裂缝。看我们工作台上三颗还没拧紧的螺丝：heca 源码仍为私有、CMA 目前只跑单一主编码运行时，chrono-harness 里 completeness_proven 至今诚实写着假。"
+          "Every spotless brochure hides its weld marks.",
+          "光鲜的手册藏起了焊痕。"
         ],
         [
-          "We would rather hand you the caliper and Volume Two than paint over wet steel.",
-          "与其给未冷的钢板刷漆，我们更愿意把游标卡尺和第二卷直接递到你手里。"
+          "Look at three unfinished bolts on our workbench.",
+          "看看工作台上三颗还没拧紧的螺丝。"
+        ],
+        [
+          "The heca source is still private.",
+          "heca 的源码仍为私有。"
+        ],
+        [
+          "CMA runs one primary coding runtime today.",
+          "CMA 目前只跑一个主编码运行时。"
+        ],
+        [
+          "In chrono-harness, completeness_proven still reads false.",
+          "completeness_proven 至今仍是 false。"
+        ],
+        [
+          "Take the caliper and check the work in Volume Two.",
+          "拿起游标卡尺，翻开第二卷，自己来量。"
         ]
       ],
       "cues": [
         {
-          "line": 0,
-          "at": 6.90428,
+          "line": 2,
+          "at": 0.23676,
           "kind": "stamp"
         },
         {
-          "line": 0,
-          "at": 8.97324,
+          "line": 3,
+          "at": 0.78445,
           "kind": "stamp"
         },
         {
-          "line": 0,
-          "at": 14.6629,
+          "line": 4,
+          "at": 1.27824,
           "kind": "stamp"
         }
       ]
@@ -539,42 +740,70 @@
       ],
       "lines": [
         [
-          "A neighborhood bakery does not need to refute a quantum theorem. On Monday morning it needs nine disciplined roles covering one hundred two of one hundred twenty workflows—hands that freeze at the cash register until a human turns the key.",
-          "街角烘焙店不需要去反驳量子猜想。周一早上九点，它只需要九个守规矩的岗位覆盖一百二十项流程中的一百零二项——而且碰到收银台，没有人类拧钥匙就绝不越雷池半步。"
+          "A neighborhood bakery does not need to refute a quantum conjecture.",
+          "街角烘焙店用不着反驳量子猜想。"
         ],
         [
-          "Look at the real scars too: our strict audit knocked HR down from fifteen to fourteen when PDF parsing hit limits. In our November twenty-seventh full rehearsal, eleven of twelve stages passed with four human taps—while one stuck queue, logged as NyxID issue twenty-five thirty-four, stalled sixty-five minutes before a three-minute bypass cleared it.",
-          "伤疤也照实摊开：严格审计测出简历解析边界，亲手把 HR 从十五项调回十四项；十一月二十七日全流程彩排人类只动了四次手就闯过十一关，唯一卡住六十五分钟的队列被钉成 NyxID #2534，三分钟旁路当场打通。"
+          "On Monday morning, nine disciplined roles cover 102 of 120 workflows.",
+          "周一早上，九个守规矩的岗位覆盖了 120 项流程中的 102 项。"
         ],
         [
-          "External paying merchants live today? Zero. No fairy tales—our first pilot cohort opens December seventeenth.",
-          "今天上线的外部付费商户有几家？零。不讲童话——第一批商户试点，十二月十七日正式开放申请。"
+          "At the cash register, they wait for a human to turn the key.",
+          "到了收银台，它们等着人类来拧钥匙。"
+        ],
+        [
+          "Our audit knocked HR down from 15 to 14 out of 20 when PDF parsing hit its limits.",
+          "PDF 解析触及边界，HR 覆盖从 20 项中的 15 项调回 14 项。"
+        ],
+        [
+          "On November 27, we rehearsed all twelve stages.",
+          "十一月二十七日，我们进行了全流程彩排。"
+        ],
+        [
+          "Eleven of twelve passed on the first try, with four human taps.",
+          "十二关全流程彩排一次闯过十一关，人类仅动手四次。"
+        ],
+        [
+          "One queue stalled for 65 minutes in NyxID issue #2534.",
+          "NyxID 的 #2534 号问题记录了队列停滞的 65 分钟。"
+        ],
+        [
+          "A three-minute bypass cleared it.",
+          "启用旁路后，三分钟便疏通了队列。"
+        ],
+        [
+          "The number of external paying merchants today is zero.",
+          "今天上线的外部付费商户为零。"
+        ],
+        [
+          "Our first pilot cohort opens on December 17.",
+          "首批商户试点于十二月十七日开放申请。"
         ]
       ],
       "cues": [
         {
-          "line": 0,
-          "at": 5.92497,
-          "kind": "tick"
-        },
-        {
-          "line": 0,
-          "at": 7.99393,
+          "line": 1,
+          "at": 1.80938,
           "kind": "tick"
         },
         {
           "line": 1,
-          "at": 15.58103,
+          "at": 4.5249,
+          "kind": "tick"
+        },
+        {
+          "line": 6,
+          "at": 1.19934,
           "kind": "glitch"
         },
         {
-          "line": 1,
-          "at": 20.36552,
+          "line": 7,
+          "at": 0.93686,
           "kind": "ding"
         },
         {
-          "line": 2,
-          "at": 6.28269,
+          "line": 8,
+          "at": 3.20966,
           "kind": "impact"
         }
       ]
@@ -595,22 +824,38 @@
       ],
       "lines": [
         [
-          "Now pull back across both worlds at once—from eight galaxies of frozen mathematics straight down through Earth orbit into Marina Bay's glowing arena.",
-          "现在同时拉远两座世界——从八座冻结数学星系穿过地球轨道，一路降回流光溢彩的滨海湾剧场。"
+          "Pull back across both worlds from eight galaxies of frozen mathematics.",
+          "从收录冻结定理的八座星系拉远镜头，再看这两座世界。"
         ],
         [
-          "Nietzsche wrote that strength is not noise—it is giving form to chaos. Feynman added the first law of honest work: never fool yourself, and you are the easiest person to fool.",
-          "尼采说，力量不是喧嚣，而是给混沌赋予形式。费曼补上了诚实造物的第一铁律：绝不能欺骗自己，而你自己恰恰最容易被骗。"
+          "Drop through Earth orbit into Marina Bay's glowing arena.",
+          "穿过地球轨道，回到流光溢彩的滨海湾剧场。"
         ],
         [
-          "What grows rarer with every sunrise is an architecture brave enough to lay its code, its proofs, its downgrades, and its open seams side by side in the sun.",
-          "每一个清晨都在变得更稀缺的，是敢把代码、证明、降级账本与未完接缝并排摊在太阳底下的坦荡工程。"
+          "For Nietzsche, strength meant giving form to chaos.",
+          "在尼采看来，力量是给混沌赋予形式。"
+        ],
+        [
+          "Feynman's first rule was to never fool yourself.",
+          "费曼的第一条规矩是，绝不能欺骗自己。"
+        ],
+        [
+          "After all, you are the easiest person for you to fool.",
+          "毕竟，你最容易骗过的人就是自己。"
+        ],
+        [
+          "What grows rarer with every sunrise is the courage to show the whole structure.",
+          "每过一个清晨，愈发稀缺的是敢把整个结构亮出来的勇气。"
+        ],
+        [
+          "Lay the code, the proofs, the downgrades and the open seams side by side in the sun.",
+          "把代码、证明、降级记录和未完的接缝一起摊在阳光下。"
         ]
       ],
       "cues": [
         {
-          "line": 2,
-          "at": 3.3599,
+          "line": 6,
+          "at": 3.22348,
           "kind": "drop",
           "mode": "anthemic",
           "rise": 1.6
@@ -630,23 +875,31 @@
       ],
       "lines": [
         [
-          "Step into Street Corner on December seventeenth at four p.m. Singapore time. Audit any green theorem at live dot trureturing dot org. Open all four monographs, or write to contact at chrono-ai dot fun.",
-          "十二月十七日下午四点（新加坡时间），推开街角前厅的门；去 live.trureturing.org 抽检任意一条绿标定理；翻开这四部公开专著，或致信 contact@chrono-ai.fun。"
+          "Step into Street Corner on December 17 at four p.m. Singapore time.",
+          "十二月十七日新加坡时间下午四点，推开街角前厅的门。"
         ],
         [
-          "Pick up the chalk—build for what comes next.",
-          "拿起粉笔——面向未来去造物。"
+          "Audit any green theorem at live.trureturing.org.",
+          "到 live.trureturing.org 抽检任意一条绿标定理。"
+        ],
+        [
+          "Open the four monographs or write to contact@chrono-ai.fun.",
+          "翻开这四部专著，或致信 contact@chrono-ai.fun。"
+        ],
+        [
+          "Pick up the chalk and build for what comes next.",
+          "拿起粉笔，面向未来去造物。"
         ]
       ],
       "cues": [
         {
-          "line": 1,
-          "at": -0.01238,
+          "line": 3,
+          "at": -0.02748,
           "kind": "chime"
         },
         {
-          "line": 1,
-          "at": 1.28072,
+          "line": 3,
+          "at": 1.39493,
           "kind": "end"
         }
       ]
