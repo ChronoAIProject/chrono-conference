@@ -75,7 +75,7 @@ SCENES.act1_judgment = S => {
   heading('141,624', 1020, 304, 92, plaza.ink);
   caption('COMMITS · 60 DAYS · 74 ACTIVE REPOS', 1024, 350, plaza.dim, 19);
   rule(1024, 1798, 386, plaza);
-  heading('538', 1020, 474, 72, plaza.ink);
+  heading('539', 1020, 474, 72, plaza.ink);
   caption('REPOSITORIES · 6 ORGANIZATIONS', 1024, 514, plaza.dim, 19);
   heading('34.9%', 1512, 474, 66, plaza.ink);
   caption('EXPLICIT BOT / AGENT SAMPLE · 69 REPOS', 1516, 514, plaza.dim, 17);
@@ -107,7 +107,7 @@ SCENES.act2_red_stamps = S => {
   heading('HONESTY IN RED INK', 114, 296, 48, space.ink);
   heading('1,049', 114, 414, 82, space.ink);
   caption('CONTACTED · 485 REPLIED', 118, 456, space.dim, 19);
-  caption('15 arXiv · 21 OEIS · 66 DECLINED', 118, 500, space.ink, 22);
+  caption('17 arXiv · 21 OEIS · 66 DECLINED', 118, 500, space.ink, 22);
   heading('225', 118, 598, 68, space.ink);
   caption('MATHESIS PAPERS · 0 ACCEPTANCES', 122, 638, space.open, 20);
   card(954, 166, 886, 548, space, 'RH PROVENANCE · PUBLIC REPLAY');
@@ -127,7 +127,7 @@ SCENES.act3_vehicle_chassis = S => {
   const rows = [
     ['L1', 'NyxID v0.78.0', '55 services · 42 MCP specs · 0 plaintext keys'],
     ['L2', 'Ornn v0.18.0 + SDK v0.2.4', '163 scanned skills · 134 operations'],
-    ['L3', 'CMA v0.12.0 + heca', 'Apache-2.0 · 27 integrations · 360 nightlies'],
+    ['L3', 'CMA v0.12.0 (Apache-2.0) · heca (internal)', '27 integrations · 360 nightlies'],
     ['L4', 'chrono-harness', '25 repos · 21 binaries/platform · Copier v0.1.52'],
     ['L5', 'Real surfaces', 'chrono-metaverse · chrono-cd · Living with AI']
   ];
@@ -212,7 +212,7 @@ SCENES.coda_choir_and_chalk = S => {
   caption('trureturing-books · mathesis-papers', 1062, 508, space.ink, 21);
   statusTag(1062, 570, 'lean', 'LEAN ✓ · FROZEN THEOREMS');
   caption('contact@chrono-ai.fun', 72, 762, plaza.dim, 24);
-  frame(S, 'CODA  /  PICK UP THE CHALK', 'DUAL POLARITY', 'CHRONOAI PTE. LTD. × THE OMEGA INSTITUTE', 'contact@chrono-ai.fun');
+  frame(S, 'CODA  /  PICK UP THE CHALK', 'DUAL POLARITY', 'CHRONOAI PTE. LTD. · THE OMEGA INSTITUTE (INDEPENDENT)', 'contact@chrono-ai.fun');
 };
 
 FILM.poster = () => {

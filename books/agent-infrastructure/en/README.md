@@ -6,10 +6,10 @@ Welcome to Volume II of the ChronoAI 2026 Virtual Launch edition: ***The Complet
 
 Volume I put the core thesis on center stage: **(Analogy)** when execution tumbles toward zero marginal cost and frontier reasoning "engines" become metered commodities, a bare engine screaming on wet concrete without brakes, flywheel, or roll cage only tears itself apart; durable value belongs to the **complete vehicle** that swaps engines beneath the hood without stopping traffic. **(Position)** This volume kills the stage spotlights, puts the car on hydraulic lifts, and taps every glossy claim with a tuning-fork hammer—engineer to engineer, documenting live versions, hard boundaries, measured latencies, private repos, pending licenses, and honest gaps without flattery (all core figures audited through **November 27–28, 2026**).
 
-Before turning the first bolt, spend fifty-one seconds on the single security invariant holding the entire stack together: **never hand a plaintext secret into an agent's context window.**
+Before turning the first bolt, spend fifty-eight seconds (0:58) on the single security invariant holding the entire stack together: **never hand a plaintext secret into an agent's context window.**
 
 ::: {.film src="never-hand-a-key"}
-**Never Hand a Plaintext Key (Architecture Film).** Fifty-one seconds contrasting legacy `.env` key blast radius against `NyxID`'s encrypted proxy vault, human write-approval gates, and ~2-second hot revocation (`CMA` ~`2.1 s` hot reload).
+**Never Hand a Plaintext Key (Architecture Film).** Fifty-eight seconds (0:58) tracing the Room 412 hotel-keycard capability handle (analogy), `NyxID`'s zero-secret proxy vault and instant revocation path, and the live `v0.78.0` (`55` built-in services, `42` OpenAPI-to-MCP specs, `7` LLM gateways, `9` live channels) versus `dev 0.79.0` (`11` channels) production catalog.
 :::
 
 ## Five-Layer Mechanical Teardown

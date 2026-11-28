@@ -243,10 +243,12 @@
     /* legacy lane: agent (keys in env) → upstream; attacker below upstream */
     const la = { ...col(I1, 0, 0.36), y: I1.y, h: I1.h }, lu = { ...col(I1, 0.62, 1), y: I1.y, h: I1.h * 0.46 }, lx = { ...col(I1, 0.62, 1), y: I1.y + I1.h * 0.54, h: I1.h * 0.46 };
     const restarting = S.scenario === 'revoke' && t >= 50 && t < 70;
+    const restarted = S.scenario === 'revoke' && t >= 70;
     box(ctx, la, { stroke: M.legacy.compromised ? P.magenta : P.lineHot, glow: M.legacy.compromised ? 10 : 0 });
     text(ctx, fit(ctx, L('智能体运行时', 'AGENT RUNTIME'), la.w - 10, small, 'display'), la.x + 6, la.y + titleH / 2 + 2, P.ink, { size: small, face: 'display', weight: 600 });
     if (!narrow || la.w > 120) text(ctx, `.env · ${S.k}`, la.x + la.w - 6, la.y + titleH / 2 + 2, P.magenta, { size: small, align: 'right' });
     const keyArea = { x: la.x + 6, y: la.y + titleH + 2, w: la.w - 12, h: la.h - titleH - 6 };
+    if (restarted && !TRV.thumbMode) keyArea.h -= small + 7;
     const gk = grid(keyArea, S.k), legacyKeys = gk.pts;
     legacyKeys.forEach(([x, y]) => chip(ctx, x, y, gk.w, gk.h, M.legacy.compromised ? 'hot' : 'plain', restarting ? 0.25 : 0.9));
     if (restarting) stamp(ctx, L('重启中', 'RESTARTING'), la.x + la.w / 2, la.y + la.h / 2, P.ink, small);
@@ -256,7 +258,7 @@
     if (xAim) {
       box(ctx, lx, { stroke: M.legacy.leaked ? P.magenta : P.faint, dash: [4, 3] });
       text(ctx, fit(ctx, L('攻击者端点', 'ATTACKER ENDPOINT'), lx.w - 46, small, 'display'), lx.x + 6, lx.y + lx.h / 2, M.legacy.leaked ? P.magenta : P.dim, { size: small, face: 'display', weight: 600 });
-      text(ctx, String(M.legacy.leaked), lx.x + lx.w - 8, lx.y + lx.h / 2, M.legacy.leaked ? P.magenta : P.faint, { size: fs + 3, weight: 700, align: 'right' });
+      text(ctx, String(M.legacy.leaked), lx.x + lx.w - 8, lx.y + lx.h / 2, M.legacy.leaked ? P.magenta : P.dim, { size: fs + 3, weight: 700, align: 'right' });
     }
     if (meterMode) {
       // the legacy bill: every call is charged and nothing at the gateway stops it
@@ -299,7 +301,16 @@
     // the policy gate on the proxy's left edge, the vault inside, audit and metering along the bottom
     const gx = np.x + 3, gy0 = np.y + titleH + 2, gy1 = np.y + np.h - 4;
     ctx.strokeStyle = P.cyan; ctx.lineWidth = 3; ctx.globalAlpha = 0.9; ctx.beginPath(); ctx.moveTo(gx, gy0); ctx.lineTo(gx, gy1); ctx.stroke(); ctx.globalAlpha = 1;
-    const footH = clamp(np.h * 0.24, 14, 26), vault = { x: np.x + 12, y: np.y + titleH + 2, w: np.w - 20, h: np.h - titleH - footH - 8 };
+    const denied = (S.scenario === 'write' && t >= 22) || (S.scenario === 'inject' && t >= 62) || rv?.denied;
+    const audit = `${L('审计', 'AUDIT')} ${M.nyxid.audit}`;
+    const badge = 'DENIED ✕', badgeSize = small - 0.5;
+    const footW = np.w - 16, rowH = clamp(np.h * 0.24, 14, 26);
+    // Keep the verdict in the audit footer. Stack it below the count if both won't fit across.
+    ctx.font = `600 ${badgeSize}px ${face()}`;
+    const badgeW = ctx.measureText(badge).width + 10;
+    const stackVerdict = denied && !TRV.thumbMode && !fits(ctx, audit, footW - badgeW - 4, small, null, 600);
+    const footH = rowH + (stackVerdict ? badgeSize + 9 : 0);
+    const vault = { x: np.x + 12, y: np.y + titleH + 2, w: np.w - 20, h: np.h - titleH - footH - 8 };
     // Reserve a vault label only when there is space above the key grid.
     if (!TRV.thumbMode && vault.h >= 42) {
       text(ctx, 'ring-v1', vault.x, vault.y + 6, P.ink, { size: small, weight: 600 });
@@ -308,7 +319,7 @@
     const gv = grid(vault, S.k), injecting = (S.scenario === 'read' && t >= 25 && t < 40) || (S.scenario === 'inject' && t >= 6 && t < 14);
     const scrubbing = (S.scenario === 'read' && t >= 62 && t < 70) || (S.scenario === 'inject' && t >= 24 && t < 32);
     gv.pts.forEach(([x, y], i) => chip(ctx, x, y, gv.w, gv.h, i === 0 && rv && rv.state !== 'active' ? 'revoked' : i === 0 && injecting ? 'lit' : 'sealed'));
-    const foot = { x: np.x + 8, y: np.y + np.h - footH - 4, w: np.w - 16, h: footH };
+    const foot = { x: np.x + 8, y: np.y + np.h - footH - 4, w: footW, h: footH };
     if (meterMode) {
       const b = M.nyxid.bill, f = b.spend / CAP;
       rrect(ctx, foot, 3); ctx.strokeStyle = TRV.alpha(P.violet, 0.6); ctx.lineWidth = 1; ctx.stroke();
@@ -316,7 +327,11 @@
       ctx.strokeStyle = P.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(foot.x + foot.w - 1, foot.y - 3); ctx.lineTo(foot.x + foot.w - 1, foot.y + foot.h + 3); ctx.stroke();   // the ceiling
       stack(ctx, lines(ctx, [`${fix(b.spend, 2)} / ${fix(CAP, 2)}`, S.mode === 'byok' ? 'USD · BYOK' : 'CREDITS'], foot.w - 8, small - 0.5, null, ' '), foot.x + 5, foot.y + foot.h / 2, small + 1, P.ink, { size: small - 0.5, halo: true });
     } else {
-      text(ctx, fit(ctx, `${L('审计', 'AUDIT')} ${M.nyxid.audit}`, foot.w, small), foot.x, foot.y + foot.h / 2, P.violet, { size: small, weight: 600 });
+      text(ctx, fit(ctx, audit, foot.w, small), foot.x, foot.y + rowH / 2, P.violet, { size: small, weight: 600 });
+      if (denied) {
+        const badgeY = foot.y + (stackVerdict ? (rowH + foot.h) / 2 : rowH / 2);
+        stamp(ctx, badge, foot.x + foot.w, badgeY, P.ink, badgeSize, 'right');
+      }
     }
     box(ctx, nu, {});
     text(ctx, fit(ctx, L('上游服务', 'UPSTREAM'), nu.w - 8, small, 'display'), nu.x + nu.w / 2, nu.y + nu.h / 2, P.ink, { size: small, face: 'display', weight: 600, align: 'center' });
@@ -354,22 +369,22 @@
     const gateStamp = (s, colr) => stamp(ctx, s, gx + 6, nt.y - 2 > np.y + titleH ? nt.y - 2 : np.y + titleH + 8, colr, small - 0.5, 'left');
     if (S.scenario === 'read' && t >= 20 && t < 30) gateStamp('SCOPE ✓', P.cyan);
     if (S.scenario === 'inject' && t >= 7 && t < 15) gateStamp('SCOPE ✓', P.cyan);
-    if ((S.scenario === 'write' && t >= 22) || (S.scenario === 'inject' && t >= 62) || (rv && rv.denied)) gateStamp('DENIED ✕', P.ink);
     if (meterMode && M.nyxid.bill.stopped) gateStamp('CAP ✕', P.violet);
     if (injecting) stamp(ctx, 'INJECT', vault.x + vault.w / 2, vault.y + vault.h - 6, P.cyan, small - 0.5);
     if (scrubbing) stamp(ctx, 'SCRUB', vault.x + vault.w / 2, vault.y + vault.h - 6, P.cyan, small - 0.5);
     if (M.legacy.compromised) stamp(ctx, L('env 全部可读', 'ENV READABLE'), la.x + la.w / 2, la.y + la.h - 7, P.magenta, small - 0.5);
     if (S.scenario === 'inject' && t >= 45) stamp(ctx, L('只有句柄', 'HANDLE ONLY'), na.x + na.w / 2, na.y + na.h - 7, P.cyan, small - 1);
     if (S.scenario === 'revoke') {
-      if (t >= REVOKE_T) stamp(ctx, L('上游密钥已轮换', 'KEY ROTATED'), lu.x + lu.w / 2, lu.y + lu.h - 4, P.ink, small - 1);
-      if (t >= 70) stamp(ctx, L('新 .env · 重启 1 次', 'NEW .env · 1 RESTART'), la.x + la.w / 2, la.y + la.h - 7, P.ink, small - 1);
+      if (t >= REVOKE_T) stamp(ctx, L('上游密钥已轮换', 'KEY ROTATED'), lu.x + lu.w / 2, lu.y + lu.h - (small + 6) / 2 - 2, P.ink, small - 1);
+      if (restarted) stamp(ctx, L('新 .env · 重启 1 次', 'NEW .env · 1 RESTART'), la.x + la.w / 2, la.y + la.h - (small + 6) / 2 - 2, P.ink, small - 1);
       if (t >= REVOKE_T) {
         // the hot reload: the new binding travels from the proxy back into the running sandbox in 2.1 s
         const f = seg(t, REVOKE_T, CONVERGE_T), path = [[np.x + 4, np.y + np.h - 6], [na.x + na.w, np.y + np.h - 6]], end = along(path, f);
         wire(ctx, path, P.cyan, { dash: [4, 3], alpha: 0.45 });
         wire(ctx, [path[0], end], P.cyan, { width: 2.4, alpha: 0.95 });
         if (f < 1) { ctx.fillStyle = P.amber; ctx.beginPath(); ctx.arc(end[0], end[1], 4, 0, kit.TAU); ctx.fill(); }
-        stamp(ctx, f < 1 ? `${fix(rv.elapsed, 2)} s` : `✓ ${fix(RELOAD_S, 1)} s · ${L('0 次重启', '0 RESTARTS')}`, (path[0][0] + path[1][0]) / 2, np.y + np.h - 6 - (small + 4), P.cyan, small - 0.5);
+        const elapsed = f < 1 ? `${fix(rv.elapsed, 2)} s` : `✓ ${fix(RELOAD_S, 1)} s · ${L('0 次重启', '0 RESTARTS')}`;
+        stamp(ctx, elapsed, narrow ? np.x - 4 : (path[0][0] + path[1][0]) / 2, np.y + np.h - 6 - (small + 4), P.cyan, small - 0.5, narrow ? 'right' : 'center');
       }
     }
     // the packets

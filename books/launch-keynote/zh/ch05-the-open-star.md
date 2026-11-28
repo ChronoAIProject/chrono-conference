@@ -82,12 +82,12 @@
 
 同样绝不允许含糊半个字的，是**黎曼猜想（Riemann Hypothesis）的历史归属与当前红区**。我们必须把四层事实切得像手术切片一样干净（完整梳理见第三卷第六章）：
 
-1. **归属清晰**：2026 年 11 月 20–21 日，Lean 与 Mathlib 社区核验通过了 **Levent Alpöge** 使用 Lean `4.33.1` 写就的 Mathlib `RiemannHypothesis` 与Dirichlet GRH形式化证明（`175,187` 个模块、`1,737 万`行代码，仅依赖标准公理 `[propext, Classical.choice, Quot.sound]`，镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。这笔突破属于原作者与社区，绝不是 `trureturing` 自己证出来的。
+1. **归属清晰**：2026 年 11 月 20–21 日，Lean 与 Mathlib 社区核验通过了 **Levent Alpöge** 使用 Lean `4.33.1` 写就的 Mathlib `RiemannHypothesis` 与 Dirichlet GRH 形式化证明（`175,187` 个模块、`1,737 万`行代码，仅依赖标准公理 `[propext, Classical.choice, Quot.sound]`，镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。这笔突破属于原作者与社区，绝不是 `trureturing` 自己证出来的。
 2. **重放工程归属清晰**：**`the-omega-institute/riemann-hypothesis`**（`c2dabc97`）构建了覆盖全证明的 **`8,490` 分片可复现 CI 与 `./verify` 校验重放体系**（含 `8,558` 件 `.tar.zst` 发布产物），让任何人无须盲信即可分片独立重放；而 **`the-omega-institute/riemann-hypothesis-book`**（`ebd24a4d`，*Symmetry on the Critical Line*）是面向读者的双语导读伴书，而非分片仓库本身。
 3. **`trureturing` 本仓边界清晰**：在 `trureturing` 主库内部（`ActualXiIntegerCriterion.lean`），团队冻结的是真实 $\xi$ 函数的**整系数 Hankel 正定等价判据**，而非古典 RH 证明本身。
 4. **真正的鲜红开放区（`OPEN`）**：越过古典 RH 与狄利克雷 GRH 之后，数论前沿依然耸立着尚未被任何冻结证明触及的真正悬崖——这正是我们以红色开放问题铭刻在此的边界：
 
-::: {.problem #prob-keynote-rh title="从古典黎曼猜想到更深红区：Dedekind ERH、Grand RH与零点精细分布"}
+::: {.problem #prob-keynote-rh title="从古典黎曼猜想到更深红区：Dedekind ERH、Grand RH 与零点精细分布"}
 继 2026 年 11 月 20–21 日 Lean / Mathlib 社区核验通过 Levent Alpöge 关于古典 `RiemannHypothesis` 与狄利克雷 GRH 的 Lean `4.33.1` 证明（并由 `the-omega-institute/riemann-hypothesis` 完成 `8,490` 分片可复现 `./verify` 重放）之后，更深层的数论前沿依然完全开放：**Dedekind ERH（面向一般数域的戴德金 $\zeta_K(s)$ 函数）**、**Grand RH（面向一般自守 $L$-函数）**、**全部非平凡零点的单重性（simplicity of zeros）**，以及**蒙哥马利对关联猜想（pair correlation）**是否成立？这些核心问题至今没有任何形式化解决。
 :::
 

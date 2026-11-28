@@ -5,7 +5,7 @@
 在 `The Omega Institute` 的公开出版版图里，连接「冰冷内核」与「人类共同体」的三座桥梁分别是：**开放论文平台 `Mathesis`**、**持续出版的双语专著书库 `trureturing-books`（`books.trureturing.org`）**，以及把大规模形式化可重放性推向工业极限的 **`the-omega-institute/riemann-hypothesis`**（附双语导读专著 **`riemann-hypothesis-book`**）。贯穿这三座桥梁的铁律只有一条——**三档证据色标绝不混用，功劳归属绝不挪移。**
 
 ::: {.figure src="ch06-three-evidence-tiers"}
-**出版体系三类证据标记。** 自上而下分列三档：顶层绿色 `LEAN ✓`（内核核验）专属于 `trureturing.lock.json` 解析到 Lean 4 冻结 `theorem` 的结论（`548388cd`，2026-11-27 快照共 `223,231` 条）；中层紫色（书面证明）标示附 DOI 或源论文仓库与形式化请求的文献佐证；底层红色 `OPEN` 明确隔离尚未证明的猜想与开放前沿，包括Dedekind ERH、Grand RH、零点简单性、对关联以及 `trureturing` 内部尚未自立证明的全阶 Hankel 符号断言。
+**出版体系三类证据标记。** 自上而下分列三档：顶层绿色 `LEAN ✓`（内核核验）专属于 `trureturing.lock.json` 解析到 Lean 4 冻结 `theorem` 的结论（`548388cd`，2026-11-27 快照共 `223,231` 条）；中层紫色（书面证明）标示附 DOI 或源论文仓库与形式化请求的文献佐证；底层红色 `OPEN` 明确隔离尚未证明的猜想与开放前沿，包括 Dedekind ERH、Grand RH、零点简单性、对关联以及 `trureturing` 内部尚未自立证明的全阶 Hankel 符号断言。
 :::
 
 ## Mathesis、`mathesis-papers` 与学者实账：把双重归零印在封面上
@@ -83,7 +83,7 @@ $$
 
 在整个仓库群里，没有任何一个话题比**黎曼猜想（Riemann Hypothesis）**更需要一把绝不手软的手术刀。这里容不得半句模糊，更容不得一丝抢功或张冠李戴。请把以下五个事实层次彻底切清：
 
-1. **外部里程碑与彻底归功（2026 年 11 月 20–21 日）**：2026 年 11 月 20 至 21 日，Lean 与 Mathlib 社区正式认证了 **Levent Alpöge** 使用 Lean `4.33.1` 完成的 Mathlib 版古典 `RiemannHypothesis` 与 Dirichlet GRH形式化证明（全工程计 `175,187` 个模块、`1,737 万`行代码，仅依赖三条标准公理 `[propext, Classical.choice, Quot.sound]`，先后镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。**先致以毫不保留的敬意与归功**：这一历史性证明属于 Levent Alpöge 与 Lean/Mathlib 社区，绝非 `The Omega Institute` 的原创证明。
+1. **外部里程碑与彻底归功（2026 年 11 月 20–21 日）**：2026 年 11 月 20 至 21 日，Lean 与 Mathlib 社区正式认证了 **Levent Alpöge** 使用 Lean `4.33.1` 完成的 Mathlib 版古典 `RiemannHypothesis` 与 Dirichlet GRH 形式化证明（全工程计 `175,187` 个模块、`1,737 万`行代码，仅依赖三条标准公理 `[propext, Classical.choice, Quot.sound]`，先后镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。**先致以毫不保留的敬意与归功**：这一历史性证明属于 Levent Alpöge 与 Lean/Mathlib 社区，绝非 `The Omega Institute` 的原创证明。
 2. **`the-omega-institute/riemann-hypothesis`（`c2dabc97`）——8,490 分片可重放认证工程**：面对一千七百多万行规模的巨型证明，普通研究者根本无从单机盲信。`The Omega Institute` 独立构建了 `the-omega-institute/riemann-hypothesis`，将该认证证明切分为 **8,490 个内容寻址分片**并封装为可复现 CI 与一键 `./verify` 校验流水线（托管 `8,558` 份 `.tar.zst` 发布产物），让全球任何一台普通工作站都能按片抽检重放。
 3. **`the-omega-institute/riemann-hypothesis-book`（`ebd24a4d`）——双语导读专著**：该仓库是面向人类读者的配套双语导读专著 *Symmetry on the Critical Line*（《临界线上的对称性》），用于拆解证明结构与数学直觉——**8,490 个重放分片位于 `riemann-hypothesis`，而非 `riemann-hypothesis-book`**，两者的工程职责绝不混为一谈。
 4. **`trureturing` 自身的独立定理（`ActualXiIntegerCriterion.lean`）**：在 `trureturing` 自己的源码树内，[@thm-rh-hankel] 仅冻结了一条**逻辑等价判据**——证明标准 Mathlib `RiemannHypothesis` 等价于平移奇对数导数 `xiOdd` 的全部有限阶整系数 Hankel 二次型恒非负；该模块本身**并未**独立证明两端任何一边，也不导入上述外部证明。

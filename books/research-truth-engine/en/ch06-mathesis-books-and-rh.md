@@ -112,7 +112,7 @@ Immediately beside green [@thm-rh-hankel], therefore, stands the unmistakable re
 Following the Lean and Mathlib communities' November 20–21, 2026 certification of Levent Alpöge's Lean `4.33.1` proof of classical `RiemannHypothesis` and Dirichlet GRH (for which `the-omega-institute/riemann-hypothesis` provides `8,490`-shard reproducible replay), four major frontiers remain completely open:
 
 1. **Extended Riemann Hypothesis (ERH)**: whether all nontrivial zeros of Dedekind zeta functions over arbitrary algebraic number fields lie on $\operatorname{Re}(s) = \frac{1}{2}$;
-2. **Grand Riemann Hypothesis (GRH)**: the critical-line distribution of nontrivial zeros for general automorphic $L$-functions;
+2. **Grand Riemann Hypothesis (Grand RH)**: the critical-line distribution of nontrivial zeros for general automorphic $L$-functions;
 3. **Simplicity of zeros and pair correlation**: whether every nontrivial zero of $\zeta(s)$ is simple, together with Montgomery's pair-correlation conjecture;
 4. **Native internal assertion inside `trureturing`**: proving the universal all-degree integer Hankel nonnegativity on the right-hand side of [@thm-rh-hankel] directly inside `ActualXiIntegerCriterion` without importing an external proof.
 :::

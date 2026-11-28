@@ -5,6 +5,7 @@ title: "Build for What Comes Next · 2026 Virtual Launch Keynote"
 info: "The ChronoAI 2026 virtual launch keynote: devalued execution, the logic ratchet, the complete vehicle, and Street Corner."
 htmlAttrs:
   lang: "en"
+  data-polarity: "deep-space"
 deck:
   code: "CHRONO//KEYNOTE"
   book: "Build for What Comes Next"
@@ -128,7 +129,7 @@ section: "North Star · Literature"
   <p class="kicker">81 Days in the Open Literature · No Self-Set Exams</p>
   <h2 class="t">81 Days. <em>2,278</em> Open Literature Resolutions.</h2>
   <div class="split mt">
-    <img data-tr-palette="paper" src="./img/ch05-trureturing-growth.en.svg" alt="Cumulative trureturing literature resolutions" style="background:var(--tr-void);display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img data-tr-palette="paper" src="./img/ch05-trureturing-growth.en.svg" alt="Cumulative trureturing literature resolutions" style="background:var(--tr-void);padding:8px;display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
       <li><b class="hl-cyan">1,512 proved · 766 refuted</b><br><span class="sm muted">About 28 a day, including 598 in quantum information and physics.</span></li>
       <li class="mt"><b class="hl-cyan">684 from peer-reviewed journals</b><br><span class="sm muted">Plus 840 from arXiv and 729 from OEIS; 127 open for over a decade, the oldest for 47 years.</span></li>
@@ -224,7 +225,7 @@ section: "Vehicle · Cutaway"
 <div class="body">
   <p class="kicker">Hot-Swappable Core · Analogy (not a theorem)</p>
   <h2 class="t">Swap the Engine Tomorrow. <em>Never Stall the Car.</em></h2>
-  <img data-tr-palette="paper" class="mt-s" src="./img/ch02-engine-vs-vehicle.en.svg" alt="Cutaway of a bare engine versus a complete vehicle" style="background:var(--tr-void);display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+  <img data-tr-palette="paper" class="mt-s" src="./img/ch02-engine-vs-vehicle.en.svg" alt="Cutaway of a bare engine versus a complete vehicle" style="background:var(--tr-void);padding:8px;display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
   <p class="lead mt">Models turn over every six months. <b>Bolt identity, skills, sandboxes, and judges into the chassis, and every upstream upgrade speeds up your whole vehicle for free.</b></p>
 </div>
 <Source>Engineering analogy, not a theorem · Vol. I, Ch. 2</Source>
@@ -252,7 +253,7 @@ section: "Vehicle · Red Queen"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0 (898fdf245d) · api.nyxid.ai and dev@1a69258325 (Nov 27, 2026) · hot reload measured on CMA · "Red Queen" and "badge" are analogies</Source>
+<Source>ChronoAIProject/NyxID@v0.78.0 (898fdf245d) · api.nyxid.ai and dev@6784b6dd36 (Nov 27, 2026) · hot reload measured on CMA · "Red Queen" and "badge" are analogies</Source>
 
 ---
 # 14 One network
@@ -342,7 +343,7 @@ section: "AI Staff · Ledger"
   <p class="kicker">Nine Standalone Roles · Nov 27, 2026</p>
   <h2 class="t">102 on AI. <em>18 Behind Human Gates or Roadmap.</em></h2>
   <div class="split mt">
-    <img data-tr-palette="paper" src="./img/ch07-six-role-coverage.en.svg" alt="Nine standalone roles cover 102/120 workflows" style="background:var(--tr-void);display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img data-tr-palette="paper" src="./img/ch07-six-role-coverage.en.svg" alt="Nine standalone roles cover 102/120 workflows" style="background:var(--tr-void);padding:8px;display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>Why We Refuse 100% Automation</h4>
       <h3>Hold those 18 behind the gates, and a store owner can hand over the other 102.</h3>

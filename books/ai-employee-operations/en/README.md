@@ -13,10 +13,10 @@ There are no dashboards painted green here, and no fairy tales about "one-click 
 - Beneath those role rows sit **`13` scheduled agents** in our Social and Community playbook and **`15` live audited agents, `89` scheduled tasks, and `931` passing automated operational tests** (`audit-2026-11-26.md`).
 - **On November 27, 2026, we ran the entire launch end to end** (`trials#225`/`#226`): **`12` stages rehearsed, `11 / 12` passed on the first try**, with the human lead taking only **`4` actions**. The single real failure—a Lark internal-group request stalling in the gateway queue for **`65–70 minutes`** (`NyxID#2534`)—was logged verbatim and bypassed cleanly with a scheduled one-shot task that delivered in **`3.0 minutes`**.
 
-Start with the forty-seven-second film tracing how this scoped workforce holds reception, backstage pipelines, and hard human approval gates.
+Start with the seventy-one-second (1:11) film tracing how this scoped workforce holds reception, backstage pipelines, and hard human approval gates.
 
 ::: {.film src="six-ai-employees"}
-**Six AI Employees Run a Launch (Operations Film).** Forty-seven seconds across our six core roles (`82 / 99`, rising to `102 / 120` across nine standalone roles with three dedicated watchdogs), showing live front-desk locking, backstage dispatch, and the irreversible actions held strictly behind human sign-off.
+**Nine AI Employees Run a Launch (Operations Film).** Seventy-one seconds (1:11) across our six core roles (`82 / 99`, rising to `102 / 120` across nine standalone roles with three dedicated watchdogs), showing live front-desk locking, backstage dispatch, and the irreversible actions held strictly behind human sign-off.
 :::
 
 ## Six Chapters and Two Ready-to-Run Appendices

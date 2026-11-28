@@ -18,9 +18,9 @@ Five minutes before T-0, all four tiered stands (`1,108` seats) and all `18` flo
 
 ## 00:00–05:00 · Opening: A Launch Without a Single Camera
 
-**[VISUAL: 00:00–01:00 full-screen opening film *Build for What Comes Next* (1:00, zero-black-frame cut); 01:00 cut to `keynote-main` P01–P02 and `street-corner`'s four-stage extended broadcast sweep (Office cabinet screen → Virtual Stadium 1,108 seats → Marina Bay Sands 252.8 m sky-screen → Earth orbital 5,307 km screen), framing AI Concierge Donna at the reception desk.]**
+**[VISUAL: 00:00–01:10 full-screen opening film *Build for What Comes Next* (1:10, zero-black-frame cut); 01:10 cut to `keynote-main` P01–P02 and `street-corner`'s four-stage extended broadcast sweep (Office cabinet screen → Virtual Stadium 1,108 seats → Marina Bay Sands 252.8 m sky-screen → Earth orbital 5,307 km screen), framing AI Concierge Donna at the reception desk.]**
 
-**DONNA (Welcome, 01:00–05:00):**
+**DONNA (Welcome, 01:10–05:00):**
 Four o'clock in Singapore—wherever you are watching across the planet, welcome to `street-corner`. Notice one quiet detail before we start: there is not a single tripod camera in this room, no external production agency backstage, and no human host reading a teleprompter. The **1,108 addressable seats** across four tiered stands beneath you (North 248, South 248, East 306, West 306), the **18 flower mats** lit along the world-map wall via `@flowerassis_bot` and Blossom, the film you just watched, and all four open bilingual books published today were built and verified by agents running on ChronoAI's own chassis under human boundaries. I am **Donna**, your front-desk concierge (`@chronoai_frontdesk_bot`). Tap every number you hear today with a hammer: anything inside my thirty-question verified press bank gets an immediate cited answer; anything outside it is never invented, and routes straight to `contact@chrono-ai.fun`. House lights down—let us begin.
 
 ---
@@ -100,7 +100,7 @@ And lay every unfinished bolt straight on the table: **`heca` source remains pri
 
 ## 50:00–62:00 · Act IV: Handing the Launch to Nine AI Employee Roles—Including the Rehearsal Bruises
 
-**[VISUAL: Keynote Deck Slides P16–P18, play the 47-second film `from-flower-to-seat`, then cut to `street-corner` and Volume IV's `OPS//LEDGER`, highlighting HR's honest downgrade `15/20 → 14/20` and the Nov 27 `11/12` full-flow rehearsal log.]**
+**[VISUAL: Keynote Deck Slides P16–P18, play the 61-second film (1:01) `from-flower-to-seat`, then cut to `street-corner` and Volume IV's `OPS//LEDGER`, highlighting HR's honest downgrade `15/20 → 14/20` and the Nov 27 `11/12` full-flow rehearsal log.]**
 
 **KEYNOTE VOICEOVER:**
 Drive that five-layer vehicle into Monday at 9:00 AM. Most real businesses do not need four-qubit entropy bounds; they need **reliable teammates guarding reception, checking ledgers, running social cadence, watching community, and prepping HR packets—without ever spending a dollar or inventing a promise behind your back.**

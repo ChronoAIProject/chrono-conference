@@ -21,7 +21,7 @@
       ["The Omega Institute reproduced the proof in 8,490 shards. Within trureturing, the result is a separate integer Hankel equivalence.", "The Omega Institute 以 8,490 个分片复现该证明。trureturing 内部另证的是一个整数 Hankel 等价判据。"]
     ]},
     {"id": "open", "name": "OPEN QUESTIONS", "lead": 0.32, "tail": 1.2, "music": [1, 0.8, 0.8, 0.6, 0.4], "lines": [
-      ["Extended RH for Dedekind zeta functions and Grand RH for automorphic L-functions remain open.", "戴德金 ζ 函数的扩展黎曼猜想与自守 L 函数的广义黎曼猜想仍待解决。"],
+      ["Extended RH for Dedekind zeta functions and Grand RH for automorphic L-functions remain open.", "戴德金 ζ 函数的扩展黎曼猜想与自守 L 函数的大黎曼猜想仍待解决。"],
       ["So do simplicity of the nontrivial zeros and their pair correlation. Each is a different question about the zeros.", "非平凡零点是否均为单零点，以及它们的对关联，也各自是独立的开放问题。"]
     ]}
   ]

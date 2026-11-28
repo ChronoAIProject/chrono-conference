@@ -19,8 +19,8 @@
 | 时间（SGT） | 相对分钟 | 环节名称 | 主画面源与切换提示 | 协同角色与硬核验点 |
 | --- | --- | --- | --- | --- |
 | 15:45–16:00 | T-15 → T-0 | 暖场与入席检票 | `street-corner` 四看台慢摇 + 倒计时浮层 | Donna 核验 `@chronoai_frontdesk_bot` 预约与 `sheet-v3` 原子锁；小花巡检 `basket-01..18`；满 `1,108` 席自动切直播分流提示 |
-| 16:00–16:01 | 00:00–01:00 | 开场短片播放 | 全屏播放 `build-for-what-comes-next`（1:00，720p 旁白 + 中英字幕） | 核实音画锁步，结尾零黑场切入前厅 |
-| 16:01–16:05 | 01:00–05:00 | Donna 现场欢迎 | `keynote-main` P01–P02 + 四级延伸转播拉镜至接待台 | Donna 说明四看台 `1,108` 席、18 块花篮垫、30 题问答规则与 `contact@chrono-ai.fun` 升级口 |
+| 16:00–16:01:10 | 00:00–01:10 | 开场短片播放 | 全屏播放 `build-for-what-comes-next`（1:10，720p 旁白 + 中英字幕） | 核实音画锁步，结尾零黑场切入前厅 |
+| 16:01:10–16:05 | 01:10–05:00 | Donna 现场欢迎 | `keynote-main` P01–P02 + 四级延伸转播拉镜至接待台 | Donna 说明四看台 `1,108` 席、18 块花篮垫、30 题问答规则与 `contact@chrono-ai.fun` 升级口 |
 | 16:05–16:20 | 05:00–20:00 | 第一幕：执行贬值，判断加冕 | `keynote-main` P03–P04 + 60 天提交账本与 6 组织 `539` 仓总览 | 口播核对：`141,624`（`09-20..11-19`）/ `90,295`（30d）/ `74` 仓 / `~35%`（`09-08..11-07` 69 仓显式代理下界，`34.9%`）；近 14 日续航 `CMA` `723` PR / `NyxID` `170` PR / `chrono-metaverse` `276` PR / `trureturing-live` 5 日 `109` PR |
 | 16:20–16:35 | 20:00–35:00 | 第二幕：北极星五步核验 | `keynote-main` P05–P10 + 实时浏览器 `live.trureturing.org`（点击**形式验证 Verification** 部门与语音向导 **Alexandra**） | 口播 `223,231` 冻结定理 / `17,968` 模块 / `6.02M` 行 / `720/720`（中位 `63`/时、`217` PR/日）/ `81` 天 `2,278` 题解（`2,276` 带日期 + `2` 未标日期，`1,512`/`766`）/ `3` 部专著 `344` 双语页（`2,043` 冻结 GID、`omega-unification` `"4/4 model-internal · 0/4 zero-fit"`）；现场五步直达 `FredkinEntanglingPowerRefutation.lean` 与单模块 `lake build`；明示 Mathesis 双重归零（**`0` 篇录用且 `0 / 1,534` 独立验证器回执**）；精确说明 Levent Alpöge 古典 RH / 狄利克雷 GRH 证明归属、`the-omega-institute/riemann-hypothesis` `8,490` 分片重放，以及 **Extended RH / Grand RH / 零点单重性 / 对关联仍为 `OPEN`** |
 | 16:35–16:50 | 35:00–50:00 | 第三幕：五层整车实操 | `keynote-main` P11–P15 + 现场交互 `VEHICLE//STACK` | 依次触发 `swap` → `vault`（`0` 明文）→ `approval` → `revoke`（CMA 约 `2.1 s`）；核对 `NyxID v0.78.0`（`42` MCP 规范、`dev 0.79.0` `11` 渠道）、`nyx-assistant-sdk v0.2.4`、`CMA v0.12.0`（`Apache-2.0`）、`heca`（`360` 夜间构建、源码私有）、`github.com/chrono-harness/`（`25` 仓、`21` 二进制/平台、Copier `v0.1.52`、`completeness_proven: false`） |

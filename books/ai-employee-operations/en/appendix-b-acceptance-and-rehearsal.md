@@ -8,10 +8,10 @@ Never declare readiness by gut feeling. The three checklists below bind every au
 | --- | --- | --- |
 | Structure, Parity & Lean Lock | `./tbook check` (all 4 visible books) | `0` errors, `0` warnings; every `lean=` resolves to a frozen `theorem`, zero `UNVERIFIED` |
 | Source-Only Git Hygiene | `./tbook artifacts check` | `0` tracked derived SVGs, stills, or build outputs |
-| Static Figures & Mobile Legibility | `./tbook fig build --check` & `./tbook fig list` | All 26 computed figures pass asserts and bilingual checks; smallest phone label $\ge 10.0\text{ px}$ |
+| Static Figures & Mobile Legibility | `./tbook fig build --check` & `./tbook fig list` | All 27 computed figures pass asserts and bilingual checks; smallest phone label $\ge 10.0\text{ px}$ |
 | Interactive Labs & Slow-Frame Tests | `node tools/node/viz-validate.mjs`, `./tbook test --slow` & `VIZ_SLOW_FRAMES=1000` | All 7 labs pass `stageFirstChecks`, independent algorithm assertions, and `openStill` checks |
 | Bilingual Slidev Decks | `node tools/node/slides-check.mjs` & `./tbook build slides` | All 4 decks (`66` slides per language, `132` bilingual pages total) page-aligned zh/en, `0` overflow, `0` system-font fallback, matching PDF page counts |
-| Deterministic Explainer Films | `TBOOK_FILMS=require ./tbook build films` | All 5 films pass zero `Q()` mismatches, synced bilingual subtitles, posters $\le 300\text{ KB}$ |
+| Deterministic Explainer Films | `TBOOK_FILMS=require ./tbook build films` | All 6 films (flagship + 5 shorts) pass zero `Q()` mismatches, synced bilingual subtitles, posters $\le 300\text{ KB}$ |
 | Full Multi-Format Export | `./tbook build html pdf epub site` | HTML, screen & print PDFs (plus academic PDFs for Volumes I & III), EPUB (`epubcheck` clean), and site pages visually inspected |
 
 ## II. Completed Field Evidence: Nov 26 Operational Audit & Nov 27 Full-Flow Rehearsal (`trials#225`/`#226`)
@@ -34,7 +34,7 @@ Never declare readiness by gut feeling. The three checklists below bind every au
 | `Dec 11` Donna Adversarial Redline Suite | `20` funding traps, model-name traps, and RH attribution probes | **`20 / 20`** zero-improvisation refusals with tracked tickets escalated to `contact@chrono-ai.fun` |
 | `Dec 11` `NyxID` / `CMA` Hot Revocation Drill | Mid-session token revocation on live worker | Downstream hits `403 REVOKED` inside ~`2.1 s` window without crashing active sandboxes |
 | `Dec 11` Dual-Stream Failover Test | Deliberate disconnect on one RTMP stream | Surviving stream holds steady; Community Ops & Auto-X pin failover URL within `90 s` |
-| `Dec 15` Artifact Freeze & Disclosure Scan | Regex audit across all 72 chapter, coda, and appendix files (88 edition Markdown files including prefaces and contents), 4 decks, 7 labs, and 5 films | Zero funding/budget figures, zero AI model names, sole email `contact@chrono-ai.fun`, exact brand spelling, read-only freeze |
+| `Dec 15` Artifact Freeze & Disclosure Scan | Regex audit across all 72 chapter, coda, and appendix files (88 edition Markdown files including prefaces and contents), 4 decks, 7 labs, and 6 films (flagship + 5 shorts) | Zero funding/budget figures, zero AI model names, sole email `contact@chrono-ai.fun`, exact brand spelling, read-only freeze |
 | `Dec 16` **Formal Discord Dress Rehearsal** | Full end-to-end run on the official Discord server with production event copy, Chapter 4's canonical 30-Q sheet, and scheduled one-shot Q&A delivery | All checks green, live 3D check-in avatar verified, authorizing creation of **Dec 17 (`16:00–17:15 SGT`)** live schedules |
 
 Only when every row across all three checklists turns honestly green—and the rendered figures, slides, interactive labs, and book spreads pass inspection with our own eyes—does this virtual launch, built on our own agent stack under human review, earn its opening line: **Build for what comes next.**

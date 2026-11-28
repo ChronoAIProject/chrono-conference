@@ -5,6 +5,7 @@ title: "面向未来的造物 · 2026 线上发布会主讲稿"
 info: "ChronoAI 2026 线上发布会主讲稿：执行贬值、逻辑棘轮、整车底座与街角前厅。"
 htmlAttrs:
   lang: "zh-CN"
+  data-polarity: "deep-space"
 deck:
   code: "CHRONO//KEYNOTE"
   book: "面向未来的造物"
@@ -128,7 +129,7 @@ section: "北极星 · 文献"
   <p class="kicker">81 天公开文献实战 · 不考自己出的题</p>
   <h2 class="t">81 天，<em>2,278</em> 道公开文献题解</h2>
   <div class="split mt">
-    <img data-tr-palette="paper" src="./img/ch05-trureturing-growth.zh.svg" alt="trureturing 文献题解累计曲线" style="background:var(--tr-void);display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img data-tr-palette="paper" src="./img/ch05-trureturing-growth.zh.svg" alt="trureturing 文献题解累计曲线" style="background:var(--tr-void);padding:8px;display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
       <li><b class="hl-cyan">1,512 证明 · 766 反驳</b><br><span class="sm muted">日均约 28 道，其中量子与物理 598 道。</span></li>
       <li class="mt"><b class="hl-cyan">684 道出自同行评审期刊</b><br><span class="sm muted">另有 arXiv 840 道、OEIS 729 道；127 道悬置逾十年，最久 47 年。</span></li>
@@ -224,7 +225,7 @@ section: "整车 · 剖面"
 <div class="body">
   <p class="kicker">热插拔核心 · 类比（非定理）</p>
   <h2 class="t">明天换掉机舱里的发动机，<em>整辆车一秒不停</em></h2>
-  <img data-tr-palette="paper" class="mt-s" src="./img/ch02-engine-vs-vehicle.zh.svg" alt="裸发动机与整车的结构剖面" style="background:var(--tr-void);display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+  <img data-tr-palette="paper" class="mt-s" src="./img/ch02-engine-vs-vehicle.zh.svg" alt="裸发动机与整车的结构剖面" style="background:var(--tr-void);padding:8px;display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
   <p class="lead mt">模型半年换一代。<b>把身份、技能、沙箱与判官焊进底盘，每一次上游换代都在给你的整车免费提速。</b></p>
 </div>
 <Source>结构类比，非数学定理 · 第一卷第二章</Source>
@@ -252,7 +253,7 @@ section: "整车 · 红皇后"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0（898fdf245d）· api.nyxid.ai 与 dev@1a69258325（2026-11-27）· 热重载口径为 CMA · “红皇后”“门禁卡”均为类比</Source>
+<Source>ChronoAIProject/NyxID@v0.78.0（898fdf245d）· api.nyxid.ai 与 dev@6784b6dd36（2026-11-27）· 热重载口径为 CMA · “红皇后”“门禁卡”均为类比</Source>
 
 ---
 # 14 一张网
@@ -342,7 +343,7 @@ section: "AI 员工 · 账本"
   <p class="kicker">九个独立岗位 · 2026-11-27</p>
   <h2 class="t">102 项交给 AI，<em>18 项留在人工闸门或路线图上</em></h2>
   <div class="split mt">
-    <img data-tr-palette="paper" src="./img/ch07-six-role-coverage.zh.svg" alt="九个独立岗位覆盖 102/120 项工作流" style="background:var(--tr-void);display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
+    <img data-tr-palette="paper" src="./img/ch07-six-role-coverage.zh.svg" alt="九个独立岗位覆盖 102/120 项工作流" style="background:var(--tr-void);padding:8px;display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>为什么不追求 100% 自动？</h4>
       <h3>敢把这 18 项留在闸门后，<br>商户才敢交出另外 102 项。</h3>
