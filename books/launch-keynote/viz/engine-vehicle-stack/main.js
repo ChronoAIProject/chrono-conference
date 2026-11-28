@@ -243,7 +243,7 @@
       }
       if (thumb) continue;
       const name = G.narrow ? SHORT[sl.id] : ENGINES[sl.id], sz = fitText(ctx, name, sl.w - 6, fs - 0.5, 'display', 600);
-      text(ctx, name, sl.x + sl.w / 2, sl.y + sl.h * 0.76, active ? P.amber : P.dim, { align: 'center', size: sz, face: 'display', weight: 600 });
+      text(ctx, name, sl.x + sl.w / 2, sl.y + sl.h * 0.76, active ? P.ink : P.dim, { align: 'center', size: sz, face: 'display', weight: 600 });
     }
     // a recent swap: an arrow from the engine that left to the one that came in
     if (D.prevEngine && D.t - D.engineSince < 12) {

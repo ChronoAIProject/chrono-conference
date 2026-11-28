@@ -233,10 +233,14 @@ check('eight selectable galaxies account for the published corpus', await page.l
 await page.locator('#atlasTargets button').last().click();
 await settle(page);
 check('Foundations has 6,719 nodes', (await page.textContent('#hudSub')).includes('6,719'));
+left = await cjkLeftovers(page);
+check('English: no Chinese left in the galaxies view', left.length === 0, left.slice(0, 4).join(' | '));
 await page.click('[data-view="stations"]');
 await page.locator('#atlasTargets button').nth(3).click();
 await settle(page);
-check('station four describes verification', /Lean|内核/.test(await page.textContent('#hudSub')));
+check('station four describes verification in English', (await page.textContent('#hudSub')).includes('Check declarations in Lean'));
+left = await cjkLeftovers(page);
+check('English: no Chinese left in the stations view', left.length === 0, left.slice(0, 4).join(' | '));
 await page.click('[data-view="kernel"]');
 await settle(page);
 check('returning to the kernel restores its legend', await page.locator('#legend .sw').count() === 4);

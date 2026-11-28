@@ -74,7 +74,7 @@ section: "NyxID"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID · live api.nyxid.ai v0.78.0 (898fdf245d, 2026-11-23) · dev 0.79.0 (1a69258325, Meta channels behind feature flags) · checked 2026-11-27</Source>
+<Source>ChronoAIProject/NyxID · live api.nyxid.ai v0.78.0 (898fdf245d, 2026-11-23) · dev 0.79.0 (6784b6dd36, Meta channels behind feature flags) · checked 2026-11-27</Source>
 
 ---
 # 05 Failure 02: runaway
@@ -173,7 +173,7 @@ section: "CMA"
     <p>The code is public under Apache-2.0, yet it still ships with one primary coding runtime today; open hot-switching across other runtimes is still on the roadmap.</p>
   </div>
 </div>
-<Source>ChronoAIProject/cma@v0.12.0 (2026-11-24, LICENSE via PR #3647) · develop c57da2e1e2 (2026-11-27) · hot reload 2.152 s idle / 1.804 s busy · The Complete Vehicle, Chapter 4</Source>
+<Source>ChronoAIProject/cma@v0.12.0 (2026-11-24, LICENSE via PR #3647) · develop 3fa2aaf1fb (2026-11-27) · hot reload 2.152 s idle / 1.804 s busy · The Complete Vehicle, Chapter 4</Source>
 
 ---
 # 11 heca: local-first orchestration
@@ -272,7 +272,7 @@ layout: cover
 
 <p class="kicker">Core stack open · heca pending · skeptics welcome</p>
 <h1 class="display">Open the Repos,<br><em>Bring a Hammer</em></h1>
-<p class="lead">Don't trust the slides; read the repositories. Every number here carries a source and a date.</p>
+<p class="lead mt-s">Don't trust the slides; read the repositories. Every number here carries a source and a date.</p>
 <dl class="readout">
   <dt>Code</dt><dd class="cy"><a href="https://github.com/ChronoAIProject">github.com/ChronoAIProject</a></dd>
   <dt>Judges</dt><dd class="cy"><a href="https://github.com/chrono-harness/">github.com/chrono-harness</a></dd>

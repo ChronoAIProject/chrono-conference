@@ -74,7 +74,7 @@ section: "NyxID"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID · 线上 api.nyxid.ai v0.78.0（898fdf245d，2026-11-23）· dev 0.79.0（1a69258325，Meta 渠道在功能开关后）· 核对 2026-11-27</Source>
+<Source>ChronoAIProject/NyxID · 线上 api.nyxid.ai v0.78.0（898fdf245d，2026-11-23）· dev 0.79.0（6784b6dd36，Meta 渠道在功能开关后）· 核对 2026-11-27</Source>
 
 ---
 # 05 死穴二：失控
@@ -173,7 +173,7 @@ section: "CMA"
     <p>代码已按 Apache-2.0 公开，但今天仍只搭载单一主编码运行时；异构运行时的公开热切换仍在路线图上。</p>
   </div>
 </div>
-<Source>ChronoAIProject/cma@v0.12.0（2026-11-24，LICENSE 见 PR #3647）· develop c57da2e1e2（2026-11-27）· 热重载 2.152 s 空闲 / 1.804 s 繁忙 · 《整车工程》第四章</Source>
+<Source>ChronoAIProject/cma@v0.12.0（2026-11-24，LICENSE 见 PR #3647）· develop 3fa2aaf1fb（2026-11-27）· 热重载 2.152 s 空闲 / 1.804 s 繁忙 · 《整车工程》第四章</Source>
 
 ---
 # 11 heca：本地优先编排

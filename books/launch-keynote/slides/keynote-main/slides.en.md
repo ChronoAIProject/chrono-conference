@@ -252,7 +252,7 @@ section: "Vehicle · Red Queen"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0 (898fdf245d) · api.nyxid.ai and dev@1a69258325 (Nov 27, 2026) · hot reload measured on CMA · "Red Queen" and "badge" are analogies</Source>
+<Source>ChronoAIProject/NyxID@v0.78.0 (898fdf245d) · api.nyxid.ai and dev@6784b6dd36 (Nov 27, 2026) · hot reload measured on CMA · "Red Queen" and "badge" are analogies</Source>
 
 ---
 # 14 One network

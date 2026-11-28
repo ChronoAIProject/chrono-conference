@@ -252,7 +252,7 @@ section: "整车 · 红皇后"
     </div>
   </div>
 </div>
-<Source>ChronoAIProject/NyxID@v0.78.0（898fdf245d）· api.nyxid.ai 与 dev@1a69258325（2026-11-27）· 热重载口径为 CMA · “红皇后”“门禁卡”均为类比</Source>
+<Source>ChronoAIProject/NyxID@v0.78.0（898fdf245d）· api.nyxid.ai 与 dev@6784b6dd36（2026-11-27）· 热重载口径为 CMA · “红皇后”“门禁卡”均为类比</Source>
 
 ---
 # 14 一张网
