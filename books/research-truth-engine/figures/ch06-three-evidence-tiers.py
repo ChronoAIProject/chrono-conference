@@ -37,7 +37,7 @@ def draw(fig):
     y = 14
     for role, badge, title, notes in levels:
         height = 172 if role == "lean" else 102
-        fig.rect(12, y, 334, height, color=role, fill=role, fill_opacity=0.07, rx=8)
+        fig.rect(12, y, 334, height, color=role, fill="bg", rx=8)
         fig.rect(12, y + 12, 4, height - 24, color=None, fill=role, rx=2)
         badge_width = fig.chip(25, y + 28, badge, role, size=13)
         fig.text(36 + badge_width, y + 28, title, size=16, weight=700)
