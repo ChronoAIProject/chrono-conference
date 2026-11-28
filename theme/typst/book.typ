@@ -382,7 +382,7 @@
 
 #let contents-page() = {
   set par(first-line-indent: 0pt, justify: false)
-  v(18mm)
+  v(if is-print { 10mm } else { 18mm })
   block(below: 8pt, grid(columns: (auto, 1fr), column-gutter: 10pt, align: horizon,
     text(font: f-mono, size: 12pt, weight: "bold", fill: pal.cyan, tracking: 0.12em, "//"),
     line(length: 100%, stroke: 0.6pt + pal.line-hot)))
