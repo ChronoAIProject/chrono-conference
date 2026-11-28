@@ -21,7 +21,7 @@ def draw(fig):
         fig.line(x, 177, x, 197, "blue", 1.6)
         fig.dot(x, 177, 3.1, "blue", ring="bg")
 
-    fig.rect(179, 60, 122, 86, color="now", fill="now", fill_opacity=0.13, width=1.8, rx=11)
+    fig.rect(179, 60, 122, 86, color="now", fill="now", fill_opacity=0.04, width=1.8, rx=11)
     fig.text(240, 96, fig.t("NyxID", "NyxID"), size=23, weight=700, anchor="middle", color="now")
     fig.text(240, 128, fig.t("v0.78.0", "v0.78.0"), size=16, anchor="middle")
     for x, color, title, first, second in (

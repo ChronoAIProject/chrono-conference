@@ -595,7 +595,8 @@ kbd { border-radius: 0; background: var(--tr-sheet); border-color: var(--tr-line
     border-inline-start: 3px solid var(--tr-ok); background: var(--tr-env-bg, var(--tr-panel));
   }
   .tr-page-ledger .content main table tbody tr:nth-child(2n) { background: var(--tr-env-bg, var(--tr-panel)); }
-  .tr-page-ledger .content main table td { border: 0; padding: 2px 0; white-space: normal; }
+  .tr-page-ledger .content main table td { border: 0; padding: 2px 0; overflow-wrap: anywhere; }
+  .tr-page-ledger .content main table td:is(:first-child, :nth-child(4)) { white-space: normal; }
   .tr-page-ledger .content main table td:nth-child(2) { color: var(--tr-ink); }
   .tr-page-ledger .content main table td[data-label]:nth-child(n+3)::before {
     content: attr(data-label); display: block; margin-top: 6px;

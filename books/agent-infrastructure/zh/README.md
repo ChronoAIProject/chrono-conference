@@ -21,7 +21,7 @@
 3. **第三章 `Ornn`（`v0.18.0` Alpha）与 `nyx-skills`**：`134` 个 OpenAPI 操作（`109` 条路径，含 `58` 个管理端点与 `3` 个健康探针）、`18.7 万` 行代码、`286` 份测试文件、TS `0.4.0` / Python `0.2.0` SDK，与 `nyx-skills@25ef75934d` 中的 `163` 项公开技能、`164` 条插件与 `1` 个技能集。
 4. **第四章 `CMA`（`v0.12.0`，`Apache-2.0`）与 `cmaeg`**：收敛为两大核心应用服务（`cma-agent-manager`、`cma-event-gateway`）加 Kubernetes `agent-sandbox` 控制器的云端托管底座，覆盖 `6` 大 IM 平台与 `github`/`custom`，实现约 `2.1 s` 凭证热重载——并如实写明**今日仍聚焦单一主编码智能体运行时**。
 5. **第五章 `heca`**：本地优先多供应方编排画布——`27` 类智能体（`6` 原生主供应方 + `21` ACP）、**`360` 个夜间构建**（最新 `0.1.0-nightly-20261121-1`）、`6` 平台与 `4` 种可用运行时（Apple `container` 仍受阻），并如实标明 **`getheca/heca` 源码目前仍为内部私有**。
-6. **第六章 `chrono-harness` 与 `sshx`**：活跃主场迁移至 **`https://github.com/chrono-harness/`**（`25` 个公开仓、`20` 个独立版本组件仓、每平台 **`21` 个预编译二进制**、Copier **`v0.1.52`**、**`29` 条原子规则**、估算约 `27.6 万` 行 Rust；原单仓 `ChronoAIProject/chrono-harness` 已于 `2026-11-22` 归档），配 `sshx v1.0.0-beta.58`（MIT）独立评审——并坦然亮出直接硬编码在活 crate 里的 **`completeness_proven: false`**。
+6. **第六章 `chrono-harness` 与 `sshx`**：活跃主场迁移至 **`https://github.com/chrono-harness/`**（`25` 个公开仓、`20` 个独立版本组件仓、每平台 **`21` 个预编译二进制**、Copier **`v0.1.52`**、**`29` 条原子规则**、估算 `27.6 万` 行 Rust；原单仓 `ChronoAIProject/chrono-harness` 已于 `2026-11-22` 归档），配 `sshx v1.0.0-beta.58`（MIT）独立评审——并坦然亮出直接硬编码在活 crate 里的 **`completeness_proven: false`**。
 7. **第七章 屏幕之外**：三维空间引擎 `chrono-metaverse`（含办公室→虚拟体育馆 `1,108` 席→滨海湾金沙 `252.8 m` 天幕→地球轨道 `5,307 km` 行星巨屏的四级扩展转播链路）、内部声明式部署平面 `chrono-cd`，以及走入真实物理家居的 `Living with AI`（`nyx-homeassistant-node v1.1.1-alpha.52`、`video-event-monitor 0.5.0-alpha.2` 与公开硬件面板 `nyxid-esp-panel v1.0.0`）。
 8. **附录 A 与附录 B**：横跨六大关联 GitHub 组织、共 **`539` 个代码仓库**的六大关联组织仓库全景地图（清晰分列 ChronoAI 商业与工程 `243` 仓与独立科研品牌 **The Omega Institute** `296` 仓），以及一块绝不涂绿漆的**信任边界、许可现状与诚实成熟度矩阵**。
 
