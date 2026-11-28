@@ -109,7 +109,7 @@
     try { return getComputedStyle(root).getPropertyValue(name).trim(); } catch (e) { return ''; }
   }
   // Self-contained fallbacks, used only when tokens.css could not be read (values of theme/tokens.json "screen").
-  const FALLBACK = { ink: '#f1f5f9', dim: '#94a3b8', faint: '#475569', cyan: '#7dd3fc', magenta: '#cbd5e1', amber: '#fbbf24', sigma: '#e2e8f0', ok: '#34d399', warn: '#f87171', violet: '#a78bfa', void: '#070b12', stage: '#0a101b', 'panel-edge': 'rgba(255, 255, 255, 0.14)', 'line-hot': 'rgba(148, 163, 184, 0.34)', blue: '#38bdf8', orange: '#fb923c' };
+  const FALLBACK = { ink: '#f1f5f9', dim: '#94a3b8', faint: '#7c8da6', cyan: '#7dd3fc', magenta: '#cbd5e1', amber: '#fbbf24', sigma: '#e2e8f0', ok: '#34d399', warn: '#f87171', violet: '#a78bfa', void: '#070b12', stage: '#0a101b', 'panel-edge': 'rgba(255, 255, 255, 0.14)', 'line-hot': 'rgba(148, 163, 184, 0.34)', blue: '#38bdf8', orange: '#fb923c' };
   const PALETTE_KEYS = Object.keys(FALLBACK);
   let paletteCache = null;
   function readPalette() {

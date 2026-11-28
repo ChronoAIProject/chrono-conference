@@ -26,13 +26,13 @@ const ctx = cv.getContext('2d', { willReadFrequently: false });
 const DEEP_SPACE = {
   bg: '#05080E', surface: '#0A101B', panel: 'rgba(10, 16, 27, 0.84)',
   edge: 'rgba(255, 255, 255, 0.14)', edgeHot: 'rgba(148, 163, 184, 0.36)',
-  ink: '#F1F5F9', dim: '#94A3B8', faint: '#475569', accent: '#7DD3FC',
+  ink: '#F1F5F9', dim: '#94A3B8', faint: '#7C8DA6', accent: '#7DD3FC',
   secondary: '#CBD5E1', lean: '#34D399', open: '#F87171', amber: '#FBBF24', argued: '#A78BFA'
 };
 const DAYLIGHT = {
   bg: '#F4F1EE', surface: '#F9F7F5', panel: 'rgba(249, 247, 245, 0.90)',
   edge: '#D5CFC9', edgeHot: '#ABA39B', ink: '#1A1A1A', dim: '#57524C',
-  faint: '#9A938C', accent: '#1A1A1A', secondary: '#5C5752', lean: '#0D6E4C',
+  faint: '#615B55', accent: '#1A1A1A', secondary: '#5C5752', lean: '#0D6E4C',
   open: '#C92A2A', amber: '#B4690E', argued: '#6D28D9'
 };
 const filmTokens = TOK.film || {};
