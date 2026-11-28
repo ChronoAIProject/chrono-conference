@@ -136,6 +136,8 @@ POSTER = "poster.jpg"
 POSTER_MAX_BYTES = 300_000
 MUSIC_LAYERS = 5  # pad, bass, arp, kick, hat (theme/film/music.py)
 CUE_KINDS = ("stamp", "chime", "impact", "glitch")
+CINEMA_CUES = (*CUE_KINDS, "drop", "whoosh_up", "whoosh_down", "blip", "tick", "ding", "typing", "end")
+CINEMA_MODES = ("groove", "tension", "quiet", "build", "break", "anthemic")
 
 # Provisional timing when no narration has been synthesized yet. tts.py measures real line
 # lengths; these constants only have to be close enough to lay out and preview the picture.
@@ -751,6 +753,8 @@ def validate_script(script: dict) -> list[tuple[str, str]]:
         err("script.json: music must be an object {bpm, progression}")
     elif "bpm" in music and (not isinstance(music["bpm"], (int, float)) or not 40 <= music["bpm"] <= 200):
         err("script.json: music.bpm must be a number between 40 and 200")
+    cinema = isinstance(music, dict) and music.get("style") == "cinema-keynote"
+    cue_kinds = CINEMA_CUES if cinema else CUE_KINDS
     scenes = script.get("scenes")
     if not isinstance(scenes, list) or not scenes:
         err("script.json: scenes must be a non-empty list")
@@ -798,6 +802,8 @@ def validate_script(script: dict) -> list[tuple[str, str]]:
                 err(f"{where}: chapter must be {{\"en\": \"…\", \"zh\": \"…\"}} (two non-empty single-line strings)")
             else:
                 chapters += 1
+        if cinema and "mode" in sc and sc["mode"] not in CINEMA_MODES:
+            err(f"{where}: mode must be one of {', '.join(CINEMA_MODES)}")
         cues = sc.get("cues")
         if cues is not None:
             if not isinstance(cues, list):
@@ -806,9 +812,16 @@ def validate_script(script: dict) -> list[tuple[str, str]]:
                 n_lines = len(lines) if isinstance(lines, list) else 0
                 for c in cues:
                     if (not isinstance(c, dict) or not isinstance(c.get("line"), int) or not 0 <= c["line"] < max(1, n_lines)
-                            or not isinstance(c.get("at", 0), (int, float)) or c.get("kind") not in CUE_KINDS):
+                            or not isinstance(c.get("at", 0), (int, float)) or c.get("kind") not in cue_kinds):
                         err(f"{where}: cue {c!r} must be {{\"line\": <index>, \"at\": <seconds>, "
-                            f"\"kind\": {'|'.join(CUE_KINDS)}}}")
+                            f"\"kind\": {'|'.join(cue_kinds)}}}")
+                    elif cinema and "mode" in c and c["mode"] not in CINEMA_MODES:
+                        err(f"{where}: cue mode must be one of {', '.join(CINEMA_MODES)}")
+                    elif cinema and "rise" in c:
+                        rise = c["rise"]
+                        if (c["kind"] != "drop" or type(rise) not in (int, float)
+                                or not 0 < rise < float("inf")):
+                            err(f"{where}: rise must be a positive finite duration on a drop cue")
     if chapters and not (isinstance(scenes[0], dict) and scenes[0].get("chapter") is not None):
         err("script.json: the first scene must open a chapter once any scene does (chapters cover the whole film)")
     return out
@@ -956,8 +969,11 @@ def _clip_manifest_errors(path: Path, script: dict | None) -> list[str]:
         if (not all(type(v) is int or (isinstance(v, float) and v.is_integer()) for v in (x, y, w, h))
                 or x < 0 or y < 0 or w <= 0 or h <= 0 or x + w > 1920 or y + h > 1080):
             errors.append("viewport must have integer x, y, w, h and fit within 1920x1080 with positive dimensions")
-    if manifest.get("loop") != "ping-pong":
-        errors.append("loop must be ping-pong")
+    if manifest.get("loop") not in ("ping-pong", "once"):
+        errors.append("loop must be ping-pong or once")
+    frames = manifest.get("fade_frames", 0)
+    if not (type(frames) is int or isinstance(frames, float) and frames.is_integer()) or not 0 <= frames <= 15:
+        errors.append("fade_frames must be an integer from 0 to 15")
 
     scenes = (script or {}).get("scenes")
     known = set()

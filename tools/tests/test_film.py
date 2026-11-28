@@ -357,7 +357,8 @@ class ValidationTest(unittest.TestCase):
             "scenes": {"open": clip},
         }
         digests = {clip: "a1" * 32}
-        for data in (valid, {**valid, "sha256": digests}):
+        for data in (valid, {**valid, "sha256": digests}, {**valid, "loop": "once"},
+                     {**valid, "loop": "once", "fade_frames": 15}, {**valid, "fade_frames": 0}):
             manifest.write_text(json.dumps(data), encoding="utf-8")
             self.assertEqual(film.check_film(item, fake_lock()), [])
 
@@ -386,6 +387,10 @@ class ValidationTest(unittest.TestCase):
             ({**valid, "viewport": {**viewport, "h": 950}}, "fit within 1920x1080"),
             ({**valid, "viewport": {**viewport, "x": True, "w": 1919}}, "viewport must have integer"),
             ({**valid, "loop": "repeat"}, "loop must be ping-pong"),
+            ({**valid, "fade_frames": -1}, "fade_frames"),
+            ({**valid, "fade_frames": 16}, "fade_frames"),
+            ({**valid, "fade_frames": 2.5}, "fade_frames"),
+            ({**valid, "fade_frames": True}, "fade_frames"),
             ({**valid, "sha256": None}, "sha256 must be an object"),
             ({**valid, "sha256": {}}, "sha256 is missing an entry"),
             ({**valid, "sha256": {**digests, "other.mp4": "b" * 64}}, "unreferenced clip"),
@@ -397,6 +402,17 @@ class ValidationTest(unittest.TestCase):
                 issues = film.check_film(item, fake_lock())
                 self.assertEqual([(i.severity, i.path) for i in issues], [("error", manifest)])
                 self.assertIn(expected, issues[0].message)
+
+    def test_cinema_score_modes_and_cues(self):
+        scene = {"id": "open", "lines": [["One", "一"]], "lead": 0.5, "tail": 0.5, "mode": "build",
+                 "cues": [{"line": 0, "kind": kind} for kind in film.CINEMA_CUES]}
+        scene["cues"].append({"line": 0, "at": 0.5, "kind": "drop", "mode": "groove", "rise": 1.6})
+        script = {"voice": "bm_george", "speed": 1.02, "music": {"style": "cinema-keynote"}, "scenes": [scene]}
+        self.assertEqual(film.validate_script(script), [])
+        scene["cues"][-1]["mode"] = "typo"
+        self.assertIn("cue mode", film.validate_script(script)[0][1])
+        scene["cues"][-1].update(mode="quiet", rise=-1)
+        self.assertIn("rise", film.validate_script(script)[0][1])
 
     @unittest.skipUnless(NODE, "node not available")
     def test_compose_missing_clip_and_sha256_exit_codes(self):
