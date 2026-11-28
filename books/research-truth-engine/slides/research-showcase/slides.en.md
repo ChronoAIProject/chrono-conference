@@ -306,7 +306,7 @@ $\mathrm{RiemannHypothesis} \iff$ the actual-$\xi$ integer Hankel form is nonneg
 Extended RH, Grand RH, simplicity of zeros, and pair correlation.
 
 </TheoremCard>
-      <p class="sm muted mt-s">Classical RH · Alpöge’s Lean 4 proof (Nov 20–21). The Omega Institute replayed 8,490 shards.</p>
+      <p class="sm muted mt-s">Classical RH &amp; Dirichlet GRH · Alpöge’s Lean 4 proof (Nov 20–21). The Omega Institute replayed 8,490 shards.</p>
     </div>
   </div>
 </div>

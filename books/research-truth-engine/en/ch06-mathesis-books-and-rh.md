@@ -41,7 +41,7 @@ Beneath the prose sits dense formal steel: the trilogy embeds **`918` Lean-verif
 | **`quantum-geometry`** (`ORTHO//QUANTUM`) · **Compass**: orienting from discrete observation geometry | `130` labs, `48` films | DOI `10.5281/zenodo.24156135` |
 | **`omega-math`** (`OMEGA//MATH`) · **Zero-Axiom Rational Hull** | `4` labs, `19` films | Bare-CIC constructive core spine |
 | **`omega-unification`** (`OMEGA//UNIFY`) · **Deep-Water Sounding Log** | `1` lab, `16` films | Frontispiece `4/4` model-internal · `0/4` zero-fit |
-| **Live Trilogy Total** (main `b83ae321`) | `135` labs (`847` `.viz` cards), 83 films (`3` feature >`120 MB` MP4s) | `344` bilingual pages/lang (`688` total; ~1.99M Han chars / `~1.59M` English words); `918` theorem blocks / `2,043` frozen GIDs (`132` bare-CIC zero-axiom, 22 `axioms: []`); 283 figure scripts, `93` preview assets |
+| **Live Trilogy Total** (`main` `b83ae321`) | `135` labs (`847` `.viz` cards), `83` films (`3` feature >`120 MB` MP4s) | `344` bilingual pages/lang (`688` total; `~1.99M` Han chars / `~1.59M` English words); `918` theorem blocks / `2,043` frozen GIDs (`132` bare-CIC zero-axiom, `22` `axioms: []`); `283` figure scripts, `93` preview assets |
 
 To see what that "Zero-Axiom Rational Hull" looks like up close, inspect two flagship frozen theorems lifted straight from the `omega-math` spine. The first renders inside an automatic **blue** zero-axiom frame:
 

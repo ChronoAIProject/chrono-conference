@@ -17,7 +17,7 @@ If pasting plaintext `.env` secrets into an agent context makes your skin crawl,
 - [`ChronoAIProject/NyxID`](https://github.com/ChronoAIProject/NyxID) (zero-secret identity & proxy hub, `v0.78.0`, `42` OpenAPI-to-MCP specs, `55` built-in services—plus newly shipped `nyx-assistant-sdk v0.2.4`)
 - [`ChronoAIProject/Ornn`](https://github.com/ChronoAIProject/Ornn) and [`ChronoAIProject/nyx-skills`](https://github.com/ChronoAIProject/nyx-skills) (skill-lifecycle API and `163` scanned public skills)
 - [`ChronoAIProject/cma`](https://github.com/ChronoAIProject/cma) (cloud managed agent runtime, **`v0.12.0`**, open-sourced under **`Apache-2.0`** on November 24, 2026)
-- **[`https://github.com/chrono-harness/`](https://github.com/chrono-harness/)** (active independent org, **`25` public repos**, ~`276k` est. LOC Rust, `21` prebuilt binaries per platform, Copier `v0.1.52`, **`29` atomic rules**—come break or tighten that candidly hardcoded `completeness_proven: false`!)
+- **[`https://github.com/chrono-harness/`](https://github.com/chrono-harness/)** (active independent org, **`25` public repos**, est. `276k` LOC Rust, `21` prebuilt binaries per platform, Copier `v0.1.52`, **`29` atomic rules**—come break or tighten that candidly hardcoded `completeness_proven: false`!)
 - [`ChronoAIProject/chrono-metaverse`](https://github.com/ChronoAIProject/chrono-metaverse), [`ChronoAIProject/nyx-homeassistant-node`](https://github.com/ChronoAIProject/nyx-homeassistant-node), and `nyxid-esp-panel v1.0.0` (3D virtual spaces, physical-home bridge, and `Apache-2.0` hardware panel)
 
 Spot a brittle boundary and file an issue or pull request with a minimal reproducer. One sharp mechanical fix tells us more than ten pages of polished career prose.

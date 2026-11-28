@@ -17,7 +17,7 @@
 - [`ChronoAIProject/NyxID`](https://github.com/ChronoAIProject/NyxID)（零密钥连接与身份底座，`v0.78.0`，`42` 份 OpenAPI→MCP 规范、`55` 项服务；另附刚发布的 `nyx-assistant-sdk v0.2.4`）
 - [`ChronoAIProject/Ornn`](https://github.com/ChronoAIProject/Ornn) 与 [`ChronoAIProject/nyx-skills`](https://github.com/ChronoAIProject/nyx-skills)（技能生命周期 API 与 `163` 项公开技能）
 - [`ChronoAIProject/cma`](https://github.com/ChronoAIProject/cma)（云端托管智能体运行时，**`v0.12.0`**，2026-11-24 起正式采用 **`Apache-2.0`** 开源）
-- **[`https://github.com/chrono-harness/`](https://github.com/chrono-harness/)**（独立活跃开源组织，**`25` 个公开仓**、约 `27.6` 万行估算 Rust、双平台各 `21` 个预编译二进制、Copier `v0.1.52`、**`29` 条原子规则**——来帮我们攻破或收紧那行诚实硬编码的 `completeness_proven: false`！）
+- **[`https://github.com/chrono-harness/`](https://github.com/chrono-harness/)**（独立活跃开源组织，**`25` 个公开仓**、估算 `27.6` 万行 Rust、双平台各 `21` 个预编译二进制、Copier `v0.1.52`、**`29` 条原子规则**——来帮我们攻破或收紧那行诚实硬编码的 `completeness_proven: false`！）
 - [`ChronoAIProject/chrono-metaverse`](https://github.com/ChronoAIProject/chrono-metaverse)、[`ChronoAIProject/nyx-homeassistant-node`](https://github.com/ChronoAIProject/nyx-homeassistant-node) 与 `nyxid-esp-panel v1.0.0`（三维虚拟会场、物理家庭桥与 `Apache-2.0` 硬件面板）
 
 找一处刺眼的边界漏洞，提一个带最小复现与硬判据的 Issue 或 PR。在我们这里，一行切中要害的机械补丁，胜过十页辞藻华丽的履历。

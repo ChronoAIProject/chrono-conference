@@ -77,8 +77,9 @@ SCENES.act1_judgment = S => {
   rule(1024, 1798, 386, plaza);
   heading('539', 1020, 474, 72, plaza.ink);
   caption('REPOSITORIES · 6 ORGANIZATIONS', 1024, 514, plaza.dim, 19);
-  heading('34.9%', 1512, 474, 66, plaza.ink);
-  caption('EXPLICIT BOT / AGENT SAMPLE · 69 REPOS', 1516, 514, plaza.dim, 17);
+  caption('243 CHRONOAI · 296 THE OMEGA INSTITUTE (INDEPENDENT)', 1024, 548, plaza.ink, 18);
+  heading('34.9%', 1408, 474, 66, plaza.ink);
+  caption('EXPLICIT BOT / AGENT SAMPLE · 69 REPOS', 1412, 514, plaza.dim, 17);
   frame(S, 'ACT I  /  THE HAMMER AND THE FLOOD', 'JUDGMENT', 'MASTER LEDGER · 2026-11-28', 'ANALOGY / STANCE');
 };
 
@@ -205,9 +206,9 @@ SCENES.coda_choir_and_chalk = S => {
   heading('拿起粉笔', 1030, 250, 66, space.ink, { fam: F.zh });
   heading('Pick Up the Chalk', 1034, 306, 42, space.ink);
   card(72, 368, 820, 290, plaza, 'CHRONOAI PTE. LTD.');
-  caption('chrono-ai.fun · 4 open monographs', 106, 458, plaza.ink, 24);
+  caption('chrono-ai.fun · 3 ChronoAI volumes · 4-book edition', 106, 458, plaza.ink, 24);
   caption('street-corner · github.com/chrono-harness', 106, 508, plaza.ink, 21);
-  card(1028, 368, 820, 290, space, 'THE OMEGA INSTITUTE · INDEPENDENT');
+  card(1028, 368, 820, 290, space, 'THE OMEGA INSTITUTE · INDEPENDENT · VOLUME III AUTHOR');
   caption('live.trureturing.org · 223,231+ Lean 4 theorems', 1062, 458, space.ink, 23);
   caption('trureturing-books · mathesis-papers', 1062, 508, space.ink, 21);
   statusTag(1062, 570, 'lean', 'LEAN ✓ · FROZEN THEOREMS');
