@@ -1,16 +1,16 @@
 SIZE = (520, 320)
 ALT = {
-    "zh": "截至 2026 年 11 月 27 日，trureturing 文献问题登记册共有 2,278 项去重文献问题结项，其中已证 1,512 项，已反驳 766 项。按来源分组，arXiv 为 465 已证、375 已反驳，OEIS 为 677、52，期刊为 358、326，Erdős 问题为 1、3，其他为 11、10。各行条形均按结项数等比例绘制。",
-    "en": "The November 27, 2026 trureturing literature register contains 2,278 unique resolutions: 1,512 proved and 766 refuted. Proved and refuted counts by source are arXiv 465 and 375, OEIS 677 and 52, journals 358 and 326, Erdős 1 and 3, and other sources 11 and 10. All bar lengths share the same count scale.",
+    "zh": "截至 2026 年 11 月 27 日，trureturing 文献问题登记册共有 2,278 项去重文献问题结项，其中已证 1,512 项，已反驳 766 项。按来源分组，arXiv 为 465 已证、375 已反驳，OEIS 为 677、52，期刊为 340、320，Erdős 问题为 1、3，其他为 29、16。各行条形均按结项数等比例绘制。",
+    "en": "The November 27, 2026 trureturing literature register contains 2,278 unique resolutions: 1,512 proved and 766 refuted. Proved and refuted counts by source are arXiv 465 and 375, OEIS 677 and 52, journals 340 and 320, Erdős 1 and 3, and other sources 29 and 16. All bar lengths share the same count scale.",
 }
 
 # trureturing@548388cd (2026-11-27), Blueprint/** and Problems/*.md.
 OUTCOMES = (
     ("arXiv", "arXiv", 465, 375),
     ("OEIS", "OEIS", 677, 52),
-    ("期刊", "Journals", 358, 326),
+    ("期刊", "Journals", 340, 320),
     ("Erdős 问题", "Erdős", 1, 3),
-    ("其他", "Other", 11, 10),
+    ("其他", "Other", 29, 16),
 )
 
 
@@ -18,7 +18,7 @@ def draw(fig):
     proved = sum(row[2] for row in OUTCOMES)
     refuted = sum(row[3] for row in OUTCOMES)
     assert proved == 1512 and refuted == 766 and proved + refuted == 2278
-    assert [p + r for _, _, p, r in OUTCOMES] == [840, 729, 684, 4, 21]
+    assert [p + r for _, _, p, r in OUTCOMES] == [840, 729, 660, 4, 45]
 
     fig.text(15, 26, fig.t(f"{proved + refuted:,} 项文献问题结项", f"{proved + refuted:,} literature resolutions"),
              size=21, weight=700)
@@ -31,7 +31,8 @@ def draw(fig):
     fig.line(15, 67, 505, 67, "edge", 1)
 
     plot_left, plot_width = 112, 246
-    scale = plot_width / 750
+    track_capacity = 860
+    scale = plot_width / track_capacity
     for index, (zh, en, positives, negatives) in enumerate(OUTCOMES):
         y = 88 + 33 * index
         fig.text(15, y, fig.t(zh, en), size=17, middle=True, weight=600)
