@@ -307,7 +307,7 @@ $\mathrm{RiemannHypothesis}$ 成立，当且仅当对一切阶数 $N$ 与一切 
 Dedekind $\zeta$ 的扩展 RH、自守 $L$ 函数的大 RH、零点单重与对关联：<b>依然开放。</b>
 
 </TheoremCard>
-      <p class="sm muted mt-s">经典 RH：Levent Alpöge 的外部 Lean 4 证明，11-20/21 获社区认证；本所只做 8,490 分片重放。</p>
+      <p class="sm muted mt-s">经典 RH 与 Dirichlet GRH：Levent Alpöge 的外部 Lean 4 证明，11-20/21 获社区认证；本所只做 8,490 分片重放。</p>
     </div>
   </div>
 </div>
