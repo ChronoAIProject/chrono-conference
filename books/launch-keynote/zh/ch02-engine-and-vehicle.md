@@ -27,7 +27,7 @@
 3. **第三层：云端托管与本地编排双引擎（`CMA` `v0.12.0` 与 `heca`）**
    同一副底盘配两套驾驶舱：云端托管 **CMA** 已以 **`Apache-2.0`** 协议开源 `v0.12.0`，用两大核心服务与 Kubernetes 沙箱支撑约 **2.1 秒**的热凭证重载；本地优先编排器 **heca** 则把 **27 类智能体**摆上空间画布，为每个执行体隔离独立 Git 工作树、终端与浏览器，已连续沉淀 **360 个夜间构建**。完整运行时矩阵与构建标签见第二卷（`CHRONO//STACK`）与附录 B。
 4. **第四层：可执行判官与协作治理（`chrono-harness` 与 `sshx`）**
-   不再用客气提示词求智能体「请务必跑完测试」，而是用声明式 `FILEMAP` 依赖边与 `DELTA` 增量判官立下冷硬绊线：触及哪条边就强制测哪条边，漏登文件当场拒收。活跃开源主家 **[`chrono-harness`](https://github.com/chrono-harness/)** 汇集 **25 个公开仓库**（组件发版横跨 **`v0.1.3`–`v0.1.22`**，核心执行器 `chrono-harness-runner v0.1.22`；约 **27.6 万行**估算 Rust、双平台各 **21 个预编译二进制**、Copier **`v0.1.52`**、**29 条原子规则**），配合 `MIT` 协议的 `sshx`（`v1.0.0-beta.58`）把多视角独立审稿焊进交付流。详细分仓目录与验证边界见第二卷（`CHRONO//STACK`）与附录 B。
+   不再用客气提示词求智能体「请务必跑完测试」，而是用声明式 `FILEMAP` 依赖边与 `DELTA` 增量判官立下冷硬绊线：触及哪条边就强制测哪条边，漏登文件当场拒收。活跃开源主家 **[`chrono-harness`](https://github.com/chrono-harness/)** 汇集 **25 个公开仓库**（组件发版横跨 **`v0.1.3`–`v0.1.22`**，核心执行器 `chrono-harness-runner v0.1.22`；估算 **27.6 万行** Rust、双平台各 **21 个预编译二进制**、Copier **`v0.1.52`**、**29 条原子规则**），配合 `MIT` 协议的 `sshx`（`v1.0.0-beta.58`）把多视角独立审稿焊进交付流。详细分仓目录与验证边界见第二卷（`CHRONO//STACK`）与附录 B。
 5. **第五层：真实业务与科研表面（`chrono-metaverse`、`chrono-cd`、`Living with AI`、`trureturing`）**
    车不是造来盖绒布吃灰的：同一副底盘同时驱动 `street-corner` 三维会场与从办公室机柜屏一路拉升至地球轨道 `5,307 km` 银幕的四级延伸转播管线、私有零运维部署底座 `chrono-cd`、通向真实房间的 `Living with AI`（`nyx-homeassistant-node` 与 `Apache-2.0` 硬件面板 `nyxid-esp-panel v1.0.0`），以及独立科研品牌 **The Omega Institute** 旗下在 Lean 4 内核上全天候掘进的 `trureturing`。精确版本与硬件配置见第二卷（`CHRONO//STACK`）与附录 B。
 

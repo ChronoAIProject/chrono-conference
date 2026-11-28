@@ -32,7 +32,7 @@ Preparing the December 17, 2026 virtual launch forced us to run our own company 
 Put autonomous execution beside human authority in one sharp frame, and any founder sees in three seconds why the division holds up at 9:00 AM Monday:
 
 ::: {.figure src="ch01-human-ai-boundary"}
-**Autonomous AI Execution vs. Human Authority Boundary.** Left (cyan): `82 / 99` verified workflows across six core roles (`102 / 120` including three standalone watchdogs), showing the candid HR `14/20` downgrade. Right (magenta): irreversible authority locked permanently to humans (cash release, legal signatures, compensation & offers, off-bank press claims, and permanently human finance items).
+**AI Employee Execution vs. Human Authority Boundary.** Left (cyan): `102 / 120` covered workflows across `9` standalone roles alongside the `Six-core 82/99 · 82.8%` subtotal, listing six routine tasks (intake, triage, drafting, booking locks, ledger reconciliation, and scheduled posts). Right (magenta): four locked authorities retained strictly by humans (capital release, external legal commitments, unapproved press claims, and irreversible revocations).
 :::
 
 ## Why Demoting HR From 15/20 to 14/20 Buys More Trust Than a Green Dashboard
@@ -44,7 +44,7 @@ The exact same rigor governs runtime permissions. Safe 24/7 staffing never rests
 Audit the live `six-roles` workbench card below to inspect the updated November 27 ledger, honest downgrade, and human gates:
 
 ::: {.viz src="ai-team-work-ledger" preset="six-roles" height="500"}
-**AI Workforce Readiness Snapshot (`six-roles`).** Interactive breakdown of the November 27, 2026 ledger (`82 / 99 = 82.8%` across six core roles, `102 / 120 = 85.0%` with three standalone watchdogs), surfacing the candid HR `15/20 → 14/20` downgrade and every explicit human gate.
+**AI Workforce Readiness Snapshot (`six-roles`).** Interactive breakdown of the November 27, 2026 ledger (`82 / 99 = 82.8%`, equal-weight `83.0%` across six core roles; `102 / 120 = 85.0%` with three standalone watchdogs), surfacing the candid HR `15/20 → 14/20` downgrade and every explicit human gate.
 :::
 
 With all nine roles and four denominators nailed to the board, Chapter 2 steps onto the busiest floor of the launch—watching Concierge **Donna** and Flower Town's **Blossom** survive a `750`-row spreadsheet crash, rebuild seating on a bitmask, and hold `1,108` seats and `18` flower mats without a single double-booking.
