@@ -56,7 +56,7 @@ Many build wrappers guess which tests to run from filename patterns or directory
 
 ## `sshx`: Multi-Perspective Review Against Self-Deception
 
-Mechanical unit judges catch broken invariants; they rarely catch solving the wrong problem or subtly stretching a claim's wording. **`sshx`** (`ChronoAIProject/consensus-rnd`, **`v1.0.0-beta.58`**, `2026-11-25`, **`MIT`**) formalizes **isolated read-only review seats**: independent reviewers inspect the same architecture diff, code patch, or formal claim separately and emit structured agreement, disagreement, and unverified-assumption receipts before merge. Yet as Volume III, Chapter 7 and Figure 27 (`ch07-hitl-ablation-gate`) demonstrate empirically, read-only prose review seats alone still leave `20%` correlated review slop until coupled with executable counterexample obligation gates that drive false positives from `30.0%` down to `0.0%`.
+Mechanical unit judges catch broken invariants; they rarely catch solving the wrong problem or subtly stretching a claim's wording. **`sshx`** (`ChronoAIProject/consensus-rnd`, **`v1.0.0-beta.58`**, `2026-11-25`, **`MIT`**) formalizes **isolated read-only review seats**: independent reviewers inspect the same architecture diff, code patch, or formal claim separately and emit structured agreement, disagreement, and unverified-assumption receipts before merge. Yet as Volume III, Chapter 7's HITL empirical ablation figure (`ch07-hitl-ablation-gate`) demonstrates, read-only prose review seats alone still leave `20%` correlated review slop until coupled with executable counterexample obligation gates that drive false positives from `30.0%` down to `0.0%`.
 
 ## Hardcoded Honesty as a Badge of Craft: `completeness_proven: false`
 

@@ -67,12 +67,12 @@ Let $W$ be a finite-dimensional real inner-product space, $G \subset (W \to_L[\m
 :::
 
 ::: proof
-Compact group averaging on the finite-dimensional real inner-product space $W$ constructs the $G$-invariant metric $B$ making every element of $\mathrm{OriginalLie}\,G$ skew-adjoint; first-order full reciprocity (bijectivity of both projections of the quotient relation) plus rank-nullity locks both $\dim_{\mathbb{R}} W = 3$ and $\dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G) = 3$; since the skew-endomorphism space of a 3D inner-product space has dimension $\binom{3}{2} = 3$, injectivity forces surjectivity onto all of `skewEndomorphisms B`. Verified and frozen by the Lean 4 kernel in [`original_rigidity`](lean:D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity).
+Compact group averaging on the finite-dimensional real inner-product space $W$ constructs the $G$-invariant metric $B$ making every element of $\mathrm{OriginalLie}\,G$ skew-adjoint; first-order full reciprocity (`dimension_transfer` giving $\dim_{\mathbb{R}} W = \dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G)$, paired with the rank-one invariant-metric and centralizer-line bounds forcing $\dim_{\mathbb{R}} W \in \{1, 3\}$, and $A \neq 0, x \neq 0, Ax = 0$ ruling out $\dim = 1$) locks both $\dim_{\mathbb{R}} W = 3$ and $\dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G) = 3$; since the skew-endomorphism space of a 3D inner-product space has dimension $\binom{3}{2} = 3$, injectivity forces surjectivity onto all of `skewEndomorphisms B`. Verified and frozen by the Lean 4 kernel in [`original_rigidity`](lean:D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity).
 :::
 
 ## Algebraic Integrality Barrier on Native Protocol Events
 
-Rounding out this chapter's rigidity spine, return to native Fibonacci protocol trees: every raw event mass `eventMass T event` produced by any finite native tree $T$ and Boolean event selector is automatically an **algebraic integer (`IsIntegral ℤ`)**, locking it permanently away from both nonintegral reference-comparison targets:
+Rounding out this chapter's rigidity spine, turn to finite native quantum protocol trees `Tree L` (built from `.leaf`, `.call`, and `.measure` nodes on the 16-state basis): every raw event mass `eventMass T event` produced by any finite native tree $T$ and Boolean event selector is automatically an **algebraic integer (`IsIntegral ℤ`)**, locking it permanently away from both nonintegral reference-comparison targets:
 
 ::: {.theorem #thm-event-arithmetic title="Native Protocol Event Masses Are Algebraic Integers" lean="D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic"}
 For any leaf label type $L$, native protocol tree $T : \mathrm{Tree}\,L$, and event indicator $\mathrm{event} : \mathrm{Path}\,T \to \mathrm{Basis} \to \mathrm{Bool}$,
@@ -86,7 +86,7 @@ $$
 :::
 
 ::: proof
-In [`original_event_arithmetic`](lean:D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic), the proof establishes algebraic integrality (`IsIntegral ℤ`) not only for $\varphi^{-1}$, but also for the square-root weight $\sqrt{\varphi^{-1}}$, the complex phase factors entering the gate and mark matrices, and complex conjugation used by squared norms; finite sums, products, and squared norms of native amplitudes therefore remain integral over $\mathbb{Z}$, immediately separating them from the proved-nonintegral targets `emptyTarget` and `referenceTarget`. Verified and frozen by the Lean 4 kernel.
+In [`original_event_arithmetic`](lean:D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic), the proof establishes algebraic integrality (`IsIntegral ℤ`) not only for $\varphi^{-1}$, but also for the square-root weight $\sqrt{\varphi^{-1}}$, the complex phase factor $\zeta = e^{3\pi i / 5}$ entering the gate/call matrices (`gate`, `callMatrix`) alongside the 0–1 diagonal measurement projectors (`projector`), and complex conjugation used by squared norms; finite sums, products, and squared norms of native amplitudes therefore remain integral over $\mathbb{Z}$, immediately separating them from the proved-nonintegral targets `emptyTarget` and `referenceTarget`. Verified and frozen by the Lean 4 kernel.
 :::
 
 By now you have walked the internal theoretical spine that `trureturing` built for itself. Any tough outside scientist immediately fires back the decisive external test: **"Internal elegance is fine—can this engine walk straight into published journals like *Physical Review A*, *Nature Communications*, *Commun. Math. Phys.*, and the OEIS and crack open problems posed by outside researchers years or decades ago?"**

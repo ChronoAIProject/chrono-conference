@@ -95,12 +95,12 @@ In [`CoherenceL1RelativeEntropyBound.result`](lean:D5/S3/Divergence/CoherenceL1R
 
 Girard, Plávala, and Sikora (*Nature Communications* 2021) asked whether every pair of compatible quantum channels (`Compatible Φ Ψ`) must also be Jordan compatible (`JordanCompatible Φ Ψ`). `trureturing` builds an explicit counterexample in dimension $d = 4$, snapping the universal claim in two:
 
-::: {.theorem #thm-jordan-refutation title="Compatible Quantum Channels in Dimension 4 Need Not Be Jordan Compatible" lean="D5/S3/QuantumChannels/JordanCompatibilityRefutation.result"}
-The universal claim that every pair of compatible quantum channels $(\Phi, \Psi)$ in every dimension $d$ is Jordan compatible is false: $\neg\,\mathrm{claim}$, witnessed explicitly at $d = 4$.
+::: {.theorem #thm-jordan-refutation title="Compatible Quantum Channels Need Not Be Jordan Compatible" lean="D5/S3/QuantumChannels/JordanCompatibilityRefutation.result"}
+The universal claim that every pair of compatible quantum channels $(\Phi, \Psi)$ (square endomorphism channels on `Fin d`) in every dimension $d$ is Jordan compatible is false: $\neg\,\mathrm{claim}$.
 :::
 
 ::: proof
-In [`JordanCompatibilityRefutation.result`](lean:D5/S3/QuantumChannels/JordanCompatibilityRefutation.result), two explicit quantum channels $\Phi, \Psi$ on $\mathrm{Fin}\,4$ are verified to admit a joint mother channel (`compatible_witness`) while satisfying `not_jordanCompatible`. Verified and frozen by the Lean 4 kernel.
+In [`JordanCompatibilityRefutation.result`](lean:D5/S3/QuantumChannels/JordanCompatibilityRefutation.result), two explicit quantum channels $\Phi, \Psi$ on $\mathrm{Fin}\,4$ (dimension $d = 4$) are verified to admit a joint mother channel (`compatible_witness`) while satisfying `not_jordanCompatible`, refuting the universal claim. Verified and frozen by the Lean 4 kernel.
 :::
 
 ## Proof 5: Harmonic Limit of Averaged Zeitlin Ricci Curvature (*Commun. Math. Phys.* 2026)
@@ -121,9 +121,9 @@ In [`RicciLimit.result`](lean:D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.resul
 
 ## Beyond Single Conjectures: Unique Selection of 4D Spacetime (Frozen Nov 27, 2026)
 
-Cracking individual published conjectures tests tactical reach; the deeper question is whether the engine can bolt multiple cross-domain physical constraints onto the same formal bench and watch them converge on a single spacetime dimension. Frozen live on November 27, 2026 inside `DeSitterGravitonModes` (`548388cd`), four classical constraints on any integer spacetime dimension $D \ge 3$—non-vanishing Weyl curvature, summability of the null-diamond leading angular mode weight, scale-invariant conformal Maxwell weight, and two transverse polarizations—close like a four-jaw vise around **$D = 4$**:
+Cracking individual published conjectures tests tactical reach; the deeper question is whether the engine can bolt multiple cross-domain physical constraints onto the same formal bench and watch them converge on a single spacetime dimension. Frozen live on November 27, 2026 inside `DeSitterGravitonModes` (`548388cd`), four classical constraints on any integer spacetime dimension $D \ge 3$—non-vanishing Weyl curvature, summability of the null-diamond leading angular mode weight, scale-invariant conformal Maxwell weight, and the Hodge two-form self-duality degree criterion ($D - 2 = 2$, matching a 2D transverse null screen / two spin-1 photon polarizations)—close like a four-jaw vise around **$D = 4$**:
 
-::: {.theorem #thm-unique-dim-four title="Unique Selection of 4D Spacetime from Weyl Curvature, Summable Leading Mode, Conformal Maxwell, and Two Polarizations" lean="D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four"}
+::: {.theorem #thm-unique-dim-four title="Unique Selection of 4D Spacetime from Weyl Curvature, Summable Leading Mode, Conformal Maxwell, and Hodge Two-Form Degree" lean="D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four"}
 For every natural-number dimension $D \ge 3$, the following equivalence holds:
 $$
 \begin{aligned}
@@ -133,11 +133,11 @@ $$
 &\land D - 2 = 2\bigr) \iff D = 4
 \end{aligned}.
 $$
-The four conditions express nonzero Weyl curvature, summability of the null-diamond leading angular mode weight, a Maxwell conformal weight of one for every positive scale, and two transverse polarizations.
+The four conditions express nonzero Weyl curvature, summability of the null-diamond leading angular mode weight, a Maxwell conformal weight of one for every positive scale, and the Hodge two-form self-duality degree ($D - 2 = 2$, matching a 2D transverse null screen / two spin-1 photon polarizations).
 :::
 
 ::: proof
-In [`grand_unification_unique_dimension_four`](lean:D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four), each physical criterion carves away candidate dimensions in turn: non-vanishing Weyl curvature (`weylDim_pos_iff`) immediately eliminates $D = 3$ and forces $D \ge 4$—matching its sibling zero-axiom theorem `graviton_polarizations_three_four_five` in the same module, which proves via `decide` with zero axioms that `gravitonPolarizationCount` takes values `0`, `2`, and `5` in dimensions $D = 3, 4, 5$; summability of `leadingModeWeight D` (`scalar_nullDiamond_and_propagating_gravity_iff`) then trims the surviving window to $D \in \{4, 5\}$; finally, conformal invariance of Maxwell's equations (`maxwellConformalWeight D Ω = 1` for all $\Omega > 0$) paired with two transverse polarizations / Hodge two-form degree ($D - 2 = 2$) uniquely locks $D = 4$, and conversely all four conditions hold at $D = 4$. Verified and frozen by the Lean 4 kernel.
+In [`grand_unification_unique_dimension_four`](lean:D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four), each physical criterion carves away candidate dimensions in turn: non-vanishing Weyl curvature (`weylDim_pos_iff`) immediately eliminates $D = 3$ and forces $D \ge 4$—matching its sibling zero-axiom theorem `graviton_polarizations_three_four_five` in the same module, which proves via `decide` with zero axioms that the spin-2 count `gravitonPolarizationCount D = (D - 2)(D - 1)/2 - 1` takes values `0`, `2`, and `5` in dimensions $D = 3, 4, 5$; summability of `leadingModeWeight D` (`scalar_nullDiamond_and_propagating_gravity_iff`) then trims the surviving window to $D \in \{4, 5\}$; finally, conformal invariance of Maxwell's equations (`maxwellConformalWeight D Ω = 1` for all $\Omega > 0$) alongside the Hodge two-form self-duality degree criterion `hodge_two_form_degree_iff` ($\deg(\star F) = D - 2 = 2$, each independently forcing $D = 4$) uniquely locks $D = 4$, and conversely all four conditions hold at $D = 4$. Verified and frozen by the Lean 4 kernel.
 :::
 
 Placed in its broader constructive lineage, this zero-axiom `decide` graviton count (`graviton_polarizations_three_four_five`) pairs directly with [Chapter 6](ch06-mathesis-books-and-rh.md)'s blue zero-axiom simplicial Poincaré lemma [@thm-omega-simplicial-exact] (`d2_eq_zero_iff`, strictly `axioms: []` on both official Lean and bare-CIC `strict_omega`), whose explicit cone homotopy supplies the constructive counterpart for degree-2 simplicial cochains to [Chapter 2](ch02-information-escape-and-novelty.md)'s gluing obstruction ([@thm-gluing-obstruction]).

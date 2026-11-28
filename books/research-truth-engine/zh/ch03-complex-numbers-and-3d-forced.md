@@ -67,12 +67,12 @@
 :::
 
 ::: proof
-先用紧致群平均在有限维实内积空间 $W$ 上构造出 $G$-不变内积 $B$，使每个切向量 $K \in \mathrm{OriginalLie}\,G$ 都是 $B$-反对称算子；再由一阶完全倒易条件（商关系两投影皆为双射）与秩-零度定理直接锁死 $\dim_{\mathbb{R}} W = 3$ 与 $\dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G) = 3$；最后利用三维反对称算子空间的维数恰好为 $\binom{3}{2} = 3$ 与单射性，推出像空间与整个 `skewEndomorphisms B` 完全重合。由 Lean 4 内核在 [`original_rigidity`](lean:D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity) 中验证并冻结。
+先用紧致群平均在有限维实内积空间 $W$ 上构造出 $G$-不变内积 $B$，使每个切向量 $K \in \mathrm{OriginalLie}\,G$ 都是 $B$-反对称算子；再由一阶完全倒易条件（`dimension_transfer` 给出 $\dim_{\mathbb{R}} W = \dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G)$，并结合秩一不变度量与中心化子线约束锁定 $\dim_{\mathbb{R}} W \in \{1, 3\}$，再由 $A \neq 0, x \neq 0, Ax = 0$ 排除一维）直接锁死 $\dim_{\mathbb{R}} W = 3$ 与 $\dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G) = 3$；最后利用三维反对称算子空间的维数恰好为 $\binom{3}{2} = 3$ 与单射性，推出像空间与整个 `skewEndomorphisms B` 完全重合。由 Lean 4 内核在 [`original_rigidity`](lean:D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity) 中验证并冻结。
 :::
 
 ## 原生协议事件的代数整数屏障
 
-最后钉上一道同样干脆的算术屏障：回到第一章的原生斐波那契树协议，任意一棵原生协议树 $T$ 上由任意布尔事件判定器选出的原始事件总质量 `eventMass T event`，必然是一个**代数整数（`IsIntegral ℤ`）**。于是两条已证非整数的参考比较目标 `emptyTarget` 与 `referenceTarget` 从算术地基上便被彻底挡在原生事件可达集合之外：
+最后钉上一道同样干脆的算术屏障：回到有限量子协议树 `Tree L`（由 `.leaf`、`.call`、`.measure` 节点构成的原生协议决策树），任意一棵原生协议树 $T$ 上由任意布尔事件判定器选出的原始事件总质量 `eventMass T event`，必然是一个**代数整数（`IsIntegral ℤ`）**。于是两条已证非整数的参考比较目标 `emptyTarget` 与 `referenceTarget` 从算术地基上便被彻底挡在原生事件可达集合之外：
 
 ::: {.theorem #thm-event-arithmetic title="原生协议事件质量恒为代数整数" lean="D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic"}
 对任意叶标记类型 $L$、任意原生协议树 $T : \mathrm{Tree}\,L$ 以及任意事件指示函数 $\mathrm{event} : \mathrm{Path}\,T \to \mathrm{Basis} \to \mathrm{Bool}$，其事件质量满足：
@@ -86,7 +86,7 @@ $$
 :::
 
 ::: proof
-在 [`original_event_arithmetic`](lean:D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic) 中，证明同时建立了逆黄金比 $\varphi^{-1}$ 及其平方根权重 $\sqrt{\varphi^{-1}}$、门与标记矩阵中的复相位因子以及模平方所需复共轭运算对代数整性（`IsIntegral ℤ`）的封闭性；由此任意有限树路径振幅的求和、乘积与模平方皆落入代数整数环中，而两个目标常数的非整性直接给出不相等结论。由 Lean 4 内核验证并冻结。
+在 [`original_event_arithmetic`](lean:D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic) 中，证明同时建立了逆黄金比 $\varphi^{-1}$ 及其平方根权重 $\sqrt{\varphi^{-1}}$、门／调用矩阵（`gate` / `callMatrix`，含复相位因子 $\zeta = e^{3\pi i / 5}$）与 0–1 对角测量投影算子（`projector`）以及模平方所需复共轭运算对代数整性（`IsIntegral ℤ`）的封闭性；由此任意有限树路径振幅的求和、乘积与模平方皆落入代数整数环中，而两个目标常数的非整性直接给出不相等结论。由 Lean 4 内核验证并冻结。
 :::
 
 走完这三章，你已经摸清了 `trureturing` 自己长出来的理论脊梁。可任何一位苛刻的外部科学家都会立刻把话头挑回去：**「你们自家体系里的定理固然精致，可这台引擎敢不敢冲进全世界的公开期刊，去正面硬啃别人在 *Physical Review A*、*Nature Communications*、*Commun. Math. Phys.* 和 OEIS 上挂了几年甚至几十年的公开猜想？」**

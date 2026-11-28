@@ -78,11 +78,11 @@
 
 **开放论文与 Mathesis（`papers.trureturing.org`，`catalog@293dc68c37`）**：`mathesis-papers` 组织已汇集 **`237`** 个仓库（`236` 公开 + `1` 私有），收录 **`225`** 篇公开附源码论文（`224` 篇钉选 Lean 链接、`218` 枚 Zenodo DOI、**`1,534`** 条注册陈述与 **`756`** 条共享形式化请求）。但 Mathesis 把最刺眼的**双重归零诚实**直接盖在第一行：经 Mathesis 流程完成的正式同行评审录用为 **`0`** 篇，独立 Mathesis 验证器回执同样为 **`0 / 1,534`**——论文级 Lean 源码链接绝不等于独立验证器回执，挂网预印本绝不冒充同行评审。
 
-**方法论实证（`human-in-the-loop-automated-research v1.0`，`812c64de9e`）**：在覆盖**三个独立前沿模型家族**的 `N = 30` 盲评基准（Kendall $W = 0.828$）中，人机协同在 **`260 / 300`（`86.7%`）** 的成对比较里击败全自动 AI，并将评分标准差较未验证人类预印本压缩 **`2.3–4.2`** 倍。在配套的 `20` 项命题消融中，跨模型家族冷审共识仍残留 **`20%`** 的相关假阳性审稿注水，唯有焊上**可执行反例义务闸门**，才把假阳性率从 **`30%` 压至 `0.0%`**（完整 `24,925`-PR 门禁审计见第三卷第七章与附录 B）。
+**方法论实证（`human-in-the-loop-automated-research v1.0`，`812c64de9e`）**：在覆盖**三个独立前沿模型家族**的 `N = 30` 盲评基准（Kendall $W = 0.828$）中，人机协同在 **`260 / 300`（`86.7%`）** 的成对比较里击败全自动 AI，并将评分标准差较未验证人类预印本压缩 **`2.3–4.2`** 倍。在配套的 `20` 项命题消融中，跨模型家族冷审共识仍残留 **`20%`** 的相关假阳性审稿注水，唯有焊上**可执行反例义务闸门**，才把假阳性率从 **`30%` 压至 `0.0%`**（完整 `24,925`-PR 门禁审计见第三卷第七章与本卷附录 B）。
 
 同样绝不允许含糊半个字的，是**黎曼猜想（Riemann Hypothesis）的历史归属与当前红区**。我们必须把四层事实切得像手术切片一样干净（完整梳理见第三卷第六章）：
 
-1. **归属清晰**：2026 年 11 月 20–21 日，Lean 与 Mathlib 社区核验通过了 **Levent Alpöge** 使用 Lean `4.33.1` 写就的 Mathlib `RiemannHypothesis` 与 Dirichlet GRH 形式化证明（`175,187` 个模块、`1,737 万`行代码，仅依赖标准公理 `[propext, Classical.choice, Quot.sound]`，镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。这笔突破属于原作者与社区，绝不是 `trureturing` 自己证出来的。
+1. **归属清晰**：2026 年 11 月 20 日，**Levent Alpöge** 发布使用 Lean `4.33.1` 写就的 5 条形式化定理证明，涵盖 Mathlib `RiemannHypothesis` 与 Dirichlet GRH（`175,187` 个模块、`1,737 万`行代码，仅依赖标准公理 `[propext, Classical.choice, Quot.sound]`，镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）；11 月 21 日 Lean 与 Mathlib 社区联合认证古典 `RiemannHypothesis`，独立五定理核查亦覆盖 Dirichlet GRH。这笔突破属于原作者与社区，绝不是 `trureturing` 自己证出来的。
 2. **重放工程归属清晰**：**`the-omega-institute/riemann-hypothesis`**（`c2dabc97`）构建了覆盖全证明的 **`8,490` 分片可复现 CI 与 `./verify` 校验重放体系**（含 `8,558` 件 `.tar.zst` 发布产物），让任何人无须盲信即可分片独立重放；而 **`the-omega-institute/riemann-hypothesis-book`**（`ebd24a4d`，*Symmetry on the Critical Line*）是面向读者的双语导读伴书，而非分片仓库本身。
 3. **`trureturing` 本仓边界清晰**：在 `trureturing` 主库内部（`ActualXiIntegerCriterion.lean`），团队冻结的是真实 $\xi$ 函数的**整系数 Hankel 正定等价判据**，而非古典 RH 证明本身。
 4. **真正的鲜红开放区（`OPEN`）**：越过古典 RH 与狄利克雷 GRH 之后，数论前沿依然耸立着尚未被任何冻结证明触及的真正悬崖——这正是我们以红色开放问题铭刻在此的边界：

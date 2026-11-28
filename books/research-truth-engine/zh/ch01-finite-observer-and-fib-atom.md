@@ -61,7 +61,7 @@ $$
 1. 对任意素数 $p$、自然数 $e \le h$ 与任意整数 $x, y \in \mathbb{Z}$，对**一切**整数平移参数 $b \in \mathbb{Z}$ 皆有 $\gcd(x + p^e b,\, p^h) = \gcd(y + p^e b,\, p^h)$，当且仅当分类不变量满足 $\psi(p, h, e, x) = \psi(p, h, e, y)$；
 2. 对任意正整数 $H > 0$ 与基底向量 $w \in \mathbb{N} \times \mathbb{N}$，任意有限布尔嫁接词 $W$ 的前向作用均具有精确仿射形式 $\mathrm{run}(w, W, v) = \mathrm{step}^{[k]}(v) + t$，且平移项模 $H$ 落入嫁接子空间 $\mathrm{graftSpace}(H, w)$；
 3. 模 $H$ 上演化算子满足周期恒等式 $\mathrm{step}^{[(H^2)!]}(v) = v$，并存在显式实现词 `realizationWord H k A B` 使所有 $(k, t \in \mathrm{graftSpace}(H, w))$ 均在模 $H$ 下精确可达；
-4. 平移理想在标量可观测量 `quantity` 下的像恰好是由 $\mathrm{graftGcd}(H, w) = \gcd(\gcd(w_1, w_2), H)$ 在 $\mathbb{Z}/H\mathbb{Z}$ 中生成的主理想。
+4. 嫁接子空间 `graftSpace(H, w)` 在标量可观测量 `quantity` 下的像恰好是由 $\mathrm{graftGcd}(H, w) = \gcd(\gcd(w_1, w_2), H)$ 在 $\mathbb{Z}/H\mathbb{Z}$ 中生成的主理想。
 :::
 
 ::: proof

@@ -60,12 +60,12 @@ The `basket` schematic card below shows all 18 mats—12 illuminated with placed
 **Eighteen Flower Mats (`basket`).** Focuses on the 2 rows × 9 numbered mats (`basket-01..18`; 12 placed, 6 open in amber) along the world-map wall, tracing a greeting card from `@flowerassis_bot` and Blossom into a live 3D stand.
 :::
 
-## Sixty-One Seconds Through Street Corner
+## Sixty-Nine Seconds Through Street Corner
 
-For a kinetic tour of the entire visitor arc—from checking in with Donna, across all four tiered stands locking `1,108` seats, to lighting up the `18` Flower Town mats—watch the 61-second (1:01) venue film below.
+For a kinetic tour of the entire visitor arc—from checking in with Donna, across all four tiered stands locking `1,108` seats, to lighting up the `18` Flower Town mats—watch the 69-second (1:09) venue film below.
 
 ::: {.film src="from-flower-to-seat"}
-**From a Flower Basket to a Seat (Venue Tour Film).** A 61-second (1:01) walkthrough of `street-corner`: Donna's reception guardrails, atomic locking across 1,108 seats on four tiered stands, graceful livestream overflow, and Blossom's 18 Flower Town mats.
+**From a Flower Basket to a Seat (Venue Tour Film).** A 69-second (1:09) walkthrough of `street-corner`: Donna's reception guardrails, atomic locking across 1,108 seats on four tiered stands, graceful livestream overflow, and Blossom's 18 Flower Town mats.
 :::
 
 ## The November 27 Full-Flow Rehearsal: 11/12 Passed—and One Real 65-Minute Stall

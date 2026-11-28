@@ -100,7 +100,7 @@ And lay every unfinished bolt straight on the table: **`heca` source remains pri
 
 ## 50:00–62:00 · Act IV: Handing the Launch to Nine AI Employee Roles—Including the Rehearsal Bruises
 
-**[VISUAL: Keynote Deck Slides P16–P18, play the 61-second film (1:01) `from-flower-to-seat`, then cut to `street-corner` and Volume IV's `OPS//LEDGER`, highlighting HR's honest downgrade `15/20 → 14/20` and the Nov 27 `11/12` full-flow rehearsal log.]**
+**[VISUAL: Keynote Deck Slides P16–P18, play the 69-second film (1:09) `from-flower-to-seat`, then cut to `street-corner` and Volume IV's `OPS//LEDGER`, highlighting HR's honest downgrade `15/20 → 14/20` and the Nov 27 `11/12` full-flow rehearsal log.]**
 
 **KEYNOTE VOICEOVER:**
 Drive that five-layer vehicle into Monday at 9:00 AM. Most real businesses do not need four-qubit entropy bounds; they need **reliable teammates guarding reception, checking ledgers, running social cadence, watching community, and prepping HR packets—without ever spending a dollar or inventing a promise behind your back.**
