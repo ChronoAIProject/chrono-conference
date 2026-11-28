@@ -36,31 +36,50 @@
   // Pandoc's tr-code-break can supply hints before the table width is known.
   let source = code.text.replace("\u{200B}", "")
   let run(value) = text(hyphenate: false, value)
-  let atomic(value) = {
-    let body = run(value)
-    // Give the unscaled text its natural width even inside a scaled box.
-    box(fit-width(box(width: measure(body).width + 0.01pt, body), width))
+  let emit-piece(piece) = {
+    if piece == "" { return none }
+    let body = run(piece)
+    let natural = measure(body).width
+    if natural <= width {
+      box(body)
+    } else if piece.clusters().len() <= 14 {
+      // Give the unscaled text its natural width even inside a scaled box.
+      box(fit-width(box(width: natural + 0.01pt, body), width))
+    } else {
+      // Each match starts with one ASCII byte before the CamelCase boundary.
+      let cuts = piece.matches(regex("[a-z0-9][A-Z]|[A-Z][A-Z][a-z]")).map(m => m.start + 1)
+      let start = 0
+      for end in cuts + (piece.len(),) {
+        if start > 0 { run("\u{200B}") }
+        let sub = piece.slice(start, end)
+        let sub-body = run(sub)
+        if measure(sub-body).width <= width {
+          box(sub-body)
+        } else {
+          run(sub.clusters().join("\u{200B}"))
+        }
+        start = end
+      }
+    }
   }
   for part in source.matches(regex("\\s+|\\S+")) {
     let token = part.text
     if token.starts-with(regex("\\s")) {
       run(token)
-    } else if token.clusters().len() <= 14 or measure(run(token)).width <= width {
-      atomic(token)
+    } else if measure(run(token)).width <= width or token.clusters().len() <= 14 {
+      emit-piece(token)
     } else {
       let start = 0
-      if token.contains(regex("\\p{L}")) {
-        for delimiter in token.matches(regex("[/_@:.\\-]+")) {
-          let next = token.slice(delimiter.end)
-          if next == "" or (delimiter.text.ends-with(regex("[.\\-]")) and next.starts-with(regex("\\d"))) {
-            continue
-          }
-          atomic(token.slice(start, delimiter.end))
-          run("\u{200B}")
-          start = delimiter.end
+      for delimiter in token.matches(regex("[/_@:.\\-]+")) {
+        let next = token.slice(delimiter.end)
+        if next == "" or (delimiter.text.ends-with(regex("[.\\-]")) and next.starts-with(regex("\\d"))) {
+          continue
         }
+        emit-piece(token.slice(start, delimiter.end))
+        run("\u{200B}")
+        start = delimiter.end
       }
-      atomic(token.slice(start))
+      emit-piece(token.slice(start))
     }
   }
 }
