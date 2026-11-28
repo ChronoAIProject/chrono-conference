@@ -62,7 +62,7 @@
     **答**：**没有。** 截至 `2026-11-27/28`，`https://github.com/mathesis-papers` 共托管 `237` 仓，Mathesis 线上 API 收录 **`225` 篇带源码与 PDF 论文**（`224` 篇带 Lean 链接，目录快照含 `1,534` 条注册形式化陈述与 **`218` 个 Zenodo DOI**），但**经由 Mathesis 审稿流程正式录用的论文数仍为 `0` 篇，独立验证器回执同样为 `0 / 1,534`**。The Omega Institute 与 Mathesis 绝不把公开预印本包装成同行评审通过。
 18. **Q18：你们是不是宣称证明了黎曼猜想？那 8,490 个分片又是什么？**
     **答**：**ChronoAI 与独立科研品牌 The Omega Institute 均未宣称证明黎曼猜想，绝不挪移原作者署名。** 现场四条速查口径：
-    - **归属**：**2026 年 11 月 20–21 日**，Lean 与 Mathlib 社区认证了 **Levent Alpöge** 提交的 Lean `4.33.1` 证明，覆盖 Mathlib 中的古典 `RiemannHypothesis` 与 Dirichlet GRH（`175,187` 模块、`1,737` 万行，仅依赖 `[propext, Classical.choice, Quot.sound]`，镜像于 `leanprover-community/riemann-hypothesis`）。
+    - **归属**：**2026 年 11 月 20 日**，**Levent Alpöge** 发布涵盖 Mathlib 古典 `RiemannHypothesis` 与 Dirichlet GRH 的 5 条 Lean `4.33.1` 定理证明（`175,187` 模块、`1,737` 万行，仅依赖 `[propext, Classical.choice, Quot.sound]`，镜像于 `leanprover-community/riemann-hypothesis`）；**11 月 21 日** Lean 与 Mathlib 社区联合认证古典 `RiemannHypothesis`，独立五定理核查亦覆盖 Dirichlet GRH。
     - **重放与伴书**：**`the-omega-institute/riemann-hypothesis`**（`c2dabc97`）交付了可复现 CI 与 **`8,490` 分片**的 `./verify` 独立重放工程（`8,558` 个 `.tar.zst` 发布附件）；**`the-omega-institute/riemann-hypothesis-book`**（`ebd24a4d`）是双语导读伴书 *Symmetry on the Critical Line*（并非分片宿主）。
     - **`trureturing` 内部边界**：`ActualXiIntegerCriterion.lean` 仅形式化证明了真实 $\xi$ 整系数 Hankel 非负性的等价判据，并未在库内证明黎曼猜想本体。
     - **四条鲜红 `OPEN` 前沿**：**Dedekind ERH（一般 Dedekind $\zeta$ 函数）、Grand RH（一般自守 $L$ 函数）、零点单重性与对关联猜想**仍处于开放态。

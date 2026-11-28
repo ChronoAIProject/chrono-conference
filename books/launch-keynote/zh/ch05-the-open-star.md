@@ -88,7 +88,7 @@
 4. **真正的鲜红开放区（`OPEN`）**：越过古典 RH 与狄利克雷 GRH 之后，数论前沿依然耸立着尚未被任何冻结证明触及的真正悬崖——这正是我们以红色开放问题铭刻在此的边界：
 
 ::: {.problem #prob-keynote-rh title="从古典黎曼猜想到更深红区：Dedekind ERH、Grand RH 与零点精细分布"}
-继 2026 年 11 月 20–21 日 Lean / Mathlib 社区核验通过 Levent Alpöge 关于古典 `RiemannHypothesis` 与狄利克雷 GRH 的 Lean `4.33.1` 证明（并由 `the-omega-institute/riemann-hypothesis` 完成 `8,490` 分片可复现 `./verify` 重放）之后，更深层的数论前沿依然完全开放：**Dedekind ERH（面向一般数域的戴德金 $\zeta_K(s)$ 函数）**、**Grand RH（面向一般自守 $L$-函数）**、**全部非平凡零点的单重性（simplicity of zeros）**，以及**蒙哥马利对关联猜想（pair correlation）**是否成立？这些核心问题至今没有任何形式化解决。
+继 2026 年 11 月 20 日 Levent Alpöge 发布涵盖 Mathlib 古典 `RiemannHypothesis` 与 Dirichlet GRH 的 5 条 Lean `4.33.1` 定理证明（11 月 21 日 Lean / Mathlib 社区联合认证古典 `RiemannHypothesis`，独立五定理核查亦覆盖 Dirichlet GRH，并由 `the-omega-institute/riemann-hypothesis` 完成 `8,490` 分片可复现 `./verify` 重放）之后，更深层的数论前沿依然完全开放：**Dedekind ERH（面向一般数域的戴德金 $\zeta_K(s)$ 函数）**、**Grand RH（面向一般自守 $L$-函数）**、**全部非平凡零点的单重性（simplicity of zeros）**，以及**蒙哥马利对关联猜想（pair correlation）**是否成立？这些核心问题至今没有任何形式化解决。
 :::
 
 这就是独立科研品牌 The Omega Institute 立下的北极星标尺：既敢把 `223,231` 条冻结定理交到任何人的 Lean 编译器下五步点检，也敢把不属于自己的功劳归还原作者，把仍为 `0` 的审稿录用和依然鲜红的数论前沿印在最显眼的位置。现在场灯全部亮起——第六章呈上 **2026 年 12 月 17 日 16:00–17:15 SGT 整场七十五分钟虚拟发布会的逐字主讲稿**。

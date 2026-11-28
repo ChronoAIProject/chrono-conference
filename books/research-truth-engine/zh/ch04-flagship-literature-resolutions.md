@@ -91,7 +91,7 @@ $$
 在 [`CoherenceL1RelativeEntropyBound.result`](lean:D5/S3/Divergence/CoherenceL1RelativeEntropyBound.result) 中，证明将问题归约为二元 Holevo 界（`AudenaertBinaryHolevoBound.binaryHolevoBound`）与对数导数迹估计，在所有有限维上一次封顶。完整证明由 Lean 4 内核验证并冻结。
 :::
 
-## 反驳二：四维相容量子通道未必 Jordan 相容（*Nat. Commun.* 2021）
+## 反驳二：相容量子通道未必 Jordan 相容（*Nat. Commun.* 2021）
 
 Girard、Plávala 与 Sikora（*Nature Communications* 2021）在研究广义概率论与量子通道相容性时，追问任意一对相容量子通道（`Compatible Φ Ψ`）是否必然 Jordan 相容（`JordanCompatible Φ Ψ`）。`trureturing` 在维度 $d = 4$ 构造出显式测量—制备通道反例，直接敲碎该全维断言！
 

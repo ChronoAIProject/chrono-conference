@@ -83,7 +83,7 @@ $$
 
 在整个仓库群里，没有任何一个话题比**黎曼猜想（Riemann Hypothesis）**更需要一把绝不手软的手术刀。这里容不得半句模糊，更容不得一丝抢功或张冠李戴。请把以下五个事实层次彻底切清：
 
-1. **外部里程碑与彻底归功（2026 年 11 月 20–21 日）**：2026 年 11 月 20 至 21 日，Lean 与 Mathlib 社区正式认证了 **Levent Alpöge** 使用 Lean `4.33.1` 完成的 Mathlib 版古典 `RiemannHypothesis` 与 Dirichlet GRH 形式化证明（全工程计 `175,187` 个模块、`1,737 万`行代码，仅依赖三条标准公理 `[propext, Classical.choice, Quot.sound]`，先后镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）。**先致以毫不保留的敬意与归功**：这一历史性证明属于 Levent Alpöge 与 Lean/Mathlib 社区，绝非 `The Omega Institute` 的原创证明。
+1. **外部里程碑与彻底归功（2026 年 11 月 20–21 日）**：2026 年 11 月 20 日，**Levent Alpöge** 发布使用 Lean `4.33.1` 完成的 5 条形式化定理证明，涵盖 Mathlib 版古典 `RiemannHypothesis` 与 Dirichlet GRH（全工程计 `175,187` 个模块、`1,737 万`行代码，仅依赖三条标准公理 `[propext, Classical.choice, Quot.sound]`，先后镜像于 `Deicyde/riemann-hypothesis` 与 `leanprover-community/riemann-hypothesis`）；11 月 21 日 Lean 与 Mathlib 社区联合认证古典 `RiemannHypothesis`，独立五定理核查亦覆盖 Dirichlet GRH。**先致以毫不保留的敬意与归功**：这一历史性证明属于 Levent Alpöge 与 Lean/Mathlib 社区，绝非 `The Omega Institute` 的原创证明。
 2. **`the-omega-institute/riemann-hypothesis`（`c2dabc97`）——8,490 分片可重放认证工程**：面对一千七百多万行规模的巨型证明，普通研究者根本无从单机盲信。`The Omega Institute` 独立构建了 `the-omega-institute/riemann-hypothesis`，将该认证证明切分为 **8,490 个内容寻址分片**并封装为可复现 CI 与一键 `./verify` 校验流水线（托管 `8,558` 份 `.tar.zst` 发布产物），让全球任何一台普通工作站都能按片抽检重放。
 3. **`the-omega-institute/riemann-hypothesis-book`（`ebd24a4d`）——双语导读专著**：该仓库是面向人类读者的配套双语导读专著 *Symmetry on the Critical Line*（《临界线上的对称性》），用于拆解证明结构与数学直觉——**8,490 个重放分片位于 `riemann-hypothesis`，而非 `riemann-hypothesis-book`**，两者的工程职责绝不混为一谈。
 4. **`trureturing` 自身的独立定理（`ActualXiIntegerCriterion.lean`）**：在 `trureturing` 自己的源码树内，[@thm-rh-hankel] 仅冻结了一条**逻辑等价判据**——证明标准 Mathlib `RiemannHypothesis` 等价于平移奇对数导数 `xiOdd` 的全部有限阶整系数 Hankel 二次型恒非负；该模块本身**并未**独立证明两端任何一边，也不导入上述外部证明。
@@ -109,7 +109,7 @@ $$
 紧挨着绿色等价桥 [@thm-rh-hankel]，我们把古典黎曼猜想之后依然鲜红的真实开放前沿刻在下面：
 
 ::: {.problem #prob-rh-open title="古典黎曼猜想之后的开放前沿：Dedekind ERH、Grand RH、零点简单性与对关联"}
-在 Levent Alpöge 的 Lean `4.33.1` 证明（由 Lean/Mathlib 社区于 2026 年 11 月 20–21 日认证，并由 `the-omega-institute/riemann-hypothesis` 提供 8,490 分片可重放核验）覆盖古典 `RiemannHypothesis` 与 Dirichlet GRH 之后，以下四项深层前沿目前依然完全开放：
+在 2026 年 11 月 20 日 Levent Alpöge 发布涵盖古典 `RiemannHypothesis` 与 Dirichlet GRH 的 5 条 Lean `4.33.1` 定理证明（11 月 21 日由 Lean/Mathlib 社区认证古典 `RiemannHypothesis`，独立五定理核查覆盖 Dirichlet GRH，并由 `the-omega-institute/riemann-hypothesis` 提供 8,490 分片可重放核验）之后，以下四项深层前沿目前依然完全开放：
 
 1. **扩展黎曼猜想（Extended RH）**：一般代数数域上 Dedekind $\zeta$ 函数的全部非平凡零点是否均落在临界线 $\operatorname{Re}(s) = \frac{1}{2}$ 上；
 2. **Grand RH**：一般自守 $L$-函数的非平凡零点分布；

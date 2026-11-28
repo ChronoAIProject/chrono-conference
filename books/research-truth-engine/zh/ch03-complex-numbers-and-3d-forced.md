@@ -72,7 +72,7 @@
 
 ## 原生协议事件的代数整数屏障
 
-最后钉上一道同样干脆的算术屏障：回到有限量子协议树 `Tree L`（由 `.leaf`、`.call`、`.measure` 节点构成的原生协议决策树），任意一棵原生协议树 $T$ 上由任意布尔事件判定器选出的原始事件总质量 `eventMass T event`，必然是一个**代数整数（`IsIntegral ℤ`）**。于是两条已证非整数的参考比较目标 `emptyTarget` 与 `referenceTarget` 从算术地基上便被彻底挡在原生事件可达集合之外：
+最后钉上一道同样干脆的算术屏障：转向有限原生量子协议树 `Tree L`（在 16 位载体上由 `.leaf`、`.call`、`.measure` 节点构成），任意一棵原生协议树 $T$ 上由任意布尔事件判定器选出的原始事件总质量 `eventMass T event`，必然是一个**代数整数（`IsIntegral ℤ`）**。于是两条已证非整数的参考比较目标 `emptyTarget` 与 `referenceTarget` 从算术地基上便被彻底挡在原生事件可达集合之外：
 
 ::: {.theorem #thm-event-arithmetic title="原生协议事件质量恒为代数整数" lean="D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic"}
 对任意叶标记类型 $L$、任意原生协议树 $T : \mathrm{Tree}\,L$ 以及任意事件指示函数 $\mathrm{event} : \mathrm{Path}\,T \to \mathrm{Basis} \to \mathrm{Bool}$，其事件质量满足：

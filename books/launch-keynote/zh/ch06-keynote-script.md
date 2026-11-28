@@ -75,7 +75,7 @@
 
 那么，同样租用前沿推理引擎，为什么有的流水线吐出幻觉，有的却能扛住内核审计？The Omega Institute 于 11 月 27 日公开的 `human-in-the-loop-automated-research v1.0` 拿对照实验一锤定音：横跨**三个独立前沿模型家族**的盲评中，人机协同以 **`260 / 300`（`86.7%`）** 击败全自动 AI；而焊上一道**可执行反例义务闸门**，直接把假阳性审稿注水从 **`30%` 压到 `0.0%`**。
 
-最后，对**黎曼猜想**把归属说得一清二楚：2026 年 11 月 20–21 日，Lean 与 Mathlib 社区核验通过了 **Levent Alpöge** 关于古典 `RiemannHypothesis` 与狄利克雷 GRH 的 Lean `4.33.1` 证明（`175,187` 模块、`1,737 万`行）；**`the-omega-institute/riemann-hypothesis`** 打造了 **`8,490` 分片可复现 CI 与 `./verify` 校验重放工程**（`8,558` 件 `.tar.zst` 产物），`riemann-hypothesis-book` 是它的双语导读伴书；`trureturing` 自己只证了整系数 Hankel 等价桥；而 **Dedekind ERH、Grand RH、非平凡零点单重性与对关联猜想**——今天依然是鲜红未决的 **`OPEN` 前沿**。
+最后，对**黎曼猜想**把归属说得一清二楚：2026 年 11 月 20 日，**Levent Alpöge** 发布了涵盖 Mathlib 古典 `RiemannHypothesis` 与 Dirichlet GRH 的 5 条 Lean `4.33.1` 定理证明（`175,187` 模块、`1,737 万`行），11 月 21 日 Lean 与 Mathlib 社区联合认证古典 `RiemannHypothesis`，独立五定理核查亦覆盖 Dirichlet GRH；**`the-omega-institute/riemann-hypothesis`** 打造了 **`8,490` 分片可复现 CI 与 `./verify` 校验重放工程**（`8,558` 件 `.tar.zst` 产物），`riemann-hypothesis-book` 是它的双语导读伴书；`trureturing` 自己只证了整系数 Hankel 等价桥；而 **Dedekind ERH、Grand RH、非平凡零点单重性与对关联猜想**——今天依然是鲜红未决的 **`OPEN` 前沿**。
 
 ---
 

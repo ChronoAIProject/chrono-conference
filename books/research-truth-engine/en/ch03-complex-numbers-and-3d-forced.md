@@ -72,7 +72,7 @@ Compact group averaging on the finite-dimensional real inner-product space $W$ c
 
 ## Algebraic Integrality Barrier on Native Protocol Events
 
-Rounding out this chapter's rigidity spine, turn to finite native quantum protocol trees `Tree L` (built from `.leaf`, `.call`, and `.measure` nodes on the 16-state basis): every raw event mass `eventMass T event` produced by any finite native tree $T$ and Boolean event selector is automatically an **algebraic integer (`IsIntegral ℤ`)**, locking it permanently away from both nonintegral reference-comparison targets:
+Rounding out this chapter's rigidity spine, turn to finite native quantum protocol trees `Tree L` (built from `.leaf`, `.call`, and `.measure` nodes on the 16-bit carrier): every raw event mass `eventMass T event` produced by any finite native tree $T$ and Boolean event selector is automatically an **algebraic integer (`IsIntegral ℤ`)**, locking it permanently away from both nonintegral reference-comparison targets:
 
 ::: {.theorem #thm-event-arithmetic title="Native Protocol Event Masses Are Algebraic Integers" lean="D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic"}
 For any leaf label type $L$, native protocol tree $T : \mathrm{Tree}\,L$, and event indicator $\mathrm{event} : \mathrm{Path}\,T \to \mathrm{Basis} \to \mathrm{Bool}$,
