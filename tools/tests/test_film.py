@@ -342,6 +342,183 @@ class ValidationTest(unittest.TestCase):
         self.assertIn("films/ holds film directories", msgs)
         self.assertNotIn("film number", msgs)
 
+    def test_optional_clip_manifest_validation(self):
+        created = film.scaffold(self.book, "clip-test", "测试", "Clip Test", released="2026-11-08")
+        d = created[0].parent
+        (d / "poster.jpg").touch()
+        item = film.load_film(self.book, d)
+        manifest = d / "clips.json"
+        self.assertEqual(film.check_film(item, fake_lock()), [])
+        clip = "scene-01.mp4"
+        viewport = {"x": 0, "y": 131, "w": 1920, "h": 818}
+        valid = {
+            "viewport": viewport,
+            "loop": "ping-pong",
+            "scenes": {"open": clip},
+        }
+        digests = {clip: "a1" * 32}
+        for data in (valid, {**valid, "sha256": digests}):
+            manifest.write_text(json.dumps(data), encoding="utf-8")
+            self.assertEqual(film.check_film(item, fake_lock()), [])
+
+        for content, expected in (
+            ('{"scenes":', "invalid JSON"),
+            ('{"scenes": {"open": "scene-01.mp4"}, "loop": NaN}', "invalid JSON"),
+        ):
+            with self.subTest(content=content):
+                manifest.write_text(content, encoding="utf-8")
+                issues = film.check_film(item, fake_lock())
+                self.assertEqual([(i.severity, i.path) for i in issues], [("error", manifest)])
+                self.assertIn(expected, issues[0].message)
+
+        for data, expected in (
+            ({**valid, "scenes": {}}, "non-empty mapping"),
+            ({**valid, "scenes": {"other": clip}}, "unknown scene"),
+            ({**valid, "scenes": {"open": "../scene-01.mp4"}}, "relative .mp4 filename"),
+            ({**valid, "scenes": {"open": r"..\scene-01.mp4"}}, "relative .mp4 filename"),
+            ({**valid, "scenes": {"open": "/scene-01.mp4"}}, "relative .mp4 filename"),
+            ({**valid, "scenes": {"open": "scene-01.jpg"}}, "relative .mp4 filename"),
+            ({"loop": "ping-pong", "scenes": valid["scenes"]}, "viewport must be an object"),
+            ({**valid, "viewport": []}, "viewport must be an object"),
+            ({**valid, "viewport": {"x": 0, "y": 0, "w": 1920}}, "viewport must have integer"),
+            ({**valid, "viewport": {**viewport, "x": 0.5}}, "viewport must have integer"),
+            ({**valid, "viewport": {**viewport, "x": 1}}, "fit within 1920x1080"),
+            ({**valid, "viewport": {**viewport, "h": 950}}, "fit within 1920x1080"),
+            ({**valid, "viewport": {**viewport, "x": True, "w": 1919}}, "viewport must have integer"),
+            ({**valid, "loop": "repeat"}, "loop must be ping-pong"),
+            ({**valid, "sha256": None}, "sha256 must be an object"),
+            ({**valid, "sha256": {}}, "sha256 is missing an entry"),
+            ({**valid, "sha256": {**digests, "other.mp4": "b" * 64}}, "unreferenced clip"),
+            ({**valid, "sha256": {clip: "A" * 64}}, "64-character lowercase hex digest"),
+            ({**valid, "sha256": {clip: "a" * 63}}, "64-character lowercase hex digest"),
+        ):
+            with self.subTest(data=data):
+                manifest.write_text(json.dumps(data), encoding="utf-8")
+                issues = film.check_film(item, fake_lock())
+                self.assertEqual([(i.severity, i.path) for i in issues], [("error", manifest)])
+                self.assertIn(expected, issues[0].message)
+
+    @unittest.skipUnless(NODE, "node not available")
+    def test_compose_missing_clip_and_sha256_exit_codes(self):
+        import subprocess
+
+        d = self.book.films_dir / "clip-test"
+        clip = d / "out" / "clips" / "scene-01.mp4"
+        clip.parent.mkdir(parents=True)
+        (d / "script.json").write_text(json.dumps({"scenes": [{"id": "open"}]}), encoding="utf-8")
+        manifest = d / "clips.json"
+        data = {
+            "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
+            "loop": "ping-pong",
+            "scenes": {"open": clip.name},
+        }
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        env = os.environ.copy()
+        env.pop("FILM_REQUIRE_CLIPS", None)
+        env.pop("FILM_ALLOW_STILL_FALLBACK", None)
+        fallback = {**env, "FILM_ALLOW_STILL_FALLBACK": "1"}
+        command = [NODE, str(THEME_FILM / "compose.mjs"), str(d), "--renditions", "720p"]
+        for case, run_env, expected in (
+            ("default", env, 1),
+            ("opt in", fallback, 3),
+            ("require clips", {**fallback, "FILM_REQUIRE_CLIPS": "1"}, 1),
+        ):
+            with self.subTest(case=case):
+                result = subprocess.run(command, env=run_env, capture_output=True, text=True, timeout=15)
+                self.assertEqual(result.returncode, expected, result.stderr)
+                self.assertIn("missing live 3D clips", result.stderr)
+                self.assertIn(str(clip), result.stderr)
+
+        clip.write_bytes(b"clip bytes")
+        data["sha256"] = {clip.name: "0" * 64}
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        result = subprocess.run(command, env=fallback, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn(f"SHA-256 mismatch for {clip}", result.stderr)
+
+        data["sha256"]["unreferenced.mp4"] = "0" * 64
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        result = subprocess.run(command, env=fallback, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("sha256 has an entry for unreferenced clip unreferenced.mp4", result.stderr)
+
+    @unittest.skipUnless(NODE, "node not available")
+    def test_compose_unknown_clip_scene_parity(self):
+        import subprocess
+
+        created = film.scaffold(self.book, "clip-test", "测试", "Clip Test", released="2026-11-08")
+        d = created[0].parent
+        (d / "poster.jpg").touch()
+        item = film.load_film(self.book, d)
+        clip = d / "out" / "clips" / "missing.mp4"
+        clip.parent.mkdir(parents=True)
+        manifest = d / "clips.json"
+        data = {
+            "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
+            "loop": "ping-pong",
+            "scenes": {"typo": clip.name},
+        }
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        issues = film.check_film(item, fake_lock())
+        self.assertEqual([(i.severity, i.path) for i in issues], [("error", manifest)])
+        self.assertIn("unknown scene 'typo'", issues[0].message)
+
+        env = os.environ.copy()
+        env.pop("FILM_REQUIRE_CLIPS", None)
+        env.pop("FILM_ALLOW_STILL_FALLBACK", None)
+        fallback = {**env, "FILM_ALLOW_STILL_FALLBACK": "1"}
+        command = [NODE, str(THEME_FILM / "compose.mjs"), str(d), "--renditions", "720p"]
+        for run_env in (env, fallback):
+            with self.subTest(fallback=run_env.get("FILM_ALLOW_STILL_FALLBACK")):
+                result = subprocess.run(command, env=run_env, capture_output=True, text=True, timeout=15)
+                self.assertEqual(result.returncode, 1, result.stderr)
+                self.assertIn("unknown clip scene: typo", result.stderr)
+
+        data["scenes"] = {"open": clip.name}
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        self.assertEqual(film.check_film(item, fake_lock()), [])
+        result = subprocess.run(command, env=fallback, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 3, result.stderr)
+        self.assertIn("missing live 3D clips", result.stderr)
+        self.assertIn(str(clip), result.stderr)
+
+    @unittest.skipUnless(NODE, "node not available")
+    def test_compose_matching_sha256_and_one_byte_tamper(self):
+        import hashlib
+        import subprocess
+
+        d = self.book.films_dir / "clip-test"
+        clip = d / "out" / "clips" / "scene-01.mp4"
+        missing = clip.with_name("scene-02.mp4")
+        clip.parent.mkdir(parents=True)
+        (d / "script.json").write_text(json.dumps({"scenes": [{"id": "open"}, {"id": "close"}]}),
+                                       encoding="utf-8")
+        clip.write_bytes(b"clip bytes")
+        data = {
+            "viewport": {"x": 0, "y": 131, "w": 1920, "h": 818},
+            "loop": "ping-pong",
+            "scenes": {"open": clip.name, "close": missing.name},
+            "sha256": {
+                clip.name: hashlib.sha256(clip.read_bytes()).hexdigest(),
+                missing.name: hashlib.sha256(b"missing clip bytes").hexdigest(),
+            },
+        }
+        (d / "clips.json").write_text(json.dumps(data), encoding="utf-8")
+
+        env = os.environ.copy()
+        env.pop("FILM_REQUIRE_CLIPS", None)
+        env["FILM_ALLOW_STILL_FALLBACK"] = "1"
+        command = [NODE, str(THEME_FILM / "compose.mjs"), str(d), "--renditions", "720p"]
+        result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 3, result.stderr)
+        self.assertIn("missing live 3D clips", result.stderr)
+        self.assertIn(str(missing), result.stderr)
+
+        clip.write_bytes(b"Clip bytes")
+        result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn(f"SHA-256 mismatch for {clip}", result.stderr)
+
     @needs_example
     def test_missing_scene_definition_warns(self):
         d = copy_example(self.book)
@@ -712,6 +889,38 @@ class VideoUnitTest(unittest.TestCase):
             self.assertEqual([u.key for u in film.units(site, self.sb.book)], [live.key, mp4.key])
             # Without film_release_only the build renders the MP4 itself: one unit, as before.
             self.assertEqual([u.key for u in film.units(plain, self.sb.book)], [mp4.key])
+
+    def test_clip_fallback_only_changes_clip_backed_mp4_keys(self):
+        video_site = self.sb.site
+        canvas_site = dataclasses.replace(video_site, film_release_only=True)
+        item = self.sb.film()
+        env = {k: v for k, v in os.environ.items()
+               if k not in {"FILM_ALLOW_STILL_FALLBACK", "FILM_REQUIRE_CLIPS"}}
+        fallback = {**env, "FILM_ALLOW_STILL_FALLBACK": "1"}
+        required = {**fallback, "FILM_REQUIRE_CLIPS": "1"}
+
+        for with_clips in (False, True):
+            with self.subTest(with_clips=with_clips):
+                if with_clips:
+                    (item.dir / "clips.json").write_text(json.dumps({
+                        "viewport": {"x": 0, "y": 0, "w": 1920, "h": 1080},
+                        "loop": "ping-pong",
+                        "scenes": {item.script["scenes"][0]["id"]: "scene-01.mp4"},
+                    }), encoding="utf-8")
+                keys = []
+                for run_env in (env, fallback, required):
+                    with mock.patch.dict(os.environ, run_env, clear=True):
+                        video = film.video_unit(video_site, item)
+                        release = film.release_unit(canvas_site, item)
+                        self.assertEqual(video.key, release.key)
+                        keys.append((video.key, film.video_unit(canvas_site, item).key))
+                live, opted_in, enforced = keys
+                self.assertEqual(live, enforced)
+                self.assertEqual(live[1], opted_in[1])
+                if with_clips:
+                    self.assertNotEqual(live[0], opted_in[0])
+                else:
+                    self.assertEqual(live[0], opted_in[0])
 
     def test_unrelated_changes_keep_the_key(self):
         key = self.sb.key()
@@ -1409,7 +1618,7 @@ class PipelineTest(unittest.TestCase):
         self.assertEqual(film.js_syntax_errors(files), {})
         import subprocess
 
-        for name in ("lib.js", "render.js", "poster.js", "shot.js", "site/films.js", "site/player.js"):
+        for name in ("lib.js", "render.js", "compose.mjs", "poster.js", "shot.js", "site/films.js", "site/player.js"):
             r = subprocess.run([NODE, "--check", str(THEME_FILM / name)], capture_output=True, text=True)
             self.assertEqual(r.returncode, 0, f"{name}: {r.stderr}")
 

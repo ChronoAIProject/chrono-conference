@@ -1,40 +1,44 @@
 # Chapter 3: Ornn—The Agent-Facing Skill-Lifecycle API
 
-Across many companies experimenting with AI agents today, teams still store "skills" as Markdown fragments copy-pasted seven times across Slack threads: no version number, no security scan, no declared service scope, and no way to tell who broke what or which employee was affected when one line drifted.
+Across many companies experimenting with AI agents today, you still find a stone-age habit: "skills" live as Markdown snippets copy-pasted seven times across chat threads—no version tag, no security scan, no declared service scope, and no way to tell who broke one line, when it went live, or which active AI employees it poisoned.
 
-Software engineering ended that stone-age chaos over decades through package registries, artifact signing, and modern semantic versioning. Agent tooling keeps forgetting the same iron rule: **any workflow instruction capable of triggering real API writes is executable software, and deserves a real software lifecycle.**
+**(Analogy)** Running production agents off loose chat snippets is like operating a chemical plant from handwritten sticky notes taped onto unmarked valves—no batch number, no purity assay, no Material Safety Data Sheet, and no idea what mixed until smoke pours from the manifold. Software engineering escaped that chaos over decades through package registries, artifact signing, and semantic versioning. Agent ecosystems keep forgetting the exact same law: **any instruction capable of triggering real API writes, cash flows, or customer notices is executable software, not prose—and it must obey a real software lifecycle.**
 
-That single conviction is why **`Ornn`** (`v0.18.0` Alpha, live at `https://ornn.chrono-ai.fun`) and the public catalog **`nyx-skills`** exist.
+**(Position)** Tap the idol of glossy "prompt marketplaces" with a hammer and they ring hollow: pretty thumbnails and star ratings prove zero operational safety. Machine-grade infrastructure is measured in security scans, immutable versions, explicit scope manifests, and automated test suites. That conviction is the sole reason **`Ornn`** (`v0.18.0` Alpha, live at `https://ornn.chrono-ai.fun`) and the public catalog **`nyx-skills`** exist.
 
-## Five-Stage Skill Lifecycle: From OpenAPI Generation to AgentSeal Audits
+## Five-Stage Skill Lifecycle: From OpenAPI Synthesis to AgentSeal Assays
 
-`Ornn` is not a cosmetic "prompt marketplace." It is an **agent-facing skill-lifecycle API** forcing every operational skill through five disciplined stages:
+`Ornn` was built from day one as an **agent-facing skill-lifecycle API**. Every operational skill passes through five non-optional industrial gates before an agent can pull it:
 
 ::: {.figure src="ch03-ornn-skill-lifecycle"}
-**`Ornn` (`v0.18.0`) Five-Stage Skill Lifecycle.** Every skill flows from authoring or OpenAPI synthesis through AgentSeal security scanning, immutable version freezing addressed via dist-tags, explicit `NyxID` service binding, and audited agent pulls—backed by `134` OpenAPI operations (109 paths), `286` test files, and `163` public skills in `nyx-skills`.
+**`Ornn` (`v0.18.0`) Five-Stage Skill Lifecycle.** Every skill flows from authoring or OpenAPI synthesis through AgentSeal security scanning, immutable version freezing addressed via dist-tags, explicit `NyxID` service binding, and audited agent pulls—backed by `134` OpenAPI operations (`109` paths), `286` test files, and `163` public skills in `nyx-skills@25ef75934d`.
 :::
 
-Trace each stage from source to production execution:
+Trace how those five gates turn loose prompts into sealed, auditable cartridges:
 
-1. **Author or Synthesize**: Builders author structured `SKILL.md` packages directly or synthesize starter skills straight from OpenAPI specs and source repositories, validated against strict format schemas (`validateformat`, `getformatschema`).
-2. **AgentSeal Security Scanning**: Before distribution, every release runs through security auditing (`rescanskillversionagentseal`, `triggerskillaudit`) flagging unsafe commands, leaked literals, and anomalous outbound hooks, preserving a permanent version-linked audit trail.
-3. **Immutable Versioning & Dist-Tags**: Full version history, cross-version diffs (`diffskillversions`), explicit deprecation controls (`setskillversiondeprecation`), and dist-tags eliminate silent live-prompt drift.
-4. **`NyxID` Service Binding**: A skill never carries plaintext keys; it declares only which scoped `NyxID` services it requires (`setskillnyxidservice`), making permission review transparent before install.
-5. **Closure Pulls & Telemetry**: Via official TypeScript (`v0.4.0`) and Python (`v0.2.0`) SDKs, cloud `CMA`, local `heca`, and `NyxBot` pull exact transitive skill closures (`getskillclosure`) with clean usage telemetry.
+1. **Author or Synthesize**: Builders write structured `SKILL.md` packages by hand or synthesize starter skills straight from OpenAPI specs and source repositories, validated against strict format schemas (`validateformat`, `getformatschema`).
+2. **AgentSeal Security Scanning**: Before distribution, every release clears static and policy auditing (`rescanskillversionagentseal`, `triggerskillaudit`) flagging unsafe commands, leaked literals, and anomalous outbound hooks, permanently binding the audit record to that exact version.
+3. **Immutable Versioning & Dist-Tags**: Exact semantic versions, cross-version diffs (`diffskillversions`), explicit deprecation controls (`setskillversiondeprecation`), and dist-tags kill silent live-prompt drift.
+4. **`NyxID` Service Binding**: A skill package carries zero plaintext keys; it declares strictly which scoped `NyxID` services it requires (`setskillnyxidservice`), making permission review legible before installation.
+5. **Closure Pulls & Telemetry**: Using official TypeScript (`v0.4.0`) and Python (`v0.2.0`) SDKs, cloud `CMA`, local `heca`, and `NyxBot` fetch exact transitive skill closures (`getskillclosure`) while emitting full pull and usage telemetry.
 
 ## Verified Engineering Footprint: 187k LOC and 286 Test Files
 
-Measured directly from `ChronoAIProject/Ornn` and `ChronoAIProject/nyx-skills` (November 19–27, 2026):
+There is one blunt bench test for separating a real forge from a launch-week mockup: ignore the feature bullets and count the typed surface and test suite. Measured directly from `ChronoAIProject/Ornn` and `ChronoAIProject/nyx-skills` through **November 27, 2026**:
 
-| Dimension | Verified Reading | Source Repo & Date |
+| Dimension | Verified Reading | Source & Audit Date |
 | --- | --- | --- |
-| Live Version & Tags | `v0.18.0` Alpha (`28` release tags, baseline 2026-09-17) | `ChronoAIProject/Ornn@v0.18.0` & `ornn.chrono-ai.fun/version.json` (live check 2026-11-27) |
-| API Surface | **134 OpenAPI operations** across 109 paths (including 58 `/api/v1/admin/` operations and 3 health endpoints) | `ChronoAIProject/Ornn@v0.18.0` `specBuilder.ts` (verified 2026-11-27) |
-| Codebase Size | **187k LOC** (`186,526` lines TS/TSX/JS/Python) | `ChronoAIProject/Ornn@88f2d78` (2026-11-19) |
-| Automated Test Suite | **286 test files** (`*.test.*`, `*.spec.*`, `test_*.py`) | `ChronoAIProject/Ornn@88f2d78` (2026-11-19) |
-| Official SDKs | TypeScript `v0.4.0` · Python `v0.2.0` | `sdk/typescript/package.json` & `sdk/python/pyproject.toml` |
-| Public Skills Catalog | **163 public skills** (`SKILL.md`), **164 plugin entries**, **1 skillset** | `ChronoAIProject/nyx-skills@d77457c` (2026-11-27) |
+| Live Version & Tags | `v0.18.0` Alpha (`28` release tags, baseline 2026-09-17) | `Ornn@v0.18.0` & `/version.json` (2026-11-27) |
+| OpenAPI Surface | **134 OpenAPI operations** across `109` paths (including `58` `/api/v1/admin/` ops and `3` health probes) | `Ornn@v0.18.0` `specBuilder.ts` (2026-11-27) |
+| Codebase Size | **187k LOC** (`186,526` lines TS/TSX/JS/Python) | `Ornn@88f2d78` (2026-11-19) |
+| Automated Test Suite | **286 test files** (`*.test.*`, `*.spec.*`, `test_*.py`) | `Ornn@88f2d78` (2026-11-19) |
+| Official SDKs | TypeScript `v0.4.0` · Python `v0.2.0` | `sdk/typescript` & `sdk/python` |
+| Public Skills Catalog | **163 public skills** (`SKILL.md`), **164 plugin entries**, **1 skillset** (AgentSeal-scanned) | `nyx-skills@25ef75934d` (2026-11-27) |
 
-There is a blunt sanity test for engineering maturity: ignore the pitch list and count how much test machinery surrounds the code. 286 test files and 163 inspectable public skills show `Ornn` was built as machine-grade infrastructure, not a one-week demo.
+Put this forge under live operational tempo and the mechanical gap between ad-hoc prompt copy-pasting and real artifact delivery snaps into sharp relief. Copy-pasted playbooks rarely fail on day one—they die of **silent drift**, with one finance or hospitality guardrail fixed in a chat window while half the active fleet still runs last Tuesday's text. `nyx-skills` kills manual lag with **hourly automated Ornn mirror reconciliation**: over the last 14 days alone, **`347` commits** across finance, HR, hospitality, and adversarial-review skills swept continuously through scanning, versioning, and mirror convergence, leaving one hard invariant—authoritative Git source and served `Ornn` packages stay mechanically locked in sync every hour without human babysitting.
 
-With secrets locked inside `NyxID` and workflows versioned inside `Ornn`, Layer 3 answers the next hard question: **where do these agents actually execute 24/7—in zero-ops cloud sandboxes, and in high-concurrency local workspaces?** Chapters 4 and 5 dissect our twin runtimes: `CMA` and `heca`.
+Even an hourly-synced registry still fractures if operators must hand-edit pinned baseline skills on every single specialist. **`NyxID#2432`** (`86` files) seals pin drift right at the platform seam: administrators curate up to **`8` built-in public Ornn skills** via `/admin/assistant/system-skills`, guarded by a **revision fence** that isolates concurrent admin edits; on every owner turn across `NyxBot` and every specialist, `NyxID` injects that exact fenced baseline automatically—propagating company-wide rules on the very next turn with zero manual pin drift.
+
+The boundary stays just as candid: `Ornn` remains explicitly labeled **`v0.18.0` Alpha**, with external third-party publisher review pipelines still expanding rather than pretending to be a frozen `v1.0` registry.
+
+Secrets are locked inside `NyxID`; workflows are version-frozen inside `Ornn`. Layer 3 now answers the unavoidable operational question: **where do these zero-secret, skill-equipped agents actually execute around the clock—both in zero-ops cloud sandboxes and across high-concurrency local workspaces?** Chapters 4 and 5 open our twin runtimes: `CMA` and `heca`.

@@ -26,6 +26,70 @@
   } else { body }
 }
 
+// Shared by all PDF variants. Inline boxes keep code segments intact even at
+// punctuation where Typst's default line breaking would split them.
+#let table-raw(code, cell, width) = {
+  // The cell's layout region includes its horizontal padding.
+  let inset = cell.inset
+  let inset = if type(inset) == dictionary { inset.left + inset.right } else { 2 * inset }
+  let width = calc.max(0pt, width * (100% - inset.ratio) - inset.length.to-absolute())
+  // Pandoc's tr-code-break can supply hints before the table width is known.
+  let source = code.text.replace("\u{200B}", "")
+  let run(value) = text(hyphenate: false, value)
+  let emit-piece(piece) = {
+    if piece == "" { return none }
+    let body = run(piece)
+    let natural = measure(body).width
+    if natural <= width {
+      box(body)
+    } else if piece.clusters().len() <= 14 {
+      // Give the unscaled text its natural width inside the scaled box.
+      box(fit-width(box(width: natural + 0.01pt, body), width))
+    } else {
+      let start = 0
+      let subpieces = ()
+      for boundary in piece.matches(regex("[a-z0-9][A-Z]|[A-Z][A-Z][a-z]")) {
+        // The first matched character is always one ASCII byte.
+        let end = boundary.start + 1
+        subpieces.push(piece.slice(start, end))
+        start = end
+      }
+      subpieces.push(piece.slice(start))
+      for (i, subpiece) in subpieces.enumerate() {
+        if i > 0 { run("\u{200B}") }
+        let subbody = run(subpiece)
+        if measure(subbody).width <= width {
+          box(subbody)
+        } else {
+          run(subpiece.clusters().join("\u{200B}"))
+        }
+      }
+    }
+  }
+  for part in source.matches(regex("\\s+|\\S+")) {
+    let token = part.text
+    if token.starts-with(regex("\\s")) {
+      run(token)
+    } else if measure(run(token)).width <= width or token.clusters().len() <= 14 {
+      emit-piece(token)
+    } else {
+      let start = 0
+      if token.contains(regex("\\p{L}")) {
+        for delimiter in token.matches(regex("[/_@:.\\-]+")) {
+          let next = token.slice(delimiter.end)
+          if next == "" or (delimiter.text.ends-with(regex("[.\\-]")) and next.starts-with(regex("\\d"))) {
+            continue
+          }
+          emit-piece(token.slice(start, delimiter.end))
+          run("\u{200B}")
+          start = delimiter.end
+        }
+      }
+      emit-piece(token.slice(start))
+    }
+  }
+}
+
 #let breakable-name(name) = name.replace(".", ".\u{200B}").replace("/", "/\u{200B}").replace("_", "_\u{200B}")
 #let title-text(s) = s.replace(regex("\\s*=\\s*"), "\u{A0}=\u{A0}")
 #let horizontalrule = block(above: 1em, below: 1em, align(center, line(length: 25%, stroke: 0.4pt + rule)))
@@ -192,8 +256,8 @@
   show table: set align(start)
   show table: set par(justify: false, first-line-indent: 0pt, leading: 0.35em)
   show table: it => block(stroke: (top: 0.6pt + ink, bottom: 0.6pt + ink), inset: (y: 3pt), {
-    show raw.where(block: false): code => text(code.text.clusters().join("\u{200B}"))
     show table.cell: cell => layout(size => {
+      show raw.where(block: false): code => table-raw(code, cell, size.width)
       show math.equation.where(block: false): equation => fit-width(equation, size.width)
       cell
     })

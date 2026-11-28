@@ -156,5 +156,52 @@ for (const sc of ['read', 'write', 'inject', 'revoke', 'meter']) {
 }
 await D(() => localStorage.removeItem('tr-lang'));
 
+await page.click('#revokeHandle');
+await settle(page);
+const revoked = await state();
+check('revoking rejects the old revision without exposing a key', revoked.reload.denied && revoked.reload.handleRevision !== revoked.reload.eligibilityRevision && revoked.exposed.nyxid === 0 && (await page.textContent('#hudSub')).includes('403 REVOKED'));
+
+await page.setViewportSize({ width: 390, height: 844 });
+await settle(page);
+const layout = await D(() => {
+  // Observe one real canvas frame. The stamp's filled rectangle includes its border and padding.
+  const ctx = document.querySelector('#cv').getContext('2d');
+  const { roundRect, fillRect, fillText } = ctx;
+  let lastBox, lastFill, panel, badge, inGrid = false;
+  const obstacles = [];
+  ctx.roundRect = function (x, y, w, h, ...radii) {
+    lastBox = { x, y, w, h };
+    if (inGrid) obstacles.push(lastBox);
+    return roundRect.call(this, x, y, w, h, ...radii);
+  };
+  ctx.fillRect = function (x, y, w, h) {
+    lastFill = { x, y, w, h };
+    return fillRect.call(this, x, y, w, h);
+  };
+  ctx.fillText = function (s, x, y) {
+    if (s.startsWith('NyxID PROXY')) panel = lastBox;
+    if (s === 'ring-v1' || s.startsWith('AUDIT ')) {
+      const m = this.measureText(s);
+      obstacles.push({ x: x - m.actualBoundingBoxLeft, y: y - m.actualBoundingBoxAscent,
+        w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent });
+      inGrid = s === 'ring-v1';
+    }
+    if (s === 'DENIED ✕') badge = lastFill;
+    return fillText.call(this, s, x, y);
+  };
+  try {
+    window.NYXID_VAULT_DEBUG.set({ scenario: 'revoke', t: 70, k: 55 });
+    window.TRV.kit.flush();
+  } finally {
+    Object.assign(ctx, { roundRect, fillRect, fillText });
+  }
+  return { panel, badge, obstacles };
+});
+const { panel, badge, obstacles } = layout;
+check('390px revoke: DENIED stays inside the proxy, clear of the revision, 55 keys and audit count',
+  panel && badge && obstacles.length === 57 && badge.x >= panel.x && badge.y >= panel.y
+  && badge.x + badge.w <= panel.x + panel.w && badge.y + badge.h <= panel.y + panel.h
+  && obstacles.every(r => r.x + r.w < badge.x || badge.x + badge.w < r.x || r.y + r.h < badge.y || badge.y + badge.h < r.y));
+
 check('no page error, console error or failed request (page-specific part)', T.errors.length === 0, T.errors.slice(0, 4).join(' | '));
 await T.finish();

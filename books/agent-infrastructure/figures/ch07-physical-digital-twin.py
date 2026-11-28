@@ -32,20 +32,16 @@ def draw(fig):
     for x, y in [(37, 125), (155, 81), (293, 128)]:
         digital.line(x, y, x, y - 32, "dim", 1.2)
     digital.polyline([(37, 93), (155, 49), (293, 96)], "dim", 1.2)
-    for fraction in (0.25, 0.5, 0.75):
-        left = (37 + 118 * fraction, 125 - 44 * fraction)
-        right = (175 + 118 * fraction, 180 - 52 * fraction)
-        digital.line(*left, *right, "cyan", 1, opacity=0.4)
-    digital.text(165, 112, t("chrono-metaverse", "chrono-metaverse"), size=16,
-                 weight=600, anchor="middle", halo=True)
-    digital.text(165, 132, t("三维空间", "3D space"), size=14, anchor="middle", halo=True)
+    digital.text(165, 134, "chrono-metaverse", size=16, weight=600, anchor="middle")
+    digital.text(165, 157, t("三维空间", "3D space"), size=14, anchor="middle")
     digital.arrow(165, 219, 165, 181, "cyan", 1.8)
-    digital.box(165, 220, t("chrono-cd", "chrono-cd"), "blue",
-                note=t("GitOps 部署", "GitOps deployment"), note_mono=False, w=244, size=16, note_size=14)
+    digital.rect(43, 220, 244, 61, color="blue", fill="blue", fill_opacity=0.10, rx=6, width=1.6)
+    digital.text(165, 244, "chrono-cd", size=16, color="blue", anchor="middle")
+    digital.text(165, 270, t("GitOps 部署", "GitOps deployment"), size=14, color="dim", anchor="middle")
 
     physical.polygon([(28, 117), (165, 52), (302, 117), (302, 204), (28, 204)],
                      "blue", color="blue", fill_opacity=0.08)
-    physical.text(165, 91, t("Living with AI", "Living with AI"), size=16, weight=600, anchor="middle")
+    physical.text(165, 104, t("Living with AI", "Living with AI"), size=16, weight=600, anchor="middle")
     sensor = physical.box(91, 118, t("传感器", "Sensors"), "edge", w=120, size=14)
     actuator = physical.box(239, 118, t("执行器", "Actuators"), "edge", w=120, size=14)
     home = physical.box(165, 168, t("Home Assistant", "Home Assistant"), "blue", w=190, size=14)

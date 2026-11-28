@@ -25,6 +25,9 @@ en = "ChronoAI Full-Stack Product & Security Architecture"
 zh = "逐层拆解智能体如何经由 NyxID 获得授权、由 Ornn 管理技能、在 CMA 与 heca 中运行，再接受 chrono-harness 的变更判定。结合线上应用与实体家庭场景，说明各层的信任边界、安全约束与交付成熟度。"
 en = "Trace how agents receive scoped access through NyxID, manage skills with Ornn, run in CMA and heca, and submit changes to chrono-harness for evaluation. Examples from online applications and connected homes show where each layer places its trust boundaries and how far it has progressed toward deployment."
 
+[theme]
+polarity = "daylight"
+
 [outputs]
 html = true
 # PDF 版本：screen = 深色霓虹屏幕版；print = 白底印刷版；academic = A4 单栏学术预印本（可选）。

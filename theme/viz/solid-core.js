@@ -108,7 +108,7 @@ export function createScene(o) {
   }
   let dark = true;
   function lighting() {
-    const s = col(pal().stage || '#02040a');
+    const s = col(pal().stage || '#0a101b');
     dark = 0.2126 * s.r + 0.7152 * s.g + 0.0722 * s.b < 0.3;
     ambient.intensity = dark ? 0.55 : 1.2;
     keyLight.intensity = dark ? 2.6 : 1.9;
@@ -190,7 +190,7 @@ export function createScene(o) {
     });
     const geo = it.mesh.geometry, pos = new Float32Array(n * 3), uv = new Float32Array(n * 2), cl = new Float32Array(n * 4);
     let opaque = true;
-    const stops = (s.colors || [s.color || pal().cyan || '#19f0ff']).map(col);
+    const stops = (s.colors || [s.color || pal().cyan || '#7dd3fc']).map(col);
     const [lo, hi] = s.range || [0, 1];
     for (let j = 0; j <= g.nv; j++) for (let i = 0; i <= g.nu; i++) {
       const q = j * (g.nu + 1) + i, p = g.pts[q];
@@ -235,7 +235,7 @@ export function createScene(o) {
     });
     const pos = [], cl = [], seg = [], faceOf = [];
     m.faces.forEach((f, fi) => {
-      const c = col((s.colors && s.colors[fi]) || s.color || pal().violet || '#9d8cff');
+      const c = col((s.colors && s.colors[fi]) || s.color || pal().violet || '#a78bfa');
       for (let t = 1; t + 1 < f.length; t++) {
         for (const q of [f[0], f[t], f[t + 1]]) { const p = m.vertices[q]; pos.push(p[0], p[1], p[2]); cl.push(c.r, c.g, c.b); }
         faceOf.push(fi);
@@ -248,7 +248,7 @@ export function createScene(o) {
     const mat = it.mesh.material; mat.opacity = s.alpha == null ? 1 : s.alpha; mat.transparent = mat.opacity < 1; mat.depthWrite = mat.opacity >= 1;
     it.edges.visible = s.edges !== false;
     setAttr(it.edges.geometry, 'position', new Float32Array(seg), 3); it.edges.geometry.setDrawRange(0, seg.length / 3); it.edges.geometry.computeBoundingSphere();
-    it.edges.material.color = col(s.edges || pal().ink || '#d4efff'); it.edges.material.opacity = 0.35;
+    it.edges.material.color = col(s.edges || pal().ink || '#f1f5f9'); it.edges.material.opacity = 0.35;
     sc.faces += pos.length / 9;
     register(it.mesh, s, { id: s.id || k, faceOf }, mat.opacity >= 1);
     return it.mesh;
@@ -275,7 +275,7 @@ export function createScene(o) {
       return { obj, back, front };
     });
     it.obj.position.set(c[0], c[1], c[2]); it.obj.scale.setScalar(r);
-    const k0 = col(s.color || pal().cyan || '#19f0ff'), a = s.alpha == null ? 0.07 : s.alpha;
+    const k0 = col(s.color || pal().cyan || '#7dd3fc'), a = s.alpha == null ? 0.07 : s.alpha;
     for (const [m, f] of [[it.back.material, 0.6], [it.front.material, 1]]) { m.color = k0.clone(); m.opacity = a * f; m.userData.rim.value = Math.min(1, (s.rim == null ? 0.5 : s.rim) * f); }
     return it.obj;
   };
@@ -338,7 +338,7 @@ export function createScene(o) {
     const p = s.close ? pts.concat([pts[0]]) : pts, rad = (s.width || 1.2) * sc.lw * 0.5 / sc.unit, a = s.alpha == null ? 1 : s.alpha;
     for (const run of s.dash && s.dash.length ? dashes(p, s.dash) : [p]) {
       const g = tubeGeo(run, rad, 6);
-      if (g) addLoose(new T.Mesh(g, flatMat(s.color || pal().cyan || '#19f0ff', a))).renderOrder = a < 1 ? 2 : 0;
+      if (g) addLoose(new T.Mesh(g, flatMat(s.color || pal().cyan || '#7dd3fc', a))).renderOrder = a < 1 ? 2 : 0;
     }
   };
   /** A lit tube along a curve, with a key. s: width (pixels) or r (world units), color, alpha, glow (0.2: how much of
@@ -346,7 +346,7 @@ export function createScene(o) {
   sc.tube = (k, pts, s) => {
     s = s || {};
     if (pts.length < 2) return null;
-    const c0 = s.color || pal().cyan || '#19f0ff';
+    const c0 = s.color || pal().cyan || '#7dd3fc';
     const it = take(k, 'tube', () => ({ obj: new T.Mesh(new T.BufferGeometry(), litMat(c0, 1, 0.2)) }));
     const rad = s.r || (s.width || 3) * sc.lw * 0.5 / sc.unit;
     it.obj.geometry.dispose(); it.obj.geometry = tubeGeo(pts, rad, s.sides || 10);
@@ -377,7 +377,7 @@ export function createScene(o) {
       const back = dot(sub(lerp(run[i - 1], run[i], 0.5), c), D) < 0;
       const g = tubeGeo([run[i - 1], run[i]], (s.width || 1.2) * sc.lw * 0.5 / sc.unit, 6);
       const a = (s.alpha == null ? 1 : s.alpha) * (back ? (s.back == null ? 0.28 : s.back) : 1);
-      const mat = flatMat(s.color || pal().cyan || '#19f0ff', a);
+      const mat = flatMat(s.color || pal().cyan || '#7dd3fc', a);
       if (back) { mat.depthTest = false; mat.depthWrite = false; }
       addLoose(new T.Mesh(g, mat)).renderOrder = back ? 4 : 0;
     }
@@ -387,7 +387,7 @@ export function createScene(o) {
     s = s || {};
     const d = sub(b, a), L = len(d);
     if (L < 1e-9) return;
-    const u = scale(d, 1 / L), h = Math.min((s.headSize || 10) * sc.lw / sc.unit, L * 0.6), w = (s.width || 2) * sc.lw / sc.unit, c = s.color || pal().cyan || '#19f0ff', al = s.alpha == null ? 1 : s.alpha;
+    const u = scale(d, 1 / L), h = Math.min((s.headSize || 10) * sc.lw / sc.unit, L * 0.6), w = (s.width || 2) * sc.lw / sc.unit, c = s.color || pal().cyan || '#7dd3fc', al = s.alpha == null ? 1 : s.alpha;
     const base = sub(b, scale(u, s.head === false ? 0 : h));
     sc.line([a, base], { color: c, width: s.width || 2, dash: s.dash, alpha: al });
     if (s.head === false) return;
@@ -398,14 +398,14 @@ export function createScene(o) {
   /** A small lit ball at p, r in pixels; key names it among the marks. */
   sc.bead = (p, s) => {
     s = s || {};
-    const m = addLoose(new T.Mesh(new T.SphereGeometry(1, 20, 12), litMat(s.color || pal().amber || '#ffc83d', s.alpha == null ? 1 : s.alpha, s.glow == null ? 0.55 : s.glow)));
+    const m = addLoose(new T.Mesh(new T.SphereGeometry(1, 20, 12), litMat(s.color || pal().amber || '#fbbf24', s.alpha == null ? 1 : s.alpha, s.glow == null ? 0.55 : s.glow)));
     m.position.set(p[0], p[1], p[2]); m.scale.setScalar((s.r || 5) * sc.lw / sc.unit);
     marks.push({ key: s.key, p, kind: 'bead' });
   };
   /** A ring marker at p lying on a surface of normal s.normal (default: facing the viewer); r in pixels. */
   sc.ring = (p, s) => {
     s = s || {};
-    const r = (s.r || 5) * sc.lw / sc.unit, m = addLoose(new T.Mesh(new T.TorusGeometry(r, r * 0.28, 8, 28), litMat(s.color || pal().violet || '#9d8cff', s.alpha == null ? 1 : s.alpha, 0.5)));
+    const r = (s.r || 5) * sc.lw / sc.unit, m = addLoose(new T.Mesh(new T.TorusGeometry(r, r * 0.28, 8, 28), litMat(s.color || pal().violet || '#a78bfa', s.alpha == null ? 1 : s.alpha, 0.5)));
     const n = unit(s.normal || D);
     m.position.set(p[0], p[1], p[2]); m.quaternion.setFromUnitVectors(new T.Vector3(0, 0, 1), new T.Vector3(n[0], n[1], n[2]));
     marks.push({ key: s.key, p, kind: 'ring' });

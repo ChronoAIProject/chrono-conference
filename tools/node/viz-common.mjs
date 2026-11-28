@@ -12,7 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { bookDirs, hiddenBy, hiddenError, hidePatterns } from './slides-lib.mjs';
+import { bookDirs, hiddenBy, hiddenError, hidePatterns, parseToml } from './slides-lib.mjs';
 import { readTrureturingLock } from './trureturing-lock.mjs';
 import { blobUrl, parseGid, sourceUrl } from './lean-gid.mjs';
 
@@ -61,6 +61,16 @@ export function resolveBook(arg) {
   for (const dir of cands) if (fs.existsSync(path.join(dir, 'book.toml'))) return { slug: path.basename(dir), dir };
   const known = listBooks().map((b) => b.slug).join(', ') || 'none';
   throw new Error(`no book "${arg}" (expected a slug under books/ or a directory with book.toml; known: ${known})`);
+}
+
+/** The book's visualization palette, defaulting to the dark screen palette. */
+export function readBookPolarity(bookDir) {
+  const file = path.join(bookDir, 'book.toml');
+  if (!fs.existsSync(file)) return 'deep-space';
+  const polarity = parseToml(fs.readFileSync(file, 'utf8'), file).theme?.polarity;
+  if (polarity === undefined) return 'deep-space';
+  if (polarity === 'daylight' || polarity === 'deep-space') return polarity;
+  throw new Error(`${file}: theme.polarity must be "daylight" or "deep-space"`);
 }
 
 export const vizDir = (book) => path.join(book.dir, 'viz');
@@ -119,6 +129,18 @@ export function pinLinks(html, lock) {
     if (!url) return tag;
     const safe = url.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
     return ATTR('href').test(tag) ? tag.replace(ATTR('href'), ` href="${safe}"`) : tag.replace(/^<a\b/, `<a href="${safe}"`);
+  });
+}
+
+const HTML_ROOT_RE = /<html(?=[\s>])(?:[^>"']|"[^"]*"|'[^']*')*>/i;
+const POLARITY_ATTR_RE = /(\s+data-(?:polarity|tr-palette)(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?(?=[\s>]))|"[^"]*"|'[^']*'/gi;
+
+/** Remove stale palette attributes from the opening root tag and apply the book palette. */
+export function applyPolarityAttrs(html, polarity) {
+  const attrs = polarity === 'daylight' ? ' data-polarity="daylight" data-tr-palette="paper"' : '';
+  return html.replace(HTML_ROOT_RE, (tag) => {
+    const root = tag.replace(POLARITY_ATTR_RE, (match, polarityAttr) => polarityAttr ? '' : match);
+    return root.slice(0, -1) + attrs + '>';
   });
 }
 

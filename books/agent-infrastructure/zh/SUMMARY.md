@@ -9,5 +9,5 @@
 - [第五章 heca：本地优先的多供应方编排画布](ch05-heca-orchestration.md)
 - [第六章 chrono-harness 与 sshx：用可执行判官取代一厢情愿的提示词](ch06-chrono-harness-governance.md)
 - [第七章 屏幕之外：chrono-metaverse、chrono-cd 与 Living with AI](ch07-metaverse-cd-and-physical-ai.md)
-- [附录 A 全企业仓库全景地图](appendix-a-enterprise-repo-atlas.md)
+- [附录 A 六大关联组织仓库全景地图](appendix-a-enterprise-repo-atlas.md)
 - [附录 B 信任边界、硬开关与成熟度矩阵](appendix-b-security-and-readiness.md)

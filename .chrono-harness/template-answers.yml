@@ -1,6 +1,17 @@
-_commit: v0.1.45
+_commit: v0.1.52
 _src_path: gh:chrono-harness/chrono-harness-copier
-dev_branch: ''
+check_landed_dependencies: false
+dependabot_auto_merge: true
+dependabot_updates:
+-   directory: /
+    groups:
+        github-actions:
+            patterns:
+            - '*'
+    package-ecosystem: github-actions
+    schedule:
+        interval: daily
+dev_branch: "dev"
 features:
 - cache
 - ci
@@ -24,19 +35,16 @@ features:
 - worktree
 - verus
 generate_check: false
-github_templates: true
+github_templates: false
 local_check_retention: false
-native_check_keep_seconds: 0
 manage_roadmap: true
+native_check_keep_seconds: 0
 project_guide: ''
 publisher_workflow: Release
 release_plan: {}
-repository: ''
+repository: "ChronoAIProject/chrono-conference"
 required_check: check
+roadmap_actions_lock: false
+strict_host_adapters: {}
 tool_install_channels: preview
 tool_versions: {}
-host_release_artifact: {"version": "0.1.4", "linux_sha256": "e955b761c6d1819c3710faef74746ecac84d9ee5e9a051c09a67aafe82cde595", "macos_sha256": "01b08b48bf432e21c8f53be131f9320b008a125344bc8b56a4b30a3fd9c3ae0b"}
-install_resolver_artifact: {"version": "0.1.4", "linux_sha256": "e955b761c6d1819c3710faef74746ecac84d9ee5e9a051c09a67aafe82cde595", "macos_sha256": "01b08b48bf432e21c8f53be131f9320b008a125344bc8b56a4b30a3fd9c3ae0b"}
-dependabot_auto_merge: true
-dependabot_updates:
-- {"package-ecosystem": "github-actions", "directory": "/", "schedule": {"interval": "daily"}, "groups": {"github-actions": {"patterns": ["*"]}}}

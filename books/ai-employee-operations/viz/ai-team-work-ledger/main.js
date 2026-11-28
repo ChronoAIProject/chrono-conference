@@ -1,12 +1,15 @@
-/* OPS//LEDGER · AI 团队工作台账: six AI employees and the work ledger of the launch, as of 2026-11-25.
+/* OPS//LEDGER · AI 团队工作台账: nine AI employee roles and the work ledger of the launch, as of 2026-11-27
+   (nyxid-nyxbot-trials@df5ef47): the six core small-business roles, then three standalone watchdog / ops roles.
      board      one row per role, one cell per defined workflow: cyan = ready / demonstrable, violet = held behind a human
-                gate or on the roadmap; the rail fires stress probes at the 20 gated workflows, each one escalates
+                gate or on the roadmap; a divider separates the six core roles from the three standalone ones; the rail
+                fires stress probes at the 18 gated workflows, each one escalates
      gate       Donna's press gate and Finance's refund gate: an in-bank question is answered with its source, an
                 off-script question and an unverified refund escalate to the human queue; unauthorized commitments 0
-     countdown  the six-gate runbook from Dec 4 10:00 SGT (wave 1 booking open) to Dec 18 (replay clips and pilot
-                follow-up), with the roles on duty at each milestone
-     merchant   the board filtered, one role after another, down to the two-role merchant starter pack
-   The numbers are those of the table in chapter 1; every sum and share on the page is computed from them.
+     countdown  the runbook from the Nov 27 full-flow rehearsal (done) through the Dec 16 formal Discord dress rehearsal
+                to the Dec 17 16:00 SGT broadcast and Dec 18 replay clips, with the roles on duty at each milestone
+     merchant   the board filtered, step by step, down to the two-role merchant starter pack
+   The per-role counts are those of the 2026-11-27 audit; every sum and share on the page is computed from them and
+   checked against the audit's declared totals.
    Colours: cyan = ready / answered, violet = human gate and queue, amber = the current probe, request, date or the
    selected role. Read-only probe for the browser suite: OPS_LEDGER_DEBUG. */
 (() => {
@@ -15,37 +18,56 @@
   const $ = (id) => document.getElementById(id);
   const T_MAX = 100;
 
-  /* ---------- the ledger (chapter 1, as of 2026-11-25) ---------- */
+  /* ---------- the ledger (nyxid-nyxbot-trials@df5ef47, 2026-11-27) ---------- */
   const ROLES = [
-    { id: 'donna', ready: 13, total: 15, name: ['礼宾 Donna', 'Concierge Donna'], short: ['Donna', 'Donna'], merchant: ['前台礼宾', 'Front-desk concierge'],
-      line: ['库外媒体追问、未核验承诺、紧急公关表态强制升级人工', 'off-bank press probes, unverified promises and crisis statements escalate to humans'] },
-    { id: 'finance', ready: 24, total: 28, name: ['财务 NyxBot Finance', 'Finance · NyxBot Finance'], short: ['财务', 'Finance'], merchant: ['财务台账', 'Finance ledger'],
-      line: ['对外打款与税务申报须人工签批；目前只在内部与演示账本验证，外部付费商户 0', 'outgoing payments and tax filings need human sign-off; internal and demo ledgers only, 0 external paying merchants'] },
-    { id: 'autox', ready: 11, total: 13, name: ['社媒 Auto-X', 'Social Auto-X'], short: ['Auto-X', 'Auto-X'],
-      line: ['重大官宣与争议回复须人工终审', 'major announcements and sensitive replies need human approval'] },
-    { id: 'community', ready: 9, total: 11, name: ['社群运营', 'Community Ops'], short: ['社群', 'Community'],
-      line: ['已执行 75 次彩排动作；品牌危机与封禁申诉交人类裁决', '75 rehearsal actions executed; brand crises and ban appeals stay with humans'] },
-    { id: 'hr', ready: 15, total: 20, name: ['HR 模板包', 'HR Pack'], short: ['HR', 'HR'],
-      line: ['薪酬定级、正式 Offer 与解雇面谈严格归人', 'compensation bands, formal offers and terminations stay strictly human'] },
-    { id: 'admin', ready: 5, total: 10, name: ['行政助手', 'Admin'], short: ['行政', 'Admin'],
-      line: ['法律合同签章、实体印章与高额采购严格归人', 'legal contracts, corporate seals and major procurement stay strictly human'] }
+    { id: 'donna', core: true, ready: 14, total: 15, name: ['礼宾 Donna', 'Concierge Donna'], short: ['Donna', 'Donna'], merchant: ['前台礼宾', 'Front-desk concierge'],
+      line: ['11-27 签到提醒已核验，唯一待办是电话线路（con-14）；库外媒体追问、未核验承诺与危机表态强制升级人工', 'check-in reminder verified on Nov 27, the one open item is the phone line (con-14); off-bank press probes, unverified promises and crisis statements escalate to humans'] },
+    { id: 'finance', core: true, ready: 24, total: 28, name: ['财务 NyxBot Finance', 'Finance · NyxBot Finance'], short: ['财务', 'Finance'], merchant: ['财务台账', 'Finance ledger'],
+      line: ['对外打款与税务申报须人工签批，另有 17 项财务事务永久归人；干净账户第二遍安装实测 34 分钟（10 次确认、8 次审批）；外部付费商户 0', 'outgoing payments and tax filings need human sign-off, and 17 more finance items stay human for good; a clean-account install took 34 min on the second pass (10 confirmations, 8 approvals); 0 external paying merchants'] },
+    { id: 'autox', core: true, ready: 12, total: 14, name: ['社媒 Auto-X', 'Social Auto-X'], short: ['Auto-X', 'Auto-X'],
+      line: ['11-25 第一条经 Lark 审批的帖子发上 ChronoAI LinkedIn 公司页；11-26 一份紧急视频简报 55 分钟端到端跑完、零人工步骤；重大官宣与争议回复须人工终审', 'Nov 25: the first Lark-approved post went live on the ChronoAI LinkedIn company page; Nov 26: an urgent video brief ran end to end in 55 min with zero human steps; major announcements and sensitive replies need human approval'] },
+    { id: 'community', core: true, ready: 10, total: 12, name: ['社群运营', 'Community Ops'], short: ['社群', 'Community'],
+      line: ['技能 4.36 与 reply-queue 0.3 上线；品牌危机与封禁申诉交人类裁决', 'skill 4.36 and reply-queue 0.3 in service; brand crises and ban appeals stay with humans'] },
+    { id: 'hr', core: true, ready: 14, total: 20, name: ['HR 模板包', 'HR Pack'], short: ['HR', 'HR'],
+      line: ['严格证据审计查出 PDF 读取的短板，如实从 15 / 20 下调到 14 / 20；薪酬定级、正式 Offer 与解雇面谈严格归人', 'a strict evidence audit caught PDF-reading limits and honestly moved it down from 15 / 20 to 14 / 20; compensation bands, formal offers and terminations stay strictly human'] },
+    { id: 'admin', core: true, ready: 8, total: 10, name: ['行政助手', 'Admin'], short: ['行政', 'Admin'],
+      line: ['从 5 / 10 升到 8 / 10；法律合同签章、实体印章与高额采购严格归人', 'up from 5 / 10 to 8 / 10; legal contracts, corporate seals and major procurement stay strictly human'] },
+    { id: 'sentiment', core: false, ready: 6, total: 7, name: ['#7 舆情监测员', '#7 Sentiment Monitor'], short: ['舆情', 'Sentiment'],
+      line: ['每小时巡检 Discord 与 X，每天 22:15 出日报；还有 1 项未打通；危机表态交人工', 'hourly Discord and X monitoring and a daily digest at 22:15; 1 workflow not yet ready; crisis statements go to humans'] },
+    { id: 'kb', core: false, ready: 3, total: 3, name: ['#8 知识库维护员', '#8 KB Maintainer'], short: ['知识库', 'KB'],
+      line: ['每天两次整理经核验的 FAQ；只收录有出处的答案', 'curates the verified FAQ twice a day; only answers with a source go in'] },
+    { id: 'retro', core: false, ready: 11, total: 11, name: ['#9 复盘分析员', '#9 Retrospective Analyst'], short: ['复盘', 'Retro'],
+      line: ['2026-11-27 新增：每周一抽检 40 项、对标 7 个同行 X 账号、核算每个智能体的单位成本，给其余 AI 员工打分', 'added on 2026-11-27: every Monday it samples 40 items, benchmarks 7 peer X accounts and computes each agent\'s unit cost, auditing the rest of the AI team'] }
   ];
   const BYID = Object.fromEntries(ROLES.map((r) => [r.id, r]));
+  const CORE = ROLES.filter((r) => r.core);
   const sum = (rs, k) => rs.reduce((s, r) => s + r[k], 0);
   const pct = (a, b) => (b ? (100 * a) / b : 0);
+  /** The totals the audit declares; the page's own sums of the rows above must meet them (the ✓ of the key readout). */
+  const DECLARED = { core: [82, 99], all: [102, 120] };
   const STARTER = ['donna', 'finance'];
-  const FILTER_ORDER = ['admin', 'hr', 'community', 'autox'];          // removed one after another on the merchant rail
+  // removed step after step on the merchant rail: the three standalone roles together, then four core roles one by one
+  const FILTER_STEPS = [['sentiment', 'kb', 'retro'], ['admin'], ['hr'], ['community'], ['autox']];
+  const FILTER_SPAN = T_MAX / FILTER_STEPS.length;
+  const SEP = 0.7;   // height of the divider between the core and the standalone rows, in rows
   /** The gated workflows, enumerated role by role: [role, index within the role's gated cells]. */
   const GATED = ROLES.flatMap((r) => Array.from({ length: r.total - r.ready }, (_, i) => [r.id, i]));
 
   /* ---------- the countdown: milestones on the rail (not evenly spaced: the broadcast day gets room) ---------- */
+  // the watchdogs (Sentiment, KB) keep their daily rounds throughout; the Retrospective Analyst works on Mondays, so it is
+  // on duty in the spans that hold one (Nov 30, Dec 7, Dec 14) and for the review after the broadcast; HR keeps to its
+  // own background workflows. Which roles light up is illustrative.
   const MILESTONES = [
-    { t: 0, at: Date.UTC(2026, 11, 4, 2), day: '12-04 10:00 SGT', rel: 'T-13', label: ['第一波 · 订座开放', 'Wave 1 · booking open'], active: ['donna', 'autox', 'community'] },
-    { t: 18, at: Date.UTC(2026, 11, 7, 16), day: '12-08', rel: 'T-9', label: ['第二波 · 媒体包', 'Wave 2 · press kit'], active: ['donna', 'autox', 'community'] },
-    { t: 34, at: Date.UTC(2026, 11, 10, 16), day: '12-11', rel: 'T-6', label: ['压测与演练', 'Load & rehearsal drill'], active: ['donna', 'autox', 'community', 'admin'] },
-    { t: 52, at: Date.UTC(2026, 11, 14, 16), day: '12-15', rel: 'T-2', label: ['全程彩排与冻结', 'Dress rehearsal & freeze'], active: ['donna', 'finance', 'autox', 'community', 'admin'] },
-    { t: 70, at: Date.UTC(2026, 11, 17, 8), day: '12-17 16:00 SGT', rel: 'T-0', label: ['线上直播', 'Live broadcast'], active: ['donna', 'finance', 'autox', 'community', 'admin'] },
-    { t: 100, at: Date.UTC(2026, 11, 18, 8), day: '12-18', rel: 'T+1', label: ['回放切片与试点跟进', 'Replay clips & pilot follow-up'], active: ['finance', 'autox', 'community'] }
+    { t: 0, at: Date.UTC(2026, 10, 26, 16), day: '11-27', rel: 'T-20', label: ['全流程彩排 · 11 / 12 一次通过（已完成）', 'Full-flow rehearsal · 11 / 12 first try (done)'], active: ['donna', 'autox', 'community', 'admin', 'sentiment', 'kb', 'retro'],
+      note: ['11-27 全流程彩排（trials#225 / #226）：12 段中 11 段一次通过，主持人只动了 4 次手；Donna 13 次订座与签到操作 0 丢单，中位 29 s（最长 63 s）。唯一的真故障：Lark 内部群问答在网关队列里卡了 65–70 分钟（NyxID#2534），改用定时一次性任务，3.0 分钟送达 7 个主题的主持人提纲。', 'The Nov 27 full-flow rehearsal (trials#225 / #226): 11 of 12 stages passed on the first try and the human lead acted only 4 times; Donna ran 13 booking and check-in operations with 0 dropped, median 29 s (max 63 s). The one real failure: a Lark internal-group Q&A request sat in the gateway queue for 65–70 minutes (NyxID#2534); a scheduled one-shot task bypassed it and delivered the 7-topic host sheet in 3.0 minutes.'] },
+    { t: 16, at: Date.UTC(2026, 11, 4, 2), day: '12-04 10:00 SGT', rel: 'T-13', label: ['第一波 · 订座开放', 'Wave 1 · booking open'], active: ['donna', 'autox', 'community', 'sentiment', 'kb', 'retro'] },
+    { t: 28, at: Date.UTC(2026, 11, 7, 16), day: '12-08', rel: 'T-9', label: ['第二波 · 媒体包', 'Wave 2 · press kit'], active: ['donna', 'autox', 'community', 'sentiment', 'kb'] },
+    { t: 38, at: Date.UTC(2026, 11, 10, 16), day: '12-11', rel: 'T-6', label: ['压测与直播演练', 'Load & stream drill'], active: ['donna', 'autox', 'community', 'admin', 'sentiment', 'kb', 'retro'] },
+    { t: 50, at: Date.UTC(2026, 11, 14, 16), day: '12-15', rel: 'T-2', label: ['产物冻结', 'Artifact freeze'], active: ['donna', 'finance', 'autox', 'community', 'admin', 'sentiment', 'kb'] },
+    { t: 60, at: Date.UTC(2026, 11, 15, 16), day: '12-16', rel: 'T-1', label: ['Discord 正式彩排', 'Formal Discord dress rehearsal'], active: ['donna', 'finance', 'autox', 'community', 'admin', 'sentiment', 'kb'],
+      note: ['12-16 在 Discord 走一遍正式彩排：12-15 先冻结全部产物，30 题记者问答库在此之前装进 Donna 的生产表。', 'Dec 16: the formal dress rehearsal on Discord. Every artifact is frozen on Dec 15, and the 30-question press bank is loaded into Donna\'s production sheet before the rehearsal.'] },
+    { t: 70, at: Date.UTC(2026, 11, 17, 8), day: '12-17 16:00 SGT', rel: 'T-0', label: ['线上直播', 'Live broadcast'], active: ['donna', 'finance', 'autox', 'community', 'admin', 'sentiment', 'kb'] },
+    { t: 100, at: Date.UTC(2026, 11, 18, 8), day: '12-18', rel: 'T+1', label: ['回放切片与试点跟进', 'Replay clips & pilot follow-up'], active: ['finance', 'autox', 'community', 'sentiment', 'kb', 'retro'] }
   ];
   const SGT = 8 * 3600e3;
   function dateAt(t) {
@@ -70,16 +92,19 @@
   function filterAt(t) {
     const w = {};
     for (const r of ROLES) w[r.id] = 1;
-    FILTER_ORDER.forEach((id, i) => { w[id] = clamp(1 - (t - 25 * i) / 25, 0, 1); });
+    FILTER_STEPS.forEach((ids, i) => { const v = clamp(1 - (t - FILTER_SPAN * i) / FILTER_SPAN, 0, 1); for (const id of ids) w[id] = v; });
     const visible = ROLES.filter((r) => w[r.id] > 1e-9).map((r) => r.id);
     return { w, visible };
   }
   function model(t) {
     const out = { scene: S.scene, t };
-    const all = { ready: sum(ROLES, 'ready'), total: sum(ROLES, 'total') };
+    const all = { ready: sum(ROLES, 'ready'), total: sum(ROLES, 'total') }, core = { ready: sum(CORE, 'ready'), total: sum(CORE, 'total') };
     out.all = { ...all, pct: pct(all.ready, all.total), gated: all.total - all.ready };
-    out.roles = ROLES.map((r) => ({ id: r.id, ready: r.ready, total: r.total, pct: pct(r.ready, r.total) }));
-    // stress probes of the board: probe i targets gated workflow i mod 20; every probe escalates
+    out.core = { ...core, pct: pct(core.ready, core.total), gated: core.total - core.ready };
+    out.declared = { core: DECLARED.core.slice(), all: DECLARED.all.slice(),
+      met: core.ready === DECLARED.core[0] && core.total === DECLARED.core[1] && all.ready === DECLARED.all[0] && all.total === DECLARED.all[1] };
+    out.roles = ROLES.map((r) => ({ id: r.id, core: r.core, ready: r.ready, total: r.total, pct: pct(r.ready, r.total) }));
+    // stress probes of the board: probe i targets gated workflow i mod 18; every probe escalates
     const fired = S.scene === 'board' ? Math.floor(t + 1e-9) : 0;
     out.probes = { fired, escalated: fired, unauthorized: 0 };
     // the gate: each request is pending, being checked, answered or escalated
@@ -88,7 +113,7 @@
     for (const [k, q] of Object.entries(REQ)) gate[k] = S.scene !== 'gate' || (k === 'press' && !S.press) || (k === 'refund' && !S.refund) ? 'off' : status(q);
     out.gate = { ...gate, escalated: ['press', 'refund'].filter((k) => gate[k] === 'escalated').length, answered: gate.inbank === 'answered' ? 1 : 0, unauthorized: 0 };
     const d = dateAt(t);
-    out.date = { text: d.text, milestone: MILESTONES[d.milestone].rel, day: MILESTONES[d.milestone].day, active: d.active.slice() };
+    out.date = { text: d.text, milestone: MILESTONES[d.milestone].rel, day: MILESTONES[d.milestone].day, active: d.active.slice(), of: ROLES.length };
     const f = filterAt(S.scene === 'merchant' ? t : 0), vis = ROLES.filter((r) => f.visible.includes(r.id));
     out.view = { visible: f.visible, ready: sum(vis, 'ready'), total: sum(vis, 'total'), pct: pct(sum(vis, 'ready'), sum(vis, 'total')) };
     const st = ROLES.filter((r) => STARTER.includes(r.id));
@@ -140,9 +165,12 @@
   function drawBoard(ctx, bx, t, M, merchant) {
     const thumb = TRV.thumbMode, narrow = bx.w < 520, fs = clamp(bx.w / 60, 9, 12.5);
     const w = merchant ? filterAt(t).w : Object.fromEntries(ROLES.map((r) => [r.id, 1]));
-    const totalH = thumb ? 0 : clamp(bx.h * 0.13, 26, 40), rowsH = bx.h - totalH - (thumb ? 0 : 8);
-    const weight = ROLES.reduce((s, r) => s + (STARTER.includes(r.id) ? 1 : w[r.id]), 0), unit = rowsH / Math.max(weight, 1e-9);
-    const vis = ROLES.filter((r) => unit * (STARTER.includes(r.id) ? 1 : w[r.id]) >= 0.5), rd = sum(vis, 'ready'), tt = sum(vis, 'total');
+    const wOf = (r) => (STARTER.includes(r.id) ? 1 : w[r.id]);
+    const totalH = thumb ? 0 : clamp(bx.h * 0.12, 26, 40), rowsH = bx.h - totalH - (thumb ? 0 : 8);
+    // the divider between the six core rows and the three standalone ones leaves with the standalone rows
+    const sepK = Math.max(0, ...ROLES.filter((r) => !r.core).map(wOf)), sepW = SEP * sepK;
+    const weight = ROLES.reduce((s, r) => s + wOf(r), 0) + sepW, unit = rowsH / Math.max(weight, 1e-9);
+    const vis = ROLES.filter((r) => unit * wOf(r) >= 0.5), rd = sum(vis, 'ready'), tt = sum(vis, 'total');
     const labelW = thumb ? bx.w * 0.06 : clamp(bx.w * (narrow ? 0.26 : 0.24), 70, 220), maxTotal = Math.max(...ROLES.map((r) => r.total));
     // the readout column is at least as wide as its widest text; the total goes on two lines when one would squeeze the cells
     const tw = (s, size, wt) => { ctx.font = `${wt ? wt + ' ' : ''}${size}px ${face('data')}`; return ctx.measureText(s).width; };
@@ -157,9 +185,24 @@
     const cellsX = bx.x + labelW, cellsW = bx.w - labelW - ratioW - (thumb ? 8 : CLEAR);
     const pitch = cellsW / maxTotal;
     geo.rows = {};
-    let y = bx.y;
+    let y = bx.y, divided = false;
     for (const r of ROLES) {
-      const k = STARTER.includes(r.id) ? 1 : w[r.id], h = unit * k;
+      if (!r.core && !divided) {
+        divided = true;
+        const sh = unit * sepW;
+        if (sh >= 0.5) {
+          const sy = y + sh / 2, a = merchant ? 0.25 + 0.75 * sepK : 1;
+          ctx.globalAlpha = a; ctx.strokeStyle = P.lineHot; ctx.lineWidth = 1; ctx.setLineDash([4, 3]);
+          ctx.beginPath(); ctx.moveTo(bx.x, sy); ctx.lineTo(bx.x + bx.w, sy); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+          if (!thumb && sh > fs * 1.05) {
+            const cr = sum(CORE, 'ready'), ct = sum(CORE, 'total');
+            const words = L(`↑ 六核心岗 ${cr} / ${ct} = ${fix(pct(cr, ct), 1)}% · ↓ 三个独立值守岗`, `↑ six core roles ${cr} / ${ct} = ${fix(pct(cr, ct), 1)}% · ↓ three standalone roles`);
+            text(ctx, fit(ctx, words, bx.w - 12, fs - 1.5), bx.x + 6, sy, P.dim, { size: fs - 1.5, halo: true, alpha: a });
+          }
+          y += sh;
+        }
+      }
+      const k = wOf(r), h = unit * k;
       if (h < 0.5) continue;
       const alpha = merchant && !STARTER.includes(r.id) ? 0.25 + 0.75 * k : 1, rowBox = { x: bx.x, y, w: bx.w, h };
       geo.rows[r.id] = rowBox;
@@ -169,7 +212,9 @@
       if (h > fs * 1.4) {
         const nm = merchant && r.merchant ? L(...r.merchant) : narrow ? L(...r.short) : L(...r.name);
         text(ctx, fit(ctx, nm, labelW - 10, fs, 'display', 600), bx.x + 4, cy, P.ink, { size: fs, face: 'display', weight: 600, alpha });
-        text(ctx, `${r.ready} / ${r.total}`, bx.x + bx.w - 4, cy - (h > fs * 2.8 ? fs * 0.55 : 0), P.ink, { size: fs, align: 'right', alpha });
+        const audited = r.id === 'hr';
+        const ratio = (audited ? '↓ ' : '') + r.ready + ' / ' + r.total;
+        text(ctx, ratio, bx.x + bx.w - 4, cy - (h > fs * 2.8 ? fs * 0.55 : 0), audited ? P.magenta : P.ink, { size: fs, align: 'right', alpha });
         if (h > fs * 2.8) text(ctx, `${fix(pct(r.ready, r.total), 1)}%`, bx.x + bx.w - 4, cy + fs * 0.7, P.dim, { size: fs - 1.5, align: 'right', alpha });
       }
       for (let i = 0; i < r.total; i++) {
@@ -177,6 +222,11 @@
         rrect(ctx, cell, Math.min(2.5, cw / 3));
         if (ready) { ctx.fillStyle = TRV.alpha(P.cyan, thumb ? 0.85 : 0.7); ctx.fill(); }
         else { ctx.fillStyle = TRV.alpha(P.violet, 0.16); ctx.fill(); ctx.strokeStyle = TRV.alpha(P.violet, 0.9); ctx.lineWidth = 1; ctx.stroke(); }
+        if (r.id === 'hr' && i === r.ready) {
+          ctx.strokeStyle = P.magenta;
+          ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(cell.x, cell.y + cell.h); ctx.lineTo(cell.x + cell.w, cell.y); ctx.stroke();
+        }
       }
       // the human line: between the last ready cell and the first gated one
       const sx = cellsX + r.ready * pitch;
@@ -197,7 +247,8 @@
     if (thumb) return;
     // the total of what is on the board
     const bar = { x: cellsX, y: bx.y + bx.h - totalH * 0.55, w: cellsW, h: Math.max(8, totalH * 0.4) }, ty = bar.y + bar.h / 2, rx = bx.x + bx.w - 4;
-    text(ctx, fit(ctx, merchant && vis.length === 2 ? L('起步包合计', 'STARTER TOTAL') : L('合计', 'TOTAL'), labelW - 10, fs, 'display', 600), bx.x + 4, ty, P.ink, { size: fs, face: 'display', weight: 600 });
+    const totalWord = merchant && vis.length === 2 ? L('起步包合计', 'STARTER TOTAL') : vis.length === ROLES.length ? L('九岗合计', 'NINE ROLES') : L('合计', 'TOTAL');
+    text(ctx, fit(ctx, totalWord, labelW - 10, fs, 'display', 600), bx.x + 4, ty, P.ink, { size: fs, face: 'display', weight: 600 });
     rrect(ctx, bar, 3); ctx.fillStyle = TRV.alpha(P.violet, 0.2); ctx.fill(); ctx.strokeStyle = TRV.alpha(P.violet, 0.7); ctx.lineWidth = 1; ctx.stroke();
     ctx.fillStyle = TRV.alpha(P.cyan, 0.75); ctx.fillRect(bar.x, bar.y, bar.w * rd / tt, bar.h);
     if (oneLine) text(ctx, sumLine, rx, ty, P.ink, { size: fs, weight: 600, align: 'right' });
@@ -262,6 +313,17 @@
 
   /* ---------- scene: the countdown ---------- */
   function drawCountdown(ctx, bx, t, M) {
+    if (M.date.milestone === 'T-20' && !TRV.thumbMode) {
+      // Measured durations share one scale; the calendar below has its own axis.
+      const h = 40, x = bx.x + 5, w = bx.w - 10, y = bx.y + 22;
+      const split = w * 65 / 68;
+      text(ctx, L('11/12 首次通过 · NyxID#2534', '11/12 first pass · NyxID#2534'), x, y - 12, P.ink, { size: 11, weight: 600 });
+      ctx.fillStyle = P.magenta; ctx.fillRect(x, y, split - 2, 4);
+      ctx.fillStyle = P.cyan; ctx.fillRect(x + split, y, w - split, 4);
+      text(ctx, L('排队 ≥65 分钟', 'Queue ≥65 min'), x, y + 12, P.magenta, { size: 10 });
+      text(ctx, L('绕行 3 分钟', 'Bypass 3 min'), x + w, y + 12, P.cyan, { size: 10, align: 'right' });
+      bx = { ...bx, y: bx.y + h + 5, h: bx.h - h - 5 };
+    }
     const fs = clamp(bx.w / 60, 9, 12), axisH = fs * 3.4, labelW = clamp(bx.w * 0.2, 56, 170), gx0 = bx.x + labelW, gx1 = bx.x + bx.w - 10;
     const X = (u) => gx0 + (gx1 - gx0) * u / T_MAX, laneH = (bx.h - axisH) / ROLES.length;
     geo.rows = {};
@@ -279,14 +341,22 @@
     });
     const ay = bx.y + bx.h - axisH + fs * 0.8;
     ctx.strokeStyle = P.lineHot; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(gx0, ay); ctx.lineTo(gx1, ay); ctx.stroke();
-    MILESTONES.forEach((m, k) => {
-      const x = X(m.t), cur = M.date.milestone === m.rel;
+    /* eight gates share the rail, so each tick carries only T-n and the date (the current gate's name is in the header);
+       the current tick is labelled first and a label that would touch one already written is left out */
+    const ticks = MILESTONES.map((m, k) => {
+      const x = X(m.t), cur = M.date.milestone === m.rel, align = k === 0 ? 'left' : k === MILESTONES.length - 1 ? 'right' : 'center';
+      ctx.font = `600 ${fs - 1.5}px ${face('data')}`;
+      const lw = Math.max(ctx.measureText(m.rel).width, ctx.measureText(m.day.slice(0, 5)).width), x0 = align === 'left' ? x : align === 'right' ? x - lw : x - lw / 2;
       ctx.strokeStyle = cur ? P.amber : P.lineHot; ctx.lineWidth = cur ? 2 : 1; ctx.beginPath(); ctx.moveTo(x, bx.y); ctx.lineTo(x, ay + 4); ctx.globalAlpha = cur ? 0.9 : 0.5; ctx.stroke(); ctx.globalAlpha = 1;
-      /* six gates share the rail, so each tick carries only T-n and the date; the current gate's name is in the header */
-      const align = k === 0 ? 'left' : k === MILESTONES.length - 1 ? 'right' : 'center';
-      text(ctx, m.rel, x, ay + fs * 0.95, cur ? P.amber : P.dim, { size: fs - 1.5, align, weight: cur ? 600 : 400 });
-      text(ctx, m.day.slice(0, 5), x, ay + fs * 2.15, cur ? P.ink : P.dim, { size: fs - 1.5, align, weight: cur ? 600 : 400 });
+      return { m, x, cur, align, x0, x1: x0 + lw };
     });
+    const written = [];
+    for (const tk of [...ticks.filter((q) => q.cur), ...ticks.filter((q) => !q.cur)]) {
+      if (written.some((q) => tk.x0 < q.x1 + 4 && q.x0 < tk.x1 + 4)) continue;
+      written.push(tk);
+      text(ctx, tk.m.rel, tk.x, ay + fs * 0.95, tk.cur ? P.amber : P.dim, { size: fs - 1.5, align: tk.align, weight: tk.cur ? 600 : 400 });
+      text(ctx, tk.m.day.slice(0, 5), tk.x, ay + fs * 2.15, tk.cur ? P.ink : P.dim, { size: fs - 1.5, align: tk.align, weight: tk.cur ? 600 : 400 });
+    }
     const nx = X(t);
     ctx.strokeStyle = P.amber; ctx.lineWidth = 2; ctx.shadowColor = P.amber; ctx.shadowBlur = 10; ctx.beginPath(); ctx.moveTo(nx, bx.y); ctx.lineTo(nx, ay); ctx.stroke(); ctx.shadowBlur = 0;
     dot(ctx, nx, ay, 5, P.amber, 12);
@@ -331,17 +401,17 @@
   function plotRail(cv) {
     const t = clock.t;
     if (S.scene === 'countdown') {
-      const g = kit.plot(cv, { x: [0, T_MAX], y: [0, 6.5], pad: [30, 12, 8, 20] }), pts = [];
+      const g = kit.plot(cv, { x: [0, T_MAX], y: [0, ROLES.length + 0.5], pad: [30, 12, 8, 20] }), pts = [];
       for (let u = 0; u <= T_MAX; u += 0.5) pts.push([u, dateAt(u).active.length]);
-      g.axes({ yTicks: [0, 3, 6], xTicks: MILESTONES.map((m) => [m.t, m.rel]) });
+      g.axes({ yTicks: [0, 3, 6, 9], xTicks: MILESTONES.filter((m) => ['T-20', 'T-6', 'T-0', 'T+1'].includes(m.rel)).map((m) => [m.t, m.rel]) });
       g.line(pts, P.cyan, { width: 2.2 }); g.vline(t, P.amber, { alpha: 0.8 });
-      $('pBTitle').textContent = L('沿日期：在岗的岗位数', 'Along the dates: roles on duty'); $('pBMeta').textContent = `${dateAt(t).active.length} / 6`;
+      $('pBTitle').textContent = L('沿日期：在岗的岗位数', 'Along the dates: roles on duty'); $('pBMeta').textContent = `${dateAt(t).active.length} / ${ROLES.length}`;
       return;
     }
     if (S.scene === 'merchant') {
-      const g = kit.plot(cv, { x: [0, T_MAX], y: [75, 90], pad: [34, 12, 8, 20] }), pts = [];
+      const g = kit.plot(cv, { x: [0, T_MAX], y: [80, 90], pad: [34, 12, 8, 20] }), pts = [];
       for (let u = 0; u <= T_MAX; u += 0.5) { const f = filterAt(u), vs = ROLES.filter((r) => f.visible.includes(r.id)); pts.push([u, pct(sum(vs, 'ready'), sum(vs, 'total'))]); }
-      g.axes({ yTicks: [75, 80, 85, 90], xTicks: [0, 25, 50, 75, 100] });
+      g.axes({ yTicks: [80, 85, 90], xTicks: [0, 20, 40, 60, 80, 100] });
       g.line(pts, P.cyan, { width: 2.2 }); g.vline(t, P.amber, { alpha: 0.8 });
       const M = model(t);
       $('pBTitle').textContent = L('沿筛选：留在板上的覆盖率', 'Along the filter: coverage of what stays'); $('pBMeta').textContent = `${fix(M.view.pct, 1)}%`;
@@ -368,9 +438,10 @@
     const t = clock.t, M = model(t), sel = BYID[S.selected];
     let big, sub;
     if (S.scene === 'board') {
-      big = L(`六岗账本 · ${M.all.ready} / ${M.all.total} = ${fix(M.all.pct, 1)}%`, `Six-role ledger · ${M.all.ready} / ${M.all.total} = ${fix(M.all.pct, 1)}%`);
+      big = L(`六核心岗 ${M.core.ready} / ${M.core.total} = ${fix(M.core.pct, 1)}% · 九岗 ${M.all.ready} / ${M.all.total} = ${fix(M.all.pct, 1)}%`,
+        `Six core ${M.core.ready} / ${M.core.total} = ${fix(M.core.pct, 1)}% · nine roles ${M.all.ready} / ${M.all.total} = ${fix(M.all.pct, 1)}%`);
       sub = M.probes.fired ? L(`${M.probes.fired} 次越权探测全部升级到人工 · 越权承诺 0`, `${M.probes.fired} out-of-bounds probes, all escalated to humans · 0 unauthorized commitments`)
-        : L(`截至 2026-11-25 · ${M.all.gated} 项刻意留在人工闸门或路线图后`, `as of 2026-11-25 · ${M.all.gated} held behind human gates or on the roadmap`);
+        : L(`截至 2026-11-27 · ${M.all.gated} 项刻意留在人工闸门或路线图后 · HR 经证据审计下调为 14 / 20`, `as of 2026-11-27 · ${M.all.gated} held behind human gates or on the roadmap · HR audited down to 14 / 20`);
     } else if (S.scene === 'gate') {
       big = L(`升级闸门 · 已升级 ${M.gate.escalated}`, `Escalation gate · ${M.gate.escalated} escalated`);
       sub = M.gate.press === 'escalated' || M.gate.refund === 'escalated' ? L('库内问题带出处回答；库外与未核验的一律交人工 · 越权承诺 0', 'bank questions answered with source; off-bank and unverified go to humans · 0 unauthorized')
@@ -379,25 +450,28 @@
     } else if (S.scene === 'countdown') {
       const m = MILESTONES.find((x) => x.rel === M.date.milestone);
       big = `${M.date.milestone} · ${M.date.text}`;
-      sub = L(`${m.label[0]} · 在岗 ${M.date.active.length} / 6 岗`, `${m.label[1]} · ${M.date.active.length} / 6 roles on duty`);
+      sub = L(`${m.label[0]} · 在岗 ${M.date.active.length} / ${ROLES.length} 岗`, `${m.label[1]} · ${M.date.active.length} / ${ROLES.length} roles on duty`);
     } else {
       big = L(`商户视图 · ${M.view.ready} / ${M.view.total} = ${fix(M.view.pct, 1)}%`, `Merchant view · ${M.view.ready} / ${M.view.total} = ${fix(M.view.pct, 1)}%`);
       sub = M.view.visible.length === 2 ? L('起步包：前台礼宾 + 财务台账 · 外部付费商户尚为 0', 'starter pack: front-desk concierge + finance ledger · 0 external paying merchants yet')
-        : L(`六岗筛到两岗：还剩 ${M.view.visible.length} 岗`, `filtering six roles down to two: ${M.view.visible.length} left`);
+        : L(`九岗筛到两岗：还剩 ${M.view.visible.length} 岗`, `filtering nine roles down to two: ${M.view.visible.length} left`);
     }
     $('hudBig').textContent = big; $('hudSub').textContent = sub;
     const leg = LEGEND[S.scene].map(([cl, zh, en]) => `<span><i class="sw ${cl}"></i>${L(zh, en)}</span>`).join('');
     if ($('legend')._h !== leg) { $('legend').innerHTML = leg; $('legend')._h = leg; }
     const k = S.scene === 'merchant' ? M.view : M.all;
-    $('roKeyLabel').textContent = S.scene === 'merchant' ? L('留在板上的就绪 / 定义流程', 'Ready / defined on the board') : L('六岗就绪 / 定义流程', 'Six roles: ready / defined');
-    $('roKey').innerHTML = `<span class="c-cy">${k.ready}</span> / ${k.total} = ${fix(pct(k.ready, k.total), 1)}% <span class="nummark">${S.scene === 'merchant' ? '' : k.ready === 77 && k.total === 97 ? '✓' : ''}</span>`;
-    $('roKeySub').textContent = S.scene === 'merchant' ? (M.view.visible.length === 2 ? L('两岗起步包', 'two-role starter pack') : L('筛选中', 'filtering')) : L(`另有 ${M.all.gated} 项在人工闸门或路线图后`, `${M.all.gated} more behind human gates or roadmap`);
+    $('roKeyLabel').textContent = S.scene === 'merchant' ? L('留在板上的就绪 / 定义流程', 'Ready / defined on the board') : L('九岗就绪 / 定义流程', 'Nine roles: ready / defined');
+    $('roKey').innerHTML = `<span class="c-cy">${k.ready}</span> / ${k.total} = ${fix(pct(k.ready, k.total), 1)}% <span class="nummark">${S.scene === 'merchant' ? '' : M.declared.met ? '✓' : '✗'}</span>`;
+    $('roKeySub').textContent = S.scene === 'merchant' ? (M.view.visible.length === 2 ? L('两岗起步包', 'two-role starter pack') : L('筛选中', 'filtering'))
+      : L(`六核心岗 ${M.core.ready} / ${M.core.total} = ${fix(M.core.pct, 1)}% · 另有 ${M.all.gated} 项在人工闸门或路线图后`, `six core roles ${M.core.ready} / ${M.core.total} = ${fix(M.core.pct, 1)}% · ${M.all.gated} more behind human gates or roadmap`);
     $('roRole').textContent = `${L(...sel.name)} · ${sel.ready} / ${sel.total} = ${fix(pct(sel.ready, sel.total), 1)}%`;
     $('roEsc').innerHTML = `${M.escalated} <small>${L('越权承诺 0', 'unauthorized 0')}</small>`;
     $('roGate').textContent = L(...sel.line);
     if (S.scene === 'countdown') { $('roXLabel').textContent = L('日期 · 在岗岗位', 'Date · roles on duty'); $('roX').textContent = `${M.date.text} · ${M.date.active.map((id) => L(...BYID[id].short)).join(', ')}`; }
     else { $('roXLabel').textContent = L('商户起步包（两岗）', 'Merchant starter pack (two roles)'); $('roX').textContent = `${M.starter.ready} / ${M.starter.total} = ${fix(M.starter.pct, 1)}% · ${L('外部付费商户 0', '0 external paying merchants')}`; }
-    $('roNote').textContent = L('点舞台上的岗位行切换选中；绿色只留给 Lean 定理，这里的对勾都是页面自己核对的算术。', 'Click a role row on the stage to select it; green is reserved for Lean theorems, so every tick here is the page\'s own arithmetic.');
+    const ms = S.scene === 'countdown' ? MILESTONES.find((x) => x.rel === M.date.milestone) : null;
+    $('roNote').textContent = ms && ms.note ? L(...ms.note)
+      : L('点舞台上的岗位行切换选中；绿色只留给 Lean 定理，这里的对勾都是页面自己核对的算术。', 'Click a role row on the stage to select it; green is reserved for Lean theorems, so every tick here is the page\'s own arithmetic.');
     $('pillReady').querySelector('strong').textContent = `${k.ready}/${k.total}`;
     $('pillGate').querySelector('strong').textContent = String(k.total - k.ready);
     $('pressBtn').setAttribute('aria-pressed', String(S.press)); $('refundBtn').setAttribute('aria-pressed', String(S.refund));
@@ -440,16 +514,16 @@
     merchant: { scene: 'merchant', selected: 'finance', press: true, refund: false, play: true, still: 100 }
   };
   const NOTES = {
-    'six-roles': ['截至 2026-11-25 的六岗账本：每一行是一位 AI 员工，青色格是已打通的流程，紫色格是刻意留在人工闸门后或仍在路线图上的流程。合计 77 / 97 = 79.4%，另外 20 项不自动化。', 'The six-role ledger as of 2026-11-25: each row is an AI employee, cyan cells are workflows that are ready, violet cells are workflows deliberately kept behind a human gate or still on the roadmap. In total 77 / 97 = 79.4%; the other 20 are not automated.'],
+    'six-roles': ['截至 2026-11-27（nyxid-nyxbot-trials@df5ef47）的账本：上方六行是六个小企业核心岗，合计 82 / 99 = 82.8%；分隔线下是三个独立值守岗：舆情 6 / 7、知识库 3 / 3、11-27 新增的复盘分析员 11 / 11，九岗合计 102 / 120 = 85.0%。墨黑格已打通，紫色格刻意留在人工闸门后或仍在路线图上。HR 在严格证据审计里从 15 / 20 下调到 14 / 20：账本不刷绿。', 'The ledger as of 2026-11-27 (nyxid-nyxbot-trials@df5ef47): the top six rows are the six core small-business roles, 82 / 99 = 82.8% together; below the divider sit three standalone roles: Sentiment 6 / 7, KB 3 / 3 and the Retrospective Analyst added on Nov 27, 11 / 11, for 102 / 120 = 85.0% across all nine. Charcoal cells are ready; violet cells are deliberately kept behind a human gate or still on the roadmap. A strict evidence audit moved HR down from 15 / 20 to 14 / 20: the ledger is not painted green.'],
     'donna-gate': ['两位来宾向 Donna 提问：库内的“几点开始”带着出处直接回答；库外的融资追问不临场编造，记录后升级到 contact@chrono-ai.fun 的人工队列。越权承诺 0。', 'Two guests ask Donna: "when does it start" is in the bank and is answered with its source; the off-bank question about financing is not improvised but recorded and escalated to the human queue at contact@chrono-ai.fun. Zero unauthorized commitments.'],
-    countdown: ['六道闸门：12-04 10:00 SGT 第一波订座开放、12-08 第二波媒体包、12-11 压测与演练、12-15 全程彩排与冻结、12-17 16:00 SGT 线上直播、12-18 回放切片与试点跟进；每个里程碑点亮当天在岗的岗位。直播时五岗在岗，HR 照常处理自己的后台流程。', 'Six gates: the Dec 4 10:00 SGT wave 1 booking open, the Dec 8 wave 2 press kit, the Dec 11 load and rehearsal drill, the Dec 15 dress rehearsal and freeze, the Dec 17 16:00 SGT live broadcast, and the Dec 18 replay clips and pilot follow-up; each milestone lights up the roles on duty. During the broadcast five roles are on duty, and HR keeps to its own background workflows.'],
-    merchant: ['把六岗逐一筛掉行政、HR、社群与 Auto-X，只留前台礼宾与财务台账两岗：37 / 43 = 86.0%。这是外部门店上手的起步视图；截至 2026-11-25 还没有外部付费商户上线。', 'Filter the six roles, removing Admin, HR, Community and Auto-X one after another, down to the front-desk concierge and the finance ledger: 37 / 43 = 86.0%. It is the starting view for an outside store; as of 2026-11-25 no external paying merchant is live yet.']
+    countdown: ['从 11-27 的全流程彩排（12 段中 11 段一次通过，已完成）出发，经 12-04 10:00 SGT 第一波订座开放、12-08 第二波媒体包、12-11 压测与直播演练、12-15 产物冻结、12-16 Discord 正式彩排，到 12-17 16:00 SGT 线上直播与 12-18 回放切片；每个里程碑点亮当天在岗的岗位。直播时九岗中七岗在岗：HR 照常处理后台流程，复盘分析员等到周一复盘。', 'From the Nov 27 full-flow rehearsal (11 of 12 stages passed on the first try; done), through the Dec 4 10:00 SGT wave 1 booking open, the Dec 8 wave 2 press kit, the Dec 11 load and stream drill, the Dec 15 artifact freeze and the Dec 16 formal Discord dress rehearsal, to the Dec 17 16:00 SGT live broadcast and the Dec 18 replay clips; each milestone lights up the roles on duty. During the broadcast seven of the nine roles are on duty: HR keeps to its background workflows and the Retrospective Analyst waits for its Monday review.'],
+    merchant: ['把九岗一步步筛掉：先是三个独立值守岗，再依次是行政、HR、社群与 Auto-X，只留前台礼宾与财务台账两岗：(14 + 24) / (15 + 28) = 38 / 43 = 88.4%。这是外部门店上手的起步视图；截至 2026-11-27 外部付费商户仍为 0，首批试点 12-17 开放申请。', 'Filter the nine roles step by step: first the three standalone roles, then Admin, HR, Community and Auto-X one after another, down to the front-desk concierge and the finance ledger: (14 + 24) / (15 + 28) = 38 / 43 = 88.4%. It is the starting view for an outside store; as of 2026-11-27 external paying merchants are still 0, and the first pilot cohort opens Dec 17.']
   };
   const FIGURE_NOTES = {
-    'six-roles': ['六岗合计 77 / 97 = 79.4%，紫色格留在人工闸门或路线图后。', 'Six roles: 77 / 97 = 79.4%; violet cells stay behind human gates or on the roadmap.'],
+    'six-roles': ['六核心岗 82 / 99 = 82.8%，九岗 102 / 120 = 85.0%；HR 经证据审计下调为 14 / 20。', 'Six core roles 82 / 99 = 82.8%, nine roles 102 / 120 = 85.0%; HR audited down to 14 / 20.'],
     'donna-gate': ['库内问题带出处回答，库外追问升级到人工。', 'In-bank questions are answered with sources; off-bank ones escalate to humans.'],
-    countdown: ['12-17 16:00 SGT 直播时，五岗同时在岗。', 'At the Dec 17 16:00 SGT broadcast, five roles are on duty.'],
-    merchant: ['筛到两岗起步包：37 / 43 = 86.0%。', 'Filtered to the two-role starter pack: 37 / 43 = 86.0%.']
+    countdown: ['12-17 16:00 SGT 直播时，九岗中七岗在岗。', 'At the Dec 17 16:00 SGT broadcast, seven of the nine roles are on duty.'],
+    merchant: ['筛到两岗起步包：38 / 43 = 88.4%。', 'Filtered to the two-role starter pack: 38 / 43 = 88.4%.']
   };
   let booting = true;
   function applyPreset(id) {
@@ -471,7 +545,7 @@
     get state() {
       const M = model(clock.t);
       return { scene: S.scene, t: clock.t, max: clock.max, playing: clock.playing, preset: cards.current, selected: S.selected, press: S.press, refund: S.refund,
-        roles: M.roles, all: M.all, view: M.view, starter: M.starter, probes: M.probes, gate: M.gate, date: M.date, escalated: M.escalated,
+        roles: M.roles, all: M.all, core: M.core, declared: M.declared, view: M.view, starter: M.starter, probes: M.probes, gate: M.gate, date: M.date, escalated: M.escalated,
         drawnRows: Object.keys(geo.rows || {}) };
     },
     /** The probes of the board scene at time t: which gated workflow each one targeted. */
@@ -480,7 +554,7 @@
     /** Viewport coordinates of the middle of a role's row on the stage (for pointer tests). */
     point: (id) => { const r = (geo.rows || {})[id], b = $('cv').getBoundingClientRect(); return r ? { x: b.left + r.x + r.w * 0.45, y: b.top + r.y + r.h / 2 } : null; }
   };
-  /** Cover: the six-role board mid-probe, the human lines visible on every row. */
+  /** Cover: the nine-role board mid-probe, the human lines visible on every row. */
   window.TRV_THUMB = () => { S.selected = 'donna'; setScene('board', 46.5); paint.now(); };
   cards.pick(cards.initial('six-roles'));   // a chapter may cite another card: ::: {.viz src="ai-team-work-ledger" preset="countdown"}
   booting = false;

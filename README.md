@@ -14,9 +14,9 @@
 
 | 卷次 | 目录 | 代号 | 中文书名 | English Title | 配套媒体 |
 | --- | --- | --- | --- | --- | --- |
-| I | [`books/launch-keynote/`](books/launch-keynote/) | `CHRONO//KEYNOTE` | 《面向未来的造物：2026 ChronoAI 线上发布会主书与全程讲稿》 | *Build for What Comes Next: The 2026 ChronoAI Virtual Launch Manifesto & Keynote* | 7 静图 · 2 交互实验室 · 2 影片 · 20 页主演讲稿 |
+| I | [`books/launch-keynote/`](books/launch-keynote/) | `CHRONO//KEYNOTE` | 《面向未来的造物：2026 ChronoAI 线上发布会主书与全程讲稿》 | *Build for What Comes Next: The 2026 ChronoAI Virtual Launch Manifesto & Keynote* | 7 静图 · 2 交互实验室 · 3 影片 · 20 页主演讲稿 |
 | II | [`books/agent-infrastructure/`](books/agent-infrastructure/) | `CHRONO//STACK` | 《整车工程：ChronoAI 全栈产品与安全架构手册》 | *The Complete Vehicle: ChronoAI Full-Stack Product & Security Architecture* | 7 静图 · 2 交互实验室 · 1 影片 · 16 页架构演讲稿 |
-| III | [`books/research-truth-engine/`](books/research-truth-engine/) | `OMEGA//TRUTH` | 《逻辑的棘轮：trureturing、全息观测站与开放数学前沿》 | *The Ratchet of Logic: trureturing, the Live Observatory, and the Open Math Frontier* | 6 静图 · 2 交互实验室 · 1 影片 · 16 页科研演讲稿 |
+| III | [`books/research-truth-engine/`](books/research-truth-engine/) | `OMEGA//TRUTH` | 《逻辑的棘轮：trureturing、全息观测站与开放数学前沿》 | *The Ratchet of Logic: trureturing, the Live Observatory, and the Open Math Frontier* | 7 静图 · 2 交互实验室 · 1 影片 · 16 页科研演讲稿 |
 | IV | [`books/ai-employee-operations/`](books/ai-employee-operations/) | `CHRONO//OPS` | 《把发布会交给 AI 员工：运营剧本、记者问答与商户上手手册》 | *Handing the Launch to AI Employees: Operations Playbook, Press Q&A, and Merchant Onboarding* | 6 静图 · 1 交互实验室 · 1 影片 · 14 页运营演讲稿 |
 
 ---
@@ -25,10 +25,10 @@
 
 本书库严格遵守 **Lean 内核验证 / 纸面证明与立场 / 开放问题** 三层边界：
 
-- **绿色 `LEAN ✓`**：仅授予 `trureturing.lock.json` 所钉 [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing) 提交上已冻结的 Lean 4 `theorem` 声明，点击直达源码行号，书末自动生成形式化验证账本。
+- **绿色 `LEAN ✓` 与蓝色零公理 `LEAN ✓`（`axioms: []`）**：仅授予 `trureturing.lock.json` 所钉 [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing) 提交 `548388cd` 上已冻结的 Lean 4 `theorem` 声明（全套四卷本共锚定 `25` 条冻结 Lean 4 定理，含蓝色零公理定理），点击直达源码行号，书末自动生成形式化验证账本。
 - **类比、立场与书面结果**：如“大模型是发动机、Agent 是整车”“定理挖掘是掘金”“边界与体”“驯服的红皇后”，文中一律显式标注为立场或类比，从不冒充形式定理。
 - **红色 `OPEN`**：未解决的前沿数学问题与尚未封闭的工程目标，如实标注边界与现状。
-- **对外口径**：主体为 ChronoAI Pte. Ltd.（新加坡），官网 [chrono-ai.fun](https://chrono-ai.fun/)，唯一对外联系邮箱 `contact@chrono-ai.fun`。不涉及资金规模，不渲染未核实结论。
+- **对外口径与品牌分立**：商业基础设施与发布会主体为 ChronoAI Pte. Ltd.（新加坡），官网 [chrono-ai.fun](https://chrono-ai.fun/)，唯一对外联系邮箱 `contact@chrono-ai.fun`；第三卷（`OMEGA//TRUTH`）及 `trureturing`、`Mathesis` 归属独立基础科研品牌 **The Omega Institute**（始终保留英文原名，与商业主体严格分立）。不涉及资金规模，不渲染未核实结论。
 
 ---
 

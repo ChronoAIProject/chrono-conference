@@ -1,58 +1,61 @@
 # 第八章 这不是招聘启事，这是一封邀请函
 
-绝大多数科技公司的发布会收尾，总爱放一页字体硕大、情绪廉价的「我们正在招聘！」，旁边配一张穿着同款卫衣的合影。
+绝大多数科技公司的发布会收尾，总爱甩出一页字号巨大、情绪廉价的「我们正在招聘！」，旁边配一张穿着统一卫衣的摆拍合影。
 
-我们不写招聘启事。招聘启事暗示的是「请来填补一张已经画好的组织架构图里的某颗螺丝钉」。而在执行贬值、判断加冕的年代，我们不需要螺丝钉——机器已经把螺丝拧得比谁都快。我们需要的是**自带眼光、讨厌敷衍、敢拿铁锤敲自己作品的同行者**。
+我们不写招聘启事。招聘启事潜台词是「组织架构图已经画死了，进来当一颗合尺寸的螺丝钉」。而在执行贬值、判断加冕的年代，我们不需要额外的人手拧螺丝——机器拧得比谁都快。我们需要的是**自带挑剔眼光、讨厌舞台剧、敢抄起铁锤先敲自己作品的同行者**。
 
-尼采在《查拉图斯特拉如是说》里写过：不要找追随者，要找同路人与共创者。用科学实验室的意象来说，我们同样只愿和一种人共事：**不管对方头衔多大，只要黑板上的推导漏了一个负号，当场就敢接过粉笔划掉重算的人。**
+尼采在《查拉图斯特拉如是说》里拒绝信徒，只呼唤同路人与共创者。用物理黑板前的规矩来说，我们只愿和一种人共事：**不管讲台前站着谁、头衔多大，只要推导里漏了一个负号，当场就敢接过粉笔划掉重算的人。**
 
-## 四扇此刻就敞开着的大门
+## 四扇此刻就敞开的大门
 
-你不需要先投一份石沉大海的简历才能了解 ChronoAI 或 The Omega Institute。此刻，四扇门全都向你敞开，每一扇门背后都是看得见、摸得着、可自己跑通的真家伙：
+你不需要把简历投进黑洞才能认识 ChronoAI 或独立科研品牌 The Omega Institute。此刻，四扇大门全都敞开，每一扇门背后都是真刀真枪跑着的代码、数据或可复核的证明：
 
 ### 第一扇门：给系统工程师与安全偏执狂
 
-如果你看见别人把明文 `.env` 密钥塞进 Agent 提示词就浑身难受，如果你受够了靠写三页客气提示词祈祷智能体不要删库，请直接翻开第二卷《整车工程》，然后打开我们的公开仓库：
+如果你看见别人把明文 `.env` 密钥塞进 Agent 上下文就坐立难安，如果你受够了写三页礼貌提示词求机器人别删生产库，请直接翻开第二卷《整车工程》，然后敲开我们的公开代码仓：
 
-- `ChronoAIProject/NyxID`（零密钥连接与身份底座，`v0.78.0`）
-- `ChronoAIProject/Ornn` 与 `ChronoAIProject/nyx-skills`（技能生命周期 API 与 163 项公开技能）
-- `ChronoAIProject/chrono-harness` 与 `chrono-harness/chrono-harness-main`（Rust 可执行增量判官与规则体系）
-- `ChronoAIProject/chrono-metaverse` 与 `ChronoAIProject/nyx-homeassistant-node`（三维虚拟空间与物理家庭节点）
+- [`ChronoAIProject/NyxID`](https://github.com/ChronoAIProject/NyxID)（零密钥连接与身份底座，`v0.78.0`，`42` 份 OpenAPI→MCP 规范、`55` 项服务；另附刚发布的 `nyx-assistant-sdk v0.2.4`）
+- [`ChronoAIProject/Ornn`](https://github.com/ChronoAIProject/Ornn) 与 [`ChronoAIProject/nyx-skills`](https://github.com/ChronoAIProject/nyx-skills)（技能生命周期 API 与 `163` 项公开技能）
+- [`ChronoAIProject/cma`](https://github.com/ChronoAIProject/cma)（云端托管智能体运行时，**`v0.12.0`**，2026-11-24 起正式采用 **`Apache-2.0`** 开源）
+- **[`https://github.com/chrono-harness/`](https://github.com/chrono-harness/)**（独立活跃开源组织，**`25` 个公开仓**、估算 `27.6` 万行 Rust、双平台各 `21` 个预编译二进制、Copier `v0.1.52`、**`29` 条原子规则**——来帮我们攻破或收紧那行诚实硬编码的 `completeness_proven: false`！）
+- [`ChronoAIProject/chrono-metaverse`](https://github.com/ChronoAIProject/chrono-metaverse)、[`ChronoAIProject/nyx-homeassistant-node`](https://github.com/ChronoAIProject/nyx-homeassistant-node) 与 `nyxid-esp-panel v1.0.0`（三维虚拟会场、物理家庭桥与 `Apache-2.0` 硬件面板）
 
-找一个刺眼的边界缺陷，提一个带最小复现与清晰判据的 PR 或 Issue。在我们这里，一行切中要害的真实补丁胜过十页华丽履历。
+找一处刺眼的边界漏洞，提一个带最小复现与硬判据的 Issue 或 PR。在我们这里，一行切中要害的机械补丁，胜过十页辞藻华丽的履历。
 
 ### 第二扇门：给数学家、理论物理学者与形式化同行
 
-如果你好奇一台二十四小时不停运转的真理挖掘机到底在证明什么、又在哪些地方还停留在猜想阶段，请直接翻开第三卷《逻辑的棘轮》，打开 `https://live.trureturing.org/` 与 `https://github.com/the-omega-institute/trureturing`：
+如果你想亲眼检验一台全天候运转的真理挖掘机到底在证明什么、又在哪些悬崖边诚实标红，请翻开第三卷《逻辑的棘轮》，推开 [`live.trureturing.org`](https://live.trureturing.org/) 与 The Omega Institute 的公开仓库群：
 
-- 挑一道与你研究方向相关的公开题解（从量子纠缠熵界到图混合矩阵判别式），用第三卷附录 A 的五步剧本在本地跑一次 `lake build`；
-- 挑出我们表述里哪怕一处不够忠实于 Lean 声明的措辞，或者指明一条已有文献先例——所有指正与合作均由 The Omega Institute 记入 `trureturing-outreach` 外联台账（汇总统计持续公开）；
-- 如果你手头有悬置多年、形式清晰、渴望机器辅助排查反例或构建 Lean 4 骨架的开放猜想，欢迎带着问题清单来信讨论。
+- 在 [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing)（`223,231` 条冻结定理、`17,968` 个模块、`602` 万行代码）里挑一道你领域内的公开题解，按第三卷附录 A 的五步剧本在本地跑一次 `lake build`，或在 [`trureturing-books`](https://github.com/the-omega-institute/trureturing-books) 检阅三部持续出版的双语专著（每语种 `344` 双语页、`918` 条定理块 / `2,043` 个独立冻结 GID）；
+- 前往 [`the-omega-institute/riemann-hypothesis`](https://github.com/the-omega-institute/riemann-hypothesis) 用 `./verify` 亲手重放 Levent Alpöge 的 Lean `4.33.1` 古典 RH / 狄利克雷 GRH 证明的 **`8,490` 个分片**，或翻阅伴书 `riemann-hypothesis-book` 与 [`mathesis-papers`](https://github.com/mathesis-papers)（`237` 仓 / `236` 公开、`225` 篇公开论文、双重归零诚实：`0` 篇 Mathesis 同行评审录用且 `0 / 1,534` 独立验证器回执）；
+- 直接对**蓝色零公理定理 `d2_eq_zero_iff`**（`axioms: []`，见本卷第五章与第三卷第六章）本地运行 `lake build` 逐行核验，并审视第三卷第七章的人机协同消融图（`ch07-hitl-ablation-gate`：人机协同 `260/300 = 86.7%` 胜出、可执行反例义务闸门将假阳性率从 `30.0%` 压至 `0.0%`，以及 `24,925`-PR 准入审计）；
+- 揪出我们自然语言表述里哪怕半句越过 Lean 签名的措辞，或指明已有文献先例——所有指正均由 The Omega Institute 记入 `trureturing-outreach` 公开汇总台账；若你手头有形式清晰、渴望机器排查反例或搭起 Lean 4 骨架的开放猜想，欢迎带题来信。
 
-### 第三扇门：给第一位愿意「真刀真枪」试水的商户与部署伙伴
+### 第三扇门：给首批敢真刀真枪试水的试点商户与部署伙伴
 
-如果你经营着一家真实业务——不论是本地门店、跨境电商、律所会计所、设计工作室还是开发团队——每天被重复的客户咨询、预约排班、社群同步或账目核对淹没，又绝不愿意牺牲财务与品牌安全，请直接翻开第四卷《把发布会交给 AI 员工》：
+如果你正经营一家真实生意——门店、跨境电商、财税律所、设计工作室或研发团队——每天被客户咨询、预约排班、社群同步或对账淹没，又绝不肯拿财务与品牌安全赌博，请翻开第四卷《把发布会交给 AI 员工》：
 
-- 亲自在 `street-corner` 压测 Donna 的 30 题问答边界与小花的下单闭环；
-- 挑出你店里最磨人、但规则最清晰的两项日常工作；或者如果你是**部署与服务商**，写出你准备用 `NyxID` 临时能力句柄接管的垂直行业场景，以及完工吊销后沉淀进 `Ornn` 的复用技能；
-- 写一封不超过两百字的邮件发给 `contact@chrono-ai.fun`，写清你的行业、当前最痛的重复工作以及你绝不肯放权的红线。我们将按场景清晰度与可验证度筛选首批试点商户与部署伙伴，零画大饼、按周对齐真实工作账本。
+- 亲自找 Telegram 礼宾 `@chronoai_frontdesk_bot` 试订一张看台座位，或找 `@flowerassis_bot` 让小花往世界地图墙边落一只三维花篮；
+- 照着财务员 `34` 分钟干净账号装机实录，挑出你店里最磨人、规则最清晰的两项日常苦活；或者如果你是**部署伙伴**，写清你准备用可随时吊销的 `NyxID` 临时门卡切入哪个垂直行业、完工后如何把流程封箱进 `Ornn`；
+- 发一封不到两百字的邮件到 `contact@chrono-ai.fun`，写明你的业务、最想先甩出去的两项活，以及你绝不肯让渡的审批红线。今天外部付费商户还是 `0` 家——我们不画大饼，只按周对着真实工作账本，把第一位 AI 员工稳稳送上你的柜台。
 
-### 第四扇门：给挑刺者与怀疑论者
+### 第四扇门：给挑刺者与执锤人
 
-这是我们最珍惜的一扇门。如果你读完这四本书，觉得我们的某个数据口径有模糊、某条类比滑向了夸大、某张静图标签太挤、或者某段英文译得不够地道——请立刻指出。我们的所有源码与书稿都在公开仓库里接受检验。**一个经不起外人用铁锤敲击的系统，根本配不上「面向未来」四个字。**
+这是我们最看重的一扇门。如果你翻完这四卷书，抓出一处含糊的数据口径、一句越界的类比、一张拥挤的静图标签、一条陈旧的仓库链接，或者一段别扭的译文——请立刻敲响警钟。所有书稿与生成器源码全都晒在日光底下。**一套怕外人拿铁锤敲击的系统，根本配不上「面向未来」四个字。**
 
-## 唯一官方联络方式与核验入口
+## 唯一官方联络与核验入口
 
-为避免任何钓鱼渠道或失真转述，ChronoAI 2026 线上发布会的所有对外合作、媒体垂询、商户试点申请与学术联系均收束于以下官方入口：
+为杜绝假冒渠道或失真转述，ChronoAI 2026 线上发布会的所有对外合作、媒体垂询、商户试点申请与学术联系均收束于以下官方入口：
 
 | 入口用途 | 官方地址 |
 | --- | --- |
 | 公司官网 | [`https://chrono-ai.fun/`](https://chrono-ai.fun/) |
 | 唯一公开联系邮箱 | [`contact@chrono-ai.fun`](mailto:contact@chrono-ai.fun) |
-| 虚拟发布会前厅 | [`street-corner`（`view=extended`）](https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended)（需开放注册的 [`NyxID`](https://nyxid.ai/) 一键登录；Telegram 订座 `@chronoai_frontdesk_bot`） |
+| 虚拟发布会前厅 | [只读观景 `/u/street-corner?view=extended`](https://chrono-metaverse-chronoai.apps.nyxid.ai/u/street-corner?view=extended) · [交互工作区 `/workspace?space=street-corner&view=extended`](https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended)（开放注册 [`NyxID`](https://nyxid.ai/) 一键登录；Telegram 订座 `@chronoai_frontdesk_bot` · 花篮 `@flowerassis_bot`） |
 | 直播频道（12-17 16:00–17:15 SGT） | YouTube `@ChronoAIOfficial` · LinkedIn Live（全程免登录） |
+| 治理工具链独立开源组织 | [`https://github.com/chrono-harness/`](https://github.com/chrono-harness/)（`25` 公开仓） |
 | 开放科研全息观测站（The Omega Institute） | [`https://live.trureturing.org/`](https://live.trureturing.org/) |
 | 本次发布会四卷双语书库与源码 | [`ChronoAIProject/chrono-conference`](https://github.com/ChronoAIProject/chrono-conference) · [`GitHub Pages`](https://chronoaiproject.github.io/chrono-conference/) |
-| The Omega Institute 形式化主库与专著书库 | [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing) · [`books.trureturing.org`](https://books.trureturing.org/) |
+| The Omega Institute 主库、重放仓与专著库 | [`trureturing`](https://github.com/the-omega-institute/trureturing) · [`riemann-hypothesis`](https://github.com/the-omega-institute/riemann-hypothesis) · [`books.trureturing.org`](https://books.trureturing.org/) |
 
-在翻向全书最后两份附录（节目单与数据总账）之前，请允许我们在[终章](coda.md)停下脚步一分钟，回到那个把整车工程、虚拟会场与纯粹数学串成同一根脊柱的哲学意象：**边界与体——合唱才让一首歌成立。**
+翻向附录 A（分钟级导播台）与附录 B（核验总账）之前，请在[终章](coda.md)停驻一分钟，看一看把整车工程、虚拟会场与纯粹数学拧成同一条脊柱的收束意象：**边界与体——合唱才让一首歌成立。**

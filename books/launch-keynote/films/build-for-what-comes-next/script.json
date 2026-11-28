@@ -3,21 +3,22 @@
   "say": {"Lean": "Leen", "NyxID": "Nix I D", "Ornn": "Orn", "CMA": "C M A", "heca": "hecka", "chrono-harness": "chrono harness"},
   "music": {"bpm": 92, "progression": "a-minor"},
   "scenes": [
-    {"id": "hook", "name": "CROWN", "lead": 0.4, "tail": 0.5, "music": [1.0, 0.5, 0.3, 0.0, 0.2], "lines": [
-      ["When execution becomes almost free, judgment becomes the crown.", "当执行趋近免费，判断便加冕为王。"],
-      ["This virtual launch—the lobby, the films, the four books, even the concierge—was built on our own stack under human review and hard gates.", "这场线上发布会——前厅、短片、四部书，甚至礼宾——在人类审校与硬审批闸门下，由运行在我们自有底座上的 AI 系统协同生成。"]
+    {"id": "hook", "name": "THE RELEASE DECISION", "lead": 0.65, "tail": 0.45, "music": [1, 0.5, 0.3, 0, 0.2], "lines": [
+      ["You can make a hundred cuts before lunch. Who decides which one goes on screen?", "午饭前能剪出一百个版本。谁来决定播哪一个？"],
+      ["ChronoAI Pte. Ltd. built this launch around four bilingual books and six films. One flagship. Five shorts.", "ChronoAI Pte. Ltd. 为发布会制作了四部双语书、一部长片和五部短片。"]
     ]},
-    {"id": "vehicle", "name": "VEHICLE", "lead": 0.3, "tail": 0.5, "music": [0.9, 0.8, 0.8, 0.6, 0.5], "lines": [
-      ["Anyone can rent an engine. Nobody trusts an engine bolted to nothing.", "发动机人人可买；但没人敢把没有底盘的发动机开上路。"],
-      ["So we built the complete vehicle: NyxID holds the keys, Ornn governs skills, CMA and heca run agents, and chrono-harness enforces executable judges.", "于是我们造了整车：NyxID 守住钥匙，Ornn 治理技能，CMA 与 heca 驱动运行，chrono-harness 执行硬判官。"]
+    {"id": "vehicle", "name": "THE CHASSIS", "lead": 0.32, "tail": 0.45, "music": [0.9, 0.8, 0.8, 0.6, 0.5], "lines": [
+      ["Anyone can rent an engine. Nobody trusts a bare engine on wet concrete. Where are the brakes?", "谁都租得到发动机。把它放在湿滑的水泥地上，刹车在哪儿？"],
+      ["So we built the complete vehicle. NyxID holds the keys. Ornn governs skills.", "我们造了整车。NyxID 保管密钥，Ornn 管理技能。"],
+      ["CMA and heca run agents. chrono-harness enforces executable judges.", "CMA 和 heca 运行智能体，chrono-harness 执行判定规则。"]
     ]},
-    {"id": "northstar", "name": "NORTH STAR", "lead": 0.3, "tail": 0.5, "music": [1.0, 0.7, 0.9, 0.5, 0.4], "lines": [
-      ["A tool that only flatters its maker is a toy. Our stress test is mathematics itself.", "只会奉承制造者的工具只是玩具。我们的压力测试是数学本身。"],
-      ["In trureturing, one hundred sixty-seven thousand frozen Lean theorems form an irreversible ratchet: redundant claims lower information escape by zero.", "在 trureturing 中，十六万七千余条冻结 Lean 定理构成不可逆棘轮：可恢复的冗余命题对信息逃逸的缩减严格为零。"]
+    {"id": "northstar", "name": "WHAT A THEOREM ADDS", "lead": 0.32, "tail": 0.45, "music": [1, 0.7, 0.9, 0.5, 0.4], "lines": [
+      ["Take a claim off the board. Can you recover it from the others? Then it makes no new distinction.", "从黑板上擦掉一个命题。如果能由其余命题恢复它，擦掉前后就能区分同样的状态。"],
+      ["The independent research institute, The Omega Institute, froze 223,231 Lean 4 theorems in the November 27 snapshot.", "The Omega Institute 的 11 月 27 日快照有 223,231 条冻结 Lean 4 定理。"]
     ]},
-    {"id": "invitation", "name": "INVITATION", "lead": 0.3, "tail": 0.8, "music": [1.0, 0.6, 0.5, 0.3, 0.2], "lines": [
-      ["On December seventeenth, take a seat in Street Corner, test every link yourself, and apply to pilot your first AI employee.", "十二月十七日，请落座街角前厅，亲手核验每一条链接，申请试点你的第一位 AI 员工。"],
-      ["Build for what comes next.", "面向未来的造物。"]
+    {"id": "invitation", "name": "TAKE A SEAT", "lead": 0.32, "tail": 1.2, "music": [1, 0.6, 0.5, 0.3, 0.2], "lines": [
+      ["In Street Corner, four stands of eight rows hold 1,108 seats. Eighteen basket mats line the map wall.", "街角会场的四面看台各有八排，共 1,108 席。世界地图墙边设有 18 块花篮垫。"],
+      ["Nine AI employee roles cover 102 of 120 workflows. On December 17, take a seat and check the evidence yourself.", "九个 AI 员工岗位覆盖 120 项流程中的 102 项。12 月 17 日，请入座，亲手核验。"]
     ]}
   ]
 }

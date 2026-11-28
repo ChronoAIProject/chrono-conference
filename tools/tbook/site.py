@@ -726,8 +726,15 @@ class Frame:
         }
 
 
+def polarity_attrs(polarity: str | None) -> str:
+    if polarity == "daylight":
+        return ' data-polarity="daylight" data-tr-palette="paper"'
+    return f' data-polarity="{esc(polarity)}"' if polarity else ""
+
+
 def page(frame: Frame, *, prefix: str, titles: Callable[[str], str], description: Callable[[str], str],
-         body: str, og_image: str = "", canonical: str = "", lang: str = "", slug: str = "") -> str:
+         body: str, og_image: str = "", canonical: str = "", lang: str = "", slug: str = "",
+         polarity: str | None = None) -> str:
     langs = frame.bi.langs
     default = lang or langs[0]
     routes = frame.language_paths(lang, slug)
@@ -739,13 +746,14 @@ def page(frame: Frame, *, prefix: str, titles: Callable[[str], str], description
     head = [
         "<!doctype html>",
         f'<html lang="{esc(config.bcp47(default))}" data-lang="{esc(default)}" data-default-lang="{esc(default)}"{route_attrs} '
-        f'data-langs="{esc(" ".join(langs))}" data-lang-meta="{esc(json.dumps(meta, ensure_ascii=False))}"{title_attrs}>',
+        f'data-langs="{esc(" ".join(langs))}" data-lang-meta="{esc(json.dumps(meta, ensure_ascii=False))}"'
+        f'{title_attrs}{polarity_attrs(polarity)}>',
         "<head>",
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
         f"<title>{esc(titles(default))}</title>",
         f'<meta name="description" content="{esc(description(default))}">',
-        '<meta name="color-scheme" content="dark">',
+        f'<meta name="color-scheme" content="{"light" if polarity == "daylight" else "dark"}">',
         '<meta name="generator" content="tbook">',
         f'<link rel="icon" href="{esc(frame.asset(prefix, "favicon.svg"))}" type="image/svg+xml">',
     ]
@@ -915,8 +923,9 @@ def book_card(frame: Frame, view: BookView, lang: str = "") -> str:
     sub = bi.text(lambda lang: config.pick(book.subtitle, view.edition_for(lang), book.languages)) if book.subtitle else ""
     desc = bi.text(lambda lang: config.pick(book.description, view.edition_for(lang), book.languages)) if book.description else ""
     hid = f"book-{slug}"
+    polarity = getattr(book, "polarity", "deep-space") or "deep-space"
     return (
-        f'<article class="book panel" aria-labelledby="{esc(hid)}">'
+        f'<article class="book panel" aria-labelledby="{esc(hid)}" data-book-polarity="{esc(polarity)}">'
         f'<a class="cover-link" href="{esc(landing)}" tabindex="-1" aria-hidden="true">{cover_html(bi, view, content, alt=False)}</a>'
         f'<div class="body">'
         f'<p class="code">{logo_html(book.code)} <span class="ver">· v{esc(book.version)}</span></p>'
@@ -988,7 +997,7 @@ def index_html(frame: Frame, views: list[BookView], lang: str = "") -> str:
     canonical = site.base_url + lang + "/" if site.base_url and lang else site.base_url
     return page(frame, prefix="../" if lang else "", titles=lambda lang: site.text(site.title, lang),
                 description=lambda lang: site.text(site.tagline, lang) or site.text(site.title, lang),
-                body=body, og_image=first_cover, canonical=canonical, lang=lang)
+                body=body, og_image=first_cover, canonical=canonical, lang=lang, polarity="dual")
 
 
 # --------------------------------------------------------------------------- book landing page
@@ -1457,7 +1466,8 @@ def landing_html(frame: Frame, view: BookView, lang: str = "") -> str:
     return page(frame, prefix=assets,
                 titles=lambda lang: f"{ed_text(book.title)(lang)} · {site_title(lang)}",
                 description=lambda lang: ed_text(book.description)(lang) or ed_text(book.subtitle)(lang),
-                body=body, og_image=og, canonical=canonical, lang=lang, slug=book.slug)
+                body=body, og_image=og, canonical=canonical, lang=lang, slug=book.slug,
+                polarity=getattr(book, "polarity", "deep-space"))
 
 
 # --------------------------------------------------------------------------- 404 and manifest

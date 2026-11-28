@@ -1,19 +1,32 @@
 {
   "voice": "af_heart", "speed": 0.94,
-  "say": {},
+  "say": {"Alpöge": "Al puh geh", "RH": "R H", "GRH": "G R H", "UTC": "U T C", "Lean": "Leen"},
   "music": {"bpm": 84, "progression": "d-minor"},
   "scenes": [
-    {"id": "ratchet", "name": "RATCHET", "lead": 1.8, "tail": 0.5, "music": [1.0, 0.5, 0.5, 0.2, 0.2], "lines": [
-      ["A ratchet turns one way. In prose, an eloquent mistake can survive for decades; in Lean four, the kernel rejects it on the spot.", "棘轮只朝一个方向咬合。散文里，雄辩的错误能活几十年；Lean 4 的内核当场拒收。"],
+    {"id": "ratchet", "name": "RATCHET", "lead": 1.8, "tail": 0.5, "music": [1, 0.5, 0.5, 0.2, 0.2], "lines": [
+      ["A ratchet turns one way. Errors in print can survive for decades. In Lean, unsolved tactic goals stop a proof before kernel checking.", "棘轮单向转。文中的错能流传几十年。Lean 策略留下未解目标，证明就到不了内核。"],
       ["Every theorem added to a catalog intersects the joint kernel of indistinguishable states—blind spots can shrink, never grow.", "每向目录加入一条定理，不可分辨状态对的联合核就取一次交——盲区只缩不胀。"]
     ]},
     {"id": "novelty", "name": "NOVELTY", "lead": 0.3, "tail": 0.6, "music": [0.9, 0.8, 0.9, 0.5, 0.5], "lines": [
-      ["More subtly, on a nondegenerate arena, a theorem lowers information escape if and only if it stands outside the semantic closure of what is already known.", "在非退化竞技场上，定理降低信息逃逸，当且仅当它落在已有结论的语义闭包之外。"],
+      ["A theorem lowers information escape on a nondegenerate arena if and only if it lies outside the others’ semantic closure.", "在非退化竞技场上，定理降低信息逃逸，当且仅当它在其余定理的语义闭包之外。"],
       ["You cannot mine the same gold twice.", "同一块金子，挖不了两次。"]
     ]},
-    {"id": "frontier", "name": "FRONTIER", "lead": 0.3, "tail": 4.4, "music": [1.0, 0.8, 0.8, 0.6, 0.4], "lines": [
-      ["Across seven hundred twenty unbroken UTC hours, commits to trureturing never stopped; its cumulative snapshot holds one hundred sixty-seven thousand frozen theorems, and over seventy-four days it logged two thousand one hundred twenty-six dated literature resolutions—two thousand one hundred twenty-eight in total.", "七百二十 UTC 小时提交从未间断；trureturing 累计快照冻结十六万七千余条定理，七十四天里登记两千一百二十六道带日期文献题解，合计两千一百二十八道。"],
-      ["From proving four-qubit entropy bounds to refuting the four-qubit Fredkin entangling-power conjecture—and marking what remains open in stark red.", "从证明四量子比特熵上界，到反驳四量子比特 Fredkin 纠缠能力猜想——同时以红色醒目标出尚未攻克的边界。"]
+    {"id": "frontier", "name": "THE FROZEN RECORD", "lead": 0.32, "tail": 0.45, "music": [1, 0.8, 0.8, 0.6, 0.4], "lines": [
+      ["On November 27 the independent research institute, The Omega Institute, counted 223,231 frozen Lean 4 theorems in trureturing.", "11 月 27 日，The Omega Institute 统计到 223,231 条冻结 Lean 4 定理。"],
+      ["The ledger dates 2,276 resolutions across 81 days. Two undated entries bring the total to 2,278.", "81 天内有 2,276 项带日期的题解，加上两项无日期记录，共 2,278 项。"],
+      ["It records 1,512 proofs and 766 refutations. Quantum and physics account for 598 entries.", "其中 1,512 项获证，766 项被反驳。量子与物理占 598 项。"],
+      ["All 720 UTC hours saw commits, with a median of 63 per hour.", "连续 720 个 UTC 小时均有提交，每小时提交数中位数为 63。"],
+      ["The last seven full days averaged 217 merged pull requests a day.", "最后七个完整日平均每天合入 217 个 PR。"]
+    ]},
+    {"id": "provenance", "name": "PROOF AND REPLAY", "lead": 0.32, "tail": 0.45, "music": [1, 0.8, 0.8, 0.6, 0.4], "lines": [
+      ["The November 21 joint statement certified Levent Alpöge’s Lean proof of classical RH.", "11 月 21 日的联合声明认证了 Levent Alpöge 对经典黎曼猜想的 Lean 证明。"],
+      ["Independent audits checked five theorems, including his Dirichlet GRH results.", "独立审计核查了五条定理，其中包括他对狄利克雷广义黎曼猜想的结果。"],
+      ["The Omega Institute replayed the proof in 8,490 shards.", "The Omega Institute 以 8,490 个分片复现了证明。"],
+      ["Separately, trureturing proves that classical RH is equivalent to an integer Hankel criterion.", "trureturing 另证了经典黎曼猜想与一个整数 Hankel 判据等价。"]
+    ]},
+    {"id": "open", "name": "OPEN QUESTIONS", "lead": 0.32, "tail": 1.2, "music": [1, 0.8, 0.8, 0.6, 0.4], "lines": [
+      ["Extended RH for Dedekind zeta functions and Grand RH for automorphic L-functions remain open.", "戴德金 ζ 函数的扩展黎曼猜想与自守 L 函数的大黎曼猜想仍待解决。"],
+      ["So do simplicity of the nontrivial zeros and their pair correlation. Each is a different question about the zeros.", "非平凡零点是否均为单零点，以及它们的对关联，也各自是独立的开放问题。"]
     ]}
   ]
 }

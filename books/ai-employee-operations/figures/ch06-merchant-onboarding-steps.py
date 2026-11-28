@@ -11,7 +11,7 @@ ALT = {
           "and going live with an audit ledger and replay.",
 }
 
-# facts-latest.json: NyxID@v0.78.0 (2026-11-03); nyx-skills@f5abab5 (2026-11-26).
+# Audited source: NyxID@v0.78.0; nyx-skills@25ef759 (2026-11-27).
 # Account configuration and credit unit are specified by the conference figure brief.
 CHANNELS, SKILLS = 9, 163
 INVITE_REQUIRED = False
@@ -27,12 +27,17 @@ def draw(fig):
         (t("配置审批与消费上限", "Set approval & spend ceiling"), t("1 credit = 1 USD（单位换算）", "1 credit = 1 USD")),
         (t("上线运营", "Go live"), t("审计账本与回放", "Audit ledger & replay")),
     ]
-    fig.line(27, 35, 27, 323, "cyan", 1.8)
+    first_y, pitch = 8, 71
+    marker_x, marker_offset, marker_radius = 27, 29, 18
     for index, (title, detail) in enumerate(steps, 1):
-        y = 8 + (index - 1) * 71
+        y = first_y + (index - 1) * pitch
+        marker_y = y + marker_offset
+        if index < len(steps):
+            fig.line(marker_x, marker_y + marker_radius, marker_x, marker_y + pitch - marker_radius, "cyan", 1.8)
         fig.rect(52, y, 298, 59, color="edge", fill="panel", rx=6)
-        fig.circle(27, y + 29, 15, color="cyan", fill="bg", width=1.7)
-        fig.text(27, y + 29, t(str(index), str(index)), size=16, color="cyan", weight=600, anchor="middle", middle=True)
-        fig.line(42, y + 29, 52, y + 29, "cyan", 1.5)
+        fig.circle(marker_x, marker_y, marker_radius, color="cyan", fill="bg", width=1.7)
+        fig.text(marker_x, marker_y, t(str(index), str(index)), size=16, color="cyan",
+                 weight=600, anchor="middle", middle=True)
+        fig.line(marker_x + marker_radius, marker_y, 52, marker_y, "cyan", 1.5)
         fig.text(64, y + 19, title, size=15, weight=600, middle=True)
         fig.text(64, y + 41, detail, size=13, color="dim", middle=True)

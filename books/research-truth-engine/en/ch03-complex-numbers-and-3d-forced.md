@@ -1,14 +1,14 @@
 # Chapter 3: Three-Way Balancing Forces Complex Space; Reciprocity Forces Three Dimensions
 
-Page one of almost every physics textbook hands down three commandments from the clouds: states live in a complex Hilbert space, physical space has three dimensions, and probabilities follow squared complex norms. Ask *"why complex numbers instead of reals? why three dimensions and $\mathfrak{so}(3)$?"* and the textbook clears its throat: *"because experiment says so."*
+Page one of almost every physics textbook hands down three commandments from the clouds: states inhabit a complex Hilbert space, physical space has three dimensions, and probabilities follow squared complex norms. Ask *"why complex numbers instead of reals? why three dimensions and $\mathfrak{so}(3)$?"* and the textbook clears its throat and shuts the door: *"because experiment says so."*
 
-Feynman never settled for "because the textbook said so," and Nietzsche never bowed to an unexamined axiom. Inside `trureturing`, we invert the question: **strip away complex numbers, strip away dimension, strip away Hilbert space—leave only minimal operational fibers, a three-way balancing law, and compact first-order reciprocity. Does mathematics itself leave no escape except complex Hilbert space and three dimensions?**
+Treating *"because the book says so"* as a final verdict is the laziest shortcut in physics, and bowing to an unexamined axiom is the costliest superstition in mathematics. Inside `trureturing`, we clear every textbook commandment out of the room and bolt the doors: **no complex numbers, no spatial dimension, no Hilbert space in the premises—only minimal operational fibers, raw three-way balancing, and compact first-order reciprocity. Does mathematics itself leave no exit—watching complex Hilbert space and three-dimensional rotation walk straight back through the locked door?**
 
-The answer is not speculative philosophy; it is four rigidity theorems already locked inside the Lean 4 kernel.
+The answer is not speculative philosophy; it is four structural rigidity theorems already welded shut inside the Lean 4 kernel.
 
 ## The Visible Pyramid and One Invisible Fisher Fiber
 
-Pick up right where Chapter 1's visible-versus-hidden tension left off. On the five-mode open probability simplex `openSimplex` ($\{p : \mathrm{Fin}\,5 \to \mathbb{R} \mid \forall s,\, p_s > 0,\ \sum_s p_s = 1\}$), an external observer reads three visible occupancy means `visible p`, filling an open 3D pyramid `openPyramid`.
+Pick up right where Chapter 1's visible dial versus hidden fiber left off. On the five-mode open probability simplex `openSimplex` ($\{p : \mathrm{Fin}\,5 \to \mathbb{R} \mid \forall s,\, p_s > 0,\ \sum_s p_s = 1\}$), an external observer reads three visible occupancy means `visible p`, filling an open 3D pyramid `openPyramid`.
 
 Pin those three visible numbers down, and one degree of freedom remains inside the four-dimensional simplex. What does that hidden fiber look like? The frozen theorem below proves that adjoining a single hidden log cross-ratio `hiddenChi p` yields a unique global coordinate chart—and along every tangent vector, its derivative equals the exact **Fisher pairing** with the invisible base loop `hiddenDirection`.
 
@@ -25,7 +25,7 @@ On the five-mode open probability simplex `openSimplex`:
 Fixing $v = (x, y, z) \in \mathrm{openPyramid}$ and $c \in \mathbb{R}$, setting $r = 1 - x - y - z$ and $a = e^c > 0$ yields $h(k) = (r+k)k - a(x-k)(y-k)$, which is strictly monotone on the admissible open fiber interval $(\max(0, -r),\, \min(x, y))$ and changes sign between its endpoints, giving existence and uniqueness by the intermediate value theorem; for any entrywise-positive base vector $p$ and arbitrary direction $u$, differentiating $t \mapsto \mathrm{hiddenChi}(p + t u)$ at $t = 0$ yields the exact Fisher pairing. Verified and frozen by the Lean 4 kernel in [`mixed_coordinates_global_chart`](lean:D5/S1/Words/AdmissibleWords/FiveModeMixedCoordinates.mixed_coordinates_global_chart).
 :::
 
-The computed projection below places the visible pyramid `openPyramid` beside one hidden cross-ratio fiber slicing straight through an interior point, making visible how three observable means plus one invisible Fisher loop cover the entire positive simplex.
+The computed projection below places the visible pyramid `openPyramid` beside one hidden cross-ratio fiber slicing straight through an interior point, making visible how three observable means plus one invisible Fisher loop span the entire positive simplex.
 
 ::: {.figure src="ch03-five-mode-pyramid"}
 **Five-Mode Visible Pyramid and Hidden Cross-Ratio Fiber ([@thm-five-mode-chart]).** Left: the cyan polyhedron outlines the open visibility pyramid ($x, y, z > 0,\ x + z < 1,\ y + z < 1$) marking the interior point $(0.40, 0.35, 0.20)$. Right: exact probabilities $P(100)$ (cyan) and $P(101)$ (magenta) along the hidden log cross-ratio fiber $\chi \in [-5, 5]$ at that fixed occupancy, tangent to $(1, -1, 0, -1, 1)$.
@@ -35,7 +35,7 @@ The computed projection below places the visible pyramid `openPyramid` beside on
 
 Now comes the first genuine shock. Let $M$ be merely a unital magma (`MulOneClass M`—**not even assumed associative or commutative**), equipped with a unit-preserving unary operation $U : M \to M$ ($U(1) = 1$) and a real comparison readout $c : M \to M \to \mathbb{R}$.
 
-Put zero complex numbers, zero inner products, and zero Hilbert-space axioms into the hypothesis—only the real-valued raw balancing package `RawBalance U c`, which combines nonnegativity ($c \ge 0$), zero diagonal ($c(a,a)=0$), unit preservation ($U(1)=1$), and the three-way balancing identity. What emerges? The frozen classification theorem below forces existence, uniqueness up to a unique label-preserving unitary isomorphism, and spontaneous associativity, commutativity, and $U^3 = \mathrm{id}$ phase symmetry on the visible quotient:
+Keep $\mathbb{C}$, inner products, and Hilbert spaces completely outside the locked room—admitting only the real-valued raw balancing package `RawBalance U c`, which combines nonnegativity ($c \ge 0$), zero diagonal ($c(a,a)=0$), unit preservation ($U(1)=1$), and the three-way balancing identity. What climbs back in? The frozen classification theorem below forces existence, uniqueness up to a unique label-preserving unitary isomorphism, and spontaneous associativity, commutativity, and $U^3 = \mathrm{id}$ phase symmetry on the visible quotient:
 
 ::: {.theorem #thm-raw-hilbert title="Complete Complex Hilbert Classification From Raw Balancing" lean="D5/S3/Quantum/Completion/RawAnchoredRadicalDescent.raw_hilbert_characterization"}
 Let $M$ be a unital magma, $U : M \to M$ satisfy $U(1) = 1$, $c : M \to M \to \mathbb{R}$, and fix the primitive cubic root of unity $\omega = (-1 + i\sqrt{3})/2$. Then:
@@ -50,13 +50,13 @@ Let $M$ be a unital magma, $U : M \to M$ satisfy $U(1) = 1$, $c : M \to M \to \m
 In [`raw_hilbert_characterization`](lean:D5/S3/Quantum/Completion/RawAnchoredRadicalDescent.raw_hilbert_characterization), `RawBalance U c` drives radical descent onto the zero-comparison quotient and its torsion-free Eisenstein module, from which Fourier completion constructs the complex Hilbert space carrying $\omega = (-1 + i\sqrt{3})/2$, while polarization plus label preservation pins down the unique surjective linear isometry. Verified and frozen by the Lean 4 kernel.
 :::
 
-Pause and let [@thm-raw-hilbert] sink in: the primitive cubic root of unity $\omega = (-1 + i\sqrt{3})/2$, squared Hilbert distance, and even associativity and commutativity of the visible product were never smuggled into the axioms—they are the sole mathematical exit left open by raw three-way balancing (with nonnegativity and zero diagonal).
+Pause and feel the weight of [@thm-raw-hilbert]: the primitive cubic root of unity $\omega = (-1 + i\sqrt{3})/2$, squared Hilbert distance, and even associativity and commutativity of the visible product were never smuggled through the back door—they are the sole mathematical exit left open by raw three-way balancing (with nonnegativity and zero diagonal).
 
 ## Compact Reciprocity Forces Dimension 3 and $\mathfrak{so}(3)$
 
-Complex Hilbert space is forced by raw three-way balancing. Now ask a parallel structural question: under a compact symmetry group obeying first-order full reciprocity, does **three-dimensional space** become the only mathematical dimension left standing?
+Complex Hilbert space is locked in by raw balancing. Now tap the next textbook idol—spatial dimension. Under a compact symmetry group obeying first-order full reciprocity, does **three-dimensional space** become the only dimension left standing?
 
-Take a compact subgroup $G$ of invertible continuous linear maps on a finite-dimensional real inner-product space $W$, with tangent Lie algebra $\mathrm{OriginalLie}\,G$. Suppose a nonzero generator $A \in \mathrm{OriginalLie}\,G$ stabilizes a nonzero source vector $x \in W$ ($Ax = 0$) and satisfies first-order complete reciprocity `FullReciprocity G A x` (meaning both projections of the full quotient relation are bijections). No other dimension survives:
+Take a compact subgroup $G$ of invertible continuous linear maps on a finite-dimensional real inner-product space $W$, with tangent Lie algebra $\mathrm{OriginalLie}\,G$. Suppose a nonzero generator $A \in \mathrm{OriginalLie}\,G$ stabilizes a nonzero source vector $x \in W$ ($Ax = 0$) and satisfies first-order complete reciprocity `FullReciprocity G A x` (meaning both projections of the full quotient relation are bijections). Every other dimension collapses, leaving only three:
 
 ::: {.theorem #thm-rigidity-3d title="Compact Full Reciprocity Forces Three Dimensions and Orthogonal Lie Algebra" lean="D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity"}
 Let $W$ be a finite-dimensional real inner-product space, $G \subset (W \to_L[\mathbb{R}] W)^\times$ a compact subgroup, $A \in \mathrm{OriginalLie}\,G$ nonzero, $x \in W$ nonzero with $Ax = 0$, and assume `FullReciprocity G A x`. Then there exists a $G$-invariant real inner-product core $B$ on $W$ such that:
@@ -67,12 +67,12 @@ Let $W$ be a finite-dimensional real inner-product space, $G \subset (W \to_L[\m
 :::
 
 ::: proof
-Compact group averaging on the finite-dimensional real inner-product space $W$ constructs the $G$-invariant metric $B$ making every element of $\mathrm{OriginalLie}\,G$ skew-adjoint; first-order full reciprocity (bijectivity of both projections of the quotient relation) plus rank-nullity locks both $\dim_{\mathbb{R}} W = 3$ and $\dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G) = 3$; since the skew-endomorphism space of a 3D inner-product space has dimension $\binom{3}{2} = 3$, injectivity forces surjectivity onto all of `skewEndomorphisms B`. Verified and frozen by the Lean 4 kernel in [`original_rigidity`](lean:D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity).
+Compact group averaging on the finite-dimensional real inner-product space $W$ constructs the $G$-invariant metric $B$ making every element of $\mathrm{OriginalLie}\,G$ skew-adjoint; first-order full reciprocity (`dimension_transfer` giving $\dim_{\mathbb{R}} W = \dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G)$, paired with the rank-one invariant-metric and centralizer-line bounds forcing $\dim_{\mathbb{R}} W \in \{1, 3\}$, and $A \neq 0, x \neq 0, Ax = 0$ ruling out $\dim = 1$) locks both $\dim_{\mathbb{R}} W = 3$ and $\dim_{\mathbb{R}}(\mathrm{OriginalLie}\,G) = 3$; since the skew-endomorphism space of a 3D inner-product space has dimension $\binom{3}{2} = 3$, injectivity forces surjectivity onto all of `skewEndomorphisms B`. Verified and frozen by the Lean 4 kernel in [`original_rigidity`](lean:D5/S3/Quantum/Algebra/OriginalCompactReciprocity.original_rigidity).
 :::
 
 ## Algebraic Integrality Barrier on Native Protocol Events
 
-Rounding out this chapter's rigidity spine, return to native Fibonacci protocol trees: every raw event mass `eventMass T event` produced by any finite native tree $T$ and Boolean event selector is automatically an **algebraic integer (`IsIntegral ℤ`)**, locking it permanently away from both nonintegral reference-comparison targets:
+Rounding out this chapter's rigidity spine, turn to finite native quantum protocol trees `Tree L` (built from `.leaf`, `.call`, and `.measure` nodes on the 16-bit carrier): every raw event mass `eventMass T event` produced by any finite native tree $T$ and Boolean event selector is automatically an **algebraic integer (`IsIntegral ℤ`)**, locking it permanently away from both nonintegral reference-comparison targets:
 
 ::: {.theorem #thm-event-arithmetic title="Native Protocol Event Masses Are Algebraic Integers" lean="D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic"}
 For any leaf label type $L$, native protocol tree $T : \mathrm{Tree}\,L$, and event indicator $\mathrm{event} : \mathrm{Path}\,T \to \mathrm{Basis} \to \mathrm{Bool}$,
@@ -86,9 +86,9 @@ $$
 :::
 
 ::: proof
-In [`original_event_arithmetic`](lean:D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic), the proof establishes algebraic integrality (`IsIntegral ℤ`) not only for $\varphi^{-1}$, but also for the square-root weight $\sqrt{\varphi^{-1}}$, the complex phase factors entering the gate and mark matrices, and complex conjugation used by squared norms; finite sums, products, and squared norms of native amplitudes therefore remain integral over $\mathbb{Z}$, immediately separating them from the proved-nonintegral targets `emptyTarget` and `referenceTarget`. Verified and frozen by the Lean 4 kernel.
+In [`original_event_arithmetic`](lean:D5/S3/Quantum/Dynamics/NativeProtocolEventArithmetic.original_event_arithmetic), the proof establishes algebraic integrality (`IsIntegral ℤ`) not only for $\varphi^{-1}$, but also for the square-root weight $\sqrt{\varphi^{-1}}$, the complex phase factor $\zeta = e^{3\pi i / 5}$ entering the gate/call matrices (`gate`, `callMatrix`) alongside the 0–1 diagonal measurement projectors (`projector`), and complex conjugation used by squared norms; finite sums, products, and squared norms of native amplitudes therefore remain integral over $\mathbb{Z}$, immediately separating them from the proved-nonintegral targets `emptyTarget` and `referenceTarget`. Verified and frozen by the Lean 4 kernel.
 :::
 
-By now you have seen the internal theoretical spine that `trureturing` built for itself. Yet any tough outside scientist immediately asks the decisive external test: **"Internal elegance is nice—can this engine step into published journals like *Physical Review A*, *Nature Communications*, *Commun. Math. Phys.*, and the OEIS and actually crack open problems posed by outside researchers years or decades ago?"**
+By now you have walked the internal theoretical spine that `trureturing` built for itself. Any tough outside scientist immediately fires back the decisive external test: **"Internal elegance is fine—can this engine walk straight into published journals like *Physical Review A*, *Nature Communications*, *Commun. Math. Phys.*, and the OEIS and crack open problems posed by outside researchers years or decades ago?"**
 
-Chapter 4 lays the full **2,128-problem** receipt on the table—starting with seven flagship proofs and refutations you can click and verify on stage.
+Chapter 4 slams the full **`2,278`-problem** receipt onto the table: seven flagship literature proofs and refutations plus the freshly frozen November 27 4D spacetime uniqueness theorem—eight frozen theorems in total that you can click and verify on stage.
