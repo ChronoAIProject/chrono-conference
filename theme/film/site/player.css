@@ -33,7 +33,7 @@ media-time-range { flex: 1; min-width: 2em; }
 media-volume-range { max-width: 5em; }
 #start { border-radius: 50%; padding: .7em; }
 media-controller[mediahasplayed] #start { display: none; }
-#error { position: absolute; inset: 0 0 auto; margin: 0; padding: 1em; background: var(--tr-stage); color: var(--tr-white); font: 1rem system-ui; }
+#error { position: absolute; inset: 0 0 auto; margin: 0; padding: 1em; background: var(--tr-stage); color: var(--tr-ink); font: 1rem system-ui; }
 #chapters-button {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 0 10px; border: 0; background: var(--media-control-background, transparent);
@@ -41,7 +41,9 @@ media-controller[mediahasplayed] #start { display: none; }
 }
 #chapters-button[hidden] { display: none; }
 #chapters-button svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-#chapters-button:hover, #chapters-button[aria-expanded="true"] { background: var(--media-control-hover-background, rgba(255, 255, 255, .12)); }
+#chapters-button:hover, #chapters-button[aria-expanded="true"] {
+  background: var(--media-control-hover-background, color-mix(in srgb, var(--tr-ink) 8%, transparent));
+}
 #chapters {
   position: absolute; right: .75em; bottom: 3.6em; z-index: 2;
   width: min(30em, calc(100% - 1.5em)); max-height: calc(100% - 5em); overflow: auto;
@@ -56,7 +58,7 @@ media-controller[mediahasplayed] #start { display: none; }
 }
 #chapters .time { grid-row: span 2; color: var(--tr-cyan); font-family: var(--tr-font-data); font-variant-numeric: tabular-nums; }
 #chapters .zh { opacity: .75; font-size: .92em; }
-#chapters button:hover, #chapters button:focus-visible { background: rgba(255, 255, 255, .08); outline: none; }
+#chapters button:hover, #chapters button:focus-visible { background: color-mix(in srgb, var(--tr-ink) 8%, transparent); outline: none; }
 #chapters li[aria-current] .time, #chapters li[aria-current] .en { color: var(--tr-sem-now); }
 @media (max-width: 480px) { media-volume-range { display: none; } }
 @media (max-width: 340px) { media-time-display { display: none; } }

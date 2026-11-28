@@ -2,9 +2,10 @@
 
 Outputs (git-ignored, materialized before checks and builds):
 
-* ``theme/generated/tokens.css`` — CSS custom properties. ``:root`` holds the screen
-  (dark neon) palette as ``--tr-*``; ``.tr-paper`` / ``[data-tr-palette=paper]`` swap in
-  the paper palette. Used by mdBook, EPUB, the site hub, visualizations and slides.
+* ``theme/generated/tokens.css`` — CSS custom properties. ``:root`` holds the
+  screen palette as ``--tr-*``. ``.tr-paper``, ``[data-tr-palette=paper]`` and
+  ``[data-book-polarity=daylight]`` apply the paper palette. Used by mdBook, EPUB,
+  the site hub, visualizations and slides.
 * ``theme/generated/tokens.typ`` — Typst dictionaries ``tr-screen`` / ``tr-paper`` /
   ``tr-fonts`` for the PDF template.
 * ``theme/generated/tokens.mjs`` — ES module for canvas code (viz, film, slides).
@@ -41,7 +42,7 @@ def css(tokens: dict) -> str:
     for k, v in tokens["effect"].items():
         out.append(f"  --tr-fx-{k}: {v};")
     out.append("}")
-    out.append(".tr-paper, [data-tr-palette=\"paper\"] {")
+    out.append('.tr-paper, [data-tr-palette="paper"], [data-book-polarity="daylight"] {')
     out.append("  color-scheme: light;")
     for k, v in tokens["paper"].items():
         out.append(f"  --tr-{k}: {v};")

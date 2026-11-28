@@ -10,6 +10,7 @@ __pycache__/
 # Media produced by film/slides pipelines (published as release assets, not committed)
 /books/*/films/*/out/
 /books/*/films/*/frames/
+/books/*/films/*/clips/
 /books/*/films/*/*.mp4
 /books/*/films/*/*.wav
 /books/*/films/*/tts/

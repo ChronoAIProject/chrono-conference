@@ -9,6 +9,7 @@ body {
   background: var(--tr-fx-aurora), var(--tr-void);
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
+html[data-polarity="daylight"] body { background-image: none; }
 /* English (html lang="en"): a Latin face first, so curly quotes and apostrophes are not the full-width glyphs of the
    CJK face (Chinese keeps them) */
 :not(:lang(zh), :lang(ja), :lang(ko)) { --tr-font-body: var(--tr-font-body-latin); }

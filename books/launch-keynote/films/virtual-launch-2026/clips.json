@@ -1,0 +1,19 @@
+{
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "w": 1920,
+    "h": 1080
+  },
+  "loop": "ping-pong",
+  "scenes": {
+    "prologue_office_to_stadium": "office-to-stadium.mp4",
+    "prologue_bay_to_orbit": "stadium-bay-orbit.mp4",
+    "act2_stations_to_galaxies": "observatory-stations-to-galaxies.mp4"
+  },
+  "sha256": {
+    "office-to-stadium.mp4": "54b2e76815158d60b31e958ab11ca094f72c0186e4a0693634cdcc40e446db9c",
+    "stadium-bay-orbit.mp4": "49fe72d3017c79c259de1a81202055ed249c5b745748d7229527345490dc93f3",
+    "observatory-stations-to-galaxies.mp4": "391730f619cac1ac9123b3a6dd45928bc123b60eaaf557f026576d8949cce1ca"
+  }
+}

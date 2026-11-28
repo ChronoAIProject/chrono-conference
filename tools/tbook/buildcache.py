@@ -303,7 +303,7 @@ def site_inputs(site: config.Site) -> Inputs:
     """Common edition inputs, including unclassified downstream theme resources."""
     renderer_dirs = ("beamer", "epub", "film", "generated", "mdbook", "site", "slides", "typst", "viz")
     return (Inputs()
-            .files(paths.TOOLS / "tbook", paths.TOOLS / "node", paths.TOOLS / "figkit", paths.THEME,
+            .files(paths.TOOLS / "tbook", paths.TOOLS / "node", paths.THEME,
                    paths.I18N_LOCAL, paths.SITE_TOML, paths.LOCK_FILE, paths.ROOT / "requirements.txt",
                    paths.ROOT / "package-lock.json", exclude=tuple(f"/theme/{d}/" for d in renderer_dirs))
             .text("base_url", site.base_url or "")
@@ -534,7 +534,8 @@ def slides_unit(site: config.Site, book: config.Book, out_dir: Path) -> Unit:
     decks = slides.deck_names(book)
     academic_decks = [d for d in decks if academic.is_academic(book.slides_dir / d)]
     inputs = (_book_inputs(book, slides=True)
-              .files(paths.TOKENS, paths.TOOLS / "figkit", paths.I18N_THEME, paths.I18N_LOCAL, paths.TOOLS / "node",
+              .files(paths.TOKENS, paths.I18N_THEME, paths.I18N_LOCAL, paths.TOOLS / "node",
+                     paths.TOOLS / "tbook" / "figure.py", paths.TOOLS / "tbook" / "figkit.py",
                      paths.TOOLS / "tbook" / "slides.py", paths.LOCK_FILE, paths.SITE_TOML,
                      paths.ROOT / "package-lock.json")
               .text("base", slides.base_path(site))

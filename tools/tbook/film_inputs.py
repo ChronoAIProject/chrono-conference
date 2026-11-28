@@ -9,9 +9,15 @@ network/filesystem reads performed by custom scripts.
 ENGINE_LANGUAGES = ("zh", "en")
 
 
-def video_files(where, *, theme="theme/film", tokens="theme/generated/tokens.mjs", implementation="tools/tbook/film.py"):
+def video_files(where, *, theme="theme/film", tokens="theme/generated/tokens.mjs",
+                implementation="tools/tbook/film.py", asset_files=None):
+    """Use the assets/ scope for change detection or the actual files when hashing a build."""
+    assets = f"{where}/assets/"
+    if asset_files is None:
+        asset_files = (assets,)
     return (
-        (where + "/", (f"/{where}/poster.jpg", f"/{where}/README.md", f"/{where}/out/")),
+        (where + "/", (f"/{where}/poster.jpg", f"/{where}/README.md", f"/{where}/out/", f"/{assets}")),
+        *((name, ()) for name in asset_files),
         (theme.rstrip("/") + "/", ("/theme/film/site/",)),
         (tokens, ()),
         (implementation, ()),

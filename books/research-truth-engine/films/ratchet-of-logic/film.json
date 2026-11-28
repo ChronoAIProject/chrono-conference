@@ -8,10 +8,10 @@
   "released": "2026-11-26",
   "duration": "1:09",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · a one-way ratchet, a computed 16-state kernel lattice, an observatory wheel",
+  "style": "dual-polarity optical glass · a one-way ratchet, a computed 16-state kernel lattice, an observatory wheel",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [

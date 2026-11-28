@@ -27,7 +27,7 @@ class SourceOnlyTests(unittest.TestCase):
             site = SimpleNamespace(repo="owner/books", base_url="", build_release_pdfs=True)
             write(repo.root / ".gitignore", "*.svg\n")
             script = write(book.dir / "figures/demo.py", "source v1")
-            helper = write(paths.TOOLS / "figkit/draw.py", "renderer v1")
+            helper = write(paths.TOOLS / "tbook/figkit.py", "renderer v1")
             palette = write(paths.TOKENS, "palette v1")
             rendered = write(book.dir / "slides/deck/img/demo.en.svg", "rendered v1")
 

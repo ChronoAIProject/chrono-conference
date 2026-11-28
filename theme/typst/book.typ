@@ -4,7 +4,7 @@
 //
 // Inputs (tools/tbook/pandoc.py):
 //   /meta.json                       book metadata, strings and counts (book_meta)
-//   sys.inputs "tr-variant"          "screen" (dark void, neon accents) | "print" (white paper)
+//   sys.inputs "tr-variant"          "screen" (book polarity) | "print" (white paper)
 //   /_theme/typst/code-<variant>.tmTheme   code highlighting derived from tokens.json
 // Functions called from raw Typst emitted by tools/filters/tr-book.lua and tr-env.lua:
 //   tr-chapter, tr-part, tr-env, tr-proof, tr-proof-label, tr-qed, tr-media, tr-fig-ext, tr-code-break
@@ -23,7 +23,8 @@
 #let variant = sys.inputs.at("tr-variant", default: "screen")
 #let meta = json(sys.inputs.at("tr-meta", default: "/meta.json"))
 #let is-print = variant == "print"
-#let pal = if is-print { tr-paper } else { tr-screen }
+#let is-daylight = is-print or (meta.at("polarity", default: "deep-space") == "daylight")
+#let pal = if is-daylight { tr-paper } else { tr-screen }
 #let S = meta.strings
 #let cjk = meta.at("cjk", default: false)
 
@@ -52,7 +53,6 @@
 
 // ------------------------------------------------------------------ palette roles
 #let page-fill = if is-print { none } else { pal.void }
-#let page-bg = if is-print { pal.void } else { pal.void }
 #let ink = pal.ink
 #let link-colour = pal.cyan
 #let heading-colour = if is-print { pal.ink } else { pal.ink }
@@ -81,14 +81,6 @@
 #let kicker-colour(section) = (
   numbered: pal.cyan, suffix: pal.cyan, prefix: pal.dim, back: pal.ok, part: pal.magenta,
 ).at(section, default: pal.cyan)
-
-// A cut-corner frame: notch the top-right corner of a filled/stroked block.
-#let cut-corner(size: 8pt, dx: 0pt, dy: 0pt, stroke: none) = {
-  place(top + right, dx: dx, dy: dy, polygon(fill: page-bg, (0pt, 0pt), (size, 0pt), (size, size)))
-  if stroke != none {
-    place(top + right, dx: dx, dy: dy, line(start: (0pt, 0pt), end: (size, size), stroke: stroke))
-  }
-}
 
 #let horizontalrule = align(center, block(above: 1.4em, below: 1.4em, {
   box(width: 18pt, height: 0.6pt, fill: pal.line-hot)
@@ -155,7 +147,6 @@
   block(width: 100%, breakable: true, above: 1.35em, below: 1.35em, fill: fill,
     stroke: (left: 2pt + c, top: edge, right: edge, bottom: edge),
     inset: (left: 11pt, right: 11pt, top: 8pt, bottom: 9pt), {
-      if not light { cut-corner(size: 8pt, dx: 11.25pt, dy: -8.25pt, stroke: 0.5pt + pal.panel-edge) }
       set par(first-line-indent: 0pt)
       block(below: 0.75em, sticky: true, grid(columns: (1fr, auto), column-gutter: 10pt,
         align: (left + bottom, right + bottom), head, badge-box))
@@ -174,8 +165,8 @@
     body
   })
 
-// A figure (tbook.figure) is staged with each palette written in; the variant picks the file.
-#let tr-fig-ext = if is-print { ".print.svg" } else { ".screen.svg" }
+// A figure (tbook.figure) is staged in both palettes. Daylight reuses the print figure.
+#let tr-fig-ext = if is-daylight { ".print.svg" } else { ".screen.svg" }
 
 #let tr-media(kind: "media", body) = if kind == "figure" {
   // a static figure: the drawing on the page itself, its caption below in the caption style
@@ -189,7 +180,6 @@
 } else {
   block(width: 100%, breakable: false, above: 1.4em, below: 1.4em,
     fill: panel-fill, stroke: 0.5pt + pal.panel-edge, inset: 10pt, {
-      cut-corner(size: 10pt, dx: 10.25pt, dy: -10.25pt, stroke: 0.5pt + pal.panel-edge)
       set par(first-line-indent: 0pt)
       mono-text(size: 6.8pt, fill: pal.cyan, tracking: 0.16em, upper(kind))
       v(4pt)
@@ -305,13 +295,7 @@
 
 #let opener-background = context {
   if is-print or on-blank-page() or not on-opener-page() { return }
-  // scanline band and a faint aurora on chapter opener pages (screen only)
-  place(top, rect(width: 100%, height: 92mm, fill: gradient.linear(
-    (pal.cyan.transparentize(91%), 0%), (pal.cyan.transparentize(100%), 100%), angle: 90deg)))
-  place(top, rect(width: 100%, height: 92mm, fill: tiling(size: (6pt, 2.4pt),
-    place(rect(width: 6pt, height: 0.5pt, fill: white.transparentize(95%))))))
-  place(top + right, dx: -14mm, dy: 14mm, polygon(fill: none, stroke: 0.6pt + pal.magenta,
-    (0pt, 0pt), (16pt, 0pt), (16pt, 16pt)))
+  place(center + horizon, rect(width: 100% - 28mm, height: 100% - 28mm, stroke: 0.5pt + pal.panel-edge))
 }
 
 // ------------------------------------------------------------------ front matter
@@ -338,10 +322,17 @@
   h(4pt)
   box(width: 8pt, height: 2.2pt, fill: pal.cyan)
   v(1fr)
-  text(font: f-display, size: 13pt, weight: "semibold", fill: ink, meta.authors.join(if cjk { "、" } else { ", " }))
+  let authors = meta.authors.join(if cjk { "、" } else { ", " })
+  text(font: f-display, size: 13pt, weight: "semibold", fill: ink, authors)
   v(10pt)
-  grid(columns: (auto, auto, auto), column-gutter: 10pt, align: horizon,
-    mono-text(size: 8pt, fill: pal.dim, meta.publisher),
+  let publisher = if meta.publisher != "" and meta.publisher != authors {
+    (mono-text(size: 8pt, fill: pal.dim, meta.publisher),)
+  } else {
+    ()
+  }
+  let columns = if publisher.len() > 0 { (auto, auto, auto) } else { (auto, auto) }
+  grid(columns: columns, column-gutter: 10pt, align: horizon,
+    ..publisher,
     box(stroke: 0.6pt + pal.magenta, inset: (x: 4pt, y: 2.5pt), mono-text(size: 7pt, fill: pal.magenta, [#S.lang_short · #S.lang_name])),
     mono-text(size: 8pt, fill: pal.faint, [v#meta.version]),
   )
@@ -367,8 +358,14 @@
   if tru.commit != "" {
     rows.push(kv-row(S.pinned_at, [#link(tru.url, text(font: f-mono, size: 8.5pt, fill: link-colour, tru.short)) #h(4pt) #text(font: f-mono, size: 8pt, fill: pal.dim, tru.repo)]))
   }
-  if meta.online_url != "" { rows.push(kv-row(S.online, link(meta.online_url, text(font: f-mono, size: 8pt, fill: link-colour, breakable-name(meta.online_url))))) }
-  if meta.repo_url != "" { rows.push(kv-row(S.source, link(meta.repo_url, text(font: f-mono, size: 8pt, fill: link-colour, meta.repo_url)))) }
+  if meta.online_url != "" {
+    let title = breakable-name(meta.at("online_label", default: meta.online_url))
+    rows.push(kv-row(S.online, link(meta.online_url, text(font: f-mono, size: 8pt, fill: link-colour, title))))
+  }
+  if meta.repo_url != "" {
+    let title = meta.at("repo_label", default: meta.repo_url)
+    rows.push(kv-row(S.source, link(meta.repo_url, text(font: f-mono, size: 8pt, fill: link-colour, title))))
+  }
   rows.push(kv-row(S.typeset, S.typeset_value))
   grid(columns: (30%, 1fr), column-gutter: 14pt, row-gutter: 7pt, align: (left + top, left + top), ..rows.flatten())
   v(16pt)
@@ -407,12 +404,12 @@
     leading: if cjk { 0.95em } else { 0.72em },
     spacing: if cjk { 0.95em } else { 0.72em },
     first-line-indent: if cjk { (amount: 2em, all: true) } else { (amount: 1.3em, all: false) })
-  set raw(theme: "/_theme/typst/code-" + variant + ".tmTheme")
+  let code-palette = if is-daylight { "print" } else { "screen" }
+  set raw(theme: "/_theme/typst/code-" + code-palette + ".tmTheme")
   show raw: set text(font: f-mono, size: 0.9em)
   show raw.where(block: false): set text(fill: if is-print { pal.sigma } else { pal.sigma })
   show raw.where(block: true): it => block(width: 100%, fill: panel-fill, stroke: 0.5pt + pal.panel-edge,
     inset: (x: 10pt, y: 8pt), above: 1.1em, below: 1.1em, breakable: true, {
-      cut-corner(size: 7pt, dx: 10.25pt, dy: -8.25pt, stroke: 0.5pt + pal.panel-edge)
       if it.lang != none and it.lang != "" {
         place(top + right, dx: 2pt, dy: -2pt, mono-text(size: 6pt, fill: pal.faint, tracking: 0.12em, upper(it.lang)))
       }

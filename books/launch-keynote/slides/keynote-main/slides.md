@@ -5,6 +5,11 @@ title: "面向未来的造物 · 2026 线上发布会主讲稿"
 info: "ChronoAI 2026 线上发布会主讲稿：执行贬值、逻辑棘轮、整车底座与街角前厅。"
 htmlAttrs:
   lang: "zh-CN"
+  data-polarity: "daylight"
+  data-tr-palette: "paper"
+colorSchema: "light"
+defaults:
+  class: "tr-own-bg tr-daylight"
 deck:
   code: "CHRONO//KEYNOTE"
   book: "面向未来的造物"
@@ -29,7 +34,7 @@ section: "此刻"
   <h2 class="t">你正坐在一场<em>没有人类摄制组</em>的发布会里</h2>
   <div class="split mt">
     <div>
-      <p class="lead">这座前厅、1,108 个剧场座位、18 座花篮、五部短片、四部双语书，以及门口的礼宾 Donna——在人类审校与闸门下，由 ChronoAI 智能体底座协同生成并公开托管。</p>
+      <p class="lead">这座前厅、1,108 个剧场座位、18 座花篮、一部发布会全片与五部短片、四部双语书，以及门口的礼宾 Donna——在人类审校与闸门下，由 ChronoAI 智能体底座协同生成并公开托管。</p>
       <div class="g3 mt-l">
         <Stat class="md" value="0" label="台摄影机" tone="magenta" />
         <Stat class="md" value="1,108" label="原子锁席位" />

@@ -13,6 +13,7 @@ import json
 import re
 import time
 import unittest
+from dataclasses import replace
 from pathlib import Path
 from unittest import mock
 
@@ -212,6 +213,18 @@ class GenerationTests(unittest.TestCase):
             self.assertEqual(sorted(p.name for p in stale), ["line.en.svg", "line.zh.svg", "line.zh.svg"])
             figure.build(book)
             self.assertIn('cx="160"', (img / "line.zh.svg").read_text(encoding="utf-8"), "the copy follows the script")
+
+    def test_daylight_slide_decks_keep_a_paper_palette_copy(self):
+        with Repo() as repo:
+            book = replace(demo(repo), polarity="daylight")
+            figure.build(book)
+            canonical = figure.out_path(book, "line", "zh").read_text(encoding="utf-8")
+            copy = book.dir / "slides/overview/img/line.zh.svg"
+            write(copy, figure.slide_svg(canonical))
+            self.assertTrue(any("paper-palette copy" in i.message for i in figure.check(book)))
+            self.assertEqual(figure.build(book), ([copy], []))
+            self.assertEqual(copy.read_text(encoding="utf-8"), figure.materialize(canonical, "paper"))
+            self.assertEqual(figure.build(book, check=True), ([], []))
 
     def test_scripts_may_share_a_helper(self):
         with Repo() as repo:

@@ -8,10 +8,10 @@
   "released": "2026-11-26",
   "duration": "1:00",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · cost and judgment curves, a five-layer chassis, a frozen truth DAG",
+  "style": "dual-polarity optical glass · cost and judgment curves, a five-layer chassis, a frozen truth DAG",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [
