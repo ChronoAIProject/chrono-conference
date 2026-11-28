@@ -1091,7 +1091,7 @@ def check_film(film: Film, lock: lean.Lock | None) -> list[Issue]:
     if voice_dir.is_dir():
         for msg in voice_errors(voice_dir, film.script):
             add("error", voice_dir, msg)
-    elif voice_dir.exists():
+    elif voice_dir.exists() or voice_dir.is_symlink():
         add("error", voice_dir, "voice must be a directory")
     if film.poster.is_file():
         size = film.poster.stat().st_size

@@ -208,7 +208,13 @@ class ValidationTest(unittest.TestCase):
         directory.mkdir()
         self.assertIn("'line999.mp3' must be a file named like line00.mp3", errors(film.check_film(item, fake_lock())))
 
-        shutil.rmtree(voice)
+    def test_prerecorded_voice_path_must_be_a_directory(self):
+        created = film.scaffold(self.book, "studio", "录音", "Studio")
+        item = film.load_film(self.book, created[0].parent)
+        voice = item.dir / "voice"
+        voice.symlink_to("absent-directory", target_is_directory=True)
+        self.assertIn("voice must be a directory", errors(film.check_film(item, fake_lock())))
+        voice.unlink()
         voice.touch()
         self.assertIn("voice must be a directory", errors(film.check_film(item, fake_lock())))
 
@@ -1299,14 +1305,22 @@ class ToolchainTest(unittest.TestCase):
             self.assertIn(needle, missing)
 
     def test_prerecorded_toolchain_skips_kokoro(self):
+        from tbook import doctor
+
         with mock.patch.object(film, "ffmpeg_path", return_value="ffmpeg"), \
                 mock.patch.object(film, "font_package", return_value=THEME_FILM), \
                 mock.patch.object(film, "film_python", return_value="film-python"), \
                 mock.patch.object(film, "model_dir") as models, \
+                mock.patch.object(film, "node_executable", return_value=None), \
+                mock.patch.object(doctor, "chromium_path", return_value=None), \
+                tempfile.TemporaryDirectory() as tmp, mock.patch.object(paths, "ROOT", Path(tmp)), \
                 mock.patch.object(film.subprocess, "run", return_value=SimpleNamespace(returncode=0)) as run:
             self.assertEqual(film.toolchain_missing(canvas=True, need_tts=False), [])
-        run.assert_called_once_with(["film-python", "-c", "import numpy, scipy.signal, soundfile"],
-                                    capture_output=True, timeout=120)
+            missing = film.toolchain_missing(canvas=False, need_tts=False)
+        self.assertEqual([item.split()[0] for item in missing], ["node", "Playwright", "Chromium"])
+        self.assertEqual(run.call_args_list, [
+            mock.call(["film-python", "-c", "import numpy, scipy.signal, soundfile"], capture_output=True, timeout=120)
+        ] * 2)
         models.assert_not_called()
 
     def test_film_python(self):

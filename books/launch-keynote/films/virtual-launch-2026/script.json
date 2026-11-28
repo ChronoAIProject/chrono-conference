@@ -1,5 +1,5 @@
 {
-  "voice": "ryan",
+  "voice": "studio-narrator",
   "speed": 1.0,
   "say": {
     "live.trureturing.org": "live dot true Turing dot org",
@@ -42,6 +42,7 @@
     "API": "A P I",
     "HR": "H R",
     "AI": "A I",
+    "Verus-verified": "Vair-us verified",
     "Verus": "Vair-us",
     "Riemann": "Ree-mahn",
     "Fredkin": "Fred-kin",
@@ -311,8 +312,8 @@
           "二十七类集成汇聚一块画布，桌前与手机随时调度。"
         ],
         [
-          "And chrono-harness replaces wishful prompts with 21 executable Rust judges and 540 Verus proofs.",
-          "用 21 个 Rust 判官和 540 份 Verus 证明替代空想。"
+          "chrono-harness replaces wishful prompts with 21 Rust judges and 540 Verus-verified Rust files.",
+          "用 21 个 Rust 判官和 540 份 Verus 验证文件替代空想。"
         ]
       ],
       "cues": [
@@ -449,7 +450,7 @@
         ],
         [
           "Leave orbit for live.trureturing.org, built by the independent Omega Institute.",
-          "离开地球轨道，进入独立科研机构的实时观测站。"
+          "离轨进入独立机构 The Omega Institute 观测站。"
         ],
         [
           "Fire a radar sweep across eight orbital research stations—and dive into eight spiral galaxies.",
@@ -540,7 +541,7 @@
         ],
         [
           "Replay Levent Alpöge's November Lean 4 Riemann proof across 8,490 public shards.",
-          "通过 8,490 个公开分片，重放十一月的 Lean 4 黎曼猜想证明。"
+          "8,490 公开分片重放 Alpöge 十一月 Lean 4 黎曼证明。"
         ],
         [
           "Explore three bilingual monographs and 225 open Mathesis papers. Open questions are marked red.",

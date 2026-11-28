@@ -112,7 +112,7 @@ def main(argv: list[str]) -> int:
                 source = voice_dir / f"line{li:02d}.mp3"
                 try:
                     decoded = subprocess.run(
-                        [decoder, "-nostdin", "-hide_banner", "-loglevel", "error", "-i", str(source),
+                        [decoder, "-xerror", "-nostdin", "-hide_banner", "-loglevel", "error", "-i", str(source),
                          "-ac", "1", "-ar", str(SR_OUT), "-c:a", "pcm_f32le", "-f", "wav", "pipe:1"],
                         stdout=subprocess.PIPE, check=True,
                     )

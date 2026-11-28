@@ -1,34 +1,34 @@
 /* Titles, cuts and captions share the measured narration clock. The full-frame
    plate supplies the same composition when the player runs without the clips. */
-FILM.defaultPolarity = 'daylight';
 FILM.cinemaSubtitles = true;
 FILM.hud = false;
 const obsidian = '#04070E';
 const chapterInk = '#FFFFFF';
 const night = 'deep-space';
+FILM.defaultPolarity = night;
 POLARITY[night].bg = obsidian;
 const company = 'ChronoAI Pte. Ltd.';
 const institute = 'The Omega Institute (Independent)';
 const aperture = { x: 0, y: 0, w: W, h: H };
 
 for (const [i, scene] of TL.scenes.entries()) {
-  FILM.polarity[scene.id] = i === 7 ? 'dual-split' : i >= 5 ? night : 'daylight';
+  FILM.polarity[scene.id] = i === 7 ? 'dual-split' : night;
   FILM.alphaScenes[scene.id] = true;
 }
 
-function frame(S, location, product = false) {
+function frame(S, location) {
   const split = S.i === 7;
-  const bars = S.i === 0 || S.i >= 5 ? night : 'daylight';
+  const bars = night;
   plate(S.id + '.jpg', aperture, { p: S.p, zoomTo: 1.035, vignette: 0 });
-  if (product) fillBox(0, 916, W, 124, pal(scenePolarity(S.id)).bg);
+  fillBox(0, 916, W, 124, pal(night).bg);
   cinemaFrame(S, {
     polarity: bars, barHeight: 40, chapterInk,
     leftLabel: split ? company + ' · Singapore' : S.i >= 5 ? institute : company,
     chapterLabel: '', rightLabel: split ? institute : String(S.i + 1).padStart(2, '0') + ' / 08',
     slateLeft: location, slateRight: '2026 · 11 · 28'
   });
-  txt(sceneName(S.id), 914, 20, { fam: F.disp, size: 21, w: 700, ls: 0.5,
-    c: bars === night ? chapterInk : pal(bars).ink, align: 'right', base: 'middle' });
+  txt(sceneName(S.id), split ? 914 : W / 2, 20, { fam: F.disp, size: 21, w: 700, ls: 0.5,
+    c: chapterInk, align: split ? 'right' : 'center', base: 'middle' });
 }
 
 function opacity(p) {
@@ -83,7 +83,7 @@ SCENES.s02_through_the_glass = S => {
 };
 
 SCENES.s03_nyxid_zero_secret = S => {
-  frame(S, 'NyxID / scoped proxy', true);
+  frame(S, 'NyxID / scoped proxy');
   card(Q(S, 0, 'Rule one', 3.15), 'NYXID', ['AN AGENT PROMPT', 'IS NOT A VAULT']);
   card(Q(S, 2, 'Think of', 4.8), 'ANALOGY', ['SMART HOTEL KEYCARD'], { ...productCard, kind: 'amber' });
   card(Q(S, 4, 'HTTP 200', 4.8), 'SCOPED REQUEST', ['HTTP 200'], productCard);
@@ -93,15 +93,15 @@ SCENES.s03_nyxid_zero_secret = S => {
 };
 
 SCENES.s04_complete_vehicle_stack = S => {
-  frame(S, 'Ornn / CMA / heca / chrono-harness', true);
+  frame(S, 'Ornn / CMA / heca / chrono-harness');
   card(Q(S, 0, 'Ornn', 10.4), 'L2   ORNN', ['163 SCANNED SKILLS'], { ...stackCard, layer: 1 });
   card(Q(S, 3, 'In the cloud', 10.4), 'L3   CMA v0.12.0', ['2 s HOT RELOAD · APACHE 2.0'], { ...stackCard, layer: 2 });
   card(Q(S, 5, 'On your own machine', 8.6), 'L3   HECA', ['27 INTEGRATIONS · ONE CANVAS'], { ...stackCard, layer: 3 });
-  card(Q(S, 7, 'And chrono-harness', 7.72), 'L4   CHRONO-HARNESS', ['21 RUST JUDGES', '540 VERUS-VERIFIED RUST FILES'], { ...stackCard, layer: 4 });
+  card(Q(S, 7, 'chrono-harness', S.L[7].e - S.L[7].s), 'L4   CHRONO-HARNESS', ['21 RUST JUDGES', '540 VERUS-VERIFIED RUST FILES'], { ...stackCard, layer: 4 });
 };
 
 SCENES.s05_ai_employees_live = S => {
-  frame(S, 'OPS//LEDGER / LAUNCH//ARENA', true);
+  frame(S, 'OPS//LEDGER / LAUNCH//ARENA');
   card(Q(S, 1, 'nine AI employees', 7.8), '9 AI EMPLOYEES', ['85% WORKFLOWS (102/120)'], productCard);
   card(Q(S, 3, 'Every cash transfer', 4.5), 'HUMAN APPROVAL GATE', ['CASH & COMMITMENTS'], productCard);
   card(Q(S, 4, 'Watch our launch arena', 5.0), 'LAUNCH//ARENA', ['1,108 LOCKED SEATS', '0 COLLISIONS'], productCard);
@@ -134,15 +134,15 @@ function proof(p, gid, rows, y) {
 }
 
 SCENES.s07_proof_on_blackboard = S => {
-  frame(S, 'Lean 4 / Mathematical Atlas / Mathesis', true);
+  frame(S, 'Lean 4 / Mathematical Atlas / Mathesis');
   proof(Q(S, 2, 'One explicit witness', 6.75), fredkinGid,
     ['FredkinEntanglingPowerRefutation.result', '> 2.00034 ebits · sorryAx: 0'], 690);
   const ratchet = Q(S, 3, 'Two frozen theorems', 4.03);
   proof(ratchet, kernelGid, ['jointKernel_antitone'], 562);
   proof(ratchet, noveltyGid, ['lowersEscape_iff_not_mem_semanticClosureWithout'], 676);
-  card(Q(S, 4, 'Replay Levent', 4.9), 'REPLAYABLE IN LEAN 4', ['8,490 PUBLIC SHARDS'], productCard);
+  card(Q(S, 4, 'Replay Levent', 4.9), 'LEVENT ALPÖGE · LEAN 4 REPLAY', ['8,490 PUBLIC SHARDS'], productCard);
   card(Q(S, 5, 'Explore three', 5.75), '3 BILINGUAL MONOGRAPHS', ['225 OPEN MATHESIS PAPERS'], productCard);
-  card(Q(S, 6, 'Verified truth', 5.55), 'OPEN · OPEN FRONTIERS MARKED RED', ['ERH · GRAND RH · ZERO SIMPLICITY'],
+  card(Q(S, 6, 'Verified truth', 5.55), 'OPEN · FRONTIERS MARKED RED', ['ERH · GRAND RH · ZERO SIMPLICITY'],
     { ...productCard, kind: 'open' });
 };
 
@@ -155,7 +155,9 @@ SCENES.s08_build_for_what_comes_next = S => {
   codaTitle(Q(S, 0, 'Now pull back', 4.35));
   card(Q(S, 1, 'Intelligence is becoming abundant', 9.8), 'INTELLIGENCE IS ABUNDANT.', ['TRUST IS WHAT', 'WE BUILD NEXT.']);
   card(Q(S, 3, 'Step into Street Corner', 3.7), 'Street Corner', ['Dec 17 · 16:00 SGT']);
-  card(Q(S, 4, 'Audit any theorem', 7.08), 'live.trureturing.org', ['nyxid.ai', 'contact@chrono-ai.fun'], { size: 44 });
+  const endpoints = Q(S, 4, 'Audit any theorem', 7.08);
+  card(endpoints, 'CHRONOAI · SINGAPORE', ['nyxid.ai', 'contact@chrono-ai.fun'], { right: false, size: 44 });
+  card(endpoints, 'THE OMEGA INSTITUTE', ['live.trureturing.org'], { right: true, size: 44 });
   codaTitle(Q(S, 5, 'Pick up the chalk', 5.6));
 };
 
