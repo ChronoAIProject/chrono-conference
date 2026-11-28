@@ -39,7 +39,13 @@ def draw(fig):
         height = 172 if role == "lean" else 102
         fig.rect(12, y, 334, height, color=role, fill="bg", rx=8)
         fig.rect(12, y + 12, 4, height - 24, color=None, fill=role, rx=2)
-        badge_width = fig.chip(25, y + 28, badge, role, size=13)
+        if role == "open":
+            # The paper palette needs an untinted background for the red label.
+            badge_width = fig.measure(badge, size=13, mono=True) + 14
+            fig.rect(25, y + 11, badge_width, 22, color=role, width=1.2)
+            fig.text(32, y + 28, badge, size=13, color=role, mono=True, weight=600)
+        else:
+            badge_width = fig.chip(25, y + 28, badge, role, size=13)
         fig.text(36 + badge_width, y + 28, title, size=16, weight=700)
         for index, note in enumerate(notes):
             fig.text(25, y + 56 + index * 22, note, size=14, color="dim")
