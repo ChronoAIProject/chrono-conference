@@ -1,10 +1,11 @@
-"""Synthesize the narration line by line with Kokoro-82M (ONNX) and write the film's timeline.
+"""Prepare the narration line by line and write the film's timeline.
 
 Usage: python3 theme/film/tts.py <film dir> [--only N]
 
-Reads script.json (voice, speed, optional "say" pronunciations, scenes with lead / lines / tail)
-and writes, under <film dir>/out/:
-  tts/lineNN.wav     one 48 kHz mono file per line (trimmed silence); --only N re-synthesizes line N
+Reads script.json (voice, speed, optional "say" pronunciations, scenes with lead / lines / tail).
+Uses prerecorded MP3s from voice/ when present and Kokoro-82M (ONNX) otherwise.
+Writes, under <film dir>/out/:
+  tts/lineNN.wav     one 48 kHz mono file per line (trimmed silence); --only N selects a Kokoro line
   narration.wav      every line placed at its start time
   timeline.json      {scenes: [{id, start, end}], lines: [{i, scene, start, end, en, zh}], duration}
 
@@ -17,10 +18,12 @@ Model files (kokoro-v1.0.onnx, voices-v1.0.bin) come from $KOKORO_MODEL_DIR (def
 
 from __future__ import annotations
 
+import io
 import json
+import subprocess
 import sys
 
-from common import fail, film_dir_arg, load, model_dir, out_dir, tfilm
+from common import fail, ffmpeg, film_dir_arg, load, model_dir, out_dir, tfilm
 
 SR_OUT = 48000
 GAP = tfilm.LINE_GAP_SECONDS  # silence between lines inside a scene (the provisional timeline uses the same)
@@ -63,7 +66,6 @@ def main(argv: list[str]) -> int:
     try:
         import numpy as np
         import soundfile as sf
-        from kokoro_onnx import Kokoro
     except ImportError as exc:
         fail(f"{exc.name} is not installed; run theme/film/setup.sh")
     film_dir = film_dir_arg([a for a in argv if not a.startswith("--")])
@@ -77,12 +79,24 @@ def main(argv: list[str]) -> int:
     problems = [m for sev, m in tfilm.validate_script(script) if sev == "error"]
     if problems:
         fail("script.json:\n  " + "\n  ".join(problems))
-    models = model_dir()
-    onnx, voices = models / "kokoro-v1.0.onnx", models / "voices-v1.0.bin"
-    if not onnx.is_file() or not voices.is_file():
-        fail(f"Kokoro model files not found in {models}; run theme/film/setup.sh")
-    say = {**SAY, **(script.get("say") or {})}
-    k = Kokoro(str(onnx), str(voices))
+    has_voice = film.has_voice
+    if has_voice:
+        voice_dir = film_dir / "voice"
+        problems = tfilm.voice_errors(voice_dir, script)
+        if problems:
+            fail("voice/:\n  " + "\n  ".join(problems))
+        decoder = ffmpeg()
+    else:
+        try:
+            from kokoro_onnx import Kokoro
+        except ImportError as exc:
+            fail(f"{exc.name} is not installed; run theme/film/setup.sh")
+        models = model_dir()
+        onnx, voices = models / "kokoro-v1.0.onnx", models / "voices-v1.0.bin"
+        if not onnx.is_file() or not voices.is_file():
+            fail(f"Kokoro model files not found in {models}; run theme/film/setup.sh")
+        say = {**SAY, **(script.get("say") or {})}
+        k = Kokoro(str(onnx), str(voices))
     out = out_dir(film_dir)
     (out / "tts").mkdir(exist_ok=True)
     timeline: dict = {"scenes": [], "lines": []}
@@ -94,7 +108,19 @@ def main(argv: list[str]) -> int:
         t += float(sc["lead"])
         for j, (en, zh) in enumerate(sc["lines"]):
             path = out / "tts" / f"line{li:02d}.wav"
-            if only is None or only == li or not path.exists():
+            if has_voice:
+                source = voice_dir / f"line{li:02d}.mp3"
+                try:
+                    decoded = subprocess.run(
+                        [decoder, "-xerror", "-nostdin", "-hide_banner", "-loglevel", "error", "-i", str(source),
+                         "-ac", "1", "-ar", str(SR_OUT), "-c:a", "pcm_f32le", "-f", "wav", "pipe:1"],
+                        stdout=subprocess.PIPE, check=True,
+                    )
+                except subprocess.CalledProcessError:
+                    fail(f"{source}: ffmpeg could not decode the MP3")
+                x, _ = sf.read(io.BytesIO(decoded.stdout), dtype="float32")
+                sf.write(str(path), trim(x), SR_OUT, subtype="FLOAT")
+            elif only is None or only == li or not path.exists():
                 samples, sr = k.create(spoken(en, say), voice=script["voice"], speed=float(script["speed"]), lang="en-us")
                 x = trim(np.asarray(samples, dtype=np.float32))
                 x = resample(x, sr, SR_OUT)

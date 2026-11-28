@@ -1,231 +1,170 @@
-/* Daylight Plaza × Deep-Space Glass. Clip scenes are transparent HUD layers over the
-   verified local 3D captures. All copy is ledger-dated and the badges retain their
-   epistemic meaning in the cinema master and the still-plate web edition. */
-FILM.defaultPolarity = 'daylight';
+/* Titles, cuts and captions share the measured narration clock. The full-frame
+   plate supplies the same composition when the player runs without the clips. */
 FILM.cinemaSubtitles = true;
 FILM.hud = false;
-Object.assign(FILM.polarity, {
-  prologue_office_to_stadium: 'daylight',
-  prologue_bay_to_orbit: 'dual-split',
-  act1_judgment: 'daylight',
-  act2_stations_to_galaxies: 'deep-space',
-  act2_kernel_ratchet: 'deep-space',
-  act2_red_stamps: 'deep-space',
-  act3_vehicle_chassis: 'daylight',
-  act3_unfinished_bolts: 'daylight',
-  act4_nine_employees_rehearsal: 'daylight',
-  coda_choir_and_chalk: 'dual-split'
-});
-Object.assign(FILM.alphaScenes, {
-  prologue_office_to_stadium: true,
-  prologue_bay_to_orbit: true,
-  act2_stations_to_galaxies: true
-});
+const obsidian = '#04070E';
+const chapterInk = '#FFFFFF';
+const night = 'deep-space';
+FILM.defaultPolarity = night;
+POLARITY[night].bg = obsidian;
+const company = 'ChronoAI Pte. Ltd.';
+const institute = 'The Omega Institute (Independent)';
+const aperture = { x: 0, y: 0, w: W, h: H };
 
-const plaza = pal('daylight');
-const space = pal('deep-space');
-const company = 'CHRONOAI PTE. LTD.';
-const institute = 'THE OMEGA INSTITUTE (INDEPENDENT)';
+for (const [i, scene] of TL.scenes.entries()) {
+  FILM.polarity[scene.id] = i === 7 ? 'dual-split' : night;
+  FILM.alphaScenes[scene.id] = true;
+}
+
+function frame(S, location) {
+  const split = S.i === 7;
+  const bars = night;
+  plate(S.id + '.jpg', aperture, { p: S.p, zoomTo: 1.035, vignette: 0 });
+  fillBox(0, 916, W, 124, pal(night).bg);
+  cinemaFrame(S, {
+    polarity: bars, barHeight: 40, chapterInk,
+    leftLabel: split ? company + ' · Singapore' : S.i >= 5 ? institute : company,
+    chapterLabel: '', rightLabel: split ? institute : String(S.i + 1).padStart(2, '0') + ' / 08',
+    slateLeft: location, slateRight: '2026 · 11 · 28'
+  });
+  txt(sceneName(S.id), split ? 914 : W / 2, 20, { fam: F.disp, size: 21, w: 700, ls: 0.5,
+    c: chapterInk, align: split ? 'right' : 'center', base: 'middle' });
+}
+
+function opacity(p) {
+  return eo(p / 0.09) * ease((1 - p) / 0.10);
+}
+
+// Each card is contained within one half of the aperture. The middle of the
+// live capture stays visible and the terminal output has its own reading area.
+function card(p, label, rows, options = {}) {
+  const a = opacity(p);
+  if (a <= 0) return;
+  const { right = false, y = 116, size = 50, family = F.disp, kind, layer } = options;
+  const labelSize = 20, inset = 27, lineHeight = Math.round(size * 1.14);
+  const maxWidth = 824;
+  const widths = rows.map(s => tw(s, size, family, 700));
+  const fitted = Math.min(size, Math.floor(size * (maxWidth - 2 * inset) / Math.max(...widths)));
+  const width = Math.ceil(Math.max(tw(label, labelSize, F.mono, 700, 1.1),
+    ...rows.map(s => tw(s, fitted, family, 700))) + 2 * inset);
+  const height = 63 + lineHeight * rows.length;
+  const dx = (right ? 1 : -1) * 24 * (1 - eo(p / 0.13));
+  const x = (right ? W - 75 - width : 75) + dx;
+  const accent = kind ? pal(night)[kind] : C.secondary;
+  glassCard(x, y, width, height, a, { polarity: night, fill: rgba(obsidian, 0.91),
+    border: rgba(C.white, 0.34), topRule: false, radius: 12 });
+  if (layer) {
+    const cell = (width - 2 * inset - 15) / 4;
+    for (let n = 0; n < 4; n++) {
+      fillBox(x + inset + n * (cell + 5), y + height - 10, cell, 2, n === layer - 1 ? chapterInk : C.dim, a);
+    }
+  }
+  txt(label, x + inset, y + 33, { fam: F.mono, size: labelSize, ls: 1.1, w: 700, c: accent, a });
+  rows.forEach((s, i) => txt(s, x + inset, y + 44 + lineHeight * (i + 0.80), {
+    fam: family, size: fitted, w: 700, c: chapterInk, a }));
+}
+
+const productCard = { right: true, y: 690, size: 39 };
+const stackCard = { ...productCard, y: 710, size: 36 };
+
+SCENES.s01_the_shift = S => {
+  frame(S, '14F · Singapore');
+  card(Q(S, 3, 'Because a model', 2.78), 'ANALOGY', ['THE MODEL IS', 'ONLY AN ENGINE'], { kind: 'amber' });
+  card(Q(S, 4, 'We built', 4.48), 'ANALOGY', ['WE BUILT THE', 'ENTIRE VEHICLE'], { kind: 'amber' });
+  card(Q(S, 5, 'Look around', 8.65), 'SINGAPORE · 14F', ['ZERO CAMERAS', 'ZERO STAGE CREW', 'RUNNING LIVE'], { size: 44 });
+};
+
+SCENES.s02_through_the_glass = S => {
+  frame(S, 'Street Corner / Tide Arena');
+  card(Q(S, 0, 'Pull straight', 3.2), 'STREET CORNER', ['MARINA BAY']);
+  card(Q(S, 1, '1,108', 3.35), 'TIDE ARENA', ['1,108 ATOMIC SEATS']);
+  card(Q(S, 2, 'Eighteen flower mats', 4.62), 'FLOWER TOWN', ['18 FLOWER MATS']);
+  card(Q(S, 4, 'In sixty days', 8.57), '60 DAYS · 15 ENGINEERS', ['141,624 COMMITS']);
+};
+
+SCENES.s03_nyxid_zero_secret = S => {
+  frame(S, 'NyxID / scoped proxy');
+  card(Q(S, 0, 'Rule one', 3.15), 'NYXID', ['AN AGENT PROMPT', 'IS NOT A VAULT']);
+  card(Q(S, 2, 'Think of', 4.8), 'ANALOGY', ['SMART HOTEL KEYCARD'], { ...productCard, kind: 'amber' });
+  card(Q(S, 4, 'HTTP 200', 4.8), 'SCOPED REQUEST', ['HTTP 200'], productCard);
+  card(Q(S, 5, 'Task finished', 2.95), 'ACCESS CONTROL', ['HTTP 200 → REVOKE'], productCard);
+  card(Q(S, 5, 'HTTP 401', 1.24), 'ACCESS CONTROL', ['HTTP 200 → REVOKE → HTTP 401'], productCard);
+  card(Q(S, 6, 'Fifty-five', 4.92), '0 KEYS EXPOSED', ['55 SERVICES · 42 MCP SPECS'], productCard);
+};
+
+SCENES.s04_complete_vehicle_stack = S => {
+  frame(S, 'Ornn / CMA / heca / chrono-harness');
+  card(Q(S, 0, 'Ornn', 10.4), 'L2   ORNN', ['163 SCANNED SKILLS'], { ...stackCard, layer: 1 });
+  card(Q(S, 3, 'In the cloud', 10.4), 'L3   CMA v0.12.0', ['2 s HOT RELOAD · APACHE 2.0'], { ...stackCard, layer: 2 });
+  card(Q(S, 5, 'On your own machine', 8.6), 'L3   HECA', ['27 INTEGRATIONS · ONE CANVAS'], { ...stackCard, layer: 3 });
+  card(Q(S, 7, 'chrono-harness', S.L[7].e - S.L[7].s), 'L4   CHRONO-HARNESS', ['21 RUST JUDGES', '540 VERUS-VERIFIED RUST FILES'], { ...stackCard, layer: 4 });
+};
+
+SCENES.s05_ai_employees_live = S => {
+  frame(S, 'OPS//LEDGER / LAUNCH//ARENA');
+  card(Q(S, 1, 'nine AI employees', 7.8), '9 AI EMPLOYEES', ['85% WORKFLOWS (102/120)'], productCard);
+  card(Q(S, 3, 'Every cash transfer', 4.5), 'HUMAN APPROVAL GATE', ['CASH & COMMITMENTS'], productCard);
+  card(Q(S, 4, 'Watch our launch arena', 5.0), 'LAUNCH//ARENA', ['1,108 LOCKED SEATS', '0 COLLISIONS'], productCard);
+  card(Q(S, 5, 'Donna', 10.35), 'DONNA · 29 s MEDIAN', ['11/12 STAGES · DEC 17 PILOT'], productCard);
+};
+
+SCENES.s06_one_more_thing_omega = S => {
+  frame(S, 'Orbital passage / live.trureturing.org');
+  const pause = Q(S, 0, 'One more thing.', 3.37);
+  const a = opacity(pause);
+  if (a > 0) {
+    fillBox(0, 40, W, H - 80, obsidian, 0.64 * a);
+    txt('One more thing.', 78, 498 + 12 * (1 - eo(pause / 0.14)), {
+      size: 92, fam: F.disp, w: 700, c: chapterInk, a });
+  }
+  card(Q(S, 3, 'Leave orbit', 5.2), 'live.trureturing.org', ['THE OMEGA INSTITUTE', '(INDEPENDENT)']);
+  card(Q(S, 5, 'Over 223,231', 5.65), '6.02M LINES', ['223,231 FROZEN', 'LEAN 4 THEOREMS']);
+  card(Q(S, 6, '720 hours straight', 7.95), '720 HOURS', ['2,278 LITERATURE PROBLEMS', '684 FROM JOURNALS'], { size: 44 });
+  card(Q(S, 7, 'Same models.', 2.75), 'SAME MODELS.', ['RADICALLY DIFFERENT RESULTS.'], { size: 46 });
+};
+
 const kernelGid = 'D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKernel_antitone';
 const noveltyGid = 'D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout';
 const fredkinGid = 'D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result';
 
-function caption(s, x, y, c, size = 18, o = {}) {
-  txt(s, x, y, { fam: F.mono, size, c, w: 500, ...o });
-}
-function heading(s, x, y, size, c, o = {}) {
-  txt(s, x, y, { fam: F.disp, size, c, w: 700, ...o });
-}
-function rule(x1, x2, y, p) { line(x1, y + 0.5, x2, y + 0.5, p.edge, 1, 1); }
-function frame(S, chapter, shot, source, note, blend) {
-  cinemaFrame(S, { leftLabel: scenePolarity(S.id) === 'deep-space' ? institute : company,
-    chapterLabel: chapter, rightLabel: shot, slateLeft: source, slateRight: note, blend,
-    barHeight: FILM.alphaScenes[S.id] ? 56 : undefined });
-}
-function paper(p) { fillBox(0, VIEWPORT.y, W, VIEWPORT.h, p.bg, 1); }
-function card(x, y, w, h, p, kicker) {
-  glassCard(x, y, w, h, 1, { fill: p.surface, kicker });
-}
-function lineBlock(lines, x, y, p, size = 23) {
-  lines.forEach((value, i) => caption(value, x, y + i * 44, p.ink, size));
-}
-function splitPaper() {
-  fillBox(0, VIEWPORT.y, 960, VIEWPORT.h, plaza.bg, 1);
-  fillBox(960, VIEWPORT.y, 960, VIEWPORT.h, space.bg, 1);
+function proof(p, gid, rows, y) {
+  if (leanCite(gid)?.kind === 'theorem') {
+    card(p, 'LEAN ✓', rows, { right: true, y, size: 30, family: F.mono, kind: 'lean' });
+  }
 }
 
-SCENES.prologue_office_to_stadium = S => {
-  plate('office-stadium.jpg', { x: 0, y: 0, w: W, h: H }, { zoomTo: 1, vignette: 0 });
-  frame(S, 'PROLOGUE  /  FOUR STANDS', 'OFFICE → STADIUM', 'CHRONOAI LOBBY · LOCAL 3D CAPTURE', 'LIVE PIP · 30 FPS');
+SCENES.s07_proof_on_blackboard = S => {
+  frame(S, 'Lean 4 / Mathematical Atlas / Mathesis');
+  proof(Q(S, 2, 'One explicit witness', 6.75), fredkinGid,
+    ['FredkinEntanglingPowerRefutation.result', '> 2.00034 ebits · sorryAx: 0'], 690);
+  const ratchet = Q(S, 3, 'Two frozen theorems', 4.03);
+  proof(ratchet, kernelGid, ['jointKernel_antitone'], 562);
+  proof(ratchet, noveltyGid, ['lowersEscape_iff_not_mem_semanticClosureWithout'], 676);
+  card(Q(S, 4, 'Replay Levent', 4.9), 'LEVENT ALPÖGE · LEAN 4 REPLAY', ['8,490 PUBLIC SHARDS'], productCard);
+  card(Q(S, 5, 'Explore three', 5.75), '3 BILINGUAL MONOGRAPHS', ['225 OPEN MATHESIS PAPERS'], productCard);
+  card(Q(S, 6, 'Verified truth', 5.55), 'OPEN · FRONTIERS MARKED RED', ['ERH · GRAND RH · ZERO SIMPLICITY'],
+    { ...productCard, kind: 'open' });
 };
 
-SCENES.prologue_bay_to_orbit = S => {
-  plate(S.p < 0.7 ? 'marina-bay-sky.jpg' : 'earth-orbit.jpg', { x: 0, y: 0, w: W, h: H }, { zoomTo: 1, vignette: 0 });
-  frame(S, 'PROLOGUE  /  BAY TO ORBIT', 'MARINA BAY → EARTH', 'CHRONOAI METAVERSE · LOCAL 3D CAPTURE', 'SYNCED PIP · 30 FPS');
-};
+function codaTitle(p) {
+  card(p, '面向未来的造物', ['Build for What', 'Comes Next'], { y: 108, size: 65 });
+}
 
-SCENES.act1_judgment = S => {
-  paper(plaza);
-  card(80, 170, 850, 550, plaza, 'ACT I · JUDGMENT UNDER LOAD');
-  heading('CHEAP EXECUTION', 116, 304, 52, plaza.ink);
-  heading('SCARCE JUDGMENT', 116, 366, 52, plaza.amber);
-  statusTag(116, 420, 'amber', 'STANCE · NOT A THEOREM');
-  lineBlock(['EXECUTION COST ↓', 'JUDGMENT VALUE ↑', '100× WRONG CATHEDRAL'], 116, 490, plaza, 24);
-  card(980, 170, 860, 550, plaza, 'AUDITED REPOSITORY LEDGER · 2026-11-27');
-  heading('141,624', 1020, 304, 92, plaza.ink);
-  caption('COMMITS · 60 DAYS · 74 ACTIVE REPOS', 1024, 350, plaza.dim, 19);
-  rule(1024, 1798, 386, plaza);
-  heading('539', 1020, 474, 72, plaza.ink);
-  caption('REPOSITORIES · 6 ORGANIZATIONS', 1024, 514, plaza.dim, 19);
-  caption('243 CHRONOAI · 296 THE OMEGA INSTITUTE (INDEPENDENT)', 1024, 548, plaza.ink, 18);
-  heading('34.9%', 1408, 474, 66, plaza.ink);
-  caption('EXPLICIT BOT / AGENT SAMPLE · 69 REPOS', 1412, 514, plaza.dim, 17);
-  frame(S, 'ACT I  /  THE HAMMER AND THE FLOOD', 'JUDGMENT', 'MASTER LEDGER · 2026-11-28', 'ANALOGY / STANCE');
-};
-
-SCENES.act2_stations_to_galaxies = S => {
-  plate(S.p < 0.5 ? 'obs-stations.jpg' : 'obs-galaxies.jpg', { x: 0, y: 0, w: W, h: H }, { zoomTo: 1, vignette: 0 });
-  frame(S, 'ACT II  /  EIGHT STATIONS', 'STATIONS → GALAXIES', 'LIVE.TRURETURING.ORG · LIVE 3D CAPTURE', '星穹 → 星系 → 曜白 · 30 FPS');
-};
-
-SCENES.act2_kernel_ratchet = S => {
-  plate('obs-galaxies.jpg', VIEWPORT, { p: S.p, zoomFrom: 1.02, zoomTo: 1.08, panX: 18, panY: -8, vignette: 0.04 });
-  card(580, 164, 1260, 602, space, 'THE OMEGA INSTITUTE · FROZEN DECLARATION');
-  heading('LEAN 4 KERNEL AUDIT', 620, 278, 52, space.ink);
-  statusTag(620, 316, 'lean', 'LEAN ✓');
-  caption('FredkinEntanglingPowerRefutation.result', 780, 337, space.dim, 20);
-  rule(620, 1804, 366, space);
-  lineBlock(['#print axioms', '[propext, Classical.choice, Quot.sound]', 'custom axioms: 0 · sorryAx: 0'], 620, 430, space, 25);
-  statusTag(620, 622, 'amber', 'ANALOGY · WATCHMAKER RATCHET');
-  const refs = [kernelGid, noveltyGid, fredkinGid];
-  refs.forEach((gid, i) => { if (leanCite(gid)?.kind === 'theorem') statusTag(1180, 420 + i * 62, 'lean', 'LEAN ✓'); });
-  frame(S, 'ACT II  /  THE RATCHET OF LOGIC', 'KERNEL AUDIT', 'TRURETURING · FROZEN SOURCE', 'ANALOGY · LEAN ✓');
-};
-
-SCENES.act2_red_stamps = S => {
-  paper(space);
-  card(78, 166, 812, 548, space, 'THE OMEGA INSTITUTE · EXTERNAL RECORD');
-  heading('HONESTY IN RED INK', 114, 296, 48, space.ink);
-  heading('1,049', 114, 414, 82, space.ink);
-  caption('CONTACTED · 485 REPLIED', 118, 456, space.dim, 19);
-  caption('17 arXiv · 21 OEIS · 66 DECLINED', 118, 500, space.ink, 22);
-  heading('225', 118, 598, 68, space.ink);
-  caption('MATHESIS PAPERS · 0 ACCEPTANCES', 122, 638, space.open, 20);
-  card(954, 166, 886, 548, space, 'RH PROVENANCE · PUBLIC REPLAY');
-  heading('Levent Alpöge · Lean 4', 992, 286, 42, space.ink);
-  caption('RH + Dirichlet GRH · community certified', 996, 330, space.ink, 21);
-  heading('8,490', 996, 444, 82, space.ink);
-  caption('SHARD REPLAY · THE OMEGA INSTITUTE', 1000, 484, space.dim, 19);
-  statusTag(996, 560, 'open', 'OPEN · ERH / GRAND RH / ZERO SIMPLICITY / PAIR CORRELATION');
-  frame(S, 'ACT II  /  RED STAMPS', 'OPEN FRONTIER', 'THE OMEGA INSTITUTE · PUBLIC REPLAY', 'OPEN · 2026-11-28');
-};
-
-SCENES.act3_vehicle_chassis = S => {
-  paper(plaza);
-  card(84, 158, 1748, 570, plaza, 'CHRONOAI PTE. LTD. · COMPLETE VEHICLE');
-  heading('NEVER BOLT A BARE ENGINE TO WET CONCRETE', 120, 268, 42, plaza.ink);
-  statusTag(120, 310, 'amber', 'ANALOGY · HOTEL KEYCARD');
-  const rows = [
-    ['L1', 'NyxID v0.78.0', '55 services · 42 MCP specs · 0 plaintext keys'],
-    ['L2', 'Ornn v0.18.0 + SDK v0.2.4', '163 scanned skills · 134 operations'],
-    ['L3', 'CMA v0.12.0 (Apache-2.0) · heca (internal)', '27 integrations · 360 nightlies'],
-    ['L4', 'chrono-harness', '25 repos · 21 binaries/platform · Copier v0.1.52'],
-    ['L5', 'Real surfaces', 'chrono-metaverse · chrono-cd · Living with AI']
-  ];
-  rows.forEach(([id, name, detail], i) => {
-    const y = 370 + i * 67;
-    rule(120, 1796, y - 28, plaza);
-    heading(id, 122, y + 14, 30, plaza.ink);
-    heading(name, 230, y + 14, 28, plaza.ink);
-    caption(detail, 840, y + 12, plaza.dim, 20);
-  });
-  frame(S, 'ACT III  /  THE COMPLETE VEHICLE', 'FIVE-LAYER CHASSIS', 'CHRONOAI PTE. LTD. · 2026-11-28', 'ANALOGY');
-};
-
-SCENES.act3_unfinished_bolts = S => {
-  paper(plaza);
-  card(126, 180, 1660, 500, plaza, 'WORKBENCH · UNFINISHED STEEL IN BROAD DAYLIGHT');
-  heading('UNFINISHED BOLTS', 168, 316, 70, plaza.ink);
-  const rows = [
-    ['heca', 'SOURCE REPOSITORY PRIVATE / INTERNAL'],
-    ['CMA', 'SINGLE PRIMARY CODING RUNTIME TODAY'],
-    ['chrono-harness', 'completeness_proven: false · parity: unestablished']
-  ];
-  rows.forEach(([name, detail], i) => {
-    const y = 390 + i * 82;
-    rule(168, 1742, y - 34, plaza);
-    heading(name, 168, y, 32, plaza.ink);
-    caption(detail, 548, y, plaza.open, 23);
-  });
-  statusTag(168, 630, 'amber', 'STANCE · SHOW THE WELD MARKS');
-  frame(S, 'ACT III  /  UNFINISHED BOLTS', 'BOUNDARIES', 'CHRONOAI PTE. LTD. · HONEST LEDGER', 'STANCE');
-};
-
-SCENES.act4_nine_employees_rehearsal = S => {
-  paper(plaza);
-  card(80, 158, 850, 596, plaza, 'WORKFLOW COVERAGE · NINE ROLES');
-  heading('102 / 120', 116, 281, 72, plaza.ink);
-  caption('85.0% COVERED', 538, 273, plaza.dim, 22);
-  rule(116, 894, 307, plaza);
-  const roles = [
-    ['Donna', 14, 15], ['Finance', 24, 28], ['Auto-X', 12, 14],
-    ['Community', 10, 12], ['HR', 14, 20], ['Admin', 8, 10],
-    ['Sentiment', 6, 7], ['KB', 3, 3], ['#9 Retro Analyst', 11, 11]
-  ];
-  roles.forEach(([name, covered, total], index) => {
-    const y = 349 + index * 47;
-    const ink = name === 'HR' ? plaza.amber : plaza.secondary;
-    caption(name, 116, y, plaza.ink, 22);
-    fillBox(378, y - 13, 320, 9, plaza.edge, 1);
-    fillBox(378, y - 13, 320 * covered / total, 9, ink, 1);
-    caption(covered + ' / ' + total, 726, y, ink, 22);
-    if (name === 'HR') caption('↓', 862, y, plaza.open, 24);
-  });
-
-  card(970, 158, 870, 596, plaza, 'FULL-FLOW REHEARSAL · NOVEMBER 27');
-  heading('11 / 12', 1006, 281, 72, plaza.ink);
-  caption('STAGES PASSED FIRST TRY', 1330, 273, plaza.dim, 20);
-  rule(1006, 1804, 307, plaza);
-  heading('4', 1006, 393, 60, plaza.ink);
-  caption('HUMAN ACTIONS', 1010, 433, plaza.dim, 20);
-  heading('29 s', 1410, 393, 60, plaza.ink);
-  caption('DONNA · MEDIAN', 1414, 433, plaza.dim, 20);
-  rule(1006, 1804, 467, plaza);
-  caption('NyxID #2534', 1008, 515, plaza.dim, 22);
-  heading('65 min stall → 3 min bypass', 1006, 573, 43, plaza.ink);
-  rule(1006, 1804, 618, plaza);
-  heading('0', 1006, 704, 64, plaza.ink);
-  caption('EXTERNAL PAYING MERCHANTS', 1094, 692, plaza.ink, 23);
-  frame(S, 'ACT IV  /  NINE ROLES', 'DRESS REHEARSAL', 'NYXID-NYXBOT-TRIALS · 2026-11-27', 'HR AUDIT · 15/20 → 14/20');
-};
-
-SCENES.coda_choir_and_chalk = S => {
-  splitPaper();
-  heading('面向未来的造物', 72, 250, 66, plaza.ink, { fam: F.zh });
-  heading('Build for What Comes Next', 74, 306, 42, plaza.ink);
-  heading('拿起粉笔', 1030, 250, 66, space.ink, { fam: F.zh });
-  heading('Pick Up the Chalk', 1034, 306, 42, space.ink);
-  card(72, 368, 820, 290, plaza, 'CHRONOAI PTE. LTD.');
-  caption('chrono-ai.fun · 3 ChronoAI volumes · 4-book edition', 106, 458, plaza.ink, 24);
-  caption('street-corner · github.com/chrono-harness', 106, 508, plaza.ink, 21);
-  card(1028, 368, 820, 290, space, 'THE OMEGA INSTITUTE · INDEPENDENT · VOLUME III AUTHOR');
-  caption('live.trureturing.org · 223,231+ Lean 4 theorems', 1062, 458, space.ink, 23);
-  caption('trureturing-books · mathesis-papers', 1062, 508, space.ink, 21);
-  statusTag(1062, 570, 'lean', 'LEAN ✓ · FROZEN THEOREMS');
-  caption('contact@chrono-ai.fun', 72, 762, plaza.dim, 24);
-  frame(S, 'CODA  /  PICK UP THE CHALK', 'DUAL POLARITY', 'CHRONOAI PTE. LTD. · THE OMEGA INSTITUTE (INDEPENDENT)', 'contact@chrono-ai.fun');
+SCENES.s08_build_for_what_comes_next = S => {
+  frame(S, 'Marina Bay / the observatory');
+  codaTitle(Q(S, 0, 'Now pull back', 4.35));
+  card(Q(S, 1, 'Intelligence is becoming abundant', 9.8), 'INTELLIGENCE IS ABUNDANT.', ['TRUST IS WHAT', 'WE BUILD NEXT.']);
+  card(Q(S, 3, 'Step into Street Corner', 3.7), 'Street Corner', ['Dec 17 · 16:00 SGT']);
+  const endpoints = Q(S, 4, 'Audit any theorem', 7.08);
+  card(endpoints, 'CHRONOAI · SINGAPORE', ['nyxid.ai', 'contact@chrono-ai.fun'], { right: false, size: 44 });
+  card(endpoints, 'THE OMEGA INSTITUTE', ['live.trureturing.org'], { right: true, size: 44 });
+  codaTitle(Q(S, 5, 'Pick up the chalk', 5.6));
 };
 
 FILM.poster = () => {
-  const S = { id: 'coda_choir_and_chalk', t: 0, p: 1 };
-  splitPaper();
-  heading('面向未来的造物', 64, 288, 80, plaza.ink, { fam: F.zh });
-  heading('BUILD FOR WHAT COMES NEXT', 68, 356, 44, plaza.ink);
-  heading('拾起粉笔', 1032, 288, 80, space.ink, { fam: F.zh });
-  heading('THE OMEGA INSTITUTE', 1036, 356, 40, space.ink);
-  caption('1,108 seats · 18 mats · 0 cameras', 70, 820, plaza.ink, 28);
-  caption('223,231+ frozen Lean 4 theorems · OPEN frontier', 1036, 820, space.ink, 22);
-  caption('contact@chrono-ai.fun', 70, 874, plaza.dim, 23);
-  cinemaFrame(S, { polarity: 'dual-split', leftLabel: company, chapterLabel: '', rightLabel: institute,
-    slateLeft: 'CHRONO-AI.FUN · SGT 2026-12-17', slateRight: 'LIVE.TRURETURING.ORG · MASTER LEDGER 2026-11-28' });
+  plate('s08_build_for_what_comes_next.jpg', aperture, { zoomTo: 1, vignette: 0 });
+  fillBox(0, 0, W, 66, obsidian);
+  txt(company + ' · Singapore', 75, 40, { size: 23, fam: F.mono, c: chapterInk });
+  txt(institute, W - 75, 40, { size: 23, fam: F.mono, c: chapterInk, align: 'right' });
+  codaTitle(0.5);
 };

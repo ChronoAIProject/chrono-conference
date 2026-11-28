@@ -1,6 +1,6 @@
 """Render the deterministic 48 kHz stereo score to <film dir>/out/music_bed.wav.
 
-script.json music settings select bpm, progression and style (dual-polarity, minimalist or legacy).
+script.json music settings select bpm, progression and style (cinema-keynote, dual-polarity, minimalist or legacy).
 Each scene can set polarity, the five existing pad/bass/motif/kick/hat levels, and line-timed cues.
 Usage: python3 theme/film/music.py <film dir>
 
@@ -33,6 +33,20 @@ MID_LEVELS = ((0.9, 0.7, 0.8, 0.5, 0.4), (1.0, 0.6, 0.7, 0.4, 0.3))
 END_LEVEL = (1.0, 0.8, 0.7, 0.5, 0.4)
 
 
+def write_score(film_dir, bed, bpm, style, progression, write_audio):
+    import numpy as np
+
+    # Leave headroom over narration and preserve intentionally quiet arrangements.
+    rms = np.sqrt(np.einsum("ij,ij->", bed, bed, dtype=np.float64) / bed.size)
+    peak = max(float(bed.max()), -float(bed.min()), 1e-12)
+    gain = min(10 ** (-19 / 20) / max(rms, 1e-12), 1.6, 0.8 / peak)
+    bed *= gain
+    out = out_dir(film_dir) / "music_bed.wav"
+    write_audio(str(out), bed, SR)
+    db = 20 * np.log10(max(rms * gain, 1e-12))
+    print(f"film: score {len(bed)/SR:.1f} s at {bpm:g} bpm ({style}, {progression}), rms {db:.1f} dB → {out}")
+
+
 def main(argv: list[str]) -> int:
     try:
         import numpy as np
@@ -48,16 +62,24 @@ def main(argv: list[str]) -> int:
     script = film.script or {}
     settings = script.get("music") or {}
     style = settings.get("style", "dual-polarity")
-    if style not in ("dual-polarity", "minimalist", "legacy"):
-        fail("script.json: music.style must be dual-polarity, minimalist or legacy")
-    progression = settings.get("progression", "a-minor")
+    cinema = style == "cinema-keynote"
+    if not cinema and style not in ("dual-polarity", "minimalist", "legacy"):
+        fail("script.json: music.style must be cinema-keynote, dual-polarity, minimalist or legacy")
+    progression = settings.get("progression", "daylight-warm" if cinema else "a-minor")
     if progression not in PROGRESSIONS:
         fail(f"script.json: music.progression must be one of {', '.join(PROGRESSIONS)}")
     chords = PROGRESSIONS[progression]
-    bpm = float(settings.get("bpm", 80))
+    bpm = float(settings.get("bpm", 116 if cinema else 80))
     if not 40 <= bpm <= 200:
         fail("script.json: music.bpm must be between 40 and 200")
     beat = 60.0 / bpm
+    if cinema:
+        from cinema_score import render
+
+        bed = render(tl, script["scenes"], beat, chords)
+        write_score(film_dir, bed, bpm, style, progression, sf.write)
+        return 0
+
     bar = 4 * beat
     duration = tl["duration"] + 0.5
     bed = np.zeros((int(duration * SR), 2), dtype=np.float32)
@@ -221,15 +243,7 @@ def main(argv: list[str]) -> int:
 
     fade(1.5, True)
     fade(3.5, False)
-    # Leave headroom over narration and preserve intentionally quiet arrangements.
-    rms = np.sqrt(np.einsum("ij,ij->", bed, bed, dtype=np.float64) / bed.size)
-    peak = max(float(bed.max()), -float(bed.min()), 1e-12)
-    gain = min(10 ** (-19 / 20) / max(rms, 1e-12), 1.6, 0.8 / peak)
-    bed *= gain
-    out = out_dir(film_dir) / "music_bed.wav"
-    sf.write(str(out), bed, SR)
-    db = 20 * np.log10(max(rms * gain, 1e-12))
-    print(f"film: score {duration:.1f} s at {bpm:g} bpm ({style}, {progression}), rms {db:.1f} dB → {out}")
+    write_score(film_dir, bed, bpm, style, progression, sf.write)
     return 0
 
 

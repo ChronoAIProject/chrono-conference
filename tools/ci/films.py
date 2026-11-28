@@ -76,7 +76,10 @@ def build_one(site: config.Site, item: film.Film, *, release: bool = False) -> s
     canvas = site.film_release_only and not release
 
     def render():
-        missing = film.toolchain_missing(canvas=canvas)
+        toolchain_options = {"canvas": canvas}
+        if item.has_voice:
+            toolchain_options["need_tts"] = False
+        missing = film.toolchain_missing(**toolchain_options)
         if missing:
             raise film.FilmError("the film toolchain is incomplete: " + "; ".join(missing))
         print(f"film {unit.name}: rendering (key {unit.key[:12]})", flush=True)

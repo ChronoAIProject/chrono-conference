@@ -5,15 +5,26 @@
     "w": 1920,
     "h": 1080
   },
-  "loop": "ping-pong",
+  "loop": "once",
+  "fade_frames": 6,
   "scenes": {
-    "prologue_office_to_stadium": "office-to-stadium.mp4",
-    "prologue_bay_to_orbit": "stadium-bay-orbit.mp4",
-    "act2_stations_to_galaxies": "observatory-stations-to-galaxies.mp4"
+    "s01_the_shift": "s01_the_shift.mp4",
+    "s02_through_the_glass": "s02_through_the_glass.mp4",
+    "s03_nyxid_zero_secret": "s03_nyxid_zero_secret.mp4",
+    "s04_complete_vehicle_stack": "s04_complete_vehicle_stack.mp4",
+    "s05_ai_employees_live": "s05_ai_employees_live.mp4",
+    "s06_one_more_thing_omega": "s06_one_more_thing_omega.mp4",
+    "s07_proof_on_blackboard": "s07_proof_on_blackboard.mp4",
+    "s08_build_for_what_comes_next": "s08_build_for_what_comes_next.mp4"
   },
   "sha256": {
-    "office-to-stadium.mp4": "54b2e76815158d60b31e958ab11ca094f72c0186e4a0693634cdcc40e446db9c",
-    "stadium-bay-orbit.mp4": "49fe72d3017c79c259de1a81202055ed249c5b745748d7229527345490dc93f3",
-    "observatory-stations-to-galaxies.mp4": "391730f619cac1ac9123b3a6dd45928bc123b60eaaf557f026576d8949cce1ca"
+    "s01_the_shift.mp4": "6c8f6175a70275b9c1c218b179e8f1c895d9f41fe103b022548acdbf02d4be23",
+    "s02_through_the_glass.mp4": "e157cadfb6e23030ea7a52b9e78ef0b58b0cabe5bf007918fc073a2cd80dead0",
+    "s03_nyxid_zero_secret.mp4": "d7254929d91ea12005a34a569aae3b34fba449b72a102f3cac8e67acabec4990",
+    "s04_complete_vehicle_stack.mp4": "a0dbbc5a6b1b5772b1051362d67f265143e5b3bdf286e3b458c102520bc2d444",
+    "s05_ai_employees_live.mp4": "8e049f8d09d5ae2a6f5c099f9cebb5af96920517b387845974d711de879936d7",
+    "s06_one_more_thing_omega.mp4": "c98ebfa93c93e1082e3d3c58c98197806a0b83ad4981ed092434f17fcb69a968",
+    "s07_proof_on_blackboard.mp4": "096315b7d27bcc229650ad080a394111a2e78cc23c2e2f323e3707e69b66887f",
+    "s08_build_for_what_comes_next.mp4": "5168745f62f8cae34e80cb196c8529e44507b16e563869bea122121280b791e2"
   }
 }

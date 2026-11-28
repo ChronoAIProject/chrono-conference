@@ -56,8 +56,10 @@ function sceneSlices(timeline, fps) {
   });
 }
 
-async function renderScene({ id, i, first, stop }, clip, viewport, fps, sizes, out, work) {
+async function renderScene({ id, i, first, stop }, clip, manifest, fps, sizes, out, work) {
   const count = stop - first;
+  const fade = Math.min(manifest.fade_frames || 0, Math.floor((count - 1) / 2));
+  const fades = fade ? `fade=t=in:s=0:n=${fade},fade=t=out:s=${count - 1 - fade}:n=${fade}` : '';
   // render.js rounds its start and ceils its end. A quarter-frame inset on the exclusive
   // end gives ceil() the same integer even when division by fps is inexact.
   const range = [render, out, '--fps', String(fps), '--start', String(first / fps),
@@ -73,8 +75,12 @@ async function renderScene({ id, i, first, stop }, clip, viewport, fps, sizes, o
       args.push(size === 'master' ? '--output' : '--output-720p', outputs[j] + '.render.mp4');
     }
     await run(process.execPath, args);
-    for (const output of outputs) {
-      await encode(['-i', output + '.render.mp4', '-c', 'copy', ...timescale, output]);
+    for (const [j, output] of outputs.entries()) {
+      const small = sizes[j] === '720p';
+      const codec = fade ? ['-vf', fades, '-frames:v', String(count), '-c:v', 'libx264',
+        '-threads', '2', '-preset', small ? 'slow' : 'medium', '-crf', small ? '19' : '17',
+        '-pix_fmt', 'yuv420p'] : ['-c', 'copy'];
+      await encode(['-i', output + '.render.mp4', ...codec, ...timescale, output]);
       await rm(output + '.render.mp4');
     }
     return;
@@ -84,16 +90,21 @@ async function renderScene({ id, i, first, stop }, clip, viewport, fps, sizes, o
   await run(process.execPath, [...range, '--alpha', '--output', overlay]);
   // One lossless cycle on disk keeps memory independent of scene length. Omit the
   // endpoints of the reverse leg: 0,1,...,N-1,N-2,...,1, then restart at 0.
-  const cycle = `[0:v]fps=${fps},split[f][r];[r]trim=start_frame=1,reverse,trim=start_frame=1,` +
-    'setpts=PTS-STARTPTS[back];[f][back]concat=n=2:v=1:a=0[v]';
-  await encode(['-i', clip, '-filter_complex', cycle, '-map', '[v]', '-an',
-    '-c:v', 'libx264', '-threads', '2', '-preset', 'ultrafast', '-qp', '0', ...timescale, loop]);
+  const once = manifest.loop === 'once';
+  if (!once) {
+    const cycle = `[0:v]fps=${fps},split[f][r];[r]trim=start_frame=1,reverse,trim=start_frame=1,` +
+      'setpts=PTS-STARTPTS[back];[f][back]concat=n=2:v=1:a=0[v]';
+    await encode(['-i', clip, '-filter_complex', cycle, '-map', '[v]', '-an',
+      '-c:v', 'libx264', '-threads', '2', '-preset', 'ultrafast', '-qp', '0', ...timescale, loop]);
+  }
 
-  const { x, y, w, h } = viewport;
+  const input = once ? ['-i', clip] : ['-stream_loop', '-1', '-i', loop];
+  const playback = once ? `setpts=PTS-STARTPTS,fps=${fps},tpad=stop_mode=clone:stop=-1,trim=end_frame=${count},` : '';
+  const { x, y, w, h } = manifest.viewport;
   const filters = [
-    `[0:v]scale=${w}:${h}:force_original_aspect_ratio=increase:flags=lanczos,` +
+    `[0:v]${playback}scale=${w}:${h}:force_original_aspect_ratio=increase:flags=lanczos,` +
       `format=yuv444p,crop=${w}:${h},setsar=1,pad=1920:1080:${x}:${y}[plate]`,
-    '[plate][1:v]overlay=shortest=1:format=yuv444,format=yuv420p[composite]'
+    `[plate][1:v]overlay=shortest=1:format=yuv444,format=yuv420p${fade ? ',' + fades : ''}[composite]`
   ];
   const pads = sizes.map((_, j) => `[v${j}]`);
   const dual = sizes.length === 2;
@@ -110,9 +121,9 @@ async function renderScene({ id, i, first, stop }, clip, viewport, fps, sizes, o
       '-preset', small ? 'slow' : 'medium', '-crf', small ? '19' : '17', '-pix_fmt', 'yuv420p',
       ...timescale, outputs[j]);
   }
-  await encode(['-stream_loop', '-1', '-i', loop, '-i', overlay, '-filter_complex_threads', '2',
+  await encode([...input, '-i', overlay, '-filter_complex_threads', '2',
     '-filter_complex', filters.join(';'), ...args]);
-  await rm(loop);
+  if (!once) await rm(loop);
   await rm(overlay);
 }
 
@@ -130,7 +141,11 @@ async function main() {
   const { x, y, w, h } = viewport;
   if (![x, y, w, h].every(Number.isInteger) || x < 0 || y < 0 || w <= 0 || h <= 0 ||
       x + w > 1920 || y + h > 1080) throw Error('invalid clip viewport');
-  if (loop !== 'ping-pong') throw Error('clip loop must be ping-pong');
+  if (!['ping-pong', 'once'].includes(loop)) throw Error('clip loop must be ping-pong or once');
+  const { fade_frames = 0 } = manifest;
+  if (!Number.isInteger(fade_frames) || fade_frames < 0 || fade_frames > 15) {
+    throw Error('fade_frames must be an integer from 0 to 15');
+  }
   if (!isPlainObject(scenes) || !Object.keys(scenes).length) throw Error('clip scenes must be a non-empty object');
   if (sha256 !== undefined && !isPlainObject(sha256)) throw Error('clip sha256 must be an object');
   const clips = new Map(), missing = [];
@@ -186,7 +201,7 @@ async function main() {
   try {
     const queue = slices.values();
     async function worker() {
-      for (const s of queue) await renderScene(s, clips.get(s.id), viewport, fps, sizes, out, work);
+      for (const s of queue) await renderScene(s, clips.get(s.id), manifest, fps, sizes, out, work);
     }
     const jobs = Array.from({ length: Math.min(workers, slices.length) }, worker);
     const results = await Promise.allSettled(jobs);

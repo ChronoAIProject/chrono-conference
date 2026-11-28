@@ -1,18 +1,18 @@
 {
   "title": "Build for What Comes Next: The 2026 Virtual Launch",
   "title_zh": "面向未来的造物 · 2026 线上发布会全片",
-  "summary": "A ten-scene dual-polarity launch film moves from ChronoAI Pte. Ltd.'s four-stage venue to the observatory of independent research body The Omega Institute. It keeps the 2026-11-28 ledger visible, including 223,231+ frozen Lean 4 theorems, nine operational roles, the honest HR downgrade, RH provenance, and the open ERH and Grand RH frontier.",
-  "summary_zh": "一部十场双极性发布会全片，从 ChronoAI Pte. Ltd. 的四阶段会场飞入独立研究机构 The Omega Institute 的观测站。影片公开 2026-11-28 账本，包含逾 223,231 条冻结 Lean 4 定理、九个运营岗位、HR 诚实降级、黎曼猜想证明来源，以及开放的扩展与大黎曼猜想边界。",
+  "summary": "From the 14th-floor Singapore office, fly through the glass to Tide Arena over Marina Bay. Watch a NyxID request go from HTTP 200 to 401, then follow the five-layer vehicle and nine AI employee roles through a launch rehearsal. “One more thing” takes the flight into orbit to the independent observatory of The Omega Institute, where a live Lean 4 proof checks the Fredkin counterexample. Marina Bay and a spiral galaxy share the final frame.",
+  "summary_zh": "镜头从新加坡办公室 14 楼穿窗而出，飞向滨海湾上空的星潮剧场。看 NyxID 请求的响应从 HTTP 200 变为 401，再看五层整车架构与九个 AI 员工岗位如何支撑发布会彩排。一句“One more thing”将镜头带入轨道，抵达独立科研机构 The Omega Institute 的观测站，现场用 Lean 4 验证 Fredkin 反例。终幕分屏并置滨海湾与螺旋星系。",
   "subject": "https://github.com/the-omega-institute/trureturing",
   "publication_basis": "pinned",
   "released": "2026-11-28",
-  "duration": "9:09",
+  "duration": "4:55",
   "resolution": "1920x1080@30",
-  "style": "Nietzschean hammer × Feynman chalkboard · daylight plaza and deep-space glass · local 30 fps 3D transition captures with synced PiP",
+  "style": "Forward-only 30 fps 3D flights and live product captures, phrase-timed glass telemetry, bilingual cinema subtitles and a split-screen Marina Bay / spiral galaxy coda.",
   "narration": {
     "language": "en",
-    "engine": "local-neural-tts",
-    "voice": "bm_george"
+    "engine": "prerecorded-studio-mp3",
+    "voice": "studio-narrator"
   },
   "subtitles": [
     "zh",
