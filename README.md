@@ -28,7 +28,7 @@
 - **绿色 `LEAN ✓` 与蓝色零公理 `LEAN ✓`（`axioms: []`）**：仅授予 `trureturing.lock.json` 所钉 [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing) 提交 `548388cd` 上已冻结的 Lean 4 `theorem` 声明（全套四卷本共锚定 `25` 条冻结 Lean 4 定理，含蓝色零公理定理），点击直达源码行号，书末自动生成形式化验证账本。
 - **类比、立场与书面结果**：如“大模型是发动机、Agent 是整车”“定理挖掘是掘金”“边界与体”“驯服的红皇后”，文中一律显式标注为立场或类比，从不冒充形式定理。
 - **红色 `OPEN`**：未解决的前沿数学问题与尚未封闭的工程目标，如实标注边界与现状。
-- **对外口径**：主体为 ChronoAI Pte. Ltd.（新加坡），官网 [chrono-ai.fun](https://chrono-ai.fun/)，唯一对外联系邮箱 `contact@chrono-ai.fun`。不涉及资金规模，不渲染未核实结论。
+- **对外口径与品牌分立**：商业基础设施与发布会主体为 ChronoAI Pte. Ltd.（新加坡），官网 [chrono-ai.fun](https://chrono-ai.fun/)，唯一对外联系邮箱 `contact@chrono-ai.fun`；第三卷（`OMEGA//TRUTH`）及 `trureturing`、`Mathesis` 归属独立基础科研品牌 **The Omega Institute**（始终保留英文原名，与商业主体严格分立）。不涉及资金规模，不渲染未核实结论。
 
 ---
 
