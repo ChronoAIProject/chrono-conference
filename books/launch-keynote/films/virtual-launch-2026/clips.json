@@ -6,18 +6,33 @@
     "h": 1080
   },
   "loop": "once",
+  "fade_frames": 6,
   "scenes": {
-    "s01_cold_open_hook": "s01_cold_open_office.mp4",
-    "s02_office_through_glass_to_stadium": "s02_office_donna_flower_stadium.mp4",
-    "s03_bay_mbs_night_to_orbit_warp": "s03_bay_mbs_night_to_orbit.mp4",
-    "s04_omega_stations_radar_dive": "s04_stations_radar_cabin_galaxies.mp4",
-    "s05_lean_kernel_anvil_live": "s05_lean_anvil_live.mp4",
-    "s06_red_ink_honesty_rh": "s06_mathesis_rh_white_bridge.mp4",
-    "s07_vehicle_nyxid_zero_secret": "s07_nyxid_live_demo.mp4",
-    "s08_ornn_cma_heca_live_montage": "s08_stack_live_montage.mp4",
-    "s09_unfinished_steel_workbench": "s09_blueprint_arena.mp4",
-    "s10_nine_ai_employees_live_ops": "s10_ai_employees_live_ops.mp4",
-    "s11_unified_world_return_flight": "s11_grand_return_flight.mp4",
-    "s12_coda_pick_up_the_chalk": "s12_coda_split_worlds.mp4"
+    "s01_cold_open_hook": "s01_cold_open_hook.mp4",
+    "s02_office_through_glass_to_stadium": "s02_office_through_glass_to_stadium.mp4",
+    "s03_bay_mbs_night_to_orbit_warp": "s03_bay_mbs_night_to_orbit_warp.mp4",
+    "s04_omega_stations_radar_dive": "s04_omega_stations_radar_dive.mp4",
+    "s05_lean_kernel_anvil_live": "s05_lean_kernel_anvil_live.mp4",
+    "s06_red_ink_honesty_rh": "s06_red_ink_honesty_rh.mp4",
+    "s07_vehicle_nyxid_zero_secret": "s07_vehicle_nyxid_zero_secret.mp4",
+    "s08_ornn_cma_heca_live_montage": "s08_ornn_cma_heca_live_montage.mp4",
+    "s09_unfinished_steel_workbench": "s09_unfinished_steel_workbench.mp4",
+    "s10_nine_ai_employees_live_ops": "s10_nine_ai_employees_live_ops.mp4",
+    "s11_unified_world_return_flight": "s11_unified_world_return_flight.mp4",
+    "s12_coda_pick_up_the_chalk": "s12_coda_pick_up_the_chalk.mp4"
+  },
+  "sha256": {
+    "s01_cold_open_hook.mp4": "cf4d4ce368b5bbcf46619a32caff4269d1e89709d8367d1cdb0b707e60c7b6fb",
+    "s02_office_through_glass_to_stadium.mp4": "a7f745927b962a5115f0de8368ff49dd07ab07c04c62c898cf9c7940c2a5a58c",
+    "s03_bay_mbs_night_to_orbit_warp.mp4": "fd482f790d6a9a4f70ce0db17059f5a6620584c3cbf6755c87391409ca485149",
+    "s04_omega_stations_radar_dive.mp4": "29ebca45037cc3e0ca718e3ec4cbfe0c88b4d44ef8466d6b2da46ff49835fec0",
+    "s05_lean_kernel_anvil_live.mp4": "b126998e96caafc8d626962108e0993e00456cfeb319f871692395fc859c82f0",
+    "s06_red_ink_honesty_rh.mp4": "2878945c9b173574b6634f7c8fb259f1b55752f42814a3fbf1633729db2df260",
+    "s07_vehicle_nyxid_zero_secret.mp4": "d0df6c36c958252bfd557b42bd3f0a91830bf3c0b3fa3d3a83880e26570d6684",
+    "s08_ornn_cma_heca_live_montage.mp4": "26bd8c2694a310294208ee8add64fd655524ec077575672ed541b606c9f68d7e",
+    "s09_unfinished_steel_workbench.mp4": "0a8f4f679c81b112751cb365a4bba959c40cefbbcd130d992e5a7e7b797adb19",
+    "s10_nine_ai_employees_live_ops.mp4": "ae9d815752ae7a7c7e3faee0b8dc25dfd12f9e6a131c0be6b6b144c1fdd8c6de",
+    "s11_unified_world_return_flight.mp4": "43815bc5d965907658cad47513e2211e705e58258a157424624398c244a46058",
+    "s12_coda_pick_up_the_chalk.mp4": "3b6332640d48ba51134d6966a05c8d5bd21d5ab544585064853a07eaecac1cf1"
   }
 }
