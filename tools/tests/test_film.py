@@ -1,8 +1,8 @@
-"""Tests for tbook.film (book-local films) and the stdlib parts of the pipeline in theme/film/.
+"""Tests for tbook.film (book-local films) and the pipeline in theme/film/.
 
 Run: PYTHONPATH=tools .venv/bin/python -m unittest discover -s tools/tests -p 'test_film.py'
-Node-dependent tests are skipped when ``node`` is not on PATH. Rendering (Chromium, ffmpeg) and the
-audio steps (Kokoro, numpy) are not run here; see theme/film/film.sh.
+Node-dependent tests are skipped when ``node`` is not on PATH. The prerecorded narration test
+requires ffmpeg, numpy and soundfile. See theme/film/film.sh for rendering and Kokoro synthesis.
 """
 
 from __future__ import annotations
@@ -177,6 +177,40 @@ class ValidationTest(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(self.tmp)
+
+    def test_prerecorded_voice_files_match_script_lines(self):
+        created = film.scaffold(self.book, "studio", "录音", "Studio")
+        item = film.load_film(self.book, created[0].parent)
+        voice = item.dir / "voice"
+        voice.mkdir()
+        total_lines = sum(len(scene["lines"]) for scene in item.script["scenes"])
+        for i in range(total_lines):
+            (voice / f"line{i:02d}.mp3").touch()
+
+        issues = film.check_film(item, fake_lock())
+        self.assertEqual(errors(issues), [])
+        self.assertFalse(any(issue.path == voice for issue in issues))
+
+        first = voice / "line00.mp3"
+        first.unlink()
+        self.assertIn("missing files: line00.mp3", errors(film.check_film(item, fake_lock())))
+        first.touch()
+        for name, message in (
+            ("line999.mp3", "extra files: line999.mp3"),
+            ("line00.wav", "'line00.wav' must be a file named like line00.mp3"),
+        ):
+            with self.subTest(name=name):
+                path = voice / name
+                path.touch()
+                self.assertIn(message, errors(film.check_film(item, fake_lock())))
+                path.unlink()
+        directory = voice / "line999.mp3"
+        directory.mkdir()
+        self.assertIn("'line999.mp3' must be a file named like line00.mp3", errors(film.check_film(item, fake_lock())))
+
+        shutil.rmtree(voice)
+        voice.touch()
+        self.assertIn("voice must be a directory", errors(film.check_film(item, fake_lock())))
 
     @needs_example
     def test_copied_example_is_valid(self):
@@ -908,6 +942,21 @@ class VideoUnitTest(unittest.TestCase):
         npm = dict(unit.inputs.parts)["<npm>"]
         self.assertNotEqual(npm, film.buildcache.Inputs().text("npm", {}).parts[0][1])  # package-lock.json was read
 
+    def test_prerecorded_voice_key_hashes_content_without_kokoro_release(self):
+        kokoro_key = self.sb.key()
+        with mock.patch.object(film, "KOKORO_RELEASE", "other-release"):
+            self.assertNotEqual(self.sb.key(), kokoro_key)
+
+        voice = self.sb.dir / "voice"
+        voice.mkdir()
+        line = voice / "line00.mp3"
+        line.write_bytes(b"take one")
+        studio_key = self.sb.key()
+        with mock.patch.object(film, "KOKORO_RELEASE", "other-release"):
+            self.assertEqual(self.sb.key(), studio_key)
+        line.write_bytes(b"take two")
+        self.assertNotEqual(self.sb.key(), studio_key)
+
     def test_release_collects_mp4_with_a_separate_cache_key(self):
         site = dataclasses.replace(self.sb.site, film_release_only=True)
         item = self.sb.film()
@@ -1249,6 +1298,17 @@ class ToolchainTest(unittest.TestCase):
                        "kokoro-v1.0.onnx, voices-v1.0.bin", "theme/film/setup.sh"):
             self.assertIn(needle, missing)
 
+    def test_prerecorded_toolchain_skips_kokoro(self):
+        with mock.patch.object(film, "ffmpeg_path", return_value="ffmpeg"), \
+                mock.patch.object(film, "font_package", return_value=THEME_FILM), \
+                mock.patch.object(film, "film_python", return_value="film-python"), \
+                mock.patch.object(film, "model_dir") as models, \
+                mock.patch.object(film.subprocess, "run", return_value=SimpleNamespace(returncode=0)) as run:
+            self.assertEqual(film.toolchain_missing(canvas=True, need_tts=False), [])
+        run.assert_called_once_with(["film-python", "-c", "import numpy, scipy.signal, soundfile"],
+                                    capture_output=True, timeout=120)
+        models.assert_not_called()
+
     def test_film_python(self):
         tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
@@ -1562,7 +1622,7 @@ class ScaffoldTest(unittest.TestCase):
 
 
 class PipelineTest(unittest.TestCase):
-    """The stdlib parts of theme/film: tokens, page assembly (without fonts), JavaScript syntax."""
+    """Film tokens, page assembly, JavaScript syntax and prerecorded narration."""
 
     @classmethod
     def setUpClass(cls):
@@ -1576,6 +1636,65 @@ class PipelineTest(unittest.TestCase):
             spec.loader.exec_module(cls.build)
         finally:
             sys.path.remove(str(THEME_FILM))
+
+    def test_prerecorded_narration_without_kokoro(self):
+        import subprocess
+        import wave
+
+        decoder = film.ffmpeg_path()
+        if not decoder:
+            self.skipTest("ffmpeg not available")
+        python = film.film_python()
+        probe = subprocess.run([python, "-c", "import numpy, soundfile"], capture_output=True, timeout=15)
+        if probe.returncode:
+            self.skipTest("numpy or soundfile not available to the film Python")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            book = temp_book(root)
+            created = film.scaffold(book, "studio", "录音", "Studio")
+            d = created[0].parent
+            script = {"voice": "af_heart", "speed": 1.0, "scenes": [
+                {"id": "intro", "lead": 0.25, "tail": 0.2, "lines": [["First line.", "第一句。"]]},
+                {"id": "close", "lead": 0.1, "tail": 0.3, "lines": [["Second line.", "第二句。"]]},
+            ]}
+            (d / "script.json").write_text(json.dumps(script), encoding="utf-8")
+            voice = d / "voice"
+            voice.mkdir()
+            for i, duration in enumerate((0.12, 0.21)):
+                subprocess.run(
+                    [decoder, "-nostdin", "-hide_banner", "-loglevel", "error",
+                     "-f", "lavfi", "-i", f"sine=frequency=440:sample_rate=44100:duration={duration}",
+                     "-af", "adelay=200,apad=pad_dur=0.2", "-ac", "2", "-c:a", "libmp3lame",
+                     str(voice / f"line{i:02d}.mp3")],
+                    check=True, capture_output=True, timeout=15,
+                )
+
+            run_tts = (
+                "import runpy, sys\n"
+                "sys.modules['kokoro_onnx'] = None\n"
+                "sys.path.insert(0, sys.argv[1])\n"
+                "sys.argv = sys.argv[2:]\n"
+                "runpy.run_path(sys.argv[0], run_name='__main__')\n"
+            )
+            env = dict(os.environ, KOKORO_MODEL_DIR=str(root / "missing-models"))
+            result = subprocess.run([python, "-c", run_tts, str(THEME_FILM), str(THEME_FILM / "tts.py"), str(d)],
+                                    env=env, capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
+            out = d / "out"
+            timeline = json.loads((out / "timeline.json").read_text(encoding="utf-8"))
+            self.assertIsNone(film.timeline_matches(timeline, script))
+            first, second = timeline["lines"]
+            self.assertEqual(first["start"], 0.25)
+            self.assertAlmostEqual(second["start"], first["end"] + 0.3, places=3)
+            self.assertAlmostEqual(timeline["duration"], second["end"] + 0.3, places=3)
+            self.assertAlmostEqual(first["end"] - first["start"], 0.18, delta=0.02)
+            self.assertAlmostEqual(second["end"] - second["start"], 0.27, delta=0.02)
+            with wave.open(str(out / "narration.wav")) as audio:
+                self.assertEqual((audio.getframerate(), audio.getnchannels()), (48000, 1))
+                self.assertAlmostEqual(audio.getnframes() / 48000, timeline["duration"] + 1, delta=0.001)
+                self.assertTrue(any(audio.readframes(audio.getnframes())))
 
     def test_tokens_from_generated_mjs(self):
         tok = self.build.film_tokens()
