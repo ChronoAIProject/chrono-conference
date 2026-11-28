@@ -4,9 +4,13 @@
  * and after tr-palette.css (the paper palette re-scoped to html.light / html.rust).
  * Every colour below is a --tr-* token; nothing is restated here.
  *
- *   navy (default) · coal · ayu   → neon palette (coal: quiet, no glow or scanlines;
- *                                   ayu: deep space, darker canvas)
- *   light · rust                  → paper palette (rust: warm paper)
+ *   navy (default) · coal · ayu   → deep-space optical-glass palette (screen tokens; coal: flat,
+ *                                   no aurora; ayu: the darkest obsidian canvas)
+ *   light · rust                  → daylight architectural-stone palette (paper tokens; rust: warmer stone)
+ *
+ * Polarity (Scheme B): a ChronoAI book defaults to daylight stone (html.light), and an Omega Institute
+ * book defaults to deep-space glass (html.navy).
+ * Structure is carried by 1px hairlines and type: no glow, no scanlines, no cut corners.
  *
  * Lean verification uses green (ok), with blue for documented axiom-free results.
  * Amber is for the current selection
@@ -24,13 +28,11 @@
   --code-font-size: 0.86em;
   --tr-read-size: 1.65rem;   /* 16.5px body text */
   --tr-read-leading: 1.8;
-  --tr-glow: 0 0 14px color-mix(in srgb, var(--tr-cyan) 32%, transparent);
-  --tr-cut: var(--tr-fx-cut-corner);
 }
 
 /* All five mdBook themes map onto the --tr-* palette; which palette --tr-* holds is decided
-   by tokens.css (:root = neon) and tr-palette.css (html.light / html.rust = paper).
-   html:not(.js) follows the default (neon) theme. */
+   by tokens.css (:root = deep-space glass) and tr-palette.css (html.light / html.rust = daylight stone).
+   html:not(.js) follows the default (navy) theme. */
 html.navy, html.coal, html.ayu, html.light, html.rust, html:not(.js) {
   --bg: var(--tr-void);
   --fg: var(--tr-ink);
@@ -73,9 +75,8 @@ html.navy, html.coal, html.ayu, html.light, html.rust, html:not(.js) {
   --copy-button-filter-hover: none;
   --color-scheme: dark;
 }
-html.light, html.rust { --color-scheme: light; --tr-glow: none; }
-html.coal { --tr-glow: none; }
-/* Warm paper: the paper canvas tinted with a trace of the amber token. */
+html.light, html.rust { --color-scheme: light; }
+/* Warmer stone: the daylight canvas tinted with a trace of the amber token. */
 html.rust {
   --tr-env-bg: color-mix(in srgb, var(--tr-sheet) 90%, var(--tr-amber));
   --tr-code-bg: color-mix(in srgb, var(--tr-sheet) 88%, var(--tr-amber));
@@ -85,7 +86,7 @@ html.rust {
   --sidebar-bg: color-mix(in srgb, var(--tr-void-deep) 88%, var(--tr-amber));
   --table-alternate-bg: color-mix(in srgb, var(--tr-sheet) 92%, var(--tr-amber));
 }
-/* Deep space: the darkest canvas of the neon palette. */
+/* Deep space: the darkest obsidian canvas of the glass palette. */
 html.ayu {
   --bg: var(--tr-void-deep);
   --sidebar-bg: var(--tr-stage);
@@ -103,18 +104,15 @@ body { font-family: var(--tr-font-body); }
 ::selection { background: color-mix(in srgb, var(--tr-cyan) 30%, transparent); }
 :focus-visible { outline: 2px solid var(--tr-amber); outline-offset: 2px; }
 
-/* Aurora + scanlines behind the reading column (neon themes only). */
+/* A faint high-altitude aurora behind the reading column (navy only); daylight stone, coal and ayu stay flat. */
 html.navy .page-wrapper, html:not(.js) .page-wrapper {
   background-color: var(--bg);
-  background-image: var(--tr-fx-scanlines), var(--tr-fx-aurora);
+  background-image: var(--tr-fx-aurora);
   background-attachment: fixed;
 }
-html.ayu .page-wrapper {
-  background-image: var(--tr-fx-scanlines);
-  background-attachment: fixed;
-}
+html.light .page-wrapper { background-image: none; }
 @media (hover: none) {
-  html.navy .page-wrapper, html.ayu .page-wrapper, html:not(.js) .page-wrapper { background-attachment: scroll; }
+  html.navy .page-wrapper, html:not(.js) .page-wrapper { background-attachment: scroll; }
 }
 
 /* ------------------------------------------------------------------ menu bar */
@@ -124,16 +122,14 @@ html.ayu .page-wrapper {
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   border-block-end: 1px solid var(--tr-panel-edge);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--tr-cyan) 14%, transparent);
 }
 #mdbook-menu-bar.bordered { border-block-end-color: var(--tr-line-hot); }
 .menu-title {
   font-family: var(--tr-font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.7rem;
   letter-spacing: 0.06em;
   color: var(--tr-ink);
-  text-shadow: var(--tr-glow);
 }
 .right-buttons { display: flex; align-items: center; gap: 2px; margin: 0 10px; }
 .left-buttons { align-items: center; }
@@ -166,8 +162,7 @@ a.tr-lang:hover { color: var(--tr-cyan); background: color-mix(in srgb, var(--tr
   background: color-mix(in srgb, var(--tr-ok) 8%, transparent);
   padding: 5px 8px;
 }
-.tr-menu-verified:hover { box-shadow: var(--tr-fx-glow-ok); }
-html.light .tr-menu-verified:hover, html.rust .tr-menu-verified:hover, html.coal .tr-menu-verified:hover { box-shadow: none; }
+.tr-menu-verified:hover { background: color-mix(in srgb, var(--tr-ok) 14%, transparent); }
 .tr-menu-verified-count { color: var(--tr-ink); }
 
 @media only screen and (max-width: 720px) {
@@ -200,7 +195,7 @@ html.light .tr-menu-verified:hover, html.rust .tr-menu-verified:hover, html.coal
   border-bottom: 1px solid var(--tr-panel-edge);
   font-family: var(--tr-font-data); font-size: 1.1rem; letter-spacing: 0.12em; text-decoration: none;
 }
-.tr-side-code { color: var(--tr-cyan); font-weight: 600; text-shadow: var(--tr-glow); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-side-code { color: var(--tr-cyan); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tr-side-version { color: var(--tr-faint); letter-spacing: 0.04em; }
 a.tr-side-brand:hover .tr-side-code { color: var(--tr-ink); }
 .chapter li.chapter-item { margin-block-start: 0.55em; line-height: 1.5; }
@@ -208,10 +203,8 @@ a.tr-side-brand:hover .tr-side-code { color: var(--tr-ink); }
 .chapter li a:hover { color: var(--tr-cyan); text-decoration: none; }
 .chapter li a.active {
   color: var(--tr-amber);
-  text-shadow: var(--tr-glow);
   position: relative;
 }
-html.navy .chapter li a.active, html.ayu .chapter li a.active { text-shadow: var(--tr-fx-glow-amber); }
 .chapter li a.active::before {
   content: "";
   position: absolute; inset-inline-start: -10px; top: 0.3em; bottom: 0.3em; width: 2px;
@@ -221,7 +214,7 @@ html.navy .chapter li a.active, html.ayu .chapter li a.active { text-shadow: var
   font-family: var(--tr-font-display); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--tr-cyan); font-size: 1.15rem; margin: 1.4em 0 0.3em;
 }
-.chapter .spacer { height: 1px; margin: 12px 0; background: linear-gradient(90deg, var(--tr-line-hot), transparent); }
+.chapter .spacer { height: 1px; margin: 12px 0; background: var(--tr-panel-edge); }
 .chapter-fold-toggle { opacity: 0.6; }
 .chapter a.current-header { color: var(--tr-amber); }
 .on-this-page { border-inline-start-width: 1px; margin-left: 12px; padding-left: 10px; font-size: 0.94em; }
@@ -255,15 +248,15 @@ html.navy .chapter li a.active, html.ayu .chapter li a.active { text-shadow: var
   font-size: 2.9rem;
   margin: 1.6em 0 1em;
   padding-bottom: 0.45em;
-  text-shadow: var(--tr-glow);
   border-bottom: 1px solid var(--tr-panel-edge);
-  background: linear-gradient(90deg, var(--tr-cyan), var(--tr-magenta)) left bottom / 72px 2px no-repeat;
+  /* one short accent rule on the hairline, like the scale bar of a drawing */
+  background: linear-gradient(var(--tr-cyan), var(--tr-cyan)) left bottom / 56px 1px no-repeat;
 }
 .content main h1:first-child { margin-top: 1.1em; }
 .content main h2 { font-size: 2.15rem; margin-top: 2.2em; }
 .content main h2::before {
-  content: ""; display: inline-block; width: 0.5em; height: 0.5em; margin-inline-end: 0.5em; vertical-align: 0.12em;
-  border: 2px solid var(--tr-magenta); transform: rotate(45deg) scale(0.8);
+  content: ""; display: inline-block; width: 0.7em; height: 1px; margin-inline-end: 0.5em; vertical-align: 0.32em;
+  background: var(--tr-magenta);
 }
 .content main h3 { font-size: 1.8rem; color: var(--tr-sigma); margin-top: 1.9em; }
 .content main h4, .content main h5, .content main h6 { font-size: 1.6rem; color: var(--tr-sigma); }
@@ -278,7 +271,7 @@ html.navy .chapter li a.active, html.ayu .chapter li a.active { text-shadow: var
 
 .content main strong { color: var(--tr-ink); font-weight: 700; }
 .content main em { color: var(--tr-sigma); }
-.content main hr { border: 0; height: 1px; margin: 2.4em 0; background: linear-gradient(90deg, transparent, var(--tr-line-hot), transparent); }
+.content main hr { border: 0; height: 1px; margin: 2.4em 0; background: var(--tr-panel-edge); }
 .content main img { max-width: 100%; height: auto; }
 /* mdBook's image zoom (a click on a figure): the figure on the page's own background, as on the page, instead of
    mdBook's mid grey (on which the dim ink of a figure drawn for both palettes reads at 1.5:1); an SVG, which
@@ -306,7 +299,6 @@ html.navy .chapter li a.active, html.ayu .chapter li a.active { text-shadow: var
   background: var(--tr-code-bg, var(--tr-sheet));
   border: 1px solid var(--tr-panel-edge);
   border-inline-start: 2px solid var(--tr-line-hot);
-  clip-path: var(--tr-cut);
   line-height: 1.6;
   font-size: 0.92em;
 }
@@ -392,20 +384,17 @@ code.katex-fallback[data-display] { display: block; padding: 0.6em 0.9em; white-
   padding: 0.85em 1.25em 0.95em 1.45em;
   background: var(--tr-env-bg, var(--tr-panel));
   border: 1px solid var(--tr-panel-edge);
-  clip-path: var(--tr-cut);
 }
 .tr-env::before {
   content: "";
-  position: absolute; inset-block: 0; inset-inline-start: 0; width: 3px;
+  position: absolute; inset-block: -1px; inset-inline-start: -1px; width: 3px;
   background: var(--tr-env-accent);
-  box-shadow: 0 0 12px var(--tr-env-accent);
 }
 .tr-env::after {
-  /* the bevel of the cut corner, drawn as a hairline */
-  content: ""; position: absolute; right: 0; top: 0; width: 17px; height: 17px; pointer-events: none;
-  background: linear-gradient(225deg, transparent 49%, var(--tr-line-hot) 50%, transparent 56%);
+  /* a registration tick in the far corner: the frame reads as a drawn plate, not a box */
+  content: ""; position: absolute; right: 6px; top: 6px; width: 9px; height: 9px; pointer-events: none;
+  border-top: 1px solid var(--tr-line-hot); border-right: 1px solid var(--tr-line-hot);
 }
-html.light .tr-env::before, html.rust .tr-env::before, html.coal .tr-env::before { box-shadow: none; }
 .tr-env.tr-status-lean { --tr-env-accent: var(--tr-ok); }
 .tr-env.tr-status-lean.tr-axiom-free { --tr-env-accent: var(--tr-axiom-free); }
 .tr-env.tr-status-open { --tr-env-accent: var(--tr-warn); }
@@ -416,11 +405,10 @@ html.light .tr-env::before, html.rust .tr-env::before, html.coal .tr-env::before
   background: transparent;
   border-color: transparent;
   border-inline-start: 0;
-  clip-path: none;
   padding-block: 0.2em 0.4em;
   margin-top: -0.6em;
 }
-.tr-env.tr-status-proof::before { box-shadow: none; inset-block: 0.35em; width: 1px; }
+.tr-env.tr-status-proof::before { inset-block: 0.35em; inset-inline-start: 0; width: 1px; }
 .tr-env.tr-status-proof::after { display: none; }
 .tr-env:target { border-color: var(--tr-amber); }
 .tr-env:target .tr-env-label { color: var(--tr-amber); }
@@ -460,8 +448,7 @@ html.light .tr-env::before, html.rust .tr-env::before, html.coal .tr-env::before
 }
 .tr-badge-lean { color: var(--tr-env-accent) !important; background: color-mix(in srgb, var(--tr-env-accent) 9%, transparent); }
 .tr-badge-open { color: var(--tr-warn) !important; background: color-mix(in srgb, var(--tr-warn) 9%, transparent); }
-a.tr-badge-lean:hover { box-shadow: 0 0 12px color-mix(in srgb, var(--tr-env-accent) 35%, transparent); text-decoration: none; }
-html.light a.tr-badge-lean:hover, html.rust a.tr-badge-lean:hover, html.coal a.tr-badge-lean:hover { box-shadow: none; background: color-mix(in srgb, var(--tr-env-accent) 16%, transparent); }
+a.tr-badge-lean:hover { background: color-mix(in srgb, var(--tr-env-accent) 16%, transparent); text-decoration: none; }
 
 .tr-env-lean {
   display: flex; flex-wrap: wrap; gap: 0.3em 1em;
@@ -486,17 +473,17 @@ html.light a.tr-badge-lean:hover, html.rust a.tr-badge-lean:hover, html.coal a.t
 
 figure.tr-media { margin: 2em 0; padding: 0; position: relative; min-width: 0; }
 .tr-media-frame, figure.tr-viz, figure.tr-film {
-  /* corner brackets */
-  --tr-br: var(--tr-cyan);
+  /* crop marks: four 1px corner ticks, as on a print plate */
+  --tr-br: var(--tr-line-hot);
   background:
-    linear-gradient(var(--tr-br), var(--tr-br)) top left / 18px 2px no-repeat,
-    linear-gradient(var(--tr-br), var(--tr-br)) top left / 2px 18px no-repeat,
-    linear-gradient(var(--tr-br), var(--tr-br)) top right / 18px 2px no-repeat,
-    linear-gradient(var(--tr-br), var(--tr-br)) top right / 2px 18px no-repeat,
-    linear-gradient(var(--tr-br), var(--tr-br)) bottom left / 18px 2px no-repeat,
-    linear-gradient(var(--tr-br), var(--tr-br)) bottom left / 2px 18px no-repeat,
-    linear-gradient(var(--tr-br), var(--tr-br)) bottom right / 18px 2px no-repeat,
-    linear-gradient(var(--tr-br), var(--tr-br)) bottom right / 2px 18px no-repeat;
+    linear-gradient(var(--tr-br), var(--tr-br)) top left / 14px 1px no-repeat,
+    linear-gradient(var(--tr-br), var(--tr-br)) top left / 1px 14px no-repeat,
+    linear-gradient(var(--tr-br), var(--tr-br)) top right / 14px 1px no-repeat,
+    linear-gradient(var(--tr-br), var(--tr-br)) top right / 1px 14px no-repeat,
+    linear-gradient(var(--tr-br), var(--tr-br)) bottom left / 14px 1px no-repeat,
+    linear-gradient(var(--tr-br), var(--tr-br)) bottom left / 1px 14px no-repeat,
+    linear-gradient(var(--tr-br), var(--tr-br)) bottom right / 14px 1px no-repeat,
+    linear-gradient(var(--tr-br), var(--tr-br)) bottom right / 1px 14px no-repeat;
   padding: 10px 12px 14px;
 }
 figure.tr-media iframe, figure.tr-media video, figure.tr-media > img, figure.tr-media .tr-media-frame img {
@@ -535,11 +522,10 @@ figure.tr-figure > figcaption strong { color: var(--tr-ink); }
   font-family: var(--tr-font-display); font-weight: 500; font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--tr-ink); border: 1px solid var(--tr-line-hot); padding: 4px 10px; text-decoration: none; line-height: 1.4;
 }
-.tr-media-links a:hover { color: var(--tr-cyan); border-color: var(--tr-cyan); box-shadow: var(--tr-glow); }
+.tr-media-links a:hover { color: var(--tr-cyan); border-color: var(--tr-cyan); }
 .tr-slides {
   position: relative; display: block; margin: 1.8em 0; padding: 1em 1.2em;
   background: var(--tr-panel); border: 1px solid var(--tr-panel-edge); border-inline-start: 3px solid var(--tr-magenta);
-  clip-path: var(--tr-cut);
 }
 .tr-slides a, .tr-slides a:link, .tr-slides a:visited { border-bottom: 0; }
 .tr-slides:hover { border-color: var(--tr-line-hot); }
@@ -574,7 +560,6 @@ main:has(#tr-verification-ledger) h2 ~ ul li::before { content: ""; position: ab
   color: var(--tr-ink);
   font-family: var(--tr-font-body);
   font-size: 1.6rem;
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
 }
 #mdbook-searchbar:focus, #mdbook-searchbar.active { box-shadow: 0 0 0 1px var(--tr-amber); border-color: var(--tr-amber); outline: none; }
 .searchresults-header { font-family: var(--tr-font-display); letter-spacing: 0.04em; color: var(--tr-dim); }
@@ -610,7 +595,8 @@ kbd { border-radius: 0; background: var(--tr-sheet); border-color: var(--tr-line
     border-inline-start: 3px solid var(--tr-ok); background: var(--tr-env-bg, var(--tr-panel));
   }
   .tr-page-ledger .content main table tbody tr:nth-child(2n) { background: var(--tr-env-bg, var(--tr-panel)); }
-  .tr-page-ledger .content main table td { border: 0; padding: 2px 0; white-space: normal; }
+  .tr-page-ledger .content main table td { border: 0; padding: 2px 0; overflow-wrap: anywhere; }
+  .tr-page-ledger .content main table td:is(:first-child, :nth-child(4)) { white-space: normal; }
   .tr-page-ledger .content main table td:nth-child(2) { color: var(--tr-ink); }
   .tr-page-ledger .content main table td[data-label]:nth-child(n+3)::before {
     content: attr(data-label); display: block; margin-top: 6px;
@@ -638,8 +624,7 @@ kbd { border-radius: 0; background: var(--tr-sheet); border-color: var(--tr-line
   .content main { font-size: 11pt; line-height: 1.65; max-width: none; }
   .content main :is(h1, h2, h3) { text-shadow: none; break-after: avoid; }
   .content main h1 { background: none; }
-  .tr-env, .tr-slides, .content main pre { clip-path: none; break-inside: avoid; background: transparent; }
-  .tr-env::before, .tr-badge { box-shadow: none !important; }
+  .tr-env, .tr-slides, .content main pre { break-inside: avoid; background: transparent; }
   .tr-env::after { display: none; }
   .tr-menu { display: none; }
   .content main a { border-bottom: 0; }

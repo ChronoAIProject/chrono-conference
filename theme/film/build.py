@@ -4,7 +4,7 @@ Usage: python3 theme/film/build.py <film dir> [--strict | --timeline-only]
 
 The page inlines, in order: the palette and font stacks (theme/generated/tokens.mjs, sections
 "film", "font", "semantic"), window.DATA (timeline, film and book metadata, Lean citations at
-the pinned commit, in-frame strings, data/*.json), theme/film/engine.js, the film's scenes.js,
+the pinned commit, in-frame strings, data/*.json and asset names), theme/film/engine.js, the film's scenes.js,
 and the boot call. Fonts are @fontsource WOFF2 subsets copied to out/fonts/ (only the
 unicode-range subsets the film's text needs) and referenced by relative URL, so the page is
 served over local http (render.js, poster.js and shot.js start their own server).
@@ -205,6 +205,14 @@ def build(film_dir: Path, *, strict: bool = False, player: bool = False) -> Path
     if data_dir.is_dir():
         for p in sorted(data_dir.glob("*.json")):
             data["data"][p.stem] = json.loads(p.read_text(encoding="utf-8"))
+    assets_dir = film_dir / "assets"
+    assets_out = out / "assets"
+    if assets_out.exists():
+        shutil.rmtree(assets_out)
+    data["assets"] = []
+    if assets_dir.is_dir():
+        shutil.copytree(assets_dir, assets_out)
+        data["assets"] = sorted(p.name for p in assets_dir.iterdir() if p.is_file())
     data["strict"] = strict
     solid = solid_assets(film, out)
     if solid:

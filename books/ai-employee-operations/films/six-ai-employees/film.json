@@ -8,10 +8,10 @@
   "released": "2026-11-26",
   "duration": "0:47",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · a shattered chat box, six role bars and a radar, an amber human gate",
+  "style": "dual-polarity optical glass · a shattered chat box, six role bars and a radar, an amber human gate",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [

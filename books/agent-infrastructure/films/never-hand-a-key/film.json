@@ -8,10 +8,10 @@
   "released": "2026-11-26",
   "duration": "0:51",
   "resolution": "1280x720@30",
-  "style": "trureturing cyberpunk · a leaking context window, a proxy vault, a human gate and a hot revocation",
+  "style": "dual-polarity optical glass · a leaking context window, a proxy vault, a human gate and a hot revocation",
   "narration": {
     "language": "en",
-    "engine": "Kokoro-82M v1.0 (onnx)",
+    "engine": "local-neural-tts",
     "voice": "af_heart"
   },
   "subtitles": [

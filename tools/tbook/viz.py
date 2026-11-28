@@ -1125,6 +1125,8 @@ def _card(v: dict, lock: lean.Lock | None, featured: bool) -> str:
 
 def hub_html(site, book, lock: lean.Lock | None = None) -> str:
     """The bilingual hub page ``_site/<slug>/viz/index.html`` (static HTML; hub.js only decorates)."""
+    from .site import polarity_attrs
+
     live = live_entries(book)
     title_zh, title_en = config.pick(book.title, "zh", book.languages), config.pick(book.title, "en", book.languages)
     viz_zh, viz_en = config.s("zh", "ui.visualizations"), config.s("en", "ui.visualizations")
@@ -1148,8 +1150,9 @@ def hub_html(site, book, lock: lean.Lock | None = None) -> str:
                       f'<link rel="stylesheet" href="{esc(fonts)}">\n')
     desc_zh = f"{title_zh} · {viz_zh}"
     desc_en = f"{title_en} · {viz_en}"
+    theme_attrs = polarity_attrs(getattr(book, "polarity", "deep-space"))
     return f"""<!doctype html>
-<html lang="zh-CN" data-title-en="{esc(book.code)} · {esc(viz_en)} · {esc(title_en)}">
+<html lang="zh-CN" data-title-en="{esc(book.code)} · {esc(viz_en)} · {esc(title_en)}"{theme_attrs}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1262,12 +1265,28 @@ def _ignore(_dir: str, names: list[str]) -> list[str]:
     return [n for n in names if n.startswith(".") or n == "node_modules" or (n.startswith("fig-") and n.endswith(".jpg"))]
 
 
+_HTML_ROOT_RE = re.compile(r"""<html(?=[\s>])(?:[^>"']|"[^"]*"|'[^']*')*>""", re.I)
+_POLARITY_ATTR_RE = re.compile(
+    r"""(?P<polarity>\s+data-(?:polarity|tr-palette)(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?(?=[\s>]))"""
+    r"""|"[^"]*"|'[^']*'""", re.I)
+
+
+def _daylight_page(page_html: str, attrs: str) -> str:
+    def replace_root(match: re.Match) -> str:
+        tag = _POLARITY_ATTR_RE.sub(lambda attr: "" if attr["polarity"] else attr[0], match[0])
+        return tag[:-1] + attrs + ">"
+
+    return _HTML_ROOT_RE.sub(replace_root, page_html, count=1)
+
+
 def build(site, book, out_dir: Path) -> None:
     """Publish the book's live visualizations, the shared runtime and the hub into ``out_dir`` (``_site/<slug>/viz/``).
 
     Raises :class:`VizError` when the registry or a live page has errors (the same as ``./tbook check`` reports).
     A book without ``viz/`` publishes nothing.
     """
+    from .site import polarity_attrs
+
     out_dir = Path(out_dir)
     if not book.viz_dir.exists():
         return
@@ -1286,11 +1305,16 @@ def build(site, book, out_dir: Path) -> None:
     if lock:
         (out_dir / "assets" / "trureturing.json").write_text(
             json.dumps(asdict(lock), ensure_ascii=False) + "\n", encoding="utf-8")
+    polarity = getattr(book, "polarity", "deep-space")
+    daylight_attrs = polarity_attrs(polarity) if polarity == "daylight" else ""
     for v in live_entries(book):
         dst = out_dir / v["id"]
         shutil.copytree(book.viz_dir / v["id"], dst, ignore=_ignore)
         for page in sorted(dst.rglob("*.html")):
-            page.write_text(pin_links(page.read_text(encoding="utf-8"), lock), encoding="utf-8")
+            html = pin_links(page.read_text(encoding="utf-8"), lock)
+            if daylight_attrs:
+                html = _daylight_page(html, daylight_attrs)
+            page.write_text(html, encoding="utf-8")
     (out_dir / "index.html").write_text(hub_html(site, book, lock), encoding="utf-8")
     (out_dir / REGISTRY).write_text(json.dumps(published_registry(book, lock), ensure_ascii=False, indent=2) + "\n",
                                     encoding="utf-8")

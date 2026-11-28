@@ -15,11 +15,20 @@ OUT="$FILM/out"
 PYTHON="${PYTHON:-python3}"
 PLAN="$("$PYTHON" "$HERE/plan.py" "$FILM")"
 eval "$PLAN"
+[ -n "$RENDITIONS" ] || { echo "film: no video requested ($OUTPUTS); nothing to render" >&2; exit 1; }
 "$PYTHON" "$HERE/build.py" "$FILM"
+if [ -f "$FILM/clips.json" ]; then
+  if node "$HERE/compose.mjs" "$FILM" --renditions "$RENDITIONS"; then
+    exit 0
+  else
+    rc=$?
+    [ "$rc" -eq 3 ] || exit "$rc"
+    echo "film: FILM_ALLOW_STILL_FALLBACK=1 enabled still-plate render workers for this local preview" >&2
+  fi
+fi
 CPUS="$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2)"
 N="${FILM_WORKERS:-$(( CPUS < 3 ? CPUS : 3 ))}"
 [ "$N" -ge 1 ] || N=1
-[ -n "$RENDITIONS" ] || { echo "film: no video requested ($OUTPUTS); nothing to render" >&2; exit 1; }
 rm -f "$OUT"/seg_*.mp4 "$OUT"/seg720_*.mp4 "$OUT"/r*.log
 pids=()
 for ((w = 0; w < N; w++)); do

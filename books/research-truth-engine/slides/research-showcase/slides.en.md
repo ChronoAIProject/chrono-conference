@@ -5,6 +5,7 @@ title: "The Ratchet of Logic · Research Showcase"
 info: "The Omega Institute research showcase: FIB ATOM, information escape, forced geometry, the literature frontier, and the red frontier."
 htmlAttrs:
   lang: "en"
+  data-polarity: "deep-space"
 deck:
   code: "OMEGA//TRUTH"
   book: "The Ratchet of Logic"

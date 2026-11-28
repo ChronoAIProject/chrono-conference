@@ -1,0 +1,18 @@
+{
+  "viewport": { "x": 0, "y": 131, "w": 1920, "h": 818 },
+  "loop": "ping-pong",
+  "scenes": {
+    "prologue_street": "clip01-metaverse-marina-extended.mp4",
+    "prologue_lobby": "clip02-metaverse-lobby-pip.mp4",
+    "act2_observatory": "clip03-obs-cosmos-orbit.mp4",
+    "act2_kernel_audit": "clip04-obs-galaxy-drift.mp4",
+    "act4_employees": "clip05-obs-daylight-white.mp4"
+  },
+  "sha256": {
+    "clip01-metaverse-marina-extended.mp4": "3c63d3c19dc04b946c006ffa26e7ef539e2ef54e0f62e06f8a2acb51157845ab",
+    "clip02-metaverse-lobby-pip.mp4": "7523fb16021600d8f52c52f87c8e24d4f8d4bc45912e1219750b6645c966a4f7",
+    "clip03-obs-cosmos-orbit.mp4": "7e98d00fab7c08836dd36525a977728801a3c7189a1d142f318ac252f058a996",
+    "clip04-obs-galaxy-drift.mp4": "2d09bc44348af1bf103b811a4f468177af22c66df22478a5f48ac2bf76ec85b9",
+    "clip05-obs-daylight-white.mp4": "0db62ab74552151358242410c21370a03c76aa36f7479c98f9f29238e09fb9eb"
+  }
+}

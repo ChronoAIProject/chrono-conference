@@ -1,8 +1,9 @@
 /* theme/epub/book.css — EPUB 3 stylesheet (Apple Books first, other EPUB 3 readers fine).
  *
  * tools/tbook/pandoc.py prepends a palette generated from theme/tokens.json:
- *   :root                         paper tokens (--tr-*): good contrast on White / Sepia
- *   prefers-color-scheme: dark    screen tokens (neon) for dark reading modes
+ *   :root                         paper tokens (--tr-*), the daylight architectural-stone polarity:
+ *                                 charcoal ink and graphite accents, good contrast on White / Sepia
+ *   prefers-color-scheme: dark    screen tokens, the deep-space optical-glass polarity, for dark modes
  *   Apple Books Night / Gray      screen tokens via :root[__ibooks_internal_theme*=…]
  * and, when [epub] embed_fonts is set, @font-face rules for fonts from .cache/fonts.
  *
@@ -10,7 +11,8 @@
  * here; only accents (links, environment frames, badges, tables) use the palette.
  * Lean-verified badges and frames use --tr-ok, with --tr-axiom-free for documented axiom-free
  * results. --tr-warn = open; --tr-dim = informal remarks and
- * proofs; --tr-cyan = labels, structure and links.
+ * proofs; --tr-cyan = labels, structure and links (ink by day, ice-silver by night).
+ * Structure is drawn with hairlines only: no glow, no cut corners.
  */
 
 @namespace epub "http://www.idpf.org/2007/ops";
@@ -55,6 +57,14 @@ a {
 }
 
 img { max-width: 100%; height: auto; }
+
+#cover-image > svg {
+  max-height: 96vh;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
 
 sup, sub { line-height: 0; }
 
@@ -102,14 +112,14 @@ section[data-tr-kicker] > h1::before { content: attr(data-tr-kicker); }
 section[data-tr-section="back"] > h1::before, h1[data-tr-section="back"]::before { color: var(--tr-ok); }
 section[data-tr-section="prefix"] > h1::before, h1[data-tr-section="prefix"]::before { color: var(--tr-dim); }
 
+/* a short scale bar under the chapter title */
 h1::after {
   display: block;
   content: "";
-  width: 2.2em;
-  height: 3px;
-  margin-top: 0.45em;
-  background: var(--tr-magenta);
-  border-right: 0.5em solid var(--tr-cyan);
+  width: 2.4em;
+  height: 1px;
+  margin-top: 0.55em;
+  background: var(--tr-cyan);
 }
 
 h2 {
@@ -117,7 +127,7 @@ h2 {
   font-weight: 700;
   margin: 1.8em 0 0.75em 0;
   padding-left: 0.55em;
-  border-left: 3px solid var(--tr-magenta);
+  border-left: 2px solid var(--tr-magenta);
 }
 
 h3 { font-size: 1.06em; margin: 1.5em 0 0.6em 0; }
@@ -130,11 +140,6 @@ section.tr-env {
   padding: 0.65em 0.9em 0.7em 0.9em;
   border: 1px solid var(--tr-panel-edge);
   border-left: 3px solid var(--tr-cyan);
-  /* the cut-corner tick of the trureturing panels */
-  background-image: linear-gradient(225deg, transparent 0, transparent 6px, var(--tr-line-hot) 6px, var(--tr-line-hot) 7px, transparent 7px);
-  background-repeat: no-repeat;
-  background-position: top right;
-  background-size: 14px 14px;
   text-align: left;
 }
 :root section.tr-env p { text-indent: 0; margin: 0 0 0.45em 0; }
@@ -147,7 +152,6 @@ section.tr-status-open { border-left-color: var(--tr-warn); }
 section.tr-status-informal {
   border: 0;
   border-left: 3px solid var(--tr-dim);
-  background-image: none;
 }
 
 header.tr-env-head {
@@ -208,8 +212,7 @@ section.tr-proof {
   padding: 0 0 0 0.85em;
   border: 0;
   border-left: 1px dashed var(--tr-faint);
-  background-image: none;
-  text-align: justify;
+  text-align: left;
 }
 :root section.tr-proof p { text-indent: 0; margin: 0 0 0.45em 0; }
 .tr-proof-label {
@@ -270,7 +273,7 @@ code, kbd, samp, pre {
   -webkit-hyphens: none;
   hyphens: none;
 }
-code { font-size: 0.88em; }
+code { font-size: 0.88em; overflow-wrap: anywhere; }
 pre {
   margin: 1em 0;
   padding: 0.7em 0.9em;
