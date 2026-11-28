@@ -34,8 +34,12 @@ const kernelGid = 'D5/S3/ConceptDynamics/InformationEscape/CatalogKernel.jointKe
 const noveltyGid = 'D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout';
 const fredkinGid = 'D5/S3/Quantum/Entanglement/FredkinEntanglingPowerRefutation.result';
 
-function reel(S, maker, source) {
+function reel(S, maker, source, productMix = 0, productPlate = false) {
   plate(S.id + '.jpg', aperture, { zoomTo: 1, vignette: 0 });
+  // Product captures have their own captions below the app window. Give the
+  // bilingual subtitle band its own matte during those shots and their dissolves.
+  const matte = alphaScene(S.id) ? productMix : Number(productPlate);
+  fillBox(0, 916, W, H - 916, pal(scenePolarity(S.id)).bg, matte);
   cinemaFrame(S, {
     barHeight: 40, leftLabel: maker, chapterLabel: sceneName(S.id),
     rightLabel: String(S.i + 1).padStart(2, '0') + ' / 12',
@@ -94,7 +98,8 @@ function theoremBeat(p, gid, label) {
 }
 
 SCENES.s01_cold_open_hook = S => {
-  reel(S, company, 'Singapore office');
+  const productCut = (S.u >= 9 && S.u < 10.5) || (S.u >= 12 && S.u < 13.5);
+  reel(S, company, 'Singapore office', Number(productCut));
   titleBeat(Q(S, 0, 'Zero cameras', 2.6), 'SINGAPORE', 'Zero cameras.');
   meter(Q(S, 1, 'five hundred thirty-nine', 4.6), 539, 'REPOSITORIES');
   titleBeat(at(S, 2, 2.5), 'COLD OPEN', 'Execution at zero.');
@@ -123,7 +128,7 @@ SCENES.s04_omega_stations_radar_dive = S => {
 };
 
 SCENES.s05_lean_kernel_anvil_live = S => {
-  reel(S, observatory, 'trureturing.org  /  Lean 4 kernel  /  books.trureturing.org');
+  reel(S, observatory, 'trureturing.org  /  Lean 4 kernel  /  books.trureturing.org', clamp((S.u - 6) / 0.5), true);
   titleBeat(at(S, 0, 2.6), 'THE LEAN KERNEL', 'Inspect the chalk.');
   theoremBeat(Q(S, 1, 'One explicit witness', 7), fredkinGid, 'Fredkin witness · 2.00034 ebits');
   telemetry(Q(S, 1, '#print axioms', 5.8), 'propext · Classical.choice · Quot.sound');
@@ -133,7 +138,7 @@ SCENES.s05_lean_kernel_anvil_live = S => {
 };
 
 SCENES.s06_red_ink_honesty_rh = S => {
-  reel(S, observatory, 'Mathesis  /  Riemann Hypothesis replay');
+  reel(S, observatory, 'Mathesis  /  Riemann Hypothesis replay', clamp((25 - S.u) / 0.6), true);
   meter(Q(S, 0, 'scholars contacted', 4.1), 1049, 'SCHOLARS CONTACTED');
   meter(at(S, 1, 4.4), 225, 'OPEN PAPERS', 'right');
   telemetry(Q(S, 1, 'formal peer-review acceptances', 5.4), '0 formal peer-review acceptances', { kind: 'open' });
@@ -144,7 +149,7 @@ SCENES.s06_red_ink_honesty_rh = S => {
 };
 
 SCENES.s07_vehicle_nyxid_zero_secret = S => {
-  reel(S, company, 'nyxid.ai  /  scoped access and revocation');
+  reel(S, company, 'nyxid.ai  /  scoped access and revocation', 1, true);
   telemetry(Q(S, 0, 'engine by the token', 5), 'ANALOGY   The rented engine', { kind: 'amber', side: 'right' });
   titleBeat(Q(S, 1, 'complete vehicle', 2.6), 'NYXID', 'The complete vehicle');
   telemetry(Q(S, 1, 'hotel keycard', 4.4), 'ANALOGY   Room 412 · until noon', { kind: 'amber' });
@@ -152,7 +157,7 @@ SCENES.s07_vehicle_nyxid_zero_secret = S => {
 };
 
 SCENES.s08_ornn_cma_heca_live_montage = S => {
-  reel(S, company, 'Ornn  /  CMA  /  heca  /  chrono-harness');
+  reel(S, company, 'Ornn  /  CMA  /  heca  /  chrono-harness', 1, true);
   meter(Q(S, 0, 'Ornn turns', 5), 163, 'SCANNED SKILLS', 'right');
   telemetry(Q(S, 1, 'isolated sandboxes', 4.5), 'CMA   /   2.1 s hot reload', { side: 'right' });
   meter(Q(S, 1, 'local canvas heca', 5), 27, 'HECA INTEGRATIONS');
@@ -168,7 +173,7 @@ SCENES.s09_unfinished_steel_workbench = S => {
 };
 
 SCENES.s10_nine_ai_employees_live_ops = S => {
-  reel(S, company, 'AI Team Work Ledger  /  Launch Arena  /  Donna reception');
+  reel(S, company, 'AI Team Work Ledger  /  Launch Arena  /  Donna reception', clamp((40 - S.u) / 0.5), true);
   meter(Q(S, 0, 'nine disciplined roles', 5.8), 102, 'OF 120 WORKFLOWS', 'right');
   telemetry(Q(S, 1, 'knocked HR down', 4.2), 'HR coverage   15 → 14 / 20');
   telemetry(Q(S, 1, 'four human taps', 4.1), '11 / 12 on first try   ·   4 human taps', { side: 'right' });
