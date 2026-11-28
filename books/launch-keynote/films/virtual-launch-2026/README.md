@@ -18,7 +18,7 @@ The web edition keeps compact tracked JPEG plates in `assets/`. Release masters 
 
 1. `prologue_office_to_stadium` opens the 14F MBFC Tower 1 office and crosses into four stands, eight rows, 1,108 seats, and 2×9 flower mats.
 2. `prologue_bay_to_orbit` passes the 112 m and 180 km thresholds, Marina Bay Sands, 457 bay buildings, 14 shuttles, and the 5,307 km orbital screen.
-3. `act1_judgment` frames 141,624 commits across 74 repositories and the 538-repository six-organization atlas as an explicit `STANCE`.
+3. `act1_judgment` frames 141,624 commits across 74 repositories and the 539-repository six-organization atlas as an explicit `STANCE`.
 4. `act2_stations_to_galaxies` cruises the eight named departments, then dives through 19,022 truth nodes and 28,774 edges.
 5. `act2_kernel_ratchet` shows the verbatim `#print axioms` receipt and the two Lean ratchet theorems with an explicit `ANALOGY` badge.
 6. `act2_red_stamps` records 1,049 outreach contacts, 485 replies, Mathesis' 225 papers and 0 acceptances, and the exact Levent Alpöge provenance alongside open ERH, Grand RH, zero simplicity, and pair correlation.
