@@ -58,7 +58,7 @@ $$
 在非退化竞技场上，降低逃逸率等价于 `uniqueCaptureCount index > 0`，也即存在一对相异状态，其余全部条目在它们上面一致而唯独 `index` 把它们分开；这恰好等价于 `index` 的核不在其余条目的语义闭包之内。由 Lean 4 内核在 [`lowersEscape_iff_not_mem_semanticClosureWithout`](lean:D5/S3/ConceptDynamics/InformationEscape/StructuralNovelty.lowersEscape_iff_not_mem_semanticClosureWithout) 中验证并冻结。
 :::
 
-现在看看下面这张 `novel-cut` 实验卡：插入真正落在语义闭包之外的新定理 `T4`，4 个等价类瞬间劈成 8 个，品红色逃逸状态对从 `24` 骤降到 `8`——棘轮清脆地咬进了下一齿。
+现在看看下面这张 `novel-cut` 实验卡：插入真正落在语义闭包之外的新定理 `T4`，4 个等价类瞬间劈成 8 个，银灰逃逸状态对从 `24` 骤降到 `8`——棘轮清脆地咬进了下一齿。
 
 ::: {.viz src="truth-dag-observatory" preset="novel-cut" height="500"}
 **严格新颖切割（`novel-cut`）。** 插入落在留一语义闭包之外的新定理 `T4` 后，联合核将 4 个等价类细化为 8 个，逃逸对数由 `24` 严格下降至 `8`（见 [@thm-ie-closure]）。

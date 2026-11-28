@@ -50,8 +50,8 @@ SCENES.vault = S => {
       fillBox(x + 466 + 85 * t, 462, 6, 6, space.ink, 1);
     }
   });
-  const gate = at(S, 1, 0.7);
-  typeLine('Approval required   →   wait for a human', 150, 700, 38, space.ink, { a: gate });
+  typeLine('Approval required   →   wait for a human', 150, 700, 38, space.ink, { a: at(S, 1, 0.7) });
+  const gate = at(S, 2, 0.7);
   typeLine('Grant revoked   →   deny the request', 150, 771, 38, space.ink, { a: gate });
   slate(S, 'CHRONOAI PTE. LTD.  /  NYXID');
 };
