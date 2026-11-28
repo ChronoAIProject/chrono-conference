@@ -8,13 +8,14 @@
       ["Count just the six core roles and the denominator changes. Eighty-two of ninety-nine, or 82.8 percent.", "只看六个核心岗位，分母随之改变：99 项中覆盖 82 项，即 82.8%。"]
     ]},
     {"id": "roles", "name": "READ THE AUDIT", "lead": 0.32, "tail": 0.45, "music": [0.9, 0.8, 0.9, 0.6, 0.5], "lines": [
-      ["Read down the core roster. Donna, Finance, Auto-X, Community, HR, Admin. Each bar counts workflows with evidence.", "依次看六个核心岗位：Donna、财务、Auto-X、社群、人事、行政。每条实线都对应有证据的流程。"],
+      ["Read down the core roster. Donna, Finance, Auto-X, Community, HR, Admin. Each bar counts workflows with evidence.", "Donna、财务、Auto-X、社群、人事、行政，按有证据的流程计数。"],
       ["HR fell from fifteen of twenty to fourteen. The PDF-reading step failed the stricter evidence check.", "人事从 15/20 下调至 14/20。读取 PDF 这一步没有通过更严格的证据复核。"],
       ["Add Sentiment Monitor, six of seven. Knowledge Base Maintainer, three of three. Role nine, Retrospective Analyst, eleven of eleven.", "再加上舆情监测员 6/7、知识库维护员 3/3。第九个岗位复盘分析员覆盖 11/11。"]
     ]},
     {"id": "boundary", "name": "THE MISSED STAGE", "lead": 0.32, "tail": 1.2, "music": [1, 0.7, 0.6, 0.4, 0.3], "lines": [
-      ["At the November 27 full-flow rehearsal, eleven of twelve stages passed first try. Four human actions. Donna’s median response was twenty-nine seconds.", "11 月 27 日全流程排练中，12 个环节有 11 个一次通过，人类执行了 4 次操作。Donna 的响应中位数为 29 秒。"],
-      ["The host’s question sheet stalled in the Lark queue for 65 minutes. A scheduled one-shot task delivered it in three minutes.", "主持人提问单在 Lark 队列卡了 65 分钟，改用一次性定时任务，3 分钟后送达。"],
+      ["At the November 27 rehearsal, 11 of 12 stages passed on the first try.", "11 月 27 日排练，12 个环节有 11 个一次通过。"],
+      ["People took four actions. Donna’s median reply took 29 seconds.", "人工操作 4 次，Donna 回复耗时中位数为 29 秒。"],
+      ["At 65 minutes the inbound Lark request was still queued. A separate one-shot task delivered the host sheet in three minutes.", "65 分钟时 Lark 请求仍在排队。另一个一次性任务用 3 分钟送达主持人提问单。"],
       ["External paying merchants at the audit date? Zero. That is where the first pilot starts.", "截至审计日，外部付费商户有几家？零家。首批试点从这里开始。"]
     ]}
   ]

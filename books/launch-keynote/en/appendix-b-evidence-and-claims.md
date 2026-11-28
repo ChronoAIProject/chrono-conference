@@ -5,7 +5,7 @@ This appendix consolidates every headline metric cited across the four conferenc
 ## Master Verified Metrics Ledger (Audited Through 2026-11-28)
 
 | Domain | Metric | Exact Value & Caveat | Source Repo / Endpoint | Date |
-| --- | --- | --- | --- | --- |
+| ------------ | ---------------- | ---------------------------------------------------- | ---------------------- | ---------- |
 | Ecosystem Atlas | Six GitHub organizations | **`539`** repos (Nov 27 unified six-org sweep, strictly separated by brand: ChronoAI commercial/engineering `243`—`ChronoAIProject` `150`, `chrono-harness` `25`, `getheca` `7`, `aevatarAI` `61`; independent **The Omega Institute** `296`—`the-omega-institute` `59`, `mathesis-papers` **`237` (`236` public + `1` private)**) | Paginated GitHub API audit & `catalog@293dc68c37` | 2026-11-27 |
 | Engineering Cadence | 60d / 30d commits & 14d velocity | `141,624` (`09-20..11-19` 60d) / `90,295` (final 30d) across `74` active repos (~15 core human engineers + agents; >`13,700` more local commits since `11-19`); 14-day live velocity: `CMA` **`723`** PRs, `NyxID` **`170`** PRs, `chrono-metaverse` **`276`** PRs, `trureturing-live` **`109`** PRs in 5d | `chrono-company-slides` (`product-line-commits.csv`) & GitHub PR logs | 2026-11-19 / 11-27 |
 | Identity Split | Explicit bot/agent commit share | `35%` (`34.9%` exact, `36,819 / 105,363`, `09-08..11-07` 69-repo lower bound; excludes human-signed local multi-agent runs) | `chrono-company-slides` (`team-structure.csv`) | 2026-11-07 |

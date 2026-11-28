@@ -73,18 +73,21 @@ SCENES.seats = S => {
   slate(S, 'SEAT CATALOG  /  v40');
 };
 SCENES.arrival = S => {
-  typeLine('Two clocks at check-in', 140, 248, 78, paper.ink);
-  typeLine('NOVEMBER 27 REHEARSAL', 145, 325, 28, paper.dim);
-  const measures = [['13 / 13', 'operations handled', '0 dropped'], ['29 s', 'median reply', 'booking or check-in'], ['55–81 s', 'seat light changed', 'visual confirmation']];
-  measures.forEach(([n, label, note], i) => {
-    const x = 140 + i * 550;
-    glassCard(x, 395, 515, 270);
-    typeLine(n, x + 32, 497, 78, paper.ink);
-    typeLine(label, x + 34, 562, 33, paper.ink);
-    typeLine(note, x + 34, 615, 26, paper.dim);
+  typeLine('Guest replies and seat changes', 140, 248, 78, paper.ink);
+  const measures = [
+    ['NOV 27 REHEARSAL  /  TRIALS #225', '29 s', 'Median reply from Donna', '13 guest interactions, all answered'],
+    ['NOV 24 SEAT TEST  /  TRIALS #181', '55–81 s', 'Time for a seat to change state', '55 s to light  ·  72 s to move  ·  81 s to turn off']
+  ];
+  measures.forEach(([source, value, label, detail], i) => {
+    const x = 140 + i * 840;
+    glassCard(x, 330, 800, 340);
+    typeLine(source, x + 34, 394, 26, paper.dim);
+    typeLine(value, x + 30, 491, 80, paper.ink);
+    typeLine(label, x + 34, 560, 39, paper.ink);
+    typeLine(detail, x + 34, 617, 30, paper.dim);
   });
-  typeLine('Guest 1,109   →   Livestream', 144, 789, 49, paper.ink, { a: at(S, 1, 0.7) });
-  slate(S, 'TRIALS #225 / #226  ·  SEAT EVENTS #181');
+  typeLine('Guest 1,109   →   Livestream', 144, 789, 49, paper.ink, { a: at(S, 2, 0.7) });
+  slate(S, 'STREET CORNER  /  NOVEMBER 2026');
 };
 
 FILM.poster = () => {

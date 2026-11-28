@@ -33,14 +33,14 @@ section: "Right Now"
       <p class="lead">This 3D lobby, 1,108 theater seats, 18 flower-basket mats, the full launch film plus five shorts, four bilingual books, and Concierge Donna—built on ChronoAI's own agent stack under human review and gates, and published in the open.</p>
       <div class="g3 mt-l">
         <Stat class="md" value="0" label="cameras" tone="magenta" />
-        <Stat class="md" value="1,108" label="locked seats" />
+        <Stat class="md" value="1,108" label="atomic-lock seats" />
         <Stat class="md" value="4" label="auditable open books" />
       </div>
     </div>
     <img src="./img/street-corner.png" alt="The street-corner virtual lobby" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
   </div>
 </div>
-<Source>Live render of the street-corner virtual lobby · open Dec 17, 2026</Source>
+<Source>Street-corner virtual lobby and bookings · open Dec 4 at 10:00 SGT · live broadcast Dec 17 at 16:00 SGT</Source>
 
 ---
 # 03 Thesis
@@ -132,7 +132,7 @@ section: "North Star · Literature"
     <img data-tr-palette="paper" src="./img/ch05-trureturing-growth.en.svg" alt="Cumulative trureturing literature resolutions" style="background:var(--tr-void);padding:8px;display:block;height:500px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <ul class="plain">
       <li><b class="hl-cyan">1,512 proved · 766 refuted</b><br><span class="sm muted">About 28 a day, including 598 in quantum information and physics.</span></li>
-      <li class="mt"><b class="hl-cyan">684 from peer-reviewed journals</b><br><span class="sm muted">Plus 840 from arXiv and 729 from OEIS; 127 open for over a decade, the oldest for 47 years.</span></li>
+      <li class="mt"><b class="hl-cyan">684 from peer-reviewed journals</b><br><span class="sm muted">Plus 840 from arXiv and 729 from OEIS; 127 open for at least ten years, the oldest for 47 years.</span></li>
       <li class="mt"><b class="hl-magenta">Auditable live</b><br><span class="sm muted">Refuted the PRA 2025 Fredkin bound (&gt;2 ebits); proved the Higuchi–Sudbery entropy bound and the CMP 2026 Zeitlin curvature limit.</span></li>
     </ul>
   </div>
@@ -226,7 +226,7 @@ section: "Vehicle · Cutaway"
   <p class="kicker">Hot-Swappable Core · Analogy (not a theorem)</p>
   <h2 class="t">Swap the Engine Tomorrow. <em>Never Stall the Car.</em></h2>
   <img data-tr-palette="paper" class="mt-s" src="./img/ch02-engine-vs-vehicle.en.svg" alt="Cutaway of a bare engine versus a complete vehicle" style="background:var(--tr-void);padding:8px;display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
-  <p class="lead mt">Models turn over every six months. <b>Bolt identity, skills, sandboxes, and judges into the chassis, and every upstream upgrade speeds up your whole vehicle for free.</b></p>
+  <p class="lead mt">Model turnover is fast. <b>Bolt identity, skills, sandboxes, and judges into the chassis so every guardrail stays intact across core swaps.</b></p>
 </div>
 <Source>Engineering analogy, not a theorem · Vol. I, Ch. 2</Source>
 
@@ -248,7 +248,7 @@ section: "Vehicle · Red Queen"
       <ul class="plain">
         <li><b>Open public signup today</b> (no invite code) · <code>1 credit = 1 USD</code> + BYOK</li>
         <li><b>55</b> built-in services · <b>42</b> OpenAPI→MCP specs · <b>9</b> channel types (<b>11</b> on dev 0.79.0)</li>
-        <li>Writes pause for human sign-off; revoke once and the next call fails</li>
+        <li>High-risk writes pause for human sign-off; revoke once and the next call fails</li>
       </ul>
     </div>
   </div>
@@ -328,7 +328,7 @@ section: "Lobby · Live"
       <li><b class="hl-cyan">Four stands × 8 rows = 1,108 seats</b><br><span class="sm muted">N 248 · S 248 · E 306 · W 306; rows 144, 144, 144, 140, 136, 136, 132, 132; codes N1-17, E1-20, W8-01</span></li>
       <li class="mt"><b class="hl-cyan">18 flower-basket mats (2 rows of 9)</b><br><span class="sm muted">basket-01…basket-18 along the world-map wall, by Blossom</span></li>
       <li class="mt"><b class="hl-cyan">Rehearsal: 13 bookings and check-ins, 0 dropped</b><br><span class="sm muted">Median 29 s, max 63 s—measured, not promised</span></li>
-      <li class="mt"><b class="hl-cyan">Donna's 30-question press gate</b><br><span class="sm muted">In-bank: cited answers. Off-bank: contact@chrono-ai.fun</span></li>
+      <li class="mt"><b class="hl-cyan">Donna's 30-question press policy</b><br><span class="sm muted">In-bank: cited answers. Off-bank: log and escalate to contact@chrono-ai.fun</span></li>
     </ul>
   </div>
 </div>
@@ -341,14 +341,14 @@ section: "AI Staff · Ledger"
 
 <div class="body">
   <p class="kicker">Nine Standalone Roles · Nov 27, 2026</p>
-  <h2 class="t">102 on AI. <em>18 Behind Human Gates or Roadmap.</em></h2>
+  <h2 class="t">102 / 120 AI-Scoped Workflows Covered, <em>18 Behind Gates or Roadmap.</em></h2>
   <div class="split mt">
     <img data-tr-palette="paper" src="./img/ch07-six-role-coverage.en.svg" alt="Nine standalone roles cover 102/120 workflows" style="background:var(--tr-void);padding:8px;display:block;height:480px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
     <div class="card hot">
       <h4>Why We Refuse 100% Automation</h4>
-      <h3>Hold those 18 behind the gates, and a store owner can hand over the other 102.</h3>
-      <p>Six core roles: 82/99 (82.8%); with the Sentiment Monitor, KB Maintainer, and Retrospective Analyst, nine roles reach 102/120 (85.0%). HR stepped down from 15/20 to <b>14/20</b> after a strict evidence audit caught a PDF-reading gap—never painted green.</p>
-      <p class="sm muted mt"><b class="hl-warn">Full candor</b>  Nov 27 rehearsal: 11 of 12 stages passed first try; a Lark Q&amp;A stalled 65–70 min in the gateway queue (NyxID#2534), bypassed by a one-shot task in 3.0 min. Paying merchants: <b>0</b>; <b class="hl-amber">the pilot cohort opens today</b>.</p>
+      <h3>102 / 120 are covered AI-scoped workflows.</h3>
+      <p>Six core roles: 82/99; nine roles reach 102/120 (85.0%), all demo-covered AI-scoped workflows. The other 18 stay behind human gates or on the roadmap; permanently human finance decisions sit outside the denominators.</p>
+      <p class="sm muted mt"><b class="hl-warn">Full candor</b>  Nov 27 rehearsal: 11 of 12 stages passed first try; a Lark Q&amp;A stalled 65–70 min in the gateway queue (NyxID#2534), bypassed by a one-shot task in 3.0 min. Paying merchants: <b>0</b>; <b class="hl-amber">pilot applications open Dec 17</b>.</p>
     </div>
   </div>
 </div>
@@ -374,7 +374,7 @@ section: "Invitation"
       <p>Open any green badge on live.trureturing.org, or bring a stubborn open conjecture.</p>
     </div>
     <div class="card">
-      <h4>First Pilot Merchants</h4>
+      <h4>First Pilot Merchants · Dec 17</h4>
       <h3>Two Roles in 14 Days</h3>
       <p>Start with front desk + finance ledger—no raw passwords handed over, full audit trail.</p>
     </div>

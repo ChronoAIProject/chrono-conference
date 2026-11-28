@@ -40,10 +40,10 @@ Conversely, touch a shared kernel or runtime core and `DELTA` selection shows ze
 
 ### Rule 3: Visible Alert on Mixed Policy + Product Edits (`policy.mixed-warning`)
 
-The slickest form of cheating in automated governance is loosening the grading rubric inside the exact pull request that breaks production code. `policy.mixed-warning` never adds bureaucratic human sign-off queues, yet the instant a changeset touches both a product node and a policy/judge node, a magenta warning fires and widens required verification across both sides.
+The slickest form of cheating in automated governance is loosening the grading rubric inside the exact pull request that breaks production code. `policy.mixed-warning` never adds bureaucratic human sign-off queues, yet the instant a changeset touches both a product node and a policy/judge node, a visible mixed-policy warning fires and widens required verification across both sides.
 
 ::: {.viz src="harness-delta-judge" preset="mixed-policy" height="500"}
-**Mixed Policy + Product Warning (`mixed-policy`).** Touching both production code and a judge rule triggers an explicit magenta `policy.mixed-warning` alert and widens required verification scope.
+**Mixed Policy + Product Warning (`mixed-policy`).** Touching both production code and a judge rule triggers an explicit `policy.mixed-warning` mixed-policy alert and widens required verification scope.
 :::
 
 ### Rule 4: Fail Closed on Missing Edges (`registry.explicit`)

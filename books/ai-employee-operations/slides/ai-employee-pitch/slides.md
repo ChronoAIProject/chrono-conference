@@ -31,7 +31,7 @@ section: "为什么失败"
 
 <div class="body">
   <p class="kicker">入职第一周</p>
-  <h2 class="t">为什么大多数「AI 员工」<em class="warn">活不过第一周</em>？</h2>
+  <h2 class="t">为什么许多「AI 员工」试点很快折戟？</h2>
   <div class="g3 mt-l">
     <div class="card"><h4>01 · 无分工</h4><h3>一个万能窗口</h3><p>财务、客服、宣发塞进同一个上下文：第一周，报价就错了两位小数。</p></div>
     <div class="card"><h4>02 · 无门禁</h4><h3>明文密码直给</h3><p>密钥躺在环境变量里，一页带毒的网页就能全部带走。</p></div>
@@ -52,7 +52,7 @@ section: "真实一天"
   <div class="g4 mt-l">
     <div class="tile"><i>street-corner 前厅</i><b>礼宾 Donna</b><span><em>做</em>：先锁死座号（如 N1-17），再说「已留好」。</span><span><em class="hl-magenta">停</em>：库外追问，升级给人。</span></div>
     <div class="tile"><i>演示账本</i><b>财务员 NyxBot</b><span><em>做</em>：票据归类、对账、异常告警。</span><span><em class="hl-magenta">停</em>：任何一笔对外打款。</span></div>
-    <div class="tile"><i>LinkedIn 公司页</i><b>社媒 Auto-X</b><span><em>做</em>：11-26 一份紧急视频简报，55 分钟零人工跑完。</span><span><em class="hl-magenta">停</em>：里程碑官宣，等人按键。</span></div>
+    <div class="tile"><i>社媒 Auto-X</i><b>社媒 Auto-X</b><span><em>做</em>：11-26 一份紧急视频简报，55 分钟零人工跑完。</span><span><em class="hl-magenta">停</em>：里程碑官宣，等人按键。</span></div>
     <div class="tile"><i>客厅</i><b>Living with AI</b><span><em>做</em>：读取家中传感器。</span><span><em class="hl-magenta">停</em>：动执行器之前，先问主人。</span></div>
   </div>
   <p class="lead mt-l">会做事不稀奇；<b>知道在哪儿停</b>，才是能雇的员工。</p>
@@ -66,9 +66,9 @@ section: "分工红线"
 
 <div class="body">
   <p class="kicker">九岗账本 · 截至 2026-11-27</p>
-  <h2 class="t">102 项交给 AI，<em>18 项留守闸门与路线图</em></h2>
+  <h2 class="t">102 / 120 项 AI 范围工作流已覆盖，<em>18 项在闸门后或路线图</em></h2>
   <img class="mt" src="./img/ch01-human-ai-boundary.zh.svg" alt="AI 员工执行区与人类授权边界：六个核心岗覆盖 82/99 项、九个岗位覆盖 102/120 项工作流；资金拨付、对外法律承诺、未经批准的媒体表述与不可逆撤销留给人类" style="height: 460px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
-  <p class="lead mt">六个核心岗 82 / 99（82.8%）；加上舆情、知识库、复盘三个独立值守岗，九岗 102 / 120（85.0%）。剩下 18 项，留给人。</p>
+  <p class="lead mt">六个核心岗 82 / 99；九岗 102 / 120（85.0%），均为 AI 范围工作流的演示覆盖。其余 18 项留在人工闸门或路线图上；永久人工财务决策不计入分母。</p>
 </div>
 <Source>nyxid-nyxbot-trials@df5ef47 · 岗位审计 2026-11-27 · 六核心岗与九岗分母分开记</Source>
 
@@ -95,13 +95,13 @@ section: "记者问答闸门"
 
 <div class="body">
   <p class="kicker">Donna · 30 题核验库</p>
-  <h2 class="t">30 题之内带出处答，<em>30 题之外不编</em></h2>
+  <h2 class="t">30 题媒体政策：<em>库内带出处答，库外升级</em></h2>
   <div class="split mt">
     <img src="./img/ch04-qa-gating-flow.zh.svg" alt="Donna 问答闸门：命中 30 题库则忠实作答并附日期与仓库来源；未命中则经披露红线检查后记录并升级至 contact@chrono-ai.fun" style="height: 560px; width: auto; max-width: 100%; object-fit: contain; display: block; margin: 0 auto;">
     <div style="align-self: center;">
       <div class="card"><h4>01 · 库内</h4><p>命中 30 题核验库：给出带日期、带仓库出处的原话。</p></div>
       <div class="card hot mt-s"><h4>02 · 红线</h4><p>融资数字、模型标识、夸大表述：一律不答。</p></div>
-      <div class="card mt-s"><h4>03 · 库外</h4><p>不猜，不补充：记录提问，升级至 contact@chrono-ai.fun；<br>人类 24 小时内跟进。</p></div>
+      <div class="card mt-s"><h4>03 · 库外</h4><p>不猜，不补充：记录提问，升级至 contact@chrono-ai.fun；<br>目标 24 小时内人工跟进。</p></div>
     </div>
   </div>
 </div>
@@ -147,7 +147,7 @@ section: "十五天剧本"
         <li><b class="mono hl-cyan">12-16</b>　12-15 封板后，Discord 正式彩排</li>
         <li><b class="mono hl-cyan">12-17</b>　16:00–17:15 SGT 双流直播</li>
       </ul>
-      <p class="lead mt">唯一真故障：Lark 问答在网关卡了 65–70 分钟（NyxID#2534），改走定时任务，3 分钟绕过。</p>
+      <p class="lead mt">11/12 个环节首轮通过；Lark 问答在网关卡了 65–70 分钟（NyxID#2534），改走定时任务，3 分钟绕过。</p>
     </div>
   </div>
 </div>
@@ -181,7 +181,7 @@ section: "五步上岗"
         <dt>诱导拦停</dt><dd>10 / 10</dd>
         <dt>人工复核</dt><dd>每日 3 分钟</dd>
         <dt>计价与封顶</dt><dd style="font-size: 38px;">1 credit = 1 USD · 单代理封顶</dd>
-        <dt>连续试跑</dt><dd>14 天</dd>
+        <dt>连续试跑</dt><dd>14 天 · 0 越权 / 0 编造</dd>
       </dl>
     </div>
   </div>

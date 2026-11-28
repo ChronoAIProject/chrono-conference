@@ -12,9 +12,10 @@
       ["Face the stage. North and south hold 248 each. East and west hold 306 each. Eight tiers per stand, 1,108 seats in all.", "四面看台围住舞台。南北各 248 席，东西各 306 席，每面八排，共 1,108 席。"],
       ["Read across all four stands. The first three rows hold 144 seats apiece. The eighth holds 132.", "按排汇总四面看台：前三排各 144 席，第八排有 132 席。"]
     ]},
-    {"id": "arrival", "name": "THE REHEARSAL CLOCK", "lead": 0.32, "tail": 1.2, "music": [1, 0.6, 0.6, 0.3, 0.3], "lines": [
-      ["On November 27, Donna handled thirteen booking and check-in operations. Zero dropped. Median response, twenty-nine seconds.", "11 月 27 日排练中，Donna 处理了 13 次订座和签到操作，零遗漏，响应中位数为 29 秒。"],
-      ["The seat glow took fifty-five to eighty-one seconds. Once all seats are booked, guest 1,109 gets the livestream link.", "座位灯在 55 至 81 秒内亮起。满座后，第 1,109 位来宾收到直播链接。"]
+    {"id": "arrival", "name": "REPLIES AND SEAT CHANGES", "lead": 0.32, "tail": 1.2, "music": [1, 0.6, 0.6, 0.3, 0.3], "lines": [
+      ["Donna replied in all 13 guest interactions at the November 27 rehearsal. Her median response time was 29 seconds.", "11 月 27 日排练的 13 次来宾互动均获 Donna 回复，中位耗时 29 秒。"],
+      ["The November 24 seat test timed three changes. Booking lit a seat in 55 seconds, moving took 72, and cancellation turned it off in 81.", "11 月 24 日测试席位变化：订座亮灯 55 秒，换座 72 秒，取消熄灯 81 秒。"],
+      ["Once all seats are booked, guest 1,109 gets the livestream link.", "满座后，第 1,109 位来宾收到直播链接。"]
     ]}
   ]
 }

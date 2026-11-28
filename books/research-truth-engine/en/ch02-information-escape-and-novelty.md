@@ -38,7 +38,7 @@ Universal quantification over `Set.insert index selected` splits identically int
 Inspect the `observatory` card below to watch those teeth engage on a 16-state arena: three base theorems slice 16 states into 4 equivalence classes, leaving `24` of the `120` unordered distinct state pairs escaped (`escapeRate = 0.20`).
 
 ::: {.viz src="truth-dag-observatory" preset="observatory" height="500"}
-**Truth DAG Snapshot (`observatory`).** Three base theorems partition the 16-state arena into 4 equivalence classes, with magenta chords marking the 24 remaining escaped pairs out of 120 distinct pairs (`20%` escape rate), illustrating [@thm-ie-antitone] and [@thm-ie-insert].
+**Truth DAG Snapshot (`observatory`).** Three base theorems partition the 16-state arena into 4 equivalence classes, with silver-gray chords marking the 24 remaining escaped pairs out of 120 distinct pairs (`20%` escape rate), illustrating [@thm-ie-antitone] and [@thm-ie-insert].
 :::
 
 ## What Counts as a Genuinely New Theorem? Three Structural Novelty Theorems

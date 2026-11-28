@@ -5,15 +5,16 @@
   "scenes": [
     {"id": "hook", "name": "THE RELEASE DECISION", "lead": 0.65, "tail": 0.45, "music": [1, 0.5, 0.3, 0, 0.2], "lines": [
       ["You can make a hundred cuts before lunch. Who decides which one goes on screen?", "午饭前能剪出一百个版本。谁来决定播哪一个？"],
-      ["ChronoAI Pte. Ltd. built this launch around four bilingual books and six films. One flagship. Five shorts.", "ChronoAI Pte. Ltd. 为这场发布会制作了四部双语书和六部影片：一部长片、五部短片。"]
+      ["ChronoAI Pte. Ltd. built this launch around four bilingual books and six films. One flagship. Five shorts.", "ChronoAI Pte. Ltd. 为发布会制作了四部双语书、一部长片和五部短片。"]
     ]},
     {"id": "vehicle", "name": "THE CHASSIS", "lead": 0.32, "tail": 0.45, "music": [0.9, 0.8, 0.8, 0.6, 0.5], "lines": [
       ["Anyone can rent an engine. Nobody trusts a bare engine on wet concrete. Where are the brakes?", "谁都租得到发动机。把它放在湿滑的水泥地上，刹车在哪儿？"],
-      ["So we built the complete vehicle. NyxID holds the keys. Ornn governs skills. CMA and heca run agents. chrono-harness enforces executable judges.", "整车还需要底盘。NyxID 保管密钥，Ornn 管理技能，CMA 和 heca 运行智能体，chrono-harness 执行判定规则。"]
+      ["So we built the complete vehicle. NyxID holds the keys. Ornn governs skills.", "我们造了整车。NyxID 保管密钥，Ornn 管理技能。"],
+      ["CMA and heca run agents. chrono-harness enforces executable judges.", "CMA 和 heca 运行智能体，chrono-harness 执行判定规则。"]
     ]},
     {"id": "northstar", "name": "WHAT A THEOREM ADDS", "lead": 0.32, "tail": 0.45, "music": [1, 0.7, 0.9, 0.5, 0.4], "lines": [
       ["Take a claim off the board. Can you recover it from the others? Then it makes no new distinction.", "从黑板上擦掉一个命题。如果能由其余命题恢复它，擦掉前后就能区分同样的状态。"],
-      ["The independent research institute, The Omega Institute, froze 223,231 Lean 4 theorems in the November 27 snapshot.", "独立研究机构 The Omega Institute 的 11 月 27 日快照收录了 223,231 条冻结的 Lean 4 定理。"]
+      ["The independent research institute, The Omega Institute, froze 223,231 Lean 4 theorems in the November 27 snapshot.", "The Omega Institute 的 11 月 27 日快照有 223,231 条冻结 Lean 4 定理。"]
     ]},
     {"id": "invitation", "name": "TAKE A SEAT", "lead": 0.32, "tail": 1.2, "music": [1, 0.6, 0.5, 0.3, 0.2], "lines": [
       ["In Street Corner, four stands of eight rows hold 1,108 seats. Eighteen basket mats line the map wall.", "街角会场的四面看台各有八排，共 1,108 席。世界地图墙边设有 18 块花篮垫。"],

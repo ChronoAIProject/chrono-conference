@@ -302,13 +302,13 @@
   const NOTES = {
     'prose-edit': ['只改一章正文（chapter）：它唯一的消费者是结构检查（structure）。DELTA 选中 2 / 14 个单元，成本 14 / 100，省下 86%；浏览器、导出与 API 都不跑。', 'Change one prose chapter: its only consumer is the structure check. DELTA selects 2 / 14 units at a cost of 14 / 100 and saves 86%; the browser suites, the export and the API do not run.'],
     'core-change': ['改核心内核（kernel）：广度优先沿登记的消费边展开四层——runtime 与 server，再到 viz-rt、client、contract，再到 browser 与 export，最后到 pages。9 / 14 个单元必须重判，政策轨道与文档不动。', 'Change the core kernel: the expansion goes four levels along the registered consumer edges, to runtime and server, then viz-rt, client and contract, then browser and export, and last pages. 9 / 14 units must be judged again; the policy track and the docs are untouched.'],
-    'mixed-policy': ['同一次改动里既改了规则（rules），又改了产品（server）：品红的 policy.mixed-warning 亮起，分别列出政策组与产品组的单元与成本，两组都要验证。它是可见警告，不是审批关卡。', 'One change set touches a rule (rules) and product code (server): the magenta policy.mixed-warning lights up, lists the policy group and the product group with their costs, and both must be verified. It is a visible warning, not an approval gate.'],
+    'mixed-policy': ['同一次改动里既改了规则（rules），又改了产品（server）：混合策略的 policy.mixed-warning 亮起，政策组以紫色虚线框标出，并列出政策组与产品组的单元和成本，两组都要验证。它是可见警告，不是审批关卡。', 'One change set touches a rule (rules) and product code (server): the policy-mixed warning lights up. The policy group gets a violet dashed frame, and both groups with their costs are listed for verification. It is a visible warning, not an approval gate.'],
     'missing-edge': ['改动里有一个 FILEMAP 没有登记的文件 new_route.rs：查登记这一步就报错，registry.explicit 拒绝这次选择。0 项检查，不按目录去猜，也不退回全量运行。', 'The change set holds new_route.rs, a file the FILEMAP does not register: the registry lookup fails, and registry.explicit refuses the selection. Zero checks: no guess from the directory, no fallback to a full run.']
   };
   const FIGURE_NOTES = {
     'prose-edit': ['只改一章正文：选中 2 / 14，省 86%。', 'One prose chapter: 2 / 14 selected, 86% saved.'],
     'core-change': ['改核心内核：沿登记的边传递到 9 / 14。', 'The core kernel: the registered edges reach 9 / 14.'],
-    'mixed-policy': ['政策与产品同改：品红警告，两组都要验证。', 'Policy and product together: a magenta warning, both verified.'],
+    'mixed-policy': ['政策与产品同改：混合策略警告，紫色虚线政策组框，两组都要验证。', 'Policy and product together: a policy-mixed warning, a violet dashed policy-group frame, both verified.'],
     'missing-edge': ['未登记的文件：报错，0 项检查，不猜。', 'An unregistered file: an error, 0 checks, no guess.']
   };
   let booting = true;

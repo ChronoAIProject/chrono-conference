@@ -57,9 +57,9 @@ function kInKer(i, j, obs) { for (const f of obs) if (f(i) !== f(j)) return fals
 function kKer(obs) { let n = 0; for (let i = 0; i < NST; i++) for (let j = i + 1; j < NST; j++) if (kInKer(i, j, obs)) n++; return n; }
 FILM.init.push(() => {
   const E = window.FILM_ERRORS, want = [120, 56, 24, 8, 0];
-  want.forEach((n, k) => { if (kKer(SEQ.slice(0, k)) !== n) E.push(`joint kernel of the first ${k} theorems is ${kKer(SEQ.slice(0, k))}, not ${n}`); });
-  if (kKer([OBS.b0, OBS.b1, OBS.x01]) !== 24) E.push('bit0 xor bit1 should not cut the kernel of {bit0, bit1}');
-  if (kKer([OBS.b0, OBS.b1, OBS.b2]) !== 8) E.push('bit2 should cut the kernel of {bit0, bit1} from 24 to 8');
+  want.forEach((n, k) => { if (kKer(SEQ.slice(0, k)) !== n) E.push(`expected ${n} unresolved distinct pairs after ${k} theorems`); });
+  if (kKer([OBS.b0, OBS.b1, OBS.x01]) !== 24) E.push('bit0 xor bit1 should leave 24 unresolved distinct pairs');
+  if (kKer([OBS.b0, OBS.b1, OBS.b2]) !== 8) E.push('bit2 should reduce the unresolved distinct pairs from 24 to 8');
   /* antitone on every chain of the toy catalog: adding a theorem never adds a pair */
   for (let k = 0; k < 4; k++) for (let i = 0; i < NST; i++) for (let j = 0; j < NST; j++) if (kInKer(i, j, SEQ.slice(0, k + 1)) && !kInKer(i, j, SEQ.slice(0, k))) E.push('kernel grew');
 });
@@ -80,7 +80,7 @@ function kLattice(x0, y0, prev, next, cut, a) {
   box(x0 - 6, y0 - 6, NST * CELL + 12, NST * CELL + 12, C.cyan, a * 0.8, 1.2);
 }
 
-/* ---------- ratchet: one way; prose keeps an eloquent mistake, the kernel rejects it; the kernel shrinks ---------- */
+/* ---------- ratchet: an unfinished tactic proof, then a shrinking joint kernel ---------- */
 function kRatchet(x, y, r, u, a) {
   if (a <= 0.003) return;
   const n = 18, step = TAU / n, clicks = Math.floor(u * 1.4), f = u * 1.4 - clicks, ang = (clicks + eo(clamp(f * 3))) * step;
@@ -106,7 +106,7 @@ SCENES.ratchet = S => {
     txt('ONE WAY · 只朝一个方向', 380, 720, { size: 26, fam: F.zh, w: 900, align: 'center', c: C.cyan, a: ga, ls: 2 });
     kTag('ANALOGY · 类比', 160, 236, C.argued, ga);
     /* prose: the mistake survives */
-    const pq = Q(S, 0, 'In prose, an eloquent mistake', 0.6);
+    const pq = Q(S, 0, 'Errors in print', 0.6);
     if (pq > 0) {
       panel(720, 280, 520, 380, o0 * pq, C.dim, 'PROSE · 散文');
       for (let i = 0; i < 6; i++) if (i !== 3) fillBox(750, 340 + i * 44, 460 - (i % 3) * 60, 12, rgba(C.dim, 0.7), o0 * pq);
@@ -115,16 +115,15 @@ SCENES.ratchet = S => {
       txt('still cited, decades later', 750, 632, { size: 18, fam: F.mono, w: 700, c: C.dim, a: o0 * pq });
       fillBox(1050, 620, 160 * eo(dq), 10, C.mag, o0 * pq * 0.8); box(1050, 620, 160, 10, C.dim, o0 * pq, 1);
     }
-    /* Lean 4: the kernel rejects it */
-    const lq = Q(S, 0, 'in Lean four', 0.6);
+    const lq = Q(S, 0, 'In Lean', 0.6);
     if (lq > 0) {
-      panel(1300, 280, 500, 380, o0 * lq, C.cyan, 'LEAN 4 KERNEL');
-      /* an illustrative rejection, not output captured from a real Lean run */
+      panel(1300, 280, 500, 380, o0 * lq, C.cyan, 'LEAN 4 TACTIC');
+      /* Illustrative tactic diagnostic before the proof reaches the kernel. */
       kTag('SCHEMATIC · 示意', 1300, 236, C.dim, o0 * lq);
       ['theorem bound (n : ℕ) :', '    f n ≤ g n := by', '  simp [eloquent]'].forEach((s, i) => txt(s, 1326, 350 + i * 44, { size: 22, fam: F.mono, w: 700, c: C.white, a: o0 * lq }));
-      const rq = Q(S, 0, 'the kernel rejects it', 0.4);
+      const rq = Q(S, 0, 'unsolved tactic goals', 0.4);
       txt('error: unsolved goals', 1326, 520, { size: 24, fam: F.mono, w: 700, c: C.mag, a: o0 * rq });
-      stamp('REJECTED', 1550, 600, rq, C.mag, 44, -0.07);
+      stamp('INCOMPLETE', 1550, 600, rq, C.mag, 44, -0.07);
     }
   }
   /* line 1: four theorems cut the kernel; it only shrinks */
@@ -138,9 +137,9 @@ SCENES.ratchet = S => {
     kLattice(X0, Y0, prev, next, cp, la);
     txt('16 states · pairs no theorem tells apart · computed here', X0, Y0 - 22, { size: 17, fam: F.mono, c: C.dim, a: la });
     const n = cp >= 0.35 ? kKer(next) : kKer(prev);
-    txt('|joint kernel|', 760, 300, { size: 22, fam: F.mono, w: 700, c: C.dim, a: la });
+    txt('UNRESOLVED DISTINCT PAIRS', 760, 300, { size: 22, fam: F.mono, w: 700, c: C.dim, a: la });
     txt(String(n), 760, 384, { size: 88, fam: F.disp, w: 700, c: C.vio, a: la, ab: 2 });
-    txt('blind-spot pairs · 盲区对', 760, 420, { size: 20, fam: F.zh, w: 700, c: C.vio, a: la });
+    txt('不可分辨异态对 · unordered', 760, 420, { size: 22, fam: F.zh, w: 700, c: C.vio, a: la });
     const counts = [120, 56, 24, 8, 0];
     for (let i = 0; i < 4; i++) {
       const p = clamp((u - tc - i * 1.15) / 0.4);
@@ -166,14 +165,14 @@ SCENES.novelty = S => {
     { x: 170, title: 'Add an independent bit', obs: OBS.b2, symbol: 'b₂' },
     { x: 1040, title: 'Reuse the known bits', obs: OBS.x01, symbol: 'b₀ ⊕ b₁' }
   ];
-  const cut = Q(S, 0, 'stands outside the semantic closure', 0.9);
+  const cut = Q(S, 0, 'lies outside', 0.9);
   cases.forEach(({ x, title, obs, symbol }) => {
     const next = [...base, obs];
     typeLine(title, x, 225, 42, space.ink);
     kLattice(x, 275, base, next, cut, 1);
     typeLine(symbol, x + 464, 410, 34, space.ink, { fam: F.math });
     typeLine(kKer(base) + ' → ' + kKer(next), x + 464, 495, 45, space.accent, { a: cut });
-    typeLine('state pairs', x + 468, 545, 26, space.dim);
+    typeLine('unresolved distinct pairs', x + 468, 545, 26, space.dim);
   });
   statusTag(1050, 726, 'argued', 'ANALOGY · 类比', at(S, 1, 0.35));
   kLean(170, 810, G_NOV, Q(S, 0, 'if and only if', 0.6), { size: 20 });
@@ -190,9 +189,9 @@ SCENES.frontier = S => {
   const facts = ['2,276 dated in 81 days  +  2 undated', '1,512 proved  /  766 refuted', '598 in quantum and physics'];
   facts.forEach((s, i) => typeLine(s, 937, 423 + 52 * i, 34, space.dim, { a: at(S, 1, 0.7) }));
   line(142, 585, 1775, 585, space.dim, 0.65, 2);
-  if (S.u < lineAt(S, 2).s) {
+  if (S.u < lineAt(S, 3).s) {
     typeLine('One refutation: four-qubit Fredkin entangling power', 145, 665, 37, space.ink);
-    typeLine('A product input yields 2.00034… ebits, above the conjectured 2.', 145, 728, 30, space.dim);
+    typeLine('Across AD:BC, a product input with local ancillas yields 2.00034… ebits, above the conjectured 2.', 145, 728, 30, space.dim);
     kLean(145, 795, G_FRD, 1, { size: 21 });
   } else {
     typeLine('720 / 720 UTC hours', 145, 693, 53, space.ink);
@@ -205,19 +204,20 @@ SCENES.frontier = S => {
 SCENES.provenance = S => {
   typeLine('Whose proof? Whose replay?', 145, 215, 72, paper.ink);
   const rows = [
-    ['Proof', 'Levent Alpöge', 'Classical RH and Dirichlet GRH', 'Lean 4 · community-certified · Nov 2026'],
+    ['Lean 4 proof', 'Levent Alpöge', 'Classical RH', 'Nov 21 joint statement · community-certified'],
+    ['', '', 'Dirichlet GRH', 'Checked in independent five-theorem audits'],
     ['Replay', 'The Omega Institute', '8,490 reproducible CI shards', 'riemann-hypothesis @c2dabc97'],
-    ['Equivalence', 'trureturing', 'Integer Hankel criterion', 'ActualXiIntegerCriterion.lean']
+    ['Equivalence', 'trureturing', 'Classical RH ⇔ integer Hankel criterion', 'ActualXiIntegerCriterion.lean']
   ];
   rows.forEach(([kind, who, claim, source], i) => {
-    const y = 310 + i * 165;
-    line(145, y, 1775, y, paper.edge, 1, 2);
-    typeLine(kind, 145, y + 80, 33, paper.dim);
-    typeLine(who, 445, y + 82, 45, paper.ink);
-    typeLine(claim, 1100, y + 66, 35, paper.ink);
-    typeLine(source, 1100, y + 114, 24, paper.dim);
+    const y = 265 + i * 136;
+    line(kind ? 145 : 1000, y, 1775, y, paper.edge, 1, 2);
+    typeLine(kind, 145, y + 72, 33, paper.dim);
+    typeLine(who, 445, y + 74, 45, paper.ink);
+    typeLine(claim, 1000, y + 57, 35, paper.ink);
+    typeLine(source, 1000, y + 103, 28, paper.dim);
   });
-  slate(S, 'COMMUNITY PROOF  /  INDEPENDENT REPLAY');
+  slate(S, 'ALPÖGE  /  NOVEMBER 2026');
 };
 SCENES.open = S => {
   typeLine('Four questions about zeros', 145, 217, 70, space.ink);

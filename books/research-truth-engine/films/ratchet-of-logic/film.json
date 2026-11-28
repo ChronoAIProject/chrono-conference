@@ -1,12 +1,12 @@
 {
   "title": "The Ratchet of Logic",
   "title_zh": "逻辑的棘轮",
-  "summary": "At the independent The Omega Institute, a 16-state computation illustrates joint kernels and structural novelty. A separate frozen counterexample refutes a Fredkin entangling-power conjecture. Read its 223,231-theorem snapshot, distinguish Alpöge’s classical RH and Dirichlet GRH proof from the Institute’s 8,490-shard replay, and locate four open questions.",
-  "summary_zh": "通过 16 个状态的算例理解联合核，再看独立研究机构 The Omega Institute 的冻结结果与 223,231 条定理快照。分别辨认 Alpöge 的经典黎曼猜想与狄利克雷广义黎曼猜想证明、研究院的 8,490 分片复现及四个开放问题。",
+  "summary": "A 16-state example illustrates joint kernels and structural novelty. A counterexample to a Fredkin entangling-power conjecture appears among the 223,231 frozen theorems at The Omega Institute, an independent research institute. The November 21 joint statement certified Alpöge’s Lean proof of classical RH. Independent five-theorem audits also checked his Dirichlet GRH results. The film traces the Institute’s 8,490-shard replay, trureturing’s separate integer Hankel equivalence for classical RH and four questions still open.",
+  "summary_zh": "从 16 个状态的算例理解联合核与结构新颖性。独立研究机构 The Omega Institute 的 223,231 条冻结定理中，有一个反例推翻了关于 Fredkin 门纠缠能力的猜想。11 月 21 日的联合声明认证了 Alpöge 对经典黎曼猜想的 Lean 证明。独立审计核查的五条定理也包括他对狄利克雷广义黎曼猜想的结果。片中还介绍了研究院的 8,490 分片复现、trureturing 另证的经典黎曼猜想与整数 Hankel 判据的等价性，以及四个开放问题。",
   "subject": "https://github.com/the-omega-institute/trureturing",
   "publication_basis": "pinned",
   "released": "2026-11-28",
-  "duration": "1:57",
+  "duration": "2:02",
   "resolution": "1280x720@30",
   "style": "dual-polarity optical glass · ratchet, computed kernel, proof provenance and open questions",
   "narration": {
