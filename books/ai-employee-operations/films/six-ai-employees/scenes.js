@@ -65,14 +65,15 @@ SCENES.boundary = S => {
     typeLine(value, x, 390, 89, space.ink);
     typeLine(name, x + 4, 447, 31, space.dim);
   });
-  const stall = at(S, 1, 0.7);
+  const stall = at(S, 2, 0.7);
   line(145, 520, 1760, 520, space.dim, 0.5, 2);
   typeLine('65 min', 145, 628, 62, space.accent, { a: stall });
-  typeLine('Lark queue · NyxID #2534', 148, 690, 33, space.dim, { a: stall });
+  typeLine('Incoming Lark request still queued', 148, 690, 33, space.dim, { a: stall });
   typeLine('3 min', 985, 628, 62, space.accent, { a: stall });
-  typeLine('One-shot task delivered the host sheet', 988, 690, 33, space.dim, { a: stall });
-  typeLine('External paying merchants   0', 145, 800, 46, space.ink, { a: at(S, 2, 0.6) });
-  slate(S, 'TRIALS #225 / #226  ·  2026-11-27');
+  typeLine('Separate one-shot task delivered', 988, 690, 33, space.dim, { a: stall });
+  typeLine('the host’s question sheet', 988, 735, 33, space.dim, { a: stall });
+  typeLine('External paying merchants   0', 145, 800, 46, space.ink, { a: at(S, 3, 0.6) });
+  slate(S, 'TRIALS #225 / #226  ·  NYXID #2534  ·  2026-11-27');
 };
 
 FILM.poster = () => {

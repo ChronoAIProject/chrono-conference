@@ -63,7 +63,7 @@ function kChassis(cx, top, built, hum, u, a) {
   for (let k = 0; k < LAYERS.length; k++) {
     const p = eo(built[k]);
     if (p <= 0) continue;
-    const y = top + (LAYERS.length - 1 - k) * (lh + gap), dx = (k % 2 ? 1 : -1) * 700 * (1 - p), la = a * clamp(p * 2);
+    const y = top + (LAYERS.length - 1 - k) * (lh + gap), dx = (k % 2 ? 1 : -1) * x0 * (1 - p), la = a * clamp(p * 2);
     const col = k === 4 ? C.mag : C.cyan;
     box(x0 + dx, y, lw, lh, col, la, 1.6, rgba(col, 0.1));
     txt(LAYERS[k][0], x0 + dx + 24, y + 34, { size: 26, fam: F.orb, w: 900, c: C.white, a: la, ls: 1 });
@@ -83,9 +83,9 @@ SCENES.vehicle = S => {
   statusTag(140, 133, 'argued', 'ANALOGY · 类比', a);
   const into = eo(Q(S, 1, 'So we built the complete vehicle', 1.2));
   const wob = Q(S, 0, 'Nobody trusts', 0.3) * (1 - into);
-  const built = [Q(S, 1, 'NyxID holds the keys', 0.6), Q(S, 1, 'Ornn governs skills', 0.6), Q(S, 1, 'CMA and heca', 0.6), Q(S, 1, 'CMA and heca', 0.6, 0.4), Q(S, 1, 'chrono-harness enforces', 0.6)];
-  const hum = Q(S, 1, 'executable judges', 0.8);
-  const swap = ease(Q(S, 1, 'executable judges', 1.6, 0.3));
+  const built = [Q(S, 1, 'NyxID holds the keys', 0.6), Q(S, 1, 'Ornn governs skills', 0.6), Q(S, 2, 'CMA and heca', 0.6), Q(S, 2, 'CMA and heca', 0.6, 0.4), Q(S, 2, 'chrono-harness enforces', 0.6)];
+  const hum = Q(S, 2, 'executable judges', 0.8);
+  const swap = ease(Q(S, 2, 'executable judges', 1.6, 0.3));
   /* line 0: an engine for rent, hanging over nothing */
   const ex = W / 2 + Math.sin(u * 9) * 12 * wob, ey = lerp(410, 300, into) + Math.sin(u * 13) * 7 * wob, er = lerp(130, 74, into);
   const spin = u * (1.5 + 3 * hum);
@@ -94,7 +94,7 @@ SCENES.vehicle = S => {
     txt('BOLTED TO NOTHING · 无底盘', ex, ey + er + 130, { size: 26, fam: F.zh, w: 700, align: 'center', c: C.mag, a: a * wob });
     for (let i = 0; i < 10; i++) { const t = (u * 1.7 + i * 0.37) % 1; dot(ex + (rnd(i, 3) - 0.5) * 2 * er, ey + er + 10 + t * 120, 5 * (1 - t), 'm', a * wob * (1 - t)); }
   }
-  txt('ANYONE CAN RENT AN ENGINE · 发动机人人可买', W / 2, 205, { size: 24, fam: F.zh, w: 700, align: 'center', c: C.white, a: a * at(S, 0, 0.6) * (1 - into) });
+  txt('ANYONE CAN RENT AN ENGINE · 发动机人人可租', W / 2, 205, { size: 24, fam: F.zh, w: 700, align: 'center', c: C.white, a: a * at(S, 0, 0.6) * (1 - into) });
   /* the engines: A in the socket, swapped for B while the chassis keeps running */
   kEngine(ex + 900 * swap, ey, er, spin, C.cyan, a * (1 - swap), into > 0.5 ? 'ENGINE A · 可替换' : 'ENGINE · 发动机', into > 0.5);
   if (swap > 0) kEngine(ex - 900 * (1 - swap), ey, er, spin, C.white, a * swap, 'ENGINE B · 可替换', true);
@@ -116,14 +116,14 @@ SCENES.northstar = S => {
   for (let i = 0; i < 3; i++) {
     const x = 150 + i * 220;
     box(x, 414, 167, 100, space.accent, i === 2 ? 1 - 0.55 * erased : 1, 2);
-    typeLine(['A', 'B', 'A ∧ B'][i], x + 84, 480, 43, space.ink, { align: 'center', fam: F.math, a: i === 2 ? 1 - 0.75 * erased : 1 });
+    typeLine(['A', 'B', 'A ∧ B'][i], x + 84, 480, 43, space.ink, { align: 'center', fam: F.math, a: i === 2 ? 1 - 0.4 * erased : 1 });
   }
   typeLine('Same distinctions after erasure', 146, 593, 39, space.accent);
   line(920, 176, 920, 624, space.dim, 0.55, 2);
   const a = at(S, 1, 0.7);
   typeLine('The Omega Institute', 1020, 294, 48, space.ink, { a });
   typeLine('Independent research', 1023, 357, 31, space.dim, { a });
-  typeLine('223,231+', 1013, 507, 103, space.ink, { a });
+  typeLine('223,231', 1013, 507, 103, space.ink, { a });
   typeLine('frozen Lean 4 theorems', 1023, 584, 40, space.accent, { a });
   leanList(145, 771, 1, { size: 23 });
   slate(S, 'TRURETURING @548388cd  /  2026-11-27');
