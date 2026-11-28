@@ -291,9 +291,9 @@ section: "The Red Frontier · 2026-11-28"
 
 <div class="body">
   <h2 class="t mb-0">An RH Criterion and <em class="warn">Open Questions</em></h2>
-  <p class="sm my-0">Levent Alpöge released his Lean 4 proof on Nov 20. Its five theorems cover classical RH and the generalized Riemann hypothesis (GRH) for Dirichlet <i>L</i>-functions. The community certified classical RH on Nov 21. The Omega Institute split the replay into 8,490 shards.</p>
+  <p class="sm" style="margin-block:0;">Levent Alpöge released his Lean 4 proof on Nov 20. Its five theorems cover classical RH and the generalized Riemann hypothesis (GRH) for Dirichlet <i>L</i>-functions. The community certified classical RH on Nov 21. The Omega Institute split the replay into 8,490 shards.</p>
   <div class="row mt-s">
-    <figure class="my-0">
+    <figure style="margin-block:0;">
       <img src="./img/ch06-three-evidence-tiers.en.svg" alt="Three evidence tiers" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
       <figcaption class="sm muted">Evidence snapshot · 2026-11-20</figcaption>
     </figure>

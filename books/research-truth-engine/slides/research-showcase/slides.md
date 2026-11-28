@@ -293,9 +293,9 @@ section: "红色边界 · 2026-11-28"
 
 <div class="body">
   <h2 class="t mb-0">黎曼猜想的等价判据与<em class="warn">开放问题</em></h2>
-  <p class="sm my-0">Levent Alpöge 于 11 月 20 日发布 Lean 4 证明，5 条定理涵盖经典黎曼猜想与 Dirichlet <i>L</i> 函数的广义黎曼猜想（GRH）。社区于 21 日认证经典 RH。本所将重放拆为 8,490 个分片。</p>
+  <p class="sm" style="margin-block:0;">Levent Alpöge 于 11 月 20 日发布 Lean 4 证明，5 条定理涵盖经典黎曼猜想与 Dirichlet <i>L</i> 函数的广义黎曼猜想（GRH）。社区于 21 日认证经典 RH。本所将重放拆为 8,490 个分片。</p>
   <div class="row mt-s">
-    <figure class="my-0">
+    <figure style="margin-block:0;">
       <img src="./img/ch06-three-evidence-tiers.zh.svg" alt="三层证据边界" style="display:block;height:460px;width:auto;max-width:100%;object-fit:contain;margin:0 auto;border-radius:6px;border:1px solid var(--tr-panel-edge)">
       <figcaption class="sm muted">证据快照 · 2026-11-20</figcaption>
     </figure>
