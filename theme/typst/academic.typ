@@ -36,17 +36,42 @@
   // Pandoc's tr-code-break can supply hints before the table width is known.
   let source = code.text.replace("\u{200B}", "")
   let run(value) = text(hyphenate: false, value)
-  let atomic(value) = {
-    let body = run(value)
-    // Give the unscaled text its natural width even inside a scaled box.
-    box(fit-width(box(width: measure(body).width + 0.01pt, body), width))
+  let emit-piece(piece) = {
+    if piece == "" { return none }
+    let body = run(piece)
+    let natural = measure(body).width
+    if natural <= width {
+      box(body)
+    } else if piece.clusters().len() <= 14 {
+      // Give the unscaled text its natural width inside the scaled box.
+      box(fit-width(box(width: natural + 0.01pt, body), width))
+    } else {
+      let start = 0
+      let subpieces = ()
+      for boundary in piece.matches(regex("[a-z0-9][A-Z]|[A-Z][A-Z][a-z]")) {
+        // The first matched character is always one ASCII byte.
+        let end = boundary.start + 1
+        subpieces.push(piece.slice(start, end))
+        start = end
+      }
+      subpieces.push(piece.slice(start))
+      for (i, subpiece) in subpieces.enumerate() {
+        if i > 0 { run("\u{200B}") }
+        let subbody = run(subpiece)
+        if measure(subbody).width <= width {
+          box(subbody)
+        } else {
+          run(subpiece.clusters().join("\u{200B}"))
+        }
+      }
+    }
   }
   for part in source.matches(regex("\\s+|\\S+")) {
     let token = part.text
     if token.starts-with(regex("\\s")) {
       run(token)
-    } else if token.clusters().len() <= 14 or measure(run(token)).width <= width {
-      atomic(token)
+    } else if measure(run(token)).width <= width or token.clusters().len() <= 14 {
+      emit-piece(token)
     } else {
       let start = 0
       if token.contains(regex("\\p{L}")) {
@@ -55,12 +80,12 @@
           if next == "" or (delimiter.text.ends-with(regex("[.\\-]")) and next.starts-with(regex("\\d"))) {
             continue
           }
-          atomic(token.slice(start, delimiter.end))
+          emit-piece(token.slice(start, delimiter.end))
           run("\u{200B}")
           start = delimiter.end
         }
       }
-      atomic(token.slice(start))
+      emit-piece(token.slice(start))
     }
   }
 }
