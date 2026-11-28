@@ -41,7 +41,7 @@ def draw(fig):
 
     physical.polygon([(28, 117), (165, 52), (302, 117), (302, 204), (28, 204)],
                      "blue", color="blue", fill_opacity=0.08)
-    physical.text(165, 91, t("Living with AI", "Living with AI"), size=16, weight=600, anchor="middle")
+    physical.text(165, 104, t("Living with AI", "Living with AI"), size=16, weight=600, anchor="middle")
     sensor = physical.box(91, 118, t("传感器", "Sensors"), "edge", w=120, size=14)
     actuator = physical.box(239, 118, t("执行器", "Actuators"), "edge", w=120, size=14)
     home = physical.box(165, 168, t("Home Assistant", "Home Assistant"), "blue", w=190, size=14)

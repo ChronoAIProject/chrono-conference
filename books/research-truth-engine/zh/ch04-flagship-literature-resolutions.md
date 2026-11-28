@@ -123,7 +123,7 @@ $$
 
 单篇期刊里的开放题测试的是引擎的战术爆发力；更深一层的问题是，这台引擎能否把多条跨领域物理支柱同时拉上同一张形式化工作台，看看它们合在一起会把宇宙的维数锁死在哪里。就在 `2026-11-27` 快照 `548388cd` 当天冻结的 `DeSitterGravitonModes` 模块里，四道看似彼此独立的经典物理约束——非零 Weyl 曲率、零锥菱形首阶角动量模权的可和性、麦克斯韦电磁场的标度共形不变性，以及双横偏振自由度——在 $D \ge 3$ 的时空维度上交汇成一把四向虎钳，将唯一存活的维度精准锁死在 **$D = 4$**：
 
-:::: {.theorem #thm-unique-dim-four title="四维时空唯一性：Weyl 曲率、零锥首模可和、麦克斯韦共形不变与双偏振唯一锁定 D = 4" lean="D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four"}
+::: {.theorem #thm-unique-dim-four title="四维时空唯一性：Weyl 曲率、零锥首模可和、麦克斯韦共形不变与双偏振唯一锁定 D = 4" lean="D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four"}
 对任意满足 $D \ge 3$ 的自然数时空维度 $D : \mathbb{N}$，以下四项条件的合取成立，当且仅当 $D = 4$：
 $$
 \begin{aligned}
@@ -134,10 +134,12 @@ $$
 \end{aligned},
 $$
 四项依次刻画非平凡 Weyl 曲率、零锥菱形首阶角模权重可和、麦克斯韦共形权重恒等于 $1$ 与两态横偏振自由度。
-::::
+:::
 
-::: {.proof}
+::: proof
 在 [`grand_unification_unique_dimension_four`](lean:D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four) 中，四条物理约束逐层削去候选维度：首先，非零 Weyl 曲率（`weylDim_pos_iff`）直接排除 $D = 3$、迫出 $D \ge 4$——这与同模块内的零公理姊妹定理 `graviton_polarizations_three_four_five` 彼此呼应（后者由内核 `decide` 在零公理下直接认证引力子偏振数在 $D = 3, 4, 5$ 时依次为 `0`、`2`、`5`）；其次，零锥首阶角模权重的可和性（`scalar_nullDiamond_and_propagating_gravity_iff`）进一步把存活窗口压缩进 $D \in \{4, 5\}$；最后，麦克斯韦共形权重对一切 $\Omega > 0$ 恒为 $1$ 与双横偏振／Hodge 二形式维数条件 $D - 2 = 2$ 将唯一解钉死在 $D = 4$，反向则逐项验证 $D = 4$ 满足全部四条。完整证明由 Lean 4 内核验证并冻结。
 :::
 
-七条跨越五份国际顶级物理学与数学期刊的文献旗舰证明与反驳，外加一条 `2026-11-27` 实时冻结的四维时空唯一性选择定理——八条铁证摆在眼前，没有一句「我们坚信它成立」，每一条都连着可当场点开验核的绿色 Lean 冻结源码。那么，这座横跨 **17,968 个冻结模块、223,231 条冻结定理**的庞大真值图，在 24/7 实时运转时到底长什么模样？下一章，我们推开 **`live.trureturing.org`** 的透明玻璃门。
+若把这里的零公理 `decide` 引力子偏振计数（`graviton_polarizations_three_four_five`）放进更广的构造性谱系，它在[第六章](ch06-mathesis-books-and-rh.md)还有一位直接呼应的蓝色零公理同伴——单纯庞加莱引理 [@thm-omega-simplicial-exact]（`d2_eq_zero_iff`，在官方 Lean 与裸 CIC `strict_omega` 两端均严格满足 `axioms: []`），以显式锥同伦为[第二章](ch02-information-escape-and-novelty.md)的粘合障碍 [@thm-gluing-obstruction] 补上了二阶单纯上链的构造性镜像。
+
+七条跨越五份国际顶级物理学与数学期刊的文献旗舰证明与反驳，外加一条 `2026-11-27` 实时冻结的四维时空唯一性选择定理——八条铁证摆在眼前，没有一句「我们坚信它成立」，每一条都连着可当场点开验核的绿色 Lean 冻结源码。那么，这座横跨 **17,968 个冻结模块、223,231 条冻结定理**（`548388cd`，2026 年 11 月 27 日）的庞大真值图，在 24/7 实时运转时到底长什么模样？下一章，我们推开 **`live.trureturing.org`** 的透明玻璃门。

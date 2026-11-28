@@ -1,6 +1,6 @@
 # Chapter 3: Behind the Curtain—Community, Social, Finance, HR, Admin, and Three Watchdogs
 
-A clean front lobby is only the tenth of the iceberg floating above the waterline. Running a thirteen-day global launch (December 4–17) across YouTube, LinkedIn, X, Discord, and GitHub without an outside agency never breaks teams during the seventy-five-minute broadcast itself—it breaks them in the relentless backstage grind of guest triage, timezone staging, receipt matching, recruiting queues, and recurring reminders.
+A clean front lobby is only the tenth of the iceberg floating above the waterline. Running a fifteen-day launch arc (December 4–18) across YouTube, LinkedIn, X, Discord, and GitHub without an outside agency never breaks teams during the seventy-five-minute broadcast itself—it breaks them in the relentless backstage grind of guest triage, timezone staging, receipt matching, recruiting queues, and recurring reminders.
 
 **(Analogy)** Picture the backstage team as a **samba drumline**: bass, snare, and agogô each hold one narrow rhythmic lane without stepping across another player's chart—and in the back row sits a **cold-eyed Monday critic** with a metronome whose sole job is calling out whoever drifted off-beat, wasted cycles, or burned money the week before.
 
@@ -47,7 +47,7 @@ Holding every backstage desk inside its lane now rests on newly landed **`NyxID`
 
 Hire only workers and never an auditor, and any automated operation drifts silently off key. Across November 26–27, we split three cross-cutting guardians into standalone tracked roles, lifting our nine standalone AI employees to **`102 / 120` (`85.0%`; equal-weight average `87.1%`)**:
 
-- **`#7` Sentiment Monitor (`6 / 7 = 85.7%`):** Watches Discord and X hourly, escalates recurring pain points to P2, sends `21:30` closed-item counts and a `22:15` daily digest—under one iron compliance lock: **zero reads from live official Discord channels until PDPA sign-off clears**.
+- **`#7` Sentiment Monitor (`6 / 7 = 85.7%`):** Watches Discord and X hourly, escalates recurring user snags to P2, sends `21:30` closed-item counts and a `22:15` daily digest—under one iron compliance lock: **zero reads from live official Discord channels until PDPA sign-off clears**.
 - **`#8` KB Maintainer (`3 / 3 = 100.0%`):** Curates verified FAQs twice daily and previews topic updates on demand before publishing, keeping Community Ops grounded in checked answers rather than wandering onto web search.
 - **`#9` Retrospective Analyst (`11 / 11 = 100.0%`, added `2026-11-27`):** The built-in Nietzschean critic sitting in the back row. Every Monday, it skips applause and audits the rest of the AI team against **`40`-item masked weekly samples**, **`7`-peer X benchmarks**, and **per-agent unit cost**—calling out whoever drifted off-beat or burned sixteen minutes on a no-op, and delivering a formal post-mortem within 48 hours of the December 17 broadcast (`#188`).
 

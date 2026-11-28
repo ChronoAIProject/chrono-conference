@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-SIZE = (500, 324)
+SIZE = (500, 374)
 ALT = {
     "zh": "折线绘出 trureturing 有登记日期的文献问题累计结项数。2026 年 9 月 8 日首日为 24，10 月 1 日第 24 天为 486，10 月 24 日第 47 天为 1,301，11 月 20 日第 74 天为 2,126；审计延伸到 11 月 27 日第 81 天的 2,276 项。",
     "en": "The line shows cumulative dated literature problem resolutions in trureturing. Day 1, September 8, 2026, starts at 24. Day 24, October 1, reaches 486. Day 47, October 24, reaches 1,301. Day 74, November 20, reaches 2,126, and the audited endpoint on November 27, day 81, reaches 2,276.",
@@ -33,31 +33,33 @@ def draw(fig):
     assert points[-1] == (81, 2276)
     assert all(before[1] <= after[1] for before, after in zip(points, points[1:]))
 
-    ax = fig.axes(64, 47, 396, 191, (1, days), (0, 2350))
+    ax = fig.axes(64, 47, 396, 240, (1, days), (0, 2350))
     fig.text(64, 30, fig.t("有日期的文献问题结项数", "Dated literature resolutions"), size=18, weight=700)
     ticks = (0, 500, 1000, 1500, 2000)
     ax.grid(ys=ticks)
-    ax.yaxis(ticks=ticks, labels=[fig.t(f"{n:,}", f"{n:,}") for n in ticks], size=15)
+    ax.yaxis(ticks=ticks, labels=[fig.t(f"{n:,}", f"{n:,}") for n in ticks], size=17)
     axis_milestones = (1, 24, 47, FINAL_DAY)
     axis_dates = [START + timedelta(days=day - 1) for day in axis_milestones]
     ax.xaxis(ticks=axis_milestones, labels=[""] * len(axis_milestones))
     for day, when in zip(axis_milestones, axis_dates):
         x, bottom = ax.pt(day, 0)
-        fig.text(x, bottom + 32, fig.t(f"{when.month}/{when.day}", f"{MONTHS[when.month]} {when.day}"),
-                 size=15, color="dim", anchor="middle")
+        fig.text(x, bottom + 34, fig.t(f"{when.month}/{when.day}", f"{MONTHS[when.month]} {when.day}"),
+                 size=17, color="dim", anchor="middle")
 
     ax.area(points, "cyan", fill_opacity=0.14)
     ax.path(points, "cyan", 3)
-    milestone_counts = (CUMULATIVE[0], CUMULATIVE[23], CUMULATIVE[46], CUMULATIVE[73], FINAL_VALUE)
-    for day, count, (dx, dy, anchor) in zip(MILESTONES, milestone_counts,
-                                             ((11, -10, "start"), (0, -16, "middle"),
-                                              (0, -16, "middle"), (6, 46, "middle"), (-6, -13, "end"))):
+    counts_by_day = dict(points)
+    label_offsets = ((4, -26, "start"), (-13, -10, "end"), (-6, -29, "middle"),
+                     (6, 41, "middle"), (0, -14, "end"))
+    for day, (dx, dy, anchor) in zip(MILESTONES, label_offsets):
+        count = counts_by_day[day]
         x, y = ax.pt(day, count)
         if day == len(CUMULATIVE):
-            fig.line(x + 1, y + 7, x + dx, y + dy - 22, "cyan", 1)
+            fig.line(x + 1, y + 7, x + dx, y + dy - 25, "cyan", 1)
         fig.dot(x, y, 4.2, "cyan", ring="bg")
-        fig.text(x + dx, y + dy, fig.t(f"{count:,}", f"{count:,}"), size=16, color="cyan", weight=700, anchor=anchor, halo=True)
+        fig.text(x + dx, y + dy, fig.t(f"{count:,}", f"{count:,}"),
+                 size=17, color="cyan", weight=700, anchor=anchor)
 
-    fig.text(SIZE[0] / 2, 304, fig.t(f"trureturing · 2026 · {days} 天 · 日均约 {daily_average} 项 · 548388cd",
+    fig.text(SIZE[0] / 2, 354, fig.t(f"trureturing · 2026 · {days} 天 · 日均约 {daily_average} 项 · 548388cd",
                                     f"trureturing · 2026 · {days} days · about {daily_average} per day · 548388cd"),
-             size=15, color="dim", anchor="middle")
+             size=17, color="dim", anchor="middle")

@@ -30,17 +30,18 @@ def draw(fig):
     assert core_rate == "82.8%"
 
     fig.text(15, 24, fig.t("演示清单覆盖率", "Demo workflow coverage"), size=19, weight=700)
-    fig.text(484, 24, fig.t("2026-11-27 · df5ef47", "2026-11-27 · df5ef47"), size=15, anchor="end", color="dim")
+    fig.text(484, 24, fig.t("2026-11-27 · df5ef47", "2026-11-27 · df5ef47"), size=17, anchor="end", color="dim")
     fig.line(15, 322, 484, 322, "edge", 1)
+    bar_width = 118
     for rank, (zh, en, count, scope) in enumerate((*ROLES, ("全部岗位", "All roles", covered, total))):
         aggregate = rank == len(ROLES)
         y = 350 if aggregate else 55 + rank * 28
         percentage = round(100 * count / scope)
-        fig.text(15, y, fig.t(zh, en), size=16 if aggregate else 15, middle=True, weight=700 if aggregate else 550)
-        fig.rect(220, y - 7, 137, 14, color="edge", fill="panel", rx=3)
-        fig.rect(220, y - 7, 137 * count / scope, 14, color=None, fill="cyan", rx=3)
+        fig.text(15, y, fig.t(zh, en), size=18 if aggregate else 17, middle=True, weight=700 if aggregate else 550)
+        fig.rect(220, y - 7, bar_width, 14, color="edge", fill="panel", rx=3)
+        fig.rect(220, y - 7, bar_width * count / scope, 14, color=None, fill="cyan", rx=3)
         downgrade = " ↓" if en == "HR" else ""
         fig.text(484, y, f"{count}/{scope}{downgrade} · {percentage}%",
-                 size=16 if aggregate else 15, middle=True, anchor="end", weight=700 if aggregate else 550)
-    fig.text(150, 378, fig.t(f"六核心 {core_covered}/{core_total} · {core_rate}",
-                             f"Six-core {core_covered}/{core_total} · {core_rate}"), size=15, color="dim")
+                 size=18 if aggregate else 17, middle=True, anchor="end", weight=700 if aggregate else 550)
+    fig.text(150, 383, fig.t(f"六核心 {core_covered}/{core_total} · {core_rate}",
+                             f"Six-core {core_covered}/{core_total} · {core_rate}"), size=17, color="dim")

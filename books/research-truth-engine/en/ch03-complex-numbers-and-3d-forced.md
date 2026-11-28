@@ -91,4 +91,4 @@ In [`original_event_arithmetic`](lean:D5/S3/Quantum/Dynamics/NativeProtocolEvent
 
 By now you have walked the internal theoretical spine that `trureturing` built for itself. Any tough outside scientist immediately fires back the decisive external test: **"Internal elegance is fine—can this engine walk straight into published journals like *Physical Review A*, *Nature Communications*, *Commun. Math. Phys.*, and the OEIS and crack open problems posed by outside researchers years or decades ago?"**
 
-Chapter 4 slams the full **`2,278`-problem** receipt onto the table—starting with seven flagship proofs and refutations you can click and verify on stage.
+Chapter 4 slams the full **`2,278`-problem** receipt onto the table: seven flagship literature proofs and refutations plus the freshly frozen November 27 4D spacetime uniqueness theorem—eight frozen theorems in total that you can click and verify on stage.

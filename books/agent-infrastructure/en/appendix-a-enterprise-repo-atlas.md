@@ -1,4 +1,4 @@
-# Appendix A: Complete Enterprise Repository Atlas
+# Appendix A: Complete Six-Organization Repository Atlas
 
 To ground every claim in the ChronoAI 2026 Virtual Launch edition, we enumerated all six affiliated GitHub organizations via paginated GitHub API audit on **November 27–28, 2026**—keeping commercial infrastructure under **ChronoAI Pte. Ltd.** strictly separate from independent basic research and open papers under **The Omega Institute**—mapping exactly **`539` repositories** to their true brand boundary and architectural home.
 

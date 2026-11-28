@@ -22,28 +22,28 @@ def draw(fig):
 
     fig.text(15, 26, fig.t(f"{proved + refuted:,} 项文献问题结项", f"{proved + refuted:,} literature resolutions"),
              size=21, weight=700)
-    fig.text(15, 56, fig.t("来源", "Source"), size=15, color="dim", weight=650)
+    fig.text(15, 56, fig.t("来源", "Source"), size=17, color="dim", weight=650)
     for x, label, role in (
         (429, fig.t("已证", "Proved"), "cyan"),
         (506, fig.t("已反驳", "Refuted"), "magenta"),
     ):
-        fig.text(x, 56, label, size=15, anchor="end", color=role, weight=700)
+        fig.text(x, 56, label, size=17, anchor="end", color=role, weight=700)
     fig.line(15, 67, 505, 67, "edge", 1)
 
     plot_left, plot_width = 112, 246
     scale = plot_width / 750
     for index, (zh, en, positives, negatives) in enumerate(OUTCOMES):
         y = 88 + 33 * index
-        fig.text(15, y, fig.t(zh, en), size=16, middle=True, weight=600)
+        fig.text(15, y, fig.t(zh, en), size=17, middle=True, weight=600)
         fig.line(plot_left, y, plot_left + plot_width, y, "edge", 1)
         fig.rect(plot_left, y - 7, scale * positives, 14, color=None, fill="cyan")
         fig.rect(plot_left + scale * positives, y - 7, scale * negatives, 14, color=None, fill="magenta")
-        fig.text(429, y, fig.t(str(positives), str(positives)), size=16, anchor="end", middle=True)
-        fig.text(506, y, fig.t(str(negatives), str(negatives)), size=16, anchor="end", middle=True)
+        fig.text(429, y, fig.t(str(positives), str(positives)), size=17, anchor="end", middle=True)
+        fig.text(506, y, fig.t(str(negatives), str(negatives)), size=17, anchor="end", middle=True)
 
     fig.line(15, 242, 505, 242, "edge", 1)
     fig.text(15, 267, fig.t("合计", "Total"), size=17, weight=700)
     fig.text(429, 267, fig.t(f"{proved:,}", f"{proved:,}"), size=17, anchor="end", color="cyan", weight=700)
     fig.text(506, 267, fig.t(f"{refuted:,}", f"{refuted:,}"), size=17, anchor="end", color="magenta", weight=700)
     fig.text(15, 299, fig.t("trureturing@548388cd · 2026-11-27", "trureturing@548388cd · 2026-11-27"),
-             size=15, color="dim")
+             size=17, color="dim")

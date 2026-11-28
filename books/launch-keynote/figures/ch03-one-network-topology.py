@@ -21,9 +21,9 @@ def draw(fig):
         fig.line(x, 177, x, 197, "blue", 1.6)
         fig.dot(x, 177, 3.1, "blue", ring="bg")
 
-    fig.rect(179, 66, 122, 80, color="now", fill="now", fill_opacity=0.13, width=1.8, rx=11)
-    fig.text(240, 100, fig.t("NyxID", "NyxID"), size=23, weight=700, anchor="middle", color="now")
-    fig.text(240, 125, fig.t("v0.78.0", "v0.78.0"), size=15, anchor="middle")
+    fig.rect(179, 60, 122, 86, color="now", fill="now", fill_opacity=0.13, width=1.8, rx=11)
+    fig.text(240, 96, fig.t("NyxID", "NyxID"), size=23, weight=700, anchor="middle", color="now")
+    fig.text(240, 128, fig.t("v0.78.0", "v0.78.0"), size=16, anchor="middle")
     for x, color, title, first, second in (
         (8, "cyan", fig.t("服务目录", "Service catalog"), fig.t(f"{SERVICES} 项内置服务", f"{SERVICES} built-in services"),
          fig.t(f"{SPECS} OpenAPI→MCP", f"{SPECS} OpenAPI→MCP")),
@@ -32,16 +32,16 @@ def draw(fig):
     ):
         fig.rect(x, 48, 151, 111, color=color, fill=color, fill_opacity=0.08, rx=8)
         fig.text(x + 10, 76, title, size=16, color=color, weight=700)
-        fig.text(x + 10, 104, first, size=15)
-        fig.text(x + 10, 129, second, size=15)
+        fig.text(x + 10, 104, first, size=16)
+        fig.text(x + 10, 129, second, size=16)
 
     for x, title, note in (
         (83, fig.t("Ornn", "Ornn"), fig.t(f"{SKILLS} 项技能", f"{SKILLS} skills")),
         (240, fig.t("CMA", "CMA"), fig.t("云端运行", "Cloud runtime")),
         (397, fig.t("heca", "heca"), fig.t(f"{heca_agents} 个智能体接入", f"{heca_agents} agents")),
     ):
-        fig.rect(x - 75, 197, 150, 66, color="blue", fill="blue", fill_opacity=0.08, rx=8)
-        fig.text(x, 223, title, size=18, color="blue", weight=700, anchor="middle")
-        fig.text(x, 247, note, size=15, anchor="middle")
+        fig.rect(x - 75, 197, 150, 74, color="blue", fill="blue", fill_opacity=0.08, rx=8)
+        fig.text(x, 222, title, size=18, color="blue", weight=700, anchor="middle")
+        fig.text(x, 251, note, size=16, anchor="middle")
     fig.text(240, 300, fig.t("NyxID：2026-11-27 · 技能与 heca：11-27", "NyxID: 2026-11-27 · Skills and heca: Nov 27"),
-             size=15, color="dim", anchor="middle")
+             size=16, color="dim", anchor="middle")

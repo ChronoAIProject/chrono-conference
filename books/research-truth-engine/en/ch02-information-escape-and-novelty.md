@@ -115,6 +115,8 @@ On $\mathrm{Bool}$, let $\mathrm{sameLaw} = \{p \mid p_1 = p_2\}$ and $\mathrm{d
 Every coordinate projection equals all of $\mathrm{Bool}$, securing pairwise marginal compatibility, yet $b_1 = b_2$ and $b_2 = b_3$ force $b_1 = b_3$, contradicting $(b_1, b_3) \in \mathrm{differentLaw}$. Verified and frozen by the Lean 4 kernel in [`compatible_local_laws_can_lack_global_state`](lean:D5/S3/ConceptDynamics/Gluing/LocalLawGluingObstruction.compatible_local_laws_can_lack_global_state).
 :::
 
+[@thm-gluing-obstruction] pins down the **negative obstruction** where pairwise local agreement still fails to glue globally; for its exact constructive counterpart—when every closed degree-2 simplicial cochain explicitly integrates to a global primitive—see [Chapter 6](ch06-mathesis-books-and-rh.md)'s blue zero-axiom simplicial Poincaré lemma [@thm-omega-simplicial-exact] (`d2_eq_zero_iff`, strictly `axioms: []` on both official Lean and bare-CIC `strict_omega`).
+
 Open the full `TRUTH//DAG` laboratory below and toggle any combination of `T1`–`T6` yourself, tracking exact escaped pairs out of 120, monotone escape rate, and per-theorem unique capture live.
 
 ::: {.viz src="truth-dag-observatory" height="560"}

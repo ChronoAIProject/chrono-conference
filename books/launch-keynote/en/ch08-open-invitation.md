@@ -28,6 +28,7 @@ If you want to see what a 24/7 formal discovery engine actually proves—and exa
 
 - Pick a published resolution in [`the-omega-institute/trureturing`](https://github.com/the-omega-institute/trureturing) (`223,231` frozen theorems, `17,968` modules, `6.02M` LOC), run the five-step local `lake build` check in Volume III, Appendix A, or browse the three continuously published bilingual monographs in [`trureturing-books`](https://github.com/the-omega-institute/trureturing-books) (`344` bilingual pages/lang, `918` theorem blocks / `2,043` unique frozen GIDs);
 - Clone [`the-omega-institute/riemann-hypothesis`](https://github.com/the-omega-institute/riemann-hypothesis) to replay **`8,490` shards** of Levent Alpöge's Lean `4.33.1` classical RH / Dirichlet GRH proof via `./verify`, read companion guide `riemann-hypothesis-book`, or audit [`mathesis-papers`](https://github.com/mathesis-papers) (`237` repos / `236` public, `225` public collected papers, double-zero honesty: `0` Mathesis peer-review acceptances and `0 / 1,534` independent verifier receipts);
+- Run `lake build` directly on the **blue zero-axiom `d2_eq_zero_iff`** (`axioms: []`, Volume I, Chapter 5 / Volume III, Chapter 6), and inspect Volume III, Chapter 7's HITL empirical ablation and Figure 27 (`ch07-hitl-ablation-gate`: `260/300 = 86.7%` pairwise win rate, FPR cut from `30.0% → 0.0%` under executable counterexample gates, and the `24,925`-PR admission audit);
 - Catch even half a sentence where our prose outruns a Lean signature, or point out prior literature overlap—every correction is logged candidly in The Omega Institute's `trureturing-outreach` aggregate ledger. And if you carry a clean conjecture ready for counterexample search or a Lean 4 skeleton, bring the problem statement.
 
 ### Door Three: For Our First Cohort of Pilot Merchants and Deployment Partners
@@ -50,7 +51,7 @@ To prevent impersonation or garbled relays, all press inquiries, merchant pilot 
 | --- | --- |
 | Company Website | [`https://chrono-ai.fun/`](https://chrono-ai.fun/) |
 | Sole Public Contact Email | [`contact@chrono-ai.fun`](mailto:contact@chrono-ai.fun) |
-| Virtual Launch Lobby | [`street-corner` viewer / workspace](https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended) (open-signup [`NyxID`](https://nyxid.ai/) login; Telegram seats `@chronoai_frontdesk_bot` · flowers `@flowerassis_bot`) |
+| Virtual Launch Lobby | [Read-only viewer `/u/street-corner?view=extended`](https://chrono-metaverse-chronoai.apps.nyxid.ai/u/street-corner?view=extended) · [Interactive workspace `/workspace?space=street-corner&view=extended`](https://chrono-metaverse-chronoai.apps.nyxid.ai/workspace?space=street-corner&view=extended) (open-signup [`NyxID`](https://nyxid.ai/) login; Telegram seats `@chronoai_frontdesk_bot` · flowers `@flowerassis_bot`) |
 | Live Broadcast (Dec 17, 16:00–17:15 SGT) | YouTube `@ChronoAIOfficial` · LinkedIn Live (no login required) |
 | Executable Governance Org | [`https://github.com/chrono-harness/`](https://github.com/chrono-harness/) (`25` public repos) |
 | Live Research Observatory (The Omega Institute) | [`https://live.trureturing.org/`](https://live.trureturing.org/) |

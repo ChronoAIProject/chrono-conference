@@ -123,7 +123,7 @@ In [`RicciLimit.result`](lean:D5/S3/Quantum/Algebra/ZeitlinSixJ/RicciLimit.resul
 
 Cracking individual published conjectures tests tactical reach; the deeper question is whether the engine can bolt multiple cross-domain physical constraints onto the same formal bench and watch them converge on a single spacetime dimension. Frozen live on November 27, 2026 inside `DeSitterGravitonModes` (`548388cd`), four classical constraints on any integer spacetime dimension $D \ge 3$—non-vanishing Weyl curvature, summability of the null-diamond leading angular mode weight, scale-invariant conformal Maxwell weight, and two transverse polarizations—close like a four-jaw vise around **$D = 4$**:
 
-:::: {.theorem #thm-unique-dim-four title="Unique Selection of 4D Spacetime from Weyl Curvature, Summable Leading Mode, Conformal Maxwell, and Two Polarizations" lean="D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four"}
+::: {.theorem #thm-unique-dim-four title="Unique Selection of 4D Spacetime from Weyl Curvature, Summable Leading Mode, Conformal Maxwell, and Two Polarizations" lean="D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four"}
 For every natural-number dimension $D \ge 3$, the following equivalence holds:
 $$
 \begin{aligned}
@@ -134,10 +134,12 @@ $$
 \end{aligned}.
 $$
 The four conditions express nonzero Weyl curvature, summability of the null-diamond leading angular mode weight, a Maxwell conformal weight of one for every positive scale, and two transverse polarizations.
-::::
+:::
 
-::: {.proof}
+::: proof
 In [`grand_unification_unique_dimension_four`](lean:D5/S3/Quantum/Analysis/NullConeGravity/DeSitterGravitonModes.grand_unification_unique_dimension_four), each physical criterion carves away candidate dimensions in turn: non-vanishing Weyl curvature (`weylDim_pos_iff`) immediately eliminates $D = 3$ and forces $D \ge 4$—matching its sibling zero-axiom theorem `graviton_polarizations_three_four_five` in the same module, which proves via `decide` with zero axioms that `gravitonPolarizationCount` takes values `0`, `2`, and `5` in dimensions $D = 3, 4, 5$; summability of `leadingModeWeight D` (`scalar_nullDiamond_and_propagating_gravity_iff`) then trims the surviving window to $D \in \{4, 5\}$; finally, conformal invariance of Maxwell's equations (`maxwellConformalWeight D Ω = 1` for all $\Omega > 0$) paired with two transverse polarizations / Hodge two-form degree ($D - 2 = 2$) uniquely locks $D = 4$, and conversely all four conditions hold at $D = 4$. Verified and frozen by the Lean 4 kernel.
 :::
+
+Placed in its broader constructive lineage, this zero-axiom `decide` graviton count (`graviton_polarizations_three_four_five`) pairs directly with [Chapter 6](ch06-mathesis-books-and-rh.md)'s blue zero-axiom simplicial Poincaré lemma [@thm-omega-simplicial-exact] (`d2_eq_zero_iff`, strictly `axioms: []` on both official Lean and bare-CIC `strict_omega`), whose explicit cone homotopy supplies the constructive counterpart for degree-2 simplicial cochains to [Chapter 2](ch02-information-escape-and-novelty.md)'s gluing obstruction ([@thm-gluing-obstruction]).
 
 Seven flagship literature proofs and refutations across five major physics and mathematics journals, plus one live November 27, 2026 theorem uniquely selecting 4D spacetime—eight frozen theorems laid bare with zero rhetoric, every single one backed by a clickable green Lean declaration. Now, what does this living constellation of **`17,968` frozen modules and `223,231` frozen theorems** (`548388cd`, November 27, 2026) actually look like while running 24/7? Chapter 5 walks straight through the glass doors of **`live.trureturing.org`**.

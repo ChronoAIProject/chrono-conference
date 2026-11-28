@@ -4,15 +4,15 @@ Physics and geometry share a pair of luminous words: **boundary** and **bulk**.
 
 Everything an outsider sees at first glance—the lights over four tiered stands, a seventy-five-minute broadcast script, celebratory flower baskets glowing along the world-map wall, a crisp answer from Concierge Donna—lives on the **boundary**. Showmen pour all their energy into waxing the boundary while forgetting why a boundary holds its shape at all: because an unseen **bulk** behind it absorbs the pressure.
 
-ChronoAI's complete-vehicle infrastructure—forged across six organizations and `539` repositories—is that pressure-bearing bulk:
+Across six affiliated GitHub organizations (`539` repositories total), ChronoAI's complete-vehicle commercial infrastructure and independent research brand **The Omega Institute**'s formal truth engine (`trureturing`, `223,231` frozen theorems) each bear load within their separate domains to form that pressure-bearing bulk:
 
 - Without `NyxID`'s expiring keycards and zero-secret vault holding the line underneath, every polite greeting on the boundary risks handing your company's master keys to a stranger;
 - Without `Ornn`'s version pinning and AgentSeal scanning, even the sharpest workflow rots after its third copy-paste;
 - Without `chrono-harness`'s declarative delta judges, the `141,624` commits landed across the sixty-day window from September 20 to November 19, 2026 would not be engineering rhythm—they would be an avalanche;
-- Without `trureturing`'s Lean 4 kernel (`223,231` frozen theorems) enforcing [@thm-keynote-novelty] (recoverable theorems cannot lower information escape—**(Analogy)** *you cannot mine the same gold twice*), [@thm-keynote-gluing] (*pairwise local agreement never guarantees a global state*), and the blue zero-axiom [@thm-keynote-zero-axiom] (*zero-axiom constructive global lifting*), grand narratives quietly rot into echo chambers.
+- Without independent research brand **The Omega Institute**'s `trureturing` Lean 4 kernel (`223,231` frozen theorems) enforcing [@thm-keynote-novelty] (recoverable theorems cannot lower information escape—**Analogy**: *you cannot mine the same gold twice*), [@thm-keynote-gluing] (*pairwise local agreement never guarantees a global state*), and the blue zero-axiom [@thm-keynote-zero-axiom] (*zero-axiom constructive global lifting*), grand narratives quietly rot into echo chambers.
 
 ::: {.remark #rem-coda-boundary-bulk title="Closing Metaphor: Boundary, Bulk, and the Samba Drumline"}
-"Boundary and bulk," the "samba drumline with a Monday critic," "the chorus," and "you cannot mine the same gold twice" are philosophical and engineering analogies **(Analogy)** illustrating how front-stage experiences and recoverability laws depend on hard underlying constraints. They are editorial prose, not mathematical theorems.
+"Boundary and bulk," the "samba drumline with a Monday critic," "the chorus," and "you cannot mine the same gold twice" are philosophical and engineering analogies illustrating how front-stage experiences and recoverability laws depend on hard underlying constraints. They are editorial prose, not mathematical theorems.
 :::
 
 ## Solo Noise Versus a Chorus That Holds

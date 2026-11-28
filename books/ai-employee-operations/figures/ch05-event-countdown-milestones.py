@@ -2,7 +2,7 @@
 
 from datetime import date, datetime, time
 
-SIZE = (520, 426)
+SIZE = (520, 458)
 ALT = {
     "zh": "2026 年发布日程以 12 月 17 日为 T-0。11 月 27 日全流程排练 12 阶段通过 11 阶段；"
           "12 月 4 日开放预约与前厅（提前 13 天），11 日并发压测与锁座演练（提前 6 天），"
@@ -42,19 +42,19 @@ def draw(fig):
         t("切片、工单与商户跟进", "Clips, tickets & pilot follow-up"),
     ]
     fig.text(18, 31, t("2026 年 11–12 月", "November–December 2026"), size=18, weight=600)
-    fig.text(502, 31, t("新加坡时间", "Singapore time"), size=15, color="dim", anchor="end")
-    first_y, pitch = 66, 54
+    fig.text(502, 31, t("新加坡时间", "Singapore time"), size=17, color="dim", anchor="end")
+    first_y, pitch = 71, 59
     fig.line(26, first_y, 26, first_y + (len(dates) - 1) * pitch, "edge", 2)
     for index, (day, offset, label) in enumerate(zip(dates, offsets, labels)):
         y = first_y + index * pitch
         color = "now" if offset == 0 else "cyan"
         if offset == 0:
-            fig.rect(10, y - 25, 500, 53, color="now", fill="now", fill_opacity=0.10, rx=5)
+            fig.rect(10, y - 28, 500, 60, color="now", fill="now", fill_opacity=0.10, rx=5)
         fig.dot(26, y, 5.5, color, ring="bg")
         date_label = f"{day.month} 月 {day.day:02d} 日"
         en_date_label = f"Dec {day.day:02d}" if day.month == 12 else f"Nov {day.day:02d}"
         fig.text(44, y - 10, t(date_label, en_date_label),
                  size=17, weight=600, color=color, middle=True)
         delta = "T-0" if offset == 0 else f"T{offset:+d}d"
-        fig.text(44, y + 15, delta, size=15, color="dim", middle=True, mono=True)
-        fig.text(180, y, label, size=16, weight=600 if offset == 0 else 400, middle=True)
+        fig.text(44, y + 15, delta, size=17, color="dim", middle=True, mono=True)
+        fig.text(180, y, label, size=17, weight=600 if offset == 0 else 400, middle=True)
